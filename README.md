@@ -1,2 +1,2 @@
 # PA_Focus_Guard
-"Protect Your Focus, Defend Your Productivity!" 
+"Focus Guard: Your Key to Productivity and Success."
