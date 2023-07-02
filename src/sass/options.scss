@@ -203,3 +203,37 @@ header {
     }
   }
 }
+
+.sidebar {
+  background-color: #f9f5ed;
+  padding: 20px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      a {
+        display: block;
+        padding: 8px 12px;
+        border-radius: 4px;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #e0e0e0;
+        }
+
+        &.active {
+          background-color: #007bff;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
