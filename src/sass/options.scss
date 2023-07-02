@@ -229,7 +229,7 @@ header {
         }
 
         &.active {
-          background-color: #007bff;
+          background-color: $md-primary-color;
           color: #fff;
         }
       }

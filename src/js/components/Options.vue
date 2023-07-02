@@ -7,67 +7,47 @@
   <div class="container content-box">
     <div class="sidebar">
       <ul>
-        <li><a href="#general">General</a></li>
-        <li><a href="#sites">Sites</a></li>
+        <li><a href="#social-media" @click="selectComponent('SocialMedia')"
+               :class="{ active: selectedComponent === 'SocialMedia' }">SocialMedia</a></li>
+        <li><a href="#blocked-sites" @click="selectComponent('BlockedSites')"
+               :class="{ active: selectedComponent === 'BlockedSites' }">BlockedSites</a></li>
       </ul>
     </div>
     <div class="main">
-      <div class="sites-container">
-        <p>Sites:</p>
-        <div class="sites-list">
-          <table>
-            <thead>
-            </thead>
-            <tbody>
-            <tr class="site" v-for="site in sites">
-              <td><input type="checkbox" :id="site.name" :checked="site.checked"
-                         @change="site.checked ? checkSite() : uncheckSite()"/></td>
-              <td><label :for="site.name">{{ site.name }}</label></td>
-              <td>
-                <button @click="removeSite" class="remove-site">X</button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="add-site-container">
-        <p>Add site:</p>
-        <div class="input-wrapper">
-          <input type="text" placeholder="example.com" v-model="siteInput"/>
-          <button @click="addSite" class="add-site">Add</button>
-        </div>
-      </div>
+      <component :is="selectedComponent"></component>
     </div>
   </div>
 </template>
 <script>
+import SocialMedia from './SocialMedia.vue';
+import BlockedSites from './BlockedSites.vue';
+import Default  from './Default.vue';
+
 export default {
   data() {
     return {
-      sites: [
-        {name: 'example.com', checked: true},
-        {name: 'example2.com', checked: false},
-        {name: 'example3.com', checked: true}
-      ],
-      active: false
+      selectedComponent: ''
     };
   },
+  components: {
+    SocialMedia: SocialMedia,
+    BlockedSites: BlockedSites,
+    Default: Default
+  },
   methods: {
-    addSite() {
-      console.log('addSite');
-    },
-    removeSite() {
-      console.log('removeSite');
-    },
-    showList() {
-      console.log('showList');
-    },
-    checkSite() {
-      console.log('checkSite');
-    },
-    uncheckSite() {
-      console.log('uncheckSite');
+    selectComponent(componentName) {
+      this.selectedComponent = componentName;
+    }
+  },
+  mounted() {
+    const hash = window.location.hash; // Get the hash value from the URL
+
+    if (hash === '#social-media') {
+      this.selectedComponent = 'SocialMedia';
+    } else if (hash === '#blocked-sites') {
+      this.selectedComponent = 'BlockedSites';
+    } else {
+      this.selectedComponent = 'Default';
     }
   }
 };

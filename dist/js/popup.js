@@ -16831,7 +16831,7 @@ __webpack_require__.r(__webpack_exports__);
       if (chrome.runtime.openOptionsPage) {
         chrome.runtime.openOptionsPage();
       } else {
-        window.open(chrome.runtime.getURL('options.html'));
+        window.open(chrome.runtime.getURL('options.html#blocked-sites'));
       }
     },
     details: function details() {
