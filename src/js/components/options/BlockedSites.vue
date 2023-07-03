@@ -21,7 +21,7 @@
   <div class="add-site-container">
     <p>Add site:</p>
     <div class="input-wrapper">
-      <input type="text" placeholder="example.com" v-model="siteInput"/>
+      <input type="text" placeholder="example.com" v-model="newSiteName"/>
       <button @click="addSite" class="add-site">Add</button>
     </div>
   </div>
@@ -36,7 +36,8 @@ export default {
         {name: 'example2.com', checked: false},
         {name: 'example3.com', checked: true}
       ],
-      active: false
+      active: false,
+      newSiteName: ''
     };
   },
   methods: {

@@ -19,14 +19,14 @@
   </div>
 </template>
 <script>
-import SocialMedia from './SocialMedia.vue';
-import BlockedSites from './BlockedSites.vue';
-import Default  from './Default.vue';
+import SocialMedia from './options/SocialMedia.vue';
+import BlockedSites from './options/BlockedSites.vue';
+import Default  from './options/Default.vue';
 
 export default {
   data() {
     return {
-      selectedComponent: ''
+      selectedComponent: 'Default'
     };
   },
   components: {
@@ -42,12 +42,15 @@ export default {
   mounted() {
     const hash = window.location.hash; // Get the hash value from the URL
 
-    if (hash === '#social-media') {
-      this.selectedComponent = 'SocialMedia';
-    } else if (hash === '#blocked-sites') {
-      this.selectedComponent = 'BlockedSites';
-    } else {
-      this.selectedComponent = 'Default';
+    switch (hash) {
+      case '#social-media':
+        this.selectedComponent = 'SocialMedia';
+        break;
+      case '#blocked-sites':
+        this.selectedComponent = 'BlockedSites';
+        break;
+      default:
+        this.selectedComponent = 'Default';
     }
   }
 };
