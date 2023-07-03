@@ -16930,7 +16930,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   watch: {
     storageName: {
       immediate: true,
-      handler: "loadListOfWebsites"
+      handler: 'loadListOfWebsites'
     }
   },
   created: function created() {
@@ -16950,11 +16950,51 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     saveListOfWebsites: function saveListOfWebsites() {
       chrome.storage.sync.set(_defineProperty({}, this.storageName, JSON.stringify(this.websiteList)));
     },
+    cleanDomain: function cleanDomain(domain) {
+      // Remove prefixes (e.g., "https://", "http://", "www.")
+      var cleanedDomain = domain.replace(/^(https?:\/\/)?(www\.)?/i, '');
+      // Remove anything after the end domain
+      var endDomainIndex = cleanedDomain.indexOf('/');
+      if (endDomainIndex !== -1) {
+        return cleanedDomain.substring(0, endDomainIndex);
+      }
+      return cleanedDomain;
+    },
+    validateDomain: function validateDomain(domain) {
+      // Regular expression pattern for URL validation
+      var urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
+
+      // Check if the URL matches the pattern
+      return urlPattern.test(domain);
+    },
     removeSite: function removeSite(siteName) {
       this.websiteList = this.websiteList.filter(function (site) {
         return site.name !== siteName;
       });
       this.saveListOfWebsites();
+    },
+    addWebsite: function addWebsite() {
+      this.handleBlur();
+      if (this.newWebsite !== '' && !this.showInvalidErrorMessage && !this.showDuplicatedErrorMessage) {
+        this.websiteList.push({
+          name: this.cleanDomain(this.newWebsite),
+          checked: true
+        });
+        this.saveListOfWebsites();
+        this.newWebsite = '';
+      }
+    },
+    handleBlur: function handleBlur() {
+      var _this2 = this;
+      if (this.newWebsite === '') {
+        this.showInvalidErrorMessage = false;
+        this.showDuplicatedErrorMessage = false;
+      } else {
+        this.showInvalidErrorMessage = !this.validateDomain(this.newWebsite);
+        this.showDuplicatedErrorMessage = this.websiteList.some(function (site) {
+          return site.name === _this2.cleanDomain(_this2.newWebsite);
+        });
+      }
     },
     changeSitePermission: function changeSitePermission(siteName) {
       this.websiteList = this.websiteList.map(function (site) {
@@ -17045,6 +17085,21 @@ var _hoisted_4 = {
 var _hoisted_5 = ["id", "checked", "onChange"];
 var _hoisted_6 = ["for"];
 var _hoisted_7 = ["onClick"];
+var _hoisted_8 = {
+  "class": "add-site-container"
+};
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Add site:", -1 /* HOISTED */);
+var _hoisted_10 = {
+  "class": "input-wrapper"
+};
+var _hoisted_11 = {
+  key: 0,
+  "class": "error-message"
+};
+var _hoisted_12 = {
+  key: 1,
+  "class": "error-message"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.componentTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.storageName), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteList, function (site) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -17062,7 +17117,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       "class": "remove-site"
     }, "X", 8 /* PROPS */, _hoisted_7)])]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])])], 64 /* STABLE_FRAGMENT */);
+  }), 256 /* UNKEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    placeholder: "example.com",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.newWebsite = $event;
+    }),
+    onBlur: _cache[1] || (_cache[1] = function () {
+      return $options.handleBlur && $options.handleBlur.apply($options, arguments);
+    })
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newWebsite]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.addWebsite && $options.addWebsite.apply($options, arguments);
+    }),
+    "class": "add-site"
+  }, "Add")]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_11, "Invalid domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_12, "Duplicated domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
