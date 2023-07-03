@@ -16868,17 +16868,25 @@ __webpack_require__.r(__webpack_exports__);
       newSiteName: ''
     };
   },
+  created: function created() {
+    var _this = this;
+    chrome.storage.sync.get('fgBlockedSites', function (data) {
+      if (data.fgBlockedSites) {
+        _this.sites = JSON.parse(data.fgBlockedSites);
+      }
+    });
+  },
   methods: {
+    saveListOfSites: function saveListOfSites() {
+      chrome.storage.sync.set({
+        fgBlockedSites: JSON.stringify(this.sites)
+      });
+    },
     removeDomainPrefixes: function removeDomainPrefixes(str) {
-      var domainRegex = /^(?:https?:\/\/)?(?:www\.)?(.*)$/;
+      var domainRegex = /^(?:https?:\/\/)?(?:www\.)?([^/]+)/;
       var match = str.match(domainRegex);
       if (match) {
-        var domain = match[1];
-        var subDomainRegex = /^(?:www\.)?(.*)$/;
-        var subDomainMatch = domain.match(subDomainRegex);
-        if (subDomainMatch) {
-          return subDomainMatch[1];
-        }
+        return match[1];
       }
       return str;
     },
@@ -16887,27 +16895,29 @@ __webpack_require__.r(__webpack_exports__);
       return domainRegex.test(str);
     },
     addSite: function addSite() {
-      if (this.newSiteName !== '' && this.containsDomain(this.newSiteName)) {
+      if (this.newSiteName !== '') {
         this.sites.push({
           name: this.newSiteName,
           checked: false
         });
         this.newSiteName = '';
+        this.saveListOfSites();
       }
     },
     removeSite: function removeSite(siteName) {
       this.sites = this.sites.filter(function (site) {
         return site.name !== siteName;
       });
+      this.saveListOfSites();
     },
-    showList: function showList() {
-      console.log('showList');
-    },
-    checkSite: function checkSite() {
-      console.log('checkSite');
-    },
-    uncheckSite: function uncheckSite() {
-      console.log('uncheckSite');
+    changeSitePermission: function changeSitePermission(siteName) {
+      this.sites = this.sites.map(function (site) {
+        if (site.name === siteName) {
+          site.checked = !site.checked;
+        }
+        return site;
+      });
+      this.saveListOfSites();
     }
   }
 });
@@ -17000,7 +17010,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       id: site.name,
       checked: site.checked,
       onChange: function onChange($event) {
-        return site.checked ? $options.checkSite() : $options.uncheckSite();
+        return $options.changeSitePermission(site.name);
       }
     }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": site.name

@@ -8,7 +8,7 @@
         <tbody>
         <tr class="site" v-for="site in sites">
           <td><input type="checkbox" :id="site.name" :checked="site.checked"
-                     @change="changeSitePermission"/></td>
+                     @change="changeSitePermission(site.name)"/></td>
           <td><label :for="site.name">{{ site.name }}</label></td>
           <td>
             <button @click="removeSite(site.name)" class="remove-site">X</button>
@@ -40,7 +40,17 @@ export default {
       newSiteName: ''
     };
   },
+  created() {
+    chrome.storage.sync.get('fgBlockedSites', (data) => {
+      if (data.fgBlockedSites) {
+        this.sites = JSON.parse(data.fgBlockedSites);
+      }
+    });
+  },
   methods: {
+    saveListOfSites() {
+      chrome.storage.sync.set({fgBlockedSites: JSON.stringify(this.sites)});
+    },
     removeDomainPrefixes(str) {
       const domainRegex = /^(?:https?:\/\/)?(?:www\.)?([^/]+)/;
       const match = str.match(domainRegex);
@@ -57,22 +67,24 @@ export default {
       return domainRegex.test(str);
     },
     addSite() {
-      if ((this.newSiteName !== '') && this.containsDomain(this.newSiteName)) {
-        this.sites.push({name: this.removeDomainPrefixes(this.newSiteName), checked: false});
+      if ((this.newSiteName !== '')) {
+        this.sites.push({name: this.newSiteName, checked: false});
         this.newSiteName = '';
+        this.saveListOfSites();
       }
     },
     removeSite(siteName) {
       this.sites = this.sites.filter(site => site.name !== siteName);
+      this.saveListOfSites();
     },
     changeSitePermission(siteName) {
       this.sites = this.sites.map(site => {
         if (site.name === siteName) {
           site.checked = !site.checked;
         }
-
         return site;
       });
+      this.saveListOfSites();
     },
   }
 };
