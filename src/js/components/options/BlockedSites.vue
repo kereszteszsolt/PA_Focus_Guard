@@ -21,9 +21,11 @@
   <div class="add-site-container">
     <p>Add site:</p>
     <div class="input-wrapper">
-      <input type="text" placeholder="example.com" v-model="newSiteName"/>
+      <input type="text" placeholder="example.com" v-model="newSiteName"  @blur="handleBlur"/>
       <button @click="addSite" class="add-site">Add</button>
     </div>
+    <label v-if="showInvalidErrorMessage" class="error-message">Invalid domain</label>
+    <label v-if="showDuplicatedErrorMessage" class="error-message">Duplicated domain</label>
   </div>
 </template>
 <script>
@@ -37,7 +39,9 @@ export default {
         {name: 'linkedin.com', checked: true}
       ],
       active: false,
-      newSiteName: ''
+      newSiteName: '',
+      showInvalidErrorMessage: false,
+      showDuplicatedErrorMessage: false
     };
   },
   created() {
@@ -67,7 +71,8 @@ export default {
       return domainRegex.test(str);
     },
     addSite() {
-      if ((this.newSiteName !== '')) {
+      this.handleBlur();
+      if (!this.showInvalidErrorMessage && !this.showDuplicatedErrorMessage) {
         this.sites.push({name: this.newSiteName, checked: true});
         this.newSiteName = '';
         this.saveListOfSites();
@@ -86,6 +91,20 @@ export default {
       });
       this.saveListOfSites();
     },
+    handleBlur() {
+      // Show the error message if the input field is not empty and the domain is invalid
+      if (this.newSiteName !== '' && !this.containsDomain(this.newSiteName)) {
+        this.showInvalidErrorMessage = true;
+      } else {
+        this.showInvalidErrorMessage = false;
+      }
+      //Show the error message if the input field is not empty and the domain is duplicated
+      if (this.newSiteName !== '' && this.sites.some(site => site.name === this.newSiteName)) {
+        this.showDuplicatedErrorMessage = true;
+      } else {
+        this.showDuplicatedErrorMessage = false;
+      }
+    }
   }
 };
 </script>

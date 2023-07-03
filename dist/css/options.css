@@ -195,3 +195,10 @@ header {
   background-color: #574513;
   color: #fff;
 }
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 8px;
+}

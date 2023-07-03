@@ -16871,7 +16871,9 @@ __webpack_require__.r(__webpack_exports__);
         checked: true
       }],
       active: false,
-      newSiteName: ''
+      newSiteName: '',
+      showInvalidErrorMessage: false,
+      showDuplicatedErrorMessage: false
     };
   },
   created: function created() {
@@ -16901,7 +16903,8 @@ __webpack_require__.r(__webpack_exports__);
       return domainRegex.test(str);
     },
     addSite: function addSite() {
-      if (this.newSiteName !== '') {
+      this.handleBlur();
+      if (!this.showInvalidErrorMessage && !this.showDuplicatedErrorMessage) {
         this.sites.push({
           name: this.newSiteName,
           checked: true
@@ -16924,6 +16927,23 @@ __webpack_require__.r(__webpack_exports__);
         return site;
       });
       this.saveListOfSites();
+    },
+    handleBlur: function handleBlur() {
+      var _this2 = this;
+      // Show the error message if the input field is not empty and the domain is invalid
+      if (this.newSiteName !== '' && !this.containsDomain(this.newSiteName)) {
+        this.showInvalidErrorMessage = true;
+      } else {
+        this.showInvalidErrorMessage = false;
+      }
+      //Show the error message if the input field is not empty and the domain is duplicated
+      if (this.newSiteName !== '' && this.sites.some(function (site) {
+        return site.name === _this2.newSiteName;
+      })) {
+        this.showDuplicatedErrorMessage = true;
+      } else {
+        this.showDuplicatedErrorMessage = false;
+      }
     }
   }
 });
@@ -17097,6 +17117,14 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_11 = {
   "class": "input-wrapper"
 };
+var _hoisted_12 = {
+  key: 0,
+  "class": "error-message"
+};
+var _hoisted_13 = {
+  key: 1,
+  "class": "error-message"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.sites, function (site) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -17119,13 +17147,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "example.com",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.newSiteName = $event;
+    }),
+    onBlur: _cache[1] || (_cache[1] = function () {
+      return $options.handleBlur && $options.handleBlur.apply($options, arguments);
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newSiteName]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[1] || (_cache[1] = function () {
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newSiteName]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = function () {
       return $options.addSite && $options.addSite.apply($options, arguments);
     }),
     "class": "add-site"
-  }, "Add")])])], 64 /* STABLE_FRAGMENT */);
+  }, "Add")]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_12, "Invalid domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_13, "Duplicated domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
