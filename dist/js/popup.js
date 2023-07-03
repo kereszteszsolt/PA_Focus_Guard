@@ -16804,27 +16804,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      active: true,
-      list: 'example.com'
+      active: false
     };
   },
   created: function created() {
     var _this = this;
-    chrome.storage.sync.get(['toggleSitesActive', 'toggleSitesList'], function (result) {
-      _this.active = result.toggleSitesActive;
-      _this.list = result.toggleSitesList;
+    chrome.storage.sync.get(['fbBlockedSitesActive'], function (result) {
+      _this.active = result.fbBlockedSitesActive;
     });
   },
   methods: {
     setActive: function setActive(active) {
       this.active = active;
       chrome.storage.sync.set({
-        toggleSitesActive: active
-      }, function () {});
-    },
-    saveList: function saveList() {
-      chrome.storage.sync.set({
-        toggleSitesList: this.list
+        fbBlockedSitesActive: active
       }, function () {});
     },
     settings: function settings() {
@@ -16865,11 +16858,6 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_3 = {
   "class": "buttons"
 };
-var _hoisted_4 = {
-  "class": "sites"
-};
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "List your websites below, one per line", -1 /* HOISTED */);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
@@ -16887,31 +16875,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.setActive(true);
     })
-  }, "On", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    rows: "8",
-    autocomplete: "off",
-    autocorrect: "off",
-    autocapitalize: "off",
-    spellcheck: "false",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.list = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.list]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "On", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "state-save",
-    onClick: _cache[3] || (_cache[3] = function () {
-      return $options.saveList && $options.saveList.apply($options, arguments);
-    })
-  }, "Save Site List"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "button",
-    "class": "state-save",
-    onClick: _cache[4] || (_cache[4] = function () {
+    onClick: _cache[2] || (_cache[2] = function () {
       return $options.settings && $options.settings.apply($options, arguments);
     })
   }, "Settings"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "state-save",
-    onClick: _cache[5] || (_cache[5] = function () {
+    onClick: _cache[3] || (_cache[3] = function () {
       return $options.details && $options.details.apply($options, arguments);
     })
   }, "Details")]);

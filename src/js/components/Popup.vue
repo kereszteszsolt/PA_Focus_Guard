@@ -5,12 +5,6 @@
       <button type="button" class="state-off" :class="{'is-active': !active}" @click="setActive(false)">Off</button>
       <button type="button" class="state-on" :class="{'is-active': active}" @click="setActive(true)">On</button>
     </div>
-    <div class="sites">
-      <p>List your websites below, one per line</p>
-      <textarea rows="8" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                v-model="list"></textarea>
-    </div>
-    <button type="button" class="state-save" @click="saveList">Save Site List</button>
     <button type="button" class="state-save" @click="settings">Settings</button>
     <button type="button" class="state-save" @click="details">Details</button>
   </div>
@@ -19,30 +13,22 @@
 export default {
   data() {
     return {
-      active: true,
-      list: 'example.com'
+      active: false,
     };
   },
   created() {
-    chrome.storage.sync.get(['toggleSitesActive', 'toggleSitesList'], (result) => {
-      this.active = result.toggleSitesActive;
-      this.list = result.toggleSitesList;
+    chrome.storage.sync.get(['fbBlockedSitesActive'], (result) => {
+      this.active = result.fbBlockedSitesActive;
     });
   },
   methods: {
     setActive(active) {
       this.active = active;
       chrome.storage.sync.set({
-        toggleSitesActive: active
+        fbBlockedSitesActive: active
       }, () => {
       });
 
-    },
-    saveList() {
-      chrome.storage.sync.set({
-        toggleSitesList: this.list
-      }, () => {
-      });
     },
     settings() {
       if (chrome.runtime.openOptionsPage) {
