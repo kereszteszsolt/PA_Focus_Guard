@@ -16869,11 +16869,36 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    addSite: function addSite() {
-      console.log('addSite');
+    removeDomainPrefixes: function removeDomainPrefixes(str) {
+      var domainRegex = /^(?:https?:\/\/)?(?:www\.)?(.*)$/;
+      var match = str.match(domainRegex);
+      if (match) {
+        var domain = match[1];
+        var subDomainRegex = /^(?:www\.)?(.*)$/;
+        var subDomainMatch = domain.match(subDomainRegex);
+        if (subDomainMatch) {
+          return subDomainMatch[1];
+        }
+      }
+      return str;
     },
-    removeSite: function removeSite() {
-      console.log('removeSite');
+    containsDomain: function containsDomain(str) {
+      var domainRegex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)(?:\/|$)/;
+      return domainRegex.test(str);
+    },
+    addSite: function addSite() {
+      if (this.newSiteName !== '' && this.containsDomain(this.newSiteName)) {
+        this.sites.push({
+          name: this.newSiteName,
+          checked: false
+        });
+        this.newSiteName = '';
+      }
+    },
+    removeSite: function removeSite(siteName) {
+      this.sites = this.sites.filter(function (site) {
+        return site.name !== siteName;
+      });
     },
     showList: function showList() {
       console.log('showList');
@@ -16960,11 +16985,12 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = ["id", "checked", "onChange"];
 var _hoisted_7 = ["for"];
-var _hoisted_8 = {
+var _hoisted_8 = ["onClick"];
+var _hoisted_9 = {
   "class": "add-site-container"
 };
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Add site:", -1 /* HOISTED */);
-var _hoisted_10 = {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Add site:", -1 /* HOISTED */);
+var _hoisted_11 = {
   "class": "input-wrapper"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -16979,19 +17005,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": site.name
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(site.name), 9 /* TEXT, PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: _cache[0] || (_cache[0] = function () {
-        return $options.removeSite && $options.removeSite.apply($options, arguments);
-      }),
+      onClick: function onClick($event) {
+        return $options.removeSite(site.name);
+      },
       "class": "remove-site"
-    }, "X")])]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, "X", 8 /* PROPS */, _hoisted_8)])]);
+  }), 256 /* UNKEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     placeholder: "example.com",
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.newSiteName = $event;
     })
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newSiteName]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[2] || (_cache[2] = function () {
+    onClick: _cache[1] || (_cache[1] = function () {
       return $options.addSite && $options.addSite.apply($options, arguments);
     }),
     "class": "add-site"

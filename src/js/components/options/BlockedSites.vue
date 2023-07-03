@@ -8,10 +8,10 @@
         <tbody>
         <tr class="site" v-for="site in sites">
           <td><input type="checkbox" :id="site.name" :checked="site.checked"
-                     @change="site.checked ? checkSite() : uncheckSite()"/></td>
+                     @change="changeSitePermission"/></td>
           <td><label :for="site.name">{{ site.name }}</label></td>
           <td>
-            <button @click="removeSite" class="remove-site">X</button>
+            <button @click="removeSite(site.name)" class="remove-site">X</button>
           </td>
         </tr>
         </tbody>
@@ -41,21 +41,39 @@ export default {
     };
   },
   methods: {
+    removeDomainPrefixes(str) {
+      const domainRegex = /^(?:https?:\/\/)?(?:www\.)?([^/]+)/;
+      const match = str.match(domainRegex);
+
+      if (match) {
+        return match[1];
+      }
+
+      return str;
+    },
+    containsDomain(str) {
+      const domainRegex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)(?:\/|$)/;
+
+      return domainRegex.test(str);
+    },
     addSite() {
-      console.log('addSite');
+      if ((this.newSiteName !== '') && this.containsDomain(this.newSiteName)) {
+        this.sites.push({name: this.removeDomainPrefixes(this.newSiteName), checked: false});
+        this.newSiteName = '';
+      }
     },
-    removeSite() {
-      console.log('removeSite');
+    removeSite(siteName) {
+      this.sites = this.sites.filter(site => site.name !== siteName);
     },
-    showList() {
-      console.log('showList');
+    changeSitePermission(siteName) {
+      this.sites = this.sites.map(site => {
+        if (site.name === siteName) {
+          site.checked = !site.checked;
+        }
+
+        return site;
+      });
     },
-    checkSite() {
-      console.log('checkSite');
-    },
-    uncheckSite() {
-      console.log('uncheckSite');
-    }
   }
 };
 </script>
