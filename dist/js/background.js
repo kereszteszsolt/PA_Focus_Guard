@@ -20,10 +20,9 @@ chrome.runtime.onInstalled.addListener(function () {
     fgBlockedSites: JSON.stringify([{
       name: 'youtube.com',
       checked: true
-    }, {
-      name: 'facebook.com',
-      checked: true
-    }, {
+    },
+    //  {name: 'facebook.com', checked: true},
+    {
       name: 'linkedin.com',
       checked: true
     }]),
@@ -42,10 +41,9 @@ var fbBlockedSitesActive = true;
 var fgBlockedSites = [{
   name: 'youtube.com',
   checked: true
-}, {
-  name: 'facebook.com',
-  checked: true
-}, {
+},
+//  {name: 'facebook.com', checked: true},
+{
   name: 'linkedin.com',
   checked: true
 }];

@@ -7,57 +7,111 @@
   <div class="container content-box">
     <div class="sidebar">
       <ul>
-        <li><a href="#social-media" @click="selectComponent('SocialMedia')"
-               :class="{ active: selectedComponent === 'SocialMedia' }">SocialMedia</a></li>
-        <li><a href="#blocked-sites" @click="selectComponent('BlockedSites')"
-               :class="{ active: selectedComponent === 'BlockedSites' }">BlockedSites</a></li>
-        <li><a href="#permanently-blocked-sites" @click="selectComponent('PermanentBlockedSites')"
-               :class="{ active: selectedComponent === 'PermanentBlockedSites' }">PermanentBlockedSites</a></li>
+        <li><a href="#temporarily-blocked-sites" @click="selectComponent('TemporarilyBlockedWebsites')"
+               :class="{ active: selectedComponent === 'TemporarilyBlockedWebsites' }">Temporarily Blocked</a></li>
+        <li><a href="#permanently-blocked-sites" @click="selectComponent('PermanentlyBlockedWebsites')"
+               :class="{ active: selectedComponent === 'PermanentlyBlockedWebsites' }">Permanent Blocked</a></li>
       </ul>
     </div>
     <div class="main">
-      <component :is="selectedComponent"></component>
+      <component :is="selectedComponent"
+      :storageName=selectedStorageName
+      :componentTitle=selectedComponentTitle
+      :defaultWebsites=defaultWebsites ></component>
     </div>
   </div>
 </template>
 <script>
-import SocialMedia from './options/SocialMedia.vue';
-import BlockedSites from './options/BlockedSites.vue';
-import Default  from './options/Default.vue';
-import PermanentBlockedSites from './options/PermanentlyBlockedSites.vue';
+import BlockedWebsitesByDomain from './options/BlockedWebsitesByDomain.vue';
+
+const STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
+const STORAGE_NAME_PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
+
+const COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES = 'TemporarilyBlockedWebsites';
+const COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES = 'PermanentlyBlockedWebsites';
+
+const COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES = 'Temporarily Blocked Websites';
+const COMPONENT_TITLE_PERMANENTLY_BLOCKED_WEBSITES = 'Permanently Blocked Websites';
 
 export default {
   data() {
     return {
-      selectedComponent: 'Default'
+      selectedComponent: COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES,
+      selectedStorageName: STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponentTitle: COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES,
+      temporarilyBlockedWebsites: [
+        {
+          name: 'facebook.com',
+          checked: true
+        },
+        {
+          name: 'twitter.com',
+          checked: true
+        },
+        {
+          name: 'youtube.com',
+          checked: true
+        }
+      ],
+      permanentlyBlockedWebsites: [
+        {
+          name: 'instagram.com',
+          checked: true
+        },
+        {
+          name: 'reddit.com',
+          checked: true
+        },
+        {
+          name: 'tumblr.com',
+          checked: true
+        }
+      ],
+      defaultWebsites: [
+        {
+          name: 'example.com',
+          checked: true
+        }
+      ]
     };
   },
   components: {
-    SocialMedia: SocialMedia,
-    BlockedSites: BlockedSites,
-    PermanentBlockedSites: PermanentBlockedSites,
-    Default: Default
+    TemporarilyBlockedWebsites: BlockedWebsitesByDomain,
+    PermanentlyBlockedWebsites: BlockedWebsitesByDomain
   },
   methods: {
     selectComponent(componentName) {
       this.selectedComponent = componentName;
+      switch (componentName) {
+        case COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES:
+          this.selectedStorageName = STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES;
+          this.defaultWebsites = [...this.temporarilyBlockedWebsites];
+          break;
+        case COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES:
+          this.selectedStorageName = STORAGE_NAME_PERMANENTLY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = COMPONENT_TITLE_PERMANENTLY_BLOCKED_WEBSITES;
+          this.defaultWebsites = [...this.permanentlyBlockedWebsites];
+          break;
+        default:
+          this.selectedStorageName = STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES;
+          this.defaultWebsites = [...this.temporarilyBlockedWebsites];
+      }
     }
   },
   mounted() {
     const hash = window.location.hash; // Get the hash value from the URL
 
     switch (hash) {
-      case '#social-media':
-        this.selectedComponent = 'SocialMedia';
-        break;
-      case '#blocked-sites':
-        this.selectedComponent = 'BlockedSites';
+      case '#temporarily-blocked-sites':
+        this.selectedComponent = COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES;
         break;
       case '#permanently-blocked-sites':
-        this.selectedComponent = 'PermanentBlockedSites';
+        this.selectedComponent = COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES;
         break;
       default:
-        this.selectedComponent = 'Default';
+        this.selectedComponent = COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES;
     }
   }
 };
