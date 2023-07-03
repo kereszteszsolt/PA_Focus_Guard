@@ -11,6 +11,8 @@
                :class="{ active: selectedComponent === 'SocialMedia' }">SocialMedia</a></li>
         <li><a href="#blocked-sites" @click="selectComponent('BlockedSites')"
                :class="{ active: selectedComponent === 'BlockedSites' }">BlockedSites</a></li>
+        <li><a href="#permanently-blocked-sites" @click="selectComponent('PermanentBlockedSites')"
+               :class="{ active: selectedComponent === 'PermanentBlockedSites' }">PermanentBlockedSites</a></li>
       </ul>
     </div>
     <div class="main">
@@ -22,6 +24,7 @@
 import SocialMedia from './options/SocialMedia.vue';
 import BlockedSites from './options/BlockedSites.vue';
 import Default  from './options/Default.vue';
+import PermanentBlockedSites from './options/PermanentlyBlockedSites.vue';
 
 export default {
   data() {
@@ -32,6 +35,7 @@ export default {
   components: {
     SocialMedia: SocialMedia,
     BlockedSites: BlockedSites,
+    PermanentBlockedSites: PermanentBlockedSites,
     Default: Default
   },
   methods: {
@@ -48,6 +52,9 @@ export default {
         break;
       case '#blocked-sites':
         this.selectedComponent = 'BlockedSites';
+        break;
+      case '#permanently-blocked-sites':
+        this.selectedComponent = 'PermanentBlockedSites';
         break;
       default:
         this.selectedComponent = 'Default';

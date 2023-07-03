@@ -7,36 +7,80 @@
   \******************************/
 /***/ (() => {
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
   chrome.storage.sync.set({
-    toggleSitesActive: false,
-    toggleSitesList: 'facebook.com'
+    fbBlockedSitesActive: true,
+    fgBlockedSites: JSON.stringify([{
+      name: 'youtube.com',
+      checked: true
+    }, {
+      name: 'facebook.com',
+      checked: true
+    }, {
+      name: 'linkedin.com',
+      checked: true
+    }]),
+    fgPermanentlyBlockedSites: JSON.stringify([{
+      name: 'videa.hu',
+      checked: true
+    }, {
+      name: 'dailymotion.com',
+      checked: true
+    }])
   }, function () {});
 });
 
 // set up initial chrome storage values
-var toggleSitesActive = false;
-var toggleSitesList = 'facebook.com';
-chrome.storage.sync.get(['toggleSitesActive', 'toggleSitesList'], function (result) {
-  toggleSitesActive = result.toggleSitesActive;
-  toggleSitesList = result.toggleSitesList;
-});
+var fbBlockedSitesActive = true;
+var fgBlockedSites = [{
+  name: 'youtube.com',
+  checked: true
+}, {
+  name: 'facebook.com',
+  checked: true
+}, {
+  name: 'linkedin.com',
+  checked: true
+}];
+var fgPermanentlyBlockedSites = [{
+  name: 'videa.hu',
+  checked: true
+}, {
+  name: 'dailymotion.com',
+  checked: true
+}];
+var readStorage = function readStorage() {
+  chrome.storage.sync.get(['fbBlockedSitesActive', 'fgBlockedSites', 'fgPermanentlyBlockedSites'], function (result) {
+    fbBlockedSitesActive = result.fbBlockedSitesActive;
+    fgBlockedSites = JSON.parse(result.fgBlockedSites) || [];
+    fgPermanentlyBlockedSites = JSON.parse(result.fgPermanentlyBlockedSites) || [];
+  });
+};
+readStorage();
 var hide = function hide() {
-  if (toggleSitesActive) {
-    var rules = toggleSitesList.split('\n').map(function (site, index) {
+  if (fbBlockedSitesActive) {
+    var rules = _toConsumableArray(fgBlockedSites).filter(function (site) {
+      return site.checked;
+    }).map(function (site, index) {
       return {
         'id': index + 1,
         'priority': 1,
         'action': {
           'type': 'redirect',
           'redirect': {
-            'extensionPath': '/../message.html'
+            'extensionPath': '/message.html'
           }
         },
         'condition': {
-          'urlFilter': site,
-          'resourceTypes': ['main_frame']
+          'urlFilter': site.name,
+          'resourceTypes': ['main_frame', 'sub_frame']
         }
       };
     });
@@ -49,7 +93,7 @@ var hide = function hide() {
       addRules: rules
     });
   }
-  if (!toggleSitesActive) {
+  if (!fbBlockedSitesActive) {
     chrome.declarativeNetRequest.updateDynamicRules({
       removeRuleIds: Array.from({
         length: 10000
@@ -61,18 +105,69 @@ var hide = function hide() {
   }
 };
 hide();
+var hidePermanently = function hidePermanently() {
+  var rules = _toConsumableArray(fgPermanentlyBlockedSites).filter(function (site) {
+    return site.checked;
+  }).map(function (site, index) {
+    return {
+      'id': index + 10001,
+      'priority': 1,
+      'action': {
+        'type': 'redirect',
+        'redirect': {
+          'extensionPath': '/message.html'
+        }
+      },
+      'condition': {
+        'urlFilter': site.name,
+        'resourceTypes': ['main_frame', 'sub_frame']
+      }
+    };
+  });
+  chrome.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: Array.from({
+      length: 10000
+    }, function (_, index) {
+      return index + 10001;
+    }),
+    addRules: rules
+  });
+};
+hidePermanently();
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
   if (namespace === 'sync') {
-    if (changes.toggleSitesActive) {
-      toggleSitesActive = changes.toggleSitesActive.newValue;
+    if (changes.fbBlockedSitesActive) {
+      fbBlockedSitesActive = changes.fbBlockedSitesActive.newValue;
       hide();
     }
-    if (changes.toggleSitesList) {
-      toggleSitesList = changes.toggleSitesList.newValue;
+    if (changes.fgBlockedSites) {
+      fgBlockedSites = JSON.parse(changes.fgBlockedSites.newValue);
       hide();
     }
+    if (changes.fgPermanentlyBlockedSites) {
+      fgPermanentlyBlockedSites = JSON.parse(changes.fgPermanentlyBlockedSites.newValue);
+      hidePermanently();
+    }
+    chrome.tabs.query({}, function (tabs) {
+      tabs.forEach(function (tab) {
+        _toConsumableArray(fgBlockedSites).filter(function (site) {
+          return site.checked;
+        }).forEach(function (site) {
+          if (tab.url.includes(site.name)) {
+            chrome.tabs.remove(tab.id);
+          }
+        });
+        _toConsumableArray(fgPermanentlyBlockedSites).filter(function (site) {
+          return site.checked;
+        }).forEach(function (site) {
+          if (tab.url.includes(site.name)) {
+            chrome.tabs.remove(tab.id);
+          }
+        });
+      });
+    });
   }
 });
 

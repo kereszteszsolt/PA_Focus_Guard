@@ -4,7 +4,9 @@
   "description": "Focus Guard for Google Chrome",
   "permissions": [
     "declarativeNetRequestWithHostAccess",
-    "storage"
+    "storage",
+    "tabs",
+    "scripting"
   ],
   "icons": { "128": "icon-80.png" },
   "host_permissions": [

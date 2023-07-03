@@ -32,24 +32,23 @@ export default {
   data() {
     return {
       sites: [
-        {name: 'youtube.com', checked: true},
-        {name: 'facebook.com', checked: true},
-        {name: 'linkedin.com', checked: true}
+        {name: 'videa.hu', checked: true},
+        {name: 'dailymotion.com', checked: true}
       ],
       active: false,
       newSiteName: ''
     };
   },
   created() {
-    chrome.storage.sync.get('fgBlockedSites', (data) => {
-      if (data.fgBlockedSites) {
-        this.sites = JSON.parse(data.fgBlockedSites);
+    chrome.storage.sync.get('fgPermanentlyBlockedSites', (data) => {
+      if (data.fgPermanentlyBlockedSites) {
+        this.sites = JSON.parse(data.fgPermanentlyBlockedSites);
       }
     });
   },
   methods: {
     saveListOfSites() {
-      chrome.storage.sync.set({fgBlockedSites: JSON.stringify(this.sites)});
+      chrome.storage.sync.set({fgPermanentlyBlockedSites: JSON.stringify(this.sites)});
     },
     removeDomainPrefixes(str) {
       const domainRegex = /^(?:https?:\/\/)?(?:www\.)?([^/]+)/;
