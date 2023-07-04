@@ -17,16 +17,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 chrome.runtime.onInstalled.addListener(function () {
   chrome.storage.sync.set({
     fbBlockedSitesActive: true,
-    fgBlockedSites: JSON.stringify([{
+    fgTemporarilyBlockedWebsites: JSON.stringify([{
       name: 'youtube.com',
       checked: true
-    },
-    //  {name: 'facebook.com', checked: true},
-    {
+    }, {
+      name: 'facebook.com',
+      checked: true
+    }, {
       name: 'linkedin.com',
       checked: true
     }]),
-    fgPermanentlyBlockedSites: JSON.stringify([{
+    fgPermanentlyBlockedWebsites: JSON.stringify([{
       name: 'videa.hu',
       checked: true
     }, {
@@ -38,16 +39,17 @@ chrome.runtime.onInstalled.addListener(function () {
 
 // set up initial chrome storage values
 var fbBlockedSitesActive = true;
-var fgBlockedSites = [{
+var fgTemporarilyBlockedWebsites = [{
   name: 'youtube.com',
   checked: true
-},
-//  {name: 'facebook.com', checked: true},
-{
+}, {
+  name: 'facebook.com',
+  checked: true
+}, {
   name: 'linkedin.com',
   checked: true
 }];
-var fgPermanentlyBlockedSites = [{
+var fgPermanentlyBlockedWebsites = [{
   name: 'videa.hu',
   checked: true
 }, {
@@ -55,16 +57,16 @@ var fgPermanentlyBlockedSites = [{
   checked: true
 }];
 var readStorage = function readStorage() {
-  chrome.storage.sync.get(['fbBlockedSitesActive', 'fgBlockedSites', 'fgPermanentlyBlockedSites'], function (result) {
+  chrome.storage.sync.get(['fbBlockedSitesActive', 'fgTemporarilyBlockedWebsites', 'fgPermanentlyBlockedWebsites'], function (result) {
     fbBlockedSitesActive = result.fbBlockedSitesActive;
-    fgBlockedSites = JSON.parse(result.fgBlockedSites) || [];
-    fgPermanentlyBlockedSites = JSON.parse(result.fgPermanentlyBlockedSites) || [];
+    fgTemporarilyBlockedWebsites = JSON.parse(result.fgTemporarilyBlockedWebsites || '[]') || [];
+    fgPermanentlyBlockedWebsites = JSON.parse(result.fgPermanentlyBlockedWebsites || '[]') || [];
   });
 };
 readStorage();
 var hide = function hide() {
   if (fbBlockedSitesActive) {
-    var rules = _toConsumableArray(fgBlockedSites).filter(function (site) {
+    var rules = _toConsumableArray(fgTemporarilyBlockedWebsites).filter(function (site) {
       return site.checked;
     }).map(function (site, index) {
       return {
@@ -104,7 +106,7 @@ var hide = function hide() {
 };
 hide();
 var hidePermanently = function hidePermanently() {
-  var rules = _toConsumableArray(fgPermanentlyBlockedSites).filter(function (site) {
+  var rules = _toConsumableArray(fgPermanentlyBlockedWebsites).filter(function (site) {
     return site.checked;
   }).map(function (site, index) {
     return {
@@ -140,24 +142,26 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
       fbBlockedSitesActive = changes.fbBlockedSitesActive.newValue;
       hide();
     }
-    if (changes.fgBlockedSites) {
-      fgBlockedSites = JSON.parse(changes.fgBlockedSites.newValue);
+    if (changes.fgTemporarilyBlockedWebsites) {
+      fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
       hide();
     }
-    if (changes.fgPermanentlyBlockedSites) {
-      fgPermanentlyBlockedSites = JSON.parse(changes.fgPermanentlyBlockedSites.newValue);
+    if (changes.fgPermanentlyBlockedWebsites) {
+      fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
       hidePermanently();
     }
     chrome.tabs.query({}, function (tabs) {
       tabs.forEach(function (tab) {
-        _toConsumableArray(fgBlockedSites).filter(function (site) {
-          return site.checked;
-        }).forEach(function (site) {
-          if (tab.url.includes(site.name)) {
-            chrome.tabs.remove(tab.id);
-          }
-        });
-        _toConsumableArray(fgPermanentlyBlockedSites).filter(function (site) {
+        if (fbBlockedSitesActive) {
+          _toConsumableArray(fgTemporarilyBlockedWebsites).filter(function (site) {
+            return site.checked;
+          }).forEach(function (site) {
+            if (tab.url.includes(site.name)) {
+              chrome.tabs.remove(tab.id);
+            }
+          });
+        }
+        _toConsumableArray(fgPermanentlyBlockedWebsites).filter(function (site) {
           return site.checked;
         }).forEach(function (site) {
           if (tab.url.includes(site.name)) {
