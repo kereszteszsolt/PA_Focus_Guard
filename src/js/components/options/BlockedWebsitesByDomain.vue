@@ -1,6 +1,5 @@
 <template>
   <h1>{{ componentTitle }}</h1>
-  <h1>{{ storageName }}</h1>
   <div class="sites-container">
     <div class="sites-list">
       <table>

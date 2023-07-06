@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
-    <h1 class="title">Simple Toggle Sites</h1>
+    <h1 class="title">Focus Guard</h1>
+    <hr/>
     <div class="buttons">
       <button type="button" class="state-off" :class="{'is-active': !active}" @click="setActive(false)">Off</button>
       <button type="button" class="state-on" :class="{'is-active': active}" @click="setActive(true)">On</button>
