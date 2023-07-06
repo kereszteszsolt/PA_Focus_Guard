@@ -16824,7 +16824,7 @@ __webpack_require__.r(__webpack_exports__);
       if (chrome.runtime.openOptionsPage) {
         chrome.runtime.openOptionsPage();
       } else {
-        window.open(chrome.runtime.getURL('options.html#blocked-sites'));
+        window.open(chrome.runtime.getURL('options.html#temporarily-blocked-sites'));
       }
     },
     details: function details() {
