@@ -16818,11 +16818,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      selectedComponent: _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-      selectedStorageName: _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
-      selectedComponentTitle: _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponent: '',
+      selectedStorageName: '',
+      selectedComponentTitle: '',
       selectedData: [],
-      defaultSelectedData: _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp)
+      defaultSelectedData: []
     };
   },
   components: {
@@ -16832,59 +16832,51 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     selectComponent: function selectComponent(componentName) {
-      this.selectedComponent = componentName;
       switch (componentName) {
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
-          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
-          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp));
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
-          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.PERMANENTLY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.PERMANENTLY_BLOCKED_WEBSITES;
-          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Perm);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.PERMANENTLY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Perm));
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
-          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.YOUTUBE_DISTRACTION_BLOCKER;
-          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER;
-          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.youtube);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.youtube));
           break;
         default:
-          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
-          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp));
       }
-      this.loadData();
     },
-    loadData: function loadData() {
+    setupComponent: function setupComponent(componentName, storageName, componentTitle, defaultData) {
+      this.selectedComponent = componentName;
+      this.selectedStorageName = storageName;
+      this.selectedComponentTitle = componentTitle;
+      this.defaultSelectedData = defaultData;
+      this.selectedData = this.loadData(storageName, defaultData);
+    },
+    loadData: function loadData(storageName, defaultData) {
       var data = localStorage.getItem(this.selectedStorageName);
+      var selectedData = [];
       if (data) {
-        this.selectedData = JSON.parse(data);
+        selectedData = JSON.parse(data);
       } else {
-        this.selectedData = this.defaultSelectedData;
+        selectedData = this.defaultSelectedData;
       }
+      return selectedData;
+    },
+    convertHashToPascalCase: function convertHashToPascalCase(hash) {
+      // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
+      return hash.replace('#', '').replace(/-(\w)/g, function (_, c) {
+        return c.toUpperCase();
+      }).replace(/\b(\w)/g, function (c) {
+        return c.toUpperCase();
+      });
     }
   },
   mounted: function mounted() {
     var hash = window.location.hash; // Get the hash value from the URL
-
-    switch (hash) {
-      case '#temporarily-blocked-sites':
-        // this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
-        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES);
-        break;
-      case '#permanently-blocked-sites':
-        //this.selectedComponent = constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES;
-        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES);
-        break;
-      case '#youtube-distraction-blocker':
-        //this.selectedComponent = constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER;
-        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER);
-        break;
-      default:
-        //this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
-        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES);
-    }
+    var modifiedHash = this.convertHashToPascalCase(hash); // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
+    console.log('modifiedHash', modifiedHash);
+    this.selectComponent(modifiedHash);
   }
 });
 
@@ -17104,7 +17096,7 @@ var _hoisted_4 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#temporarily-blocked-sites",
+    href: "#temporarily-blocked-websites",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.selectComponent('TemporarilyBlockedWebsites');
     }),
@@ -17112,7 +17104,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       active: $data.selectedComponent === 'TemporarilyBlockedWebsites'
     })
   }, "Temporarily Blocked", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#permanently-blocked-sites",
+    href: "#permanently-blocked-websites",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.selectComponent('PermanentlyBlockedWebsites');
     }),
@@ -17120,7 +17112,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       active: $data.selectedComponent === 'PermanentlyBlockedWebsites'
     })
   }, "Permanent Blocked", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#youtube-distraction-blocker",
+    href: "#you-tube-distraction-blocker",
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.selectComponent('YouTubeDistractionBlocker');
     }),
