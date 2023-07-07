@@ -26,8 +26,9 @@
 </template>
 <script>
 import BlockedWebsitesByDomain from './options/BlockedWebsitesByDomain.vue';
-import YouTubeDistractionBlocker from './options/YouTubeDistractionBlocker.vue';
+import WebsiteElementBlocker from './options/WebsiteElementBlocker.vue';
 import * as constants from '../constants';
+import {defaultData} from '../data/defaultData';
 
 export default {
   data() {
@@ -74,7 +75,7 @@ export default {
   components: {
     TemporarilyBlockedWebsites: BlockedWebsitesByDomain,
     PermanentlyBlockedWebsites: BlockedWebsitesByDomain,
-    YouTubeDistractionBlocker: YouTubeDistractionBlocker
+    YouTubeDistractionBlocker: WebsiteElementBlocker
   },
   methods: {
     selectComponent(componentName) {
@@ -93,7 +94,7 @@ export default {
         case constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
           this.selectedStorageName = constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER;
           this.selectedComponentTitle = constants.componentTitles.YOUTUBE_DISTRACTION_BLOCKER;
-          this.defaultWebsites = [];
+          this.defaultWebsites = [...defaultData.youtube];
           break;
         default:
           this.selectedStorageName = constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES;

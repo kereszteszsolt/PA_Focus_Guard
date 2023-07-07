@@ -49,36 +49,7 @@ export default {
   data() {
     return {
       newWebsite: '',
-      websiteElement: [
-        {
-          name: 'YouTube Video: Thumbnails',
-          actionDescription: 'Replace',
-          action: 'replace',
-          activeRule: false,
-          permanently: false
-        },
-        {
-          name: 'YouTube Video: Titles',
-          actionDescription: 'Replace - but keep the original title in tooltip',
-          action: 'replace',
-          activeRule: false,
-          permanently: false
-        },
-        {
-          name: 'YouTube Video: Descriptions',
-          actionDescription: 'Replace/Remove',
-          action: 'replace',
-          activeRule: false,
-          permanently: false
-        },
-        {
-          name: 'YouTube Video: Channel Names',
-          actionDescription: 'Replace - but keep the original title in tooltip',
-          action: 'replace',
-          activeRule: false,
-          permanently: false
-        }
-      ]
+      websiteElement: [...this.defaultWebsites]
     };
   },
   created() {

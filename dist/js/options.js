@@ -16802,14 +16802,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./options/BlockedWebsitesByDomain.vue */ "./src/js/components/options/BlockedWebsitesByDomain.vue");
-/* harmony import */ var _options_YouTubeDistractionBlocker_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options/YouTubeDistractionBlocker.vue */ "./src/js/components/options/YouTubeDistractionBlocker.vue");
+/* harmony import */ var _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options/WebsiteElementBlocker.vue */ "./src/js/components/options/WebsiteElementBlocker.vue");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+/* harmony import */ var _data_defaultData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/defaultData */ "./src/js/data/defaultData.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 
 
 
@@ -16848,7 +16850,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   components: {
     TemporarilyBlockedWebsites: _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     PermanentlyBlockedWebsites: _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    YouTubeDistractionBlocker: _options_YouTubeDistractionBlocker_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    YouTubeDistractionBlocker: _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     selectComponent: function selectComponent(componentName) {
@@ -16867,7 +16869,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
           this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.YOUTUBE_DISTRACTION_BLOCKER;
           this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER;
-          this.defaultWebsites = [];
+          this.defaultWebsites = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.defaultData.youtube);
           break;
         default:
           this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
@@ -17017,10 +17019,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=script&lang=js":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=script&lang=js ***!
-  \*********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17031,6 +17033,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     componentTitle: {
@@ -17049,31 +17057,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   data: function data() {
     return {
       newWebsite: '',
-      youtubeDistractionsList: [{
-        name: 'YouTube Video: Thumbnails',
-        actionDescription: 'Replace',
-        action: 'replace',
-        activeRule: false,
-        permanently: false
-      }, {
-        name: 'YouTube Video: Titles',
-        actionDescription: 'Replace - but keep the original title in tooltip',
-        action: 'replace',
-        activeRule: false,
-        permanently: false
-      }, {
-        name: 'YouTube Video: Descriptions',
-        actionDescription: 'Replace/Remove',
-        action: 'replace',
-        activeRule: false,
-        permanently: false
-      }, {
-        name: 'YouTube Video: Channel Names',
-        actionDescription: 'Replace - but keep the original title in tooltip',
-        action: 'replace',
-        activeRule: false,
-        permanently: false
-      }]
+      websiteElement: _toConsumableArray(this.defaultWebsites)
     };
   },
   created: function created() {
@@ -17085,10 +17069,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       chrome.storage.sync.get(this.storageName, function (result) {
         if (result[_this.storageName]) {
           JSON.parse(result[_this.storageName]).forEach(function (storedDistraction, index) {
-            _this.youtubeDistractionsList.forEach(function (youTubeDistractionItem, index) {
+            _this.websiteElement.forEach(function (youTubeDistractionItem, index) {
               if (youTubeDistractionItem.name === storedDistraction.name) {
-                _this.youtubeDistractionsList[index].activeRule = storedDistraction.activeRule;
-                _this.youtubeDistractionsList[index].permanently = storedDistraction.permanently;
+                _this.websiteElement[index].activeRule = storedDistraction.activeRule;
+                _this.websiteElement[index].permanently = storedDistraction.permanently;
               }
             });
           });
@@ -17098,7 +17082,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       });
     },
     saveListOfDistractions: function saveListOfDistractions() {
-      chrome.storage.sync.set(_defineProperty({}, this.storageName, JSON.stringify(this.youtubeDistractionsList)));
+      chrome.storage.sync.set(_defineProperty({}, this.storageName, JSON.stringify(this.websiteElement)));
     }
   }
 });
@@ -17239,10 +17223,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4 ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17261,7 +17245,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_4 = ["onUpdate:modelValue"];
 var _hoisted_5 = ["onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.componentTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.youtubeDistractionsList, function (distraction, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.componentTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteElement, function (distraction, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.actionDescription), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -17364,10 +17348,31 @@ var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
 
 /***/ }),
 
-/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./src/js/data/defaultData.js":
+/*!************************************!*\
+  !*** ./src/js/data/defaultData.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   defaultData: () => (/* binding */ defaultData)
+/* harmony export */ });
+/* harmony import */ var _json_defaultsForFacebook_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../json/defaultsForFacebook.json */ "./src/json/defaultsForFacebook.json");
+/* harmony import */ var _json_defaultsForYoutube_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../json/defaultsForYoutube.json */ "./src/json/defaultsForYoutube.json");
+
+
+var defaultData = {
+  facebook: _json_defaultsForFacebook_json__WEBPACK_IMPORTED_MODULE_0__,
+  youtube: _json_defaultsForYoutube_json__WEBPACK_IMPORTED_MODULE_1__
+};
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17462,10 +17467,10 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17474,7 +17479,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_style_index_0_id_f04469a4_lang_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!../../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_style_index_0_id_50b95b0c_lang_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!../../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss");
 
             
 
@@ -17483,11 +17488,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_style_index_0_id_f04469a4_lang_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_style_index_0_id_50b95b0c_lang_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_style_index_0_id_f04469a4_lang_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_style_index_0_id_50b95b0c_lang_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -17844,19 +17849,19 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./src/js/components/options/YouTubeDistractionBlocker.vue":
-/*!*****************************************************************!*\
-  !*** ./src/js/components/options/YouTubeDistractionBlocker.vue ***!
-  \*****************************************************************/
+/***/ "./src/js/components/options/WebsiteElementBlocker.vue":
+/*!*************************************************************!*\
+  !*** ./src/js/components/options/WebsiteElementBlocker.vue ***!
+  \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _YouTubeDistractionBlocker_vue_vue_type_template_id_f04469a4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4 */ "./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4");
-/* harmony import */ var _YouTubeDistractionBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./YouTubeDistractionBlocker.vue?vue&type=script&lang=js */ "./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=script&lang=js");
-/* harmony import */ var _YouTubeDistractionBlocker_vue_vue_type_style_index_0_id_f04469a4_lang_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss */ "./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss");
+/* harmony import */ var _WebsiteElementBlocker_vue_vue_type_template_id_50b95b0c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c */ "./src/js/components/options/WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c");
+/* harmony import */ var _WebsiteElementBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WebsiteElementBlocker.vue?vue&type=script&lang=js */ "./src/js/components/options/WebsiteElementBlocker.vue?vue&type=script&lang=js");
+/* harmony import */ var _WebsiteElementBlocker_vue_vue_type_style_index_0_id_50b95b0c_lang_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss */ "./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss");
 /* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
@@ -17865,7 +17870,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_YouTubeDistractionBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_YouTubeDistractionBlocker_vue_vue_type_template_id_f04469a4__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"src/js/components/options/YouTubeDistractionBlocker.vue"]])
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_WebsiteElementBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_WebsiteElementBlocker_vue_vue_type_template_id_50b95b0c__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"src/js/components/options/WebsiteElementBlocker.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -17904,17 +17909,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=script&lang=js":
-/*!*****************************************************************************************!*\
-  !*** ./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************************/
+/***/ "./src/js/components/options/WebsiteElementBlocker.vue?vue&type=script&lang=js":
+/*!*************************************************************************************!*\
+  !*** ./src/js/components/options/WebsiteElementBlocker.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./YouTubeDistractionBlocker.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WebsiteElementBlocker.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -17949,29 +17954,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4":
-/*!***********************************************************************************************!*\
-  !*** ./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4 ***!
-  \***********************************************************************************************/
+/***/ "./src/js/components/options/WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c":
+/*!*******************************************************************************************!*\
+  !*** ./src/js/components/options/WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c ***!
+  \*******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_template_id_f04469a4__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_template_id_50b95b0c__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_template_id_f04469a4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=template&id=f04469a4");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_template_id_50b95b0c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=template&id=50b95b0c");
 
 
 /***/ }),
 
-/***/ "./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss":
-/*!**************************************************************************************************************!*\
-  !*** ./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss ***!
-  \**************************************************************************************************************/
+/***/ "./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss":
+/*!**********************************************************************************************************!*\
+  !*** ./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss ***!
+  \**********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YouTubeDistractionBlocker_vue_vue_type_style_index_0_id_f04469a4_lang_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!../../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/YouTubeDistractionBlocker.vue?vue&type=style&index=0&id=f04469a4&lang=scss");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_13_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_13_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_13_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_WebsiteElementBlocker_vue_vue_type_style_index_0_id_50b95b0c_lang_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!../../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-13.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-13.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-13.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/js/components/options/WebsiteElementBlocker.vue?vue&type=style&index=0&id=50b95b0c&lang=scss");
 
 
 /***/ }),
@@ -18210,6 +18215,26 @@ ${codeFrame}` : message);
 
 
 
+
+/***/ }),
+
+/***/ "./src/json/defaultsForFacebook.json":
+/*!*******************************************!*\
+  !*** ./src/json/defaultsForFacebook.json ***!
+  \*******************************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('[{"name":"Facebook - Reels","actionDescription":"Remove a Reel","action":"remove","activeRule":false,"permanently":false}]');
+
+/***/ }),
+
+/***/ "./src/json/defaultsForYoutube.json":
+/*!******************************************!*\
+  !*** ./src/json/defaultsForYoutube.json ***!
+  \******************************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('[{"name":"YouTube Video: Thumbnails","actionDescription":"Replace","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Titles","actionDescription":"Replace - but keep the original title in tooltip","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Descriptions","actionDescription":"Replace/Remove","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Channel names","actionDescription":"Replace - but keep the original title in tooltip","action":"replace","activeRule":false,"permanently":false}]');
 
 /***/ })
 

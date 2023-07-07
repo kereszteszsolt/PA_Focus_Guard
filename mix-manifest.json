@@ -1,8 +1,9 @@
 {
     "/dist/js/background.js": "/dist/js/background.js",
-    "/dist/constants/componentNames.js": "/dist/constants/componentNames.js",
-    "/dist/constants/componentTitles.js": "/dist/constants/componentTitles.js",
-    "/dist/constants/storageNames.js": "/dist/constants/storageNames.js",
+    "/dist/js/constants/componentNames.js": "/dist/js/constants/componentNames.js",
+    "/dist/js/constants/componentTitles.js": "/dist/js/constants/componentTitles.js",
+    "/dist/js/constants/storageNames.js": "/dist/js/constants/storageNames.js",
+    "/dist/js/data/defaultData.js": "/dist/js/data/defaultData.js",
     "/dist/js/popup.js": "/dist/js/popup.js",
     "/dist/js/options.js": "/dist/js/options.js",
     "/dist/css/options.css": "/dist/css/options.css",
