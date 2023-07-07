@@ -20,7 +20,7 @@
       <component :is="selectedComponent"
                  :storageName="selectedStorageName"
                  :componentTitle="selectedComponentTitle"
-                 :defaultWebsites="defaultSelectedData"></component>
+                 :inputData="selectedData"></component>
     </div>
   </div>
 </template>
@@ -33,11 +33,11 @@ import * as defaultData from '../data/defaultData';
 export default {
   data() {
     return {
-      selectedComponent: '',
-      selectedStorageName: '',
-      selectedComponentTitle: '',
-      selectedData: [],
-      defaultSelectedData: []
+      selectedComponent: constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedStorageName: constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponentTitle: constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedData: [...defaultData.domains4Temp],
+      defaultSelectedData: [...defaultData.domains4Temp]
     };
   },
   components: {

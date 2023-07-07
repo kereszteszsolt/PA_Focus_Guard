@@ -39,14 +39,14 @@ export default {
       type: String,
       required: true
     },
-    defaultWebsites: {
+    inputData: {
       type: Array,
       required: true
     }
   },
   data() {
     return {
-      websiteList: [],
+      websiteList: [...this.inputData],
       newWebsite: '',
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false
@@ -59,7 +59,7 @@ export default {
     }
   },
   created() {
-    this.loadListOfWebsites();
+   this.loadListOfWebsites();
   },
   methods: {
     loadListOfWebsites() {
@@ -67,7 +67,7 @@ export default {
         if (data[this.storageName]) {
           this.websiteList = JSON.parse(data[this.storageName]);
         } else {
-          this.websiteList = this.defaultWebsites;
+          this.websiteList = this.inputData;
         }
       });
     },

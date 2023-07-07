@@ -41,18 +41,18 @@ export default {
       type: String,
       required: true
     },
-    defaultWebsites: {
+    inputData: {
       type: Array,
       required: true
     }
   },
   data() {
     return {
-      websiteElements: [...this.defaultWebsites]
+      websiteElements: [...this.inputData]
     };
   },
   watch: {
-    websiteElements: {
+    storageName: {
       immediate: true,
       handler: 'loadListOfDistractions'
     }
@@ -66,7 +66,7 @@ export default {
         if (result[this.storageName]) {
           this.websiteElements = JSON.parse(result[this.storageName]);
         } else {
-          this.websiteElements = [...this.defaultWebsites];
+          this.websiteElements = [...this.inputData];
         }
       });
     },

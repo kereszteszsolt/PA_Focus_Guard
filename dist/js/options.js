@@ -16818,11 +16818,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      selectedComponent: '',
-      selectedStorageName: '',
-      selectedComponentTitle: '',
-      selectedData: [],
-      defaultSelectedData: []
+      selectedComponent: _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedStorageName: _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponentTitle: _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedData: _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp),
+      defaultSelectedData: _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp)
     };
   },
   components: {
@@ -16874,8 +16874,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     var hash = window.location.hash; // Get the hash value from the URL
-    var modifiedHash = this.convertHashToPascalCase(hash); // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
-    console.log('modifiedHash', modifiedHash);
+    var modifiedHash = this.convertHashToPascalCase(hash);
     this.selectComponent(modifiedHash);
   }
 });
@@ -16896,6 +16895,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     componentTitle: {
@@ -16906,14 +16911,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       type: String,
       required: true
     },
-    defaultWebsites: {
+    inputData: {
       type: Array,
       required: true
     }
   },
   data: function data() {
     return {
-      websiteList: [],
+      websiteList: _toConsumableArray(this.inputData),
       newWebsite: '',
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false
@@ -16935,7 +16940,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         if (data[_this.storageName]) {
           _this.websiteList = JSON.parse(data[_this.storageName]);
         } else {
-          _this.websiteList = _this.defaultWebsites;
+          _this.websiteList = _this.inputData;
         }
       });
     },
@@ -17032,18 +17037,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       type: String,
       required: true
     },
-    defaultWebsites: {
+    inputData: {
       type: Array,
       required: true
     }
   },
   data: function data() {
     return {
-      websiteElements: _toConsumableArray(this.defaultWebsites)
+      websiteElements: _toConsumableArray(this.inputData)
     };
   },
   watch: {
-    websiteElements: {
+    storageName: {
       immediate: true,
       handler: 'loadListOfDistractions'
     }
@@ -17058,7 +17063,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (result[_this.storageName]) {
           _this.websiteElements = JSON.parse(result[_this.storageName]);
         } else {
-          _this.websiteElements = _toConsumableArray(_this.defaultWebsites);
+          _this.websiteElements = _toConsumableArray(_this.inputData);
         }
       });
     },
@@ -17122,8 +17127,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "YouTube Distraction Blocker", 2 /* CLASS */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedComponent), {
     storageName: $data.selectedStorageName,
     componentTitle: $data.selectedComponentTitle,
-    defaultWebsites: $data.defaultSelectedData
-  }, null, 8 /* PROPS */, ["storageName", "componentTitle", "defaultWebsites"]))])])], 64 /* STABLE_FRAGMENT */);
+    inputData: $data.selectedData
+  }, null, 8 /* PROPS */, ["storageName", "componentTitle", "inputData"]))])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
