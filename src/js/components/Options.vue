@@ -12,39 +12,29 @@
         <li><a href="#permanently-blocked-sites" @click="selectComponent('PermanentlyBlockedWebsites')"
                :class="{ active: selectedComponent === 'PermanentlyBlockedWebsites' }">Permanent Blocked</a></li>
         <li><a href="#youtube-distraction-blocker" @click="selectComponent('YouTubeDistractionBlocker')"
-               :class="{ active: selectedComponent === 'YouTubeDistractionBlocker' }">YouTube Distraction Blocker</a></li>
+               :class="{ active: selectedComponent === 'YouTubeDistractionBlocker' }">YouTube Distraction Blocker</a>
+        </li>
       </ul>
     </div>
     <div class="main">
       <component :is="selectedComponent"
-      :storageName=selectedStorageName
-      :componentTitle=selectedComponentTitle
-      :defaultWebsites=defaultWebsites ></component>
+                 :storageName=selectedStorageName
+                 :componentTitle=selectedComponentTitle
+                 :defaultWebsites=defaultWebsites></component>
     </div>
   </div>
 </template>
 <script>
 import BlockedWebsitesByDomain from './options/BlockedWebsitesByDomain.vue';
 import YouTubeDistractionBlocker from './options/YouTubeDistractionBlocker.vue';
-
-const STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
-const STORAGE_NAME_PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
-const STORAGE_NAME_YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
-
-const COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES = 'TemporarilyBlockedWebsites';
-const COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES = 'PermanentlyBlockedWebsites';
-const COMPONENT_NAME_YOUTUBE_DISTRACTION_BLOCKER = 'YouTubeDistractionBlocker';
-
-const COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES = 'Temporarily Blocked Websites';
-const COMPONENT_TITLE_PERMANENTLY_BLOCKED_WEBSITES = 'Permanently Blocked Websites';
-const COMPONENT_TITLE_YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
+import * as constants from '../constants';
 
 export default {
   data() {
     return {
-      selectedComponent: COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES,
-      selectedStorageName: STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES,
-      selectedComponentTitle: COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponent: constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedStorageName: constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponentTitle: constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
       temporarilyBlockedWebsites: [
         {
           name: 'facebook.com',
@@ -90,24 +80,24 @@ export default {
     selectComponent(componentName) {
       this.selectedComponent = componentName;
       switch (componentName) {
-        case COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES:
-          this.selectedStorageName = STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES;
+        case constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
+          this.selectedStorageName = constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
           this.defaultWebsites = [...this.temporarilyBlockedWebsites];
           break;
-        case COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES:
-          this.selectedStorageName = STORAGE_NAME_PERMANENTLY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = COMPONENT_TITLE_PERMANENTLY_BLOCKED_WEBSITES;
+        case constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
+          this.selectedStorageName = constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = constants.componentTitles.PERMANENTLY_BLOCKED_WEBSITES;
           this.defaultWebsites = [...this.permanentlyBlockedWebsites];
           break;
-        case COMPONENT_NAME_YOUTUBE_DISTRACTION_BLOCKER:
-          this.selectedStorageName = STORAGE_NAME_YOUTUBE_DISTRACTION_BLOCKER;
-          this.selectedComponentTitle = COMPONENT_TITLE_YOUTUBE_DISTRACTION_BLOCKER;
+        case constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
+          this.selectedStorageName = constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER;
+          this.selectedComponentTitle = constants.componentTitles.YOUTUBE_DISTRACTION_BLOCKER;
           this.defaultWebsites = [];
           break;
         default:
-          this.selectedStorageName = STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedStorageName = constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
           this.defaultWebsites = [...this.temporarilyBlockedWebsites];
       }
     }
@@ -117,16 +107,16 @@ export default {
 
     switch (hash) {
       case '#temporarily-blocked-sites':
-        this.selectedComponent = COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
         break;
       case '#permanently-blocked-sites':
-        this.selectedComponent = COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES;
+        this.selectedComponent = constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES;
         break;
       case '#youtube-distraction-blocker':
-        this.selectedComponent = COMPONENT_NAME_YOUTUBE_DISTRACTION_BLOCKER;
+        this.selectedComponent = constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER;
         break;
       default:
-        this.selectedComponent = COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
     }
   }
 };

@@ -16803,6 +16803,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./options/BlockedWebsitesByDomain.vue */ "./src/js/components/options/BlockedWebsitesByDomain.vue");
 /* harmony import */ var _options_YouTubeDistractionBlocker_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options/YouTubeDistractionBlocker.vue */ "./src/js/components/options/YouTubeDistractionBlocker.vue");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -16811,21 +16812,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 
-var STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
-var STORAGE_NAME_PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
-var STORAGE_NAME_YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
-var COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES = 'TemporarilyBlockedWebsites';
-var COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES = 'PermanentlyBlockedWebsites';
-var COMPONENT_NAME_YOUTUBE_DISTRACTION_BLOCKER = 'YouTubeDistractionBlocker';
-var COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES = 'Temporarily Blocked Websites';
-var COMPONENT_TITLE_PERMANENTLY_BLOCKED_WEBSITES = 'Permanently Blocked Websites';
-var COMPONENT_TITLE_YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      selectedComponent: COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES,
-      selectedStorageName: STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES,
-      selectedComponentTitle: COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponent: _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedStorageName: _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
+      selectedComponentTitle: _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
       temporarilyBlockedWebsites: [{
         name: 'facebook.com',
         checked: true
@@ -16861,24 +16854,24 @@ var COMPONENT_TITLE_YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
     selectComponent: function selectComponent(componentName) {
       this.selectedComponent = componentName;
       switch (componentName) {
-        case COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES:
-          this.selectedStorageName = STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES;
+        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
+          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
           this.defaultWebsites = _toConsumableArray(this.temporarilyBlockedWebsites);
           break;
-        case COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES:
-          this.selectedStorageName = STORAGE_NAME_PERMANENTLY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = COMPONENT_TITLE_PERMANENTLY_BLOCKED_WEBSITES;
+        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
+          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.PERMANENTLY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.PERMANENTLY_BLOCKED_WEBSITES;
           this.defaultWebsites = _toConsumableArray(this.permanentlyBlockedWebsites);
           break;
-        case COMPONENT_NAME_YOUTUBE_DISTRACTION_BLOCKER:
-          this.selectedStorageName = STORAGE_NAME_YOUTUBE_DISTRACTION_BLOCKER;
-          this.selectedComponentTitle = COMPONENT_TITLE_YOUTUBE_DISTRACTION_BLOCKER;
+        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
+          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.YOUTUBE_DISTRACTION_BLOCKER;
+          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER;
           this.defaultWebsites = [];
           break;
         default:
-          this.selectedStorageName = STORAGE_NAME_TEMPORARILY_BLOCKED_WEBSITES;
-          this.selectedComponentTitle = COMPONENT_TITLE_TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
+          this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
           this.defaultWebsites = _toConsumableArray(this.temporarilyBlockedWebsites);
       }
     }
@@ -16888,16 +16881,16 @@ var COMPONENT_TITLE_YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
 
     switch (hash) {
       case '#temporarily-blocked-sites':
-        this.selectedComponent = COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
         break;
       case '#permanently-blocked-sites':
-        this.selectedComponent = COMPONENT_NAME_PERMANENTLY_BLOCKED_WEBSITES;
+        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES;
         break;
       case '#youtube-distraction-blocker':
-        this.selectedComponent = COMPONENT_NAME_YOUTUBE_DISTRACTION_BLOCKER;
+        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER;
         break;
       default:
-        this.selectedComponent = COMPONENT_NAME_TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
     }
   }
 });
@@ -17290,6 +17283,84 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_5), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, distraction.permanently]])])]);
   }), 128 /* KEYED_FRAGMENT */))])])])])], 64 /* STABLE_FRAGMENT */);
 }
+
+/***/ }),
+
+/***/ "./src/js/constants/componentNames.js":
+/*!********************************************!*\
+  !*** ./src/js/constants/componentNames.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
+/* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
+/* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
+/* harmony export */ });
+var TEMPORARILY_BLOCKED_WEBSITES = 'TemporarilyBlockedWebsites';
+var PERMANENTLY_BLOCKED_WEBSITES = 'PermanentlyBlockedWebsites';
+var YOUTUBE_DISTRACTION_BLOCKER = 'YouTubeDistractionBlocker';
+
+/***/ }),
+
+/***/ "./src/js/constants/componentTitles.js":
+/*!*********************************************!*\
+  !*** ./src/js/constants/componentTitles.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
+/* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
+/* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
+/* harmony export */ });
+var TEMPORARILY_BLOCKED_WEBSITES = 'Temporarily Blocked Websites';
+var PERMANENTLY_BLOCKED_WEBSITES = 'Permanently Blocked Websites';
+var YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
+
+/***/ }),
+
+/***/ "./src/js/constants/index.js":
+/*!***********************************!*\
+  !*** ./src/js/constants/index.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   componentTitles: () => (/* reexport module object */ _componentTitles__WEBPACK_IMPORTED_MODULE_1__),
+/* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__)
+/* harmony export */ });
+/* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./componentNames */ "./src/js/constants/componentNames.js");
+/* harmony import */ var _componentTitles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentTitles */ "./src/js/constants/componentTitles.js");
+/* harmony import */ var _storageNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageNames */ "./src/js/constants/storageNames.js");
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/constants/storageNames.js":
+/*!******************************************!*\
+  !*** ./src/js/constants/storageNames.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
+/* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
+/* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
+/* harmony export */ });
+var TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
+var PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
+var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
 
 /***/ }),
 

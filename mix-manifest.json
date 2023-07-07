@@ -1,5 +1,8 @@
 {
     "/dist/js/background.js": "/dist/js/background.js",
+    "/dist/constants/componentNames.js": "/dist/constants/componentNames.js",
+    "/dist/constants/componentTitles.js": "/dist/constants/componentTitles.js",
+    "/dist/constants/storageNames.js": "/dist/constants/storageNames.js",
     "/dist/js/popup.js": "/dist/js/popup.js",
     "/dist/js/options.js": "/dist/js/options.js",
     "/dist/css/options.css": "/dist/css/options.css",
@@ -9,5 +12,7 @@
     "/dist/message.html": "/dist/message.html",
     "/dist/manifest.json": "/dist/manifest.json",
     "/dist/focus.jpg": "/dist/focus.jpg",
-    "/dist/icon-80.png": "/dist/icon-80.png"
+    "/dist/icon-80.png": "/dist/icon-80.png",
+    "/dist/json/defaultsForFacebook.json": "/dist/json/defaultsForFacebook.json",
+    "/dist/json/defaultsForYoutube.json": "/dist/json/defaultsForYoutube.json"
 }
