@@ -23,8 +23,7 @@ var fgTemporarilyBlockedWebsites = [
     {name: 'linkedin.com', checked: true}
 ];
 var fgPermanentlyBlockedWebsites = [
-    {name: 'videa.hu', checked: true},
-    {name: 'dailymotion.com', checked: true}
+    {name: 'example.com', checked: true},
 ];
 
 const readStorage = () => {

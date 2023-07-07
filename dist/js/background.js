@@ -50,10 +50,7 @@ var fgTemporarilyBlockedWebsites = [{
   checked: true
 }];
 var fgPermanentlyBlockedWebsites = [{
-  name: 'videa.hu',
-  checked: true
-}, {
-  name: 'dailymotion.com',
+  name: 'example.com',
   checked: true
 }];
 var readStorage = function readStorage() {

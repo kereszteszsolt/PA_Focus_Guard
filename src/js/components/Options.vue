@@ -18,9 +18,9 @@
     </div>
     <div class="main">
       <component :is="selectedComponent"
-                 :storageName=selectedStorageName
-                 :componentTitle=selectedComponentTitle
-                 :defaultWebsites=defaultWebsites></component>
+                 :storageName="selectedStorageName"
+                 :componentTitle="selectedComponentTitle"
+                 :defaultWebsites="defaultSelectedData"></component>
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@
 import BlockedWebsitesByDomain from './options/BlockedWebsitesByDomain.vue';
 import WebsiteElementBlocker from './options/WebsiteElementBlocker.vue';
 import * as constants from '../constants';
-import {defaultData} from '../data/defaultData';
+import * as defaultData from '../data/defaultData';
 
 export default {
   data() {
@@ -36,40 +36,8 @@ export default {
       selectedComponent: constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
       selectedStorageName: constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
       selectedComponentTitle: constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-      temporarilyBlockedWebsites: [
-        {
-          name: 'facebook.com',
-          checked: true
-        },
-        {
-          name: 'twitter.com',
-          checked: true
-        },
-        {
-          name: 'youtube.com',
-          checked: true
-        }
-      ],
-      permanentlyBlockedWebsites: [
-        {
-          name: 'instagram.com',
-          checked: true
-        },
-        {
-          name: 'reddit.com',
-          checked: true
-        },
-        {
-          name: 'tumblr.com',
-          checked: true
-        }
-      ],
-      defaultWebsites: [
-        {
-          name: 'example.com',
-          checked: true
-        }
-      ]
+      selectedData: [],
+      defaultSelectedData: [...defaultData.domains4Temp]
     };
   },
   components: {
@@ -84,22 +52,31 @@ export default {
         case constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
           this.selectedStorageName = constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
           this.selectedComponentTitle = constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
-          this.defaultWebsites = [...this.temporarilyBlockedWebsites];
+          this.defaultSelectedData = [...defaultData.domains4Temp];
           break;
         case constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
           this.selectedStorageName = constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES;
           this.selectedComponentTitle = constants.componentTitles.PERMANENTLY_BLOCKED_WEBSITES;
-          this.defaultWebsites = [...this.permanentlyBlockedWebsites];
+          this.defaultSelectedData = [...defaultData.domains4Perm];
           break;
         case constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
           this.selectedStorageName = constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER;
           this.selectedComponentTitle = constants.componentTitles.YOUTUBE_DISTRACTION_BLOCKER;
-          this.defaultWebsites = [...defaultData.youtube];
+          this.defaultSelectedData = [...defaultData.youtube];
           break;
         default:
           this.selectedStorageName = constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
           this.selectedComponentTitle = constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
-          this.defaultWebsites = [...this.temporarilyBlockedWebsites];
+          this.defaultSelectedData = [...defaultData.domains4Temp];
+      }
+      this.loadData();
+    },
+    loadData() {
+      const data = localStorage.getItem(this.selectedStorageName);
+      if (data) {
+        this.selectedData = JSON.parse(data);
+      } else {
+        this.selectedData = this.defaultSelectedData;
       }
     }
   },
@@ -108,16 +85,20 @@ export default {
 
     switch (hash) {
       case '#temporarily-blocked-sites':
-        this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        // this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES);
         break;
       case '#permanently-blocked-sites':
-        this.selectedComponent = constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES;
+        //this.selectedComponent = constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES;
+        this.selectComponent(constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES);
         break;
       case '#youtube-distraction-blocker':
-        this.selectedComponent = constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER;
+        //this.selectedComponent = constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER;
+        this.selectComponent(constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER);
         break;
       default:
-        this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        //this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES);
     }
   }
 };

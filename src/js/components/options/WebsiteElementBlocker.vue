@@ -12,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(distraction, index) in websiteElement" :key="index">
+        <tr v-for="(distraction, index) in websiteElements" :key="index">
           <td>{{ distraction.name }}</td>
           <td>
             {{ distraction.actionDescription }}
@@ -48,9 +48,14 @@ export default {
   },
   data() {
     return {
-      newWebsite: '',
-      websiteElement: [...this.defaultWebsites]
+      websiteElements: [...this.defaultWebsites]
     };
+  },
+  watch: {
+    websiteElements: {
+      immediate: true,
+      handler: 'loadListOfDistractions'
+    }
   },
   created() {
     this.loadListOfDistractions();
@@ -59,21 +64,14 @@ export default {
     loadListOfDistractions() {
       chrome.storage.sync.get(this.storageName, (result) => {
         if (result[this.storageName]) {
-          JSON.parse(result[this.storageName]).forEach((storedDistraction, index) => {
-            this.websiteElement.forEach((youTubeDistractionItem, index) => {
-              if (youTubeDistractionItem.name === storedDistraction.name) {
-                this.websiteElement[index].activeRule = storedDistraction.activeRule;
-                this.websiteElement[index].permanently = storedDistraction.permanently;
-              }
-            });
-          });
+          this.websiteElements = JSON.parse(result[this.storageName]);
         } else {
-          this.saveListOfDistractions();
+          this.websiteElements = [...this.defaultWebsites];
         }
       });
     },
     saveListOfDistractions() {
-      chrome.storage.sync.set({[this.storageName]: JSON.stringify(this.websiteElement)});
+      chrome.storage.sync.set({[this.storageName]: JSON.stringify(this.websiteElements)});
     }
   }
 };

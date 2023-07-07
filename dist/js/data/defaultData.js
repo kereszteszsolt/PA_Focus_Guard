@@ -2,23 +2,140 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/json/defaultsForFacebook.json":
-/*!*******************************************!*\
-  !*** ./src/json/defaultsForFacebook.json ***!
-  \*******************************************/
-/***/ ((module) => {
+/***/ "./src/js/data/defaultDomainsForPermanentlyBlock.js":
+/*!**********************************************************!*\
+  !*** ./src/js/data/defaultDomainsForPermanentlyBlock.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-module.exports = JSON.parse('[{"name":"Facebook - Reels","actionDescription":"Remove a Reel","action":"remove","activeRule":false,"permanently":false}]');
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   domains4Perm: () => (/* binding */ domains4Perm)
+/* harmony export */ });
+var domains4Perm = [{
+  name: "example.com",
+  checked: false
+}];
 
 /***/ }),
 
-/***/ "./src/json/defaultsForYoutube.json":
-/*!******************************************!*\
-  !*** ./src/json/defaultsForYoutube.json ***!
-  \******************************************/
-/***/ ((module) => {
+/***/ "./src/js/data/defaultDomainsForTemporarilyBlock.js":
+/*!**********************************************************!*\
+  !*** ./src/js/data/defaultDomainsForTemporarilyBlock.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-module.exports = JSON.parse('[{"name":"YouTube Video: Thumbnails","actionDescription":"Replace","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Titles","actionDescription":"Replace - but keep the original title in tooltip","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Descriptions","actionDescription":"Replace/Remove","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Channel names","actionDescription":"Replace - but keep the original title in tooltip","action":"replace","activeRule":false,"permanently":false}]');
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   domains4Temp: () => (/* binding */ domains4Temp)
+/* harmony export */ });
+var domains4Temp = [{
+  name: 'youtube.com',
+  checked: true
+}, {
+  name: 'facebook.com',
+  checked: true
+}, {
+  name: 'instagram.com',
+  checked: true
+}, {
+  name: 'tiktok.com',
+  checked: true
+}, {
+  name: 'twitter.com',
+  checked: true
+}, {
+  name: 'linkedin.com',
+  checked: true
+}, {
+  name: 'reddit.com',
+  checked: true
+}, {
+  name: 'pinterest.com',
+  checked: true
+}, {
+  name: 'tumblr.com',
+  checked: true
+}, {
+  name: 'snapchat.com',
+  checked: true
+}, {
+  name: 'quora.com',
+  checked: true
+}, {
+  name: 'flickr.com',
+  checked: true
+}, {
+  name: 'vimeo.com',
+  checked: true
+}, {
+  name: 'myspace.com',
+  checked: true
+}, {
+  name: 'meetup.com',
+  checked: true
+}, {
+  name: 'medium.com',
+  checked: true
+}, {
+  name: 'tinder.com',
+  checked: true
+}, {
+  name: 'netflix.com',
+  checked: true
+}, {
+  name: 'hulu.com',
+  checked: true
+}, {
+  name: 'amazon.com',
+  checked: true
+}];
+
+/***/ }),
+
+/***/ "./src/js/data/defaultsForFacebook.js":
+/*!********************************************!*\
+  !*** ./src/js/data/defaultsForFacebook.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   facebook: () => (/* binding */ facebook)
+/* harmony export */ });
+var facebook = [{
+  name: 'Facebook - Reels',
+  actionDescription: 'Redirect to message',
+  action: 'remove',
+  activeRule: true,
+  permanently: false
+}];
+
+/***/ }),
+
+/***/ "./src/js/data/defaultsForYoutube.js":
+/*!*******************************************!*\
+  !*** ./src/js/data/defaultsForYoutube.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   youtube: () => (/* binding */ youtube)
+/* harmony export */ });
+var youtube = [{
+  name: "Youtube - Shorts",
+  actionDescription: "Redirect to message",
+  action: "remove",
+  activeRule: true,
+  permanently: false
+}, {
+  name: "Youtube - Home",
+  actionDescription: "Redirect to message",
+  action: "remove",
+  activeRule: true,
+  permanently: false
+}];
 
 /***/ })
 
@@ -86,16 +203,19 @@ var __webpack_exports__ = {};
   \************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   defaultData: () => (/* binding */ defaultData)
+/* harmony export */   domains4Perm: () => (/* reexport safe */ _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__.domains4Perm),
+/* harmony export */   domains4Temp: () => (/* reexport safe */ _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__.domains4Temp),
+/* harmony export */   facebook: () => (/* reexport safe */ _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__.facebook),
+/* harmony export */   youtube: () => (/* reexport safe */ _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__.youtube)
 /* harmony export */ });
-/* harmony import */ var _json_defaultsForFacebook_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../json/defaultsForFacebook.json */ "./src/json/defaultsForFacebook.json");
-/* harmony import */ var _json_defaultsForYoutube_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../json/defaultsForYoutube.json */ "./src/json/defaultsForYoutube.json");
+/* harmony import */ var _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defaultsForYoutube */ "./src/js/data/defaultsForYoutube.js");
+/* harmony import */ var _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultsForFacebook */ "./src/js/data/defaultsForFacebook.js");
+/* harmony import */ var _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultDomainsForTemporarilyBlock */ "./src/js/data/defaultDomainsForTemporarilyBlock.js");
+/* harmony import */ var _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultDomainsForPermanentlyBlock */ "./src/js/data/defaultDomainsForPermanentlyBlock.js");
 
 
-var defaultData = {
-  facebook: _json_defaultsForFacebook_json__WEBPACK_IMPORTED_MODULE_0__,
-  youtube: _json_defaultsForYoutube_json__WEBPACK_IMPORTED_MODULE_1__
-};
+
+
 })();
 
 /******/ })()

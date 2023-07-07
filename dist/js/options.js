@@ -16821,30 +16821,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       selectedComponent: _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
       selectedStorageName: _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
       selectedComponentTitle: _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-      temporarilyBlockedWebsites: [{
-        name: 'facebook.com',
-        checked: true
-      }, {
-        name: 'twitter.com',
-        checked: true
-      }, {
-        name: 'youtube.com',
-        checked: true
-      }],
-      permanentlyBlockedWebsites: [{
-        name: 'instagram.com',
-        checked: true
-      }, {
-        name: 'reddit.com',
-        checked: true
-      }, {
-        name: 'tumblr.com',
-        checked: true
-      }],
-      defaultWebsites: [{
-        name: 'example.com',
-        checked: true
-      }]
+      selectedData: [],
+      defaultSelectedData: _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp)
     };
   },
   components: {
@@ -16859,22 +16837,31 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
           this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
           this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
-          this.defaultWebsites = _toConsumableArray(this.temporarilyBlockedWebsites);
+          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp);
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
           this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.PERMANENTLY_BLOCKED_WEBSITES;
           this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.PERMANENTLY_BLOCKED_WEBSITES;
-          this.defaultWebsites = _toConsumableArray(this.permanentlyBlockedWebsites);
+          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Perm);
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
           this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.YOUTUBE_DISTRACTION_BLOCKER;
           this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER;
-          this.defaultWebsites = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.defaultData.youtube);
+          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.youtube);
           break;
         default:
           this.selectedStorageName = _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES;
           this.selectedComponentTitle = _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES;
-          this.defaultWebsites = _toConsumableArray(this.temporarilyBlockedWebsites);
+          this.defaultSelectedData = _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp);
+      }
+      this.loadData();
+    },
+    loadData: function loadData() {
+      var data = localStorage.getItem(this.selectedStorageName);
+      if (data) {
+        this.selectedData = JSON.parse(data);
+      } else {
+        this.selectedData = this.defaultSelectedData;
       }
     }
   },
@@ -16883,16 +16870,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     switch (hash) {
       case '#temporarily-blocked-sites':
-        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        // this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES);
         break;
       case '#permanently-blocked-sites':
-        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES;
+        //this.selectedComponent = constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES;
+        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES);
         break;
       case '#youtube-distraction-blocker':
-        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER;
+        //this.selectedComponent = constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER;
+        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER);
         break;
       default:
-        this.selectedComponent = _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        //this.selectedComponent = constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES;
+        this.selectComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES);
     }
   }
 });
@@ -17056,9 +17047,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   data: function data() {
     return {
-      newWebsite: '',
-      websiteElement: _toConsumableArray(this.defaultWebsites)
+      websiteElements: _toConsumableArray(this.defaultWebsites)
     };
+  },
+  watch: {
+    websiteElements: {
+      immediate: true,
+      handler: 'loadListOfDistractions'
+    }
   },
   created: function created() {
     this.loadListOfDistractions();
@@ -17068,21 +17064,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this = this;
       chrome.storage.sync.get(this.storageName, function (result) {
         if (result[_this.storageName]) {
-          JSON.parse(result[_this.storageName]).forEach(function (storedDistraction, index) {
-            _this.websiteElement.forEach(function (youTubeDistractionItem, index) {
-              if (youTubeDistractionItem.name === storedDistraction.name) {
-                _this.websiteElement[index].activeRule = storedDistraction.activeRule;
-                _this.websiteElement[index].permanently = storedDistraction.permanently;
-              }
-            });
-          });
+          _this.websiteElements = JSON.parse(result[_this.storageName]);
         } else {
-          _this.saveListOfDistractions();
+          _this.websiteElements = _toConsumableArray(_this.defaultWebsites);
         }
       });
     },
     saveListOfDistractions: function saveListOfDistractions() {
-      chrome.storage.sync.set(_defineProperty({}, this.storageName, JSON.stringify(this.websiteElement)));
+      chrome.storage.sync.set(_defineProperty({}, this.storageName, JSON.stringify(this.websiteElements)));
     }
   }
 });
@@ -17141,7 +17130,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "YouTube Distraction Blocker", 2 /* CLASS */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedComponent), {
     storageName: $data.selectedStorageName,
     componentTitle: $data.selectedComponentTitle,
-    defaultWebsites: $data.defaultWebsites
+    defaultWebsites: $data.defaultSelectedData
   }, null, 8 /* PROPS */, ["storageName", "componentTitle", "defaultWebsites"]))])])], 64 /* STABLE_FRAGMENT */);
 }
 
@@ -17245,7 +17234,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_4 = ["onUpdate:modelValue"];
 var _hoisted_5 = ["onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.componentTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteElement, function (distraction, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.componentTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteElements, function (distraction, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.actionDescription), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -17356,16 +17345,156 @@ var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   defaultData: () => (/* binding */ defaultData)
+/* harmony export */   domains4Perm: () => (/* reexport safe */ _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__.domains4Perm),
+/* harmony export */   domains4Temp: () => (/* reexport safe */ _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__.domains4Temp),
+/* harmony export */   facebook: () => (/* reexport safe */ _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__.facebook),
+/* harmony export */   youtube: () => (/* reexport safe */ _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__.youtube)
 /* harmony export */ });
-/* harmony import */ var _json_defaultsForFacebook_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../json/defaultsForFacebook.json */ "./src/json/defaultsForFacebook.json");
-/* harmony import */ var _json_defaultsForYoutube_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../json/defaultsForYoutube.json */ "./src/json/defaultsForYoutube.json");
+/* harmony import */ var _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defaultsForYoutube */ "./src/js/data/defaultsForYoutube.js");
+/* harmony import */ var _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultsForFacebook */ "./src/js/data/defaultsForFacebook.js");
+/* harmony import */ var _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultDomainsForTemporarilyBlock */ "./src/js/data/defaultDomainsForTemporarilyBlock.js");
+/* harmony import */ var _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultDomainsForPermanentlyBlock */ "./src/js/data/defaultDomainsForPermanentlyBlock.js");
 
 
-var defaultData = {
-  facebook: _json_defaultsForFacebook_json__WEBPACK_IMPORTED_MODULE_0__,
-  youtube: _json_defaultsForYoutube_json__WEBPACK_IMPORTED_MODULE_1__
-};
+
+
+
+/***/ }),
+
+/***/ "./src/js/data/defaultDomainsForPermanentlyBlock.js":
+/*!**********************************************************!*\
+  !*** ./src/js/data/defaultDomainsForPermanentlyBlock.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   domains4Perm: () => (/* binding */ domains4Perm)
+/* harmony export */ });
+var domains4Perm = [{
+  name: "example.com",
+  checked: false
+}];
+
+/***/ }),
+
+/***/ "./src/js/data/defaultDomainsForTemporarilyBlock.js":
+/*!**********************************************************!*\
+  !*** ./src/js/data/defaultDomainsForTemporarilyBlock.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   domains4Temp: () => (/* binding */ domains4Temp)
+/* harmony export */ });
+var domains4Temp = [{
+  name: 'youtube.com',
+  checked: true
+}, {
+  name: 'facebook.com',
+  checked: true
+}, {
+  name: 'instagram.com',
+  checked: true
+}, {
+  name: 'tiktok.com',
+  checked: true
+}, {
+  name: 'twitter.com',
+  checked: true
+}, {
+  name: 'linkedin.com',
+  checked: true
+}, {
+  name: 'reddit.com',
+  checked: true
+}, {
+  name: 'pinterest.com',
+  checked: true
+}, {
+  name: 'tumblr.com',
+  checked: true
+}, {
+  name: 'snapchat.com',
+  checked: true
+}, {
+  name: 'quora.com',
+  checked: true
+}, {
+  name: 'flickr.com',
+  checked: true
+}, {
+  name: 'vimeo.com',
+  checked: true
+}, {
+  name: 'myspace.com',
+  checked: true
+}, {
+  name: 'meetup.com',
+  checked: true
+}, {
+  name: 'medium.com',
+  checked: true
+}, {
+  name: 'tinder.com',
+  checked: true
+}, {
+  name: 'netflix.com',
+  checked: true
+}, {
+  name: 'hulu.com',
+  checked: true
+}, {
+  name: 'amazon.com',
+  checked: true
+}];
+
+/***/ }),
+
+/***/ "./src/js/data/defaultsForFacebook.js":
+/*!********************************************!*\
+  !*** ./src/js/data/defaultsForFacebook.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   facebook: () => (/* binding */ facebook)
+/* harmony export */ });
+var facebook = [{
+  name: 'Facebook - Reels',
+  actionDescription: 'Redirect to message',
+  action: 'remove',
+  activeRule: true,
+  permanently: false
+}];
+
+/***/ }),
+
+/***/ "./src/js/data/defaultsForYoutube.js":
+/*!*******************************************!*\
+  !*** ./src/js/data/defaultsForYoutube.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   youtube: () => (/* binding */ youtube)
+/* harmony export */ });
+var youtube = [{
+  name: "Youtube - Shorts",
+  actionDescription: "Redirect to message",
+  action: "remove",
+  activeRule: true,
+  permanently: false
+}, {
+  name: "Youtube - Home",
+  actionDescription: "Redirect to message",
+  action: "remove",
+  activeRule: true,
+  permanently: false
+}];
 
 /***/ }),
 
@@ -18215,26 +18344,6 @@ ${codeFrame}` : message);
 
 
 
-
-/***/ }),
-
-/***/ "./src/json/defaultsForFacebook.json":
-/*!*******************************************!*\
-  !*** ./src/json/defaultsForFacebook.json ***!
-  \*******************************************/
-/***/ ((module) => {
-
-module.exports = JSON.parse('[{"name":"Facebook - Reels","actionDescription":"Remove a Reel","action":"remove","activeRule":false,"permanently":false}]');
-
-/***/ }),
-
-/***/ "./src/json/defaultsForYoutube.json":
-/*!******************************************!*\
-  !*** ./src/json/defaultsForYoutube.json ***!
-  \******************************************/
-/***/ ((module) => {
-
-module.exports = JSON.parse('[{"name":"YouTube Video: Thumbnails","actionDescription":"Replace","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Titles","actionDescription":"Replace - but keep the original title in tooltip","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Descriptions","actionDescription":"Replace/Remove","action":"replace","activeRule":false,"permanently":false},{"name":"YouTube Video: Channel names","actionDescription":"Replace - but keep the original title in tooltip","action":"replace","activeRule":false,"permanently":false}]');
 
 /***/ })
 

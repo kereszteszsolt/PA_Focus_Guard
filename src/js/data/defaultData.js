@@ -1,7 +1,4 @@
-import facebook from '../../json/defaultsForFacebook.json';
-import youtube from '../../json/defaultsForYoutube.json';
-
-export const defaultData = {
-    facebook,
-    youtube
-}
+export * from './defaultsForYoutube';
+export * from './defaultsForFacebook';
+export * from './defaultDomainsForTemporarilyBlock';
+export * from './defaultDomainsForPermanentlyBlock';
