@@ -16803,10 +16803,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./options/BlockedWebsitesByDomain.vue */ "./src/js/components/options/BlockedWebsitesByDomain.vue");
 /* harmony import */ var _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options/WebsiteElementBlocker.vue */ "./src/js/components/options/WebsiteElementBlocker.vue");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
-/* harmony import */ var _data_defaultData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/defaultData */ "./src/js/data/defaultData.js");
-/* harmony import */ var _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/defaultComponents */ "./src/js/data/defaultComponents.js");
-
+/* harmony import */ var _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/defaultComponents */ "./src/js/data/defaultComponents.js");
+/* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../scripts/utils */ "./src/js/scripts/utils.js");
 
 
 
@@ -16814,7 +16812,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      selectedComponent: _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents[0]
+      selectedComponent: _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents[0]
     };
   },
   components: {
@@ -16823,44 +16821,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     defaultComponents: function defaultComponents() {
-      return _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents;
+      return _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents;
+    },
+    convertToHash: function convertToHash(componentName) {
+      return _scripts_utils__WEBPACK_IMPORTED_MODULE_3__.conversions.convertPascalCaseToHash(componentName);
     },
     selectComponent: function selectComponent(componentName) {
-      this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents.find(function (component) {
+      this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.find(function (component) {
         return component.name === componentName;
       });
       if (!this.selectedComponent) {
-        this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents[0];
+        this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents[0];
       }
-      this.selectedComponent.data = this.loadData(this.selectedComponent.storageName, this.selectedComponent.defaultData);
-    },
-    loadData: function loadData(storageName, defaultData) {
-      var data = localStorage.getItem(storageName);
-      var selectedData = [];
-      if (data) {
-        selectedData = JSON.parse(data);
-      } else {
-        selectedData = defaultData;
-      }
-      return selectedData;
-    },
-    convertHashToPascalCase: function convertHashToPascalCase(hash) {
-      // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
-      return hash.replace('#', '').replace(/-(\w)/g, function (_, c) {
-        return c.toUpperCase();
-      }).replace(/\b(\w)/g, function (c) {
-        return c.toUpperCase();
-      });
-    },
-    convertPascalCaseToHash: function convertPascalCaseToHash(pascalCase) {
-      var dashedString = pascalCase.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert a dash before each uppercase letter
-      .toLowerCase(); // Convert the string to lowercase
-      return "#".concat(dashedString);
+      this.selectedComponent.data = _scripts_utils__WEBPACK_IMPORTED_MODULE_3__.dataAccess.loadData(this.selectedComponent.storageName, this.selectedComponent.defaultData);
     }
   },
   mounted: function mounted() {
     var hash = window.location.hash; // Get the hash value from the URL
-    var modifiedHash = this.convertHashToPascalCase(hash);
+    var modifiedHash = _scripts_utils__WEBPACK_IMPORTED_MODULE_3__.conversions.convertHashToPascalCase(hash);
     this.selectComponent(modifiedHash);
   }
 });
@@ -17091,7 +17069,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-      href: $options.convertPascalCaseToHash(component.name),
+      href: $options.convertToHash(component.name),
       onClick: function onClick($event) {
         return $options.selectComponent(component.name);
       },
@@ -17545,6 +17523,76 @@ var youtube = [{
   activeRule: true,
   permanently: false
 }];
+
+/***/ }),
+
+/***/ "./src/js/scripts/conversions.js":
+/*!***************************************!*\
+  !*** ./src/js/scripts/conversions.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   convertHashToPascalCase: () => (/* binding */ convertHashToPascalCase),
+/* harmony export */   convertPascalCaseToHash: () => (/* binding */ convertPascalCaseToHash)
+/* harmony export */ });
+function convertHashToPascalCase(hash) {
+  // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
+  return hash.replace('#', '').replace(/-(\w)/g, function (_, c) {
+    return c.toUpperCase();
+  }).replace(/\b(\w)/g, function (c) {
+    return c.toUpperCase();
+  });
+}
+function convertPascalCaseToHash(pascalCase) {
+  var dashedString = pascalCase.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert a dash before each uppercase letter
+  .toLowerCase(); // Convert the string to lowercase
+  return "#".concat(dashedString);
+}
+
+/***/ }),
+
+/***/ "./src/js/scripts/dataAccess.js":
+/*!**************************************!*\
+  !*** ./src/js/scripts/dataAccess.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadData: () => (/* binding */ loadData)
+/* harmony export */ });
+function loadData(storageName, defaultData) {
+  var data = localStorage.getItem(storageName);
+  var storedData = [];
+  if (data) {
+    storedData = JSON.parse(data);
+  } else {
+    storedData = defaultData;
+  }
+  return storedData;
+}
+
+/***/ }),
+
+/***/ "./src/js/scripts/utils.js":
+/*!*********************************!*\
+  !*** ./src/js/scripts/utils.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   conversions: () => (/* reexport module object */ _conversions__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   dataAccess: () => (/* reexport module object */ _dataAccess__WEBPACK_IMPORTED_MODULE_1__)
+/* harmony export */ });
+/* harmony import */ var _conversions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conversions */ "./src/js/scripts/conversions.js");
+/* harmony import */ var _dataAccess__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAccess */ "./src/js/scripts/dataAccess.js");
+
+
+
+
 
 /***/ }),
 
