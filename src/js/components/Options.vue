@@ -8,20 +8,21 @@
     <div class="sidebar">
       <ul>
         <li><a href="#temporarily-blocked-websites" @click="selectComponent('TemporarilyBlockedWebsites')"
-               :class="{ active: selectedComponent === 'TemporarilyBlockedWebsites' }">Temporarily Blocked</a></li>
+               :class="{ active: selectedComponent.name === 'TemporarilyBlockedWebsites' }">Temporarily Blocked</a></li>
         <li><a href="#permanently-blocked-websites" @click="selectComponent('PermanentlyBlockedWebsites')"
-               :class="{ active: selectedComponent === 'PermanentlyBlockedWebsites' }">Permanent Blocked</a></li>
+               :class="{ active: selectedComponent.name === 'PermanentlyBlockedWebsites' }">Permanent Blocked</a></li>
         <li><a href="#you-tube-distraction-blocker" @click="selectComponent('YouTubeDistractionBlocker')"
-               :class="{ active: selectedComponent === 'YouTubeDistractionBlocker' }">YouTube Distraction Blocker</a>
-        <li><a href="#facebook-distraction-blocker" @click="selectComponent('FacebookDistractionBlocker')">Facebook Distraction Blocker</a></li>
+               :class="{ active: selectedComponent.name === 'YouTubeDistractionBlocker' }">YouTube Distraction Blocker</a>
+          <li><a href="#facebook-distraction-blocker" @click="selectComponent('FacebookDistractionBlocker')">Facebook
+            Distraction Blocker</a></li>
         </li>
       </ul>
     </div>
     <div class="main">
-      <component :is="selectedComponent"
-                 :storageName="selectedStorageName"
-                 :componentTitle="selectedComponentTitle"
-                 :inputData="selectedData"></component>
+      <component :is="selectedComponent.containerComponent"
+                 :storageName="selectedComponent.storageName"
+                 :componentTitle="selectedComponent.title"
+                 :inputData="selectedComponent.data"></component>
     </div>
   </div>
 </template>
@@ -31,21 +32,25 @@ import WebsiteElementBlocker from './options/WebsiteElementBlocker.vue';
 import * as constants from '../constants';
 import * as defaultData from '../data/defaultData';
 
+const BLOCKED_WEBSITES_BY_DOMAIN = 'BlockedWebsitesByDomain';
+const WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
+
 export default {
   data() {
     return {
-      selectedComponent: constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-      selectedStorageName: constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
-      selectedComponentTitle: constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-      selectedData: [...defaultData.domains4Temp],
-      defaultSelectedData: [...defaultData.domains4Temp]
+      selectedComponent: {
+        name: constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
+        title: constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
+        storageName: constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
+        data: [...defaultData.domains4Temp],
+        defaultData: [...defaultData.domains4Temp],
+        containerComponent: BLOCKED_WEBSITES_BY_DOMAIN
+      }
     };
   },
   components: {
-    TemporarilyBlockedWebsites: BlockedWebsitesByDomain,
-    PermanentlyBlockedWebsites: BlockedWebsitesByDomain,
-    YouTubeDistractionBlocker: WebsiteElementBlocker,
-    FacebookDistractionBlocker: WebsiteElementBlocker,
+    BlockedWebsitesByDomain: BlockedWebsitesByDomain,
+    WebsiteElementBlocker: WebsiteElementBlocker
   },
   methods: {
     selectComponent(componentName) {
@@ -54,47 +59,48 @@ export default {
           this.setupComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
               constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
               constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Temp]);
+              [...defaultData.domains4Temp],BLOCKED_WEBSITES_BY_DOMAIN);
           break;
         case constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
           this.setupComponent(constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES,
               constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES,
               constants.componentTitles.PERMANENTLY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Perm]);
+              [...defaultData.domains4Perm], BLOCKED_WEBSITES_BY_DOMAIN);
           break;
         case constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
           this.setupComponent(constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER,
               constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER,
               constants.componentTitles.YOUTUBE_DISTRACTION_BLOCKER,
-              [...defaultData.youtube]);
+              [...defaultData.youtube], WEBSITE_ELEMENT_BLOCKER);
           break;
         case constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER:
           this.setupComponent(constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER,
               constants.storageNames.FACEBOOK_DISTRACTION_BLOCKER,
               constants.componentTitles.FACEBOOK_DISTRACTION_BLOCKER,
-              [...defaultData.facebook]);
+              [...defaultData.facebook], WEBSITE_ELEMENT_BLOCKER);
           break;
         default:
           this.setupComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
               constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
               constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Temp]);
+              [...defaultData.domains4Temp], BLOCKED_WEBSITES_BY_DOMAIN);
       }
     },
-    setupComponent(componentName, storageName, componentTitle, defaultData) {
-      this.selectedComponent = componentName;
-      this.selectedStorageName = storageName;
-      this.selectedComponentTitle = componentTitle;
-      this.defaultSelectedData = defaultData;
-      this.selectedData = this.loadData(storageName, defaultData);
+    setupComponent(componentName, storageName, componentTitle, defaultData, containerComponent) {
+      this.selectedComponent.name = componentName;
+      this.selectedComponent.storageName = storageName;
+      this.selectedComponent.title = componentTitle;
+      this.selectedComponent.data = this.loadData(storageName, defaultData);
+      this.selectedComponent.defaultData = defaultData;
+      this.selectedComponent.containerComponent = containerComponent;
     },
     loadData(storageName, defaultData) {
-      const data = localStorage.getItem(this.selectedStorageName);
+      const data = localStorage.getItem(storageName);
       let selectedData = [];
       if (data) {
         selectedData = JSON.parse(data);
       } else {
-        selectedData = this.defaultSelectedData;
+        selectedData = defaultData;
       }
       return selectedData;
     },
