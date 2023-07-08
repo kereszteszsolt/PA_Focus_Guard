@@ -7,14 +7,11 @@
   <div class="container content-box">
     <div class="sidebar">
       <ul>
-        <li><a href="#temporarily-blocked-websites" @click="selectComponent('TemporarilyBlockedWebsites')"
-               :class="{ active: selectedComponent.name === 'TemporarilyBlockedWebsites' }">Temporarily Blocked</a></li>
-        <li><a href="#permanently-blocked-websites" @click="selectComponent('PermanentlyBlockedWebsites')"
-               :class="{ active: selectedComponent.name === 'PermanentlyBlockedWebsites' }">Permanent Blocked</a></li>
-        <li><a href="#you-tube-distraction-blocker" @click="selectComponent('YouTubeDistractionBlocker')"
-               :class="{ active: selectedComponent.name === 'YouTubeDistractionBlocker' }">YouTube Distraction Blocker</a>
-          <li><a href="#facebook-distraction-blocker" @click="selectComponent('FacebookDistractionBlocker')">Facebook
-            Distraction Blocker</a></li>
+        <li v-for="(component, index) in defaultComponents()" :key="index">
+          <a :href="convertPascalCaseToHash(component.name)"
+             @click="selectComponent(component.name)"
+             :class="{ active: selectedComponent.name === component.name }"
+          >{{ component.title }}</a>
         </li>
       </ul>
     </div>
@@ -33,20 +30,10 @@ import * as constants from '../constants';
 import * as defaultData from '../data/defaultData';
 import {defaultComponents} from '../data/defaultComponents';
 
-const BLOCKED_WEBSITES_BY_DOMAIN = 'BlockedWebsitesByDomain';
-const WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
-
 export default {
   data() {
     return {
-      selectedComponent: {
-        name: constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-        title: constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-        storageName: constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
-        data: [...defaultData.domains4Temp],
-        defaultData: [...defaultData.domains4Temp],
-        containerComponent: BLOCKED_WEBSITES_BY_DOMAIN
-      }
+      selectedComponent: defaultComponents[0]
     };
   },
   components: {
@@ -54,36 +41,15 @@ export default {
     WebsiteElementBlocker: WebsiteElementBlocker
   },
   methods: {
-    selectComponent(componentName) {
-      switch (componentName) {
-        case constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
-          this.setupComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Temp]);
-          break;
-        case constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
-          this.setupComponent(constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Perm]);
-          break;
-        case constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
-          this.setupComponent(constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER,
-              [...defaultData.youtube]);
-          break;
-        case constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER:
-          this.setupComponent(constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER,
-              [...defaultData.facebook]);
-          break;
-        default:
-          this.setupComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Temp]);
-      }
+    defaultComponents() {
+      return defaultComponents;
     },
-    setupComponent(componentName, defaultData) {
+    selectComponent(componentName) {
       this.selectedComponent = defaultComponents.find(component => component.name === componentName);
-      if(!this.selectedComponent) {
+      if (!this.selectedComponent) {
         this.selectedComponent = defaultComponents[0];
       }
-        this.selectedComponent.data = this.loadData(this.selectedComponent.storageName, defaultData);
-        this.selectedComponent.defaultData = defaultData;
+      this.selectedComponent.data = this.loadData(this.selectedComponent.storageName, this.selectedComponent.defaultData);
     },
     loadData(storageName, defaultData) {
       const data = localStorage.getItem(storageName);
@@ -98,6 +64,12 @@ export default {
     convertHashToPascalCase(hash) {
       // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
       return hash.replace('#', '').replace(/-(\w)/g, (_, c) => c.toUpperCase()).replace(/\b(\w)/g, c => c.toUpperCase());
+    },
+    convertPascalCaseToHash(pascalCase) {
+      const dashedString = pascalCase
+          .replace(/([a-z])([A-Z])/g, '$1-$2') // Insert a dash before each uppercase letter
+          .toLowerCase(); // Convert the string to lowercase
+      return `#${dashedString}`;
     }
   },
   mounted() {

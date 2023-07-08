@@ -1,4 +1,5 @@
 import * as constants from '../constants';
+import * as defaultData from './defaultData';
 
 export const defaultComponents = [
     {
@@ -7,7 +8,7 @@ export const defaultComponents = [
         storageName: constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
         containerComponent: constants.containerComponents.BLOCKED_WEBSITES_BY_DOMAIN,
         data: [],
-        defaultData: []
+        defaultData: [...defaultData.domains4Temp]
     },
     {
         name: constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES,
@@ -15,7 +16,7 @@ export const defaultComponents = [
         storageName: constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES,
         containerComponent: constants.containerComponents.BLOCKED_WEBSITES_BY_DOMAIN,
         data: [],
-        defaultData: []
+        defaultData: [...defaultData.domains4Perm]
     },
     {
         name: constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER,
@@ -23,7 +24,7 @@ export const defaultComponents = [
         storageName: constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER,
         containerComponent: constants.containerComponents.WEBSITE_ELEMENT_BLOCKER,
         data: [],
-        defaultData: []
+        defaultData: [...defaultData.youtube]
     },
     {
         name: constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER,
@@ -31,6 +32,6 @@ export const defaultComponents = [
         storageName: constants.storageNames.FACEBOOK_DISTRACTION_BLOCKER,
         containerComponent: constants.containerComponents.WEBSITE_ELEMENT_BLOCKER,
         data: [],
-        defaultData: []
+        defaultData: [...defaultData.facebook]
     }
-]
+];

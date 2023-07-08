@@ -16806,30 +16806,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
 /* harmony import */ var _data_defaultData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/defaultData */ "./src/js/data/defaultData.js");
 /* harmony import */ var _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/defaultComponents */ "./src/js/data/defaultComponents.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 
 
 
 
-var BLOCKED_WEBSITES_BY_DOMAIN = 'BlockedWebsitesByDomain';
-var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      selectedComponent: {
-        name: _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-        title: _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-        storageName: _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
-        data: _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp),
-        defaultData: _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp),
-        containerComponent: BLOCKED_WEBSITES_BY_DOMAIN
-      }
+      selectedComponent: _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents[0]
     };
   },
   components: {
@@ -16837,33 +16822,17 @@ var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
     WebsiteElementBlocker: _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
-    selectComponent: function selectComponent(componentName) {
-      switch (componentName) {
-        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp));
-          break;
-        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Perm));
-          break;
-        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.youtube));
-          break;
-        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FACEBOOK_DISTRACTION_BLOCKER:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FACEBOOK_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.facebook));
-          break;
-        default:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp));
-      }
+    defaultComponents: function defaultComponents() {
+      return _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents;
     },
-    setupComponent: function setupComponent(componentName, defaultData) {
+    selectComponent: function selectComponent(componentName) {
       this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents.find(function (component) {
         return component.name === componentName;
       });
       if (!this.selectedComponent) {
         this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents[0];
       }
-      this.selectedComponent.data = this.loadData(this.selectedComponent.storageName, defaultData);
-      this.selectedComponent.defaultData = defaultData;
+      this.selectedComponent.data = this.loadData(this.selectedComponent.storageName, this.selectedComponent.defaultData);
     },
     loadData: function loadData(storageName, defaultData) {
       var data = localStorage.getItem(storageName);
@@ -16882,6 +16851,11 @@ var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
       }).replace(/\b(\w)/g, function (c) {
         return c.toUpperCase();
       });
+    },
+    convertPascalCaseToHash: function convertPascalCaseToHash(pascalCase) {
+      var dashedString = pascalCase.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert a dash before each uppercase letter
+      .toLowerCase(); // Convert the string to lowercase
+      return "#".concat(dashedString);
     }
   },
   mounted: function mounted() {
@@ -17108,40 +17082,24 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "sidebar"
 };
-var _hoisted_4 = {
+var _hoisted_4 = ["href", "onClick"];
+var _hoisted_5 = {
   "class": "main"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#temporarily-blocked-websites",
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.selectComponent('TemporarilyBlockedWebsites');
-    }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      active: $data.selectedComponent.name === 'TemporarilyBlockedWebsites'
-    })
-  }, "Temporarily Blocked", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#permanently-blocked-websites",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $options.selectComponent('PermanentlyBlockedWebsites');
-    }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      active: $data.selectedComponent.name === 'PermanentlyBlockedWebsites'
-    })
-  }, "Permanent Blocked", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#you-tube-distraction-blocker",
-    onClick: _cache[2] || (_cache[2] = function ($event) {
-      return $options.selectComponent('YouTubeDistractionBlocker');
-    }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      active: $data.selectedComponent.name === 'YouTubeDistractionBlocker'
-    })
-  }, "YouTube Distraction Blocker", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#facebook-distraction-blocker",
-    onClick: _cache[3] || (_cache[3] = function ($event) {
-      return $options.selectComponent('FacebookDistractionBlocker');
-    })
-  }, "Facebook Distraction Blocker")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedComponent.containerComponent), {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.defaultComponents(), function (component, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: index
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: $options.convertPascalCaseToHash(component.name),
+      onClick: function onClick($event) {
+        return $options.selectComponent(component.name);
+      },
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+        active: $data.selectedComponent.name === component.name
+      })
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(component.title), 11 /* TEXT, CLASS, PROPS */, _hoisted_4)]);
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedComponent.containerComponent), {
     storageName: $data.selectedComponent.storageName,
     componentTitle: $data.selectedComponent.title,
     inputData: $data.selectedComponent.data
@@ -17388,6 +17346,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   defaultComponents: () => (/* binding */ defaultComponents)
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+/* harmony import */ var _defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultData */ "./src/js/data/defaultData.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 
 var defaultComponents = [{
   name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
@@ -17395,28 +17361,28 @@ var defaultComponents = [{
   storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
   containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.BLOCKED_WEBSITES_BY_DOMAIN,
   data: [],
-  defaultData: []
+  defaultData: _toConsumableArray(_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp)
 }, {
   name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.PERMANENTLY_BLOCKED_WEBSITES,
   title: _constants__WEBPACK_IMPORTED_MODULE_0__.componentTitles.PERMANENTLY_BLOCKED_WEBSITES,
   storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.PERMANENTLY_BLOCKED_WEBSITES,
   containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.BLOCKED_WEBSITES_BY_DOMAIN,
   data: [],
-  defaultData: []
+  defaultData: _toConsumableArray(_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm)
 }, {
   name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.YOUTUBE_DISTRACTION_BLOCKER,
   title: _constants__WEBPACK_IMPORTED_MODULE_0__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER,
   storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.YOUTUBE_DISTRACTION_BLOCKER,
   containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.WEBSITE_ELEMENT_BLOCKER,
   data: [],
-  defaultData: []
+  defaultData: _toConsumableArray(_defaultData__WEBPACK_IMPORTED_MODULE_1__.youtube)
 }, {
   name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.FACEBOOK_DISTRACTION_BLOCKER,
   title: _constants__WEBPACK_IMPORTED_MODULE_0__.componentTitles.FACEBOOK_DISTRACTION_BLOCKER,
   storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.FACEBOOK_DISTRACTION_BLOCKER,
   containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.WEBSITE_ELEMENT_BLOCKER,
   data: [],
-  defaultData: []
+  defaultData: _toConsumableArray(_defaultData__WEBPACK_IMPORTED_MODULE_1__.facebook)
 }];
 
 /***/ }),
