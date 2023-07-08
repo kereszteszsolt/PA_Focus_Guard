@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ componentTitle }}</h1>
+  <h1>{{ title }}</h1>
   <div class="distractions-container">
     <div class="distractions-list">
       <table>
@@ -33,26 +33,38 @@
 <script>
 export default {
   props: {
-    componentTitle: {
-      type: String,
-      required: true
-    },
-    storageName: {
-      type: String,
-      required: true
-    },
-    inputData: {
-      type: Array,
-      required: true
-    }
+      name: {
+        type: String,
+        required: true,
+      },
+      title:{
+        type: String,
+        required: true,
+      },
+      storageName: {
+        type: String,
+        required: true,
+      },
+      containerComponent: {
+        type: String,
+        required: true,
+      },
+      data: {
+        type: Array,
+        required: true,
+      },
+      defaultData: {
+        type: Array,
+        required: true,
+      },
   },
   data() {
     return {
-      websiteElements: [...this.inputData]
+      websiteElements: [...this.data]
     };
   },
   watch: {
-    storageName: {
+    name: {
       immediate: true,
       handler: 'loadListOfDistractions'
     }
@@ -66,7 +78,7 @@ export default {
         if (result[this.storageName]) {
           this.websiteElements = JSON.parse(result[this.storageName]);
         } else {
-          this.websiteElements = [...this.inputData];
+          this.websiteElements = [...this.data];
         }
       });
     },

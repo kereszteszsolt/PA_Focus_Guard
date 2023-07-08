@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ componentTitle }}</h1>
+  <h1>{{ title }}</h1>
   <div class="sites-container">
     <div class="sites-list">
       <table>
@@ -31,29 +31,41 @@
 <script>
 export default {
   props: {
-    componentTitle: {
+    name: {
       type: String,
-      required: true
+      required: true,
+    },
+    title:{
+      type: String,
+      required: true,
     },
     storageName: {
       type: String,
-      required: true
+      required: true,
     },
-    inputData: {
+    containerComponent: {
+      type: String,
+      required: true,
+    },
+    data: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
+    defaultData: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
-      websiteList: [...this.inputData],
+      websiteList: [...this.data],
       newWebsite: '',
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false
     };
   },
   watch: {
-    storageName: {
+    name: {
       immediate: true,
       handler: 'loadListOfWebsites'
     }

@@ -17,9 +17,12 @@
     </div>
     <div class="main">
       <component :is="selectedComponent.containerComponent"
+                 :name="selectedComponent.name"
+                 :title="selectedComponent.title"
                  :storageName="selectedComponent.storageName"
-                 :componentTitle="selectedComponent.title"
-                 :inputData="selectedComponent.data"></component>
+                 :containerComponent="selectedComponent.containerComponent"
+                 :data="selectedComponent.data"
+                 :defaultData="selectedComponent.defaultData"></component>
     </div>
   </div>
 </template>
