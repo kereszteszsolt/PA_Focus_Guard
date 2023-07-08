@@ -31,6 +31,7 @@ import BlockedWebsitesByDomain from './options/BlockedWebsitesByDomain.vue';
 import WebsiteElementBlocker from './options/WebsiteElementBlocker.vue';
 import * as constants from '../constants';
 import * as defaultData from '../data/defaultData';
+import {defaultComponents} from '../data/defaultComponents';
 
 const BLOCKED_WEBSITES_BY_DOMAIN = 'BlockedWebsitesByDomain';
 const WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
@@ -57,42 +58,32 @@ export default {
       switch (componentName) {
         case constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
           this.setupComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-              constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
-              constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Temp],BLOCKED_WEBSITES_BY_DOMAIN);
+              [...defaultData.domains4Temp]);
           break;
         case constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
           this.setupComponent(constants.componentNames.PERMANENTLY_BLOCKED_WEBSITES,
-              constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES,
-              constants.componentTitles.PERMANENTLY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Perm], BLOCKED_WEBSITES_BY_DOMAIN);
+              [...defaultData.domains4Perm]);
           break;
         case constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
           this.setupComponent(constants.componentNames.YOUTUBE_DISTRACTION_BLOCKER,
-              constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER,
-              constants.componentTitles.YOUTUBE_DISTRACTION_BLOCKER,
-              [...defaultData.youtube], WEBSITE_ELEMENT_BLOCKER);
+              [...defaultData.youtube]);
           break;
         case constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER:
           this.setupComponent(constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER,
-              constants.storageNames.FACEBOOK_DISTRACTION_BLOCKER,
-              constants.componentTitles.FACEBOOK_DISTRACTION_BLOCKER,
-              [...defaultData.facebook], WEBSITE_ELEMENT_BLOCKER);
+              [...defaultData.facebook]);
           break;
         default:
           this.setupComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
-              constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
-              constants.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
-              [...defaultData.domains4Temp], BLOCKED_WEBSITES_BY_DOMAIN);
+              [...defaultData.domains4Temp]);
       }
     },
-    setupComponent(componentName, storageName, componentTitle, defaultData, containerComponent) {
-      this.selectedComponent.name = componentName;
-      this.selectedComponent.storageName = storageName;
-      this.selectedComponent.title = componentTitle;
-      this.selectedComponent.data = this.loadData(storageName, defaultData);
-      this.selectedComponent.defaultData = defaultData;
-      this.selectedComponent.containerComponent = containerComponent;
+    setupComponent(componentName, defaultData) {
+      this.selectedComponent = defaultComponents.find(component => component.name === componentName);
+      if(!this.selectedComponent) {
+        this.selectedComponent = defaultComponents[0];
+      }
+        this.selectedComponent.data = this.loadData(this.selectedComponent.storageName, defaultData);
+        this.selectedComponent.defaultData = defaultData;
     },
     loadData(storageName, defaultData) {
       const data = localStorage.getItem(storageName);

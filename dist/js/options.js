@@ -16805,12 +16805,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options/WebsiteElementBlocker.vue */ "./src/js/components/options/WebsiteElementBlocker.vue");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
 /* harmony import */ var _data_defaultData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/defaultData */ "./src/js/data/defaultData.js");
+/* harmony import */ var _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/defaultComponents */ "./src/js/data/defaultComponents.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 
 
 
@@ -16838,28 +16840,30 @@ var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
     selectComponent: function selectComponent(componentName) {
       switch (componentName) {
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp), BLOCKED_WEBSITES_BY_DOMAIN);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp));
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.PERMANENTLY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Perm), BLOCKED_WEBSITES_BY_DOMAIN);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.PERMANENTLY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Perm));
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.youtube), WEBSITE_ELEMENT_BLOCKER);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.youtube));
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FACEBOOK_DISTRACTION_BLOCKER:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FACEBOOK_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.FACEBOOK_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.FACEBOOK_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.facebook), WEBSITE_ELEMENT_BLOCKER);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FACEBOOK_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.facebook));
           break;
         default:
-          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp), BLOCKED_WEBSITES_BY_DOMAIN);
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp));
       }
     },
-    setupComponent: function setupComponent(componentName, storageName, componentTitle, defaultData, containerComponent) {
-      this.selectedComponent.name = componentName;
-      this.selectedComponent.storageName = storageName;
-      this.selectedComponent.title = componentTitle;
-      this.selectedComponent.data = this.loadData(storageName, defaultData);
+    setupComponent: function setupComponent(componentName, defaultData) {
+      this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents.find(function (component) {
+        return component.name === componentName;
+      });
+      if (!this.selectedComponent) {
+        this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_4__.defaultComponents[0];
+      }
+      this.selectedComponent.data = this.loadData(this.selectedComponent.storageName, defaultData);
       this.selectedComponent.defaultData = defaultData;
-      this.selectedComponent.containerComponent = containerComponent;
     },
     loadData: function loadData(storageName, defaultData) {
       var data = localStorage.getItem(storageName);
@@ -17309,6 +17313,22 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'Facebook Distraction Blocker';
 
 /***/ }),
 
+/***/ "./src/js/constants/containerComponents.js":
+/*!*************************************************!*\
+  !*** ./src/js/constants/containerComponents.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ BLOCKED_WEBSITES_BY_DOMAIN),
+/* harmony export */   WEBSITE_ELEMENT_BLOCKER: () => (/* binding */ WEBSITE_ELEMENT_BLOCKER)
+/* harmony export */ });
+var BLOCKED_WEBSITES_BY_DOMAIN = 'BlockedWebsitesByDomain';
+var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
+
+/***/ }),
+
 /***/ "./src/js/constants/index.js":
 /*!***********************************!*\
   !*** ./src/js/constants/index.js ***!
@@ -17319,11 +17339,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_0__),
 /* harmony export */   componentTitles: () => (/* reexport module object */ _componentTitles__WEBPACK_IMPORTED_MODULE_1__),
+/* harmony export */   containerComponents: () => (/* reexport module object */ _containerComponents__WEBPACK_IMPORTED_MODULE_3__),
 /* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__)
 /* harmony export */ });
 /* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./componentNames */ "./src/js/constants/componentNames.js");
 /* harmony import */ var _componentTitles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentTitles */ "./src/js/constants/componentTitles.js");
 /* harmony import */ var _storageNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageNames */ "./src/js/constants/storageNames.js");
+/* harmony import */ var _containerComponents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containerComponents */ "./src/js/constants/containerComponents.js");
+
+
 
 
 
@@ -17350,6 +17374,50 @@ var TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
 var FACEBOOK_DISTRACTION_BLOCKER = 'fgFacebookDistractionBlocker';
+
+/***/ }),
+
+/***/ "./src/js/data/defaultComponents.js":
+/*!******************************************!*\
+  !*** ./src/js/data/defaultComponents.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   defaultComponents: () => (/* binding */ defaultComponents)
+/* harmony export */ });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+
+var defaultComponents = [{
+  name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
+  title: _constants__WEBPACK_IMPORTED_MODULE_0__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES,
+  storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.TEMPORARILY_BLOCKED_WEBSITES,
+  containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.BLOCKED_WEBSITES_BY_DOMAIN,
+  data: [],
+  defaultData: []
+}, {
+  name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.PERMANENTLY_BLOCKED_WEBSITES,
+  title: _constants__WEBPACK_IMPORTED_MODULE_0__.componentTitles.PERMANENTLY_BLOCKED_WEBSITES,
+  storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.PERMANENTLY_BLOCKED_WEBSITES,
+  containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.BLOCKED_WEBSITES_BY_DOMAIN,
+  data: [],
+  defaultData: []
+}, {
+  name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.YOUTUBE_DISTRACTION_BLOCKER,
+  title: _constants__WEBPACK_IMPORTED_MODULE_0__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER,
+  storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.YOUTUBE_DISTRACTION_BLOCKER,
+  containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.WEBSITE_ELEMENT_BLOCKER,
+  data: [],
+  defaultData: []
+}, {
+  name: _constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.FACEBOOK_DISTRACTION_BLOCKER,
+  title: _constants__WEBPACK_IMPORTED_MODULE_0__.componentTitles.FACEBOOK_DISTRACTION_BLOCKER,
+  storageName: _constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.FACEBOOK_DISTRACTION_BLOCKER,
+  containerComponent: _constants__WEBPACK_IMPORTED_MODULE_0__.containerComponents.WEBSITE_ELEMENT_BLOCKER,
+  data: [],
+  defaultData: []
+}];
 
 /***/ }),
 
