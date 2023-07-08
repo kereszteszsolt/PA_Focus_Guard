@@ -13,6 +13,7 @@
                :class="{ active: selectedComponent === 'PermanentlyBlockedWebsites' }">Permanent Blocked</a></li>
         <li><a href="#you-tube-distraction-blocker" @click="selectComponent('YouTubeDistractionBlocker')"
                :class="{ active: selectedComponent === 'YouTubeDistractionBlocker' }">YouTube Distraction Blocker</a>
+        <li><a href="#facebook-distraction-blocker" @click="selectComponent('FacebookDistractionBlocker')">Facebook Distraction Blocker</a></li>
         </li>
       </ul>
     </div>
@@ -43,7 +44,8 @@ export default {
   components: {
     TemporarilyBlockedWebsites: BlockedWebsitesByDomain,
     PermanentlyBlockedWebsites: BlockedWebsitesByDomain,
-    YouTubeDistractionBlocker: WebsiteElementBlocker
+    YouTubeDistractionBlocker: WebsiteElementBlocker,
+    FacebookDistractionBlocker: WebsiteElementBlocker,
   },
   methods: {
     selectComponent(componentName) {
@@ -65,6 +67,12 @@ export default {
               constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER,
               constants.componentTitles.YOUTUBE_DISTRACTION_BLOCKER,
               [...defaultData.youtube]);
+          break;
+        case constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER:
+          this.setupComponent(constants.componentNames.FACEBOOK_DISTRACTION_BLOCKER,
+              constants.storageNames.FACEBOOK_DISTRACTION_BLOCKER,
+              constants.componentTitles.FACEBOOK_DISTRACTION_BLOCKER,
+              [...defaultData.facebook]);
           break;
         default:
           this.setupComponent(constants.componentNames.TEMPORARILY_BLOCKED_WEBSITES,
