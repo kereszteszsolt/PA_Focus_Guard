@@ -39,6 +39,7 @@ var __webpack_exports__ = {};
   \*********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
 /* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
 /* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
 /* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
@@ -46,5 +47,6 @@ __webpack_require__.r(__webpack_exports__);
 var TEMPORARILY_BLOCKED_WEBSITES = 'Temporarily Blocked Websites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'Permanently Blocked Websites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
+var FACEBOOK_DISTRACTION_BLOCKER = 'Facebook Distraction Blocker';
 /******/ })()
 ;

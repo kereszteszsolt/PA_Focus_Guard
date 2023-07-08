@@ -16828,7 +16828,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   components: {
     TemporarilyBlockedWebsites: _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     PermanentlyBlockedWebsites: _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    YouTubeDistractionBlocker: _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    YouTubeDistractionBlocker: _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FacebookDistractionBlocker: _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     selectComponent: function selectComponent(componentName) {
@@ -16841,6 +16842,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER:
           this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.YOUTUBE_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.YOUTUBE_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.youtube));
+          break;
+        case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FACEBOOK_DISTRACTION_BLOCKER:
+          this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FACEBOOK_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.FACEBOOK_DISTRACTION_BLOCKER, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.FACEBOOK_DISTRACTION_BLOCKER, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.facebook));
           break;
         default:
           this.setupComponent(_constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _constants__WEBPACK_IMPORTED_MODULE_2__.componentTitles.TEMPORARILY_BLOCKED_WEBSITES, _toConsumableArray(_data_defaultData__WEBPACK_IMPORTED_MODULE_3__.domains4Temp));
@@ -17124,7 +17128,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
       active: $data.selectedComponent === 'YouTubeDistractionBlocker'
     })
-  }, "YouTube Distraction Blocker", 2 /* CLASS */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedComponent), {
+  }, "YouTube Distraction Blocker", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#facebook-distraction-blocker",
+    onClick: _cache[3] || (_cache[3] = function ($event) {
+      return $options.selectComponent('FacebookDistractionBlocker');
+    })
+  }, "Facebook Distraction Blocker")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedComponent), {
     storageName: $data.selectedStorageName,
     componentTitle: $data.selectedComponentTitle,
     inputData: $data.selectedData
@@ -17264,6 +17273,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
 /* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
 /* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
 /* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
@@ -17271,6 +17281,7 @@ __webpack_require__.r(__webpack_exports__);
 var TEMPORARILY_BLOCKED_WEBSITES = 'TemporarilyBlockedWebsites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'PermanentlyBlockedWebsites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'YouTubeDistractionBlocker';
+var FACEBOOK_DISTRACTION_BLOCKER = 'FacebookDistractionBlocker';
 
 /***/ }),
 
@@ -17282,6 +17293,7 @@ var YOUTUBE_DISTRACTION_BLOCKER = 'YouTubeDistractionBlocker';
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
 /* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
 /* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
 /* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
@@ -17289,6 +17301,7 @@ __webpack_require__.r(__webpack_exports__);
 var TEMPORARILY_BLOCKED_WEBSITES = 'Temporarily Blocked Websites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'Permanently Blocked Websites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
+var FACEBOOK_DISTRACTION_BLOCKER = 'Facebook Distraction Blocker';
 
 /***/ }),
 
@@ -17324,6 +17337,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
 /* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
 /* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
 /* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
@@ -17331,6 +17345,7 @@ __webpack_require__.r(__webpack_exports__);
 var TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
+var FACEBOOK_DISTRACTION_BLOCKER = 'fgFacebookDistractionBlocker';
 
 /***/ }),
 
