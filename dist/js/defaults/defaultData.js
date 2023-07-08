@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/data/defaultDomainsForPermanentlyBlock.js":
-/*!**********************************************************!*\
-  !*** ./src/js/data/defaultDomainsForPermanentlyBlock.js ***!
-  \**********************************************************/
+/***/ "./src/js/defaults/defaultDomainsForPermanentlyBlock.js":
+/*!**************************************************************!*\
+  !*** ./src/js/defaults/defaultDomainsForPermanentlyBlock.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -19,10 +19,10 @@ var domains4Perm = [{
 
 /***/ }),
 
-/***/ "./src/js/data/defaultDomainsForTemporarilyBlock.js":
-/*!**********************************************************!*\
-  !*** ./src/js/data/defaultDomainsForTemporarilyBlock.js ***!
-  \**********************************************************/
+/***/ "./src/js/defaults/defaultDomainsForTemporarilyBlock.js":
+/*!**************************************************************!*\
+  !*** ./src/js/defaults/defaultDomainsForTemporarilyBlock.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -93,10 +93,10 @@ var domains4Temp = [{
 
 /***/ }),
 
-/***/ "./src/js/data/defaultsForFacebook.js":
-/*!********************************************!*\
-  !*** ./src/js/data/defaultsForFacebook.js ***!
-  \********************************************/
+/***/ "./src/js/defaults/defaultsForFacebook.js":
+/*!************************************************!*\
+  !*** ./src/js/defaults/defaultsForFacebook.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -113,10 +113,10 @@ var facebook = [{
 
 /***/ }),
 
-/***/ "./src/js/data/defaultsForYoutube.js":
-/*!*******************************************!*\
-  !*** ./src/js/data/defaultsForYoutube.js ***!
-  \*******************************************/
+/***/ "./src/js/defaults/defaultsForYoutube.js":
+/*!***********************************************!*\
+  !*** ./src/js/defaults/defaultsForYoutube.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -198,9 +198,9 @@ var youtube = [{
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!************************************!*\
-  !*** ./src/js/data/defaultData.js ***!
-  \************************************/
+/*!****************************************!*\
+  !*** ./src/js/defaults/defaultData.js ***!
+  \****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Perm: () => (/* reexport safe */ _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__.domains4Perm),
@@ -208,10 +208,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   facebook: () => (/* reexport safe */ _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__.facebook),
 /* harmony export */   youtube: () => (/* reexport safe */ _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__.youtube)
 /* harmony export */ });
-/* harmony import */ var _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defaultsForYoutube */ "./src/js/data/defaultsForYoutube.js");
-/* harmony import */ var _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultsForFacebook */ "./src/js/data/defaultsForFacebook.js");
-/* harmony import */ var _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultDomainsForTemporarilyBlock */ "./src/js/data/defaultDomainsForTemporarilyBlock.js");
-/* harmony import */ var _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultDomainsForPermanentlyBlock */ "./src/js/data/defaultDomainsForPermanentlyBlock.js");
+/* harmony import */ var _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defaultsForYoutube */ "./src/js/defaults/defaultsForYoutube.js");
+/* harmony import */ var _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultsForFacebook */ "./src/js/defaults/defaultsForFacebook.js");
+/* harmony import */ var _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultDomainsForTemporarilyBlock */ "./src/js/defaults/defaultDomainsForTemporarilyBlock.js");
+/* harmony import */ var _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultDomainsForPermanentlyBlock */ "./src/js/defaults/defaultDomainsForPermanentlyBlock.js");
 
 
 

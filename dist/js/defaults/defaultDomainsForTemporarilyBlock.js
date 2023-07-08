@@ -34,9 +34,9 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!**********************************************************!*\
-  !*** ./src/js/data/defaultDomainsForTemporarilyBlock.js ***!
-  \**********************************************************/
+/*!**************************************************************!*\
+  !*** ./src/js/defaults/defaultDomainsForTemporarilyBlock.js ***!
+  \**************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Temp: () => (/* binding */ domains4Temp)

@@ -29,7 +29,7 @@
 <script>
 import BlockedWebsitesByDomain from './options/BlockedWebsitesByDomain.vue';
 import WebsiteElementBlocker from './options/WebsiteElementBlocker.vue';
-import {defaultComponents} from '../data/defaultComponents';
+import {defaultComponents} from '../defaults/defaultComponents';
 import * as utils from '../scripts/utils';
 
 export default {

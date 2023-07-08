@@ -34,9 +34,9 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!*******************************************!*\
-  !*** ./src/js/data/defaultsForYoutube.js ***!
-  \*******************************************/
+/*!***********************************************!*\
+  !*** ./src/js/defaults/defaultsForYoutube.js ***!
+  \***********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   youtube: () => (/* binding */ youtube)

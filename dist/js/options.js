@@ -16803,7 +16803,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./options/BlockedWebsitesByDomain.vue */ "./src/js/components/options/BlockedWebsitesByDomain.vue");
 /* harmony import */ var _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options/WebsiteElementBlocker.vue */ "./src/js/components/options/WebsiteElementBlocker.vue");
-/* harmony import */ var _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/defaultComponents */ "./src/js/data/defaultComponents.js");
+/* harmony import */ var _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../defaults/defaultComponents */ "./src/js/defaults/defaultComponents.js");
 /* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../scripts/utils */ "./src/js/scripts/utils.js");
 
 
@@ -16812,7 +16812,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      selectedComponent: _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents[0]
+      selectedComponent: _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents[0]
     };
   },
   components: {
@@ -16821,17 +16821,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     defaultComponents: function defaultComponents() {
-      return _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents;
+      return _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents;
     },
     convertToHash: function convertToHash(componentName) {
       return _scripts_utils__WEBPACK_IMPORTED_MODULE_3__.conversions.convertPascalCaseToHash(componentName);
     },
     selectComponent: function selectComponent(componentName) {
-      this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.find(function (component) {
+      this.selectedComponent = _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.find(function (component) {
         return component.name === componentName;
       });
       if (!this.selectedComponent) {
-        this.selectedComponent = _data_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents[0];
+        this.selectedComponent = _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents[0];
       }
       this.selectedComponent.data = _scripts_utils__WEBPACK_IMPORTED_MODULE_3__.dataAccess.loadData(this.selectedComponent.storageName, this.selectedComponent.defaultData);
     }
@@ -17340,10 +17340,10 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'fgFacebookDistractionBlocker';
 
 /***/ }),
 
-/***/ "./src/js/data/defaultComponents.js":
-/*!******************************************!*\
-  !*** ./src/js/data/defaultComponents.js ***!
-  \******************************************/
+/***/ "./src/js/defaults/defaultComponents.js":
+/*!**********************************************!*\
+  !*** ./src/js/defaults/defaultComponents.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17351,7 +17351,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   defaultComponents: () => (/* binding */ defaultComponents)
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
-/* harmony import */ var _defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultData */ "./src/js/data/defaultData.js");
+/* harmony import */ var _defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultData */ "./src/js/defaults/defaultData.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -17392,10 +17392,10 @@ var defaultComponents = [{
 
 /***/ }),
 
-/***/ "./src/js/data/defaultData.js":
-/*!************************************!*\
-  !*** ./src/js/data/defaultData.js ***!
-  \************************************/
+/***/ "./src/js/defaults/defaultData.js":
+/*!****************************************!*\
+  !*** ./src/js/defaults/defaultData.js ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17405,10 +17405,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   facebook: () => (/* reexport safe */ _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__.facebook),
 /* harmony export */   youtube: () => (/* reexport safe */ _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__.youtube)
 /* harmony export */ });
-/* harmony import */ var _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defaultsForYoutube */ "./src/js/data/defaultsForYoutube.js");
-/* harmony import */ var _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultsForFacebook */ "./src/js/data/defaultsForFacebook.js");
-/* harmony import */ var _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultDomainsForTemporarilyBlock */ "./src/js/data/defaultDomainsForTemporarilyBlock.js");
-/* harmony import */ var _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultDomainsForPermanentlyBlock */ "./src/js/data/defaultDomainsForPermanentlyBlock.js");
+/* harmony import */ var _defaultsForYoutube__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defaultsForYoutube */ "./src/js/defaults/defaultsForYoutube.js");
+/* harmony import */ var _defaultsForFacebook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaultsForFacebook */ "./src/js/defaults/defaultsForFacebook.js");
+/* harmony import */ var _defaultDomainsForTemporarilyBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultDomainsForTemporarilyBlock */ "./src/js/defaults/defaultDomainsForTemporarilyBlock.js");
+/* harmony import */ var _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultDomainsForPermanentlyBlock */ "./src/js/defaults/defaultDomainsForPermanentlyBlock.js");
 
 
 
@@ -17416,10 +17416,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/data/defaultDomainsForPermanentlyBlock.js":
-/*!**********************************************************!*\
-  !*** ./src/js/data/defaultDomainsForPermanentlyBlock.js ***!
-  \**********************************************************/
+/***/ "./src/js/defaults/defaultDomainsForPermanentlyBlock.js":
+/*!**************************************************************!*\
+  !*** ./src/js/defaults/defaultDomainsForPermanentlyBlock.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17433,10 +17433,10 @@ var domains4Perm = [{
 
 /***/ }),
 
-/***/ "./src/js/data/defaultDomainsForTemporarilyBlock.js":
-/*!**********************************************************!*\
-  !*** ./src/js/data/defaultDomainsForTemporarilyBlock.js ***!
-  \**********************************************************/
+/***/ "./src/js/defaults/defaultDomainsForTemporarilyBlock.js":
+/*!**************************************************************!*\
+  !*** ./src/js/defaults/defaultDomainsForTemporarilyBlock.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17507,10 +17507,10 @@ var domains4Temp = [{
 
 /***/ }),
 
-/***/ "./src/js/data/defaultsForFacebook.js":
-/*!********************************************!*\
-  !*** ./src/js/data/defaultsForFacebook.js ***!
-  \********************************************/
+/***/ "./src/js/defaults/defaultsForFacebook.js":
+/*!************************************************!*\
+  !*** ./src/js/defaults/defaultsForFacebook.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17527,10 +17527,10 @@ var facebook = [{
 
 /***/ }),
 
-/***/ "./src/js/data/defaultsForYoutube.js":
-/*!*******************************************!*\
-  !*** ./src/js/data/defaultsForYoutube.js ***!
-  \*******************************************/
+/***/ "./src/js/defaults/defaultsForYoutube.js":
+/*!***********************************************!*\
+  !*** ./src/js/defaults/defaultsForYoutube.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
