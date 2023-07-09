@@ -5,7 +5,6 @@ import {defaultComponents} from './defaults/defaultComponents';
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
     utils.dataAccess.saveData('fbBlockedSitesActive', true);
-    utils.dataAccess.saveData('fgAppFunctionalities', defaultComponents);
     defaultComponents.forEach(component => {
         utils.dataAccess.saveData(component.storageName, component.defaultData);
     });
@@ -15,6 +14,8 @@ chrome.runtime.onInstalled.addListener(function () {
 var fbBlockedSitesActive = true;
 var fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
 var fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
+var activeRules = [];
+var ruleIds = [];
 
 const readStorage = () => {
     fbBlockedSitesActive = utils.dataAccess.loadData('fbBlockedSitesActive', true);
@@ -25,47 +26,77 @@ readStorage();
 
 
 const hide = () => {
-    if (fbBlockedSitesActive) {
-        const rules = [...fgTemporarilyBlockedWebsites].filter(site => site.checked).map((site, index) => {
-            return {
-                'id': index + 1,
-                'priority': 1,
-                'action': {'type': 'redirect', 'redirect': {'extensionPath': '/message.html'}},
-                'condition': {'urlFilter': site.name, 'resourceTypes': ['main_frame', 'sub_frame']}
-            };
-        });
 
-        chrome.declarativeNetRequest.updateDynamicRules({
-            removeRuleIds: Array.from({length: 10000}, (_, index) => index + 1),
-            addRules: rules
-        });
+    const rules = [];
+    let index = 1;
+
+    ruleIds.push(...activeRules.map(rule => rule.id));
+    console.log('ruleIds:', ruleIds);
+    chrome.declarativeNetRequest.updateDynamicRules({
+        removeRuleIds: ruleIds,
+        addRules: []
+    });
+
+    fgTemporarilyBlockedWebsites = fgTemporarilyBlockedWebsites.map((site) => ({
+        ...site,
+        ruleId: index++,
+    }));
+
+    fgPermanentlyBlockedWebsites = fgPermanentlyBlockedWebsites.map((site) => ({
+        ...site,
+        ruleId: index++,
+    }));
+
+    console.log('fgTemporarilyBlockedWebsites:', fgTemporarilyBlockedWebsites);
+    console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
+
+    let tempRules = [];
+    if (fbBlockedSitesActive) {
+        tempRules = fgTemporarilyBlockedWebsites
+            .filter((site) => site.checked)
+            .map((site) => ({
+                id: site.ruleId,
+                priority: 1,
+                action: {
+                    type: 'redirect',
+                    redirect: { extensionPath: '/message.html' },
+                },
+                condition: {
+                    urlFilter: site.name,
+                    resourceTypes: ['main_frame', 'sub_frame'],
+                },
+            }));
     }
-    if (!fbBlockedSitesActive) {
-        chrome.declarativeNetRequest.updateDynamicRules({
-            removeRuleIds: Array.from({length: 10000}, (_, index) => index + 1),
-            addRules: []
-        });
-    }
+    rules.push(...tempRules);
+
+    let permRules = fgPermanentlyBlockedWebsites
+        .filter((site) => site.checked)
+        .map((site) => ({
+            id: site.ruleId,
+            priority: 1,
+            action: {
+                type: 'redirect',
+                redirect: { extensionPath: '/message.html' },
+            },
+            condition: {
+                urlFilter: site.name,
+                resourceTypes: ['main_frame', 'sub_frame'],
+            },
+        }));
+    rules.push(...permRules);
+
+    console.log('rules:', rules);
+
+
+    activeRules = [...rules]
+    ruleIds = [...activeRules.map(rule => rule.id)];
+    console.log('ruleIds:', ruleIds);
+    chrome.declarativeNetRequest.updateDynamicRules({
+        removeRuleIds: ruleIds,
+        addRules: activeRules
+    });
 };
 hide();
-
-
-const hidePermanently = () => {
-    const rules = [...fgPermanentlyBlockedWebsites].filter(site => site.checked).map((site, index) => {
-        return {
-            'id': index + 10001,
-            'priority': 1,
-            'action': {'type': 'redirect', 'redirect': {'extensionPath': '/message.html'}},
-            'condition': {'urlFilter': site.name, 'resourceTypes': ['main_frame', 'sub_frame']}
-        };
-    });
-
-    chrome.declarativeNetRequest.updateDynamicRules({
-        removeRuleIds: Array.from({length: 10000}, (_, index) => index + 10001),
-        addRules: rules
-    });
-};
-hidePermanently();
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
@@ -82,21 +113,21 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 
         if (changes.fgPermanentlyBlockedWebsites) {
             fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
-            hidePermanently();
+            hide();
         }
 
         chrome.tabs.query({}, function (tabs) {
 
             tabs.forEach(function (tab) {
                 if (fbBlockedSitesActive) {
-                    [...fgTemporarilyBlockedWebsites].filter(site => site.checked).forEach(site => {
+                    fgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
                         if (tab.url.includes(site.name)) {
                             chrome.tabs.remove(tab.id);
                         }
                     });
                 }
 
-                [...fgPermanentlyBlockedWebsites].filter(site => site.checked).forEach(site => {
+                fgPermanentlyBlockedWebsites.filter(site => site.checked).forEach(site => {
                     if (tab.url.includes(site.name)) {
                         chrome.tabs.remove(tab.id);
                     }
