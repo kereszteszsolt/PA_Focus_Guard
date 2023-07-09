@@ -48,7 +48,7 @@ var readStorage = function readStorage() {
   fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgPermanentlyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
 };
 readStorage();
-var hide = function hide() {
+var blockOrAllow = function blockOrAllow() {
   var _ruleIds;
   var rules = [];
   var index = 1;
@@ -124,22 +124,22 @@ var hide = function hide() {
     addRules: activeRules
   });
 };
-hide();
+blockOrAllow();
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
   if (namespace === 'sync') {
     if (changes.fbBlockedSitesActive) {
       fbBlockedSitesActive = changes.fbBlockedSitesActive.newValue;
-      hide();
+      blockOrAllow();
     }
     if (changes.fgTemporarilyBlockedWebsites) {
       fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
-      hide();
+      blockOrAllow();
     }
     if (changes.fgPermanentlyBlockedWebsites) {
       fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
-      hide();
+      blockOrAllow();
     }
     chrome.tabs.query({}, function (tabs) {
       tabs.forEach(function (tab) {

@@ -25,7 +25,7 @@ const readStorage = () => {
 readStorage();
 
 
-const hide = () => {
+const blockOrAllow = () => {
 
     const rules = [];
     let index = 1;
@@ -96,29 +96,31 @@ const hide = () => {
         addRules: activeRules
     });
 };
-hide();
+blockOrAllow();
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (namespace === 'sync') {
         if (changes.fbBlockedSitesActive) {
             fbBlockedSitesActive = changes.fbBlockedSitesActive.newValue;
-            hide();
+            blockOrAllow();
         }
 
         if (changes.fgTemporarilyBlockedWebsites) {
             fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
-            hide();
+            blockOrAllow();
         }
 
         if (changes.fgPermanentlyBlockedWebsites) {
             fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
-            hide();
+            blockOrAllow();
         }
 
         chrome.tabs.query({}, function (tabs) {
 
+            // loop through all tabs and close any that are on the blocked list
             tabs.forEach(function (tab) {
+
                 if (fbBlockedSitesActive) {
                     fgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
                         if (tab.url.includes(site.name)) {
