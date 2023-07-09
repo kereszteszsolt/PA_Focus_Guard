@@ -34,22 +34,26 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!**************************************!*\
-  !*** ./src/js/scripts/dataAccess.js ***!
-  \**************************************/
+/*!*********************************************!*\
+  !*** ./src/js/scripts/utils/conversions.js ***!
+  \*********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   loadData: () => (/* binding */ loadData)
+/* harmony export */   convertHashToPascalCase: () => (/* binding */ convertHashToPascalCase),
+/* harmony export */   convertPascalCaseToHash: () => (/* binding */ convertPascalCaseToHash)
 /* harmony export */ });
-function loadData(storageName, defaultData) {
-  var data = localStorage.getItem(storageName);
-  var storedData = [];
-  if (data) {
-    storedData = JSON.parse(data);
-  } else {
-    storedData = defaultData;
-  }
-  return storedData;
+function convertHashToPascalCase(hash) {
+  // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
+  return hash.replace('#', '').replace(/-(\w)/g, function (_, c) {
+    return c.toUpperCase();
+  }).replace(/\b(\w)/g, function (c) {
+    return c.toUpperCase();
+  });
+}
+function convertPascalCaseToHash(pascalCase) {
+  var dashedString = pascalCase.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert a dash before each uppercase letter
+  .toLowerCase(); // Convert the string to lowercase
+  return "#".concat(dashedString);
 }
 /******/ })()
 ;

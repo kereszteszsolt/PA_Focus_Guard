@@ -16804,7 +16804,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _options_BlockedWebsitesByDomain_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./options/BlockedWebsitesByDomain.vue */ "./src/js/components/options/BlockedWebsitesByDomain.vue");
 /* harmony import */ var _options_WebsiteElementBlocker_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./options/WebsiteElementBlocker.vue */ "./src/js/components/options/WebsiteElementBlocker.vue");
 /* harmony import */ var _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../defaults/defaultComponents */ "./src/js/defaults/defaultComponents.js");
-/* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../scripts/utils */ "./src/js/scripts/utils.js");
+/* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../scripts/utils */ "./src/js/scripts/utils/index.js");
 
 
 
@@ -17553,10 +17553,10 @@ var youtube = [{
 
 /***/ }),
 
-/***/ "./src/js/scripts/conversions.js":
-/*!***************************************!*\
-  !*** ./src/js/scripts/conversions.js ***!
-  \***************************************/
+/***/ "./src/js/scripts/utils/conversions.js":
+/*!*********************************************!*\
+  !*** ./src/js/scripts/utils/conversions.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17580,10 +17580,10 @@ function convertPascalCaseToHash(pascalCase) {
 
 /***/ }),
 
-/***/ "./src/js/scripts/dataAccess.js":
-/*!**************************************!*\
-  !*** ./src/js/scripts/dataAccess.js ***!
-  \**************************************/
+/***/ "./src/js/scripts/utils/dataAccess.js":
+/*!********************************************!*\
+  !*** ./src/js/scripts/utils/dataAccess.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17603,10 +17603,10 @@ function loadData(storageName, defaultData) {
 
 /***/ }),
 
-/***/ "./src/js/scripts/utils.js":
-/*!*********************************!*\
-  !*** ./src/js/scripts/utils.js ***!
-  \*********************************/
+/***/ "./src/js/scripts/utils/index.js":
+/*!***************************************!*\
+  !*** ./src/js/scripts/utils/index.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -17614,8 +17614,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   conversions: () => (/* reexport module object */ _conversions__WEBPACK_IMPORTED_MODULE_0__),
 /* harmony export */   dataAccess: () => (/* reexport module object */ _dataAccess__WEBPACK_IMPORTED_MODULE_1__)
 /* harmony export */ });
-/* harmony import */ var _conversions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conversions */ "./src/js/scripts/conversions.js");
-/* harmony import */ var _dataAccess__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAccess */ "./src/js/scripts/dataAccess.js");
+/* harmony import */ var _conversions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conversions */ "./src/js/scripts/utils/conversions.js");
+/* harmony import */ var _dataAccess__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAccess */ "./src/js/scripts/utils/dataAccess.js");
 
 
 

@@ -32,6 +32,7 @@ import WebsiteElementBlocker from './options/WebsiteElementBlocker.vue';
 import {defaultComponents} from '../defaults/defaultComponents';
 import * as utils from '../scripts/utils';
 
+
 export default {
   data() {
     return {

@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/scripts/conversions.js":
-/*!***************************************!*\
-  !*** ./src/js/scripts/conversions.js ***!
-  \***************************************/
+/***/ "./src/js/scripts/utils/conversions.js":
+/*!*********************************************!*\
+  !*** ./src/js/scripts/utils/conversions.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -29,10 +29,10 @@ function convertPascalCaseToHash(pascalCase) {
 
 /***/ }),
 
-/***/ "./src/js/scripts/dataAccess.js":
-/*!**************************************!*\
-  !*** ./src/js/scripts/dataAccess.js ***!
-  \**************************************/
+/***/ "./src/js/scripts/utils/dataAccess.js":
+/*!********************************************!*\
+  !*** ./src/js/scripts/utils/dataAccess.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -111,16 +111,16 @@ function loadData(storageName, defaultData) {
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*********************************!*\
-  !*** ./src/js/scripts/utils.js ***!
-  \*********************************/
+/*!***************************************!*\
+  !*** ./src/js/scripts/utils/index.js ***!
+  \***************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   conversions: () => (/* reexport module object */ _conversions__WEBPACK_IMPORTED_MODULE_0__),
 /* harmony export */   dataAccess: () => (/* reexport module object */ _dataAccess__WEBPACK_IMPORTED_MODULE_1__)
 /* harmony export */ });
-/* harmony import */ var _conversions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conversions */ "./src/js/scripts/conversions.js");
-/* harmony import */ var _dataAccess__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAccess */ "./src/js/scripts/dataAccess.js");
+/* harmony import */ var _conversions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conversions */ "./src/js/scripts/utils/conversions.js");
+/* harmony import */ var _dataAccess__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAccess */ "./src/js/scripts/utils/dataAccess.js");
 
 
 

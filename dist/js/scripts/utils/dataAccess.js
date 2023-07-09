@@ -34,26 +34,22 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!***************************************!*\
-  !*** ./src/js/scripts/conversions.js ***!
-  \***************************************/
+/*!********************************************!*\
+  !*** ./src/js/scripts/utils/dataAccess.js ***!
+  \********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   convertHashToPascalCase: () => (/* binding */ convertHashToPascalCase),
-/* harmony export */   convertPascalCaseToHash: () => (/* binding */ convertPascalCaseToHash)
+/* harmony export */   loadData: () => (/* binding */ loadData)
 /* harmony export */ });
-function convertHashToPascalCase(hash) {
-  // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
-  return hash.replace('#', '').replace(/-(\w)/g, function (_, c) {
-    return c.toUpperCase();
-  }).replace(/\b(\w)/g, function (c) {
-    return c.toUpperCase();
-  });
-}
-function convertPascalCaseToHash(pascalCase) {
-  var dashedString = pascalCase.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert a dash before each uppercase letter
-  .toLowerCase(); // Convert the string to lowercase
-  return "#".concat(dashedString);
+function loadData(storageName, defaultData) {
+  var data = localStorage.getItem(storageName);
+  var storedData = [];
+  if (data) {
+    storedData = JSON.parse(data);
+  } else {
+    storedData = defaultData;
+  }
+  return storedData;
 }
 /******/ })()
 ;
