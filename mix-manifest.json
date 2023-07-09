@@ -11,6 +11,7 @@
     "/dist/js/scripts/utils/dataAccess.js": "/dist/js/scripts/utils/dataAccess.js",
     "/dist/js/scripts/utils/conversions.js": "/dist/js/scripts/utils/conversions.js",
     "/dist/js/scripts/utils/index.js": "/dist/js/scripts/utils/index.js",
+    "/dist/js/scripts/background/index.js": "/dist/js/scripts/background/index.js",
     "/dist/js/popup.js": "/dist/js/popup.js",
     "/dist/js/options.js": "/dist/js/options.js",
     "/dist/css/options.css": "/dist/css/options.css",

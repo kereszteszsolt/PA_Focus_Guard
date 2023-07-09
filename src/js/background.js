@@ -1,41 +1,25 @@
+import * as utils from './scripts/utils';
+import * as defaultComponentData from './defaults/defaultData';
+import {defaultComponents} from './defaults/defaultComponents';
+
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-    chrome.storage.sync.set({
-        fbBlockedSitesActive: true,
-        fgTemporarilyBlockedWebsites: JSON.stringify([
-            {name: 'youtube.com', checked: true},
-            {name: 'facebook.com', checked: true},
-            {name: 'linkedin.com', checked: true}
-        ]),
-        fgPermanentlyBlockedWebsites: JSON.stringify([
-            {name: 'videa.hu', checked: true},
-            {name: 'dailymotion.com', checked: true}
-        ])
-    }, function () {
+    utils.dataAccess.saveData('fbBlockedSitesActive', true);
+    utils.dataAccess.saveData('fgAppFunctionalities', defaultComponents);
+    defaultComponents.forEach(component => {
+        utils.dataAccess.saveData(component.storageName, component.defaultData);
     });
 });
 
 // set up initial chrome storage values
 var fbBlockedSitesActive = true;
-var fgTemporarilyBlockedWebsites = [
-    {name: 'youtube.com', checked: true},
-    {name: 'facebook.com', checked: true},
-    {name: 'linkedin.com', checked: true}
-];
-var fgPermanentlyBlockedWebsites = [
-    {name: 'example.com', checked: true},
-];
+var fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
+var fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
 
 const readStorage = () => {
-    chrome.storage.sync.get([
-        'fbBlockedSitesActive',
-        'fgTemporarilyBlockedWebsites',
-        'fgPermanentlyBlockedWebsites'
-    ], function (result) {
-        fbBlockedSitesActive = result.fbBlockedSitesActive;
-        fgTemporarilyBlockedWebsites = JSON.parse(result.fgTemporarilyBlockedWebsites || '[]') || [];
-        fgPermanentlyBlockedWebsites = JSON.parse(result.fgPermanentlyBlockedWebsites || '[]') || [];
-    });
+    fbBlockedSitesActive = utils.dataAccess.loadData('fbBlockedSitesActive', true);
+    fgTemporarilyBlockedWebsites = utils.dataAccess.loadData('fgTemporarilyBlockedWebsites', defaultComponentData.domains4Temp);
+    fgPermanentlyBlockedWebsites = utils.dataAccess.loadData('fgPermanentlyBlockedWebsites', defaultComponentData.domains4Perm);
 };
 readStorage();
 

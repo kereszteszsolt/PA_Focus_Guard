@@ -1,10 +1,22 @@
 export function loadData(storageName, defaultData) {
-    const data = localStorage.getItem(storageName);
-    let storedData = [];
-    if (data) {
-        storedData = JSON.parse(data);
+    let result;
+    const storedData = chrome.storage.sync.get(
+        storageName,
+        function (data) {}
+    );
+    if (storedData) {
+        result = JSON.parse(storedData);
     } else {
-        storedData = defaultData;
+        result = defaultData;
     }
-    return storedData;
+    return result;
+}
+
+export function saveData(storageName, data) {
+    chrome.storage.sync.set({
+            [storageName]: JSON.stringify(data)
+        },
+        function () {
+        }
+    );
 }
