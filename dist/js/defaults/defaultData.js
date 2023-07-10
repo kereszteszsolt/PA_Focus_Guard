@@ -32,10 +32,12 @@ __webpack_require__.r(__webpack_exports__);
 var domains4Temp = [{
   name: 'youtube.com',
   checked: true
-}, {
-  name: 'facebook.com',
-  checked: true
-}, {
+},
+// {
+//     name: 'facebook.com',
+//     checked: true
+// },
+{
   name: 'instagram.com',
   checked: true
 }, {

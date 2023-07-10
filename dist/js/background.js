@@ -142,6 +142,7 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
       blockOrAllow();
     }
     chrome.tabs.query({}, function (tabs) {
+      // loop through all tabs and close any that are on the blocked list
       tabs.forEach(function (tab) {
         if (fbBlockedSitesActive) {
           fgTemporarilyBlockedWebsites.filter(function (site) {
@@ -376,10 +377,12 @@ __webpack_require__.r(__webpack_exports__);
 var domains4Temp = [{
   name: 'youtube.com',
   checked: true
-}, {
-  name: 'facebook.com',
-  checked: true
-}, {
+},
+// {
+//     name: 'facebook.com',
+//     checked: true
+// },
+{
   name: 'instagram.com',
   checked: true
 }, {
