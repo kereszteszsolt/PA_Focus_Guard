@@ -41,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   facebookElementsBlocker: () => (/* binding */ facebookElementsBlocker)
 /* harmony export */ });
-var facebookElementsBlocker = function facebookElementsBlocker(active, facebookElements) {
+var facebookElementsBlocker = function facebookElementsBlocker(facebookElements) {
   facebookElements.forEach(function (element) {
     switch (element) {
       case 'facebook-thumbnails':

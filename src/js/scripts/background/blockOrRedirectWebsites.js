@@ -22,8 +22,8 @@ export const blockOrRedirectWebsitesSetup = () => {
     // any time a storage item is updated, update global variables
     chrome.storage.onChanged.addListener(function (changes, namespace) {
         if (namespace === 'sync') {
-            if (changes.fgFocusModeActive) {
-                fgFocusModeActive = changes.fgFocusModeActive.newValue;
+            if (changes.fbBlockedSitesActive) {
+                fgFocusModeActive = changes.fbBlockedSitesActive.newValue;
                 blockOrAllow();
             }
 

@@ -1,4 +1,4 @@
-export const facebookElementsBlocker = (active, facebookElements) => {
+export const facebookElementsBlocker = (facebookElements) => {
     facebookElements.forEach(element => {
         switch (element) {
             case 'facebook-thumbnails':

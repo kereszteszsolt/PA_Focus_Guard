@@ -438,10 +438,14 @@ var ruleIds = [];
 var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Temp;
 var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Perm;
+var fgFacebookDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.facebook;
+var fgYouTubeDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.youtube;
 var readStorage = function readStorage() {
   fgFocusModeActive = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FOCUS_MODE_ACTIVE, false);
   fgTemporarilyBlockedWebsites = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Temp);
   fgPermanentlyBlockedWebsites = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Perm);
+  fgFacebookDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FACEBOOK_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.facebook);
+  fgYouTubeDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.youtube);
 };
 var blockOrRedirectWebsitesSetup = function blockOrRedirectWebsitesSetup() {
   readStorage();
@@ -449,8 +453,8 @@ var blockOrRedirectWebsitesSetup = function blockOrRedirectWebsitesSetup() {
   // any time a storage item is updated, update global variables
   chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (namespace === 'sync') {
-      if (changes.fgFocusModeActive) {
-        fgFocusModeActive = changes.fgFocusModeActive.newValue;
+      if (changes.fbBlockedSitesActive) {
+        fgFocusModeActive = changes.fbBlockedSitesActive.newValue;
         blockOrAllow();
       }
       if (changes.fgTemporarilyBlockedWebsites) {

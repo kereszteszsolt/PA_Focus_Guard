@@ -26,7 +26,6 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 });
 _scripts_background__WEBPACK_IMPORTED_MODULE_2__.blockOrRedirectWebsitesSetup();
-_scripts_background__WEBPACK_IMPORTED_MODULE_2__.websiteElementsBlockerSetup();
 
 /***/ }),
 
@@ -384,10 +383,14 @@ var ruleIds = [];
 var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Temp;
 var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Perm;
+var fgFacebookDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.facebook;
+var fgYouTubeDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.youtube;
 var readStorage = function readStorage() {
   fgFocusModeActive = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FOCUS_MODE_ACTIVE, false);
   fgTemporarilyBlockedWebsites = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Temp);
   fgPermanentlyBlockedWebsites = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Perm);
+  fgFacebookDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FACEBOOK_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.facebook);
+  fgYouTubeDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.youtube);
 };
 var blockOrRedirectWebsitesSetup = function blockOrRedirectWebsitesSetup() {
   readStorage();
@@ -395,8 +398,8 @@ var blockOrRedirectWebsitesSetup = function blockOrRedirectWebsitesSetup() {
   // any time a storage item is updated, update global variables
   chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (namespace === 'sync') {
-      if (changes.fgFocusModeActive) {
-        fgFocusModeActive = changes.fgFocusModeActive.newValue;
+      if (changes.fbBlockedSitesActive) {
+        fgFocusModeActive = changes.fbBlockedSitesActive.newValue;
         blockOrAllow();
       }
       if (changes.fgTemporarilyBlockedWebsites) {
@@ -520,7 +523,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   facebookElementsBlocker: () => (/* binding */ facebookElementsBlocker)
 /* harmony export */ });
-var facebookElementsBlocker = function facebookElementsBlocker(active, facebookElements) {
+var facebookElementsBlocker = function facebookElementsBlocker(facebookElements) {
   facebookElements.forEach(function (element) {
     switch (element) {
       case 'facebook-thumbnails':
@@ -568,70 +571,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   websiteElementsBlockerSetup: () => (/* binding */ websiteElementsBlockerSetup)
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/js/constants/index.js");
-/* harmony import */ var _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../defaults/defaultData */ "./src/js/defaults/defaultData.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./src/js/scripts/utils/index.js");
-/* harmony import */ var _youtubeElementsBlocker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./youtubeElementsBlocker */ "./src/js/scripts/background/youtubeElementsBlocker.js");
-/* harmony import */ var _facebookElementsBlocker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./facebookElementsBlocker */ "./src/js/scripts/background/facebookElementsBlocker.js");
 
-
-
-
-
-var fgFocusModeActive = false;
-var fgFacebookDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.facebook;
-var fgYouTubeDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.youtube;
-var readStorage = function readStorage() {
-  fgFocusModeActive = _utils__WEBPACK_IMPORTED_MODULE_2__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.FOCUS_MODE_ACTIVE, false);
-  fgFacebookDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_2__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.FACEBOOK_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.facebook);
-  fgYouTubeDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_2__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.youtube);
-};
-var jobList = [{
-  domains: ['youtube.com'],
-  //execute: () => youtubeElementsBlocker(fgFocusModeActive, fgYouTubeDistractionBlocker)
-  execute: function execute() {
-    return console.log('youtube - executed');
-  }
-}, {
-  domains: ['facebook.com'],
-  //execute: () => facebookElementsBlocker(fgFocusModeActive, fgFacebookDistractionBlocker)
-  execute: function execute() {
-    return console.log('facebook - executed');
-  }
-}];
-var websiteElementsBlockerSetup = function websiteElementsBlockerSetup() {
-  readStorage();
-  chrome.storage.onChanged.addListener(function (changes, namespace) {
-    if (namespace === 'sync') {
-      if (changes.fgFocusModeActive) {
-        fgFocusModeActive = changes.fgFocusModeActive.newValue;
-      }
-      if (changes.fgFacebookDistractionBlocker) {
-        fgFacebookDistractionBlocker = JSON.parse(changes.fgFacebookDistractionBlocker.newValue);
-      }
-      if (changes.fgYouTubeDistractionBlocker) {
-        fgYouTubeDistractionBlocker = JSON.parse(changes.fgYouTubeDistractionBlocker.newValue);
-      }
-    }
-    chrome.tabs.query({}, function (tabs) {
-      tabs.forEach(function (tab) {
-        jobList.forEach(function (job) {
-          console.log('executing job for ' + tab.url + ' on ' + job.domains);
-          if (job.domains.some(function (domain) {
-            return tab.url.includes(domain);
-          })) {
-            console.log('mathced domain ' + tab.url + ' on ' + job.domains);
-            chrome.scripting.executeScript({
-              target: {
-                tabId: tab.id
-              },
-              func: job.execute
-            });
-          }
-        });
-      });
-    });
-  });
-};
+var websiteElementsBlockerSetup = function websiteElementsBlockerSetup() {};
 
 /***/ }),
 
@@ -646,27 +587,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   youtubeElementsBlocker: () => (/* binding */ youtubeElementsBlocker)
 /* harmony export */ });
 var customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
-var youtubeElementsBlocker = function youtubeElementsBlocker(active, youtubeElements) {
+var youtubeElementsBlocker = function youtubeElementsBlocker(youtubeElements) {
   var customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
   // Cover all thumbnails with custom image
   var thumbnailImages = document.querySelectorAll('#thumbnail img');
   for (var i = 0; i < thumbnailImages.length; i++) {
     thumbnailImages[i].src = customImageURL;
   }
-  // youtubeElements.forEach(element => {
-  //     switch (element) {
-  //         case 'youtube-thumbnails': {
-  //             // Cover all thumbnails with custom image
-  //             let thumbnailImages = document.querySelectorAll('#thumbnail img');
-  //             for (let i = 0; i < thumbnailImages.length; i++) {
-  //                 thumbnailImages[i].src = customImageURL;
-  //             }
-  //         }
-  //         case 'recommended': {
-  //
-  //         }
-  //     }
-  // });
+  youtubeElements.forEach(function (element) {
+    switch (element) {
+      case 'youtube-thumbnails':
+        {
+          // Cover all thumbnails with custom image
+          var _thumbnailImages = document.querySelectorAll('#thumbnail img');
+          for (var _i = 0; _i < _thumbnailImages.length; _i++) {
+            _thumbnailImages[_i].src = customImageURL;
+          }
+        }
+      case 'recommended':
+        {}
+    }
+  });
 };
 
 /***/ }),

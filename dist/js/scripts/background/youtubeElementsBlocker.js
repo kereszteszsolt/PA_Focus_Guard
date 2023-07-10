@@ -42,27 +42,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   youtubeElementsBlocker: () => (/* binding */ youtubeElementsBlocker)
 /* harmony export */ });
 var customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
-var youtubeElementsBlocker = function youtubeElementsBlocker(active, youtubeElements) {
+var youtubeElementsBlocker = function youtubeElementsBlocker(youtubeElements) {
   var customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
   // Cover all thumbnails with custom image
   var thumbnailImages = document.querySelectorAll('#thumbnail img');
   for (var i = 0; i < thumbnailImages.length; i++) {
     thumbnailImages[i].src = customImageURL;
   }
-  // youtubeElements.forEach(element => {
-  //     switch (element) {
-  //         case 'youtube-thumbnails': {
-  //             // Cover all thumbnails with custom image
-  //             let thumbnailImages = document.querySelectorAll('#thumbnail img');
-  //             for (let i = 0; i < thumbnailImages.length; i++) {
-  //                 thumbnailImages[i].src = customImageURL;
-  //             }
-  //         }
-  //         case 'recommended': {
-  //
-  //         }
-  //     }
-  // });
+  youtubeElements.forEach(function (element) {
+    switch (element) {
+      case 'youtube-thumbnails':
+        {
+          // Cover all thumbnails with custom image
+          var _thumbnailImages = document.querySelectorAll('#thumbnail img');
+          for (var _i = 0; _i < _thumbnailImages.length; _i++) {
+            _thumbnailImages[_i].src = customImageURL;
+          }
+        }
+      case 'recommended':
+        {}
+    }
+  });
 };
 /******/ })()
 ;
