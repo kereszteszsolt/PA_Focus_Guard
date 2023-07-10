@@ -16801,24 +16801,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+/* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scripts/utils */ "./src/js/scripts/utils/index.js");
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      active: false
+      fgFocusModeActive: false
     };
   },
   created: function created() {
-    var _this = this;
-    chrome.storage.sync.get(['fbBlockedSitesActive'], function (result) {
-      _this.active = result.fbBlockedSitesActive;
-    });
+    this.fgFocusModeActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_1__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.FOCUS_MODE_ACTIVE, false);
   },
   methods: {
     setActive: function setActive(active) {
-      this.active = active;
-      chrome.storage.sync.set({
-        fbBlockedSitesActive: active
-      }, function () {});
+      this.fgFocusModeActive = active;
+      _scripts_utils__WEBPACK_IMPORTED_MODULE_1__.dataAccess.saveData(_constants__WEBPACK_IMPORTED_MODULE_0__.storageNames.FOCUS_MODE_ACTIVE, active);
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -16863,7 +16862,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["state-off", {
-      'is-active': !$data.active
+      'is-active': !$data.fgFocusModeActive
     }]),
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.setActive(false);
@@ -16871,7 +16870,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "Off", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["state-on", {
-      'is-active': $data.active
+      'is-active': $data.fgFocusModeActive
     }]),
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.setActive(true);
@@ -16890,6 +16889,190 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, "Details")]);
 }
+
+/***/ }),
+
+/***/ "./src/js/constants/componentNames.js":
+/*!********************************************!*\
+  !*** ./src/js/constants/componentNames.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
+/* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
+/* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
+/* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
+/* harmony export */ });
+var TEMPORARILY_BLOCKED_WEBSITES = 'TemporarilyBlockedWebsites';
+var PERMANENTLY_BLOCKED_WEBSITES = 'PermanentlyBlockedWebsites';
+var YOUTUBE_DISTRACTION_BLOCKER = 'YouTubeDistractionBlocker';
+var FACEBOOK_DISTRACTION_BLOCKER = 'FacebookDistractionBlocker';
+
+/***/ }),
+
+/***/ "./src/js/constants/componentTitles.js":
+/*!*********************************************!*\
+  !*** ./src/js/constants/componentTitles.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
+/* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
+/* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
+/* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
+/* harmony export */ });
+var TEMPORARILY_BLOCKED_WEBSITES = 'Temporarily Blocked Websites';
+var PERMANENTLY_BLOCKED_WEBSITES = 'Permanently Blocked Websites';
+var YOUTUBE_DISTRACTION_BLOCKER = 'YouTube Distraction Blocker';
+var FACEBOOK_DISTRACTION_BLOCKER = 'Facebook Distraction Blocker';
+
+/***/ }),
+
+/***/ "./src/js/constants/containerComponents.js":
+/*!*************************************************!*\
+  !*** ./src/js/constants/containerComponents.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ BLOCKED_WEBSITES_BY_DOMAIN),
+/* harmony export */   WEBSITE_ELEMENT_BLOCKER: () => (/* binding */ WEBSITE_ELEMENT_BLOCKER)
+/* harmony export */ });
+var BLOCKED_WEBSITES_BY_DOMAIN = 'BlockedWebsitesByDomain';
+var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
+
+/***/ }),
+
+/***/ "./src/js/constants/index.js":
+/*!***********************************!*\
+  !*** ./src/js/constants/index.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   componentTitles: () => (/* reexport module object */ _componentTitles__WEBPACK_IMPORTED_MODULE_1__),
+/* harmony export */   containerComponents: () => (/* reexport module object */ _containerComponents__WEBPACK_IMPORTED_MODULE_3__),
+/* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__)
+/* harmony export */ });
+/* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./componentNames */ "./src/js/constants/componentNames.js");
+/* harmony import */ var _componentTitles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentTitles */ "./src/js/constants/componentTitles.js");
+/* harmony import */ var _storageNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageNames */ "./src/js/constants/storageNames.js");
+/* harmony import */ var _containerComponents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containerComponents */ "./src/js/constants/containerComponents.js");
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/constants/storageNames.js":
+/*!******************************************!*\
+  !*** ./src/js/constants/storageNames.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
+/* harmony export */   FOCUS_MODE_ACTIVE: () => (/* binding */ FOCUS_MODE_ACTIVE),
+/* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
+/* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
+/* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
+/* harmony export */ });
+var FOCUS_MODE_ACTIVE = 'fgFocusModeActive';
+var TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
+var PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
+var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
+var FACEBOOK_DISTRACTION_BLOCKER = 'fgFacebookDistractionBlocker';
+
+/***/ }),
+
+/***/ "./src/js/scripts/utils/conversions.js":
+/*!*********************************************!*\
+  !*** ./src/js/scripts/utils/conversions.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   convertHashToPascalCase: () => (/* binding */ convertHashToPascalCase),
+/* harmony export */   convertPascalCaseToHash: () => (/* binding */ convertPascalCaseToHash)
+/* harmony export */ });
+function convertHashToPascalCase(hash) {
+  // Convert the hash to PascalCase (e.g. #temporarily-blocked-sites -> TemporarilyBlockedSites
+  return hash.replace('#', '').replace(/-(\w)/g, function (_, c) {
+    return c.toUpperCase();
+  }).replace(/\b(\w)/g, function (c) {
+    return c.toUpperCase();
+  });
+}
+function convertPascalCaseToHash(pascalCase) {
+  var dashedString = pascalCase.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert a dash before each uppercase letter
+  .toLowerCase(); // Convert the string to lowercase
+  return "#".concat(dashedString);
+}
+
+/***/ }),
+
+/***/ "./src/js/scripts/utils/dataAccess.js":
+/*!********************************************!*\
+  !*** ./src/js/scripts/utils/dataAccess.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadData: () => (/* binding */ loadData),
+/* harmony export */   saveData: () => (/* binding */ saveData)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function loadData(storageName, defaultData) {
+  var result;
+  var storedData = chrome.storage.sync.get(storageName, function (data) {});
+  if (storedData) {
+    result = JSON.parse(storedData);
+  } else {
+    result = defaultData;
+  }
+  return result;
+}
+function saveData(storageName, data) {
+  chrome.storage.sync.set(_defineProperty({}, storageName, JSON.stringify(data)), function () {});
+}
+
+/***/ }),
+
+/***/ "./src/js/scripts/utils/index.js":
+/*!***************************************!*\
+  !*** ./src/js/scripts/utils/index.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   conversions: () => (/* reexport module object */ _conversions__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   dataAccess: () => (/* reexport module object */ _dataAccess__WEBPACK_IMPORTED_MODULE_1__)
+/* harmony export */ });
+/* harmony import */ var _conversions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conversions */ "./src/js/scripts/utils/conversions.js");
+/* harmony import */ var _dataAccess__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAccess */ "./src/js/scripts/utils/dataAccess.js");
+
+
+
+
 
 /***/ }),
 
