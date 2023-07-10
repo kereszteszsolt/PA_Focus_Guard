@@ -10,22 +10,159 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/utils */ "./src/js/scripts/utils/index.js");
-/* harmony import */ var _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaults/defaultComponents */ "./src/js/defaults/defaultComponents.js");
-/* harmony import */ var _scripts_background__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/background */ "./src/js/scripts/background/index.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./src/js/constants/index.js");
-
+/* harmony import */ var _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaults/defaultData */ "./src/js/defaults/defaultData.js");
+/* harmony import */ var _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaults/defaultComponents */ "./src/js/defaults/defaultComponents.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 
 
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FOCUS_MODE_ACTIVE, false);
-  _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_1__.defaultComponents.forEach(function (component) {
+  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData('fbBlockedSitesActive', true);
+  _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.forEach(function (component) {
     _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(component.storageName, component.defaultData);
   });
 });
-_scripts_background__WEBPACK_IMPORTED_MODULE_2__.blockOrRedirectWebsitesSetup();
+
+// set up initial chrome storage values
+var fbBlockedSitesActive = true;
+var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp;
+var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm;
+var activeRules = [];
+var ruleIds = [];
+var readStorage = function readStorage() {
+  fbBlockedSitesActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fbBlockedSitesActive', true);
+  fgTemporarilyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgTemporarilyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
+  fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgPermanentlyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
+};
+readStorage();
+var blockOrAllow = function blockOrAllow() {
+  var _ruleIds;
+  var rules = [];
+  var index = 1;
+  (_ruleIds = ruleIds).push.apply(_ruleIds, _toConsumableArray(activeRules.map(function (rule) {
+    return rule.id;
+  })));
+  console.log('ruleIds:', ruleIds);
+  chrome.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: ruleIds,
+    addRules: []
+  });
+  fgTemporarilyBlockedWebsites = fgTemporarilyBlockedWebsites.map(function (site) {
+    return _objectSpread(_objectSpread({}, site), {}, {
+      ruleId: index++
+    });
+  });
+  fgPermanentlyBlockedWebsites = fgPermanentlyBlockedWebsites.map(function (site) {
+    return _objectSpread(_objectSpread({}, site), {}, {
+      ruleId: index++
+    });
+  });
+  console.log('fgTemporarilyBlockedWebsites:', fgTemporarilyBlockedWebsites);
+  console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
+  var tempRules = [];
+  if (fbBlockedSitesActive) {
+    tempRules = fgTemporarilyBlockedWebsites.filter(function (site) {
+      return site.checked;
+    }).map(function (site) {
+      return {
+        id: site.ruleId,
+        priority: 1,
+        action: {
+          type: 'redirect',
+          redirect: {
+            extensionPath: '/message.html'
+          }
+        },
+        condition: {
+          urlFilter: site.name,
+          resourceTypes: ['main_frame', 'sub_frame']
+        }
+      };
+    });
+  }
+  rules.push.apply(rules, _toConsumableArray(tempRules));
+  var permRules = fgPermanentlyBlockedWebsites.filter(function (site) {
+    return site.checked;
+  }).map(function (site) {
+    return {
+      id: site.ruleId,
+      priority: 1,
+      action: {
+        type: 'redirect',
+        redirect: {
+          extensionPath: '/message.html'
+        }
+      },
+      condition: {
+        urlFilter: site.name,
+        resourceTypes: ['main_frame', 'sub_frame']
+      }
+    };
+  });
+  rules.push.apply(rules, _toConsumableArray(permRules));
+  console.log('rules:', rules);
+  activeRules = [].concat(rules);
+  ruleIds = _toConsumableArray(activeRules.map(function (rule) {
+    return rule.id;
+  }));
+  console.log('ruleIds:', ruleIds);
+  chrome.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: ruleIds,
+    addRules: activeRules
+  });
+};
+blockOrAllow();
+
+// any time a storage item is updated, update global variables
+chrome.storage.onChanged.addListener(function (changes, namespace) {
+  if (namespace === 'sync') {
+    if (changes.fbBlockedSitesActive) {
+      fbBlockedSitesActive = changes.fbBlockedSitesActive.newValue;
+      blockOrAllow();
+    }
+    if (changes.fgTemporarilyBlockedWebsites) {
+      fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
+      blockOrAllow();
+    }
+    if (changes.fgPermanentlyBlockedWebsites) {
+      fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
+      blockOrAllow();
+    }
+    chrome.tabs.query({}, function (tabs) {
+      tabs.forEach(function (tab) {
+        if (fbBlockedSitesActive) {
+          fgTemporarilyBlockedWebsites.filter(function (site) {
+            return site.checked;
+          }).forEach(function (site) {
+            if (tab.url.includes(site.name)) {
+              chrome.tabs.remove(tab.id);
+            }
+          });
+        }
+        fgPermanentlyBlockedWebsites.filter(function (site) {
+          return site.checked;
+        }).forEach(function (site) {
+          if (tab.url.includes(site.name)) {
+            chrome.tabs.remove(tab.id);
+          }
+        });
+      });
+    });
+  }
+});
 
 /***/ }),
 
@@ -122,12 +259,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
-/* harmony export */   FOCUS_MODE_ACTIVE: () => (/* binding */ FOCUS_MODE_ACTIVE),
 /* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
 /* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
 /* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
 /* harmony export */ });
-var FOCUS_MODE_ACTIVE = 'fgFocusModeActive';
 var TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
@@ -345,270 +480,6 @@ var youtube = [{
   activeRule: true,
   permanently: false
 }];
-
-/***/ }),
-
-/***/ "./src/js/scripts/background/blockOrRedirectWebsites.js":
-/*!**************************************************************!*\
-  !*** ./src/js/scripts/background/blockOrRedirectWebsites.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   blockOrRedirectWebsitesSetup: () => (/* binding */ blockOrRedirectWebsitesSetup)
-/* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/js/scripts/utils/index.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants */ "./src/js/constants/index.js");
-/* harmony import */ var _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../defaults/defaultData */ "./src/js/defaults/defaultData.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-
-
-
-var activeRules = [];
-var ruleIds = [];
-
-// set up initial chrome storage values
-var fgFocusModeActive = false;
-var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Temp;
-var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Perm;
-var fgFacebookDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.facebook;
-var fgYouTubeDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.youtube;
-var readStorage = function readStorage() {
-  fgFocusModeActive = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FOCUS_MODE_ACTIVE, false);
-  fgTemporarilyBlockedWebsites = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Temp);
-  fgPermanentlyBlockedWebsites = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.domains4Perm);
-  fgFacebookDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FACEBOOK_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.facebook);
-  fgYouTubeDistractionBlocker = _utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_2__.youtube);
-};
-var blockOrRedirectWebsitesSetup = function blockOrRedirectWebsitesSetup() {
-  readStorage();
-  blockOrAllow();
-  // any time a storage item is updated, update global variables
-  chrome.storage.onChanged.addListener(function (changes, namespace) {
-    if (namespace === 'sync') {
-      if (changes.fbBlockedSitesActive) {
-        fgFocusModeActive = changes.fbBlockedSitesActive.newValue;
-        blockOrAllow();
-      }
-      if (changes.fgTemporarilyBlockedWebsites) {
-        fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
-        blockOrAllow();
-      }
-      if (changes.fgPermanentlyBlockedWebsites) {
-        fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
-        blockOrAllow();
-      }
-      chrome.tabs.query({}, function (tabs) {
-        // loop through all tabs and close any that are on the blocked list
-        tabs.forEach(function (tab) {
-          if (fgFocusModeActive) {
-            fgTemporarilyBlockedWebsites.filter(function (site) {
-              return site.checked;
-            }).forEach(function (site) {
-              if (tab.url.includes(site.name)) {
-                chrome.tabs.remove(tab.id);
-              }
-            });
-          }
-          fgPermanentlyBlockedWebsites.filter(function (site) {
-            return site.checked;
-          }).forEach(function (site) {
-            if (tab.url.includes(site.name)) {
-              chrome.tabs.remove(tab.id);
-            }
-          });
-        });
-      });
-    }
-  });
-};
-var blockOrAllow = function blockOrAllow() {
-  var _ruleIds;
-  var rules = [];
-  var index = 1;
-  (_ruleIds = ruleIds).push.apply(_ruleIds, _toConsumableArray(activeRules.map(function (rule) {
-    return rule.id;
-  })));
-  console.log('ruleIds:', ruleIds);
-  chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: ruleIds,
-    addRules: []
-  });
-  fgTemporarilyBlockedWebsites = fgTemporarilyBlockedWebsites.map(function (site) {
-    return _objectSpread(_objectSpread({}, site), {}, {
-      ruleId: index++
-    });
-  });
-  fgPermanentlyBlockedWebsites = fgPermanentlyBlockedWebsites.map(function (site) {
-    return _objectSpread(_objectSpread({}, site), {}, {
-      ruleId: index++
-    });
-  });
-  console.log('fgTemporarilyBlockedWebsites:', fgTemporarilyBlockedWebsites);
-  console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
-  var tempRules = [];
-  if (fgFocusModeActive) {
-    tempRules = fgTemporarilyBlockedWebsites.filter(function (site) {
-      return site.checked;
-    }).map(function (site) {
-      return {
-        id: site.ruleId,
-        priority: 1,
-        action: {
-          type: 'redirect',
-          redirect: {
-            extensionPath: '/message.html'
-          }
-        },
-        condition: {
-          urlFilter: site.name,
-          resourceTypes: ['main_frame', 'sub_frame']
-        }
-      };
-    });
-  }
-  rules.push.apply(rules, _toConsumableArray(tempRules));
-  var permRules = fgPermanentlyBlockedWebsites.filter(function (site) {
-    return site.checked;
-  }).map(function (site) {
-    return {
-      id: site.ruleId,
-      priority: 1,
-      action: {
-        type: 'redirect',
-        redirect: {
-          extensionPath: '/message.html'
-        }
-      },
-      condition: {
-        urlFilter: site.name,
-        resourceTypes: ['main_frame', 'sub_frame']
-      }
-    };
-  });
-  rules.push.apply(rules, _toConsumableArray(permRules));
-  console.log('rules:', rules);
-  activeRules = [].concat(rules);
-  ruleIds = _toConsumableArray(activeRules.map(function (rule) {
-    return rule.id;
-  }));
-  console.log('ruleIds:', ruleIds);
-  chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: ruleIds,
-    addRules: activeRules
-  });
-};
-
-/***/ }),
-
-/***/ "./src/js/scripts/background/facebookElementsBlocker.js":
-/*!**************************************************************!*\
-  !*** ./src/js/scripts/background/facebookElementsBlocker.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   facebookElementsBlocker: () => (/* binding */ facebookElementsBlocker)
-/* harmony export */ });
-var facebookElementsBlocker = function facebookElementsBlocker(facebookElements) {
-  facebookElements.forEach(function (element) {
-    switch (element) {
-      case 'facebook-thumbnails':
-        break;
-      case 'recommended':
-        break;
-    }
-  });
-};
-
-/***/ }),
-
-/***/ "./src/js/scripts/background/index.js":
-/*!********************************************!*\
-  !*** ./src/js/scripts/background/index.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   blockOrRedirectWebsitesSetup: () => (/* reexport safe */ _blockOrRedirectWebsites__WEBPACK_IMPORTED_MODULE_3__.blockOrRedirectWebsitesSetup),
-/* harmony export */   facebookElementsBlocker: () => (/* reexport safe */ _facebookElementsBlocker__WEBPACK_IMPORTED_MODULE_0__.facebookElementsBlocker),
-/* harmony export */   websiteElementsBlockerSetup: () => (/* reexport safe */ _websiteElementsBlocker__WEBPACK_IMPORTED_MODULE_2__.websiteElementsBlockerSetup),
-/* harmony export */   youtubeElementsBlocker: () => (/* reexport safe */ _youtubeElementsBlocker__WEBPACK_IMPORTED_MODULE_1__.youtubeElementsBlocker)
-/* harmony export */ });
-/* harmony import */ var _facebookElementsBlocker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./facebookElementsBlocker */ "./src/js/scripts/background/facebookElementsBlocker.js");
-/* harmony import */ var _youtubeElementsBlocker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./youtubeElementsBlocker */ "./src/js/scripts/background/youtubeElementsBlocker.js");
-/* harmony import */ var _websiteElementsBlocker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./websiteElementsBlocker */ "./src/js/scripts/background/websiteElementsBlocker.js");
-/* harmony import */ var _blockOrRedirectWebsites__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blockOrRedirectWebsites */ "./src/js/scripts/background/blockOrRedirectWebsites.js");
-
-
-
-
-
-/***/ }),
-
-/***/ "./src/js/scripts/background/websiteElementsBlocker.js":
-/*!*************************************************************!*\
-  !*** ./src/js/scripts/background/websiteElementsBlocker.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   websiteElementsBlockerSetup: () => (/* binding */ websiteElementsBlockerSetup)
-/* harmony export */ });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/js/constants/index.js");
-
-var websiteElementsBlockerSetup = function websiteElementsBlockerSetup() {};
-
-/***/ }),
-
-/***/ "./src/js/scripts/background/youtubeElementsBlocker.js":
-/*!*************************************************************!*\
-  !*** ./src/js/scripts/background/youtubeElementsBlocker.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   youtubeElementsBlocker: () => (/* binding */ youtubeElementsBlocker)
-/* harmony export */ });
-var customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
-var youtubeElementsBlocker = function youtubeElementsBlocker(youtubeElements) {
-  var customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
-  // Cover all thumbnails with custom image
-  var thumbnailImages = document.querySelectorAll('#thumbnail img');
-  for (var i = 0; i < thumbnailImages.length; i++) {
-    thumbnailImages[i].src = customImageURL;
-  }
-  youtubeElements.forEach(function (element) {
-    switch (element) {
-      case 'youtube-thumbnails':
-        {
-          // Cover all thumbnails with custom image
-          var _thumbnailImages = document.querySelectorAll('#thumbnail img');
-          for (var _i = 0; _i < _thumbnailImages.length; _i++) {
-            _thumbnailImages[_i].src = customImageURL;
-          }
-        }
-      case 'recommended':
-        {}
-    }
-  });
-};
 
 /***/ }),
 
