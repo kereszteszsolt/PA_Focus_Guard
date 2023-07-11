@@ -4,21 +4,21 @@ import {defaultComponents} from './defaults/defaultComponents';
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-    utils.dataAccess.saveData('fbBlockedSitesActive', true);
+    utils.dataAccess.saveData('fbBlockedSitesActive', false);
     defaultComponents.forEach(component => {
         utils.dataAccess.saveData(component.storageName, component.defaultData);
     });
 });
 
 // set up initial chrome storage values
-var fbBlockedSitesActive = true;
+var fbBlockedSitesActive = false;
 var fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
 var fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
 var activeRules = [];
 var ruleIds = [];
 
 const readStorage = () => {
-    fbBlockedSitesActive = utils.dataAccess.loadData('fbBlockedSitesActive', true);
+    fbBlockedSitesActive = utils.dataAccess.loadData('fbBlockedSitesActive', false);
     fgTemporarilyBlockedWebsites = utils.dataAccess.loadData('fgTemporarilyBlockedWebsites', defaultComponentData.domains4Temp);
     fgPermanentlyBlockedWebsites = utils.dataAccess.loadData('fgPermanentlyBlockedWebsites', defaultComponentData.domains4Perm);
 };
@@ -51,7 +51,8 @@ const blockOrAllow = () => {
     console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
 
     let tempRules = [];
-    if (fbBlockedSitesActive) {
+    if (fbBlockedSitesActive === true) {
+        console.log('(blockOrAllow()) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
         tempRules = fgTemporarilyBlockedWebsites
             .filter((site) => site.checked)
             .map((site) => ({
@@ -120,8 +121,9 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 
             // loop through all tabs and close any that are on the blocked list
             tabs.forEach(function (tab) {
-
-                if (fbBlockedSitesActive) {
+                console.log('tab:', tab.url);
+                if (fbBlockedSitesActive === true) {
+                    console.log('(addListener) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
                     fgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
                         if (tab.url.includes(site.name)) {
                             chrome.tabs.remove(tab.id);

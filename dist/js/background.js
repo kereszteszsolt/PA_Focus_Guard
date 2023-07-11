@@ -30,20 +30,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData('fbBlockedSitesActive', true);
+  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData('fbBlockedSitesActive', false);
   _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.forEach(function (component) {
     _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(component.storageName, component.defaultData);
   });
 });
 
 // set up initial chrome storage values
-var fbBlockedSitesActive = true;
+var fbBlockedSitesActive = false;
 var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp;
 var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm;
 var activeRules = [];
 var ruleIds = [];
 var readStorage = function readStorage() {
-  fbBlockedSitesActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fbBlockedSitesActive', true);
+  fbBlockedSitesActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fbBlockedSitesActive', false);
   fgTemporarilyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgTemporarilyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
   fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgPermanentlyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
 };
@@ -73,7 +73,8 @@ var blockOrAllow = function blockOrAllow() {
   console.log('fgTemporarilyBlockedWebsites:', fgTemporarilyBlockedWebsites);
   console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
   var tempRules = [];
-  if (fbBlockedSitesActive) {
+  if (fbBlockedSitesActive === true) {
+    console.log('(blockOrAllow()) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
     tempRules = fgTemporarilyBlockedWebsites.filter(function (site) {
       return site.checked;
     }).map(function (site) {
@@ -144,7 +145,9 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     chrome.tabs.query({}, function (tabs) {
       // loop through all tabs and close any that are on the blocked list
       tabs.forEach(function (tab) {
-        if (fbBlockedSitesActive) {
+        console.log('tab:', tab.url);
+        if (fbBlockedSitesActive === true) {
+          console.log('(addListener) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
           fgTemporarilyBlockedWebsites.filter(function (site) {
             return site.checked;
           }).forEach(function (site) {
