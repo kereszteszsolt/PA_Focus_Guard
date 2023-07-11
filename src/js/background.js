@@ -20,8 +20,8 @@ var ruleIds = [];
 
 const readStorage = () => {
     fgFocusModeActive = utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false);
-    fgTemporarilyBlockedWebsites = utils.dataAccess.loadData('fgTemporarilyBlockedWebsites', defaultComponentData.domains4Temp);
-    fgPermanentlyBlockedWebsites = utils.dataAccess.loadData('fgPermanentlyBlockedWebsites', defaultComponentData.domains4Perm);
+    fgTemporarilyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES, defaultComponentData.domains4Temp);
+    fgPermanentlyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES, defaultComponentData.domains4Perm);
 };
 readStorage();
 

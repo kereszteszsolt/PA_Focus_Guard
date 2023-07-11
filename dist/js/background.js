@@ -46,8 +46,8 @@ var activeRules = [];
 var ruleIds = [];
 var readStorage = function readStorage() {
   fgFocusModeActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false);
-  fgTemporarilyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgTemporarilyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
-  fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgPermanentlyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
+  fgTemporarilyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
+  fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
 };
 readStorage();
 var blockOrAllow = function blockOrAllow() {
