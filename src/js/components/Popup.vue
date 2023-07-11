@@ -11,6 +11,9 @@
   </div>
 </template>
 <script>
+import * as utils from '../scripts/utils';
+import * as constants from '../constants';
+
 export default {
   data() {
     return {
@@ -18,15 +21,13 @@ export default {
     };
   },
   created() {
-    chrome.storage.sync.get(['fbBlockedSitesActive'], (result) => {
-      this.active = result.fbBlockedSitesActive;
-    });
+    this.active = utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false)
   },
   methods: {
     setActive(active) {
       this.active = active;
       chrome.storage.sync.set({
-        fbBlockedSitesActive: active
+        fgFocusModeActive: active
       }, () => {
       });
 

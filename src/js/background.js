@@ -1,24 +1,25 @@
 import * as utils from './scripts/utils';
 import * as defaultComponentData from './defaults/defaultData';
 import {defaultComponents} from './defaults/defaultComponents';
+import * as constants from './constants';
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-    utils.dataAccess.saveData('fbBlockedSitesActive', false);
+    utils.dataAccess.saveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false);
     defaultComponents.forEach(component => {
         utils.dataAccess.saveData(component.storageName, component.defaultData);
     });
 });
 
 // set up initial chrome storage values
-var fbBlockedSitesActive = false;
+var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
 var fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
 var activeRules = [];
 var ruleIds = [];
 
 const readStorage = () => {
-    fbBlockedSitesActive = utils.dataAccess.loadData('fbBlockedSitesActive', false);
+    fgFocusModeActive = utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false);
     fgTemporarilyBlockedWebsites = utils.dataAccess.loadData('fgTemporarilyBlockedWebsites', defaultComponentData.domains4Temp);
     fgPermanentlyBlockedWebsites = utils.dataAccess.loadData('fgPermanentlyBlockedWebsites', defaultComponentData.domains4Perm);
 };
@@ -51,8 +52,10 @@ const blockOrAllow = () => {
     console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
 
     let tempRules = [];
-    if (fbBlockedSitesActive === true) {
-        console.log('(blockOrAllow()) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
+    console.log('actual value', fgFocusModeActive);
+    console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
+    if (fgFocusModeActive === true) {
+        console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
         tempRules = fgTemporarilyBlockedWebsites
             .filter((site) => site.checked)
             .map((site) => ({
@@ -102,8 +105,8 @@ blockOrAllow();
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (namespace === 'sync') {
-        if (changes.fbBlockedSitesActive) {
-            fbBlockedSitesActive = changes.fbBlockedSitesActive.newValue;
+        if (changes.fgFocusModeActive) {
+            fgFocusModeActive = changes.fgFocusModeActive.newValue;
             blockOrAllow();
         }
 
@@ -122,8 +125,10 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
             // loop through all tabs and close any that are on the blocked list
             tabs.forEach(function (tab) {
                 console.log('tab:', tab.url);
-                if (fbBlockedSitesActive === true) {
-                    console.log('(addListener) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
+                console.log('actual value', fgFocusModeActive);
+                console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
+                if (fgFocusModeActive === true) {
+                    console.log('(addListener) fgFocusModeActive === true:', fgFocusModeActive === true);
                     fgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
                         if (tab.url.includes(site.name)) {
                             chrome.tabs.remove(tab.id);

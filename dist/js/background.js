@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/utils */ "./src/js/scripts/utils/index.js");
 /* harmony import */ var _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaults/defaultData */ "./src/js/defaults/defaultData.js");
 /* harmony import */ var _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaults/defaultComponents */ "./src/js/defaults/defaultComponents.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./src/js/constants/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -28,22 +29,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
+
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData('fbBlockedSitesActive', false);
+  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false);
   _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.forEach(function (component) {
     _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(component.storageName, component.defaultData);
   });
 });
 
 // set up initial chrome storage values
-var fbBlockedSitesActive = false;
+var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp;
 var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm;
 var activeRules = [];
 var ruleIds = [];
 var readStorage = function readStorage() {
-  fbBlockedSitesActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fbBlockedSitesActive', false);
+  fgFocusModeActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false);
   fgTemporarilyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgTemporarilyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
   fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData('fgPermanentlyBlockedWebsites', _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
 };
@@ -73,8 +75,10 @@ var blockOrAllow = function blockOrAllow() {
   console.log('fgTemporarilyBlockedWebsites:', fgTemporarilyBlockedWebsites);
   console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
   var tempRules = [];
-  if (fbBlockedSitesActive === true) {
-    console.log('(blockOrAllow()) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
+  console.log('actual value', fgFocusModeActive);
+  console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
+  if (fgFocusModeActive === true) {
+    console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
     tempRules = fgTemporarilyBlockedWebsites.filter(function (site) {
       return site.checked;
     }).map(function (site) {
@@ -130,8 +134,8 @@ blockOrAllow();
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
   if (namespace === 'sync') {
-    if (changes.fbBlockedSitesActive) {
-      fbBlockedSitesActive = changes.fbBlockedSitesActive.newValue;
+    if (changes.fgFocusModeActive) {
+      fgFocusModeActive = changes.fgFocusModeActive.newValue;
       blockOrAllow();
     }
     if (changes.fgTemporarilyBlockedWebsites) {
@@ -146,8 +150,10 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
       // loop through all tabs and close any that are on the blocked list
       tabs.forEach(function (tab) {
         console.log('tab:', tab.url);
-        if (fbBlockedSitesActive === true) {
-          console.log('(addListener) fbBlockedSitesActive === true:', fbBlockedSitesActive === true);
+        console.log('actual value', fgFocusModeActive);
+        console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
+        if (fgFocusModeActive === true) {
+          console.log('(addListener) fgFocusModeActive === true:', fgFocusModeActive === true);
           fgTemporarilyBlockedWebsites.filter(function (site) {
             return site.checked;
           }).forEach(function (site) {
@@ -263,10 +269,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
+/* harmony export */   FG_FOCUS_MODE_ACTIVE: () => (/* binding */ FG_FOCUS_MODE_ACTIVE),
 /* harmony export */   PERMANENTLY_BLOCKED_WEBSITES: () => (/* binding */ PERMANENTLY_BLOCKED_WEBSITES),
 /* harmony export */   TEMPORARILY_BLOCKED_WEBSITES: () => (/* binding */ TEMPORARILY_BLOCKED_WEBSITES),
 /* harmony export */   YOUTUBE_DISTRACTION_BLOCKER: () => (/* binding */ YOUTUBE_DISTRACTION_BLOCKER)
 /* harmony export */ });
+var FG_FOCUS_MODE_ACTIVE = 'fgFocusModeActive';
 var TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
