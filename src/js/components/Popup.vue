@@ -21,19 +21,19 @@ export default {
     };
   },
   created() {
-    // chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
-    //   this.active = result.fgFocusModeActive;
-    // });
-    this.active = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
+    chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
+      this.active = result.fgFocusModeActive;
+    });
+   // this.active = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE); ???
   },
   methods: {
     setActive(pActive) {
        this.active = pActive;
-      // chrome.storage.sync.set({
-      //   fgFocusModeActive: active
-      // }, () => {
-      // });
-      utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, this.active);
+      chrome.storage.sync.set({
+        fgFocusModeActive: pActive
+      }, () => {
+      });
+     // utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, this.active); ???
     },
     settings() {
       if (chrome.runtime.openOptionsPage) {

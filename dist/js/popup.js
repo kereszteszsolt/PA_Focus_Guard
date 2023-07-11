@@ -16812,19 +16812,20 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    // chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
-    //   this.active = result.fgFocusModeActive;
-    // });
-    this.active = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadPrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FG_FOCUS_MODE_ACTIVE);
+    var _this = this;
+    chrome.storage.sync.get(['fgFocusModeActive'], function (result) {
+      _this.active = result.fgFocusModeActive;
+    });
+    // this.active = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE); ???
   },
+
   methods: {
     setActive: function setActive(pActive) {
       this.active = pActive;
-      // chrome.storage.sync.set({
-      //   fgFocusModeActive: active
-      // }, () => {
-      // });
-      _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.savePrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FG_FOCUS_MODE_ACTIVE, this.active);
+      chrome.storage.sync.set({
+        fgFocusModeActive: pActive
+      }, function () {});
+      // utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, this.active); ???
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
