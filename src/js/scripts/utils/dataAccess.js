@@ -1,3 +1,4 @@
+
 export function loadData(storageName, defaultData) {
     let result;
     const storedData = chrome.storage.sync.get(
@@ -18,5 +19,20 @@ export function saveData(storageName, data) {
         },
         function () {
         }
+    );
+}
+
+export function loadPrimitiveData(storageName) {
+    return chrome.storage.sync.get(
+        storageName,
+        () => {}
+    );
+}
+
+export function savePrimitiveData(storageName, data) {
+    chrome.storage.sync.set({
+            [storageName]: data
+        },
+        () => {}
     );
 }

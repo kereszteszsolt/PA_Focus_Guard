@@ -16812,14 +16812,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.active = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FG_FOCUS_MODE_ACTIVE, false);
+    // chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
+    //   this.active = result.fgFocusModeActive;
+    // });
+    this.active = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadPrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FG_FOCUS_MODE_ACTIVE);
   },
   methods: {
-    setActive: function setActive(active) {
-      this.active = active;
-      chrome.storage.sync.set({
-        fgFocusModeActive: active
-      }, function () {});
+    setActive: function setActive(pActive) {
+      this.active = pActive;
+      // chrome.storage.sync.set({
+      //   fgFocusModeActive: active
+      // }, () => {
+      // });
+      _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.savePrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FG_FOCUS_MODE_ACTIVE, this.active);
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -17036,7 +17041,9 @@ function convertPascalCaseToHash(pascalCase) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   loadData: () => (/* binding */ loadData),
-/* harmony export */   saveData: () => (/* binding */ saveData)
+/* harmony export */   loadPrimitiveData: () => (/* binding */ loadPrimitiveData),
+/* harmony export */   saveData: () => (/* binding */ saveData),
+/* harmony export */   savePrimitiveData: () => (/* binding */ savePrimitiveData)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -17054,6 +17061,12 @@ function loadData(storageName, defaultData) {
 }
 function saveData(storageName, data) {
   chrome.storage.sync.set(_defineProperty({}, storageName, JSON.stringify(data)), function () {});
+}
+function loadPrimitiveData(storageName) {
+  return chrome.storage.sync.get(storageName, function () {});
+}
+function savePrimitiveData(storageName, data) {
+  chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {});
 }
 
 /***/ }),

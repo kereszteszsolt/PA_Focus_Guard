@@ -5,7 +5,11 @@ import * as constants from './constants';
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-    utils.dataAccess.saveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false);
+   utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
+   //  chrome.storage.sync.set({
+   //          fgFocusModeActive: false
+   //      }, () => {
+   //      });
     defaultComponents.forEach(component => {
         utils.dataAccess.saveData(component.storageName, component.defaultData);
     });
@@ -19,7 +23,9 @@ var activeRules = [];
 var ruleIds = [];
 
 const readStorage = () => {
-    fgFocusModeActive = utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false);
+   fgFocusModeActive = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
+   //  chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
+   //      fgFocusModeActive = result.fgFocusModeActive;});
     fgTemporarilyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES, defaultComponentData.domains4Temp);
     fgPermanentlyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES, defaultComponentData.domains4Perm);
 };

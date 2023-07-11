@@ -17,20 +17,23 @@ import * as constants from '../constants';
 export default {
   data() {
     return {
-      active: false,
+      active: false
     };
   },
   created() {
-    this.active = utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false)
+    // chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
+    //   this.active = result.fgFocusModeActive;
+    // });
+    this.active = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
   },
   methods: {
-    setActive(active) {
-      this.active = active;
-      chrome.storage.sync.set({
-        fgFocusModeActive: active
-      }, () => {
-      });
-
+    setActive(pActive) {
+       this.active = pActive;
+      // chrome.storage.sync.set({
+      //   fgFocusModeActive: active
+      // }, () => {
+      // });
+      utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, this.active);
     },
     settings() {
       if (chrome.runtime.openOptionsPage) {

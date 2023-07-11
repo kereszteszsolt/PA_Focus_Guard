@@ -32,7 +32,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false);
+  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.savePrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE);
+  //  chrome.storage.sync.set({
+  //          fgFocusModeActive: false
+  //      }, () => {
+  //      });
   _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.forEach(function (component) {
     _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(component.storageName, component.defaultData);
   });
@@ -45,7 +49,9 @@ var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODUL
 var activeRules = [];
 var ruleIds = [];
 var readStorage = function readStorage() {
-  fgFocusModeActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false);
+  fgFocusModeActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadPrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE);
+  //  chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
+  //      fgFocusModeActive = result.fgFocusModeActive;});
   fgTemporarilyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
   fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
 };
@@ -533,7 +539,9 @@ function convertPascalCaseToHash(pascalCase) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   loadData: () => (/* binding */ loadData),
-/* harmony export */   saveData: () => (/* binding */ saveData)
+/* harmony export */   loadPrimitiveData: () => (/* binding */ loadPrimitiveData),
+/* harmony export */   saveData: () => (/* binding */ saveData),
+/* harmony export */   savePrimitiveData: () => (/* binding */ savePrimitiveData)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -551,6 +559,12 @@ function loadData(storageName, defaultData) {
 }
 function saveData(storageName, data) {
   chrome.storage.sync.set(_defineProperty({}, storageName, JSON.stringify(data)), function () {});
+}
+function loadPrimitiveData(storageName) {
+  return chrome.storage.sync.get(storageName, function () {});
+}
+function savePrimitiveData(storageName, data) {
+  chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {});
 }
 
 /***/ }),

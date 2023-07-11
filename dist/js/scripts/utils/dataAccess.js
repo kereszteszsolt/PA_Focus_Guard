@@ -40,7 +40,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   loadData: () => (/* binding */ loadData),
-/* harmony export */   saveData: () => (/* binding */ saveData)
+/* harmony export */   loadPrimitiveData: () => (/* binding */ loadPrimitiveData),
+/* harmony export */   saveData: () => (/* binding */ saveData),
+/* harmony export */   savePrimitiveData: () => (/* binding */ savePrimitiveData)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -58,6 +60,12 @@ function loadData(storageName, defaultData) {
 }
 function saveData(storageName, data) {
   chrome.storage.sync.set(_defineProperty({}, storageName, JSON.stringify(data)), function () {});
+}
+function loadPrimitiveData(storageName) {
+  return chrome.storage.sync.get(storageName, function () {});
+}
+function savePrimitiveData(storageName, data) {
+  chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {});
 }
 /******/ })()
 ;
