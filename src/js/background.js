@@ -5,11 +5,11 @@ import * as constants from './constants';
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-   utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
-   //  chrome.storage.sync.set({
-   //          fgFocusModeActive: false
-   //      }, () => {
-   //      });
+    utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
+    //  chrome.storage.sync.set({
+    //          fgFocusModeActive: false
+    //      }, () => {
+    //      });
     defaultComponents.forEach(component => {
         utils.dataAccess.saveData(component.storageName, component.defaultData);
     });
@@ -21,32 +21,23 @@ var fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
 var fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
 
 const readStorage = () => {
-   fgFocusModeActive = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
-   //  chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
-   //      fgFocusModeActive = result.fgFocusModeActive;});
+    fgFocusModeActive = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
+    //  chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
+    //      fgFocusModeActive = result.fgFocusModeActive;});
     fgTemporarilyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES, defaultComponentData.domains4Temp);
     fgPermanentlyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES, defaultComponentData.domains4Perm);
 };
 readStorage();
 
 const getRemoveOldDynamicRules = (then) => {
-    chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) =>{
-        console.log('Old rules', oldRules);
-        const ruleIds = oldRules.map((rule) => rule.id);
-        console.log('ruleIds', ruleIds);
-
-        chrome.declarativeNetRequest.updateDynamicRules({removeRuleIds: ruleIds}, () => {
-
-            chrome.declarativeNetRequest.getDynamicRules(null, function(noRules) {
-                console.log('This should be empty: ', noRules);
-            });
-
-            then();
-        });
+    chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) => {
+        const ruleIds = oldRules.map(rule => rule.id);
+        chrome.declarativeNetRequest.updateDynamicRules({removeRuleIds: ruleIds}, then);
     });
-}
+};
 
 const calculateNewDynamicRules = (then) => {
+    console.log('calculateNewDynamicRules');
     const rules = [];
     let rulesIndex = 1;
 
@@ -59,12 +50,12 @@ const calculateNewDynamicRules = (then) => {
                 priority: 1,
                 action: {
                     type: 'redirect',
-                    redirect: { extensionPath: '/message.html' },
+                    redirect: {extensionPath: '/message.html'}
                 },
                 condition: {
                     urlFilter: site.name,
-                    resourceTypes: ['main_frame', 'sub_frame'],
-                },
+                    resourceTypes: ['main_frame', 'sub_frame']
+                }
             }));
     }
     rules.push(...tempRules);
@@ -76,40 +67,36 @@ const calculateNewDynamicRules = (then) => {
             priority: 1,
             action: {
                 type: 'redirect',
-                redirect: { extensionPath: '/message.html' },
+                redirect: {extensionPath: '/message.html'}
             },
             condition: {
                 urlFilter: site.name,
-                resourceTypes: ['main_frame', 'sub_frame'],
-            },
+                resourceTypes: ['main_frame', 'sub_frame']
+            }
         }));
     rules.push(...permRules);
 
     then(rules);
-}
+};
 
 const applyNewDynamicRules = (rules, then) => {
-    chrome.declarativeNetRequest.updateDynamicRules({
-        addRules: rules
-    }, () => {
-        then();
-    });
-}
+    chrome.declarativeNetRequest.updateDynamicRules({addRules: rules}, then);
+};
 const blockOrAllow = () => {
- console.log('blockOrAllow');
- console.log('fgFocusModeActive', fgFocusModeActive);
+    console.log('blockOrAllow');
+    console.log('fgFocusModeActive', fgFocusModeActive);
 
- getRemoveOldDynamicRules(() => {
-     calculateNewDynamicRules(
+    getRemoveOldDynamicRules(() => {
+        calculateNewDynamicRules(
             (rules) => {
                 applyNewDynamicRules(rules, () => {
-                    chrome.declarativeNetRequest.getDynamicRules(null, function(myRules) {
+                    chrome.declarativeNetRequest.getDynamicRules(null, function (myRules) {
                         console.log('new rules: ', myRules);
                     });
                 });
             }
-     );
- });
+        );
+    });
 
 };
 

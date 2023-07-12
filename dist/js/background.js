@@ -50,22 +50,16 @@ var readStorage = function readStorage() {
 readStorage();
 var getRemoveOldDynamicRules = function getRemoveOldDynamicRules(then) {
   chrome.declarativeNetRequest.getDynamicRules(null, function (oldRules) {
-    console.log('Old rules', oldRules);
     var ruleIds = oldRules.map(function (rule) {
       return rule.id;
     });
-    console.log('ruleIds', ruleIds);
     chrome.declarativeNetRequest.updateDynamicRules({
       removeRuleIds: ruleIds
-    }, function () {
-      chrome.declarativeNetRequest.getDynamicRules(null, function (noRules) {
-        console.log('This should be empty: ', noRules);
-      });
-      then();
-    });
+    }, then);
   });
 };
 var calculateNewDynamicRules = function calculateNewDynamicRules(then) {
+  console.log('calculateNewDynamicRules');
   var rules = [];
   var rulesIndex = 1;
   var tempRules = [];
@@ -114,9 +108,7 @@ var calculateNewDynamicRules = function calculateNewDynamicRules(then) {
 var applyNewDynamicRules = function applyNewDynamicRules(rules, then) {
   chrome.declarativeNetRequest.updateDynamicRules({
     addRules: rules
-  }, function () {
-    then();
-  });
+  }, then);
 };
 var blockOrAllow = function blockOrAllow() {
   console.log('blockOrAllow');
