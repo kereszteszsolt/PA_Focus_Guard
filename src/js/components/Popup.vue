@@ -1,20 +1,15 @@
 <template>
   <div class="wrapper">
     <h1 class="title">Focus Guard</h1>
-    <hr />
+    <hr/>
     <div class="buttons">
-      <button type="button" class="state-off" :class="{'is-active': !fgFocusModeActive}" @click="setActive(false)">
-        Off
-      </button>
-      <button type="button" class="state-on" :class="{'is-active': fgFocusModeActive}" @click="setActive(true)">
-        On
-      </button>
+      <button type="button" class="state-off" :class="{'is-active': !active}" @click="setActive(false)">Off</button>
+      <button type="button" class="state-on" :class="{'is-active': active}" @click="setActive(true)">On</button>
     </div>
     <button type="button" class="state-save" @click="settings">Settings</button>
     <button type="button" class="state-save" @click="details">Details</button>
   </div>
 </template>
-
 <script>
 import * as utils from '../scripts/utils';
 import * as constants from '../constants';
@@ -22,30 +17,23 @@ import * as constants from '../constants';
 export default {
   data() {
     return {
-      fgFocusModeActive: false
+      active: false
     };
   },
   created() {
-    this.readData();
-    // this.onStorageChange = (changes) => {
-    //   if (changes.fgFocusModeActive) {
-    //     this.fgFocusModeActive = changes.fgFocusModeActive.newValue;
-    //   }
-    // };
-    // chrome.storage.onChanged.addListener(this.onStorageChange);
+    chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
+      this.active = result.fgFocusModeActive;
+    });
+   // this.active = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE); ???
   },
-  // beforeDestroy() {
-  //   chrome.storage.onChanged.removeListener(this.onStorageChange);
-  // },
   methods: {
-    readData() {
-      utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false).then((pActive) => {
-        this.fgFocusModeActive = pActive;
-      });
-    },
     setActive(pActive) {
-      this.fgFocusModeActive = pActive;
-      utils.dataAccess.saveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, pActive);
+       this.active = pActive;
+      chrome.storage.sync.set({
+        fgFocusModeActive: pActive
+      }, () => {
+      });
+     // utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, this.active); ???
     },
     settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -55,7 +43,7 @@ export default {
       }
     },
     details() {
-      chrome.tabs.create({ url: 'chrome://extensions/?id=' + chrome.runtime.id });
+      chrome.tabs.create({url: 'chrome://extensions/?id=' + chrome.runtime.id});
     }
   }
 };
