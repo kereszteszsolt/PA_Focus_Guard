@@ -19,8 +19,6 @@ chrome.runtime.onInstalled.addListener(function () {
 var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
 var fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
-var activeRules = [];
-var ruleIds = [];
 
 const readStorage = () => {
    fgFocusModeActive = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
@@ -31,41 +29,33 @@ const readStorage = () => {
 };
 readStorage();
 
+const getRemoveOldDynamicRules = (then) => {
+    chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) =>{
+        console.log('Old rules', oldRules);
+        const ruleIds = oldRules.map((rule) => rule.id);
+        console.log('ruleIds', ruleIds);
 
-const blockOrAllow = () => {
+        chrome.declarativeNetRequest.updateDynamicRules({removeRuleIds: ruleIds}, () => {
 
-    const rules = [];
-    let index = 1;
+            chrome.declarativeNetRequest.getDynamicRules(null, function(noRules) {
+                console.log('This should be empty: ', noRules);
+            });
 
-    ruleIds.push(...activeRules.map(rule => rule.id));
-    console.log('ruleIds:', ruleIds);
-    chrome.declarativeNetRequest.updateDynamicRules({
-        removeRuleIds: ruleIds,
-        addRules: []
+            then();
+        });
     });
+}
 
-    fgTemporarilyBlockedWebsites = fgTemporarilyBlockedWebsites.map((site) => ({
-        ...site,
-        ruleId: index++,
-    }));
-
-    fgPermanentlyBlockedWebsites = fgPermanentlyBlockedWebsites.map((site) => ({
-        ...site,
-        ruleId: index++,
-    }));
-
-    console.log('fgTemporarilyBlockedWebsites:', fgTemporarilyBlockedWebsites);
-    console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
+const calculateNewDynamicRules = (then) => {
+    const rules = [];
+    let rulesIndex = 1;
 
     let tempRules = [];
-    console.log('actual value', fgFocusModeActive);
-    console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
     if (fgFocusModeActive === true) {
-        console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
         tempRules = fgTemporarilyBlockedWebsites
             .filter((site) => site.checked)
             .map((site) => ({
-                id: site.ruleId,
+                id: rulesIndex++,
                 priority: 1,
                 action: {
                     type: 'redirect',
@@ -82,7 +72,7 @@ const blockOrAllow = () => {
     let permRules = fgPermanentlyBlockedWebsites
         .filter((site) => site.checked)
         .map((site) => ({
-            id: site.ruleId,
+            id: rulesIndex++,
             priority: 1,
             action: {
                 type: 'redirect',
@@ -95,46 +85,55 @@ const blockOrAllow = () => {
         }));
     rules.push(...permRules);
 
-    console.log('rules:', rules);
+    then(rules);
+}
 
-
-    activeRules = [...rules]
-    ruleIds = [...activeRules.map(rule => rule.id)];
-    console.log('ruleIds:', ruleIds);
+const applyNewDynamicRules = (rules, then) => {
     chrome.declarativeNetRequest.updateDynamicRules({
-        removeRuleIds: ruleIds,
-        addRules: activeRules
+        addRules: rules
+    }, () => {
+        then();
     });
+}
+const blockOrAllow = () => {
+ console.log('blockOrAllow');
+ console.log('fgFocusModeActive', fgFocusModeActive);
+
+ getRemoveOldDynamicRules(() => {
+     calculateNewDynamicRules(
+            (rules) => {
+                applyNewDynamicRules(rules, () => {
+                    chrome.declarativeNetRequest.getDynamicRules(null, function(myRules) {
+                        console.log('new rules: ', myRules);
+                    });
+                });
+            }
+     );
+ });
+
 };
-blockOrAllow();
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (namespace === 'sync') {
         if (changes.fgFocusModeActive) {
             fgFocusModeActive = changes.fgFocusModeActive.newValue;
-            blockOrAllow();
         }
 
         if (changes.fgTemporarilyBlockedWebsites) {
             fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
-            blockOrAllow();
         }
 
         if (changes.fgPermanentlyBlockedWebsites) {
             fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
-            blockOrAllow();
         }
 
-        chrome.tabs.query({}, function (tabs) {
+        blockOrAllow();
 
+        chrome.tabs.query({}, function (tabs) {
             // loop through all tabs and close any that are on the blocked list
             tabs.forEach(function (tab) {
-                console.log('tab:', tab.url);
-                console.log('actual value', fgFocusModeActive);
-                console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
                 if (fgFocusModeActive === true) {
-                    console.log('(addListener) fgFocusModeActive === true:', fgFocusModeActive === true);
                     fgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
                         if (tab.url.includes(site.name)) {
                             chrome.tabs.remove(tab.id);

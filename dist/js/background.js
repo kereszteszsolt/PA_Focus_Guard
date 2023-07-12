@@ -13,12 +13,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaults/defaultData */ "./src/js/defaults/defaultData.js");
 /* harmony import */ var _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaults/defaultComponents */ "./src/js/defaults/defaultComponents.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./src/js/constants/index.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -46,8 +40,6 @@ chrome.runtime.onInstalled.addListener(function () {
 var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp;
 var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm;
-var activeRules = [];
-var ruleIds = [];
 var readStorage = function readStorage() {
   fgFocusModeActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadPrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE);
   //  chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
@@ -56,40 +48,33 @@ var readStorage = function readStorage() {
   fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
 };
 readStorage();
-var blockOrAllow = function blockOrAllow() {
-  var _ruleIds;
+var getRemoveOldDynamicRules = function getRemoveOldDynamicRules(then) {
+  chrome.declarativeNetRequest.getDynamicRules(null, function (oldRules) {
+    console.log('Old rules', oldRules);
+    var ruleIds = oldRules.map(function (rule) {
+      return rule.id;
+    });
+    console.log('ruleIds', ruleIds);
+    chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: ruleIds
+    }, function () {
+      chrome.declarativeNetRequest.getDynamicRules(null, function (noRules) {
+        console.log('This should be empty: ', noRules);
+      });
+      then();
+    });
+  });
+};
+var calculateNewDynamicRules = function calculateNewDynamicRules(then) {
   var rules = [];
-  var index = 1;
-  (_ruleIds = ruleIds).push.apply(_ruleIds, _toConsumableArray(activeRules.map(function (rule) {
-    return rule.id;
-  })));
-  console.log('ruleIds:', ruleIds);
-  chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: ruleIds,
-    addRules: []
-  });
-  fgTemporarilyBlockedWebsites = fgTemporarilyBlockedWebsites.map(function (site) {
-    return _objectSpread(_objectSpread({}, site), {}, {
-      ruleId: index++
-    });
-  });
-  fgPermanentlyBlockedWebsites = fgPermanentlyBlockedWebsites.map(function (site) {
-    return _objectSpread(_objectSpread({}, site), {}, {
-      ruleId: index++
-    });
-  });
-  console.log('fgTemporarilyBlockedWebsites:', fgTemporarilyBlockedWebsites);
-  console.log('fgPermanentlyBlockedWebsites:', fgPermanentlyBlockedWebsites);
+  var rulesIndex = 1;
   var tempRules = [];
-  console.log('actual value', fgFocusModeActive);
-  console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
   if (fgFocusModeActive === true) {
-    console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
     tempRules = fgTemporarilyBlockedWebsites.filter(function (site) {
       return site.checked;
     }).map(function (site) {
       return {
-        id: site.ruleId,
+        id: rulesIndex++,
         priority: 1,
         action: {
           type: 'redirect',
@@ -109,7 +94,7 @@ var blockOrAllow = function blockOrAllow() {
     return site.checked;
   }).map(function (site) {
     return {
-      id: site.ruleId,
+      id: rulesIndex++,
       priority: 1,
       action: {
         type: 'redirect',
@@ -124,42 +109,46 @@ var blockOrAllow = function blockOrAllow() {
     };
   });
   rules.push.apply(rules, _toConsumableArray(permRules));
-  console.log('rules:', rules);
-  activeRules = [].concat(rules);
-  ruleIds = _toConsumableArray(activeRules.map(function (rule) {
-    return rule.id;
-  }));
-  console.log('ruleIds:', ruleIds);
+  then(rules);
+};
+var applyNewDynamicRules = function applyNewDynamicRules(rules, then) {
   chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: ruleIds,
-    addRules: activeRules
+    addRules: rules
+  }, function () {
+    then();
   });
 };
-blockOrAllow();
+var blockOrAllow = function blockOrAllow() {
+  console.log('blockOrAllow');
+  console.log('fgFocusModeActive', fgFocusModeActive);
+  getRemoveOldDynamicRules(function () {
+    calculateNewDynamicRules(function (rules) {
+      applyNewDynamicRules(rules, function () {
+        chrome.declarativeNetRequest.getDynamicRules(null, function (myRules) {
+          console.log('new rules: ', myRules);
+        });
+      });
+    });
+  });
+};
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
   if (namespace === 'sync') {
     if (changes.fgFocusModeActive) {
       fgFocusModeActive = changes.fgFocusModeActive.newValue;
-      blockOrAllow();
     }
     if (changes.fgTemporarilyBlockedWebsites) {
       fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
-      blockOrAllow();
     }
     if (changes.fgPermanentlyBlockedWebsites) {
       fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
-      blockOrAllow();
     }
+    blockOrAllow();
     chrome.tabs.query({}, function (tabs) {
       // loop through all tabs and close any that are on the blocked list
       tabs.forEach(function (tab) {
-        console.log('tab:', tab.url);
-        console.log('actual value', fgFocusModeActive);
-        console.log('(blockOrAllow()) fgFocusModeActive === true:', fgFocusModeActive === true);
         if (fgFocusModeActive === true) {
-          console.log('(addListener) fgFocusModeActive === true:', fgFocusModeActive === true);
           fgTemporarilyBlockedWebsites.filter(function (site) {
             return site.checked;
           }).forEach(function (site) {
@@ -394,12 +383,7 @@ __webpack_require__.r(__webpack_exports__);
 var domains4Temp = [{
   name: 'youtube.com',
   checked: true
-},
-// {
-//     name: 'facebook.com',
-//     checked: true
-// },
-{
+}, {
   name: 'instagram.com',
   checked: true
 }, {

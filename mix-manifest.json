@@ -21,7 +21,5 @@
     "/dist/message.html": "/dist/message.html",
     "/dist/manifest.json": "/dist/manifest.json",
     "/dist/focus.jpg": "/dist/focus.jpg",
-    "/dist/icon-80.png": "/dist/icon-80.png",
-    "/dist/json/defaultsForFacebook.json": "/dist/json/defaultsForFacebook.json",
-    "/dist/json/defaultsForYoutube.json": "/dist/json/defaultsForYoutube.json"
+    "/dist/icon-80.png": "/dist/icon-80.png"
 }

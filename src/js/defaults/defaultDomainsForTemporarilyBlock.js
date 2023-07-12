@@ -3,10 +3,6 @@ export const domains4Temp = [
         name: 'youtube.com',
         checked: true
     },
-    // {
-    //     name: 'facebook.com',
-    //     checked: true
-    // },
     {
         name: 'instagram.com',
         checked: true

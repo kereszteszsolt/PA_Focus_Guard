@@ -1,9 +1,0 @@
-[
-  {
-    "name": "Facebook - Reels",
-    "actionDescription": "Remove a Reel",
-    "action": "remove",
-    "activeRule": false,
-    "permanently": false
-  }
-]

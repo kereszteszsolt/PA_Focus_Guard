@@ -24,8 +24,6 @@ mix.setPublicPath('./')
     .copy('src/manifest.json', 'dist')
     .copy('src/focus.jpg', 'dist')
     .copy('src/icon-80.png', 'dist')
-    .copy('src/json/defaultsForFacebook.json', 'dist/json')
-    .copy('src/json/defaultsForYoutube.json', 'dist/json')
     .options({
         processCssUrls: false
     });
