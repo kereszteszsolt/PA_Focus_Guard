@@ -16808,24 +16808,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      active: false
+      fgFocusModeActive: false
     };
   },
   created: function created() {
-    var _this = this;
-    chrome.storage.sync.get(['fgFocusModeActive'], function (result) {
-      _this.active = result.fgFocusModeActive;
-    });
-    // this.active = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE); ???
+    this.readData();
+    // this.onStorageChange = (changes) => {
+    //   if (changes.fgFocusModeActive) {
+    //     this.fgFocusModeActive = changes.fgFocusModeActive.newValue;
+    //   }
+    // };
+    // chrome.storage.onChanged.addListener(this.onStorageChange);
   },
 
+  // beforeDestroy() {
+  //   chrome.storage.onChanged.removeListener(this.onStorageChange);
+  // },
   methods: {
+    readData: function readData() {
+      var _this = this;
+      _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FG_FOCUS_MODE_ACTIVE, false).then(function (pActive) {
+        _this.fgFocusModeActive = pActive;
+      });
+    },
     setActive: function setActive(pActive) {
-      this.active = pActive;
-      chrome.storage.sync.set({
-        fgFocusModeActive: pActive
-      }, function () {});
-      // utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, this.active); ???
+      this.fgFocusModeActive = pActive;
+      _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(_constants__WEBPACK_IMPORTED_MODULE_1__.storageNames.FG_FOCUS_MODE_ACTIVE, pActive);
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -16870,20 +16878,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["state-off", {
-      'is-active': !$data.active
+      'is-active': !$data.fgFocusModeActive
     }]),
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.setActive(false);
     })
-  }, "Off", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " Off ", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["state-on", {
-      'is-active': $data.active
+      'is-active': $data.fgFocusModeActive
     }]),
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.setActive(true);
     })
-  }, "On", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " On ", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "state-save",
     onClick: _cache[2] || (_cache[2] = function () {
