@@ -28,11 +28,12 @@ const readStorage = () => {
     fgPermanentlyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES, defaultComponentData.domains4Perm);
 };
 readStorage();
-
-const getAndRemoveOldDynamicRules = (then) => {
-    chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) => {
-        const ruleIds = oldRules.map(rule => rule.id);
-        chrome.declarativeNetRequest.updateDynamicRules({removeRuleIds: ruleIds}, then);
+const getAndRemoveOldDynamicRules = () => {
+    return new Promise((resolve) => {
+        chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) => {
+            const ruleIds = oldRules.map(rule => rule.id);
+            chrome.declarativeNetRequest.updateDynamicRules({ removeRuleIds: ruleIds }, resolve);
+        });
     });
 };
 
@@ -41,55 +42,53 @@ const createFGRule = (siteName, index) => ({
     priority: 1,
     action: {
         type: 'redirect',
-        redirect: {extensionPath: '/message.html'}
+        redirect: { extensionPath: '/message.html' },
     },
     condition: {
         urlFilter: siteName,
-        resourceTypes: ['main_frame', 'sub_frame']
-    }
+        resourceTypes: ['main_frame', 'sub_frame'],
+    },
 });
 
-const calculateNewDynamicRules = (then) => {
+const calculateNewDynamicRules = () => {
     console.log('calculateNewDynamicRules');
     const rules = [];
     let rulesIndex = 1;
 
-    let tempRules = [];
     if (fgFocusModeActive === true) {
-        tempRules = fgTemporarilyBlockedWebsites
+        let tempRules = fgTemporarilyBlockedWebsites
             .filter((site) => site.checked)
             .map((site) => createFGRule(site.name, rulesIndex++));
+        rules.push(...tempRules);
     }
-    rules.push(...tempRules);
 
     let permRules = fgPermanentlyBlockedWebsites
         .filter((site) => site.checked)
         .map((site) => createFGRule(site.name, rulesIndex++));
     rules.push(...permRules);
 
-    then(rules);
+    return rules;
 };
 
-const applyNewDynamicRules = (rules, then) => {
-    chrome.declarativeNetRequest.updateDynamicRules({addRules: rules}, then);
+const applyNewDynamicRules = (rules) => {
+    return new Promise((resolve) => {
+        chrome.declarativeNetRequest.updateDynamicRules({ addRules: rules }, resolve);
+    });
 };
-const blockOrAllow = () => {
+
+const blockOrAllow = async () => {
     console.log('blockOrAllow');
     console.log('fgFocusModeActive', fgFocusModeActive);
 
-    getAndRemoveOldDynamicRules(() => {
-        calculateNewDynamicRules(
-            (rules) => {
-                applyNewDynamicRules(rules, () => {
-                    chrome.declarativeNetRequest.getDynamicRules(null, function (myRules) {
-                        console.log('new rules: ', myRules);
-                    });
-                });
-            }
-        );
-    });
+    await getAndRemoveOldDynamicRules();
+    const newRules = calculateNewDynamicRules();
+    await applyNewDynamicRules(newRules);
 
+    chrome.declarativeNetRequest.getDynamicRules(null, (myRules) => {
+        console.log('new rules: ', myRules);
+    });
 };
+
 
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
