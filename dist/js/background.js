@@ -48,7 +48,7 @@ var readStorage = function readStorage() {
   fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
 };
 readStorage();
-var getRemoveOldDynamicRules = function getRemoveOldDynamicRules(then) {
+var getAndRemoveOldDynamicRules = function getAndRemoveOldDynamicRules(then) {
   chrome.declarativeNetRequest.getDynamicRules(null, function (oldRules) {
     var ruleIds = oldRules.map(function (rule) {
       return rule.id;
@@ -57,6 +57,22 @@ var getRemoveOldDynamicRules = function getRemoveOldDynamicRules(then) {
       removeRuleIds: ruleIds
     }, then);
   });
+};
+var createFGRule = function createFGRule(siteName, index) {
+  return {
+    id: index,
+    priority: 1,
+    action: {
+      type: 'redirect',
+      redirect: {
+        extensionPath: '/message.html'
+      }
+    },
+    condition: {
+      urlFilter: siteName,
+      resourceTypes: ['main_frame', 'sub_frame']
+    }
+  };
 };
 var calculateNewDynamicRules = function calculateNewDynamicRules(then) {
   console.log('calculateNewDynamicRules');
@@ -67,40 +83,14 @@ var calculateNewDynamicRules = function calculateNewDynamicRules(then) {
     tempRules = fgTemporarilyBlockedWebsites.filter(function (site) {
       return site.checked;
     }).map(function (site) {
-      return {
-        id: rulesIndex++,
-        priority: 1,
-        action: {
-          type: 'redirect',
-          redirect: {
-            extensionPath: '/message.html'
-          }
-        },
-        condition: {
-          urlFilter: site.name,
-          resourceTypes: ['main_frame', 'sub_frame']
-        }
-      };
+      return createFGRule(site.name, rulesIndex++);
     });
   }
   rules.push.apply(rules, _toConsumableArray(tempRules));
   var permRules = fgPermanentlyBlockedWebsites.filter(function (site) {
     return site.checked;
   }).map(function (site) {
-    return {
-      id: rulesIndex++,
-      priority: 1,
-      action: {
-        type: 'redirect',
-        redirect: {
-          extensionPath: '/message.html'
-        }
-      },
-      condition: {
-        urlFilter: site.name,
-        resourceTypes: ['main_frame', 'sub_frame']
-      }
-    };
+    return createFGRule(site.name, rulesIndex++);
   });
   rules.push.apply(rules, _toConsumableArray(permRules));
   then(rules);
@@ -113,7 +103,7 @@ var applyNewDynamicRules = function applyNewDynamicRules(rules, then) {
 var blockOrAllow = function blockOrAllow() {
   console.log('blockOrAllow');
   console.log('fgFocusModeActive', fgFocusModeActive);
-  getRemoveOldDynamicRules(function () {
+  getAndRemoveOldDynamicRules(function () {
     calculateNewDynamicRules(function (rules) {
       applyNewDynamicRules(rules, function () {
         chrome.declarativeNetRequest.getDynamicRules(null, function (myRules) {

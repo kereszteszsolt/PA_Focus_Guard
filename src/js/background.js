@@ -29,12 +29,25 @@ const readStorage = () => {
 };
 readStorage();
 
-const getRemoveOldDynamicRules = (then) => {
+const getAndRemoveOldDynamicRules = (then) => {
     chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) => {
         const ruleIds = oldRules.map(rule => rule.id);
         chrome.declarativeNetRequest.updateDynamicRules({removeRuleIds: ruleIds}, then);
     });
 };
+
+const createFGRule = (siteName, index) => ({
+    id: index,
+    priority: 1,
+    action: {
+        type: 'redirect',
+        redirect: {extensionPath: '/message.html'}
+    },
+    condition: {
+        urlFilter: siteName,
+        resourceTypes: ['main_frame', 'sub_frame']
+    }
+});
 
 const calculateNewDynamicRules = (then) => {
     console.log('calculateNewDynamicRules');
@@ -45,35 +58,13 @@ const calculateNewDynamicRules = (then) => {
     if (fgFocusModeActive === true) {
         tempRules = fgTemporarilyBlockedWebsites
             .filter((site) => site.checked)
-            .map((site) => ({
-                id: rulesIndex++,
-                priority: 1,
-                action: {
-                    type: 'redirect',
-                    redirect: {extensionPath: '/message.html'}
-                },
-                condition: {
-                    urlFilter: site.name,
-                    resourceTypes: ['main_frame', 'sub_frame']
-                }
-            }));
+            .map((site) => createFGRule(site.name, rulesIndex++));
     }
     rules.push(...tempRules);
 
     let permRules = fgPermanentlyBlockedWebsites
         .filter((site) => site.checked)
-        .map((site) => ({
-            id: rulesIndex++,
-            priority: 1,
-            action: {
-                type: 'redirect',
-                redirect: {extensionPath: '/message.html'}
-            },
-            condition: {
-                urlFilter: site.name,
-                resourceTypes: ['main_frame', 'sub_frame']
-            }
-        }));
+        .map((site) => createFGRule(site.name, rulesIndex++));
     rules.push(...permRules);
 
     then(rules);
@@ -86,7 +77,7 @@ const blockOrAllow = () => {
     console.log('blockOrAllow');
     console.log('fgFocusModeActive', fgFocusModeActive);
 
-    getRemoveOldDynamicRules(() => {
+    getAndRemoveOldDynamicRules(() => {
         calculateNewDynamicRules(
             (rules) => {
                 applyNewDynamicRules(rules, () => {
