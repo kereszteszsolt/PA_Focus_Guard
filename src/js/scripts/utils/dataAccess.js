@@ -1,38 +1,58 @@
-
 export function loadData(storageName, defaultData) {
-    let result;
-    const storedData = chrome.storage.sync.get(
-        storageName,
-        function (data) {}
-    );
-    if (storedData) {
-        result = JSON.parse(storedData);
-    } else {
-        result = defaultData;
-    }
-    return result;
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get(storageName, (data) => {
+            if (chrome.runtime.lastError) {
+                reject(new Error(chrome.runtime.lastError.message));
+            } else {
+                const serializedData = data[storageName];
+                if (serializedData) {
+                    try {
+                        const parsedData = JSON.parse(serializedData);
+                        resolve(parsedData);
+                    } catch (error) {
+                        reject(new Error(`Error parsing data for '${storageName}': ${error.message}`));
+                    }
+                } else {
+                    resolve(defaultData);
+                }
+            }
+        });
+    });
 }
 
 export function saveData(storageName, data) {
-    chrome.storage.sync.set({
-            [storageName]: JSON.stringify(data)
-        },
-        function () {
-        }
-    );
+    return new Promise((resolve, reject) => {
+        const serializedData = JSON.stringify(data);
+        chrome.storage.sync.set({ [storageName]: serializedData }, () => {
+            if (chrome.runtime.lastError) {
+                reject(new Error(chrome.runtime.lastError.message));
+            } else {
+                resolve();
+            }
+        });
+    });
 }
 
 export function loadPrimitiveData(storageName) {
-    return chrome.storage.sync.get(
-        storageName,
-        () => {}
-    );
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get(storageName, (data) => {
+            if (chrome.runtime.lastError) {
+                reject(new Error(chrome.runtime.lastError.message));
+            } else {
+                resolve(data[storageName]);
+            }
+        });
+    });
 }
 
 export function savePrimitiveData(storageName, data) {
-    chrome.storage.sync.set({
-            [storageName]: data
-        },
-        () => {}
-    );
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.set({ [storageName]: data }, () => {
+            if (chrome.runtime.lastError) {
+                reject(new Error(chrome.runtime.lastError.message));
+            } else {
+                resolve();
+            }
+        });
+    });
 }

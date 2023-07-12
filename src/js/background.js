@@ -5,28 +5,49 @@ import * as constants from './constants';
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-    utils.dataAccess.savePrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
-    //  chrome.storage.sync.set({
-    //          fgFocusModeActive: false
-    //      }, () => {
-    //      });
-    defaultComponents.forEach(component => {
-        utils.dataAccess.saveData(component.storageName, component.defaultData);
-    });
+    utils.dataAccess.saveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false)
+        .then(() => {
+            const saveDataPromises = defaultComponents.map(component => {
+                return utils.dataAccess.saveData(component.storageName, component.defaultData);
+            });
+            return Promise.all(saveDataPromises);
+        })
+        .then(() => {
+            readStorage();
+        })
+        .catch(error => {
+            console.error('Error initializing extension:', error);
+        });
 });
 
 // set up initial chrome storage values
-var fgFocusModeActive = false;
-var fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
-var fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
+let fgFocusModeActive = false;
+let fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
+let fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
+let fgLoading = false;
 
 const readStorage = () => {
-    fgFocusModeActive = utils.dataAccess.loadPrimitiveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE);
-    //  chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
-    //      fgFocusModeActive = result.fgFocusModeActive;});
-    fgTemporarilyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES, defaultComponentData.domains4Temp);
-    fgPermanentlyBlockedWebsites = utils.dataAccess.loadData(constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES, defaultComponentData.domains4Perm);
+    fgLoading = true;
+
+    utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false)
+        .then(result => {
+            fgFocusModeActive = result.fgFocusModeActive;
+            return utils.dataAccess.loadData(constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES, defaultComponentData.domains4Temp);
+        })
+        .then(result => {
+            fgTemporarilyBlockedWebsites = result;
+            return utils.dataAccess.loadData(constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES, defaultComponentData.domains4Perm);
+        })
+        .then(result => {
+            fgPermanentlyBlockedWebsites = result;
+            fgLoading = false;
+        })
+        .catch(error => {
+            console.error('Error reading storage:', error);
+            fgLoading = false;
+        });
 };
+
 readStorage();
 const getAndRemoveOldDynamicRules = () => {
     return new Promise((resolve) => {

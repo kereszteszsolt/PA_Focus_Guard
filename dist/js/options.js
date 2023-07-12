@@ -17597,23 +17597,59 @@ function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key i
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function loadData(storageName, defaultData) {
-  var result;
-  var storedData = chrome.storage.sync.get(storageName, function (data) {});
-  if (storedData) {
-    result = JSON.parse(storedData);
-  } else {
-    result = defaultData;
-  }
-  return result;
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(storageName, function (data) {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        var serializedData = data[storageName];
+        if (serializedData) {
+          try {
+            var parsedData = JSON.parse(serializedData);
+            resolve(parsedData);
+          } catch (error) {
+            reject(new Error("Error parsing data for '".concat(storageName, "': ").concat(error.message)));
+          }
+        } else {
+          resolve(defaultData);
+        }
+      }
+    });
+  });
 }
 function saveData(storageName, data) {
-  chrome.storage.sync.set(_defineProperty({}, storageName, JSON.stringify(data)), function () {});
+  return new Promise(function (resolve, reject) {
+    var serializedData = JSON.stringify(data);
+    chrome.storage.sync.set(_defineProperty({}, storageName, serializedData), function () {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 function loadPrimitiveData(storageName) {
-  return chrome.storage.sync.get(storageName, function () {});
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(storageName, function (data) {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve(data[storageName]);
+      }
+    });
+  });
 }
 function savePrimitiveData(storageName, data) {
-  chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {});
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 
 /***/ }),

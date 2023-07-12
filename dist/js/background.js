@@ -30,13 +30,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
-  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.savePrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE);
-  //  chrome.storage.sync.set({
-  //          fgFocusModeActive: false
-  //      }, () => {
-  //      });
-  _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.forEach(function (component) {
-    _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(component.storageName, component.defaultData);
+  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false).then(function () {
+    var saveDataPromises = _defaults_defaultComponents__WEBPACK_IMPORTED_MODULE_2__.defaultComponents.map(function (component) {
+      return _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(component.storageName, component.defaultData);
+    });
+    return Promise.all(saveDataPromises);
+  }).then(function () {
+    readStorage();
+  })["catch"](function (error) {
+    console.error('Error initializing extension:', error);
   });
 });
 
@@ -44,12 +46,22 @@ chrome.runtime.onInstalled.addListener(function () {
 var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp;
 var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm;
+var fgLoading = false;
 var readStorage = function readStorage() {
-  fgFocusModeActive = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadPrimitiveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE);
-  //  chrome.storage.sync.get(['fgFocusModeActive'], (result) => {
-  //      fgFocusModeActive = result.fgFocusModeActive;});
-  fgTemporarilyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
-  fgPermanentlyBlockedWebsites = _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
+  fgLoading = true;
+  _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false).then(function (result) {
+    fgFocusModeActive = result.fgFocusModeActive;
+    return _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.TEMPORARILY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp);
+  }).then(function (result) {
+    fgTemporarilyBlockedWebsites = result;
+    return _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
+  }).then(function (result) {
+    fgPermanentlyBlockedWebsites = result;
+    fgLoading = false;
+  })["catch"](function (error) {
+    console.error('Error reading storage:', error);
+    fgLoading = false;
+  });
 };
 readStorage();
 var getAndRemoveOldDynamicRules = function getAndRemoveOldDynamicRules() {
@@ -536,23 +548,59 @@ function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key i
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function loadData(storageName, defaultData) {
-  var result;
-  var storedData = chrome.storage.sync.get(storageName, function (data) {});
-  if (storedData) {
-    result = JSON.parse(storedData);
-  } else {
-    result = defaultData;
-  }
-  return result;
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(storageName, function (data) {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        var serializedData = data[storageName];
+        if (serializedData) {
+          try {
+            var parsedData = JSON.parse(serializedData);
+            resolve(parsedData);
+          } catch (error) {
+            reject(new Error("Error parsing data for '".concat(storageName, "': ").concat(error.message)));
+          }
+        } else {
+          resolve(defaultData);
+        }
+      }
+    });
+  });
 }
 function saveData(storageName, data) {
-  chrome.storage.sync.set(_defineProperty({}, storageName, JSON.stringify(data)), function () {});
+  return new Promise(function (resolve, reject) {
+    var serializedData = JSON.stringify(data);
+    chrome.storage.sync.set(_defineProperty({}, storageName, serializedData), function () {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 function loadPrimitiveData(storageName) {
-  return chrome.storage.sync.get(storageName, function () {});
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(storageName, function (data) {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve(data[storageName]);
+      }
+    });
+  });
 }
 function savePrimitiveData(storageName, data) {
-  chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {});
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 
 /***/ }),
