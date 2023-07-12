@@ -55,7 +55,9 @@ export default {
       if (!this.selectedComponent) {
         this.selectedComponent = defaultComponents[0];
       }
-      this.selectedComponent.data = utils.dataAccess.loadData(this.selectedComponent.storageName, this.selectedComponent.defaultData);
+      utils.dataAccess.loadData(this.selectedComponent.storageName, this.selectedComponent.defaultData).then(data => {
+        this.selectedComponent.data = data;
+      });
     }
   },
   mounted() {

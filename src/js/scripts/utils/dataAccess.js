@@ -32,27 +32,3 @@ export function saveData(storageName, data) {
         });
     });
 }
-
-export function loadPrimitiveData(storageName) {
-    return new Promise((resolve, reject) => {
-        chrome.storage.sync.get(storageName, (data) => {
-            if (chrome.runtime.lastError) {
-                reject(new Error(chrome.runtime.lastError.message));
-            } else {
-                resolve(data[storageName]);
-            }
-        });
-    });
-}
-
-export function savePrimitiveData(storageName, data) {
-    return new Promise((resolve, reject) => {
-        chrome.storage.sync.set({ [storageName]: data }, () => {
-            if (chrome.runtime.lastError) {
-                reject(new Error(chrome.runtime.lastError.message));
-            } else {
-                resolve();
-            }
-        });
-    });
-}

@@ -40,9 +40,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   loadData: () => (/* binding */ loadData),
-/* harmony export */   loadPrimitiveData: () => (/* binding */ loadPrimitiveData),
-/* harmony export */   saveData: () => (/* binding */ saveData),
-/* harmony export */   savePrimitiveData: () => (/* binding */ savePrimitiveData)
+/* harmony export */   saveData: () => (/* binding */ saveData)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -73,28 +71,6 @@ function saveData(storageName, data) {
   return new Promise(function (resolve, reject) {
     var serializedData = JSON.stringify(data);
     chrome.storage.sync.set(_defineProperty({}, storageName, serializedData), function () {
-      if (chrome.runtime.lastError) {
-        reject(new Error(chrome.runtime.lastError.message));
-      } else {
-        resolve();
-      }
-    });
-  });
-}
-function loadPrimitiveData(storageName) {
-  return new Promise(function (resolve, reject) {
-    chrome.storage.sync.get(storageName, function (data) {
-      if (chrome.runtime.lastError) {
-        reject(new Error(chrome.runtime.lastError.message));
-      } else {
-        resolve(data[storageName]);
-      }
-    });
-  });
-}
-function savePrimitiveData(storageName, data) {
-  return new Promise(function (resolve, reject) {
-    chrome.storage.sync.set(_defineProperty({}, storageName, data), function () {
       if (chrome.runtime.lastError) {
         reject(new Error(chrome.runtime.lastError.message));
       } else {
