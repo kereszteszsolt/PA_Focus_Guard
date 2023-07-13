@@ -1,5 +1,6 @@
 <template>
   <h1>{{ title }}</h1>
+  <p v-if="loading">Loading...</p>
   <div class="sites-container">
     <div class="sites-list">
       <table>
@@ -29,6 +30,8 @@
   </div>
 </template>
 <script>
+import * as utils from '../../scripts/utils';
+
 export default {
   props: {
     name: {
@@ -61,7 +64,8 @@ export default {
       websiteList: [...this.data],
       newWebsite: '',
       showInvalidErrorMessage: false,
-      showDuplicatedErrorMessage: false
+      showDuplicatedErrorMessage: false,
+      loading: false,
     };
   },
   watch: {
@@ -75,16 +79,24 @@ export default {
   },
   methods: {
     loadListOfWebsites() {
-      chrome.storage.sync.get(this.storageName, (data) => {
-        if (data[this.storageName]) {
-          this.websiteList = JSON.parse(data[this.storageName]);
-        } else {
-          this.websiteList = this.inputData;
-        }
+      // chrome.storage.sync.get(this.storageName, (data) => {
+      //   if (data[this.storageName]) {
+      //     this.websiteList = JSON.parse(data[this.storageName]);
+      //   } else {
+      //     this.websiteList = this.inputData;
+      //   }
+      // });
+      this.loading = true;
+      utils.dataAccess.loadData(this.storageName, this.defaultData).then((data) => {
+        this.websiteList = data;
+        this.loading = false;
       });
     },
     saveListOfWebsites() {
-      chrome.storage.sync.set({[this.storageName]: JSON.stringify(this.websiteList)});
+      this.loading = true;
+      utils.dataAccess.saveData(this.storageName, this.websiteList).then(() => {
+        this.loading = false;
+      });
     },
     cleanDomain(domain) {
       // Remove prefixes (e.g., "https://", "http://", "www.")

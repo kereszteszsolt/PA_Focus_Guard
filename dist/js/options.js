@@ -16858,16 +16858,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+/* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../scripts/utils */ "./src/js/scripts/utils/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     name: {
@@ -16900,7 +16898,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       websiteList: _toConsumableArray(this.data),
       newWebsite: '',
       showInvalidErrorMessage: false,
-      showDuplicatedErrorMessage: false
+      showDuplicatedErrorMessage: false,
+      loading: false
     };
   },
   watch: {
@@ -16915,16 +16914,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   methods: {
     loadListOfWebsites: function loadListOfWebsites() {
       var _this = this;
-      chrome.storage.sync.get(this.storageName, function (data) {
-        if (data[_this.storageName]) {
-          _this.websiteList = JSON.parse(data[_this.storageName]);
-        } else {
-          _this.websiteList = _this.inputData;
-        }
+      // chrome.storage.sync.get(this.storageName, (data) => {
+      //   if (data[this.storageName]) {
+      //     this.websiteList = JSON.parse(data[this.storageName]);
+      //   } else {
+      //     this.websiteList = this.inputData;
+      //   }
+      // });
+      this.loading = true;
+      _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(this.storageName, this.defaultData).then(function (data) {
+        _this.websiteList = data;
+        _this.loading = false;
       });
     },
     saveListOfWebsites: function saveListOfWebsites() {
-      chrome.storage.sync.set(_defineProperty({}, this.storageName, JSON.stringify(this.websiteList)));
+      var _this2 = this;
+      this.loading = true;
+      _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(this.storageName, this.websiteList).then(function () {
+        _this2.loading = false;
+      });
     },
     cleanDomain: function cleanDomain(domain) {
       // Remove prefixes (e.g., "https://", "http://", "www.")
@@ -16961,14 +16969,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     },
     handleBlur: function handleBlur() {
-      var _this2 = this;
+      var _this3 = this;
       if (this.newWebsite === '') {
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       } else {
         this.showInvalidErrorMessage = !this.validateDomain(this.newWebsite);
         this.showDuplicatedErrorMessage = this.websiteList.some(function (site) {
-          return site.name === _this2.cleanDomain(_this2.newWebsite);
+          return site.name === _this3.cleanDomain(_this3.newWebsite);
         });
       }
     },
@@ -17129,51 +17137,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "sites-container"
+  key: 0
 };
 var _hoisted_2 = {
+  "class": "sites-container"
+};
+var _hoisted_3 = {
   "class": "sites-list"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, null, -1 /* HOISTED */);
-var _hoisted_4 = {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, null, -1 /* HOISTED */);
+var _hoisted_5 = {
   "class": "site"
 };
-var _hoisted_5 = ["id", "checked", "onChange"];
-var _hoisted_6 = ["for"];
-var _hoisted_7 = ["onClick"];
-var _hoisted_8 = {
+var _hoisted_6 = ["id", "checked", "onChange"];
+var _hoisted_7 = ["for"];
+var _hoisted_8 = ["onClick"];
+var _hoisted_9 = {
   "class": "add-site-container"
 };
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Add site:", -1 /* HOISTED */);
-var _hoisted_10 = {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Add site:", -1 /* HOISTED */);
+var _hoisted_11 = {
   "class": "input-wrapper"
 };
-var _hoisted_11 = {
+var _hoisted_12 = {
   key: 0,
   "class": "error-message"
 };
-var _hoisted_12 = {
+var _hoisted_13 = {
   key: 1,
   "class": "error-message"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteList, function (site) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 1 /* TEXT */), $data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_1, "Loading...")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteList, function (site) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       type: "checkbox",
       id: site.name,
       checked: site.checked,
       onChange: function onChange($event) {
         return $options.changeSitePermission(site.name);
       }
-    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": site.name
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(site.name), 9 /* TEXT, PROPS */, _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(site.name), 9 /* TEXT, PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.removeSite(site.name);
       },
       "class": "remove-site"
-    }, "X", 8 /* PROPS */, _hoisted_7)])]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, "X", 8 /* PROPS */, _hoisted_8)])]);
+  }), 256 /* UNKEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     placeholder: "example.com",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -17187,7 +17198,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.addWebsite && $options.addWebsite.apply($options, arguments);
     }),
     "class": "add-site"
-  }, "Add")]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_11, "Invalid domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_12, "Duplicated domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
+  }, "Add")]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_12, "Invalid domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_13, "Duplicated domain")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
