@@ -1,6 +1,6 @@
 <template>
   <h1>{{ title }}</h1>
-  <div class="distractions-container">
+  <div class="main-container">
     <div class="distractions-list">
       <table>
         <thead>
@@ -90,20 +90,118 @@ export default {
 </script>
 
 <style lang="scss">
-.distractions-container {
-  margin-top: 20px;
+
+// Define Material Design color variables
+$md-primary-color: #574513;
+//greenish brown
+$md-secondary-color: #7f8c8d;
+$md-danger-color: #e74c3c;
+$md-success-color: #2ecc71;
+$md-warning-color: #f1c40f;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .distractions-list {
-  > table {
+  table {
     width: 100%;
     border-collapse: collapse;
+
+    thead {
+      tr {
+        th {
+          padding: 8px;
+          border-bottom: 1px solid #ccc;
+          text-align: left;
+
+          &:first-child {
+
+          }
+
+          &:nth-child(2) {
+
+          }
+
+          &:nth-child(3) {
+            width: 100px;
+          }
+
+          &:nth-child(4) {
+            width: 100px;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 8px;
+          border-bottom: 1px solid #ccc;
+
+          &:first-child {
+            font-size: 18px;
+            font-weight: bold;
+            color: $md-primary-color;
+          }
+
+          &:nth-child(2) {
+            font-size: 16px;
+          }
+
+          &:nth-child(3) {
+            width: 100px;
+          }
+
+          &:nth-child(4) {
+            width: 100px;
+          }
+
+          input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            cursor: pointer;
+            margin: 2px auto -2px auto;
+            transition: background-color 0.3s ease;
+
+            &:checked {
+              background-color: $md-primary-color;
+            }
+
+            &:checked:hover {
+              background-color: darken($md-primary-color, 10%);
+            }
+
+            &:checked:before {
+              content: '';
+              display: block;
+              width: 4px;
+              height: 8px;
+              border: solid #fff;
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+              margin: 3px auto -3px auto;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+            }
+          }
+
+
+        }
+      }
+    }
   }
 
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
+  //th, td {
+  //  padding: 10px;
+  //  text-align: left;
+  //  border-bottom: 1px solid #ddd;
+  //}
 }
 </style>
