@@ -205,15 +205,20 @@ $md-warning-color: #f1c40f;
 
             input[type="checkbox"] {
               appearance: none;
-              width: 16px;
-              height: 16px;
+              width: 20px;
+              height: 20px;
               border: 1px solid #ccc;
               border-radius: 2px;
               cursor: pointer;
+              margin: 2px auto -2px auto;
               transition: background-color 0.3s ease;
 
               &:checked {
                 background-color: $md-primary-color;
+              }
+
+              &:checked:hover {
+                background-color: darken($md-primary-color, 10%);
               }
 
               &:checked:before {
@@ -224,7 +229,7 @@ $md-warning-color: #f1c40f;
                 border: solid #fff;
                 border-width: 0 2px 2px 0;
                 transform: rotate(45deg);
-                margin: 0 auto;
+                margin: 3px auto -3px auto;
                 cursor: pointer;
                 transition: background-color 0.3s ease;
               }
