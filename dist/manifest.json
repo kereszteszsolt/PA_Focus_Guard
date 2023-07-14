@@ -26,11 +26,11 @@
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
-      "js": ["js/scripts/background/website-elements-blocker/blockYoutubeElements.js"]
+      "js": ["js/scripts/blockYoutubeElements.js"]
     },
     {
       "matches": ["*://*.facebook.com/*"],
-      "js": ["js/scripts/background/website-elements-blocker/blockFacebookElements.js"]
+      "js": ["js/scripts/blockFacebookElements.js"]
     }
   ],
   "manifest_version": 3
