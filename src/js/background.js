@@ -25,6 +25,8 @@ chrome.runtime.onInstalled.addListener(function () {
 let fgFocusModeActive = false;
 let fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
 let fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
+let fgYouTubeDistractionBlocker = defaultComponentData.youtube;
+let fgFacebookDistractionBlocker = defaultComponentData.facebook;
 let fgLoading = false;
 
 const readStorage = () => {
@@ -41,6 +43,14 @@ const readStorage = () => {
         })
         .then(result => {
             fgPermanentlyBlockedWebsites = result;
+            return utils.dataAccess.loadData(constants.storageNames.YOUTUBE_DISTRACTION_BLOCKER, defaultComponentData.youtube);
+        })
+        .then(result => {
+            fgYouTubeDistractionBlocker = result;
+            return utils.dataAccess.loadData(constants.storageNames.FACEBOOK_DISTRACTION_BLOCKER, defaultComponentData.facebook);
+        })
+        .then(result => {
+            fgFacebookDistractionBlocker = result;
             fgLoading = false;
         })
         .catch(error => {
@@ -66,6 +76,15 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
             fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
         }
 
+        if (changes.fgYouTubeDistractionBlocker) {
+            fgYouTubeDistractionBlocker = JSON.parse(changes.fgYouTubeDistractionBlocker.newValue);
+        }
+
+        if (changes.fgFacebookDistractionBlocker) {
+            fgFacebookDistractionBlocker = JSON.parse(changes.fgFacebookDistractionBlocker.newValue);
+        }
+
         backgroundScripts.blockAndRedirect.blockOrAllow(fgFocusModeActive, fgTemporarilyBlockedWebsites, fgPermanentlyBlockedWebsites);
+        backgroundScripts.blockElements.blockElements(fgFocusModeActive, fgYouTubeDistractionBlocker, fgFacebookDistractionBlocker);
     }
 });

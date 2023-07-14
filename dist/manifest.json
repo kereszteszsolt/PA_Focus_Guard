@@ -23,5 +23,15 @@
     "page": "options.html",
     "open_in_tab": true
   },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["js/scripts/background/website-elements-blocker/blockYoutubeElements.js"]
+    },
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["js/scripts/background/website-elements-blocker/blockFacebookElements.js"]
+    }
+  ],
   "manifest_version": 3
 }

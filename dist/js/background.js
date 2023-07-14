@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/js/background.js":
@@ -8,6 +7,7 @@
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/utils */ "./src/js/scripts/utils/index.js");
 /* harmony import */ var _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaults/defaultData */ "./src/js/defaults/defaultData.js");
@@ -38,6 +38,8 @@ chrome.runtime.onInstalled.addListener(function () {
 var fgFocusModeActive = false;
 var fgTemporarilyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Temp;
 var fgPermanentlyBlockedWebsites = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm;
+var fgYouTubeDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.youtube;
+var fgFacebookDistractionBlocker = _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.facebook;
 var fgLoading = false;
 var readStorage = function readStorage() {
   fgLoading = true;
@@ -49,6 +51,12 @@ var readStorage = function readStorage() {
     return _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.PERMANENTLY_BLOCKED_WEBSITES, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.domains4Perm);
   }).then(function (result) {
     fgPermanentlyBlockedWebsites = result;
+    return _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.YOUTUBE_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.youtube);
+  }).then(function (result) {
+    fgYouTubeDistractionBlocker = result;
+    return _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.loadData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FACEBOOK_DISTRACTION_BLOCKER, _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__.facebook);
+  }).then(function (result) {
+    fgFacebookDistractionBlocker = result;
     fgLoading = false;
   })["catch"](function (error) {
     console.error('Error reading storage:', error);
@@ -69,7 +77,14 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (changes.fgPermanentlyBlockedWebsites) {
       fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
     }
+    if (changes.fgYouTubeDistractionBlocker) {
+      fgYouTubeDistractionBlocker = JSON.parse(changes.fgYouTubeDistractionBlocker.newValue);
+    }
+    if (changes.fgFacebookDistractionBlocker) {
+      fgFacebookDistractionBlocker = JSON.parse(changes.fgFacebookDistractionBlocker.newValue);
+    }
     _scripts_background__WEBPACK_IMPORTED_MODULE_4__.blockAndRedirect.blockOrAllow(fgFocusModeActive, fgTemporarilyBlockedWebsites, fgPermanentlyBlockedWebsites);
+    _scripts_background__WEBPACK_IMPORTED_MODULE_4__.blockElements.blockElements(fgFocusModeActive, fgYouTubeDistractionBlocker, fgFacebookDistractionBlocker);
   }
 });
 
@@ -81,6 +96,7 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
@@ -101,6 +117,7 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'FacebookDistractionBlocker';
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
@@ -121,6 +138,7 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'Facebook Distraction Blocker';
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ BLOCKED_WEBSITES_BY_DOMAIN),
@@ -137,17 +155,22 @@ var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_0__),
 /* harmony export */   componentTitles: () => (/* reexport module object */ _componentTitles__WEBPACK_IMPORTED_MODULE_1__),
 /* harmony export */   containerComponents: () => (/* reexport module object */ _containerComponents__WEBPACK_IMPORTED_MODULE_3__),
-/* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__)
+/* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__),
+/* harmony export */   youtubeActionNames: () => (/* reexport module object */ _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__)
 /* harmony export */ });
 /* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./componentNames */ "./src/js/constants/componentNames.js");
 /* harmony import */ var _componentTitles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentTitles */ "./src/js/constants/componentTitles.js");
 /* harmony import */ var _storageNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageNames */ "./src/js/constants/storageNames.js");
 /* harmony import */ var _containerComponents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containerComponents */ "./src/js/constants/containerComponents.js");
+/* harmony import */ var _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./youtubeActionNames */ "./src/js/constants/youtubeActionNames.js");
+
+
 
 
 
@@ -165,6 +188,7 @@ __webpack_require__.r(__webpack_exports__);
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
@@ -181,12 +205,32 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'fgFacebookDistractionBlocker';
 
 /***/ }),
 
+/***/ "./src/js/constants/youtubeActionNames.js":
+/*!************************************************!*\
+  !*** ./src/js/constants/youtubeActionNames.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   YOUTUBE_SHORTS: () => (/* binding */ YOUTUBE_SHORTS),
+/* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
+/* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
+/* harmony export */ });
+var YOUTUBE_THUMBNAIL = 'YouTubeThumbnail';
+var YOUTUBE_SHORTS = 'YouTubeShorts';
+var YOUTUBE_VIDEO_TITLE = 'YouTubeVideoTitle';
+
+/***/ }),
+
 /***/ "./src/js/defaults/defaultComponents.js":
 /*!**********************************************!*\
   !*** ./src/js/defaults/defaultComponents.js ***!
   \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   defaultComponents: () => (/* binding */ defaultComponents)
@@ -239,6 +283,7 @@ var defaultComponents = [{
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Perm: () => (/* reexport safe */ _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__.domains4Perm),
@@ -263,6 +308,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Perm: () => (/* binding */ domains4Perm)
@@ -280,6 +326,7 @@ var domains4Perm = [{
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Temp: () => (/* binding */ domains4Temp)
@@ -351,6 +398,7 @@ var domains4Temp = [{
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   facebook: () => (/* binding */ facebook)
@@ -371,20 +419,32 @@ var facebook = [{
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   youtube: () => (/* binding */ youtube)
 /* harmony export */ });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+
 var youtube = [{
-  name: "Youtube - Shorts",
-  actionDescription: "Redirect to message",
-  action: "remove",
+  name: 'Youtube - Thumbnails',
+  actionDescription: 'Replace',
+  action: 'replace',
+  actionName: _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_THUMBNAIL,
   activeRule: true,
   permanently: false
 }, {
-  name: "Youtube - Home",
-  actionDescription: "Redirect to message",
-  action: "remove",
+  name: 'Youtube - Shorts',
+  actionDescription: 'Redirect to message',
+  action: 'remove',
+  actionName: _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_SHORTS,
+  activeRule: true,
+  permanently: false
+}, {
+  name: 'Youtube - Video Titles',
+  actionDescription: 'Redirect to message',
+  action: 'remove',
+  actionName: _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_VIDEO_TITLE,
   activeRule: true,
   permanently: false
 }];
@@ -397,6 +457,7 @@ var youtube = [{
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockOrAllow: () => (/* binding */ blockOrAllow)
@@ -526,17 +587,163 @@ var blockOrAllow = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/js/scripts/background/blockWebsitesElements.js":
+/*!************************************************************!*\
+  !*** ./src/js/scripts/background/blockWebsitesElements.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   blockElements: () => (/* binding */ blockElements)
+/* harmony export */ });
+/* harmony import */ var _website_elements_blocker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./website-elements-blocker */ "./src/js/scripts/background/website-elements-blocker/index.js");
+
+var blockElements = function blockElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker, pFgFacebookDistractionBlocker) {
+  return new Promise(function (resolve) {
+    //run scripts on tabs
+    chrome.tabs.query({}, function (tabs) {
+      tabs.forEach(function (tab) {
+        if (tab.url.includes('youtube.com')) {
+          chrome.tabs.sendMessage(tab.id, {
+            action: 'blockYoutubeElements',
+            pFgFocusModeActive: pFgFocusModeActive,
+            pFgYouTubeDistractionBlocker: pFgYouTubeDistractionBlocker
+          });
+        }
+        if (tab.url.includes('facebook.com')) {
+          chrome.tabs.sendMessage(tab.id, {
+            action: 'blockFacebookElements',
+            pFgFocusModeActive: pFgFocusModeActive,
+            pFgFacebookDistractionBlocker: pFgFacebookDistractionBlocker
+          });
+        }
+
+        // if (tab.url.includes('facebook.com')) {
+        //     chrome.scripting.executeScript({
+        //         target: {tabId: tab.id},
+        //         func:  blockers.blockFacebookElements(pFgFocusModeActive, pFgFacebookDistractionBlocker)
+        //     });
+        // }
+        //
+        // if (tab.url.includes('youtube.com')) {
+        //     chrome.scripting.executeScript({
+        //         target: {tabId: tab.id},
+        //         func:  blockers.blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker)
+        //     });
+        // }
+      });
+    });
+
+    resolve(); // Resolve the promise when the tabs have been processed
+  });
+};
+
+/***/ }),
+
 /***/ "./src/js/scripts/background/index.js":
 /*!********************************************!*\
   !*** ./src/js/scripts/background/index.js ***!
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   blockAndRedirect: () => (/* reexport module object */ _blockAndRedirect__WEBPACK_IMPORTED_MODULE_0__)
+/* harmony export */   blockAndRedirect: () => (/* reexport module object */ _blockAndRedirect__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   blockElements: () => (/* reexport module object */ _blockWebsitesElements__WEBPACK_IMPORTED_MODULE_1__)
 /* harmony export */ });
 /* harmony import */ var _blockAndRedirect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockAndRedirect */ "./src/js/scripts/background/blockAndRedirect.js");
+/* harmony import */ var _blockWebsitesElements__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blockWebsitesElements */ "./src/js/scripts/background/blockWebsitesElements.js");
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/scripts/background/website-elements-blocker/blockFacebookElements.js":
+/*!*************************************************************************************!*\
+  !*** ./src/js/scripts/background/website-elements-blocker/blockFacebookElements.js ***!
+  \*************************************************************************************/
+/***/ (() => {
+
+// content-script-facebook.js
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === 'blockFacebookElements') {
+    blockFacebookElements(message.pFgFocusModeActive, message.pFgFacebookDistractionBlocker);
+  }
+});
+function blockFacebookElements(pFgFocusModeActive, pFgFacebookDistractionBlocker) {
+  console.log('pFgFacebookDistractionBlocker:', pFgFacebookDistractionBlocker);
+  // Your logic to block elements on Facebook and perform any additional actions
+}
+
+/***/ }),
+
+/***/ "./src/js/scripts/background/website-elements-blocker/blockYoutubeElements.js":
+/*!************************************************************************************!*\
+  !*** ./src/js/scripts/background/website-elements-blocker/blockYoutubeElements.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../constants */ "./src/js/constants/index.js");
+// content-script-youtube.js
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === 'blockYoutubeElements') {
+    blockYoutubeElements(message.pFgFocusModeActive, message.pFgYouTubeDistractionBlocker);
+  }
+});
+function blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker) {
+  var customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+  console.log('pFgYouTubeDistractionBlocker:', pFgYouTubeDistractionBlocker);
+  // Your logic to block elements on YouTube and perform any additional actions
+
+  pFgYouTubeDistractionBlocker.forEach(function (element) {
+    if (element.activeRule === true || element.permanently === true) {
+      switch (element.actionName) {
+        case _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_THUMBNAIL:
+          blockYoutubeThumbnails(customImageURL);
+          break;
+        case _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_SHORTS:
+          break;
+        case _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_VIDEO_TITLE:
+          break;
+        default:
+          break;
+      }
+    }
+  });
+}
+
+// Cover all thumbnails with custom image
+var blockYoutubeThumbnails = function blockYoutubeThumbnails(imageUrl) {
+  var thumbnailImages = document.querySelectorAll('#thumbnail img');
+  for (var i = 0; i < thumbnailImages.length; i++) {
+    thumbnailImages[i].src = imageUrl;
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/scripts/background/website-elements-blocker/index.js":
+/*!*********************************************************************!*\
+  !*** ./src/js/scripts/background/website-elements-blocker/index.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _blockYoutubeElements_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockYoutubeElements.js */ "./src/js/scripts/background/website-elements-blocker/blockYoutubeElements.js");
+/* harmony import */ var _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blockFacebookElements.js */ "./src/js/scripts/background/website-elements-blocker/blockFacebookElements.js");
+/* harmony import */ var _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
 
@@ -548,6 +755,7 @@ __webpack_require__.r(__webpack_exports__);
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   convertHashToPascalCase: () => (/* binding */ convertHashToPascalCase),
@@ -575,6 +783,7 @@ function convertPascalCaseToHash(pascalCase) {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   loadData: () => (/* binding */ loadData),
@@ -626,6 +835,7 @@ function saveData(storageName, data) {
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   conversions: () => (/* reexport module object */ _conversions__WEBPACK_IMPORTED_MODULE_0__),
@@ -646,6 +856,7 @@ __webpack_require__.r(__webpack_exports__);
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -658,6 +869,7 @@ __webpack_require__.r(__webpack_exports__);
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -723,6 +935,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

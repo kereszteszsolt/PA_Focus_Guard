@@ -16967,12 +16967,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_0__),
 /* harmony export */   componentTitles: () => (/* reexport module object */ _componentTitles__WEBPACK_IMPORTED_MODULE_1__),
 /* harmony export */   containerComponents: () => (/* reexport module object */ _containerComponents__WEBPACK_IMPORTED_MODULE_3__),
-/* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__)
+/* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__),
+/* harmony export */   youtubeActionNames: () => (/* reexport module object */ _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__)
 /* harmony export */ });
 /* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./componentNames */ "./src/js/constants/componentNames.js");
 /* harmony import */ var _componentTitles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentTitles */ "./src/js/constants/componentTitles.js");
 /* harmony import */ var _storageNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageNames */ "./src/js/constants/storageNames.js");
 /* harmony import */ var _containerComponents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containerComponents */ "./src/js/constants/containerComponents.js");
+/* harmony import */ var _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./youtubeActionNames */ "./src/js/constants/youtubeActionNames.js");
+
+
 
 
 
@@ -17003,6 +17007,24 @@ var TEMPORARILY_BLOCKED_WEBSITES = 'fgTemporarilyBlockedWebsites';
 var PERMANENTLY_BLOCKED_WEBSITES = 'fgPermanentlyBlockedWebsites';
 var YOUTUBE_DISTRACTION_BLOCKER = 'fgYouTubeDistractionBlocker';
 var FACEBOOK_DISTRACTION_BLOCKER = 'fgFacebookDistractionBlocker';
+
+/***/ }),
+
+/***/ "./src/js/constants/youtubeActionNames.js":
+/*!************************************************!*\
+  !*** ./src/js/constants/youtubeActionNames.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   YOUTUBE_SHORTS: () => (/* binding */ YOUTUBE_SHORTS),
+/* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
+/* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
+/* harmony export */ });
+var YOUTUBE_THUMBNAIL = 'YouTubeThumbnail';
+var YOUTUBE_SHORTS = 'YouTubeShorts';
+var YOUTUBE_VIDEO_TITLE = 'YouTubeVideoTitle';
 
 /***/ }),
 
