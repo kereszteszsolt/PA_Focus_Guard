@@ -467,7 +467,7 @@ var applyNewDynamicRules = function applyNewDynamicRules(rules) {
   });
 };
 function closeBlockedTabs(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     chrome.tabs.query({}, function (tabs) {
       tabs.forEach(function (tab) {
         if (pFgFocusModeActive === true) {

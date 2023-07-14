@@ -47,7 +47,7 @@ const applyNewDynamicRules = (rules) => {
 };
 
 function closeBlockedTabs(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         chrome.tabs.query({}, function (tabs) {
             tabs.forEach(function (tab) {
                 if (pFgFocusModeActive === true) {
