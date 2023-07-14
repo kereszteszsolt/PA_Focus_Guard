@@ -7,7 +7,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     }
 });
 
-
 function blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker) {
     let customImageURL = 'https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
 
@@ -15,7 +14,7 @@ function blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker) 
     // Your logic to block elements on YouTube and perform any additional actions
 
     pFgYouTubeDistractionBlocker.forEach((element) => {
-        if ((element.activeRule === true) || (element.permanently === true)) {
+        if ((element.activeRule === true) && ((pFgFocusModeActive)|| (element.permanently === true))) {
             switch (element.actionName) {
                 case constants.youtubeActionNames.YOUTUBE_THUMBNAIL:
                     blockYoutubeThumbnails(customImageURL);

@@ -3,6 +3,7 @@ import * as defaultComponentData from './defaults/defaultData';
 import {defaultComponents} from './defaults/defaultComponents';
 import * as constants from './constants';
 import * as backgroundScripts from './scripts/background';
+import {youtube} from './defaults/defaultData';
 
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
@@ -85,6 +86,12 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
         }
 
         backgroundScripts.blockAndRedirect.blockOrAllow(fgFocusModeActive, fgTemporarilyBlockedWebsites, fgPermanentlyBlockedWebsites);
+        backgroundScripts.blockElements.blockElements(fgFocusModeActive, fgYouTubeDistractionBlocker, fgFacebookDistractionBlocker);
+    }
+});
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status === 'complete') {
         backgroundScripts.blockElements.blockElements(fgFocusModeActive, fgYouTubeDistractionBlocker, fgFacebookDistractionBlocker);
     }
 });

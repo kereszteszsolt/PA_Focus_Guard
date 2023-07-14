@@ -207,7 +207,7 @@ function blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker) 
   // Your logic to block elements on YouTube and perform any additional actions
 
   pFgYouTubeDistractionBlocker.forEach(function (element) {
-    if (element.activeRule === true || element.permanently === true) {
+    if (element.activeRule === true && (pFgFocusModeActive || element.permanently === true)) {
       switch (element.actionName) {
         case _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_THUMBNAIL:
           blockYoutubeThumbnails(customImageURL);

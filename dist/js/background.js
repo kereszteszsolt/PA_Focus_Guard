@@ -20,6 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // when the extension is first installed, set default values
 chrome.runtime.onInstalled.addListener(function () {
   _scripts_utils__WEBPACK_IMPORTED_MODULE_0__.dataAccess.saveData(_constants__WEBPACK_IMPORTED_MODULE_3__.storageNames.FG_FOCUS_MODE_ACTIVE, false).then(function () {
@@ -84,6 +85,11 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
       fgFacebookDistractionBlocker = JSON.parse(changes.fgFacebookDistractionBlocker.newValue);
     }
     _scripts_background__WEBPACK_IMPORTED_MODULE_4__.blockAndRedirect.blockOrAllow(fgFocusModeActive, fgTemporarilyBlockedWebsites, fgPermanentlyBlockedWebsites);
+    _scripts_background__WEBPACK_IMPORTED_MODULE_4__.blockElements.blockElements(fgFocusModeActive, fgYouTubeDistractionBlocker, fgFacebookDistractionBlocker);
+  }
+});
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  if (changeInfo.status === 'complete') {
     _scripts_background__WEBPACK_IMPORTED_MODULE_4__.blockElements.blockElements(fgFocusModeActive, fgYouTubeDistractionBlocker, fgFacebookDistractionBlocker);
   }
 });
@@ -704,7 +710,7 @@ function blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker) 
   // Your logic to block elements on YouTube and perform any additional actions
 
   pFgYouTubeDistractionBlocker.forEach(function (element) {
-    if (element.activeRule === true || element.permanently === true) {
+    if (element.activeRule === true && (pFgFocusModeActive || element.permanently === true)) {
       switch (element.actionName) {
         case _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_THUMBNAIL:
           blockYoutubeThumbnails(customImageURL);
