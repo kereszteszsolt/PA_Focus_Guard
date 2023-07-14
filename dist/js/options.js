@@ -17081,6 +17081,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     saveListOfDistractions: function saveListOfDistractions() {
       chrome.storage.sync.set(_defineProperty({}, this.storageName, JSON.stringify(this.websiteElements)));
+    },
+    formatSearchTerms: function formatSearchTerms(searchTerms) {
+      var maxLen = 20;
+      var joinedSearchTerms = searchTerms.join(', ');
+      var trimmedSearchTerms = joinedSearchTerms.length > maxLen ? joinedSearchTerms.substring(0, maxLen) + '...' : joinedSearchTerms;
+      return trimmedSearchTerms;
     }
   }
 });
@@ -17250,13 +17256,19 @@ var _hoisted_2 = {
   "class": "distractions-list"
 };
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Distraction"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Search Terms"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Active Rule"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Permanent")])], -1 /* HOISTED */);
-var _hoisted_4 = ["onUpdate:modelValue"];
-var _hoisted_5 = ["onUpdate:modelValue"];
+var _hoisted_4 = {
+  "class": "search-terms-tooltip"
+};
+var _hoisted_5 = {
+  "class": "tooltip-text"
+};
+var _hoisted_6 = ["onUpdate:modelValue"];
+var _hoisted_7 = ["onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteElements, function (distraction, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.searchTerms), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatSearchTerms(distraction.searchTerms)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.searchTerms), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       type: "checkbox",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return distraction.activeRule = $event;
@@ -17264,7 +17276,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onChange: _cache[0] || (_cache[0] = function () {
         return $options.saveListOfDistractions && $options.saveListOfDistractions.apply($options, arguments);
       })
-    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, distraction.activeRule]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, distraction.activeRule]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       type: "checkbox",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return distraction.permanently = $event;
@@ -17272,7 +17284,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onChange: _cache[1] || (_cache[1] = function () {
         return $options.saveListOfDistractions && $options.saveListOfDistractions.apply($options, arguments);
       })
-    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_5), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, distraction.permanently]])])]);
+    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_7), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, distraction.permanently]])])]);
   }), 128 /* KEYED_FRAGMENT */))])])])])], 64 /* STABLE_FRAGMENT */);
 }
 
@@ -17655,23 +17667,26 @@ __webpack_require__.r(__webpack_exports__);
 
 var youtube = [{
   name: 'Youtube - Thumbnails',
-  actionDescription: 'Replace',
-  action: 'replace',
+  searchTerms: ['youtube.com'],
+  customSearchTerms: [],
   actionName: _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_THUMBNAIL,
+  action: 'remove',
   activeRule: true,
   permanently: false
 }, {
   name: 'Youtube - Shorts',
-  actionDescription: 'Redirect to message',
-  action: 'remove',
+  searchTerms: ['youtube.com'],
+  customSearchTerms: [],
   actionName: _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_SHORTS,
+  action: 'remove',
   activeRule: true,
   permanently: false
 }, {
   name: 'Youtube - Video Titles',
-  actionDescription: 'Redirect to message',
-  action: 'remove',
+  searchTerms: ['youtube.com'],
+  customSearchTerms: [],
   actionName: _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_VIDEO_TITLE,
+  action: 'remove',
   activeRule: true,
   permanently: false
 }];
@@ -17815,7 +17830,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main-container {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n.distractions-list table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.distractions-list table thead tr th {\n  padding: 8px;\n  border-bottom: 1px solid #ccc;\n  text-align: left;\n}\n.distractions-list table thead tr th:nth-child(3) {\n  width: 100px;\n}\n.distractions-list table thead tr th:nth-child(4) {\n  width: 100px;\n}\n.distractions-list table tbody tr td {\n  padding: 8px;\n  border-bottom: 1px solid #ccc;\n}\n.distractions-list table tbody tr td:first-child {\n  font-size: 18px;\n  font-weight: bold;\n  color: #574513;\n}\n.distractions-list table tbody tr td:nth-child(2) {\n  font-size: 16px;\n}\n.distractions-list table tbody tr td:nth-child(3) {\n  width: 100px;\n}\n.distractions-list table tbody tr td:nth-child(4) {\n  width: 100px;\n}\n.distractions-list table tbody tr td input[type=checkbox] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #ccc;\n  border-radius: 2px;\n  cursor: pointer;\n  margin: 2px auto -2px auto;\n  transition: background-color 0.3s ease;\n}\n.distractions-list table tbody tr td input[type=checkbox]:checked {\n  background-color: #574513;\n}\n.distractions-list table tbody tr td input[type=checkbox]:checked:hover {\n  background-color: #2d240a;\n}\n.distractions-list table tbody tr td input[type=checkbox]:checked:before {\n  content: \"\";\n  display: block;\n  width: 4px;\n  height: 8px;\n  border: solid #fff;\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg);\n  margin: 3px auto -3px auto;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main-container {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n.distractions-list table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.distractions-list table thead tr th {\n  padding: 8px;\n  border-bottom: 1px solid #ccc;\n  text-align: left;\n}\n.distractions-list table thead tr th:nth-child(3) {\n  width: 100px;\n}\n.distractions-list table thead tr th:nth-child(4) {\n  width: 100px;\n}\n.distractions-list table tbody tr td {\n  padding: 8px;\n  border-bottom: 1px solid #ccc;\n}\n.distractions-list table tbody tr td:first-child {\n  font-size: 18px;\n  font-weight: bold;\n  color: #574513;\n}\n.distractions-list table tbody tr td:nth-child(2) {\n  font-size: 16px;\n}\n.distractions-list table tbody tr td:nth-child(3) {\n  width: 100px;\n}\n.distractions-list table tbody tr td:nth-child(4) {\n  width: 100px;\n}\n.distractions-list table tbody tr td input[type=checkbox] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #ccc;\n  border-radius: 2px;\n  cursor: pointer;\n  margin: 2px auto -2px auto;\n  transition: background-color 0.3s ease;\n}\n.distractions-list table tbody tr td input[type=checkbox]:checked {\n  background-color: #574513;\n}\n.distractions-list table tbody tr td input[type=checkbox]:checked:hover {\n  background-color: #2d240a;\n}\n.distractions-list table tbody tr td input[type=checkbox]:checked:before {\n  content: \"\";\n  display: block;\n  width: 4px;\n  height: 8px;\n  border: solid #fff;\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg);\n  margin: 3px auto -3px auto;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\n.search-terms-tooltip {\n  position: relative;\n  display: inline-block;\n}\n.search-terms-tooltip span {\n  display: inline-block;\n  vertical-align: middle;\n}\n.search-terms-tooltip .tooltip-text {\n  visibility: hidden;\n  background-color: #000;\n  color: #fff;\n  text-align: center;\n  border-radius: 4px;\n  padding: 5px;\n  position: absolute;\n  z-index: 1;\n  bottom: 100%;\n  left: 50%;\n  transform: translateX(-50%);\n  opacity: 0;\n  transition: opacity 0.3s;\n  white-space: nowrap;\n}\n.search-terms-tooltip .tooltip-text span {\n  display: block;\n}\n.search-terms-tooltip:hover .tooltip-text {\n  visibility: visible;\n  opacity: 1;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

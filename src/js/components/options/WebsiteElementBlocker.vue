@@ -15,7 +15,10 @@
         <tr v-for="(distraction, index) in websiteElements" :key="index">
           <td>{{ distraction.name }}</td>
           <td>
-            {{ distraction.searchTerms }}
+            <div class="search-terms-tooltip">
+              <span>{{ formatSearchTerms(distraction.searchTerms) }}</span>
+              <span class="tooltip-text">{{ distraction.searchTerms }}</span>
+            </div>
           </td>
           <td>
             <input type="checkbox" v-model="distraction.activeRule" @change="saveListOfDistractions"/>
@@ -84,7 +87,13 @@ export default {
     },
     saveListOfDistractions() {
       chrome.storage.sync.set({[this.storageName]: JSON.stringify(this.websiteElements)});
-    }
+    },
+    formatSearchTerms(searchTerms) {
+      const maxLen = 20;
+      const joinedSearchTerms = searchTerms.join(', ');
+      const trimmedSearchTerms = joinedSearchTerms.length > maxLen ? joinedSearchTerms.substring(0, maxLen) + '...' : joinedSearchTerms;
+      return trimmedSearchTerms;
+    },
   }
 };
 </script>
@@ -196,6 +205,42 @@ $md-warning-color: #f1c40f;
         }
       }
     }
+  }
+}
+
+.search-terms-tooltip {
+  position: relative;
+  display: inline-block;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+
+    span {
+      display: block;
+    }
+  }
+
+  &:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
   }
 }
 </style>

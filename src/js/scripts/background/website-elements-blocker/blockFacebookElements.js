@@ -30,6 +30,7 @@ function blockFacebookElements(pFgFocusModeActive, pFgFacebookDistractionBlocker
     });
 }
 
+// Reels block from timeline and people you may know
 const blockFromTimeLine = (element) => {
     for (let fbsugs of document.querySelectorAll('span[dir="auto"]')) {
         if(element.searchTerms.includes(fbsugs.innerText) || element.searchTerms.includes(fbsugs.innerText)){

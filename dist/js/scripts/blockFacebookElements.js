@@ -236,6 +236,7 @@ function blockFacebookElements(pFgFocusModeActive, pFgFacebookDistractionBlocker
           blockFromTimeLine(element);
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_STORIES:
+          blockFromTop(element);
           break;
         case _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_PEOPLE_YOU_MAY_KNOW:
           blockFromTimeLine(element);
@@ -249,6 +250,8 @@ function blockFacebookElements(pFgFocusModeActive, pFgFacebookDistractionBlocker
     }
   });
 }
+
+// Reels block from timeline and people you may know
 var blockFromTimeLine = function blockFromTimeLine(element) {
   var _iterator = _createForOfIteratorHelper(document.querySelectorAll('span[dir="auto"]')),
     _step;
@@ -263,6 +266,24 @@ var blockFromTimeLine = function blockFromTimeLine(element) {
     _iterator.e(err);
   } finally {
     _iterator.f();
+  }
+};
+
+// Stories & Reels tab from top of the page
+var blockFromTop = function blockFromTop(element) {
+  var _iterator2 = _createForOfIteratorHelper(document.querySelectorAll('span[dir="auto"]')),
+    _step2;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var fbsugs = _step2.value;
+      if (element.searchTerms.includes(fbsugs.innerText) || element.searchTerms.includes(fbsugs.innerText)) {
+        fbsugs.closest('div[role]').children[0].remove();
+      }
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
   }
 };
 })();
