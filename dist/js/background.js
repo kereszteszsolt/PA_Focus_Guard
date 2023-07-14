@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/js/background.js":
@@ -7,7 +8,6 @@
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/utils */ "./src/js/scripts/utils/index.js");
 /* harmony import */ var _defaults_defaultData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaults/defaultData */ "./src/js/defaults/defaultData.js");
@@ -102,7 +102,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
@@ -123,7 +122,6 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'FacebookDistractionBlocker';
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
@@ -144,7 +142,6 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'Facebook Distraction Blocker';
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ BLOCKED_WEBSITES_BY_DOMAIN),
@@ -155,18 +152,38 @@ var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
 
 /***/ }),
 
+/***/ "./src/js/constants/facebookActionNames.js":
+/*!*************************************************!*\
+  !*** ./src/js/constants/facebookActionNames.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_PEOPLE_YOU_MAY_KNOW: () => (/* binding */ FACEBOOK_PEOPLE_YOU_MAY_KNOW),
+/* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
+/* harmony export */   FACEBOOK_SPONSORED: () => (/* binding */ FACEBOOK_SPONSORED),
+/* harmony export */   FACEBOOK_STORIES: () => (/* binding */ FACEBOOK_STORIES)
+/* harmony export */ });
+var FACEBOOK_REELS = 'FacebookReels';
+var FACEBOOK_STORIES = 'FacebookStories';
+var FACEBOOK_PEOPLE_YOU_MAY_KNOW = 'FacebookPeopleYouMayKnow';
+var FACEBOOK_SPONSORED = 'FacebookSponsored';
+
+/***/ }),
+
 /***/ "./src/js/constants/index.js":
 /*!***********************************!*\
   !*** ./src/js/constants/index.js ***!
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_0__),
 /* harmony export */   componentTitles: () => (/* reexport module object */ _componentTitles__WEBPACK_IMPORTED_MODULE_1__),
 /* harmony export */   containerComponents: () => (/* reexport module object */ _containerComponents__WEBPACK_IMPORTED_MODULE_3__),
+/* harmony export */   facebookActionNames: () => (/* reexport module object */ _facebookActionNames__WEBPACK_IMPORTED_MODULE_5__),
 /* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__),
 /* harmony export */   youtubeActionNames: () => (/* reexport module object */ _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__)
 /* harmony export */ });
@@ -175,6 +192,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storageNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageNames */ "./src/js/constants/storageNames.js");
 /* harmony import */ var _containerComponents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containerComponents */ "./src/js/constants/containerComponents.js");
 /* harmony import */ var _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./youtubeActionNames */ "./src/js/constants/youtubeActionNames.js");
+/* harmony import */ var _facebookActionNames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./facebookActionNames */ "./src/js/constants/facebookActionNames.js");
+
+
 
 
 
@@ -194,7 +214,6 @@ __webpack_require__.r(__webpack_exports__);
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_DISTRACTION_BLOCKER: () => (/* binding */ FACEBOOK_DISTRACTION_BLOCKER),
@@ -217,7 +236,6 @@ var FACEBOOK_DISTRACTION_BLOCKER = 'fgFacebookDistractionBlocker';
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   YOUTUBE_SHORTS: () => (/* binding */ YOUTUBE_SHORTS),
@@ -236,7 +254,6 @@ var YOUTUBE_VIDEO_TITLE = 'YouTubeVideoTitle';
   \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   defaultComponents: () => (/* binding */ defaultComponents)
@@ -289,7 +306,6 @@ var defaultComponents = [{
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Perm: () => (/* reexport safe */ _defaultDomainsForPermanentlyBlock__WEBPACK_IMPORTED_MODULE_3__.domains4Perm),
@@ -314,7 +330,6 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Perm: () => (/* binding */ domains4Perm)
@@ -332,7 +347,6 @@ var domains4Perm = [{
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   domains4Temp: () => (/* binding */ domains4Temp)
@@ -404,16 +418,42 @@ var domains4Temp = [{
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   facebook: () => (/* binding */ facebook)
 /* harmony export */ });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+
 var facebook = [{
   name: 'Facebook - Reels',
-  actionDescription: 'Redirect to message',
+  searchTerms: ['Reels and short videos', 'Reel-videók és rövid videók', 'Reel-uri şi videoclipuri scurte', 'Reels und kurzvideos', 'Reels y videos cortos', 'Reels et vidéos courtes'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_REELS,
   action: 'remove',
   activeRule: true,
+  permanently: false
+}, {
+  name: 'Facebook - Stories',
+  searchTerms: ['Stories', 'Történetek', 'Povestea ta', 'Deine Story', 'Tu historia', 'Votre Story'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_STORIES,
+  action: 'remove',
+  activeRule: true,
+  permanently: false
+}, {
+  name: 'Facebook - People You May Know',
+  searchTerms: ['People You May Know', 'Kit ismerhetek?'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_PEOPLE_YOU_MAY_KNOW,
+  action: 'remove',
+  activeRule: true,
+  permanently: false
+}, {
+  name: 'Facebook - Sponsored',
+  searchTerms: ['Sponsored', 'Hirdetés', 'Sponsorizat', 'Anzeige', 'Publicidad', 'Sponsorisé'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_SPONSORED,
+  activeRule: false,
   permanently: false
 }];
 
@@ -425,7 +465,6 @@ var facebook = [{
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   youtube: () => (/* binding */ youtube)
@@ -463,7 +502,6 @@ var youtube = [{
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockOrAllow: () => (/* binding */ blockOrAllow)
@@ -599,7 +637,6 @@ var blockOrAllow = /*#__PURE__*/function () {
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockElements: () => (/* binding */ blockElements)
@@ -654,7 +691,6 @@ var blockElements = function blockElements(pFgFocusModeActive, pFgYouTubeDistrac
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockAndRedirect: () => (/* reexport module object */ _blockAndRedirect__WEBPACK_IMPORTED_MODULE_0__),
@@ -673,18 +709,57 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************************************!*\
   !*** ./src/js/scripts/background/website-elements-blocker/blockFacebookElements.js ***!
   \*************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../constants */ "./src/js/constants/index.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 // content-script-facebook.js
+
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.action === 'blockFacebookElements') {
     blockFacebookElements(message.pFgFocusModeActive, message.pFgFacebookDistractionBlocker);
   }
 });
 function blockFacebookElements(pFgFocusModeActive, pFgFacebookDistractionBlocker) {
-  console.log('pFgFacebookDistractionBlocker:', pFgFacebookDistractionBlocker);
-  // Your logic to block elements on Facebook and perform any additional actions
+  pFgFacebookDistractionBlocker.forEach(function (element) {
+    if (element.activeRule === true && (pFgFocusModeActive || element.permanently === true)) {
+      switch (element.elementName) {
+        case _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_REELS:
+          blockFromTimeLine(element);
+          break;
+        case _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_STORIES:
+          break;
+        case _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_PEOPLE_YOU_MAY_KNOW:
+          blockFromTimeLine(element);
+          break;
+        case _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_SPONSORED:
+          blockFromTimeLine(element);
+          break;
+        default:
+          break;
+      }
+    }
+  });
 }
+var blockFromTimeLine = function blockFromTimeLine(element) {
+  var _iterator = _createForOfIteratorHelper(document.querySelectorAll('span[dir="auto"]')),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var fbsugs = _step.value;
+      if (element.searchTerms.includes(fbsugs.innerText) || element.searchTerms.includes(fbsugs.innerText)) {
+        fbsugs.closest('div[aria-labelledby]').remove();
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+};
 
 /***/ }),
 
@@ -694,7 +769,6 @@ function blockFacebookElements(pFgFocusModeActive, pFgFacebookDistractionBlocker
   \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../constants */ "./src/js/constants/index.js");
 // content-script-youtube.js
@@ -711,7 +785,7 @@ function blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker) 
 
   pFgYouTubeDistractionBlocker.forEach(function (element) {
     if (element.activeRule === true && (pFgFocusModeActive || element.permanently === true)) {
-      switch (element.actionName) {
+      switch (element.elementName) {
         case _constants__WEBPACK_IMPORTED_MODULE_0__.youtubeActionNames.YOUTUBE_THUMBNAIL:
           blockYoutubeThumbnails(customImageURL);
           break;
@@ -742,14 +816,9 @@ var blockYoutubeThumbnails = function blockYoutubeThumbnails(imageUrl) {
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blockYoutubeElements_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockYoutubeElements.js */ "./src/js/scripts/background/website-elements-blocker/blockYoutubeElements.js");
 /* harmony import */ var _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blockFacebookElements.js */ "./src/js/scripts/background/website-elements-blocker/blockFacebookElements.js");
-/* harmony import */ var _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _blockFacebookElements_js__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
 
@@ -761,7 +830,6 @@ __webpack_require__.r(__webpack_exports__);
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   convertHashToPascalCase: () => (/* binding */ convertHashToPascalCase),
@@ -789,7 +857,6 @@ function convertPascalCaseToHash(pascalCase) {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   loadData: () => (/* binding */ loadData),
@@ -841,7 +908,6 @@ function saveData(storageName, data) {
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   conversions: () => (/* reexport module object */ _conversions__WEBPACK_IMPORTED_MODULE_0__),
@@ -862,7 +928,6 @@ __webpack_require__.r(__webpack_exports__);
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -875,7 +940,6 @@ __webpack_require__.r(__webpack_exports__);
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -941,18 +1005,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

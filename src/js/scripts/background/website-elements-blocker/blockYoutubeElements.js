@@ -15,7 +15,7 @@ function blockYoutubeElements(pFgFocusModeActive, pFgYouTubeDistractionBlocker) 
 
     pFgYouTubeDistractionBlocker.forEach((element) => {
         if ((element.activeRule === true) && ((pFgFocusModeActive)|| (element.permanently === true))) {
-            switch (element.actionName) {
+            switch (element.elementName) {
                 case constants.youtubeActionNames.YOUTUBE_THUMBNAIL:
                     blockYoutubeThumbnails(customImageURL);
                     break;

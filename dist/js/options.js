@@ -17249,14 +17249,14 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "distractions-list"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Distraction"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Action"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Active Rule"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Permanent")])], -1 /* HOISTED */);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Distraction"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Search Terms"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Active Rule"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Permanent")])], -1 /* HOISTED */);
 var _hoisted_4 = ["onUpdate:modelValue"];
 var _hoisted_5 = ["onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.websiteElements, function (distraction, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.actionDescription), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(distraction.searchTerms), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       type: "checkbox",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return distraction.activeRule = $event;
@@ -17334,6 +17334,26 @@ var WEBSITE_ELEMENT_BLOCKER = 'WebsiteElementBlocker';
 
 /***/ }),
 
+/***/ "./src/js/constants/facebookActionNames.js":
+/*!*************************************************!*\
+  !*** ./src/js/constants/facebookActionNames.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_PEOPLE_YOU_MAY_KNOW: () => (/* binding */ FACEBOOK_PEOPLE_YOU_MAY_KNOW),
+/* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
+/* harmony export */   FACEBOOK_SPONSORED: () => (/* binding */ FACEBOOK_SPONSORED),
+/* harmony export */   FACEBOOK_STORIES: () => (/* binding */ FACEBOOK_STORIES)
+/* harmony export */ });
+var FACEBOOK_REELS = 'FacebookReels';
+var FACEBOOK_STORIES = 'FacebookStories';
+var FACEBOOK_PEOPLE_YOU_MAY_KNOW = 'FacebookPeopleYouMayKnow';
+var FACEBOOK_SPONSORED = 'FacebookSponsored';
+
+/***/ }),
+
 /***/ "./src/js/constants/index.js":
 /*!***********************************!*\
   !*** ./src/js/constants/index.js ***!
@@ -17345,6 +17365,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_0__),
 /* harmony export */   componentTitles: () => (/* reexport module object */ _componentTitles__WEBPACK_IMPORTED_MODULE_1__),
 /* harmony export */   containerComponents: () => (/* reexport module object */ _containerComponents__WEBPACK_IMPORTED_MODULE_3__),
+/* harmony export */   facebookActionNames: () => (/* reexport module object */ _facebookActionNames__WEBPACK_IMPORTED_MODULE_5__),
 /* harmony export */   storageNames: () => (/* reexport module object */ _storageNames__WEBPACK_IMPORTED_MODULE_2__),
 /* harmony export */   youtubeActionNames: () => (/* reexport module object */ _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__)
 /* harmony export */ });
@@ -17353,6 +17374,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storageNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageNames */ "./src/js/constants/storageNames.js");
 /* harmony import */ var _containerComponents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containerComponents */ "./src/js/constants/containerComponents.js");
 /* harmony import */ var _youtubeActionNames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./youtubeActionNames */ "./src/js/constants/youtubeActionNames.js");
+/* harmony import */ var _facebookActionNames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./facebookActionNames */ "./src/js/constants/facebookActionNames.js");
+
+
 
 
 
@@ -17580,11 +17604,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   facebook: () => (/* binding */ facebook)
 /* harmony export */ });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+
 var facebook = [{
   name: 'Facebook - Reels',
-  actionDescription: 'Redirect to message',
+  searchTerms: ['Reels and short videos', 'Reel-videók és rövid videók', 'Reel-uri şi videoclipuri scurte', 'Reels und kurzvideos', 'Reels y videos cortos', 'Reels et vidéos courtes'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_REELS,
   action: 'remove',
   activeRule: true,
+  permanently: false
+}, {
+  name: 'Facebook - Stories',
+  searchTerms: ['Stories', 'Történetek', 'Povestea ta', 'Deine Story', 'Tu historia', 'Votre Story'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_STORIES,
+  action: 'remove',
+  activeRule: true,
+  permanently: false
+}, {
+  name: 'Facebook - People You May Know',
+  searchTerms: ['People You May Know', 'Kit ismerhetek?'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_PEOPLE_YOU_MAY_KNOW,
+  action: 'remove',
+  activeRule: true,
+  permanently: false
+}, {
+  name: 'Facebook - Sponsored',
+  searchTerms: ['Sponsored', 'Hirdetés', 'Sponsorizat', 'Anzeige', 'Publicidad', 'Sponsorisé'],
+  customSearchTerms: [],
+  elementName: _constants__WEBPACK_IMPORTED_MODULE_0__.facebookActionNames.FACEBOOK_SPONSORED,
+  activeRule: false,
   permanently: false
 }];
 
