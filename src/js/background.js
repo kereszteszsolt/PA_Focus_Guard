@@ -51,7 +51,6 @@ const readStorage = () => {
 
 readStorage();
 
-
 // any time a storage item is updated, update global variables
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (namespace === 'sync') {
@@ -68,24 +67,5 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
         }
 
         backgroundScripts.blockAndRedirect.blockOrAllow(fgFocusModeActive, fgTemporarilyBlockedWebsites, fgPermanentlyBlockedWebsites);
-
-        chrome.tabs.query({}, function (tabs) {
-            // loop through all tabs and close any that are on the blocked list
-            tabs.forEach(function (tab) {
-                if (fgFocusModeActive === true) {
-                    fgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
-                        if (tab.url.includes(site.name)) {
-                            chrome.tabs.remove(tab.id);
-                        }
-                    });
-                }
-
-                fgPermanentlyBlockedWebsites.filter(site => site.checked).forEach(site => {
-                    if (tab.url.includes(site.name)) {
-                        chrome.tabs.remove(tab.id);
-                    }
-                });
-            });
-        });
     }
 });

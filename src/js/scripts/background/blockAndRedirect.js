@@ -2,7 +2,7 @@ const getAndRemoveOldDynamicRules = () => {
     return new Promise((resolve) => {
         chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) => {
             const ruleIds = oldRules.map(rule => rule.id);
-            chrome.declarativeNetRequest.updateDynamicRules({ removeRuleIds: ruleIds }, resolve);
+            chrome.declarativeNetRequest.updateDynamicRules({removeRuleIds: ruleIds}, resolve);
         });
     });
 };
@@ -12,12 +12,12 @@ const createFGRule = (siteName, index) => ({
     priority: 1,
     action: {
         type: 'redirect',
-        redirect: { extensionPath: '/message.html' },
+        redirect: {extensionPath: '/message.html'}
     },
     condition: {
         urlFilter: siteName,
-        resourceTypes: ['main_frame', 'sub_frame'],
-    },
+        resourceTypes: ['main_frame', 'sub_frame']
+    }
 });
 
 const calculateNewDynamicRules = (pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites) => {
@@ -42,9 +42,33 @@ const calculateNewDynamicRules = (pFgFocusModeActive, pFgTemporarilyBlockedWebsi
 
 const applyNewDynamicRules = (rules) => {
     return new Promise((resolve) => {
-        chrome.declarativeNetRequest.updateDynamicRules({ addRules: rules }, resolve);
+        chrome.declarativeNetRequest.updateDynamicRules({addRules: rules}, resolve);
     });
 };
+
+function closeBlockedTabs(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites) {
+    return new Promise((resolve, reject) => {
+        chrome.tabs.query({}, function (tabs) {
+            tabs.forEach(function (tab) {
+                if (pFgFocusModeActive === true) {
+                    pFgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
+                        if (tab.url.includes(site.name)) {
+                            chrome.tabs.remove(tab.id);
+                        }
+                    });
+                }
+
+                pFgPermanentlyBlockedWebsites.filter(site => site.checked).forEach(site => {
+                    if (tab.url.includes(site.name)) {
+                        chrome.tabs.remove(tab.id);
+                    }
+                });
+            });
+
+            resolve(); // Resolve the promise when the tabs have been processed
+        });
+    });
+}
 
 export const blockOrAllow = async (pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites) => {
     console.log('blockOrAllow');
@@ -53,6 +77,7 @@ export const blockOrAllow = async (pFgFocusModeActive, pFgTemporarilyBlockedWebs
     await getAndRemoveOldDynamicRules();
     const newRules = calculateNewDynamicRules(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites);
     await applyNewDynamicRules(newRules);
+    await closeBlockedTabs(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites);
 
     chrome.declarativeNetRequest.getDynamicRules(null, (myRules) => {
         console.log('new rules: ', myRules);

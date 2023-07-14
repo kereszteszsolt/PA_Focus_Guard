@@ -70,27 +70,6 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
       fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
     }
     _scripts_background__WEBPACK_IMPORTED_MODULE_4__.blockAndRedirect.blockOrAllow(fgFocusModeActive, fgTemporarilyBlockedWebsites, fgPermanentlyBlockedWebsites);
-    chrome.tabs.query({}, function (tabs) {
-      // loop through all tabs and close any that are on the blocked list
-      tabs.forEach(function (tab) {
-        if (fgFocusModeActive === true) {
-          fgTemporarilyBlockedWebsites.filter(function (site) {
-            return site.checked;
-          }).forEach(function (site) {
-            if (tab.url.includes(site.name)) {
-              chrome.tabs.remove(tab.id);
-            }
-          });
-        }
-        fgPermanentlyBlockedWebsites.filter(function (site) {
-          return site.checked;
-        }).forEach(function (site) {
-          if (tab.url.includes(site.name)) {
-            chrome.tabs.remove(tab.id);
-          }
-        });
-      });
-    });
   }
 });
 
@@ -487,6 +466,32 @@ var applyNewDynamicRules = function applyNewDynamicRules(rules) {
     }, resolve);
   });
 };
+function closeBlockedTabs(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites) {
+  return new Promise(function (resolve, reject) {
+    chrome.tabs.query({}, function (tabs) {
+      tabs.forEach(function (tab) {
+        if (pFgFocusModeActive === true) {
+          pFgTemporarilyBlockedWebsites.filter(function (site) {
+            return site.checked;
+          }).forEach(function (site) {
+            if (tab.url.includes(site.name)) {
+              chrome.tabs.remove(tab.id);
+            }
+          });
+        }
+        pFgPermanentlyBlockedWebsites.filter(function (site) {
+          return site.checked;
+        }).forEach(function (site) {
+          if (tab.url.includes(site.name)) {
+            chrome.tabs.remove(tab.id);
+          }
+        });
+      });
+      resolve(); // Resolve the promise when the tabs have been processed
+    });
+  });
+}
+
 var blockOrAllow = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites) {
     var newRules;
@@ -502,10 +507,13 @@ var blockOrAllow = /*#__PURE__*/function () {
           _context.next = 7;
           return applyNewDynamicRules(newRules);
         case 7:
+          _context.next = 9;
+          return closeBlockedTabs(pFgFocusModeActive, pFgTemporarilyBlockedWebsites, pFgPermanentlyBlockedWebsites);
+        case 9:
           chrome.declarativeNetRequest.getDynamicRules(null, function (myRules) {
             console.log('new rules: ', myRules);
           });
-        case 8:
+        case 10:
         case "end":
           return _context.stop();
       }
