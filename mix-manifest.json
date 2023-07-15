@@ -1,15 +1,11 @@
 {
     "/dist/js/background.js": "/dist/js/background.js",
-    "/dist/js/scripts/blockFacebookElements.js": "/dist/js/scripts/blockFacebookElements.js",
-    "/dist/js/scripts/blockYoutubeElements.js": "/dist/js/scripts/blockYoutubeElements.js",
     "/dist/js/popup.js": "/dist/js/popup.js",
     "/dist/js/options.js": "/dist/js/options.js",
-    "/dist/css/options.css": "/dist/css/options.css",
-    "/dist/css/popup.css": "/dist/css/popup.css",
-    "/dist/popup.html": "/dist/popup.html",
-    "/dist/options.html": "/dist/options.html",
-    "/dist/message.html": "/dist/message.html",
+    "/dist/html/popup.html": "/dist/html/popup.html",
+    "/dist/html/options.html": "/dist/html/options.html",
+    "/dist/html/message.html": "/dist/html/message.html",
     "/dist/manifest.json": "/dist/manifest.json",
-    "/dist/focus.jpg": "/dist/focus.jpg",
-    "/dist/icon-80.png": "/dist/icon-80.png"
+    "/dist/assets/pictures/focus.jpg": "/dist/assets/pictures/focus.jpg",
+    "/dist/assets/icons/icon-80.png": "/dist/assets/icons/icon-80.png"
 }
