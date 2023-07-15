@@ -14,7 +14,19 @@ export default {
   data() {
     return {
       selectedFunctionality: config.fgAppFunctionalities[0],
-      selectedData: []
+      selectedData: [{
+        url: 'https://www.linkedin.com',
+        isEnabled: true,
+        isPermanent: true,
+      }, {
+        url: 'https://www.facebook.com',
+        isEnabled: true,
+        isPermanent: false
+      }, {
+        url: 'https://www.youtube.com',
+        isEnabled: false,
+        isPermanent: true
+      }]
     };
   },
   created() {
@@ -75,6 +87,8 @@ export default {
 
 .content {
   flex: 1; /* Allow the main content to take up the remaining space */
+  display: flex;
+  flex-direction: column;
   background-color: floralwhite;
   box-shadow: 0 5px 20px rgba(139, 69, 19, 0.2);
   padding: 1rem;
