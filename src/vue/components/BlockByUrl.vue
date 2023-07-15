@@ -1,8 +1,16 @@
 <script>
 export default {
   props: {
-    functionality: {
-      type: Object,
+    funcTitle: {
+      type: String,
+      required: true
+    },
+    funcName: {
+      type: String,
+      required: true
+    },
+    storageName: {
+      type: String,
       required: true
     },
     data: {
@@ -12,13 +20,17 @@ export default {
   },
   data () {
     return {
+
     };
   }
 }
 </script>
 
 <template>
-  Block By URL
+  {{ funcName }} <br/>
+  {{ funcTitle }} <br/>
+  {{ storageName }} <br/>
+  {{ data }} <br/>
 </template>
 
 <styles scoped lang="scss">
