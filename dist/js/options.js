@@ -16802,21 +16802,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_BlockByUrl_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/BlockByUrl.vue */ "./src/vue/components/BlockByUrl.vue");
+/* harmony import */ var _js_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/config */ "./src/js/config/index.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  computed: {
+    config: function config() {
+      return _js_config__WEBPACK_IMPORTED_MODULE_1__;
+    }
+  },
   components: {
     BlockByUrl: _components_BlockByUrl_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      selectedFunctionality: {
-        name: 'Block By URL',
-        description: 'Block a website by URL',
-        icon: 'fa fa-ban',
-        component: 'BlockByUrl'
-      },
+      selectedFunctionality: _js_config__WEBPACK_IMPORTED_MODULE_1__.fgAppFunctionalities[0],
       selectedData: []
     };
+  },
+  created: function created() {
+    this.loadFunctionality();
+  },
+  methods: {
+    loadFunctionality: function loadFunctionality() {}
   }
 });
 
@@ -16834,8 +16842,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    functionality: {
-      type: Object,
+    funcTitle: {
+      type: String,
+      required: true
+    },
+    funcName: {
+      type: String,
+      required: true
+    },
+    storageName: {
+      type: String,
       required: true
     },
     data: {
@@ -16870,17 +16886,31 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_2 = {
   "class": "container main"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_3 = {
   "class": "sidebar"
-}, " test ", -1 /* HOISTED */);
-var _hoisted_4 = {
+};
+var _hoisted_4 = ["onClick"];
+var _hoisted_5 = {
   "class": "content"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedFunctionality.component), {
-    functionality: "functionality",
-    data: "selectedData"
-  }))])])], 64 /* STABLE_FRAGMENT */);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.config.fgAppFunctionalities, function (func) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: func.funcName
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+        active: func.funcName === $data.selectedFunctionality.funcName
+      }),
+      onClick: function onClick($event) {
+        return $data.selectedFunctionality = func;
+      }
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(func.funcTitle), 11 /* TEXT, CLASS, PROPS */, _hoisted_4)]);
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedFunctionality.containerComponent), {
+    funcTitle: $data.selectedFunctionality.funcTitle,
+    funcName: $data.selectedFunctionality.funcName,
+    storageName: $data.selectedFunctionality.storageName,
+    data: $data.selectedData
+  }, null, 8 /* PROPS */, ["funcTitle", "funcName", "storageName", "data"]))])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -16895,9 +16925,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   render: () => (/* binding */ render)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return " Block By URL ";
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.funcName) + " ", 1 /* TEXT */), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.funcTitle) + " ", 1 /* TEXT */), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.storageName) + " ", 1 /* TEXT */), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data) + " ", 1 /* TEXT */), _hoisted_4], 64 /* STABLE_FRAGMENT */);
 }
+
+/***/ }),
+
+/***/ "./src/js/config/fgAppFunctionalities.js":
+/*!***********************************************!*\
+  !*** ./src/js/config/fgAppFunctionalities.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   fgAppFunctionalities: () => (/* binding */ fgAppFunctionalities)
+/* harmony export */ });
+var fgAppFunctionalities = [{
+  funcTitle: 'Block Website By Domain Name',
+  funcName: 'BlockWebsiteByDomainName',
+  containerComponent: 'BlockByUrl',
+  storageName: 'storageFgBlockWebsiteByDomainName'
+}, {
+  funcTitle: 'Block Website By URL',
+  funcName: 'BlockWebsiteByUrl',
+  containerComponent: 'BlockByUrl',
+  storageName: 'storageFgBlockWebsiteByUrl'
+}];
+
+/***/ }),
+
+/***/ "./src/js/config/index.js":
+/*!********************************!*\
+  !*** ./src/js/config/index.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   fgAppFunctionalities: () => (/* reexport safe */ _fgAppFunctionalities__WEBPACK_IMPORTED_MODULE_0__.fgAppFunctionalities)
+/* harmony export */ });
+/* harmony import */ var _fgAppFunctionalities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fgAppFunctionalities */ "./src/js/config/fgAppFunctionalities.js");
+
 
 /***/ }),
 
@@ -16940,7 +17016,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container {\n    max-width: 1140px;\n}\n}\n.app-bar {\n  display: flex;\n  flex-direction: column;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  padding: 0.5rem;\n  font-size: 3rem;\n}\n.main {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin-top: 1rem;\n}\n.content {\n  flex: 1; /* Allow the main content to take up the remaining space */\n  background-color: floralwhite;\n  box-shadow: 0 5px 20px rgba(139, 69, 19, 0.2);\n  padding: 1rem;\n  border-radius: 5px;\n}\n.sidebar {\n  flex: 0 0 200px;\n  background-color: floralwhite;\n  box-shadow: 0 5px 20px rgba(139, 69, 19, 0.2);\n  padding: 1rem;\n  margin-right: 1rem;\n  border-radius: 5px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container {\n    max-width: 1140px;\n}\n}\n.app-bar {\n  display: flex;\n  flex-direction: column;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  padding: 0.5rem;\n  font-size: 3rem;\n}\n.main {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin-top: 1rem;\n}\n.content {\n  flex: 1; /* Allow the main content to take up the remaining space */\n  background-color: floralwhite;\n  box-shadow: 0 5px 20px rgba(139, 69, 19, 0.2);\n  padding: 1rem;\n  border-radius: 5px;\n}\n.sidebar {\n  flex: 0 0 200px;\n  background-color: floralwhite;\n  box-shadow: 0 5px 20px rgba(139, 69, 19, 0.2);\n  padding: 1rem;\n  margin-right: 1rem;\n  border-radius: 5px;\n}\n.sidebar ul {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.sidebar ul li {\n  margin-bottom: 10px;\n}\n.sidebar ul li a {\n  display: block;\n  padding: 8px 12px;\n  border-radius: 4px;\n  color: #333;\n  text-decoration: none;\n  transition: background-color 0.3s ease;\n}\n.sidebar ul li a:hover {\n  background-color: #e0e0e0;\n}\n.sidebar ul li a.active {\n  background-color: #574513;\n  color: #fff;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
