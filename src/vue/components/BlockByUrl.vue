@@ -13,6 +13,10 @@ export default {
       type: String,
       required: true
     },
+    justDomain: {
+      type: Boolean,
+      required: true
+    },
     data: {
       type: Array,
       required: true
@@ -23,7 +27,12 @@ export default {
       currentPage: 1,
       numberOfPages: 1,
       itemsPerPage: 10,
-      currentPageItems: []
+      currentPageItems: [],
+      newUrl: '',
+      showInvalidErrorMessage: false,
+      showDuplicatedErrorMessage: false,
+      urlDomainPattern: new RegExp('^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)'),
+      urlLinkPattern: new RegExp('^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$')
     };
   },
   created() {
@@ -48,6 +57,35 @@ export default {
     },
     calculateCurrentPageItems: function () {
       this.currentPageItems = this.data.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+    },
+    validateDomain: function (pUrl) {
+      return this.justDomain ?  this.urlDomainPattern.test(pUrl) : this.urlLinkPattern.test(pUrl);
+    },
+    truncateUrl: function (pUrl) {
+      return this.justDomain ? this.urlDomainPattern.exec(pUrl)[1] : pUrl;
+    },
+    handleBlur: function (event) {
+      if (this.newUrl === '') {
+        this.showInvalidErrorMessage = false;
+        this.showDuplicatedErrorMessage = false;
+      } else {
+        this.showInvalidErrorMessage = !this.validateDomain(this.newUrl);
+        this.showDuplicatedErrorMessage = this.data.some(item => item.url === this.truncateUrl(this.newUrl));
+      }
+    },
+    addUrl: function () {
+      if (this.validateDomain(this.newUrl) && !this.data.some(item => item.url === this.truncateUrl(this.newUrl))) {
+        this.data.push({
+          url: this.truncateUrl(this.newUrl),
+          isEnabled: true,
+          isPermanent: false
+        });
+        this.calculateNumberOfPages();
+        this.calculateCurrentPageItems();
+        this.newUrl = '';
+        this.showInvalidErrorMessage = false;
+        this.showDuplicatedErrorMessage = false;
+      }
     }
   }
 };
@@ -91,6 +129,15 @@ export default {
     <button @click="flipPage('prev')" :disabled="currentPage === 1" class="button-primary">Prev</button>
     <span>{{ currentPage }} / {{ numberOfPages }}</span>
     <button @click="flipPage('next')" :disabled="currentPage === numberOfPages" class="button-primary">Next</button>
+  </div>
+  <div class="add-url-container">
+    <p>Add site:</p>
+    <div class="input-wrapper">
+      <input type="text" placeholder="example.com" v-model="newUrl" @blur="handleBlur"/>
+      <button @click="addUrl" class="add-url">Add</button>
+    </div>
+    <label v-if="showInvalidErrorMessage" class="error-message">Invalid domain</label>
+    <label v-if="showDuplicatedErrorMessage" class="error-message">Duplicated domain</label>
   </div>
 </template>
 
@@ -146,6 +193,10 @@ input[type="checkbox"] {
   margin: 2px auto -2px auto;
   transition: background-color 0.3s ease;
 
+  &:hover {
+    border-color: darken(#ccc, 10%);
+  }
+
   &:checked {
     background-color: $fg-primary-color;
   }
@@ -190,8 +241,8 @@ button {
   margin-top: 20px;
 
   button {
-    background-color: $fg-primary-color;
-    color: #fff;
+    background-color: lighten($fg-primary-color, 10%);
+    color: $fg-white-color;
     border: none;
     padding: 8px 16px;
     margin: 0 4px;
@@ -201,11 +252,12 @@ button {
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: darken($fg-primary-color, 10%);
+      background-color: $fg-primary-color;
     }
 
     &:disabled {
-      background-color: $fg-secondary-color;
+      background-color: lighten($fg-secondary-color, 20%);
+      color: $fg-secondary-color;
       cursor: not-allowed;
     }
   }
@@ -217,4 +269,56 @@ button {
   }
 }
 
+.add-url-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > p {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 8px 0 8px 0;
+    color: $fg-primary-color;
+  }
+
+  & .input-wrapper {
+    display: flex;
+    flex-direction: row;
+
+    > input {
+      flex: 1;
+      padding: 8px;
+      margin-right: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: lighten($fg-secondary-color, 20%);
+      color: $fg-white-color;
+      transition: background-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        background-color: $fg-secondary-color;
+      }
+    }
+
+
+    > button {
+      width: 100px;
+      padding: 8px 16px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      background-color: $fg-success-color;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($fg-success-color, 10%);
+      }
+    }
+
+  }
+}
 </style>

@@ -140,6 +140,7 @@ export default {
                  :funcTitle="selectedFunctionality.funcTitle"
                  :funcName="selectedFunctionality.funcName"
                  :storageName="selectedFunctionality.storageName"
+                 :justDomain="selectedFunctionality.justDomain"
                  :data="selectedData"></component>
     </div>
   </div>

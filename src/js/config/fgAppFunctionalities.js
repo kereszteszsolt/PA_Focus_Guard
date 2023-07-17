@@ -4,11 +4,13 @@ export const fgAppFunctionalities = [
         funcName: 'BlockWebsiteByDomainName',
         containerComponent: 'BlockByUrl',
         storageName: 'storageFgBlockWebsiteByDomainName',
+        justDomain: true,
     },
     {
         funcTitle: 'Block Website By URL',
         funcName: 'BlockWebsiteByUrl',
         containerComponent: 'BlockByUrl',
         storageName: 'storageFgBlockWebsiteByUrl',
+        justDomain: false,
     }
 ]
