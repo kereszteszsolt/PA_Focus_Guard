@@ -102,8 +102,6 @@ export default {
   padding: 1rem;
   margin-right: 1rem;
   border-radius: 5px;
-  //background-color: #f9f5ed;
-  //padding: 20px;
 
   ul {
     list-style: none;
