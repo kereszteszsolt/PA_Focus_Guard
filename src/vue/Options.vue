@@ -26,7 +26,88 @@ export default {
         url: 'https://www.youtube.com',
         isEnabled: false,
         isPermanent: true
-      }]
+      },
+        {
+          url: 'https://www.google.com',
+          isEnabled: false,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.twitter.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.instagram.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.reddit.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.pinterest.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.tumblr.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.netflix.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.amazon.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.ebay.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.wikipedia.org',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.yahoo.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.bing.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.apple.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.microsoft.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.whatsapp.com',
+          isEnabled: true,
+          isPermanent: false
+        },
+        {
+          url: 'https://www.snapchat.com',
+          isEnabled: true,
+          isPermanent: false
+        }
+      ]
     };
   },
   created() {

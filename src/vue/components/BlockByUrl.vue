@@ -19,7 +19,36 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      currentPage: 1,
+      numberOfPages: 1,
+      itemsPerPage: 10,
+      currentPageItems: []
+    };
+  },
+  created() {
+    this.calculateNumberOfPages();
+    this.calculateCurrentPageItems();
+  },
+  methods: {
+    flipPage: function (direction) {
+      if (direction === 'next') {
+        if (this.currentPage < this.numberOfPages) {
+          this.currentPage++;
+        }
+      } else if (direction === 'prev') {
+        if (this.currentPage > 1) {
+          this.currentPage--;
+        }
+      }
+      this.calculateCurrentPageItems();
+    },
+    calculateNumberOfPages: function () {
+      this.numberOfPages = Math.ceil(this.data.length / this.itemsPerPage);
+    },
+    calculateCurrentPageItems: function () {
+      this.currentPageItems = this.data.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+    }
   }
 };
 </script>
@@ -39,7 +68,7 @@ export default {
       </tr>
       </thead>
       <tbody>
-      <tr v-for="item in data" v-bind:key="item.url">
+      <tr v-for="item in currentPageItems" v-bind:key="item.url">
         <td>{{ item.url }}</td>
         <td>
           <label class="checkbox">
@@ -57,6 +86,11 @@ export default {
       </tr>
       </tbody>
     </table>
+  </div>
+  <div class="pagination-controls">
+    <button @click="flipPage('prev')" :disabled="currentPage === 1" class="button-primary">Prev</button>
+    <span>{{ currentPage }} / {{ numberOfPages }}</span>
+    <button @click="flipPage('next')" :disabled="currentPage === numberOfPages" class="button-primary">Next</button>
   </div>
 </template>
 
@@ -95,8 +129,8 @@ export default {
       }
 
       &:last-child {
-         text-align: center;
-          width: 48px;
+        text-align: center;
+        width: 48px;
       }
     }
   }
@@ -148,4 +182,39 @@ button {
     background-color: darken($fg-danger-color, 10%);
   }
 }
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    background-color: $fg-primary-color;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($fg-primary-color, 10%);
+    }
+
+    &:disabled {
+      background-color: $fg-secondary-color;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    color: $fg-primary-color;
+    font-weight: bold;
+    margin: 0 8px;
+  }
+}
+
 </style>
