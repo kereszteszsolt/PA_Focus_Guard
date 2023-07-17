@@ -16791,6 +16791,41 @@ const replacer = (_key, val) => {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/vue/Popup.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/vue/Popup.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      isOn: true
+    };
+  },
+  methods: {
+    activate: function activate() {
+      this.isOn = true;
+    },
+    deactivate: function deactivate() {
+      this.isOn = false;
+    },
+    settings: function settings() {
+      if (chrome.runtime.openOptionsPage) {
+        chrome.runtime.openOptionsPage();
+      } else {
+        window.open(chrome.runtime.getURL('options.html'));
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/vue/Popup.vue?vue&type=template&id=b64ea48c&scoped=true":
 /*!***********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/vue/Popup.vue?vue&type=template&id=b64ea48c&scoped=true ***!
@@ -16801,8 +16836,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   render: () => (/* binding */ render)
 /* harmony export */ });
-function render(_ctx, _cache) {
-  return null;
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _withScopeId = function _withScopeId(n) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-b64ea48c"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
+};
+var _hoisted_1 = {
+  "class": "popup-container"
+};
+var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "p-title"
+  }, " Focus Guard ", -1 /* HOISTED */);
+});
+var _hoisted_3 = {
+  "class": "on-off"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+      'button-danger': !$data.isOn,
+      'button-danger-is-off': $data.isOn
+    }),
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.deactivate && $options.deactivate.apply($options, arguments);
+    })
+  }, "Off", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+      'button-success': $data.isOn,
+      'button-success-is-off': !$data.isOn
+    }),
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.activate && $options.activate.apply($options, arguments);
+    })
+  }, "On", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "button-primary",
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.settings && $options.settings.apply($options, arguments);
+    })
+  }, "settings")]);
 }
 
 /***/ }),
@@ -16823,7 +16895,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c], body[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  background-color: floralwhite;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-b64ea48c]:hover {\n  background-color: #81661c;\n}\n.popup-container[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  background-color: floralwhite;\n  padding: 0;\n  color: #574513;\n  font-weight: bold;\n  align-items: center;\n  height: 100vh;\n}\n.on-off[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  padding: 1rem;\n  width: 100%;\n}\n.p-title[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  justify-content: space-around;\n  font-size: 1.5rem;\n  padding: 0.25rem;\n}\n.button-success[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success[data-v-b64ea48c]:hover {\n  border-left: 0px;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  border-right: 0px;\n}\n.button-success-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #2ecc71;\n  border-color: #2ecc71;\n  width: 100%;\n  border-left: 0px;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-danger-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #e74c3c;\n  border-color: #e74c3c;\n  width: 100%;\n  border-right: 0px;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17244,20 +17316,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Popup_vue_vue_type_template_id_b64ea48c_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Popup.vue?vue&type=template&id=b64ea48c&scoped=true */ "./src/vue/Popup.vue?vue&type=template&id=b64ea48c&scoped=true");
-/* harmony import */ var _Popup_vue_vue_type_style_index_0_id_b64ea48c_scoped_true_lang_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Popup.vue?vue&type=style&index=0&id=b64ea48c&scoped=true&lang=scss */ "./src/vue/Popup.vue?vue&type=style&index=0&id=b64ea48c&scoped=true&lang=scss");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Popup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Popup.vue?vue&type=script&lang=js */ "./src/vue/Popup.vue?vue&type=script&lang=js");
+/* harmony import */ var _Popup_vue_vue_type_style_index_0_id_b64ea48c_scoped_true_lang_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Popup.vue?vue&type=style&index=0&id=b64ea48c&scoped=true&lang=scss */ "./src/vue/Popup.vue?vue&type=style&index=0&id=b64ea48c&scoped=true&lang=scss");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
-const script = {}
+
+
 
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_Popup_vue_vue_type_template_id_b64ea48c_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-b64ea48c"],['__file',"src/vue/Popup.vue"]])
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Popup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Popup_vue_vue_type_template_id_b64ea48c_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-b64ea48c"],['__file',"src/vue/Popup.vue"]])
 /* hot reload */
 if (false) {}
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./src/vue/Popup.vue?vue&type=script&lang=js":
+/*!***************************************************!*\
+  !*** ./src/vue/Popup.vue?vue&type=script&lang=js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Popup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Popup_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Popup.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/vue/Popup.vue?vue&type=script&lang=js");
+ 
 
 /***/ }),
 
