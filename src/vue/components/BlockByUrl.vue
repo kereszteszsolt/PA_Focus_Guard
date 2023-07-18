@@ -60,7 +60,7 @@ export default {
       this.currentPageItems = this.urlList.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
     },
     validateDomain: function (pUrl) {
-      return this.justDomain ?  this.urlDomainPattern.test(pUrl) : this.urlLinkPattern.test(pUrl);
+      return this.justDomain ? this.urlDomainPattern.test(pUrl) : this.urlLinkPattern.test(pUrl);
     },
     truncateUrl: function (pUrl) {
       return this.justDomain ? this.urlDomainPattern.exec(pUrl)[1] : pUrl;
@@ -92,22 +92,36 @@ export default {
       this.urlList = this.urlList.filter(item => item.url !== pUrl);
       this.calculateNumberOfPages();
       this.calculateCurrentPageItems();
+    },
+    markForBlock: function (item) {
+      if (item.isMarkedForBlock) {
+        item.isMarkedForBlock = false;
+        item.isPermanentlyBlocked = false;
+      } else {
+        item.isMarkedForBlock = true;
+      }
+    },
+    markForPermanentlyBlock: function (item) {
+      if (item.isPermanentlyBlocked) {
+        item.isPermanentlyBlocked = false;
+      } else {
+        item.isPermanentlyBlocked = true;
+        item.isMarkedForBlock = true;
+      }
     }
   }
 };
 </script>
 
 <template>
-  {{ funcName }} <br/>
-  {{ funcTitle }} <br/>
-  {{ storageName }} <br/>
+  <h1>{{ funcTitle }}</h1>
   <div class="urlList">
     <table>
       <thead>
       <tr>
         <th>URL</th>
-        <th>Enabled</th>
-        <th>Permanent</th>
+        <th>Marked for Block</th>
+        <th>Permanently Blocked</th>
         <th>Remove</th>
       </tr>
       </thead>
@@ -116,12 +130,13 @@ export default {
         <td>{{ item.url }}</td>
         <td>
           <label class="checkbox">
-            <input type="checkbox" :id="item.url" :checked="item.isEnabled"/>
+            <input type="checkbox" :id="item.url" :checked="item.isMarkedForBlock" @change="markForBlock(item)"/>
           </label>
         </td>
         <td>
           <label class="checkbox">
-            <input type="checkbox" :id="item.url" :checked="item.isPermanent"/>
+            <input type="checkbox" :id="item.url" :checked="item.isPermanentlyBlocked"
+                   @change="markForPermanentlyBlock(item)"/>
           </label>
         </td>
         <td>
@@ -168,17 +183,16 @@ export default {
       &:first-child {
         font-weight: bold;
         font-size: 14px;
-        width: 100%;
       }
 
       &:nth-child(2) {
         text-align: center;
-        width: 24px;
+        width: 96px;
       }
 
       &:nth-child(3) {
         text-align: center;
-        width: 24px;
+        width: 96px;
       }
 
       &:last-child {
