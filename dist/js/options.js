@@ -16916,6 +16916,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     funcTitle: {
@@ -16949,7 +16955,8 @@ __webpack_require__.r(__webpack_exports__);
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
       urlDomainPattern: new RegExp('^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)'),
-      urlLinkPattern: new RegExp('^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$')
+      urlLinkPattern: new RegExp('^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$'),
+      urlList: _toConsumableArray(this.data)
     };
   },
   created: function created() {
@@ -16970,10 +16977,10 @@ __webpack_require__.r(__webpack_exports__);
       this.calculateCurrentPageItems();
     },
     calculateNumberOfPages: function calculateNumberOfPages() {
-      this.numberOfPages = Math.ceil(this.data.length / this.itemsPerPage);
+      this.numberOfPages = Math.ceil(this.urlList.length / this.itemsPerPage);
     },
     calculateCurrentPageItems: function calculateCurrentPageItems() {
-      this.currentPageItems = this.data.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+      this.currentPageItems = this.urlList.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
     },
     validateDomain: function validateDomain(pUrl) {
       return this.justDomain ? this.urlDomainPattern.test(pUrl) : this.urlLinkPattern.test(pUrl);
@@ -16988,17 +16995,17 @@ __webpack_require__.r(__webpack_exports__);
         this.showDuplicatedErrorMessage = false;
       } else {
         this.showInvalidErrorMessage = !this.validateDomain(this.newUrl);
-        this.showDuplicatedErrorMessage = this.data.some(function (item) {
+        this.showDuplicatedErrorMessage = this.urlList.some(function (item) {
           return item.url === _this.truncateUrl(_this.newUrl);
         });
       }
     },
     addUrl: function addUrl() {
       var _this2 = this;
-      if (this.validateDomain(this.newUrl) && !this.data.some(function (item) {
+      if (this.validateDomain(this.newUrl) && !this.urlList.some(function (item) {
         return item.url === _this2.truncateUrl(_this2.newUrl);
       })) {
-        this.data.push({
+        this.urlList.push({
           url: this.truncateUrl(this.newUrl),
           isEnabled: true,
           isPermanent: false
@@ -17009,6 +17016,13 @@ __webpack_require__.r(__webpack_exports__);
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       }
+    },
+    removeUrl: function removeUrl(pUrl) {
+      this.urlList = this.urlList.filter(function (item) {
+        return item.url !== pUrl;
+      });
+      this.calculateNumberOfPages();
+      this.calculateCurrentPageItems();
     }
   }
 });
@@ -17103,9 +17117,7 @@ var _hoisted_8 = {
   "class": "checkbox"
 };
 var _hoisted_9 = ["id", "checked"];
-var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, "X")], -1 /* HOISTED */);
-});
+var _hoisted_10 = ["onClick"];
 var _hoisted_11 = {
   "class": "pagination-controls"
 };
@@ -17140,7 +17152,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "checkbox",
       id: item.url,
       checked: item.isPermanent
-    }, null, 8 /* PROPS */, _hoisted_9)])]), _hoisted_10]);
+    }, null, 8 /* PROPS */, _hoisted_9)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
+        return $options.removeUrl(item.url);
+      }
+    }, "X", 8 /* PROPS */, _hoisted_10)])]);
   }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.flipPage('prev');

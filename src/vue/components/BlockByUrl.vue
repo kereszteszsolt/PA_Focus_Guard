@@ -32,7 +32,8 @@ export default {
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
       urlDomainPattern: new RegExp('^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)'),
-      urlLinkPattern: new RegExp('^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$')
+      urlLinkPattern: new RegExp('^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$'),
+      urlList: [...this.data]
     };
   },
   created() {
@@ -53,10 +54,10 @@ export default {
       this.calculateCurrentPageItems();
     },
     calculateNumberOfPages: function () {
-      this.numberOfPages = Math.ceil(this.data.length / this.itemsPerPage);
+      this.numberOfPages = Math.ceil(this.urlList.length / this.itemsPerPage);
     },
     calculateCurrentPageItems: function () {
-      this.currentPageItems = this.data.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+      this.currentPageItems = this.urlList.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
     },
     validateDomain: function (pUrl) {
       return this.justDomain ?  this.urlDomainPattern.test(pUrl) : this.urlLinkPattern.test(pUrl);
@@ -70,12 +71,12 @@ export default {
         this.showDuplicatedErrorMessage = false;
       } else {
         this.showInvalidErrorMessage = !this.validateDomain(this.newUrl);
-        this.showDuplicatedErrorMessage = this.data.some(item => item.url === this.truncateUrl(this.newUrl));
+        this.showDuplicatedErrorMessage = this.urlList.some(item => item.url === this.truncateUrl(this.newUrl));
       }
     },
     addUrl: function () {
-      if (this.validateDomain(this.newUrl) && !this.data.some(item => item.url === this.truncateUrl(this.newUrl))) {
-        this.data.push({
+      if (this.validateDomain(this.newUrl) && !this.urlList.some(item => item.url === this.truncateUrl(this.newUrl))) {
+        this.urlList.push({
           url: this.truncateUrl(this.newUrl),
           isEnabled: true,
           isPermanent: false
@@ -86,6 +87,11 @@ export default {
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       }
+    },
+    removeUrl: function (pUrl) {
+      this.urlList = this.urlList.filter(item => item.url !== pUrl);
+      this.calculateNumberOfPages();
+      this.calculateCurrentPageItems();
     }
   }
 };
@@ -119,7 +125,7 @@ export default {
           </label>
         </td>
         <td>
-          <button>X</button>
+          <button @click="removeUrl(item.url)">X</button>
         </td>
       </tr>
       </tbody>
