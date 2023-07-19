@@ -57,6 +57,9 @@ export default {
         this.calculateCurrentPageItems();
       });
     },
+    saveToStorage() {
+      dataAccess.saveData(this.storageName, this.urlList);
+    },
     flipPage(direction) {
       if (direction === "next") {
         if (this.currentPage < this.numberOfPages) {
@@ -113,11 +116,13 @@ export default {
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       }
+      this.saveToStorage();
     },
     removeUrl(pUrl) {
       this.urlList = this.urlList.filter((item) => item.url !== pUrl);
       this.calculateNumberOfPages();
       this.calculateCurrentPageItems();
+      this.saveToStorage();
     },
     markForBlock(item) {
       if (item.isMarkedForBlock) {
@@ -126,6 +131,7 @@ export default {
       } else {
         item.isMarkedForBlock = true;
       }
+      this.saveToStorage();
     },
     markForPermanentlyBlock(item) {
       if (item.isPermanentlyBlocked) {
@@ -134,6 +140,7 @@ export default {
         item.isPermanentlyBlocked = true;
         item.isMarkedForBlock = true;
       }
+      this.saveToStorage();
     },
   },
 };

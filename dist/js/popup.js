@@ -16808,7 +16808,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      isOn: true
+      appData: {
+        focusMode: false
+      }
     };
   },
   created: function created() {
@@ -16816,21 +16818,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     activate: function activate() {
-      this.isOn = true;
-      this.saveData(this.isOn);
+      this.appData.focusMode = true;
+      this.saveData(this.appData);
     },
     deactivate: function deactivate() {
-      this.isOn = false;
-      this.saveData(this.isOn);
+      this.appData.focusMode = false;
+      this.saveData(this.appData);
     },
     loadData: function loadData() {
       var _this = this;
-      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.loadData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_ACTIVE).then(function (data) {
-        _this.isOn = data;
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.loadData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA).then(function (data) {
+        _this.appData = data;
       });
     },
-    saveData: function saveData(data) {
-      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_ACTIVE, data);
+    saveData: function saveData() {
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA, this.appData);
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -16873,16 +16875,16 @@ var _hoisted_3 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'button-danger': !$data.isOn,
-      'button-danger-is-off': $data.isOn
+      'button-danger': !$data.appData.focusMode,
+      'button-danger-is-off': $data.appData.focusMode
     }),
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.deactivate && $options.deactivate.apply($options, arguments);
     })
   }, " Off ", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'button-success': $data.isOn,
-      'button-success-is-off': !$data.isOn
+      'button-success': $data.appData.focusMode,
+      'button-success-is-off': !$data.appData.focusMode
     }),
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.activate && $options.activate.apply($options, arguments);
@@ -16942,10 +16944,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FG_ACTIVE: () => (/* binding */ FG_ACTIVE),
+/* harmony export */   FG_APP_DATA: () => (/* binding */ FG_APP_DATA),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
 /* harmony export */ });
 var FG_ACTIVE = "fgActive";
+var FG_APP_DATA = "fgAppData";
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsitesByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsitesByUrl";
 

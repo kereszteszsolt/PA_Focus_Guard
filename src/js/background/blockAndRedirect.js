@@ -51,7 +51,7 @@ const createFGRule = (item, index) => ({
 });
 
 const calculateNewDynamicRules = (
-  fgActive,
+  focusMode,
   fgBlockedWebsitesByDomain,
   fgBlockedWebsitesByUrl,
 ) => {
@@ -62,7 +62,7 @@ const calculateNewDynamicRules = (
     // Combine filtering and mapping for domain and URL rules
     [...fgBlockedWebsitesByDomain, ...fgBlockedWebsitesByUrl].forEach(
       (item) => {
-        if (item.isMarkedForBlock && (fgActive || item.isPermanentlyBlocked)) {
+        if (item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked)) {
           rules.push(createFGRule(item, index++));
         }
       },
@@ -74,17 +74,15 @@ const calculateNewDynamicRules = (
 
 const applyNewDynamicRules = (rules) => {
   return new Promise((resolve) => {
-    if (rules.length === 0) {
-      chrome.declarativeNetRequest.updateDynamicRules(
-        { addRules: rules },
-        resolve,
-      );
-    }
+    chrome.declarativeNetRequest.updateDynamicRules(
+      { addRules: rules },
+      resolve,
+    );
   });
 };
 
 const closeBlockedTabs = (
-  fgActive,
+  focusMode,
   fgBlockedWebsitesByDomain,
   fgBlockedWebsitesByUrl,
 ) => {
@@ -95,9 +93,10 @@ const closeBlockedTabs = (
         ...fgBlockedWebsitesByUrl,
       ].filter(
         (item) =>
-          item.isMarkedForBlock && (fgActive || item.isPermanentlyBlocked),
+          item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked),
       );
 
+      console.log("blockedItems", blockedItems);
       blockedItems.forEach((item) => {
         tabs.forEach((tab) => {
           if (tab.url.includes(item.url)) {
@@ -112,28 +111,36 @@ const closeBlockedTabs = (
 };
 
 export const blockOrAllow = async (
-  fgActive,
+  focusMode,
   fgBlockedWebsitesByDomain,
   fgBlockedWebsitesByUrl,
 ) => {
-  console.log("1.a start block and remove old rules");
+  console.log("blockOrAllow............");
+  console.log("focusMode", focusMode);
+  console.log("focusMode == true", focusMode == true);
+  console.log("focusMode === true", focusMode === true);
+  if (focusMode) {
+    console.log("focusMode is true");
+  }
+
+  // console.log("1.a start block and remove old rules");
   await getAndRemoveOldDynamicRules();
-  console.log("1.b end block and remove old rules");
-  console.log("2.a start calculate new rules");
+  //console.log("1.b end block and remove old rules");
+  //console.log("2.a start calculate new rules");
   const rules = await calculateNewDynamicRules(
-    fgActive,
+    focusMode,
     fgBlockedWebsitesByDomain,
     fgBlockedWebsitesByUrl,
   );
-  console.log("2.b end calculate new rules");
-  console.log("3.a start apply new rules");
+  // console.log("2.b end calculate new rules");
+  //  console.log("3.a start apply new rules");
   await applyNewDynamicRules(rules);
-  console.log("3.b end apply new rules");
-  console.log("4.a start close blocked tabs");
+  // console.log("3.b end apply new rules");
+  //console.log("4.a start close blocked tabs");
   await closeBlockedTabs(
-    fgActive,
+    focusMode,
     fgBlockedWebsitesByDomain,
     fgBlockedWebsitesByUrl,
   );
-  console.log("4.b end close blocked tabs");
+  //console.log("4.b end close blocked tabs");
 };

@@ -86,14 +86,14 @@ var createFGRule = function createFGRule(item, index) {
     }
   };
 };
-var calculateNewDynamicRules = function calculateNewDynamicRules(fgActive, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl) {
+var calculateNewDynamicRules = function calculateNewDynamicRules(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl) {
   return new Promise(function (resolve) {
     var rules = [];
     var index = 1;
 
     // Combine filtering and mapping for domain and URL rules
     [].concat(_toConsumableArray(fgBlockedWebsitesByDomain), _toConsumableArray(fgBlockedWebsitesByUrl)).forEach(function (item) {
-      if (item.isMarkedForBlock && (fgActive || item.isPermanentlyBlocked)) {
+      if (item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked)) {
         rules.push(createFGRule(item, index++));
       }
     });
@@ -103,19 +103,18 @@ var calculateNewDynamicRules = function calculateNewDynamicRules(fgActive, fgBlo
 };
 var applyNewDynamicRules = function applyNewDynamicRules(rules) {
   return new Promise(function (resolve) {
-    if (rules.length === 0) {
-      chrome.declarativeNetRequest.updateDynamicRules({
-        addRules: rules
-      }, resolve);
-    }
+    chrome.declarativeNetRequest.updateDynamicRules({
+      addRules: rules
+    }, resolve);
   });
 };
-var closeBlockedTabs = function closeBlockedTabs(fgActive, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl) {
+var closeBlockedTabs = function closeBlockedTabs(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl) {
   return new Promise(function (resolve) {
     chrome.tabs.query({}, function (tabs) {
       var blockedItems = [].concat(_toConsumableArray(fgBlockedWebsitesByDomain), _toConsumableArray(fgBlockedWebsitesByUrl)).filter(function (item) {
-        return item.isMarkedForBlock && (fgActive || item.isPermanentlyBlocked);
+        return item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked);
       });
+      console.log("blockedItems", blockedItems);
       blockedItems.forEach(function (item) {
         tabs.forEach(function (tab) {
           if (tab.url.includes(item.url)) {
@@ -128,33 +127,33 @@ var closeBlockedTabs = function closeBlockedTabs(fgActive, fgBlockedWebsitesByDo
   });
 };
 var blockOrAllow = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(fgActive, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl) {
     var rules;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          console.log("1.a start block and remove old rules");
-          _context2.next = 3;
-          return getAndRemoveOldDynamicRules();
-        case 3:
-          console.log("1.b end block and remove old rules");
-          console.log("2.a start calculate new rules");
+          console.log("blockOrAllow............");
+          console.log("focusMode", focusMode);
+          console.log("focusMode == true", focusMode == true);
+          console.log("focusMode === true", focusMode === true);
+          if (focusMode) {
+            console.log("focusMode is true");
+          }
+
+          // console.log("1.a start block and remove old rules");
           _context2.next = 7;
-          return calculateNewDynamicRules(fgActive, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
+          return getAndRemoveOldDynamicRules();
         case 7:
+          _context2.next = 9;
+          return calculateNewDynamicRules(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
+        case 9:
           rules = _context2.sent;
-          console.log("2.b end calculate new rules");
-          console.log("3.a start apply new rules");
           _context2.next = 12;
           return applyNewDynamicRules(rules);
         case 12:
-          console.log("3.b end apply new rules");
-          console.log("4.a start close blocked tabs");
-          _context2.next = 16;
-          return closeBlockedTabs(fgActive, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 16:
-          console.log("4.b end close blocked tabs");
-        case 17:
+          _context2.next = 14;
+          return closeBlockedTabs(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
+        case 14:
         case "end":
           return _context2.stop();
       }
@@ -212,10 +211,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FG_ACTIVE: () => (/* binding */ FG_ACTIVE),
+/* harmony export */   FG_APP_DATA: () => (/* binding */ FG_APP_DATA),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
 /* harmony export */ });
 var FG_ACTIVE = "fgActive";
+var FG_APP_DATA = "fgAppData";
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsitesByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsitesByUrl";
 
@@ -232,17 +233,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   blockByDomainList: () => (/* binding */ blockByDomainList)
 /* harmony export */ });
 var blockByDomainList = [{
-  'url': 'www.facebook.com',
-  'isMarkedForBlock': true,
-  'isPermanentlyBlocked': false
+  url: "www.facebook.com",
+  isMarkedForBlock: true,
+  isPermanentlyBlocked: false
 }, {
-  'url': 'www.youtube.com',
-  'isMarkedForBlock': true,
-  'isPermanentlyBlocked': false
+  url: "www.youtube.com",
+  isMarkedForBlock: false,
+  isPermanentlyBlocked: false
 }, {
-  'url': 'www.twitter.com',
-  'isMarkedForBlock': true,
-  'isPermanentlyBlocked': false
+  url: "www.twitter.com",
+  isMarkedForBlock: false,
+  isPermanentlyBlocked: false
 }];
 
 /***/ }),
@@ -259,11 +260,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var blockByUrlList = [{
   url: "https://www.facebook.com/reels/",
-  isMarkedForBlock: true,
+  isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
   url: "https://www.facebook.com/watch/",
-  isMarkedForBlock: true,
+  isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }];
 
@@ -416,7 +417,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 //load default values when extension is loaded
-var fgActive = false;
+var fgAppData = {
+  focusMode: false
+};
 var fgBlockedWebsitesByDomain = [];
 var fgBlockedWebsitesByUrl = [];
 
@@ -428,9 +431,6 @@ chrome.runtime.onInstalled.addListener( /*#__PURE__*/_asyncToGenerator( /*#__PUR
         _context.next = 2;
         return setDefaultValues();
       case 2:
-        _context.next = 4;
-        return readData();
-      case 4:
       case "end":
         return _context.stop();
     }
@@ -446,7 +446,7 @@ function _setDefaultValues() {
         case 0:
           _context3.prev = 0;
           _context3.next = 3;
-          return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_ACTIVE, false);
+          return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA, fgAppData);
         case 3:
           _context3.next = 5;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN, _utils_defaults__WEBPACK_IMPORTED_MODULE_2__.blockByDomainList);
@@ -513,27 +513,22 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           if (!(namespace === "sync")) {
-            _context2.next = 8;
+            _context2.next = 6;
             break;
           }
-          if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_ACTIVE in changes) {
-            fgActive = changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_ACTIVE].newValue;
-            console.log("fired: fgActive", fgActive);
+          if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA in changes) {
+            fgAppData = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA].newValue);
+            console.log("fired: fgAppData", fgAppData);
           }
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN in changes) {
             fgBlockedWebsitesByDomain = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN].newValue);
-            console.log("fired: fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
           }
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL in changes) {
             fgBlockedWebsitesByUrl = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue);
-            console.log("fired: fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
           }
           _context2.next = 6;
-          return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgActive, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
+          return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
         case 6:
-          _context2.next = 8;
-          return readData();
-        case 8:
         case "end":
           return _context2.stop();
       }

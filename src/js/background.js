@@ -4,19 +4,20 @@ import * as defaults from "./utils/defaults";
 import { blockOrAllow } from "./background/blockAndRedirect";
 
 //load default values when extension is loaded
-let fgActive = false;
+let fgAppData = {
+  focusMode: false,
+};
 let fgBlockedWebsitesByDomain = [];
 let fgBlockedWebsitesByUrl = [];
 
 //when installed, set default values
 chrome.runtime.onInstalled.addListener(async function () {
   await setDefaultValues();
-  await readData();
 });
 
 async function setDefaultValues() {
   try {
-    await dataAccess.saveData(constants.localStorage.FG_ACTIVE, false);
+    await dataAccess.saveData(constants.localStorage.FG_APP_DATA, fgAppData);
     await dataAccess.saveData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN,
       defaults.blockByDomainList,
@@ -29,6 +30,7 @@ async function setDefaultValues() {
     console.error("Error setting default values:", error);
   }
 }
+
 async function readData() {
   try {
     const xfgActive = await dataAccess.loadData(
@@ -52,31 +54,27 @@ async function readData() {
 // any time a storage item is updated, update global variables and run block_or_allow
 chrome.storage.onChanged.addListener(async function (changes, namespace) {
   if (namespace === "sync") {
-    if (constants.localStorage.FG_ACTIVE in changes) {
-      fgActive = changes[constants.localStorage.FG_ACTIVE].newValue;
-      console.log("fired: fgActive", fgActive);
+    if (constants.localStorage.FG_APP_DATA in changes) {
+      fgAppData = JSON.parse(
+        changes[constants.localStorage.FG_APP_DATA].newValue,
+      );
+      console.log("fired: fgAppData", fgAppData);
     }
     if (constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN in changes) {
       fgBlockedWebsitesByDomain = JSON.parse(
         changes[constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN].newValue,
-      );
-      console.log(
-        "fired: fgBlockedWebsitesByDomain",
-        fgBlockedWebsitesByDomain,
       );
     }
     if (constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL in changes) {
       fgBlockedWebsitesByUrl = JSON.parse(
         changes[constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue,
       );
-      console.log("fired: fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
     }
 
     await blockOrAllow(
-      fgActive,
+      fgAppData.focusMode,
       fgBlockedWebsitesByDomain,
       fgBlockedWebsitesByUrl,
     );
-    await readData();
   }
 });

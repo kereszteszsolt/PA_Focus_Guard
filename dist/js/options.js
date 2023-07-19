@@ -16893,6 +16893,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.calculateCurrentPageItems();
       });
     },
+    saveToStorage: function saveToStorage() {
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(this.storageName, this.urlList);
+    },
     flipPage: function flipPage(direction) {
       if (direction === "next") {
         if (this.currentPage < this.numberOfPages) {
@@ -16945,6 +16948,7 @@ __webpack_require__.r(__webpack_exports__);
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       }
+      this.saveToStorage();
     },
     removeUrl: function removeUrl(pUrl) {
       this.urlList = this.urlList.filter(function (item) {
@@ -16952,6 +16956,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.calculateNumberOfPages();
       this.calculateCurrentPageItems();
+      this.saveToStorage();
     },
     markForBlock: function markForBlock(item) {
       if (item.isMarkedForBlock) {
@@ -16960,6 +16965,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         item.isMarkedForBlock = true;
       }
+      this.saveToStorage();
     },
     markForPermanentlyBlock: function markForPermanentlyBlock(item) {
       if (item.isPermanentlyBlocked) {
@@ -16968,6 +16974,7 @@ __webpack_require__.r(__webpack_exports__);
         item.isPermanentlyBlocked = true;
         item.isMarkedForBlock = true;
       }
+      this.saveToStorage();
     }
   }
 });
@@ -17217,10 +17224,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FG_ACTIVE: () => (/* binding */ FG_ACTIVE),
+/* harmony export */   FG_APP_DATA: () => (/* binding */ FG_APP_DATA),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
 /* harmony export */ });
 var FG_ACTIVE = "fgActive";
+var FG_APP_DATA = "fgAppData";
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsitesByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsitesByUrl";
 

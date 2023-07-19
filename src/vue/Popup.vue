@@ -4,7 +4,9 @@ import * as constants from "../js/utils/constants";
 export default {
   data() {
     return {
-      isOn: true,
+      appData: {
+        focusMode: false,
+      },
     };
   },
   created() {
@@ -12,20 +14,20 @@ export default {
   },
   methods: {
     activate() {
-      this.isOn = true;
-      this.saveData(this.isOn);
+      this.appData.focusMode = true;
+      this.saveData(this.appData);
     },
     deactivate() {
-      this.isOn = false;
-      this.saveData(this.isOn);
+      this.appData.focusMode = false;
+      this.saveData(this.appData);
     },
     loadData() {
-      dataAccess.loadData(constants.localStorage.FG_ACTIVE).then((data) => {
-        this.isOn = data;
+      dataAccess.loadData(constants.localStorage.FG_APP_DATA).then((data) => {
+        this.appData = data;
       });
     },
-    saveData(data) {
-      dataAccess.saveData(constants.localStorage.FG_ACTIVE, data);
+    saveData() {
+      dataAccess.saveData(constants.localStorage.FG_APP_DATA, this.appData);
     },
     settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -43,13 +45,19 @@ export default {
     <div class="p-title">Focus Guard</div>
     <div class="on-off">
       <button
-        :class="{ 'button-danger': !isOn, 'button-danger-is-off': isOn }"
+        :class="{
+          'button-danger': !appData.focusMode,
+          'button-danger-is-off': appData.focusMode,
+        }"
         @click="deactivate"
       >
         Off
       </button>
       <button
-        :class="{ 'button-success': isOn, 'button-success-is-off': !isOn }"
+        :class="{
+          'button-success': appData.focusMode,
+          'button-success-is-off': !appData.focusMode,
+        }"
         @click="activate"
       >
         On
