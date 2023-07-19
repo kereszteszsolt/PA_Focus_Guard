@@ -11,6 +11,7 @@ let fgBlockedWebsitesByUrl = [];
 //when installed, set default values
 chrome.runtime.onInstalled.addListener(async function () {
   await setDefaultValues();
+  await readData();
 });
 
 async function setDefaultValues() {
@@ -28,16 +29,21 @@ async function setDefaultValues() {
     console.error("Error setting default values:", error);
   }
 }
-
 async function readData() {
   try {
-    fgActive = await dataAccess.loadData(constants.localStorage.FG_ACTIVE);
-    fgBlockedWebsitesByDomain = await dataAccess.loadData(
+    const xfgActive = await dataAccess.loadData(
+      constants.localStorage.FG_ACTIVE,
+    );
+    const xfgBlockedWebsitesByDomain = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN,
     );
-    fgBlockedWebsitesByUrl = await dataAccess.loadData(
+    const xfgBlockedWebsitesByUrl = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
     );
+
+    console.log("fgActive", xfgActive);
+    console.log("fgBlockedWebsitesByDomain", xfgBlockedWebsitesByDomain);
+    console.log("fgBlockedWebsitesByUrl", xfgBlockedWebsitesByUrl);
   } catch (error) {
     console.error("Error reading data:", error);
   }
@@ -71,5 +77,6 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       fgBlockedWebsitesByDomain,
       fgBlockedWebsitesByUrl,
     );
+    await readData();
   }
 });

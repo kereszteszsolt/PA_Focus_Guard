@@ -1,26 +1,24 @@
 <script>
+import * as dataAccess from "../../js/utils/scripts/dataAccess";
+
 export default {
   props: {
     funcTitle: {
       type: String,
-      required: true
+      required: true,
     },
     funcName: {
       type: String,
-      required: true
+      required: true,
     },
     storageName: {
       type: String,
-      required: true
+      required: true,
     },
     justDomain: {
       type: Boolean,
-      required: true
+      required: true,
     },
-    data: {
-      type: Array,
-      required: true
-    }
   },
   data() {
     return {
@@ -28,72 +26,100 @@ export default {
       numberOfPages: 1,
       itemsPerPage: 10,
       currentPageItems: [],
-      newUrl: '',
+      newUrl: "",
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
-      urlDomainPattern: new RegExp('^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)'),
-      urlLinkPattern: new RegExp('^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$'),
-      urlList: [...this.data]
+      urlDomainPattern: new RegExp(
+        "^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)",
+      ),
+      urlLinkPattern: new RegExp(
+        "^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$",
+      ),
+      urlList: [],
     };
   },
   created() {
+    this.loadFromStorage();
     this.calculateNumberOfPages();
     this.calculateCurrentPageItems();
   },
+  watch: {
+    storageName: {
+      immediate: true,
+      handler: "loadFromStorage",
+    },
+  },
   methods: {
-    flipPage: function (direction) {
-      if (direction === 'next') {
+    loadFromStorage() {
+      dataAccess.loadData(this.storageName).then((data) => {
+        this.urlList = data;
+        this.calculateNumberOfPages();
+        this.calculateCurrentPageItems();
+      });
+    },
+    flipPage(direction) {
+      if (direction === "next") {
         if (this.currentPage < this.numberOfPages) {
           this.currentPage++;
         }
-      } else if (direction === 'prev') {
+      } else if (direction === "prev") {
         if (this.currentPage > 1) {
           this.currentPage--;
         }
       }
       this.calculateCurrentPageItems();
     },
-    calculateNumberOfPages: function () {
+    calculateNumberOfPages() {
       this.numberOfPages = Math.ceil(this.urlList.length / this.itemsPerPage);
     },
-    calculateCurrentPageItems: function () {
-      this.currentPageItems = this.urlList.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+    calculateCurrentPageItems() {
+      this.currentPageItems = this.urlList.slice(
+        (this.currentPage - 1) * this.itemsPerPage,
+        this.currentPage * this.itemsPerPage,
+      );
     },
-    validateDomain: function (pUrl) {
-      return this.justDomain ? this.urlDomainPattern.test(pUrl) : this.urlLinkPattern.test(pUrl);
+    validateDomain(pUrl) {
+      return this.justDomain
+        ? this.urlDomainPattern.test(pUrl)
+        : this.urlLinkPattern.test(pUrl);
     },
-    truncateUrl: function (pUrl) {
+    truncateUrl(pUrl) {
       return this.justDomain ? this.urlDomainPattern.exec(pUrl)[1] : pUrl;
     },
-    handleBlur: function (event) {
-      if (this.newUrl === '') {
+    handleBlur(event) {
+      if (this.newUrl === "") {
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       } else {
         this.showInvalidErrorMessage = !this.validateDomain(this.newUrl);
-        this.showDuplicatedErrorMessage = this.urlList.some(item => item.url === this.truncateUrl(this.newUrl));
+        this.showDuplicatedErrorMessage = this.urlList.some(
+          (item) => item.url === this.truncateUrl(this.newUrl),
+        );
       }
     },
-    addUrl: function () {
-      if (this.validateDomain(this.newUrl) && !this.urlList.some(item => item.url === this.truncateUrl(this.newUrl))) {
+    addUrl() {
+      if (
+        this.validateDomain(this.newUrl) &&
+        !this.urlList.some((item) => item.url === this.truncateUrl(this.newUrl))
+      ) {
         this.urlList.push({
           url: this.truncateUrl(this.newUrl),
           isEnabled: true,
-          isPermanent: false
+          isPermanent: false,
         });
         this.calculateNumberOfPages();
         this.calculateCurrentPageItems();
-        this.newUrl = '';
+        this.newUrl = "";
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       }
     },
-    removeUrl: function (pUrl) {
-      this.urlList = this.urlList.filter(item => item.url !== pUrl);
+    removeUrl(pUrl) {
+      this.urlList = this.urlList.filter((item) => item.url !== pUrl);
       this.calculateNumberOfPages();
       this.calculateCurrentPageItems();
     },
-    markForBlock: function (item) {
+    markForBlock(item) {
       if (item.isMarkedForBlock) {
         item.isMarkedForBlock = false;
         item.isPermanentlyBlocked = false;
@@ -101,15 +127,15 @@ export default {
         item.isMarkedForBlock = true;
       }
     },
-    markForPermanentlyBlock: function (item) {
+    markForPermanentlyBlock(item) {
       if (item.isPermanentlyBlocked) {
         item.isPermanentlyBlocked = false;
       } else {
         item.isPermanentlyBlocked = true;
         item.isMarkedForBlock = true;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -118,52 +144,82 @@ export default {
   <div class="urlList">
     <table>
       <thead>
-      <tr>
-        <th>URL</th>
-        <th>Marked for Block</th>
-        <th>Permanently Blocked</th>
-        <th>Remove</th>
-      </tr>
+        <tr>
+          <th>URL</th>
+          <th>Marked for Block</th>
+          <th>Permanently Blocked</th>
+          <th>Remove</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="item in currentPageItems" v-bind:key="item.url">
-        <td>{{ item.url }}</td>
-        <td>
-          <label class="checkbox">
-            <input type="checkbox" :id="item.url" :checked="item.isMarkedForBlock" @change="markForBlock(item)"/>
-          </label>
-        </td>
-        <td>
-          <label class="checkbox">
-            <input type="checkbox" :id="item.url" :checked="item.isPermanentlyBlocked"
-                   @change="markForPermanentlyBlock(item)"/>
-          </label>
-        </td>
-        <td>
-          <button @click="removeUrl(item.url)">X</button>
-        </td>
-      </tr>
+        <tr v-for="item in currentPageItems" v-bind:key="item.url">
+          <td>{{ item.url }}</td>
+          <td>
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                :id="item.url"
+                :checked="item.isMarkedForBlock"
+                @change="markForBlock(item)"
+              />
+            </label>
+          </td>
+          <td>
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                :id="item.url"
+                :checked="item.isPermanentlyBlocked"
+                @change="markForPermanentlyBlock(item)"
+              />
+            </label>
+          </td>
+          <td>
+            <button @click="removeUrl(item.url)">X</button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
   <div class="pagination-controls">
-    <button @click="flipPage('prev')" :disabled="currentPage === 1" class="button-primary">Prev</button>
+    <button
+      @click="flipPage('prev')"
+      :disabled="currentPage === 1"
+      class="button-primary"
+    >
+      Prev
+    </button>
     <span>{{ currentPage }} / {{ numberOfPages }}</span>
-    <button @click="flipPage('next')" :disabled="currentPage === numberOfPages" class="button-primary">Next</button>
+    <button
+      @click="flipPage('next')"
+      :disabled="currentPage === numberOfPages"
+      class="button-primary"
+    >
+      Next
+    </button>
   </div>
   <div class="add-url-container">
     <p>Add site:</p>
     <div class="input-wrapper">
-      <input type="text" placeholder="example.com" v-model="newUrl" @blur="handleBlur"/>
+      <input
+        type="text"
+        placeholder="example.com"
+        v-model="newUrl"
+        @blur="handleBlur"
+      />
       <button @click="addUrl" class="add-url">Add</button>
     </div>
-    <label v-if="showInvalidErrorMessage" class="error-message">Invalid domain</label>
-    <label v-if="showDuplicatedErrorMessage" class="error-message">Duplicated domain</label>
+    <label v-if="showInvalidErrorMessage" class="error-message"
+      >Invalid domain</label
+    >
+    <label v-if="showDuplicatedErrorMessage" class="error-message"
+      >Duplicated domain</label
+    >
   </div>
 </template>
 
 <style scoped lang="scss">
-@import '../../scss/common.scss';
+@import "../../scss/common.scss";
 
 .urlList {
   table {
@@ -175,7 +231,8 @@ export default {
       color: floralwhite;
     }
 
-    th, td {
+    th,
+    td {
       //border: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
       padding: 5px;
@@ -226,7 +283,7 @@ input[type="checkbox"] {
   }
 
   &:checked:before {
-    content: '';
+    content: "";
     display: block;
     width: 4px;
     height: 8px;
@@ -322,7 +379,6 @@ button {
       }
     }
 
-
     > button {
       width: 100px;
       padding: 8px 16px;
@@ -338,7 +394,6 @@ button {
         background-color: darken($fg-success-color, 10%);
       }
     }
-
   }
 }
 </style>

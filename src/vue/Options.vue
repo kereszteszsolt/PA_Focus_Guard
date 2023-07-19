@@ -1,41 +1,26 @@
 <script>
-import BlockByUrl from './components/BlockByUrl.vue';
-import * as config from '../js/config';
-import * as dataAccess from '../js/utils/scripts/dataAccess';
+import BlockByUrl from "./components/BlockByUrl.vue";
+import * as config from "../js/config";
 
 export default {
   computed: {
     config() {
       return config;
-    }
+    },
   },
   components: {
-    BlockByUrl: BlockByUrl
+    BlockByUrl: BlockByUrl,
   },
   data() {
     return {
       selectedFunctionality: config.fgAppFunctionalities[0],
-      selectedData: [],
-      loading: false
     };
   },
-  created() {
-    this.loadData();
-  },
   methods: {
-    loadData() {
-      this.loading = true;
-      dataAccess.loadData(this.selectedFunctionality.storageName)
-          .then((data) => {
-            this.selectedData = data;
-            this.loading = false;
-          });
-    },
     selectFunctionality(func) {
       this.selectedFunctionality = func;
-      this.loadData();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -46,26 +31,34 @@ export default {
   <div class="container main">
     <div class="sidebar">
       <ul>
-        <li v-for="item in config.fgAppFunctionalities"
-            v-bind:key="item.funcName">
-          <a v-bind:class="{ active: item.funcName === selectedFunctionality.funcName }"
-             v-on:click="selectFunctionality(item)">{{ item.funcName }}</a>
+        <li
+          v-for="item in config.fgAppFunctionalities"
+          v-bind:key="item.funcName"
+        >
+          <a
+            v-bind:class="{
+              active: item.funcName === selectedFunctionality.funcName,
+            }"
+            v-on:click="selectFunctionality(item)"
+            >{{ item.funcName }}</a
+          >
         </li>
       </ul>
     </div>
     <div class="content">
-      <component :is="selectedFunctionality.containerComponent"
-                 :funcTitle="selectedFunctionality.funcTitle"
-                 :funcName="selectedFunctionality.funcName"
-                 :storageName="selectedFunctionality.storageName"
-                 :justDomain="selectedFunctionality.justDomain"
-                 :data="selectedData"></component>
+      <component
+        :is="selectedFunctionality.containerComponent"
+        :funcTitle="selectedFunctionality.funcTitle"
+        :funcName="selectedFunctionality.funcName"
+        :storageName="selectedFunctionality.storageName"
+        :justDomain="selectedFunctionality.justDomain"
+      ></component>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-@import '../scss/common.scss';
+@import "../scss/common.scss";
 
 .app-bar {
   display: flex;

@@ -302,7 +302,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-// dataAccess.js
 function loadData(storageName) {
   return new Promise(function (resolve, reject) {
     chrome.storage.sync.get([storageName], function (result) {
@@ -318,12 +317,13 @@ function loadData(storageName) {
             reject(new Error("Error parsing data for '".concat(storageName, "': ").concat(error.message)));
           }
         } else {
-          resolve([]);
+          resolve([]); // Return an empty array if no data found for the specified storageName
         }
       }
     });
   });
 }
+
 function saveData(storageName, data) {
   return new Promise(function (resolve, reject) {
     var serializedData = JSON.stringify(data);
@@ -428,6 +428,9 @@ chrome.runtime.onInstalled.addListener( /*#__PURE__*/_asyncToGenerator( /*#__PUR
         _context.next = 2;
         return setDefaultValues();
       case 2:
+        _context.next = 4;
+        return readData();
+      case 4:
       case "end":
         return _context.stop();
     }
@@ -470,6 +473,7 @@ function readData() {
 } // any time a storage item is updated, update global variables and run block_or_allow
 function _readData() {
   _readData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    var xfgActive, xfgBlockedWebsitesByDomain, xfgBlockedWebsitesByUrl;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
@@ -477,26 +481,29 @@ function _readData() {
           _context4.next = 3;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.loadData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_ACTIVE);
         case 3:
-          fgActive = _context4.sent;
+          xfgActive = _context4.sent;
           _context4.next = 6;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.loadData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN);
         case 6:
-          fgBlockedWebsitesByDomain = _context4.sent;
+          xfgBlockedWebsitesByDomain = _context4.sent;
           _context4.next = 9;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.loadData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL);
         case 9:
-          fgBlockedWebsitesByUrl = _context4.sent;
-          _context4.next = 15;
+          xfgBlockedWebsitesByUrl = _context4.sent;
+          console.log("fgActive", xfgActive);
+          console.log("fgBlockedWebsitesByDomain", xfgBlockedWebsitesByDomain);
+          console.log("fgBlockedWebsitesByUrl", xfgBlockedWebsitesByUrl);
+          _context4.next = 18;
           break;
-        case 12:
-          _context4.prev = 12;
+        case 15:
+          _context4.prev = 15;
           _context4.t0 = _context4["catch"](0);
           console.error("Error reading data:", _context4.t0);
-        case 15:
+        case 18:
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[0, 12]]);
+    }, _callee4, null, [[0, 15]]);
   }));
   return _readData.apply(this, arguments);
 }
@@ -506,7 +513,7 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           if (!(namespace === "sync")) {
-            _context2.next = 6;
+            _context2.next = 8;
             break;
           }
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_ACTIVE in changes) {
@@ -524,6 +531,9 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
           _context2.next = 6;
           return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgActive, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
         case 6:
+          _context2.next = 8;
+          return readData();
+        case 8:
         case "end":
           return _context2.stop();
       }

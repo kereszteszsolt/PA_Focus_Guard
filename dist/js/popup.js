@@ -16801,24 +16801,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/utils/scripts/dataAccess */ "./src/js/utils/scripts/dataAccess.js");
+/* harmony import */ var _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/utils/constants */ "./src/js/utils/constants/index.js");
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       isOn: true
     };
   },
+  created: function created() {
+    this.loadData();
+  },
   methods: {
     activate: function activate() {
       this.isOn = true;
+      this.saveData(this.isOn);
     },
     deactivate: function deactivate() {
       this.isOn = false;
+      this.saveData(this.isOn);
+    },
+    loadData: function loadData() {
+      var _this = this;
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.loadData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_ACTIVE).then(function (data) {
+        _this.isOn = data;
+      });
+    },
+    saveData: function saveData(data) {
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_ACTIVE, data);
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
         chrome.runtime.openOptionsPage();
       } else {
-        window.open(chrome.runtime.getURL('options.html'));
+        window.open(chrome.runtime.getURL("options.html"));
       }
     }
   }
@@ -16847,7 +16865,7 @@ var _hoisted_1 = {
 var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "p-title"
-  }, " Focus Guard ", -1 /* HOISTED */);
+  }, "Focus Guard", -1 /* HOISTED */);
 });
 var _hoisted_3 = {
   "class": "on-off"
@@ -16861,7 +16879,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.deactivate && $options.deactivate.apply($options, arguments);
     })
-  }, "Off", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " Off ", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
       'button-success': $data.isOn,
       'button-success-is-off': !$data.isOn
@@ -16869,12 +16887,118 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.activate && $options.activate.apply($options, arguments);
     })
-  }, "On", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " On ", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "button-primary",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.settings && $options.settings.apply($options, arguments);
     })
   }, "settings")]);
+}
+
+/***/ }),
+
+/***/ "./src/js/utils/constants/componentNames.js":
+/*!**************************************************!*\
+  !*** ./src/js/utils/constants/componentNames.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
+/* harmony export */ });
+var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
+var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
+
+/***/ }),
+
+/***/ "./src/js/utils/constants/index.js":
+/*!*****************************************!*\
+  !*** ./src/js/utils/constants/index.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_1__),
+/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__)
+/* harmony export */ });
+/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ "./src/js/utils/constants/localStorage.js");
+/* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentNames */ "./src/js/utils/constants/componentNames.js");
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/utils/constants/localStorage.js":
+/*!************************************************!*\
+  !*** ./src/js/utils/constants/localStorage.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FG_ACTIVE: () => (/* binding */ FG_ACTIVE),
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
+/* harmony export */ });
+var FG_ACTIVE = "fgActive";
+var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsitesByDomain";
+var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsitesByUrl";
+
+/***/ }),
+
+/***/ "./src/js/utils/scripts/dataAccess.js":
+/*!********************************************!*\
+  !*** ./src/js/utils/scripts/dataAccess.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadData: () => (/* binding */ loadData),
+/* harmony export */   saveData: () => (/* binding */ saveData)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function loadData(storageName) {
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get([storageName], function (result) {
+      if (chrome.runtime.lastError) {
+        reject(new Error("Error loading data for '".concat(storageName, "': ").concat(chrome.runtime.lastError.message)));
+      } else {
+        var serializedData = result[storageName];
+        if (serializedData) {
+          try {
+            var parsedData = JSON.parse(serializedData);
+            resolve(parsedData);
+          } catch (error) {
+            reject(new Error("Error parsing data for '".concat(storageName, "': ").concat(error.message)));
+          }
+        } else {
+          resolve([]); // Return an empty array if no data found for the specified storageName
+        }
+      }
+    });
+  });
+}
+
+function saveData(storageName, data) {
+  return new Promise(function (resolve, reject) {
+    var serializedData = JSON.stringify(data);
+    chrome.storage.sync.set(_defineProperty({}, storageName, serializedData), function () {
+      if (chrome.runtime.lastError) {
+        reject(new Error("Error saving data for '".concat(storageName, "': ").concat(chrome.runtime.lastError.message)));
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 
 /***/ }),

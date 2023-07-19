@@ -16803,8 +16803,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_BlockByUrl_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/BlockByUrl.vue */ "./src/vue/components/BlockByUrl.vue");
 /* harmony import */ var _js_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/config */ "./src/js/config/index.js");
-/* harmony import */ var _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/utils/scripts/dataAccess */ "./src/js/utils/scripts/dataAccess.js");
-
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -16818,26 +16816,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selectedFunctionality: _js_config__WEBPACK_IMPORTED_MODULE_1__.fgAppFunctionalities[0],
-      selectedData: [],
-      loading: false
+      selectedFunctionality: _js_config__WEBPACK_IMPORTED_MODULE_1__.fgAppFunctionalities[0]
     };
   },
-  created: function created() {
-    this.loadData();
-  },
   methods: {
-    loadData: function loadData() {
-      var _this = this;
-      this.loading = true;
-      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_2__.loadData(this.selectedFunctionality.storageName).then(function (data) {
-        _this.selectedData = data;
-        _this.loading = false;
-      });
-    },
     selectFunctionality: function selectFunctionality(func) {
       this.selectedFunctionality = func;
-      this.loadData();
     }
   }
 });
@@ -16854,12 +16838,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+/* harmony import */ var _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../js/utils/scripts/dataAccess */ "./src/js/utils/scripts/dataAccess.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     funcTitle: {
@@ -16877,10 +16857,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     justDomain: {
       type: Boolean,
       required: true
-    },
-    data: {
-      type: Array,
-      required: true
     }
   },
   data: function data() {
@@ -16889,25 +16865,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       numberOfPages: 1,
       itemsPerPage: 10,
       currentPageItems: [],
-      newUrl: '',
+      newUrl: "",
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
-      urlDomainPattern: new RegExp('^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)'),
-      urlLinkPattern: new RegExp('^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$'),
-      urlList: _toConsumableArray(this.data)
+      urlDomainPattern: new RegExp("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)"),
+      urlLinkPattern: new RegExp("^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$"),
+      urlList: []
     };
   },
   created: function created() {
+    this.loadFromStorage();
     this.calculateNumberOfPages();
     this.calculateCurrentPageItems();
   },
+  watch: {
+    storageName: {
+      immediate: true,
+      handler: "loadFromStorage"
+    }
+  },
   methods: {
+    loadFromStorage: function loadFromStorage() {
+      var _this = this;
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.loadData(this.storageName).then(function (data) {
+        _this.urlList = data;
+        _this.calculateNumberOfPages();
+        _this.calculateCurrentPageItems();
+      });
+    },
     flipPage: function flipPage(direction) {
-      if (direction === 'next') {
+      if (direction === "next") {
         if (this.currentPage < this.numberOfPages) {
           this.currentPage++;
         }
-      } else if (direction === 'prev') {
+      } else if (direction === "prev") {
         if (this.currentPage > 1) {
           this.currentPage--;
         }
@@ -16927,21 +16918,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return this.justDomain ? this.urlDomainPattern.exec(pUrl)[1] : pUrl;
     },
     handleBlur: function handleBlur(event) {
-      var _this = this;
-      if (this.newUrl === '') {
+      var _this2 = this;
+      if (this.newUrl === "") {
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       } else {
         this.showInvalidErrorMessage = !this.validateDomain(this.newUrl);
         this.showDuplicatedErrorMessage = this.urlList.some(function (item) {
-          return item.url === _this.truncateUrl(_this.newUrl);
+          return item.url === _this2.truncateUrl(_this2.newUrl);
         });
       }
     },
     addUrl: function addUrl() {
-      var _this2 = this;
+      var _this3 = this;
       if (this.validateDomain(this.newUrl) && !this.urlList.some(function (item) {
-        return item.url === _this2.truncateUrl(_this2.newUrl);
+        return item.url === _this3.truncateUrl(_this3.newUrl);
       })) {
         this.urlList.push({
           url: this.truncateUrl(this.newUrl),
@@ -16950,7 +16941,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         });
         this.calculateNumberOfPages();
         this.calculateCurrentPageItems();
-        this.newUrl = '';
+        this.newUrl = "";
         this.showInvalidErrorMessage = false;
         this.showDuplicatedErrorMessage = false;
       }
@@ -17026,9 +17017,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     funcTitle: $data.selectedFunctionality.funcTitle,
     funcName: $data.selectedFunctionality.funcName,
     storageName: $data.selectedFunctionality.storageName,
-    justDomain: $data.selectedFunctionality.justDomain,
-    data: $data.selectedData
-  }, null, 8 /* PROPS */, ["funcTitle", "funcName", "storageName", "justDomain", "data"]))])])], 64 /* STABLE_FRAGMENT */);
+    justDomain: $data.selectedFunctionality.justDomain
+  }, null, 8 /* PROPS */, ["funcTitle", "funcName", "storageName", "justDomain"]))])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -17114,13 +17104,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     disabled: $data.currentPage === 1,
     "class": "button-primary"
-  }, "Prev", 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentPage) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.numberOfPages), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " Prev ", 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentPage) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.numberOfPages), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.flipPage('next');
     }),
     disabled: $data.currentPage === $data.numberOfPages,
     "class": "button-primary"
-  }, "Next", 8 /* PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, " Next ", 8 /* PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     placeholder: "example.com",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
@@ -17149,17 +17139,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   fgAppFunctionalities: () => (/* binding */ fgAppFunctionalities)
 /* harmony export */ });
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/constants */ "./src/js/utils/constants/index.js");
+
 var fgAppFunctionalities = [{
-  funcTitle: 'Block Website By Domain Name',
-  funcName: 'BlockWebsiteByDomainName',
-  containerComponent: 'BlockByUrl',
-  storageName: 'storageFgBlockWebsiteByDomainName',
+  funcTitle: "Block Website By Domain Name",
+  funcName: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.FG_BLOCKED_WEBSITES_BY_DOMAIN,
+  containerComponent: "BlockByUrl",
+  storageName: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN,
   justDomain: true
 }, {
-  funcTitle: 'Block Website By URL',
-  funcName: 'BlockWebsiteByUrl',
-  containerComponent: 'BlockByUrl',
-  storageName: 'storageFgBlockWebsiteByUrl',
+  funcTitle: "Block Website By URL",
+  funcName: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.componentNames.FG_BLOCKED_WEBSITES_BY_URL,
+  containerComponent: "BlockByUrl",
+  storageName: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
   justDomain: false
 }];
 
@@ -17180,6 +17172,60 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/utils/constants/componentNames.js":
+/*!**************************************************!*\
+  !*** ./src/js/utils/constants/componentNames.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
+/* harmony export */ });
+var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
+var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
+
+/***/ }),
+
+/***/ "./src/js/utils/constants/index.js":
+/*!*****************************************!*\
+  !*** ./src/js/utils/constants/index.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_1__),
+/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__)
+/* harmony export */ });
+/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ "./src/js/utils/constants/localStorage.js");
+/* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentNames */ "./src/js/utils/constants/componentNames.js");
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/utils/constants/localStorage.js":
+/*!************************************************!*\
+  !*** ./src/js/utils/constants/localStorage.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FG_ACTIVE: () => (/* binding */ FG_ACTIVE),
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
+/* harmony export */ });
+var FG_ACTIVE = "fgActive";
+var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsitesByDomain";
+var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsitesByUrl";
+
+/***/ }),
+
 /***/ "./src/js/utils/scripts/dataAccess.js":
 /*!********************************************!*\
   !*** ./src/js/utils/scripts/dataAccess.js ***!
@@ -17195,7 +17241,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-// dataAccess.js
 function loadData(storageName) {
   return new Promise(function (resolve, reject) {
     chrome.storage.sync.get([storageName], function (result) {
@@ -17211,12 +17256,13 @@ function loadData(storageName) {
             reject(new Error("Error parsing data for '".concat(storageName, "': ").concat(error.message)));
           }
         } else {
-          resolve([]);
+          resolve([]); // Return an empty array if no data found for the specified storageName
         }
       }
     });
   });
 }
+
 function saveData(storageName, data) {
   return new Promise(function (resolve, reject) {
     var serializedData = JSON.stringify(data);
@@ -17271,7 +17317,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-ce96621c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-ce96621c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-ce96621c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-ce96621c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-ce96621c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-ce96621c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-ce96621c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-ce96621c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-ce96621c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-ce96621c]:hover {\n  background-color: #81661c;\n}\n.urlList table[data-v-ce96621c] {\n  width: 100%;\n  border-collapse: collapse;\n}\n.urlList table thead[data-v-ce96621c] {\n  background-color: #81661c;\n  color: floralwhite;\n}\n.urlList table th[data-v-ce96621c], .urlList table td[data-v-ce96621c] {\n  border-bottom: 1px solid #ccc;\n  padding: 5px;\n}\n.urlList table th[data-v-ce96621c]:first-child, .urlList table td[data-v-ce96621c]:first-child {\n  font-weight: bold;\n  font-size: 14px;\n}\n.urlList table th[data-v-ce96621c]:nth-child(2), .urlList table td[data-v-ce96621c]:nth-child(2) {\n  text-align: center;\n  width: 96px;\n}\n.urlList table th[data-v-ce96621c]:nth-child(3), .urlList table td[data-v-ce96621c]:nth-child(3) {\n  text-align: center;\n  width: 96px;\n}\n.urlList table th[data-v-ce96621c]:last-child, .urlList table td[data-v-ce96621c]:last-child {\n  text-align: center;\n  width: 48px;\n}\ninput[type=checkbox][data-v-ce96621c] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #ccc;\n  border-radius: 2px;\n  cursor: pointer;\n  margin: 2px auto -2px auto;\n  transition: background-color 0.3s ease;\n}\ninput[type=checkbox][data-v-ce96621c]:hover {\n  border-color: #b3b3b3;\n}\ninput[type=checkbox][data-v-ce96621c]:checked {\n  background-color: #574513;\n}\ninput[type=checkbox][data-v-ce96621c]:checked:hover {\n  background-color: #2d240a;\n}\ninput[type=checkbox][data-v-ce96621c]:checked:before {\n  content: \"\";\n  display: block;\n  width: 4px;\n  height: 8px;\n  border: solid #fff;\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg);\n  margin: 3px auto -3px auto;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton[data-v-ce96621c] {\n  background-color: #e74c3c;\n  color: floralwhite;\n  font-weight: bolder;\n  border: none;\n  padding: 8px 10px;\n  border-radius: 50%;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton[data-v-ce96621c]:hover {\n  background-color: #d62c1a;\n}\n.pagination-controls[data-v-ce96621c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-top: 20px;\n}\n.pagination-controls button[data-v-ce96621c] {\n  background-color: #81661c;\n  color: floralwhite;\n  border: none;\n  padding: 8px 16px;\n  margin: 0 4px;\n  font-size: 14px;\n  font-weight: bold;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.pagination-controls button[data-v-ce96621c]:hover {\n  background-color: #574513;\n}\n.pagination-controls button[data-v-ce96621c]:disabled {\n  background-color: #b5bcbd;\n  color: #7f8c8d;\n  cursor: not-allowed;\n}\n.pagination-controls span[data-v-ce96621c] {\n  color: #574513;\n  font-weight: bold;\n  margin: 0 8px;\n}\n.add-url-container[data-v-ce96621c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n.add-url-container > p[data-v-ce96621c] {\n  font-size: 14px;\n  font-weight: 500;\n  margin: 8px 0 8px 0;\n  color: #574513;\n}\n.add-url-container .input-wrapper[data-v-ce96621c] {\n  display: flex;\n  flex-direction: row;\n}\n.add-url-container .input-wrapper > input[data-v-ce96621c] {\n  flex: 1;\n  padding: 8px;\n  margin-right: 8px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #b5bcbd;\n  color: floralwhite;\n  transition: background-color 0.3s ease;\n}\n.add-url-container .input-wrapper > input[data-v-ce96621c]:focus {\n  outline: none;\n  background-color: #7f8c8d;\n}\n.add-url-container .input-wrapper > button[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 14px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: #fff;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\n.add-url-container .input-wrapper > button[data-v-ce96621c]:hover {\n  background-color: #25a25a;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-ce96621c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-ce96621c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-ce96621c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-ce96621c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-ce96621c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-ce96621c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-ce96621c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-ce96621c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-ce96621c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-ce96621c]:hover {\n  background-color: #81661c;\n}\n.urlList table[data-v-ce96621c] {\n  width: 100%;\n  border-collapse: collapse;\n}\n.urlList table thead[data-v-ce96621c] {\n  background-color: #81661c;\n  color: floralwhite;\n}\n.urlList table th[data-v-ce96621c],\n.urlList table td[data-v-ce96621c] {\n  border-bottom: 1px solid #ccc;\n  padding: 5px;\n}\n.urlList table th[data-v-ce96621c]:first-child,\n.urlList table td[data-v-ce96621c]:first-child {\n  font-weight: bold;\n  font-size: 14px;\n}\n.urlList table th[data-v-ce96621c]:nth-child(2),\n.urlList table td[data-v-ce96621c]:nth-child(2) {\n  text-align: center;\n  width: 96px;\n}\n.urlList table th[data-v-ce96621c]:nth-child(3),\n.urlList table td[data-v-ce96621c]:nth-child(3) {\n  text-align: center;\n  width: 96px;\n}\n.urlList table th[data-v-ce96621c]:last-child,\n.urlList table td[data-v-ce96621c]:last-child {\n  text-align: center;\n  width: 48px;\n}\ninput[type=checkbox][data-v-ce96621c] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #ccc;\n  border-radius: 2px;\n  cursor: pointer;\n  margin: 2px auto -2px auto;\n  transition: background-color 0.3s ease;\n}\ninput[type=checkbox][data-v-ce96621c]:hover {\n  border-color: #b3b3b3;\n}\ninput[type=checkbox][data-v-ce96621c]:checked {\n  background-color: #574513;\n}\ninput[type=checkbox][data-v-ce96621c]:checked:hover {\n  background-color: #2d240a;\n}\ninput[type=checkbox][data-v-ce96621c]:checked:before {\n  content: \"\";\n  display: block;\n  width: 4px;\n  height: 8px;\n  border: solid #fff;\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg);\n  margin: 3px auto -3px auto;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton[data-v-ce96621c] {\n  background-color: #e74c3c;\n  color: floralwhite;\n  font-weight: bolder;\n  border: none;\n  padding: 8px 10px;\n  border-radius: 50%;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton[data-v-ce96621c]:hover {\n  background-color: #d62c1a;\n}\n.pagination-controls[data-v-ce96621c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-top: 20px;\n}\n.pagination-controls button[data-v-ce96621c] {\n  background-color: #81661c;\n  color: floralwhite;\n  border: none;\n  padding: 8px 16px;\n  margin: 0 4px;\n  font-size: 14px;\n  font-weight: bold;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.pagination-controls button[data-v-ce96621c]:hover {\n  background-color: #574513;\n}\n.pagination-controls button[data-v-ce96621c]:disabled {\n  background-color: #b5bcbd;\n  color: #7f8c8d;\n  cursor: not-allowed;\n}\n.pagination-controls span[data-v-ce96621c] {\n  color: #574513;\n  font-weight: bold;\n  margin: 0 8px;\n}\n.add-url-container[data-v-ce96621c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n.add-url-container > p[data-v-ce96621c] {\n  font-size: 14px;\n  font-weight: 500;\n  margin: 8px 0 8px 0;\n  color: #574513;\n}\n.add-url-container .input-wrapper[data-v-ce96621c] {\n  display: flex;\n  flex-direction: row;\n}\n.add-url-container .input-wrapper > input[data-v-ce96621c] {\n  flex: 1;\n  padding: 8px;\n  margin-right: 8px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #b5bcbd;\n  color: floralwhite;\n  transition: background-color 0.3s ease;\n}\n.add-url-container .input-wrapper > input[data-v-ce96621c]:focus {\n  outline: none;\n  background-color: #7f8c8d;\n}\n.add-url-container .input-wrapper > button[data-v-ce96621c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 14px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: #fff;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\n.add-url-container .input-wrapper > button[data-v-ce96621c]:hover {\n  background-color: #25a25a;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

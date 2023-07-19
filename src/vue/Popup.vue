@@ -1,43 +1,66 @@
 <script>
+import * as dataAccess from "../js/utils/scripts/dataAccess";
+import * as constants from "../js/utils/constants";
 export default {
   data() {
     return {
-      isOn: true
+      isOn: true,
     };
+  },
+  created() {
+    this.loadData();
   },
   methods: {
     activate() {
       this.isOn = true;
+      this.saveData(this.isOn);
     },
     deactivate() {
       this.isOn = false;
+      this.saveData(this.isOn);
+    },
+    loadData() {
+      dataAccess.loadData(constants.localStorage.FG_ACTIVE).then((data) => {
+        this.isOn = data;
+      });
+    },
+    saveData(data) {
+      dataAccess.saveData(constants.localStorage.FG_ACTIVE, data);
     },
     settings() {
       if (chrome.runtime.openOptionsPage) {
         chrome.runtime.openOptionsPage();
       } else {
-        window.open(chrome.runtime.getURL('options.html'));
+        window.open(chrome.runtime.getURL("options.html"));
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <template>
   <div class="popup-container">
-    <div class="p-title">
-      Focus Guard
-    </div>
+    <div class="p-title">Focus Guard</div>
     <div class="on-off">
-      <button :class="{'button-danger' : !isOn, 'button-danger-is-off': isOn}" @click="deactivate">Off</button>
-      <button :class="{'button-success' : isOn, 'button-success-is-off': !isOn}" @click="activate">On</button>
+      <button
+        :class="{ 'button-danger': !isOn, 'button-danger-is-off': isOn }"
+        @click="deactivate"
+      >
+        Off
+      </button>
+      <button
+        :class="{ 'button-success': isOn, 'button-success-is-off': !isOn }"
+        @click="activate"
+      >
+        On
+      </button>
     </div>
     <button class="button-primary" @click="settings">settings</button>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import '../scss/common.scss';
+@import "../scss/common.scss";
 
 .popup-container {
   display: flex;
