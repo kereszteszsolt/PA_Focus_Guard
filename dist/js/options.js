@@ -16803,6 +16803,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_BlockByUrl_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/BlockByUrl.vue */ "./src/vue/components/BlockByUrl.vue");
 /* harmony import */ var _js_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/config */ "./src/js/config/index.js");
+/* harmony import */ var _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/utils/scripts/dataAccess */ "./src/js/utils/scripts/dataAccess.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -16817,90 +16819,26 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       selectedFunctionality: _js_config__WEBPACK_IMPORTED_MODULE_1__.fgAppFunctionalities[0],
-      selectedData: [{
-        url: 'https://www.linkedin.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: true
-      }, {
-        url: 'https://www.facebook.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.youtube.com',
-        isMarkedForBlock: false,
-        isPermanentlyBlocked: true
-      }, {
-        url: 'https://www.google.com',
-        isMarkedForBlock: false,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.twitter.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.instagram.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.reddit.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.pinterest.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.tumblr.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.netflix.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.amazon.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.ebay.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.wikipedia.org',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.yahoo.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.bing.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.apple.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.microsoft.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.whatsapp.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.snapchat.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }]
+      selectedData: [],
+      loading: false
     };
   },
   created: function created() {
-    this.loadFunctionality();
+    this.loadData();
   },
   methods: {
-    loadFunctionality: function loadFunctionality() {}
+    loadData: function loadData() {
+      var _this = this;
+      this.loading = true;
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_2__.loadData(this.selectedFunctionality.storageName).then(function (data) {
+        _this.selectedData = data;
+        _this.loading = false;
+      });
+    },
+    selectFunctionality: function selectFunctionality(func) {
+      this.selectedFunctionality = func;
+      this.loadData();
+    }
   }
 });
 
@@ -17025,9 +16963,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.calculateCurrentPageItems();
     },
     markForBlock: function markForBlock(item) {
-      item.isMarkedForBlock = !item.isMarkedForBlock;
-      if (item.isPermanentlyBlocked) {
+      if (item.isMarkedForBlock) {
+        item.isMarkedForBlock = false;
         item.isPermanentlyBlocked = false;
+      } else {
+        item.isMarkedForBlock = true;
       }
     },
     markForPermanentlyBlock: function markForPermanentlyBlock(item) {
@@ -17071,17 +17011,17 @@ var _hoisted_5 = {
   "class": "content"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.config.fgAppFunctionalities, function (func) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.config.fgAppFunctionalities, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
-      key: func.funcName
+      key: item.funcName
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-        active: func.funcName === $data.selectedFunctionality.funcName
+        active: item.funcName === $data.selectedFunctionality.funcName
       }),
       onClick: function onClick($event) {
-        return $data.selectedFunctionality = func;
+        return $options.selectFunctionality(item);
       }
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(func.funcTitle), 11 /* TEXT, CLASS, PROPS */, _hoisted_4)]);
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.funcName), 11 /* TEXT, CLASS, PROPS */, _hoisted_4)]);
   }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.selectedFunctionality.containerComponent), {
     funcTitle: $data.selectedFunctionality.funcTitle,
     funcName: $data.selectedFunctionality.funcName,
@@ -17237,6 +17177,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _fgAppFunctionalities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fgAppFunctionalities */ "./src/js/config/fgAppFunctionalities.js");
 
+
+/***/ }),
+
+/***/ "./src/js/utils/scripts/dataAccess.js":
+/*!********************************************!*\
+  !*** ./src/js/utils/scripts/dataAccess.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadData: () => (/* binding */ loadData),
+/* harmony export */   saveData: () => (/* binding */ saveData)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+// dataAccess.js
+function loadData(storageName) {
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get([storageName], function (result) {
+      if (chrome.runtime.lastError) {
+        reject(new Error("Error loading data for '".concat(storageName, "': ").concat(chrome.runtime.lastError.message)));
+      } else {
+        var serializedData = result[storageName];
+        if (serializedData) {
+          try {
+            var parsedData = JSON.parse(serializedData);
+            resolve(parsedData);
+          } catch (error) {
+            reject(new Error("Error parsing data for '".concat(storageName, "': ").concat(error.message)));
+          }
+        } else {
+          resolve([]);
+        }
+      }
+    });
+  });
+}
+function saveData(storageName, data) {
+  return new Promise(function (resolve, reject) {
+    var serializedData = JSON.stringify(data);
+    chrome.storage.sync.set(_defineProperty({}, storageName, serializedData), function () {
+      if (chrome.runtime.lastError) {
+        reject(new Error("Error saving data for '".concat(storageName, "': ").concat(chrome.runtime.lastError.message)));
+      } else {
+        resolve();
+      }
+    });
+  });
+}
 
 /***/ }),
 

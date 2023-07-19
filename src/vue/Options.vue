@@ -1,6 +1,7 @@
 <script>
 import BlockByUrl from './components/BlockByUrl.vue';
 import * as config from '../js/config';
+import * as dataAccess from '../js/utils/scripts/dataAccess';
 
 export default {
   computed: {
@@ -14,108 +15,25 @@ export default {
   data() {
     return {
       selectedFunctionality: config.fgAppFunctionalities[0],
-      selectedData: [{
-        url: 'https://www.linkedin.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: true,
-      }, {
-        url: 'https://www.facebook.com',
-        isMarkedForBlock: true,
-        isPermanentlyBlocked: false
-      }, {
-        url: 'https://www.youtube.com',
-        isMarkedForBlock: false,
-        isPermanentlyBlocked: true
-      },
-        {
-          url: 'https://www.google.com',
-          isMarkedForBlock: false,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.twitter.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.instagram.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.reddit.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.pinterest.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.tumblr.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.netflix.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.amazon.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.ebay.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.wikipedia.org',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.yahoo.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.bing.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.apple.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.microsoft.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.whatsapp.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        },
-        {
-          url: 'https://www.snapchat.com',
-          isMarkedForBlock: true,
-          isPermanentlyBlocked: false
-        }
-      ]
+      selectedData: [],
+      loading: false
     };
   },
   created() {
-    this.loadFunctionality();
+    this.loadData();
   },
   methods: {
-    loadFunctionality: function () {
-
+    loadData() {
+      this.loading = true;
+      dataAccess.loadData(this.selectedFunctionality.storageName)
+          .then((data) => {
+            this.selectedData = data;
+            this.loading = false;
+          });
+    },
+    selectFunctionality(func) {
+      this.selectedFunctionality = func;
+      this.loadData();
     }
   }
 };
@@ -128,10 +46,10 @@ export default {
   <div class="container main">
     <div class="sidebar">
       <ul>
-        <li v-for="func in config.fgAppFunctionalities"
-            v-bind:key="func.funcName">
-          <a v-bind:class="{ active: func.funcName === selectedFunctionality.funcName }"
-             v-on:click="selectedFunctionality = func">{{ func.funcTitle }}</a>
+        <li v-for="item in config.fgAppFunctionalities"
+            v-bind:key="item.funcName">
+          <a v-bind:class="{ active: item.funcName === selectedFunctionality.funcName }"
+             v-on:click="selectFunctionality(item)">{{ item.funcName }}</a>
         </li>
       </ul>
     </div>
