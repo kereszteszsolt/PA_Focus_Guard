@@ -77,7 +77,7 @@ var createFGRule = function createFGRule(item, index) {
     action: {
       type: "redirect",
       redirect: {
-        extensionPath: "/message.html"
+        extensionPath: "/html/message.html"
       }
     },
     condition: {
@@ -259,7 +259,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   blockByUrlList: () => (/* binding */ blockByUrlList)
 /* harmony export */ });
 var blockByUrlList = [{
-  url: "https://www.facebook.com/reels/",
+  url: "https://www.facebook.com/reel/",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {

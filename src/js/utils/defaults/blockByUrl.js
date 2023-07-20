@@ -1,6 +1,6 @@
 export const blockByUrlList = [
   {
-    url: "https://www.facebook.com/reels/",
+    url: "https://www.facebook.com/reel/",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },

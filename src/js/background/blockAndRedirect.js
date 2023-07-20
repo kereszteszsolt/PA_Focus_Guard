@@ -42,7 +42,7 @@ const createFGRule = (item, index) => ({
   priority: 1,
   action: {
     type: "redirect",
-    redirect: { extensionPath: "/message.html" },
+    redirect: { extensionPath: "/html/message.html" },
   },
   condition: {
     urlFilter: item.url,
