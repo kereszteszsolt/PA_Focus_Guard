@@ -91,10 +91,6 @@ export default {
 };
 </script>
 <template>
-  {{ storageName }}
-  {{ funcName }}
-  {{ funcTitle }}
-  {{ justDomain }}
   <h1>{{ funcTitle }}</h1>
   <div class="tabs">
     <ul>
@@ -307,10 +303,12 @@ button {
       width: 100%;
       font-size: 14px;
       font-weight: bold;
+      cursor: pointer;
 
       padding: 8px 16px;
       //border-radius: 8px 8px 0 0;
-      clip-path: polygon(0 20%, 20% 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
+      // clip-path: polygon(0 20%, 20% 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
+      clip-path: polygon(0 30%, 10% 0, 90% 0, 100% 30%, 100% 100%, 0 100%);
       background-color: lighten($fg-secondary-color, 20%);
       color: $fg-white-color;
       transition: background-color 0.3s ease;
@@ -322,6 +320,10 @@ button {
       &.is-active {
         background-color: lighten($fg-primary-color, 10%);
         color: $fg-white-color;
+      }
+
+      &.is-active:hover {
+        background-color: $fg-primary-color;
       }
 
       &:last-child {
