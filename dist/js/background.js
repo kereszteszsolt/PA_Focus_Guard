@@ -231,10 +231,16 @@ var blockElements = function blockElements(focusMode, blockElementsOnWebsitesLis
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BLOCK_FACEBOOK_ELEMENTS: () => (/* binding */ BLOCK_FACEBOOK_ELEMENTS),
+/* harmony export */   BLOCK_INSTAGRAM_ELEMENTS: () => (/* binding */ BLOCK_INSTAGRAM_ELEMENTS),
+/* harmony export */   BLOCK_LINKEDIN_ELEMENTS: () => (/* binding */ BLOCK_LINKEDIN_ELEMENTS),
+/* harmony export */   BLOCK_TWITTER_ELEMENTS: () => (/* binding */ BLOCK_TWITTER_ELEMENTS),
 /* harmony export */   BLOCK_YOUTUBE_ELEMENTS: () => (/* binding */ BLOCK_YOUTUBE_ELEMENTS)
 /* harmony export */ });
 var BLOCK_YOUTUBE_ELEMENTS = "blockYoutubeElementsAction";
 var BLOCK_FACEBOOK_ELEMENTS = "blockFacebookElementsAction";
+var BLOCK_TWITTER_ELEMENTS = "blockTwitterElementsAction";
+var BLOCK_LINKEDIN_ELEMENTS = "blockLinkedinElementsAction";
+var BLOCK_INSTAGRAM_ELEMENTS = "blockInstagramElementsAction";
 
 /***/ }),
 
@@ -375,6 +381,30 @@ var blockElementsOnWebsitesList = [{
   action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_FACEBOOK_ELEMENTS,
   elementRules: [{
     ruleName: "facebook-watch",
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false
+  }]
+}, {
+  domain: "instagram.com",
+  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_INSTAGRAM_ELEMENTS,
+  elementRules: [{
+    ruleName: "instagram-reels",
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false
+  }]
+}, {
+  domain: "twitter.com",
+  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_TWITTER_ELEMENTS,
+  elementRules: [{
+    ruleName: "twitter-trends",
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false
+  }]
+}, {
+  domain: "linkedin.com",
+  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_LINKEDIN_ELEMENTS,
+  elementRules: [{
+    ruleName: "linkedin-trends",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false
   }]

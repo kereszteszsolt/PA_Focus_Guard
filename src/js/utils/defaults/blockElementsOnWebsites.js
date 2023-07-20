@@ -1,4 +1,5 @@
 import * as constants from "../constants";
+
 export const blockElementsOnWebsitesList = [
   {
     domain: "youtube.com",
@@ -17,6 +18,39 @@ export const blockElementsOnWebsitesList = [
     elementRules: [
       {
         ruleName: "facebook-watch",
+        isMarkedForBlock: false,
+        isPermanentlyBlocked: false,
+      },
+    ],
+  },
+  {
+    domain: "instagram.com",
+    action: constants.blockElementsActions.BLOCK_INSTAGRAM_ELEMENTS,
+    elementRules: [
+      {
+        ruleName: "instagram-reels",
+        isMarkedForBlock: false,
+        isPermanentlyBlocked: false,
+      },
+    ],
+  },
+  {
+    domain: "twitter.com",
+    action: constants.blockElementsActions.BLOCK_TWITTER_ELEMENTS,
+    elementRules: [
+      {
+        ruleName: "twitter-trends",
+        isMarkedForBlock: false,
+        isPermanentlyBlocked: false,
+      },
+    ],
+  },
+  {
+    domain: "linkedin.com",
+    action: constants.blockElementsActions.BLOCK_LINKEDIN_ELEMENTS,
+    elementRules: [
+      {
+        ruleName: "linkedin-trends",
         isMarkedForBlock: false,
         isPermanentlyBlocked: false,
       },
