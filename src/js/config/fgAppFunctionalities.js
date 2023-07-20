@@ -15,4 +15,11 @@ export const fgAppFunctionalities = [
     storageName: constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
     justDomain: false,
   },
+  {
+    funcTitle: "Block Elements On Websites",
+    funcName: constants.componentNames.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
+    containerComponent: "BlockElementsOnWebsites",
+    storageName: constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
+    justDomain: true,
+  },
 ];

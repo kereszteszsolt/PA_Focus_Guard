@@ -2,6 +2,7 @@ import * as constants from "./utils/constants";
 import * as dataAccess from "./utils/scripts/dataAccess.js";
 import * as defaults from "./utils/defaults";
 import { blockOrAllow } from "./background/blockAndRedirect";
+import { blockElements } from "./background/elementBlockers";
 
 //load default values when extension is loaded
 let fgAppData = {
@@ -9,6 +10,7 @@ let fgAppData = {
 };
 let fgBlockedWebsitesByDomain = [];
 let fgBlockedWebsitesByUrl = [];
+let fgBlockedElementsOnWebsites = [];
 
 //when installed, set default values
 chrome.runtime.onInstalled.addListener(async function () {
@@ -26,6 +28,10 @@ async function setDefaultValues() {
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
       defaults.blockByUrlList,
     );
+    await dataAccess.saveData(
+      constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
+      defaults.blockElementsOnWebsitesList,
+    );
   } catch (error) {
     console.error("Error setting default values:", error);
   }
@@ -42,10 +48,14 @@ async function readData() {
     const xfgBlockedWebsitesByUrl = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
     );
+    const xfgBlockedElementsOnWebsites = await dataAccess.loadData(
+      constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
+    );
 
     console.log("fgActive", xfgActive);
     console.log("fgBlockedWebsitesByDomain", xfgBlockedWebsitesByDomain);
     console.log("fgBlockedWebsitesByUrl", xfgBlockedWebsitesByUrl);
+    console.log("fgBlockedElementsOnWebsites", xfgBlockedElementsOnWebsites);
   } catch (error) {
     console.error("Error reading data:", error);
   }
@@ -70,11 +80,19 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
         changes[constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue,
       );
     }
+    if (constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES in changes) {
+      fgBlockedElementsOnWebsites = JSON.parse(
+        changes[constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES]
+          .newValue,
+      );
+    }
 
     await blockOrAllow(
       fgAppData.focusMode,
       fgBlockedWebsitesByDomain,
       fgBlockedWebsitesByUrl,
     );
+
+    await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
   }
 });

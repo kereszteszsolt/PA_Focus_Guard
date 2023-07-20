@@ -1,5 +1,6 @@
 {
     "/dist/js/background.js": "/dist/js/background.js",
+    "/dist/js/content-scripts/contentScript.js": "/dist/js/content-scripts/contentScript.js",
     "/dist/js/popup.js": "/dist/js/popup.js",
     "/dist/js/options.js": "/dist/js/options.js",
     "/dist/html/popup.html": "/dist/html/popup.html",

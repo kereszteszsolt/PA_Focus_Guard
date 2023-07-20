@@ -8,7 +8,9 @@
     "tabs",
     "scripting"
   ],
-  "icons": { "128": "assets/icons/icon-80.png" },
+  "icons": {
+    "128": "assets/icons/icon-80.png"
+  },
   "host_permissions": [
     "<all_urls>"
   ],
@@ -23,5 +25,16 @@
     "page": "html/options.html",
     "open_in_tab": true
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.facebook.com/*"
+      ],
+      "js": [
+        "js/content-scripts/contentScript.js"
+      ]
+    }
+  ],
   "manifest_version": 3
 }
