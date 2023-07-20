@@ -98,13 +98,13 @@ export default {
   <h1>{{ funcTitle }}</h1>
   <div class="tabs">
     <ul>
-      <li v-for="ws in allSites" :key="ws.domain">
-        <a
-          :class="{ 'is-active': ws.domain === activeFBTab }"
-          @click="changeTab(ws.domain)"
-        >
-          {{ ws.domain }}
-        </a>
+      <li
+        v-for="ws in allSites"
+        :key="ws.domain"
+        :class="{ 'is-active': ws.domain === activeFBTab }"
+        @click="changeTab(ws.domain)"
+      >
+        {{ ws.domain }}
       </li>
     </ul>
   </div>
@@ -285,39 +285,6 @@ button {
   }
 }
 
-//.tabs {
-//  ul {
-//    display: flex;
-//    flex-direction: row;
-//    align-items: center;
-//    justify-content: center;
-//    list-style: none;
-//    margin: 0;
-//    padding: 0;
-//
-//    li {
-//      margin: 0 8px;
-//
-//      a {
-//        padding: 8px 16px;
-//        border-radius: 4px;
-//        background-color: $fg-primary-color;
-//        color: $fg-white-color;
-//        transition: background-color 0.3s ease;
-//
-//        &:hover {
-//          background-color: darken($fg-primary-color, 10%);
-//        }
-//
-//        &.is-active {
-//          background-color: $fg-secondary-color;
-//          color: $fg-white-color;
-//        }
-//      }
-//    }
-//  }
-//}
-
 .tabs {
   display: flex;
   justify-content: center;
@@ -329,30 +296,36 @@ button {
     align-items: center;
     justify-content: center;
     list-style: none;
-    margin: 0;
+    margin: 0 0 1px 0;
     padding: 0;
     width: 100%;
 
     li {
       display: flex;
       justify-content: center;
-      margin: 0;
+      margin-right: 1px;
+      width: 100%;
+      font-size: 14px;
+      font-weight: bold;
 
-      a {
-        padding: 8px 16px;
-        border-radius: 4px;
-        background-color: $fg-primary-color;
+      padding: 8px 16px;
+      //border-radius: 8px 8px 0 0;
+      clip-path: polygon(0 20%, 20% 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
+      background-color: lighten($fg-secondary-color, 20%);
+      color: $fg-white-color;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($fg-secondary-color, 10%);
+      }
+
+      &.is-active {
+        background-color: lighten($fg-primary-color, 10%);
         color: $fg-white-color;
-        transition: background-color 0.3s ease;
+      }
 
-        &:hover {
-          background-color: darken($fg-primary-color, 10%);
-        }
-
-        &.is-active {
-          background-color: $fg-secondary-color;
-          color: $fg-white-color;
-        }
+      &:last-child {
+        margin-right: 0;
       }
     }
   }
