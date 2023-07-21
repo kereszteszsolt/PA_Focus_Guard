@@ -176,11 +176,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockElements: () => (/* binding */ blockElements)
 /* harmony export */ });
-var sendMessageToTab = function sendMessageToTab(tabId, webSite) {
+var sendMessageToTab = function sendMessageToTab(tabId, focusMode, webSite) {
   return new Promise(function (resolve, reject) {
     chrome.tabs.sendMessage(tabId, {
       action: webSite.action,
-      focusMode: webSite.focusMode,
+      focusMode: focusMode,
       elementRules: webSite.elementRules
     }, function (response) {
       if (chrome.runtime.lastError) {
@@ -193,20 +193,26 @@ var sendMessageToTab = function sendMessageToTab(tabId, webSite) {
     });
   });
 };
+var isActiveRule = function isActiveRule(focusMode, elementRule) {
+  console.log("isActiveRule called");
+  console.log("elementRule", elementRule);
+  console.log("focusMode", focusMode);
+  console.log("isActiveRule", elementRule.isMarkedForBlock && (focusMode || elementRule.isPermanentlyBlocked));
+  return elementRule.isMarkedForBlock && (focusMode || elementRule.isPermanentlyBlocked);
+};
 var blockElements = function blockElements(focusMode, blockElementsOnWebsitesList) {
   return new Promise(function (resolve, reject) {
-    chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    }, function (tabs) {
+    chrome.tabs.query({}, function (tabs) {
       if (chrome.runtime.lastError) {
         reject("Error in blockElements: " + chrome.runtime.lastError.message);
       } else {
         var promises = [];
         tabs.forEach(function (tab) {
           blockElementsOnWebsitesList.forEach(function (webSite) {
-            if (tab.url.includes(webSite.domain)) {
-              promises.push(sendMessageToTab(tab.id, webSite));
+            if (tab.url.includes(webSite.domain) && webSite.elementRules.filter(function (r) {
+              return isActiveRule(focusMode, r);
+            }).length > 0) {
+              promises.push(sendMessageToTab(tab.id, focusMode, webSite));
             }
           });
         });
@@ -244,6 +250,26 @@ var BLOCK_INSTAGRAM_ELEMENTS = "blockInstagramElementsAction";
 
 /***/ }),
 
+/***/ "./src/js/utils/constants/blockElementsOnWebRuleNames.js":
+/*!***************************************************************!*\
+  !*** ./src/js/utils/constants/blockElementsOnWebRuleNames.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
+/* harmony export */   YOUTUBE_CHANNEL_NAME: () => (/* binding */ YOUTUBE_CHANNEL_NAME),
+/* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
+/* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
+/* harmony export */ });
+var YOUTUBE_THUMBNAIL = "youtube-thumbnail";
+var YOUTUBE_VIDEO_TITLE = "youtube-video-title";
+var YOUTUBE_CHANNEL_NAME = "youtube-channel-name";
+var FACEBOOK_REELS = "facebook-reels";
+
+/***/ }),
+
 /***/ "./src/js/utils/constants/componentNames.js":
 /*!**************************************************!*\
   !*** ./src/js/utils/constants/componentNames.js ***!
@@ -272,11 +298,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockElementsActions: () => (/* reexport module object */ _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__),
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_1__),
-/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__)
+/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   ruleNames: () => (/* reexport module object */ _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__)
 /* harmony export */ });
 /* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ "./src/js/utils/constants/localStorage.js");
 /* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentNames */ "./src/js/utils/constants/componentNames.js");
 /* harmony import */ var _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockElementsOnWebActions */ "./src/js/utils/constants/blockElementsOnWebActions.js");
+/* harmony import */ var _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blockElementsOnWebRuleNames */ "./src/js/utils/constants/blockElementsOnWebRuleNames.js");
+
+
 
 
 
@@ -372,7 +402,15 @@ var blockElementsOnWebsitesList = [{
   domain: "youtube.com",
   action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_YOUTUBE_ELEMENTS,
   elementRules: [{
-    ruleName: "youtube-thumbnail",
+    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_THUMBNAIL,
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false
+  }, {
+    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_VIDEO_TITLE,
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false
+  }, {
+    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_CHANNEL_NAME,
     isMarkedForBlock: false,
     isPermanentlyBlocked: false
   }]
@@ -380,7 +418,7 @@ var blockElementsOnWebsitesList = [{
   domain: "facebook.com",
   action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_FACEBOOK_ELEMENTS,
   elementRules: [{
-    ruleName: "facebook-watch",
+    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.FACEBOOK_REELS,
     isMarkedForBlock: false,
     isPermanentlyBlocked: false
   }]

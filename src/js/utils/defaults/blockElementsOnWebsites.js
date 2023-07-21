@@ -6,7 +6,17 @@ export const blockElementsOnWebsitesList = [
     action: constants.blockElementsActions.BLOCK_YOUTUBE_ELEMENTS,
     elementRules: [
       {
-        ruleName: "youtube-thumbnail",
+        ruleName: constants.ruleNames.YOUTUBE_THUMBNAIL,
+        isMarkedForBlock: false,
+        isPermanentlyBlocked: false,
+      },
+      {
+        ruleName: constants.ruleNames.YOUTUBE_VIDEO_TITLE,
+        isMarkedForBlock: false,
+        isPermanentlyBlocked: false,
+      },
+      {
+        ruleName: constants.ruleNames.YOUTUBE_CHANNEL_NAME,
         isMarkedForBlock: false,
         isPermanentlyBlocked: false,
       },
@@ -17,7 +27,7 @@ export const blockElementsOnWebsitesList = [
     action: constants.blockElementsActions.BLOCK_FACEBOOK_ELEMENTS,
     elementRules: [
       {
-        ruleName: "facebook-watch",
+        ruleName: constants.ruleNames.FACEBOOK_REELS,
         isMarkedForBlock: false,
         isPermanentlyBlocked: false,
       },

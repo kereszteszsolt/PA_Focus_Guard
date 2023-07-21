@@ -17395,6 +17395,26 @@ var BLOCK_INSTAGRAM_ELEMENTS = "blockInstagramElementsAction";
 
 /***/ }),
 
+/***/ "./src/js/utils/constants/blockElementsOnWebRuleNames.js":
+/*!***************************************************************!*\
+  !*** ./src/js/utils/constants/blockElementsOnWebRuleNames.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
+/* harmony export */   YOUTUBE_CHANNEL_NAME: () => (/* binding */ YOUTUBE_CHANNEL_NAME),
+/* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
+/* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
+/* harmony export */ });
+var YOUTUBE_THUMBNAIL = "youtube-thumbnail";
+var YOUTUBE_VIDEO_TITLE = "youtube-video-title";
+var YOUTUBE_CHANNEL_NAME = "youtube-channel-name";
+var FACEBOOK_REELS = "facebook-reels";
+
+/***/ }),
+
 /***/ "./src/js/utils/constants/componentNames.js":
 /*!**************************************************!*\
   !*** ./src/js/utils/constants/componentNames.js ***!
@@ -17423,11 +17443,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockElementsActions: () => (/* reexport module object */ _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__),
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_1__),
-/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__)
+/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   ruleNames: () => (/* reexport module object */ _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__)
 /* harmony export */ });
 /* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ "./src/js/utils/constants/localStorage.js");
 /* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentNames */ "./src/js/utils/constants/componentNames.js");
 /* harmony import */ var _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockElementsOnWebActions */ "./src/js/utils/constants/blockElementsOnWebActions.js");
+/* harmony import */ var _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blockElementsOnWebRuleNames */ "./src/js/utils/constants/blockElementsOnWebRuleNames.js");
+
+
 
 
 
