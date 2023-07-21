@@ -52,22 +52,40 @@ function replaceYouTubeThumbnail() {
 function replaceYouTubeVideoTitle() {
   console.log("Replacing YouTube video title");
   let customTitle = "Focus Guard";
+  //hide the title in the main page and sidebar
   let videoTitles = document.querySelectorAll("#video-title");
   for (let i = 0; i < videoTitles.length; i++) {
     videoTitles[i].innerHTML = customTitle;
   }
 
-  // let videoPlayerTitle = document.querySelector(
-  //   ".style-scope .ytd-watch-metadata h1 yt-formatted-string span",
-  // )[0];
-  // videoPlayerTitle.innerHTML = customTitle;
+  //hide the title in the video player
+  let videoPlayerTitle = document.querySelector(
+    ".style-scope .ytd-watch-metadata h1 yt-formatted-string",
+  );
+  //change the title of the video player and add tooltip with original title
+  if (videoPlayerTitle) {
+    videoPlayerTitle.innerHTML = customTitle;
+    videoPlayerTitle.title = videoPlayerTitle.innerText;
+  }
 }
 
 function replaceYouTubeChannelName() {
   console.log("Replacing YouTube channel name");
   let customChannelName = "Focus Guard";
-  let channelNames = document.querySelectorAll("#channel-name");
+
+  //hide the channel name in the video player and main page
+  let channelNames = document.querySelectorAll(
+    "ytd-channel-name .style-scope .ytd-channel-name .yt-formatted-string",
+  );
   for (let i = 0; i < channelNames.length; i++) {
     channelNames[i].innerHTML = customChannelName;
+  }
+
+  //hide the channel name in the sidebar
+  let channelNames2 = document.querySelectorAll(
+    "ytd-channel-name .style-scope .ytd-channel-name yt-formatted-string",
+  );
+  for (let i = 0; i < channelNames2.length; i++) {
+    channelNames2[i].innerHTML = customChannelName;
   }
 }

@@ -75,19 +75,23 @@ function replaceYouTubeVideoTitle() {
   for (var i = 0; i < videoTitles.length; i++) {
     videoTitles[i].innerHTML = customTitle;
   }
-
-  // let videoPlayerTitle = document.querySelector(
-  //   ".style-scope .ytd-watch-metadata h1 yt-formatted-string span",
-  // )[0];
-  // videoPlayerTitle.innerHTML = customTitle;
+  var videoPlayerTitle = document.querySelector(".style-scope .ytd-watch-metadata h1 yt-formatted-string");
+  //change the title of the video player and add tooltip with original title
+  if (videoPlayerTitle) {
+    videoPlayerTitle.innerHTML = customTitle;
+    videoPlayerTitle.title = videoPlayerTitle.innerText;
+  }
 }
-
 function replaceYouTubeChannelName() {
   console.log("Replacing YouTube channel name");
   var customChannelName = "Focus Guard";
-  var channelNames = document.querySelectorAll("#channel-name");
+  var channelNames = document.querySelectorAll("ytd-channel-name .style-scope .ytd-channel-name .yt-formatted-string");
   for (var i = 0; i < channelNames.length; i++) {
     channelNames[i].innerHTML = customChannelName;
+  }
+  var channelNames2 = document.querySelectorAll("ytd-channel-name .style-scope .ytd-channel-name yt-formatted-string");
+  for (var _i = 0; _i < channelNames2.length; _i++) {
+    channelNames2[_i].innerHTML = customChannelName;
   }
 }
 
