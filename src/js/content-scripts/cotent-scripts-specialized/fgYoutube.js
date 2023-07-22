@@ -3,7 +3,7 @@ import * as constants from "../../utils/constants";
 export const blockYouTubeElements = (focusMode, elementRules) => {
   console.log("blockYouTubeElements inside fgYouTube.js");
   let timeout = null;
-  let delay = 100;
+  let delay = 0;
 
   blockElements(focusMode, elementRules);
   document.addEventListener("scroll", function () {
@@ -15,6 +15,7 @@ export const blockYouTubeElements = (focusMode, elementRules) => {
 };
 
 const blockElements = (focusMode, elementRules) => {
+  console.log("... -block- ...");
   elementRules.forEach((elementRule) => {
     if (isActiveRule(focusMode, elementRule)) {
       switch (elementRule.ruleName) {
@@ -26,6 +27,9 @@ const blockElements = (focusMode, elementRules) => {
           break;
         case constants.ruleNames.YOUTUBE_CHANNEL_NAME:
           replaceYouTubeChannelName();
+          break;
+        case constants.ruleNames.YOUTUBE_ALL_IMAGES:
+          replaceAllYouTubeImages();
           break;
       }
     }
@@ -87,5 +91,17 @@ function replaceYouTubeChannelName() {
   );
   for (let i = 0; i < channelNames2.length; i++) {
     channelNames2[i].innerHTML = customChannelName;
+  }
+}
+
+function replaceAllYouTubeImages() {
+  console.log("Replacing all YouTube images");
+  let customImageURL =
+    "https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  let channelImages = document.getElementsByClassName(
+    "style-scope yt-img-shadow",
+  );
+  for (let i = 0; i < channelImages.length; i++) {
+    channelImages[i].src = customImageURL;
   }
 }

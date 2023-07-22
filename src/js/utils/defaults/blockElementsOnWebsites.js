@@ -20,6 +20,11 @@ export const blockElementsOnWebsitesList = [
         isMarkedForBlock: false,
         isPermanentlyBlocked: false,
       },
+      {
+        ruleName: constants.ruleNames.YOUTUBE_ALL_IMAGES,
+        isMarkedForBlock: false,
+        isPermanentlyBlocked: false,
+      },
     ],
   },
   {

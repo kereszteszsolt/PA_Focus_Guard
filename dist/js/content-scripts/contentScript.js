@@ -31,7 +31,7 @@ __webpack_require__.r(__webpack_exports__);
 var blockYouTubeElements = function blockYouTubeElements(focusMode, elementRules) {
   console.log("blockYouTubeElements inside fgYouTube.js");
   var timeout = null;
-  var delay = 100;
+  var delay = 0;
   blockElements(focusMode, elementRules);
   document.addEventListener("scroll", function () {
     clearTimeout(timeout);
@@ -41,6 +41,7 @@ var blockYouTubeElements = function blockYouTubeElements(focusMode, elementRules
   });
 };
 var blockElements = function blockElements(focusMode, elementRules) {
+  console.log("... -block- ...");
   elementRules.forEach(function (elementRule) {
     if (isActiveRule(focusMode, elementRule)) {
       switch (elementRule.ruleName) {
@@ -52,6 +53,9 @@ var blockElements = function blockElements(focusMode, elementRules) {
           break;
         case _utils_constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_CHANNEL_NAME:
           replaceYouTubeChannelName();
+          break;
+        case _utils_constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_ALL_IMAGES:
+          replaceAllYouTubeImages();
           break;
       }
     }
@@ -71,10 +75,13 @@ function replaceYouTubeThumbnail() {
 function replaceYouTubeVideoTitle() {
   console.log("Replacing YouTube video title");
   var customTitle = "Focus Guard";
+  //hide the title in the main page and sidebar
   var videoTitles = document.querySelectorAll("#video-title");
   for (var i = 0; i < videoTitles.length; i++) {
     videoTitles[i].innerHTML = customTitle;
   }
+
+  //hide the title in the video player
   var videoPlayerTitle = document.querySelector(".style-scope .ytd-watch-metadata h1 yt-formatted-string");
   //change the title of the video player and add tooltip with original title
   if (videoPlayerTitle) {
@@ -85,13 +92,25 @@ function replaceYouTubeVideoTitle() {
 function replaceYouTubeChannelName() {
   console.log("Replacing YouTube channel name");
   var customChannelName = "Focus Guard";
+
+  //hide the channel name in the video player and main page
   var channelNames = document.querySelectorAll("ytd-channel-name .style-scope .ytd-channel-name .yt-formatted-string");
   for (var i = 0; i < channelNames.length; i++) {
     channelNames[i].innerHTML = customChannelName;
   }
+
+  //hide the channel name in the sidebar
   var channelNames2 = document.querySelectorAll("ytd-channel-name .style-scope .ytd-channel-name yt-formatted-string");
   for (var _i = 0; _i < channelNames2.length; _i++) {
     channelNames2[_i].innerHTML = customChannelName;
+  }
+}
+function replaceAllYouTubeImages() {
+  console.log("Replacing all YouTube images");
+  var customImageURL = "https://images.pexels.com/photos/5200285/pexels-photo-5200285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  var channelImages = document.getElementsByClassName("style-scope yt-img-shadow");
+  for (var i = 0; i < channelImages.length; i++) {
+    channelImages[i].src = customImageURL;
   }
 }
 
@@ -146,6 +165,7 @@ var BLOCK_INSTAGRAM_ELEMENTS = "blockInstagramElementsAction";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
+/* harmony export */   YOUTUBE_ALL_IMAGES: () => (/* binding */ YOUTUBE_ALL_IMAGES),
 /* harmony export */   YOUTUBE_CHANNEL_NAME: () => (/* binding */ YOUTUBE_CHANNEL_NAME),
 /* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
 /* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
@@ -153,6 +173,7 @@ __webpack_require__.r(__webpack_exports__);
 var YOUTUBE_THUMBNAIL = "youtube-thumbnail";
 var YOUTUBE_VIDEO_TITLE = "youtube-video-title";
 var YOUTUBE_CHANNEL_NAME = "youtube-channel-name";
+var YOUTUBE_ALL_IMAGES = "youtube-all-images";
 var FACEBOOK_REELS = "facebook-reels";
 
 /***/ }),

@@ -259,6 +259,7 @@ var BLOCK_INSTAGRAM_ELEMENTS = "blockInstagramElementsAction";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
+/* harmony export */   YOUTUBE_ALL_IMAGES: () => (/* binding */ YOUTUBE_ALL_IMAGES),
 /* harmony export */   YOUTUBE_CHANNEL_NAME: () => (/* binding */ YOUTUBE_CHANNEL_NAME),
 /* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
 /* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
@@ -266,6 +267,7 @@ __webpack_require__.r(__webpack_exports__);
 var YOUTUBE_THUMBNAIL = "youtube-thumbnail";
 var YOUTUBE_VIDEO_TITLE = "youtube-video-title";
 var YOUTUBE_CHANNEL_NAME = "youtube-channel-name";
+var YOUTUBE_ALL_IMAGES = "youtube-all-images";
 var FACEBOOK_REELS = "facebook-reels";
 
 /***/ }),
@@ -411,6 +413,10 @@ var blockElementsOnWebsitesList = [{
     isPermanentlyBlocked: false
   }, {
     ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_CHANNEL_NAME,
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false
+  }, {
+    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_ALL_IMAGES,
     isMarkedForBlock: false,
     isPermanentlyBlocked: false
   }]
