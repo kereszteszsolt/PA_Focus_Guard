@@ -17060,17 +17060,49 @@ __webpack_require__.r(__webpack_exports__);
       this.calculateCurrentPageItemsCurrTab();
     },
     markForBlock: function markForBlock(item) {
+      if (item.isMarkedForBlock && item.isPermanentlyBlocked) {
+        item.isPermanentlyBlocked = false;
+      }
       item.isMarkedForBlock = !item.isMarkedForBlock;
       this.saveToStorage();
     },
     markForPermanentlyBlock: function markForPermanentlyBlock(item) {
+      if (!item.isMarkedForBlock && !item.isPermanentlyBlocked) {
+        item.isMarkedForBlock = true;
+      }
       item.isPermanentlyBlocked = !item.isPermanentlyBlocked;
       this.saveToStorage();
     },
-    removeItem: function removeItem(item) {
-      var index = this.allSites.elementRules.indexOf(item);
-      this.allSites.elementRules.splice(index, 1);
+    markForBlockAllFromCurrPage: function markForBlockAllFromCurrPage(items) {
+      var allItemsIsMarkedForBlock = items.every(function (item) {
+        return item.isMarkedForBlock === true;
+      });
+      if (allItemsIsMarkedForBlock) {
+        items.forEach(function (item) {
+          item.isMarkedForBlock = false;
+          item.isPermanentlyBlocked = false;
+        });
+      } else {
+        items.forEach(function (item) {
+          item.isMarkedForBlock = true;
+        });
+      }
       this.saveToStorage();
+    },
+    markForPermanentlyBlockAllFromCurrPage: function markForPermanentlyBlockAllFromCurrPage(items) {
+      var allItemsIsPermanentlyBlocked = items.every(function (item) {
+        return item.isPermanentlyBlocked === true;
+      });
+      if (allItemsIsPermanentlyBlocked) {
+        items.forEach(function (item) {
+          item.isPermanentlyBlocked = false;
+        });
+      } else {
+        items.forEach(function (item) {
+          item.isMarkedForBlock = true;
+          item.isPermanentlyBlocked = true;
+        });
+      }
     },
     saveToStorage: function saveToStorage() {
       _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(this.storageName, this.allSites);
@@ -17262,7 +17294,7 @@ var _hoisted_2 = ["onClick"];
 var _hoisted_3 = {
   "class": "urlList"
 };
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Rule Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Marked for Block"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Permanently Blocked")])], -1 /* HOISTED */);
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Rule Name", -1 /* HOISTED */);
 var _hoisted_5 = {
   "class": "checkbox"
 };
@@ -17287,7 +17319,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $options.changeTab(ws.domain);
       }
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ws.domain), 11 /* TEXT, CLASS, PROPS */, _hoisted_2);
-  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currTabCurrPageItems, function (item) {
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.markForBlockAllFromCurrPage($data.currTabCurrPageItems);
+    })
+  }, " Marked for Block "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $options.markForPermanentlyBlockAllFromCurrPage($data.currTabCurrPageItems);
+    })
+  }, " Permanently Blocked ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currTabCurrPageItems, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: item.url
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ruleName), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -17306,13 +17346,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }
     }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_8)])])]);
   }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[0] || (_cache[0] = function ($event) {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.flipPage('prev');
     }),
     disabled: $data.currentPage === 1,
     "class": "button-primary"
   }, " Prev ", 8 /* PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentPage) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.totalNrOfPages), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.flipPage('next');
     }),
     disabled: $data.currentPage === $data.totalNrOfPages,
@@ -17599,7 +17639,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container {\n    max-width: 1140px;\n}\n}\n.button-success {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success:hover {\n  background-color: #54d98c;\n}\n.button-danger {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger:hover {\n  background-color: #ed7669;\n}\n.button-primary {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary:hover {\n  background-color: #81661c;\n}\n.urlList table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.urlList table thead {\n  background-color: #81661c;\n  color: floralwhite;\n}\n.urlList table th,\n.urlList table td {\n  border-bottom: 1px solid #ccc;\n  padding: 5px;\n}\n.urlList table th:first-child,\n.urlList table td:first-child {\n  font-weight: bold;\n  font-size: 14px;\n}\n.urlList table th:nth-child(2),\n.urlList table td:nth-child(2) {\n  text-align: center;\n  width: 96px;\n}\n.urlList table th:last-child,\n.urlList table td:last-child {\n  text-align: center;\n  width: 96px;\n}\ninput[type=checkbox] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #ccc;\n  border-radius: 2px;\n  cursor: pointer;\n  margin: 2px auto -2px auto;\n  transition: background-color 0.3s ease;\n}\ninput[type=checkbox]:hover {\n  border-color: #b3b3b3;\n}\ninput[type=checkbox]:checked {\n  background-color: #574513;\n}\ninput[type=checkbox]:checked:hover {\n  background-color: #2d240a;\n}\ninput[type=checkbox]:checked:before {\n  content: \"\";\n  display: block;\n  width: 4px;\n  height: 8px;\n  border: solid #fff;\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg);\n  margin: 3px auto -3px auto;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton {\n  background-color: #e74c3c;\n  color: floralwhite;\n  font-weight: bolder;\n  border: none;\n  padding: 8px 10px;\n  border-radius: 50%;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton:hover {\n  background-color: #d62c1a;\n}\n.pagination-controls {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-top: 20px;\n}\n.pagination-controls button {\n  background-color: #81661c;\n  color: floralwhite;\n  border: none;\n  padding: 8px 16px;\n  margin: 0 4px;\n  font-size: 14px;\n  font-weight: bold;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.pagination-controls button:hover {\n  background-color: #574513;\n}\n.pagination-controls button:disabled {\n  background-color: #b5bcbd;\n  color: #7f8c8d;\n  cursor: not-allowed;\n}\n.pagination-controls span {\n  color: #574513;\n  font-weight: bold;\n  margin: 0 8px;\n}\n.tabs {\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n.tabs ul {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  list-style: none;\n  margin: 0 0 1px 0;\n  padding: 0;\n  width: 100%;\n}\n.tabs ul li {\n  display: flex;\n  justify-content: center;\n  margin-right: 1px;\n  width: 100%;\n  font-size: 14px;\n  font-weight: bold;\n  cursor: pointer;\n  padding: 8px 16px;\n  -webkit-clip-path: polygon(0 30%, 10% 0, 90% 0, 100% 30%, 100% 100%, 0 100%);\n          clip-path: polygon(0 30%, 10% 0, 90% 0, 100% 30%, 100% 100%, 0 100%);\n  background-color: #b5bcbd;\n  color: floralwhite;\n  transition: background-color 0.3s ease;\n}\n.tabs ul li:hover {\n  background-color: #667273;\n}\n.tabs ul li.is-active {\n  background-color: #81661c;\n  color: floralwhite;\n}\n.tabs ul li.is-active:hover {\n  background-color: #574513;\n}\n.tabs ul li:last-child {\n  margin-right: 0;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container {\n    max-width: 1140px;\n}\n}\n.button-success {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success:hover {\n  background-color: #54d98c;\n}\n.button-danger {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger:hover {\n  background-color: #ed7669;\n}\n.button-primary {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary:hover {\n  background-color: #81661c;\n}\n.urlList table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.urlList table thead {\n  background-color: #81661c;\n  color: floralwhite;\n}\n.urlList table th,\n.urlList table td {\n  border-bottom: 1px solid #ccc;\n  padding: 5px;\n}\n.urlList table th:first-child,\n.urlList table td:first-child {\n  font-weight: bold;\n  font-size: 14px;\n}\n.urlList table th:nth-child(2),\n.urlList table td:nth-child(2) {\n  text-align: center;\n  width: 96px;\n}\n.urlList table th:last-child,\n.urlList table td:last-child {\n  text-align: center;\n  width: 96px;\n}\n.urlList table th:nth-child(2):hover {\n  cursor: pointer;\n  background-color: #574513;\n}\n.urlList table th:last-child:hover {\n  cursor: pointer;\n  background-color: #574513;\n}\ninput[type=checkbox] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #ccc;\n  border-radius: 2px;\n  cursor: pointer;\n  margin: 2px auto -2px auto;\n  transition: background-color 0.3s ease;\n}\ninput[type=checkbox]:hover {\n  border-color: #b3b3b3;\n}\ninput[type=checkbox]:checked {\n  background-color: #574513;\n}\ninput[type=checkbox]:checked:hover {\n  background-color: #2d240a;\n}\ninput[type=checkbox]:checked:before {\n  content: \"\";\n  display: block;\n  width: 4px;\n  height: 8px;\n  border: solid #fff;\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg);\n  margin: 3px auto -3px auto;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton {\n  background-color: #e74c3c;\n  color: floralwhite;\n  font-weight: bolder;\n  border: none;\n  padding: 8px 10px;\n  border-radius: 50%;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\nbutton:hover {\n  background-color: #d62c1a;\n}\n.pagination-controls {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-top: 20px;\n}\n.pagination-controls button {\n  background-color: #81661c;\n  color: floralwhite;\n  border: none;\n  padding: 8px 16px;\n  margin: 0 4px;\n  font-size: 14px;\n  font-weight: bold;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.pagination-controls button:hover {\n  background-color: #574513;\n}\n.pagination-controls button:disabled {\n  background-color: #b5bcbd;\n  color: #7f8c8d;\n  cursor: not-allowed;\n}\n.pagination-controls span {\n  color: #574513;\n  font-weight: bold;\n  margin: 0 8px;\n}\n.tabs {\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n.tabs ul {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  list-style: none;\n  margin: 0 0 1px 0;\n  padding: 0;\n  width: 100%;\n}\n.tabs ul li {\n  display: flex;\n  justify-content: center;\n  margin-right: 1px;\n  width: 100%;\n  font-size: 14px;\n  font-weight: bold;\n  cursor: pointer;\n  padding: 8px 16px;\n  -webkit-clip-path: polygon(0 30%, 10% 0, 90% 0, 100% 30%, 100% 100%, 0 100%);\n          clip-path: polygon(0 30%, 10% 0, 90% 0, 100% 30%, 100% 100%, 0 100%);\n  background-color: #b5bcbd;\n  color: floralwhite;\n  transition: background-color 0.3s ease;\n}\n.tabs ul li:hover {\n  background-color: #667273;\n}\n.tabs ul li.is-active {\n  background-color: #81661c;\n  color: floralwhite;\n}\n.tabs ul li.is-active:hover {\n  background-color: #574513;\n}\n.tabs ul li:last-child {\n  margin-right: 0;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -65,17 +65,49 @@ export default {
       this.calculateCurrentPageItemsCurrTab();
     },
     markForBlock(item) {
+      if (item.isMarkedForBlock && item.isPermanentlyBlocked) {
+        item.isPermanentlyBlocked = false;
+      }
       item.isMarkedForBlock = !item.isMarkedForBlock;
       this.saveToStorage();
     },
     markForPermanentlyBlock(item) {
+      if (!item.isMarkedForBlock && !item.isPermanentlyBlocked) {
+        item.isMarkedForBlock = true;
+      }
       item.isPermanentlyBlocked = !item.isPermanentlyBlocked;
       this.saveToStorage();
     },
-    removeItem(item) {
-      const index = this.allSites.elementRules.indexOf(item);
-      this.allSites.elementRules.splice(index, 1);
+    markForBlockAllFromCurrPage(items) {
+      const allItemsIsMarkedForBlock = items.every(
+        (item) => item.isMarkedForBlock === true,
+      );
+      if (allItemsIsMarkedForBlock) {
+        items.forEach((item) => {
+          item.isMarkedForBlock = false;
+          item.isPermanentlyBlocked = false;
+        });
+      } else {
+        items.forEach((item) => {
+          item.isMarkedForBlock = true;
+        });
+      }
       this.saveToStorage();
+    },
+    markForPermanentlyBlockAllFromCurrPage(items) {
+      const allItemsIsPermanentlyBlocked = items.every(
+        (item) => item.isPermanentlyBlocked === true,
+      );
+      if (allItemsIsPermanentlyBlocked) {
+        items.forEach((item) => {
+          item.isPermanentlyBlocked = false;
+        });
+      } else {
+        items.forEach((item) => {
+          item.isMarkedForBlock = true;
+          item.isPermanentlyBlocked = true;
+        });
+      }
     },
     saveToStorage() {
       dataAccess.saveData(this.storageName, this.allSites);
@@ -109,8 +141,16 @@ export default {
       <thead>
         <tr>
           <th>Rule Name</th>
-          <th>Marked for Block</th>
-          <th>Permanently Blocked</th>
+          <th @click="markForBlockAllFromCurrPage(currTabCurrPageItems)">
+            Marked for Block
+          </th>
+          <th
+            @click="
+              markForPermanentlyBlockAllFromCurrPage(currTabCurrPageItems)
+            "
+          >
+            Permanently Blocked
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -190,6 +230,18 @@ export default {
       &:last-child {
         text-align: center;
         width: 96px;
+      }
+    }
+
+    th {
+      &:nth-child(2):hover {
+        cursor: pointer;
+        background-color: $fg-primary-color;
+      }
+
+      &:last-child:hover {
+        cursor: pointer;
+        background-color: $fg-primary-color;
       }
     }
   }
