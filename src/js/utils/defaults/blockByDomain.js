@@ -1,7 +1,7 @@
 export const blockByDomainList = [
   {
     url: "www.facebook.com",
-    isMarkedForBlock: true,
+    isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },
   {

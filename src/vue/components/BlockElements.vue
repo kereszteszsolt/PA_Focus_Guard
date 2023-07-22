@@ -108,6 +108,7 @@ export default {
           item.isPermanentlyBlocked = true;
         });
       }
+      this.saveToStorage();
     },
     saveToStorage() {
       dataAccess.saveData(this.storageName, this.allSites);

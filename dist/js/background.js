@@ -352,7 +352,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var blockByDomainList = [{
   url: "www.facebook.com",
-  isMarkedForBlock: true,
+  isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
   url: "www.youtube.com",

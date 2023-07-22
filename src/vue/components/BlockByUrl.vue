@@ -142,6 +142,34 @@ export default {
       }
       this.saveToStorage();
     },
+    markAllForBlockCurrPage() {
+      const allCurrPageItemsAreMarkedForBlock = this.currentPageItems.every(
+        (item) => item.isMarkedForBlock,
+      );
+      this.currentPageItems.forEach((item) => {
+        if (allCurrPageItemsAreMarkedForBlock) {
+          item.isMarkedForBlock = false;
+          item.isPermanentlyBlocked = false;
+        } else {
+          item.isMarkedForBlock = true;
+        }
+      });
+      this.saveToStorage();
+    },
+    markAllForPermanentlyBlockCurrPage() {
+      const allCurrPageItemsArePermanentlyBlocked = this.currentPageItems.every(
+        (item) => item.isPermanentlyBlocked,
+      );
+      this.currentPageItems.forEach((item) => {
+        if (allCurrPageItemsArePermanentlyBlocked) {
+          item.isPermanentlyBlocked = false;
+        } else {
+          item.isPermanentlyBlocked = true;
+          item.isMarkedForBlock = true;
+        }
+      });
+      this.saveToStorage();
+    },
   },
 };
 </script>
@@ -153,8 +181,12 @@ export default {
       <thead>
         <tr>
           <th>URL</th>
-          <th>Marked for Block</th>
-          <th>Permanently Blocked</th>
+          <th @click="markAllForBlockCurrPage(currentPageItems)">
+            Marked for Block
+          </th>
+          <th @click="markAllForPermanentlyBlockCurrPage(currentPageItems)">
+            Permanently Blocked
+          </th>
           <th>Remove</th>
         </tr>
       </thead>
@@ -262,6 +294,23 @@ export default {
       &:last-child {
         text-align: center;
         width: 48px;
+      }
+    }
+
+    th {
+      &:nth-child(2):hover {
+        cursor: pointer;
+        background-color: $fg-primary-color;
+      }
+
+      &:nth-child(3):hover {
+        cursor: pointer;
+        background-color: $fg-primary-color;
+      }
+
+      &:last-child:hover {
+        cursor: default;
+        background-color: lighten($fg-primary-color, 10%);
       }
     }
   }
