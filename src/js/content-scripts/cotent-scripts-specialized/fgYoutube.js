@@ -3,15 +3,35 @@ import * as constants from "../../utils/constants";
 export const blockYouTubeElements = (focusMode, elementRules) => {
   console.log("blockYouTubeElements inside fgYouTube.js");
   let timeout = null;
-  let delay = 0;
+  let delay = 10;
+  let count = 0;
+  let countLimit = 100;
+  console.log("delay: ", delay);
 
   blockElements(focusMode, elementRules);
   document.addEventListener("scroll", function () {
+    delay = 10;
+    count = 0;
+    countLimit = 50;
+    observer.observe(document.body, observerConfig);
+  });
+
+  let observer = new MutationObserver(function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
       blockElements(focusMode, elementRules);
     }, delay);
+    if (count < countLimit) {
+      count++;
+    } else {
+      observer.disconnect();
+    }
+    console.log("count: ", count);
   });
+
+  let observerConfig = { childList: true, subtree: true };
+
+  observer.observe(document.body, observerConfig);
 };
 
 const blockElements = (focusMode, elementRules) => {
@@ -55,42 +75,23 @@ function replaceYouTubeThumbnail() {
 
 function replaceYouTubeVideoTitle() {
   console.log("Replacing YouTube video title");
-  let customTitle = "Focus Guard";
+  let customTitle = "Video Title";
   //hide the title in the main page and sidebar
   let videoTitles = document.querySelectorAll("#video-title");
   for (let i = 0; i < videoTitles.length; i++) {
     videoTitles[i].innerHTML = customTitle;
   }
-
-  //hide the title in the video player
-  let videoPlayerTitle = document.querySelector(
-    ".style-scope .ytd-watch-metadata h1 yt-formatted-string",
-  );
-  //change the title of the video player and add tooltip with original title
-  if (videoPlayerTitle) {
-    videoPlayerTitle.innerHTML = customTitle;
-    videoPlayerTitle.title = videoPlayerTitle.innerText;
-  }
 }
 
 function replaceYouTubeChannelName() {
   console.log("Replacing YouTube channel name");
-  let customChannelName = "Focus Guard";
+  let customChannelName = "Channel Name";
 
-  //hide the channel name in the video player and main page
   let channelNames = document.querySelectorAll(
-    "ytd-channel-name .style-scope .ytd-channel-name .yt-formatted-string",
+    "ytd-channel-name .style-scope .ytd-channel-name yt-formatted-string",
   );
   for (let i = 0; i < channelNames.length; i++) {
     channelNames[i].innerHTML = customChannelName;
-  }
-
-  //hide the channel name in the sidebar
-  let channelNames2 = document.querySelectorAll(
-    "ytd-channel-name .style-scope .ytd-channel-name yt-formatted-string",
-  );
-  for (let i = 0; i < channelNames2.length; i++) {
-    channelNames2[i].innerHTML = customChannelName;
   }
 }
 

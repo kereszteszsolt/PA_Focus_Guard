@@ -31,14 +31,34 @@ __webpack_require__.r(__webpack_exports__);
 var blockYouTubeElements = function blockYouTubeElements(focusMode, elementRules) {
   console.log("blockYouTubeElements inside fgYouTube.js");
   var timeout = null;
-  var delay = 0;
+  var delay = 10;
+  var count = 0;
+  var countLimit = 100;
+  console.log("delay: ", delay);
   blockElements(focusMode, elementRules);
   document.addEventListener("scroll", function () {
+    delay = 10;
+    count = 0;
+    countLimit = 50;
+    observer.observe(document.body, observerConfig);
+  });
+  var observer = new MutationObserver(function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
       blockElements(focusMode, elementRules);
     }, delay);
+    if (count < countLimit) {
+      count++;
+    } else {
+      observer.disconnect();
+    }
+    console.log("count: ", count);
   });
+  var observerConfig = {
+    childList: true,
+    subtree: true
+  };
+  observer.observe(document.body, observerConfig);
 };
 var blockElements = function blockElements(focusMode, elementRules) {
   console.log("... -block- ...");
@@ -74,7 +94,7 @@ function replaceYouTubeThumbnail() {
 }
 function replaceYouTubeVideoTitle() {
   console.log("Replacing YouTube video title");
-  var customTitle = "Focus Guard";
+  var customTitle = "Video Title";
   //hide the title in the main page and sidebar
   var videoTitles = document.querySelectorAll("#video-title");
   for (var i = 0; i < videoTitles.length; i++) {
@@ -83,26 +103,24 @@ function replaceYouTubeVideoTitle() {
 
   //hide the title in the video player
   var videoPlayerTitle = document.querySelector(".style-scope .ytd-watch-metadata h1 yt-formatted-string");
-  //change the title of the video player and add tooltip with original title
-  if (videoPlayerTitle) {
-    videoPlayerTitle.innerHTML = customTitle;
-    videoPlayerTitle.title = videoPlayerTitle.innerText;
+  //if element exist and contains span elements then replace the first span element with the custom title
+  // the rest of the span elements  inner text with empty string
+  // in the other case replace the inner text with the custom title
+  if (videoPlayerTitle && videoPlayerTitle.querySelectorAll("span").length > 0) {
+    videoPlayerTitle.querySelectorAll("span")[0].innerText = customTitle;
+    for (var _i = 1; _i < videoPlayerTitle.querySelectorAll("span").length; _i++) {
+      videoPlayerTitle.querySelectorAll("span")[_i].innerText = "";
+    }
+  } else if (videoPlayerTitle) {
+    videoPlayerTitle.innerText = customTitle;
   }
 }
 function replaceYouTubeChannelName() {
   console.log("Replacing YouTube channel name");
-  var customChannelName = "Focus Guard";
-
-  //hide the channel name in the video player and main page
-  var channelNames = document.querySelectorAll("ytd-channel-name .style-scope .ytd-channel-name .yt-formatted-string");
+  var customChannelName = "Channel Name";
+  var channelNames = document.querySelectorAll("ytd-channel-name .style-scope .ytd-channel-name yt-formatted-string");
   for (var i = 0; i < channelNames.length; i++) {
     channelNames[i].innerHTML = customChannelName;
-  }
-
-  //hide the channel name in the sidebar
-  var channelNames2 = document.querySelectorAll("ytd-channel-name .style-scope .ytd-channel-name yt-formatted-string");
-  for (var _i = 0; _i < channelNames2.length; _i++) {
-    channelNames2[_i].innerHTML = customChannelName;
   }
 }
 function replaceAllYouTubeImages() {
