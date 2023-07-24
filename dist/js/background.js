@@ -744,17 +744,7 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }());
-
-// chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-//   if (changeInfo.status === "complete") {
-//     await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-//   }
-// });
-
-var tabsInfo = []; // tabId, url,
-//collect tab info
-//remove tab info when tab is closed
-//when the new url is different from the old url, run block_or_allow and block_elements
+var tabsInfo = [];
 chrome.tabs.onCreated.addListener( /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(tab) {
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -802,35 +792,25 @@ chrome.tabs.onUpdated.addListener( /*#__PURE__*/function () {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
           if (!(changeInfo.status === "complete")) {
-            _context5.next = 11;
+            _context5.next = 7;
             break;
           }
           tabInfo = tabsInfo.find(function (tab) {
             return tab.tabId === tabId;
           });
           if (!tabInfo) {
-            _context5.next = 11;
+            _context5.next = 7;
             break;
           }
           if (!(tabInfo.url !== tab.url)) {
-            _context5.next = 10;
+            _context5.next = 6;
             break;
           }
-          console.log("tabInfo.url !== tab.url");
-          console.log("tabInfo.url", tabInfo.url);
-          console.log("tab.url", tab.url);
-          console.log("tabInfo.url !== tab.url");
-          // await blockOrAllow(
-          //   fgAppData.focusMode,
-          //   fgBlockedWebsitesByDomain,
-          //   fgBlockedWebsitesByUrl,
-          // );
-          //
-          _context5.next = 10;
+          _context5.next = 6;
           return (0,_background_elementBlockers__WEBPACK_IMPORTED_MODULE_4__.blockElements)(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-        case 10:
+        case 6:
           tabInfo.url = tab.url;
-        case 11:
+        case 7:
         case "end":
           return _context5.stop();
       }

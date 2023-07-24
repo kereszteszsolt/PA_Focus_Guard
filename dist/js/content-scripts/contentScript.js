@@ -42,6 +42,10 @@ var blockYouTubeElements = function blockYouTubeElements(focusMode, elementRules
     countLimit = 50;
     observer.observe(document.body, observerConfig);
   });
+  var observerConfig = {
+    childList: true,
+    subtree: true
+  };
   var observer = new MutationObserver(function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
@@ -54,10 +58,6 @@ var blockYouTubeElements = function blockYouTubeElements(focusMode, elementRules
     }
     console.log("count: ", count);
   });
-  var observerConfig = {
-    childList: true,
-    subtree: true
-  };
   observer.observe(document.body, observerConfig);
 };
 var blockElements = function blockElements(focusMode, elementRules) {
@@ -99,20 +99,6 @@ function replaceYouTubeVideoTitle() {
   var videoTitles = document.querySelectorAll("#video-title");
   for (var i = 0; i < videoTitles.length; i++) {
     videoTitles[i].innerHTML = customTitle;
-  }
-
-  //hide the title in the video player
-  var videoPlayerTitle = document.querySelector(".style-scope .ytd-watch-metadata h1 yt-formatted-string");
-  //if element exist and contains span elements then replace the first span element with the custom title
-  // the rest of the span elements  inner text with empty string
-  // in the other case replace the inner text with the custom title
-  if (videoPlayerTitle && videoPlayerTitle.querySelectorAll("span").length > 0) {
-    videoPlayerTitle.querySelectorAll("span")[0].innerText = customTitle;
-    for (var _i = 1; _i < videoPlayerTitle.querySelectorAll("span").length; _i++) {
-      videoPlayerTitle.querySelectorAll("span")[_i].innerText = "";
-    }
-  } else if (videoPlayerTitle) {
-    videoPlayerTitle.innerText = customTitle;
   }
 }
 function replaceYouTubeChannelName() {

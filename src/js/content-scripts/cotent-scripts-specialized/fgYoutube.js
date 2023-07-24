@@ -16,6 +16,7 @@ export const blockYouTubeElements = (focusMode, elementRules) => {
     observer.observe(document.body, observerConfig);
   });
 
+  let observerConfig = { childList: true, subtree: true };
   let observer = new MutationObserver(function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
@@ -28,8 +29,6 @@ export const blockYouTubeElements = (focusMode, elementRules) => {
     }
     console.log("count: ", count);
   });
-
-  let observerConfig = { childList: true, subtree: true };
 
   observer.observe(document.body, observerConfig);
 };
