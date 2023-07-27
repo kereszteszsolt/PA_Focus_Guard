@@ -37,38 +37,37 @@ async function setDefaultValues() {
   }
 }
 
-async function readData() {
+async function readData(afterReadData) {
   try {
-    const fgAppData = await dataAccess.loadData(
-      constants.localStorage.FG_APP_DATA,
-    );
-    const fgBlockedWebsitesByDomain = await dataAccess.loadData(
+    fgAppData = await dataAccess.loadData(constants.localStorage.FG_APP_DATA);
+    fgBlockedWebsitesByDomain = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN,
     );
-    const fgBlockedWebsitesByUrl = await dataAccess.loadData(
+    fgBlockedWebsitesByUrl = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
     );
-    const fgBlockedElementsOnWebsites = await dataAccess.loadData(
+    fgBlockedElementsOnWebsites = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
     );
-
-    console.log("fgActive", fgAppData.focusMode);
-    console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
-    console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
-    console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
   } catch (error) {
     console.error("Error reading data:", error);
   }
+  afterReadData();
 }
-await readData();
-if (fgAppData.focusMode) {
+
+await readData(async () => {
+  console.log("fgActive", fgAppData.focusMode);
+  console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
+  console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
+  console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
+
   await blockOrAllow(
     fgAppData.focusMode,
     fgBlockedWebsitesByDomain,
     fgBlockedWebsitesByUrl,
   );
   await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-}
+});
 
 // any time a storage item is updated, update global variables and run block_or_allow
 chrome.storage.onChanged.addListener(async function (changes, namespace) {
