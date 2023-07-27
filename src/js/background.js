@@ -61,6 +61,14 @@ async function readData() {
   }
 }
 await readData();
+if (fgAppData.focusMode) {
+  await blockOrAllow(
+    fgAppData.focusMode,
+    fgBlockedWebsitesByDomain,
+    fgBlockedWebsitesByUrl,
+  );
+  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+}
 
 // any time a storage item is updated, update global variables and run block_or_allow
 chrome.storage.onChanged.addListener(async function (changes, namespace) {
@@ -98,36 +106,11 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
   }
 });
 
-let tabsInfo = [];
-chrome.tabs.onCreated.addListener(async function (tab) {
-  console.log("tab", tab);
-  tabsInfo.push({
-    tabId: tab.id,
-    url: tab.url,
-  });
-  console.log("created tabsInfo", tabsInfo);
-});
-chrome.tabs.onRemoved.addListener(async function (tabId) {
-  tabsInfo = tabsInfo.filter((tab) => tab.tabId !== tabId);
-  console.log("removed tabsInfo", tabsInfo);
-});
-
 chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-  if (changeInfo.status === "complete") {
-    const tabInfo = tabsInfo.find((tab) => tab.tabId === tabId);
-    if (tabInfo) {
-      if (tabInfo.url !== tab.url) {
-        console.log("tabInfo.url !== tab.url");
-        console.log("tabInfo.url: " + tabInfo.url);
-        console.log("tab.url: " + tab.url);
-        await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-        await blockOrAllow(
-          fgAppData.focusMode,
-          fgBlockedWebsitesByDomain,
-          fgBlockedWebsitesByUrl,
-        );
-      }
-      tabInfo.url = tab.url;
-    }
-  }
+  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+  await blockOrAllow(
+    fgAppData.focusMode,
+    fgBlockedWebsitesByDomain,
+    fgBlockedWebsitesByUrl,
+  );
 });

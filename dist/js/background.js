@@ -50,34 +50,34 @@ function setDefaultValues() {
   return _setDefaultValues.apply(this, arguments);
 }
 function _setDefaultValues() {
-  _setDefaultValues = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-      while (1) switch (_context6.prev = _context6.next) {
+  _setDefaultValues = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
         case 0:
-          _context6.prev = 0;
-          _context6.next = 3;
+          _context4.prev = 0;
+          _context4.next = 3;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA, fgAppData);
         case 3:
-          _context6.next = 5;
+          _context4.next = 5;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN, _utils_defaults__WEBPACK_IMPORTED_MODULE_2__.blockByDomainList);
         case 5:
-          _context6.next = 7;
+          _context4.next = 7;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL, _utils_defaults__WEBPACK_IMPORTED_MODULE_2__.blockByUrlList);
         case 7:
-          _context6.next = 9;
+          _context4.next = 9;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES, _utils_defaults__WEBPACK_IMPORTED_MODULE_2__.blockElementsOnWebsitesList);
         case 9:
-          _context6.next = 14;
+          _context4.next = 14;
           break;
         case 11:
-          _context6.prev = 11;
-          _context6.t0 = _context6["catch"](0);
-          console.error("Error setting default values:", _context6.t0);
+          _context4.prev = 11;
+          _context4.t0 = _context4["catch"](0);
+          console.error("Error setting default values:", _context4.t0);
         case 14:
         case "end":
-          return _context6.stop();
+          return _context4.stop();
       }
-    }, _callee6, null, [[0, 11]]);
+    }, _callee4, null, [[0, 11]]);
   }));
   return _setDefaultValues.apply(this, arguments);
 }
@@ -85,47 +85,51 @@ function readData() {
   return _readData.apply(this, arguments);
 }
 function _readData() {
-  _readData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+  _readData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
     var _fgAppData, _fgBlockedWebsitesByDomain, _fgBlockedWebsitesByUrl, _fgBlockedElementsOnWebsites;
-    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-      while (1) switch (_context7.prev = _context7.next) {
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) switch (_context5.prev = _context5.next) {
         case 0:
-          _context7.prev = 0;
-          _context7.next = 3;
+          _context5.prev = 0;
+          _context5.next = 3;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.loadData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA);
         case 3:
-          _fgAppData = _context7.sent;
-          _context7.next = 6;
+          _fgAppData = _context5.sent;
+          _context5.next = 6;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.loadData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN);
         case 6:
-          _fgBlockedWebsitesByDomain = _context7.sent;
-          _context7.next = 9;
+          _fgBlockedWebsitesByDomain = _context5.sent;
+          _context5.next = 9;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.loadData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL);
         case 9:
-          _fgBlockedWebsitesByUrl = _context7.sent;
-          _context7.next = 12;
+          _fgBlockedWebsitesByUrl = _context5.sent;
+          _context5.next = 12;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.loadData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES);
         case 12:
-          _fgBlockedElementsOnWebsites = _context7.sent;
+          _fgBlockedElementsOnWebsites = _context5.sent;
           console.log("fgActive", _fgAppData.focusMode);
           console.log("fgBlockedWebsitesByDomain", _fgBlockedWebsitesByDomain);
           console.log("fgBlockedWebsitesByUrl", _fgBlockedWebsitesByUrl);
           console.log("fgBlockedElementsOnWebsites", _fgBlockedElementsOnWebsites);
-          _context7.next = 22;
+          _context5.next = 22;
           break;
         case 19:
-          _context7.prev = 19;
-          _context7.t0 = _context7["catch"](0);
-          console.error("Error reading data:", _context7.t0);
+          _context5.prev = 19;
+          _context5.t0 = _context5["catch"](0);
+          console.error("Error reading data:", _context5.t0);
         case 22:
         case "end":
-          return _context7.stop();
+          return _context5.stop();
       }
-    }, _callee7, null, [[0, 19]]);
+    }, _callee5, null, [[0, 19]]);
   }));
   return _readData.apply(this, arguments);
 }
 await readData();
+if (fgAppData.focusMode) {
+  await (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
+  await (0,_background_elementBlockers__WEBPACK_IMPORTED_MODULE_4__.blockElements)(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+}
 
 // any time a storage item is updated, update global variables and run block_or_allow
 chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
@@ -165,86 +169,24 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }());
-var tabsInfo = [];
-chrome.tabs.onCreated.addListener( /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(tab) {
+chrome.tabs.onUpdated.addListener( /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(tabId, changeInfo, tab) {
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          console.log("tab", tab);
-          tabsInfo.push({
-            tabId: tab.id,
-            url: tab.url
-          });
-          console.log("created tabsInfo", tabsInfo);
-        case 3:
+          _context3.next = 2;
+          return (0,_background_elementBlockers__WEBPACK_IMPORTED_MODULE_4__.blockElements)(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+        case 2:
+          _context3.next = 4;
+          return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
+        case 4:
         case "end":
           return _context3.stop();
       }
     }, _callee3);
   }));
-  return function (_x3) {
+  return function (_x3, _x4, _x5) {
     return _ref3.apply(this, arguments);
-  };
-}());
-chrome.tabs.onRemoved.addListener( /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(tabId) {
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
-        case 0:
-          tabsInfo = tabsInfo.filter(function (tab) {
-            return tab.tabId !== tabId;
-          });
-          console.log("removed tabsInfo", tabsInfo);
-        case 2:
-        case "end":
-          return _context4.stop();
-      }
-    }, _callee4);
-  }));
-  return function (_x4) {
-    return _ref4.apply(this, arguments);
-  };
-}());
-chrome.tabs.onUpdated.addListener( /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(tabId, changeInfo, tab) {
-    var tabInfo;
-    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-      while (1) switch (_context5.prev = _context5.next) {
-        case 0:
-          if (!(changeInfo.status === "complete")) {
-            _context5.next = 12;
-            break;
-          }
-          tabInfo = tabsInfo.find(function (tab) {
-            return tab.tabId === tabId;
-          });
-          if (!tabInfo) {
-            _context5.next = 12;
-            break;
-          }
-          if (!(tabInfo.url !== tab.url)) {
-            _context5.next = 11;
-            break;
-          }
-          console.log("tabInfo.url !== tab.url");
-          console.log("tabInfo.url: " + tabInfo.url);
-          console.log("tab.url: " + tab.url);
-          _context5.next = 9;
-          return (0,_background_elementBlockers__WEBPACK_IMPORTED_MODULE_4__.blockElements)(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-        case 9:
-          _context5.next = 11;
-          return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 11:
-          tabInfo.url = tab.url;
-        case 12:
-        case "end":
-          return _context5.stop();
-      }
-    }, _callee5);
-  }));
-  return function (_x5, _x6, _x7) {
-    return _ref5.apply(this, arguments);
   };
 }());
 __webpack_async_result__();
