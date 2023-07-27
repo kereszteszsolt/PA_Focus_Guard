@@ -100,7 +100,8 @@ const closeBlockedTabs = (
       blockedItems.forEach((item) => {
         tabs.forEach((tab) => {
           if (tab.url.includes(item.url)) {
-            chrome.tabs.remove(tab.id);
+            //chrome.tabs.remove(tab.id);
+            chrome.tabs.update(tab.id, { url: "/html/message.html" });
           }
         });
       });
@@ -136,7 +137,7 @@ export const blockOrAllow = async (
   //  console.log("3.a start apply new rules");
   await applyNewDynamicRules(rules);
   // console.log("3.b end apply new rules");
-  //console.log("4.a start close blocked tabs");
+  console.log("4.a start close blocked tabs");
   await closeBlockedTabs(
     focusMode,
     fgBlockedWebsitesByDomain,

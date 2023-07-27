@@ -12,7 +12,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockFacebookElements: () => (/* binding */ blockFacebookElements)
 /* harmony export */ });
-var blockFacebookElements = function blockFacebookElements(focusMode, elementRules) {};
+/* harmony import */ var _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fgObserver.js */ "./src/js/content-scripts/cotent-scripts-specialized/fgObserver.js");
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/constants */ "./src/js/utils/constants/index.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
+
+var blockFacebookElements = function blockFacebookElements(focusMode, elementRules) {
+  var timeout = null;
+  var delay = 10;
+  var count = 0;
+  var countLimit = 100;
+  blockElements(focusMode, elementRules);
+  document.addEventListener("scroll", function () {
+    delay = 10;
+    count = 0;
+    countLimit = 50;
+    _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observer(count, countLimit, timeout, delay, blockElements(focusMode, elementRules)).observe(document.body, _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observerConfig);
+  });
+  _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observer(count, countLimit, timeout, delay, blockElements(focusMode, elementRules)).observe(document.body, _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observerConfig);
+};
+var blockElements = function blockElements(focusMode, elementRules) {
+  console.log("... -block- ...");
+  elementRules.forEach(function (elementRule) {
+    if (isActiveRule(focusMode, elementRule)) {
+      switch (elementRule.ruleName) {
+        case _utils_constants__WEBPACK_IMPORTED_MODULE_1__.ruleNames.FACEBOOK_REELS:
+          blockFacebookReels();
+      }
+    }
+  });
+};
+var isActiveRule = function isActiveRule(focusMode, elementRule) {
+  return elementRule.isMarkedForBlock && (focusMode || elementRule.isPermanentlyBlocked);
+};
+var blockFacebookReels = function blockFacebookReels() {
+  var searchTerms = ["Reels and short videos", "Reel-videók és rövid videók", "Reel-uri şi videoclipuri scurte", "Reels und kurzvideos", "Reels y videos cortos", "Reels et vidéos courtes"];
+  var _iterator = _createForOfIteratorHelper(document.querySelectorAll('span[dir="auto"]')),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var fbsugs = _step.value;
+      if (searchTerms.includes(fbsugs.innerText) || searchTerms.includes(fbsugs.innerText)) {
+        fbsugs.closest("div[aria-labelledby]").remove();
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/content-scripts/cotent-scripts-specialized/fgObserver.js":
+/*!*************************************************************************!*\
+  !*** ./src/js/content-scripts/cotent-scripts-specialized/fgObserver.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   observer: () => (/* binding */ observer),
+/* harmony export */   observerConfig: () => (/* binding */ observerConfig)
+/* harmony export */ });
+var observerConfig = {
+  childList: true,
+  subtree: true
+};
+var observer = function observer(count, countLimit, timeout, delay, fgFunction) {
+  return new MutationObserver(function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      fgFunction();
+    }, delay);
+    if (count < countLimit) {
+      count++;
+    } else {
+      observer.disconnect();
+    }
+    console.log("count: ", count);
+  });
+};
+
 
 /***/ }),
 

@@ -39,27 +39,28 @@ async function setDefaultValues() {
 
 async function readData() {
   try {
-    const xfgActive = await dataAccess.loadData(
-      constants.localStorage.FG_ACTIVE,
+    const fgAppData = await dataAccess.loadData(
+      constants.localStorage.FG_APP_DATA,
     );
-    const xfgBlockedWebsitesByDomain = await dataAccess.loadData(
+    const fgBlockedWebsitesByDomain = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN,
     );
-    const xfgBlockedWebsitesByUrl = await dataAccess.loadData(
+    const fgBlockedWebsitesByUrl = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
     );
-    const xfgBlockedElementsOnWebsites = await dataAccess.loadData(
+    const fgBlockedElementsOnWebsites = await dataAccess.loadData(
       constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
     );
 
-    console.log("fgActive", xfgActive);
-    console.log("fgBlockedWebsitesByDomain", xfgBlockedWebsitesByDomain);
-    console.log("fgBlockedWebsitesByUrl", xfgBlockedWebsitesByUrl);
-    console.log("fgBlockedElementsOnWebsites", xfgBlockedElementsOnWebsites);
+    console.log("fgActive", fgAppData.focusMode);
+    console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
+    console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
+    console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
   } catch (error) {
     console.error("Error reading data:", error);
   }
 }
+await readData();
 
 // any time a storage item is updated, update global variables and run block_or_allow
 chrome.storage.onChanged.addListener(async function (changes, namespace) {
@@ -116,7 +117,15 @@ chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
     const tabInfo = tabsInfo.find((tab) => tab.tabId === tabId);
     if (tabInfo) {
       if (tabInfo.url !== tab.url) {
+        console.log("tabInfo.url !== tab.url");
+        console.log("tabInfo.url: " + tabInfo.url);
+        console.log("tab.url: " + tab.url);
         await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+        await blockOrAllow(
+          fgAppData.focusMode,
+          fgBlockedWebsitesByDomain,
+          fgBlockedWebsitesByUrl,
+        );
       }
       tabInfo.url = tab.url;
     }
