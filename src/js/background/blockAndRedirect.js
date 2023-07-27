@@ -72,10 +72,10 @@ const calculateNewDynamicRules = (
   });
 };
 
-const applyNewDynamicRules = (rules) => {
+const applyNewDynamicRules = (rules, oldRulesId) => {
   return new Promise((resolve) => {
     chrome.declarativeNetRequest.updateDynamicRules(
-      { addRules: rules },
+      { removeRuleIds: oldRulesId, addRules: rules },
       resolve,
     );
   });
@@ -125,7 +125,7 @@ export const blockOrAllow = async (
   }
 
   // console.log("1.a start block and remove old rules");
-  await getAndRemoveOldDynamicRules();
+  //await getAndRemoveOldDynamicRules();
   //console.log("1.b end block and remove old rules");
   //console.log("2.a start calculate new rules");
   const rules = await calculateNewDynamicRules(
@@ -135,7 +135,11 @@ export const blockOrAllow = async (
   );
   // console.log("2.b end calculate new rules");
   //  console.log("3.a start apply new rules");
-  await applyNewDynamicRules(rules);
+  const oldRules = await getDynamicRules();
+  const oldRuleIds = oldRules.map((rule) => rule.id);
+
+  await applyNewDynamicRules(rules, oldRuleIds);
+
   // console.log("3.b end apply new rules");
   console.log("4.a start close blocked tabs");
   await closeBlockedTabs(

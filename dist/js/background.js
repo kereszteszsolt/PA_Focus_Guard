@@ -304,9 +304,10 @@ var calculateNewDynamicRules = function calculateNewDynamicRules(focusMode, fgBl
     resolve(rules);
   });
 };
-var applyNewDynamicRules = function applyNewDynamicRules(rules) {
+var applyNewDynamicRules = function applyNewDynamicRules(rules, oldRulesId) {
   return new Promise(function (resolve) {
     chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: oldRulesId,
       addRules: rules
     }, resolve);
   });
@@ -334,7 +335,7 @@ var closeBlockedTabs = function closeBlockedTabs(focusMode, fgBlockedWebsitesByD
 };
 var blockOrAllow = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl) {
-    var rules;
+    var rules, oldRules, oldRuleIds;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
@@ -347,21 +348,28 @@ var blockOrAllow = /*#__PURE__*/function () {
           }
 
           // console.log("1.a start block and remove old rules");
+          //await getAndRemoveOldDynamicRules();
+          //console.log("1.b end block and remove old rules");
+          //console.log("2.a start calculate new rules");
           _context2.next = 7;
-          return getAndRemoveOldDynamicRules();
-        case 7:
-          _context2.next = 9;
           return calculateNewDynamicRules(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 9:
+        case 7:
           rules = _context2.sent;
-          _context2.next = 12;
-          return applyNewDynamicRules(rules);
-        case 12:
+          _context2.next = 10;
+          return getDynamicRules();
+        case 10:
+          oldRules = _context2.sent;
+          oldRuleIds = oldRules.map(function (rule) {
+            return rule.id;
+          });
+          _context2.next = 14;
+          return applyNewDynamicRules(rules, oldRuleIds);
+        case 14:
           // console.log("3.b end apply new rules");
           console.log("4.a start close blocked tabs");
-          _context2.next = 15;
+          _context2.next = 17;
           return closeBlockedTabs(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 15:
+        case 17:
         case "end":
           return _context2.stop();
       }
