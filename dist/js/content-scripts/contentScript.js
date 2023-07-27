@@ -31,7 +31,9 @@ var blockFacebookElements = function blockFacebookElements(focusMode, elementRul
     countLimit = 50;
     _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observer(count, countLimit, timeout, delay, blockElements(focusMode, elementRules)).observe(document.body, _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observerConfig);
   });
-  _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observer(count, countLimit, timeout, delay, blockElements(focusMode, elementRules)).observe(document.body, _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observerConfig);
+  _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observer(count, countLimit, timeout, delay, function () {
+    return blockElements(focusMode, elementRules);
+  }).observe(document.body, _fgObserver_js__WEBPACK_IMPORTED_MODULE_0__.observerConfig);
 };
 var blockElements = function blockElements(focusMode, elementRules) {
   console.log("... -block- ...");

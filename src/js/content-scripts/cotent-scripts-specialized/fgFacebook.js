@@ -25,11 +25,7 @@ export const blockFacebookElements = (focusMode, elementRules) => {
   });
 
   fgObserver
-    .observer(
-      count,
-      countLimit,
-      timeout,
-      delay,
+    .observer(count, countLimit, timeout, delay, () =>
       blockElements(focusMode, elementRules),
     )
     .observe(document.body, fgObserver.observerConfig);
