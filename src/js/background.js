@@ -66,7 +66,6 @@ await readData(async () => {
     fgBlockedWebsitesByDomain,
     fgBlockedWebsitesByUrl,
   );
-  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
 });
 
 // any time a storage item is updated, update global variables and run block_or_allow
@@ -101,12 +100,14 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       fgBlockedWebsitesByUrl,
     );
 
-    await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+    //  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
   }
 });
 
 chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+  if (changeInfo.status === "complete") {
+    await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+  }
   await blockOrAllow(
     fgAppData.focusMode,
     fgBlockedWebsitesByDomain,

@@ -13,29 +13,29 @@ const getDynamicRules = () => {
   });
 };
 
-const removeDynamicRules = (ruleIds) => {
-  return new Promise((resolve, reject) => {
-    chrome.declarativeNetRequest.updateDynamicRules(
-      { removeRuleIds: ruleIds },
-      () => {
-        if (chrome.runtime.lastError) {
-          reject(
-            new Error(
-              `Error removing rules: ${chrome.runtime.lastError.message}`,
-            ),
-          );
-        }
-        resolve();
-      },
-    );
-  });
-};
-const getAndRemoveOldDynamicRules = async () => {
-  const rules = await getDynamicRules();
-  const ruleIds = rules.map((rule) => rule.id);
-  console.log("ruleIds", ruleIds);
-  await removeDynamicRules(ruleIds);
-};
+// const removeDynamicRules = (ruleIds) => {
+//   return new Promise((resolve, reject) => {
+//     chrome.declarativeNetRequest.updateDynamicRules(
+//       { removeRuleIds: ruleIds },
+//       () => {
+//         if (chrome.runtime.lastError) {
+//           reject(
+//             new Error(
+//               `Error removing rules: ${chrome.runtime.lastError.message}`,
+//             ),
+//           );
+//         }
+//         resolve();
+//       },
+//     );
+//   });
+// };
+// const getAndRemoveOldDynamicRules = async () => {
+//   const rules = await getDynamicRules();
+//   const ruleIds = rules.map((rule) => rule.id);
+//   console.log("ruleIds", ruleIds);
+//   await removeDynamicRules(ruleIds);
+// };
 
 const createFGRule = (item, index) => ({
   id: index,
