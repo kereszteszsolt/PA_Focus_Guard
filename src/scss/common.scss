@@ -1,0 +1,84 @@
+// Define Material Design color variables
+$fg-primary-color: #574513; //greenish brown
+$fg-secondary-color: #7f8c8d;
+$fg-danger-color: #e74c3c;
+$fg-success-color: #2ecc71;
+$fg-warning-color: #f1c40f;
+$fg-white-color: floralwhite;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #f4f1e8; /* Set a light beige color as the base background */
+  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */
+  background-size: 20px 20px; /* Adjust the size of the paper texture cells */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */
+  height: 100vh;
+}
+
+// Define mixin for container
+@mixin container {
+  max-width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-top: 0;
+  margin-right: auto;
+  margin-left: auto;
+
+  // Define breakpoints for different screen sizes
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+}
+
+// Usage example
+.container {
+  @include container;
+}
+
+@mixin button($bg-color, $hover-color) {
+  width: 100px;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: $bg-color;
+  color: $fg-white-color;
+  cursor: pointer;
+  transition: $bg-color 0.3s ease;
+  border: 2px solid $bg-color;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+}
+
+.button-success {
+  @include button($fg-success-color, lighten($fg-success-color, 10%));
+}
+
+.button-danger {
+  @include button($fg-danger-color, lighten($fg-danger-color, 10%));
+}
+
+.button-primary {
+  @include button($fg-primary-color, lighten($fg-primary-color, 10%));
+}
