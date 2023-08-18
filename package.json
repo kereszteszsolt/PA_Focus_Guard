@@ -21,6 +21,7 @@
     "vue": "^3.3.4",
     "vue-loader": "^17.2.2",
     "vue-template-compiler": "^2.7.14",
-    "vuetify": "^3.3.6"
+    "vuetify": "^3.3.6",
+    "prettier": "^3.0.0"
   }
 }

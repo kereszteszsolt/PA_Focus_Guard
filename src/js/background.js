@@ -1,150 +1,116 @@
-import * as utils from './scripts/utils';
-import * as defaultComponentData from './defaults/defaultData';
-import {defaultComponents} from './defaults/defaultComponents';
-import * as constants from './constants';
+import * as constants from "./utils/constants";
+import * as dataAccess from "./utils/scripts/dataAccess.js";
+import * as defaults from "./utils/defaults";
+import { blockOrAllow } from "./background/blockAndRedirect";
+import { blockElements } from "./background/elementBlockers";
 
-// when the extension is first installed, set default values
-chrome.runtime.onInstalled.addListener(function () {
-    utils.dataAccess.saveData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false)
-        .then(() => {
-            const saveDataPromises = defaultComponents.map(component => {
-                return utils.dataAccess.saveData(component.storageName, component.defaultData);
-            });
-            return Promise.all(saveDataPromises);
-        })
-        .then(() => {
-            readStorage();
-        })
-        .catch(error => {
-            console.error('Error initializing extension:', error);
-        });
+//load default values when extension is loaded
+let fgAppData = {
+  focusMode: false,
+};
+let fgBlockedWebsitesByDomain = [];
+let fgBlockedWebsitesByUrl = [];
+let fgBlockedElementsOnWebsites = [];
+
+//when installed, set default values
+chrome.runtime.onInstalled.addListener(async function () {
+  await setDefaultValues();
 });
 
-// set up initial chrome storage values
-let fgFocusModeActive = false;
-let fgTemporarilyBlockedWebsites = defaultComponentData.domains4Temp;
-let fgPermanentlyBlockedWebsites = defaultComponentData.domains4Perm;
-let fgLoading = false;
+async function setDefaultValues() {
+  try {
+    await dataAccess.saveData(constants.localStorage.FG_APP_DATA, fgAppData);
+    await dataAccess.saveData(
+      constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN,
+      defaults.blockByDomainList,
+    );
+    await dataAccess.saveData(
+      constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
+      defaults.blockByUrlList,
+    );
+    await dataAccess.saveData(
+      constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
+      defaults.blockElementsOnWebsitesList,
+    );
+  } catch (error) {
+    console.error("Error setting default values:", error);
+  }
+}
 
-const readStorage = () => {
-    fgLoading = true;
+async function readData(afterReadData) {
+  try {
+    fgAppData = await dataAccess.loadData(constants.localStorage.FG_APP_DATA);
+    fgBlockedWebsitesByDomain = await dataAccess.loadData(
+      constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN,
+    );
+    fgBlockedWebsitesByUrl = await dataAccess.loadData(
+      constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
+    );
+    fgBlockedElementsOnWebsites = await dataAccess.loadData(
+      constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
+    );
+  } catch (error) {
+    console.error("Error reading data:", error);
+  }
+  afterReadData();
+}
 
-    utils.dataAccess.loadData(constants.storageNames.FG_FOCUS_MODE_ACTIVE, false)
-        .then(result => {
-            fgFocusModeActive = result.fgFocusModeActive;
-            return utils.dataAccess.loadData(constants.storageNames.TEMPORARILY_BLOCKED_WEBSITES, defaultComponentData.domains4Temp);
-        })
-        .then(result => {
-            fgTemporarilyBlockedWebsites = result;
-            return utils.dataAccess.loadData(constants.storageNames.PERMANENTLY_BLOCKED_WEBSITES, defaultComponentData.domains4Perm);
-        })
-        .then(result => {
-            fgPermanentlyBlockedWebsites = result;
-            fgLoading = false;
-        })
-        .catch(error => {
-            console.error('Error reading storage:', error);
-            fgLoading = false;
-        });
-};
+await readData(async () => {
+  console.log("fgActive", fgAppData.focusMode);
+  console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
+  console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
+  console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
 
-readStorage();
-const getAndRemoveOldDynamicRules = () => {
-    return new Promise((resolve) => {
-        chrome.declarativeNetRequest.getDynamicRules(null, (oldRules) => {
-            const ruleIds = oldRules.map(rule => rule.id);
-            chrome.declarativeNetRequest.updateDynamicRules({ removeRuleIds: ruleIds }, resolve);
-        });
-    });
-};
-
-const createFGRule = (siteName, index) => ({
-    id: index,
-    priority: 1,
-    action: {
-        type: 'redirect',
-        redirect: { extensionPath: '/message.html' },
-    },
-    condition: {
-        urlFilter: siteName,
-        resourceTypes: ['main_frame', 'sub_frame'],
-    },
+  await blockOrAllow(
+    fgAppData.focusMode,
+    fgBlockedWebsitesByDomain,
+    fgBlockedWebsitesByUrl,
+  );
 });
 
-const calculateNewDynamicRules = () => {
-    console.log('calculateNewDynamicRules');
-    const rules = [];
-    let rulesIndex = 1;
-
-    if (fgFocusModeActive === true) {
-        let tempRules = fgTemporarilyBlockedWebsites
-            .filter((site) => site.checked)
-            .map((site) => createFGRule(site.name, rulesIndex++));
-        rules.push(...tempRules);
+// any time a storage item is updated, update global variables and run block_or_allow
+chrome.storage.onChanged.addListener(async function (changes, namespace) {
+  if (namespace === "sync") {
+    if (constants.localStorage.FG_APP_DATA in changes) {
+      fgAppData = JSON.parse(
+        changes[constants.localStorage.FG_APP_DATA].newValue,
+      );
+      console.log("fired: fgAppData", fgAppData);
+    }
+    if (constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN in changes) {
+      fgBlockedWebsitesByDomain = JSON.parse(
+        changes[constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN].newValue,
+      );
+    }
+    if (constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL in changes) {
+      fgBlockedWebsitesByUrl = JSON.parse(
+        changes[constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue,
+      );
+    }
+    if (constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES in changes) {
+      fgBlockedElementsOnWebsites = JSON.parse(
+        changes[constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES]
+          .newValue,
+      );
     }
 
-    let permRules = fgPermanentlyBlockedWebsites
-        .filter((site) => site.checked)
-        .map((site) => createFGRule(site.name, rulesIndex++));
-    rules.push(...permRules);
+    await blockOrAllow(
+      fgAppData.focusMode,
+      fgBlockedWebsitesByDomain,
+      fgBlockedWebsitesByUrl,
+    );
 
-    return rules;
-};
+    //  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+  }
+});
 
-const applyNewDynamicRules = (rules) => {
-    return new Promise((resolve) => {
-        chrome.declarativeNetRequest.updateDynamicRules({ addRules: rules }, resolve);
-    });
-};
-
-const blockOrAllow = async () => {
-    console.log('blockOrAllow');
-    console.log('fgFocusModeActive', fgFocusModeActive);
-
-    await getAndRemoveOldDynamicRules();
-    const newRules = calculateNewDynamicRules();
-    await applyNewDynamicRules(newRules);
-
-    chrome.declarativeNetRequest.getDynamicRules(null, (myRules) => {
-        console.log('new rules: ', myRules);
-    });
-};
-
-
-// any time a storage item is updated, update global variables
-chrome.storage.onChanged.addListener(function (changes, namespace) {
-    if (namespace === 'sync') {
-        if (changes.fgFocusModeActive) {
-            fgFocusModeActive = changes.fgFocusModeActive.newValue;
-        }
-
-        if (changes.fgTemporarilyBlockedWebsites) {
-            fgTemporarilyBlockedWebsites = JSON.parse(changes.fgTemporarilyBlockedWebsites.newValue);
-        }
-
-        if (changes.fgPermanentlyBlockedWebsites) {
-            fgPermanentlyBlockedWebsites = JSON.parse(changes.fgPermanentlyBlockedWebsites.newValue);
-        }
-
-        blockOrAllow();
-
-        chrome.tabs.query({}, function (tabs) {
-            // loop through all tabs and close any that are on the blocked list
-            tabs.forEach(function (tab) {
-                if (fgFocusModeActive === true) {
-                    fgTemporarilyBlockedWebsites.filter(site => site.checked).forEach(site => {
-                        if (tab.url.includes(site.name)) {
-                            chrome.tabs.remove(tab.id);
-                        }
-                    });
-                }
-
-                fgPermanentlyBlockedWebsites.filter(site => site.checked).forEach(site => {
-                    if (tab.url.includes(site.name)) {
-                        chrome.tabs.remove(tab.id);
-                    }
-                });
-            });
-        });
-    }
+chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
+  if (changeInfo.status === "complete") {
+    await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
+  }
+  await blockOrAllow(
+    fgAppData.focusMode,
+    fgBlockedWebsitesByDomain,
+    fgBlockedWebsitesByUrl,
+  );
 });
