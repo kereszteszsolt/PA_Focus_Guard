@@ -3,7 +3,6 @@ let mix = require("laravel-mix");
 mix
   .setPublicPath("./")
   .js("src/js/background.js", "dist/js")
-  .js("src/js/content-scripts/contentScript.js", "dist/js/content-scripts")
   .vue()
   .js("src/js/popup.js", "dist/js")
   .vue()

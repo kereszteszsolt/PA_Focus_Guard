@@ -25,16 +25,5 @@
     "page": "html/options.html",
     "open_in_tab": true
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.youtube.com/*",
-        "*://*.facebook.com/*"
-      ],
-      "js": [
-        "js/content-scripts/contentScript.js"
-      ]
-    }
-  ],
   "manifest_version": 3
 }

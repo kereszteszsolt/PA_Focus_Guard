@@ -2,7 +2,6 @@ import * as constants from "./utils/constants";
 import * as dataAccess from "./utils/scripts/dataAccess.js";
 import * as defaults from "./utils/defaults";
 import { blockOrAllow } from "./background/blockAndRedirect";
-import { blockElements } from "./background/elementBlockers";
 
 //load default values when extension is loaded
 let fgAppData = {
@@ -27,10 +26,6 @@ async function setDefaultValues() {
     await dataAccess.saveData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
       defaults.blockByUrlList,
-    );
-    await dataAccess.saveData(
-      constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
-      defaults.blockElementsOnWebsitesList,
     );
   } catch (error) {
     console.error("Error setting default values:", error);
@@ -105,9 +100,6 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 });
 
 chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-  if (changeInfo.status === "complete") {
-    await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-  }
   await blockOrAllow(
     fgAppData.focusMode,
     fgBlockedWebsitesByDomain,

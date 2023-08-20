@@ -1,5 +1,4 @@
 import * as constants from "../utils/constants";
-import BlockElements from "../../vue/components/BlockElements.vue";
 
 export const fgAppFunctionalities = [
   {
@@ -15,12 +14,5 @@ export const fgAppFunctionalities = [
     containerComponent: "BlockByUrl",
     storageName: constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
     justDomain: false,
-  },
-  {
-    funcTitle: "Block Elements On Websites",
-    funcName: constants.componentNames.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
-    containerComponent: "BlockElements",
-    storageName: constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
-    justDomain: true,
   },
 ];

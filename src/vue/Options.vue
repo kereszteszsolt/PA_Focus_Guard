@@ -1,6 +1,5 @@
 <script>
 import BlockByUrl from "./components/BlockByUrl.vue";
-import BlockElements from "./components/BlockElements.vue";
 import * as config from "../js/config";
 
 export default {
@@ -11,7 +10,6 @@ export default {
   },
   components: {
     BlockByUrl: BlockByUrl,
-    BlockElements: BlockElements,
   },
   data() {
     return {
