@@ -81,6 +81,7 @@ export default {
         :funcName="selectedFunctionality.funcName"
         :storageName="selectedFunctionality.storageName"
         :justDomain="selectedFunctionality.justDomain"
+        :fgLanguage="fgAppData.fgLanguage"
       ></component>
     </div>
   </div>

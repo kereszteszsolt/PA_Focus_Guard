@@ -1,11 +1,29 @@
 <script>
 import * as dataAccess from "../../js/utils/scripts/dataAccess";
 import * as constants from "../../js/utils/constants";
+import * as lang from "../../js/utils/languages";
 
 export default {
   computed: {
+    lang() {
+      return lang;
+    },
     constants() {
       return constants;
+    },
+  },
+  props: {
+    fgLanguage: {
+      type: String,
+      required: true,
+    },
+    funcTitle: {
+      type: String,
+      required: true,
+    },
+    funcName: {
+      type: String,
+      required: true,
     },
   },
   methods: {
@@ -41,7 +59,7 @@ export default {
 </script>
 <template>
   <div class="language">
-    <div class="title">{{ constants.componentNames.FG_LANGUAGE }}</div>
+    <div class="title">{{ lang.getTranslation(fgLanguage, funcName) }}</div>
 
     <div class="radio-group">
       <div class="radio-row">

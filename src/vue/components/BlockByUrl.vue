@@ -1,7 +1,13 @@
 <script>
 import * as dataAccess from "../../js/utils/scripts/dataAccess";
+import * as lang from "../../js/utils/languages";
 
 export default {
+  computed: {
+    lang() {
+      return lang;
+    },
+  },
   props: {
     funcTitle: {
       type: String,
@@ -17,6 +23,10 @@ export default {
     },
     justDomain: {
       type: Boolean,
+      required: true,
+    },
+    fgLanguage: {
+      type: String,
       required: true,
     },
   },
@@ -175,19 +185,19 @@ export default {
 </script>
 
 <template>
-  <h1>{{ funcTitle }}</h1>
+  <h1>{{ lang.getTranslation(fgLanguage, funcName) }}</h1>
   <div class="urlList">
     <table>
       <thead>
         <tr>
           <th>URL</th>
           <th @click="markAllForBlockCurrPage(currentPageItems)">
-            Marked for Block
+            {{ lang.getTranslation(fgLanguage, "markedForBlock") }}
           </th>
           <th @click="markAllForPermanentlyBlockCurrPage(currentPageItems)">
-            Permanently Blocked
+            {{ lang.getTranslation(fgLanguage, "permanentlyBlocked") }}
           </th>
-          <th>Remove</th>
+          <th>{{ lang.getTranslation(fgLanguage, "remove") }}</th>
         </tr>
       </thead>
       <tbody>
@@ -226,7 +236,7 @@ export default {
       :disabled="currentPage === 1"
       class="button-primary"
     >
-      Prev
+      {{ lang.getTranslation(fgLanguage, "prev") }}
     </button>
     <span>{{ currentPage }} / {{ numberOfPages }}</span>
     <button
@@ -234,11 +244,11 @@ export default {
       :disabled="currentPage === numberOfPages"
       class="button-primary"
     >
-      Next
+      {{ lang.getTranslation(fgLanguage, "next") }}
     </button>
   </div>
   <div class="add-url-container">
-    <p>Add site:</p>
+    <p>{{ lang.getTranslation(fgLanguage, "addSite") }}</p>
     <div class="input-wrapper">
       <input
         type="text"
@@ -246,13 +256,15 @@ export default {
         v-model="newUrl"
         @blur="handleBlur"
       />
-      <button @click="addUrl" class="add-url">Add</button>
+      <button @click="addUrl" class="add-url">
+        {{ lang.getTranslation(fgLanguage, "add") }}
+      </button>
     </div>
-    <label v-if="showInvalidErrorMessage" class="error-message"
-      >Invalid domain</label
+    <label v-if="showInvalidErrorMessage" class="error-message">
+      {{ lang.getTranslation(fgLanguage, "invalidDomain") }}</label
     >
-    <label v-if="showDuplicatedErrorMessage" class="error-message"
-      >Duplicated domain</label
+    <label v-if="showDuplicatedErrorMessage" class="error-message">
+      {{ lang.getTranslation(fgLanguage, "duplicatedDomain") }}</label
     >
   </div>
 </template>
