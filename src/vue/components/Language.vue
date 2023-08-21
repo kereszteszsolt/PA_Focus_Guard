@@ -15,7 +15,10 @@ export default {
           ...this.appData,
           fgLanguage: value,
         })
-        .then(window.location.reload()); // TODO redirect to the same page with #newLang
+        .then(() => {
+          window.location.href = "/html/options.html#language";
+          window.location.reload();
+        });
     },
     loadData() {
       dataAccess.loadData(constants.localStorage.FG_APP_DATA).then((data) => {

@@ -33,6 +33,12 @@ export default {
   },
   created() {
     this.loadData();
+    if (window.location.hash === "#language") {
+      this.selectedFunctionality = config.fgAppFunctionalities.filter(
+        (s) => s.funcName === constants.componentNames.FG_LANGUAGE,
+      )[0];
+      window.location.hash = "";
+    }
   },
   methods: {
     selectFunctionality(func) {

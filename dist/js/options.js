@@ -16841,6 +16841,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.loadData();
+    if (window.location.hash === "#language") {
+      this.selectedFunctionality = _js_config__WEBPACK_IMPORTED_MODULE_1__.fgAppFunctionalities.filter(function (s) {
+        return s.funcName === _js_utils_constants__WEBPACK_IMPORTED_MODULE_4__.componentNames.FG_LANGUAGE;
+      })[0];
+      window.location.hash = "";
+    }
   },
   methods: {
     selectFunctionality: function selectFunctionality(func) {
@@ -17089,7 +17095,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     saveData: function saveData(value) {
       _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA, _objectSpread(_objectSpread({}, this.appData), {}, {
         fgLanguage: value
-      })).then(window.location.reload()); // TODO redirect to the same page with #newLang
+      })).then(function () {
+        window.location.href = "/html/options.html#language";
+        //  window.location.reload();
+      });
     },
     loadData: function loadData() {
       var _this = this;
