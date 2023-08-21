@@ -1,24 +1,47 @@
 <script>
 import BlockByUrl from "./components/BlockByUrl.vue";
 import * as config from "../js/config";
+import About from "./components/About.vue";
+import Language from "./components/Language.vue";
+import * as constants from "../js/utils/constants";
+import * as dataAccess from "../js/utils/scripts/dataAccess";
+import * as lang from "../js/utils/languages";
 
 export default {
   computed: {
+    lang() {
+      return lang;
+    },
     config() {
       return config;
     },
   },
   components: {
     BlockByUrl: BlockByUrl,
+    About: About,
+    Language: Language,
   },
   data() {
     return {
       selectedFunctionality: config.fgAppFunctionalities[0],
+      appFunctionalities: config.fgAppFunctionalities,
+      fgAppData: {
+        fgActive: false,
+        fgLanguage: constants.languages.ENGLISH,
+      },
     };
+  },
+  created() {
+    this.loadData();
   },
   methods: {
     selectFunctionality(func) {
       this.selectedFunctionality = func;
+    },
+    loadData() {
+      dataAccess.loadData(constants.localStorage.FG_APP_DATA).then((data) => {
+        this.fgAppData = data;
+      });
     },
   },
 };
@@ -40,7 +63,7 @@ export default {
               active: item.funcName === selectedFunctionality.funcName,
             }"
             v-on:click="selectFunctionality(item)"
-            >{{ item.funcName }}</a
+            >{{ lang.getTranslation(fgAppData.fgLanguage, item.funcName) }}</a
           >
         </li>
       </ul>

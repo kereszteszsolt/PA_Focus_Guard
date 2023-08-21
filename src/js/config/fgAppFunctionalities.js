@@ -15,4 +15,18 @@ export const fgAppFunctionalities = [
     storageName: constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
     justDomain: false,
   },
+  {
+    funcTitle: "About",
+    funcName: constants.componentNames.FG_ABOUT,
+    containerComponent: "About",
+    storageName: "",
+    justDomain: false,
+  },
+  {
+    funcTitle: "Language",
+    funcName: constants.componentNames.FG_LANGUAGE,
+    containerComponent: "Language",
+    storageName: "",
+    justDomain: false,
+  },
 ];
