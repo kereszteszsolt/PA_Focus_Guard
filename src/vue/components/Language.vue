@@ -39,55 +39,69 @@ export default {
 <template>
   <div class="language">
     <div class="title">{{ constants.componentNames.FG_LANGUAGE }}</div>
+
     <div class="radio-group">
-      <input
-        type="radio"
-        id="english"
-        value="english"
-        v-model="appData.fgLanguage"
-        @change="saveData(constants.languages.ENGLISH)"
-      />
-      <label for="english">{{ constants.languages.ENGLISH }}</label>
-      <input
-        type="radio"
-        id="hungarian"
-        value="hungarian"
-        v-model="appData.fgLanguage"
-        @change="saveData(constants.languages.HUNGARIAN)"
-      />
-      <label for="hungarian">{{ constants.languages.HUNGARIAN }}</label>
-      <input
-        type="radio"
-        id="romanian"
-        value="romanian"
-        v-model="appData.fgLanguage"
-        @change="saveData(constants.languages.ROMANIAN)"
-      />
-      <label for="romanian">{{ constants.languages.ROMANIAN }}</label>
-      <input
-        type="radio"
-        id="german"
-        value="german"
-        v-model="appData.fgLanguage"
-        @change="saveData(constants.languages.GERMAN)"
-      />
-      <label for="german">{{ constants.languages.GERMAN }}</label>
+      <div class="radio-row">
+        <input
+          type="radio"
+          id="english"
+          value="english"
+          v-model="appData.fgLanguage"
+          @change="saveData(constants.languages.ENGLISH)"
+        />
+        <label for="english">{{ constants.languages.ENGLISH }}</label>
+      </div>
+
+      <div class="radio-row">
+        <input
+          type="radio"
+          id="hungarian"
+          value="hungarian"
+          v-model="appData.fgLanguage"
+          @change="saveData(constants.languages.HUNGARIAN)"
+        />
+        <label for="hungarian">{{ constants.languages.HUNGARIAN }}</label>
+      </div>
+
+      <div class="radio-row">
+        <input
+          type="radio"
+          id="german"
+          value="german"
+          v-model="appData.fgLanguage"
+          @change="saveData(constants.languages.GERMAN)"
+        />
+        <label for="german">{{ constants.languages.GERMAN }}</label>
+      </div>
+
+      <div class="radio-row">
+        <input
+          type="radio"
+          id="romanian"
+          value="romanian"
+          v-model="appData.fgLanguage"
+          @change="saveData(constants.languages.ROMANIAN)"
+        />
+        <label for="romanian">{{ constants.languages.ROMANIAN }}</label>
+      </div>
     </div>
   </div>
 </template>
 <style scoped lang="scss">
 .language {
   .title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
+
   .radio-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* add this line */
-    input {
+    .radio-row {
       margin-bottom: 0.5rem;
+
+      label {
+        margin-left: 0.5rem;
+      }
     }
   }
 }
