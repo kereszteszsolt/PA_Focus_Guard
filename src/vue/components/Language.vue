@@ -13,15 +13,23 @@ export default {
     },
   },
   props: {
-    fgLanguage: {
-      type: String,
-      required: true,
-    },
     funcTitle: {
       type: String,
       required: true,
     },
     funcName: {
+      type: String,
+      required: true,
+    },
+    storageName: {
+      type: String,
+      required: true,
+    },
+    justDomain: {
+      type: Boolean,
+      required: true,
+    },
+    fgLanguage: {
       type: String,
       required: true,
     },
