@@ -454,15 +454,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   blockByDomainList: () => (/* binding */ blockByDomainList)
 /* harmony export */ });
 var blockByDomainList = [{
-  url: "www.facebook.com",
+  url: "facebook.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "www.youtube.com",
+  url: "youtube.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "www.twitter.com",
+  url: "twitter.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }];

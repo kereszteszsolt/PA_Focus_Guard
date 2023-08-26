@@ -12,7 +12,8 @@ export const english = {
   next: "Next",
   addSite: "Add Site:",
   add: "Add",
-  invalidDomain: "Invalid domain/url",
+  invalidDomain: "Invalid domain!",
+  invalidUrl: "Invalid URL!",
   duplicatedDomain: "Duplicated domain!",
   duplicatedUrl: "Duplicated url!",
 

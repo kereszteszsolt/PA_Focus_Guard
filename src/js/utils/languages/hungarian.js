@@ -12,7 +12,8 @@ export const hungarian = {
   next: "Következő",
   addSite: "Weboldal hozzáadása:",
   add: "Hozzáadás",
-  invalidDomain: "Érvénytelen domain/URL",
+  invalidDomain: "Érvénytelen domain!",
+  invalidUrl: "Érvénytelen URL!",
   duplicatedDomain: "A domain már létezik!",
   duplicatedUrl: "Az URL már létezik!",
 

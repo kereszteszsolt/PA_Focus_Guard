@@ -284,7 +284,11 @@ export default {
       </button>
     </div>
     <label v-if="showInvalidErrorMessage" class="error-message">
-      {{ lang.getTranslation(fgLanguage, "invalidDomain") }}</label
+      {{
+        justDomain
+          ? lang.getTranslation(fgLanguage, "invalidDomain")
+          : lang.getTranslation(fgLanguage, "invalidUrl")
+      }}</label
     >
     <label v-if="showDuplicatedErrorMessage" class="error-message">
       {{

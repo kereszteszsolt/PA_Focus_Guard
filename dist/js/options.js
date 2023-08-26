@@ -17413,7 +17413,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.addUrl && $options.addUrl.apply($options, arguments);
     }),
     "class": "add-url"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "add")), 1 /* TEXT */)]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "invalidDomain")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "duplicatedDomain") : $options.lang.getTranslation($props.fgLanguage, "duplicatedUrl")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "add")), 1 /* TEXT */)]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "invalidDomain") : $options.lang.getTranslation($props.fgLanguage, "invalidUrl")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "duplicatedDomain") : $options.lang.getTranslation($props.fgLanguage, "duplicatedUrl")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -17674,7 +17674,8 @@ var english = {
   next: "Next",
   addSite: "Add Site:",
   add: "Add",
-  invalidDomain: "Invalid domain/url",
+  invalidDomain: "Invalid domain!",
+  invalidUrl: "Invalid URL!",
   duplicatedDomain: "Duplicated domain!",
   duplicatedUrl: "Duplicated url!",
   aboutText_p1: "This browser extension is designed to help you maintain focus when working on tasks or pursuing your goals. The most effective way to maintain focus is by only disabling the extension when you truly need a break. When you're looking to have some leisure time, let it rest, but otherwise, keep it active to always remind you that you have a goal to work towards during times when you're not setting aside specific time for leisure.",
@@ -17717,7 +17718,8 @@ var german = {
   next: "Weiter",
   addSite: "Website hinzufügen:",
   add: "Hinzufügen",
-  invalidDomain: "Ungültige Domain/URL",
+  invalidDomain: "Ungültige Domain!",
+  invalidUrl: "Ungültige URL!",
   duplicatedDomain: "Doppelte Domain!",
   duplicatedUrl: "Doppelte URL!",
   aboutText_p1: "Diese Browsererweiterung soll Ihnen dabei helfen, sich auf Aufgaben oder Ziele zu konzentrieren. Die effektivste Methode, um die Konzentration aufrechtzuerhalten, besteht darin, die Erweiterung nur dann zu deaktivieren, wenn Sie wirklich eine Pause benötigen. Wenn Sie sich entspannen möchten, lassen Sie sie ruhen. Ansonsten halten Sie sie aktiv, um sich immer daran zu erinnern, dass Sie ein Ziel haben, auf das Sie hinarbeiten sollten, wenn Sie keine spezifische Zeit für Entspannung vorgesehen haben.",
@@ -17760,7 +17762,8 @@ var hungarian = {
   next: "Következő",
   addSite: "Weboldal hozzáadása:",
   add: "Hozzáadás",
-  invalidDomain: "Érvénytelen domain/URL",
+  invalidDomain: "Érvénytelen domain!",
+  invalidUrl: "Érvénytelen URL!",
   duplicatedDomain: "A domain már létezik!",
   duplicatedUrl: "Az URL már létezik!",
   aboutText_p1: "Ez a böngésző kiegészítő arra szolgál, hogy segítsen fenntartani a koncentrációt, amikor munkádban vagy céljaid elérésében szeretnél dolgozni. A legideálisabb módja annak, hogy megőrizd a fókuszt, az, ha csak akkor kapcsolod ki a kiegészítőt. Amikor szórakozni szeretnél, hagyd, hogy pihenjen, de minden más időben tartsd bekapcsolva, hogy mindig emlékeztesse: van célod, amelyre koncentrálnod kell.",
@@ -17867,7 +17870,8 @@ var romanian = {
   next: "Următor",
   addSite: "Adăugare Site:",
   add: "Adăugare",
-  invalidDomain: "Domeniu/URL nevalid",
+  invalidDomain: "Domeniu nevalid!",
+  invalidUrl: "URL nevalid!",
   duplicatedDomain: "Domeniu duplicat!",
   duplicatedUrl: "URL duplicat!",
   aboutText_p1: "Această extensie pentru browser este concepută pentru a vă ajuta să vă mențineți concentrarea atunci când lucrați la sarcini sau vă urmăriți obiectivele. Cea mai eficientă modalitate de a vă menține concentrarea este să dezactivați extensia doar atunci când aveți cu adevărat nevoie de o pauză. Când doriți să aveți timp de relaxare, lăsați-o să se odihnească, dar în rest, mențineți-o activată pentru a vă aminti întotdeauna că aveți un obiectiv către care trebuie să lucrați în timpurile în care nu alocați timp specific pentru relaxare.",

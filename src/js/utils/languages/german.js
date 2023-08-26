@@ -12,7 +12,8 @@ export const german = {
   next: "Weiter",
   addSite: "Website hinzufügen:",
   add: "Hinzufügen",
-  invalidDomain: "Ungültige Domain/URL",
+  invalidDomain: "Ungültige Domain!",
+  invalidUrl: "Ungültige URL!",
   duplicatedDomain: "Doppelte Domain!",
   duplicatedUrl: "Doppelte URL!",
 
