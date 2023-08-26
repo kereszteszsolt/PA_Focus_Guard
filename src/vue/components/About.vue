@@ -90,6 +90,12 @@ export default {
     </div>
     <div class="about-paragraph">
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_thanks") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_1") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_11") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_12") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_13") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_2") }}</p>
     </div>
     <div class="donation">
       <h2>{{ lang.getTranslation(fgLanguage, "donation") }}</h2>
@@ -111,6 +117,11 @@ export default {
         </a>
       </div>
     </div>
+    <div class="about-paragraph">
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p3_1") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p3_2") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p3_3") }}</p>
+    </div>
   </div>
 </template>
 
@@ -125,10 +136,17 @@ export default {
   margin-top: 1rem;
   margin-bottom: 1rem;
 
-  about-paragraph: {
+  .about-paragraph {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    justify-content: left;
+    arrange-items: left;
+    text-align: left;
   }
+
   p {
+    width: 100%;
     text-align: left;
     justify-content: left;
     text-indent: 1em;

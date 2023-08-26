@@ -24,4 +24,23 @@ export const hungarian = {
 
   aboutText_thanks:
     "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
+
+  donationText_p1:
+    "Szeretnél hozzájárulni munkámban és támogatni fejlődését? A támogatásod számomra rendkívül fontos és segít abban, hogy fejlődjek. Íme néhány mód, amivel segíthetsz:",
+
+  donationText_p2_1:
+    "Emellett más alternatív módokon is kifejezheted támogatásod:",
+  donationText_p2_11:
+    "- Kapcsolódj velem a közösségi média platformokon: Látogass el Facebook, Instagram, Twitter és más profiljaimra.",
+  donationText_p2_12: "- Iratkozz fel YouTube csatornámra:",
+  donationText_p2_13:
+    "- Részt vegyél a tartalmaimban: Lájkolás, megosztás és hozzászólások írása nekem rendkívül sokat jelent.",
+
+  donationText_p2_2:
+    "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
+
+  donationText_p3_1:
+    "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékelve van, és hálásan köszönöm a részvételedet.",
+  donationText_p3_2: "Köszönöm, hogy velem vagy és támogatod törekvéseimet!",
+  donationText_p3_3: "Szívélyes üdvözlettel, [Your Name]",
 };

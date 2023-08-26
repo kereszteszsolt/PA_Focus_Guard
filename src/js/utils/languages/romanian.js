@@ -24,4 +24,24 @@ export const romanian = {
 
   aboutText_thanks:
     "Vă mulțumesc pentru interesul dumneavoastră și aștept cu nerăbdare să ne conectăm pe diferite platforme!",
+
+  donationText_p1:
+    "Doriți să contribuiți la munca mea și să sprijiniți dezvoltarea acesteia? Sprijinul tău înseamnă mult pentru mine și mă ajută să cresc. Iată câteva modalități în care poți ajuta:",
+
+  donationText_p2_1:
+    "În plus, poți arăta sprijinul tău în diverse moduri alternative:",
+  donationText_p2_11:
+    "- Conectează-te cu mine pe rețelele de socializare: Fii binevenit să vizitezi profilurile mele de pe Facebook, Instagram, Twitter și altele.",
+  donationText_p2_12: "- Abonează-te la canalul meu de YouTube:",
+  donationText_p2_13:
+    "- Interacționează cu conținutul meu: Apreciez foarte mult aprecierile, distribuirile și comentariile.",
+
+  donationText_p2_2:
+    "Dacă dorești să contribui financiar, ai la dispoziție următoarele opțiuni:",
+
+  donationText_p3_1:
+    "Sprijinul tău, în orice formă, este extrem de apreciat, și doresc să îți mulțumesc din suflet pentru implicarea ta.",
+  donationText_p3_2:
+    "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
+  donationText_p3_3: "Cu cele mai bune urări, [Numele Tău]",
 };
