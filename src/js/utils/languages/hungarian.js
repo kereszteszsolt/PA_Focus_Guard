@@ -13,7 +13,8 @@ export const hungarian = {
   addSite: "Weboldal hozzáadása:",
   add: "Hozzáadás",
   invalidDomain: "Érvénytelen domain/URL",
-  duplicatedDomain: "A domain/URL már létezik",
+  duplicatedDomain: "A domain már létezik!",
+  duplicatedUrl: "Az URL már létezik!",
 
   aboutText_p1:
     "Ez a böngésző kiegészítő arra szolgál, hogy segítsen fenntartani a koncentrációt, amikor munkádban vagy céljaid elérésében szeretnél dolgozni. A legideálisabb módja annak, hogy megőrizd a fókuszt, az, ha csak akkor kapcsolod ki a kiegészítőt. Amikor szórakozni szeretnél, hagyd, hogy pihenjen, de minden más időben tartsd bekapcsolva, hogy mindig emlékeztesse: van célod, amelyre koncentrálnod kell.",

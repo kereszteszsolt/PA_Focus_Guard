@@ -13,7 +13,8 @@ export const german = {
   addSite: "Website hinzufügen:",
   add: "Hinzufügen",
   invalidDomain: "Ungültige Domain/URL",
-  duplicatedDomain: "Doppelte Domain/URL",
+  duplicatedDomain: "Doppelte Domain!",
+  duplicatedUrl: "Doppelte URL!",
 
   aboutText_p1:
     "Diese Browsererweiterung soll Ihnen dabei helfen, sich auf Aufgaben oder Ziele zu konzentrieren. Die effektivste Methode, um die Konzentration aufrechtzuerhalten, besteht darin, die Erweiterung nur dann zu deaktivieren, wenn Sie wirklich eine Pause benötigen. Wenn Sie sich entspannen möchten, lassen Sie sie ruhen. Ansonsten halten Sie sie aktiv, um sich immer daran zu erinnern, dass Sie ein Ziel haben, auf das Sie hinarbeiten sollten, wenn Sie keine spezifische Zeit für Entspannung vorgesehen haben.",

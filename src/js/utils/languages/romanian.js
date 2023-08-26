@@ -13,7 +13,8 @@ export const romanian = {
   addSite: "Adăugare Site:",
   add: "Adăugare",
   invalidDomain: "Domeniu/URL nevalid",
-  duplicatedDomain: "Domeniu/URL duplicat",
+  duplicatedDomain: "Domeniu duplicat!",
+  duplicatedUrl: "URL duplicat!",
 
   aboutText_p1:
     "Această extensie pentru browser este concepută pentru a vă ajuta să vă mențineți concentrarea atunci când lucrați la sarcini sau vă urmăriți obiectivele. Cea mai eficientă modalitate de a vă menține concentrarea este să dezactivați extensia doar atunci când aveți cu adevărat nevoie de o pauză. Când doriți să aveți timp de relaxare, lăsați-o să se odihnească, dar în rest, mențineți-o activată pentru a vă aminti întotdeauna că aveți un obiectiv către care trebuie să lucrați în timpurile în care nu alocați timp specific pentru relaxare.",

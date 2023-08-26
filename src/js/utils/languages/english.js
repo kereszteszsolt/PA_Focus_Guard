@@ -13,7 +13,8 @@ export const english = {
   addSite: "Add Site:",
   add: "Add",
   invalidDomain: "Invalid domain/url",
-  duplicatedDomain: "Duplicated domain/url",
+  duplicatedDomain: "Duplicated domain!",
+  duplicatedUrl: "Duplicated url!",
 
   aboutText_p1:
     "This browser extension is designed to help you maintain focus when working on tasks or pursuing your goals. The most effective way to maintain focus is by only disabling the extension when you truly need a break. When you're looking to have some leisure time, let it rest, but otherwise, keep it active to always remind you that you have a goal to work towards during times when you're not setting aside specific time for leisure.",

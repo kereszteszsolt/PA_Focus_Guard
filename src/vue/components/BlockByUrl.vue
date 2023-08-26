@@ -191,7 +191,7 @@ export default {
     },
     calculatePlaceholderText() {
       this.placeholderText = this.justDomain
-        ? "www.example.com"
+        ? "example.com"
         : "https://www.example.com/something";
     },
   },
@@ -278,7 +278,11 @@ export default {
       {{ lang.getTranslation(fgLanguage, "invalidDomain") }}</label
     >
     <label v-if="showDuplicatedErrorMessage" class="error-message">
-      {{ lang.getTranslation(fgLanguage, "duplicatedDomain") }}</label
+      {{
+        justDomain
+          ? lang.getTranslation(fgLanguage, "duplicatedDomain")
+          : lang.getTranslation(fgLanguage, "duplicatedUrl")
+      }}</label
     >
   </div>
 </template>
