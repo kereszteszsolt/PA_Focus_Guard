@@ -40,7 +40,7 @@ export default {
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
       urlDomainPattern: new RegExp(
-        "^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)",
+        "^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:[^.\/?\n]+\.)?([^:\/?\n]+)",
       ),
       urlLinkPattern: new RegExp(
         "^https?://www\\." + // valid prefix

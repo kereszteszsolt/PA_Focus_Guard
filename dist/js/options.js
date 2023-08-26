@@ -16961,7 +16961,7 @@ __webpack_require__.r(__webpack_exports__);
       newUrl: "",
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
-      urlDomainPattern: new RegExp("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)"),
+      urlDomainPattern: new RegExp("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:[^.\/?\n]+\.)?([^:\/?\n]+)"),
       urlLinkPattern: new RegExp("^https?://www\\." +
       // valid prefix
       "|^http?://www\\." +
