@@ -16962,14 +16962,33 @@ __webpack_require__.r(__webpack_exports__);
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
       urlDomainPattern: new RegExp("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)"),
-      urlLinkPattern: new RegExp("^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$"),
-      urlList: []
+      urlLinkPattern: new RegExp("^https?://www\\." +
+      // valid prefix
+      "|^http?://www\\." +
+      // valid prefix
+      "([a-zA-Z0-9_-]+\\.)+" +
+      // valid domain
+      "[a-zA-Z]{2,}" +
+      // valid domain
+      "(/[a-zA-Z0-9_-]+)*$" +
+      // valid subdomain or route
+      "|^https?://([a-zA-Z0-9_-]+\\.)+" +
+      // valid subdomain
+      "www\\." +
+      // valid prefix
+      "([a-zA-Z0-9_-]+\\.)+" +
+      // valid domain
+      "[a-zA-Z]{2,}" +
+      // valid domain
+      "(/[a-zA-Z0-9_-]+)*$") // valid route
+      ,
+
+      urlList: [],
+      placeholderText: ""
     };
   },
   created: function created() {
     this.loadFromStorage();
-    this.calculateNumberOfPages();
-    this.calculateCurrentPageItems();
   },
   watch: {
     storageName: {
@@ -16984,6 +17003,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.urlList = data;
         _this.calculateNumberOfPages();
         _this.calculateCurrentPageItems();
+        _this.calculatePlaceholderText();
       });
     },
     saveToStorage: function saveToStorage() {
@@ -17096,6 +17116,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       this.saveToStorage();
+    },
+    calculatePlaceholderText: function calculatePlaceholderText() {
+      this.placeholderText = this.justDomain ? "www.example.com" : "https://www.example.com/something";
     }
   }
 });
@@ -17315,11 +17338,12 @@ var _hoisted_11 = {
 var _hoisted_12 = {
   "class": "input-wrapper"
 };
-var _hoisted_13 = {
+var _hoisted_13 = ["placeholder"];
+var _hoisted_14 = {
   key: 0,
   "class": "error-message"
 };
-var _hoisted_14 = {
+var _hoisted_15 = {
   key: 1,
   "class": "error-message"
 };
@@ -17368,19 +17392,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "button-primary"
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "next")), 9 /* TEXT, PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "addSite")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    placeholder: "example.com",
+    placeholder: $data.placeholderText,
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.newUrl = $event;
     }),
     onBlur: _cache[5] || (_cache[5] = function () {
       return $options.handleBlur && $options.handleBlur.apply($options, arguments);
     })
-  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newUrl]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_13), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newUrl]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function () {
       return $options.addUrl && $options.addUrl.apply($options, arguments);
     }),
     "class": "add-url"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "add")), 1 /* TEXT */)]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "invalidDomain")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "duplicatedDomain")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "add")), 1 /* TEXT */)]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "invalidDomain")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "duplicatedDomain")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),

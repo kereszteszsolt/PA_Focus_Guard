@@ -43,15 +43,23 @@ export default {
         "^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)",
       ),
       urlLinkPattern: new RegExp(
-        "^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$",
+        "^https?://www\\." + // valid prefix
+          "|^http?://www\\." + // valid prefix
+          "([a-zA-Z0-9_-]+\\.)+" + // valid domain
+          "[a-zA-Z]{2,}" + // valid domain
+          "(/[a-zA-Z0-9_-]+)*$" + // valid subdomain or route
+          "|^https?://([a-zA-Z0-9_-]+\\.)+" + // valid subdomain
+          "www\\." + // valid prefix
+          "([a-zA-Z0-9_-]+\\.)+" + // valid domain
+          "[a-zA-Z]{2,}" + // valid domain
+          "(/[a-zA-Z0-9_-]+)*$", // valid route
       ),
       urlList: [],
+      placeholderText: "",
     };
   },
   created() {
     this.loadFromStorage();
-    this.calculateNumberOfPages();
-    this.calculateCurrentPageItems();
   },
   watch: {
     storageName: {
@@ -65,6 +73,7 @@ export default {
         this.urlList = data;
         this.calculateNumberOfPages();
         this.calculateCurrentPageItems();
+        this.calculatePlaceholderText();
       });
     },
     saveToStorage() {
@@ -180,6 +189,11 @@ export default {
       });
       this.saveToStorage();
     },
+    calculatePlaceholderText() {
+      this.placeholderText = this.justDomain
+        ? "www.example.com"
+        : "https://www.example.com/something";
+    },
   },
 };
 </script>
@@ -252,7 +266,7 @@ export default {
     <div class="input-wrapper">
       <input
         type="text"
-        placeholder="example.com"
+        :placeholder="placeholderText"
         v-model="newUrl"
         @blur="handleBlur"
       />
