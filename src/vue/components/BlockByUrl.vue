@@ -1,6 +1,7 @@
 <script>
 import * as dataAccess from "../../js/utils/scripts/dataAccess";
 import * as lang from "../../js/utils/languages";
+import { tr } from "vuetify/locale";
 
 export default {
   computed: {
@@ -40,7 +41,7 @@ export default {
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
       urlDomainPattern: new RegExp(
-        "^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:[^.\/?\n]+\.)?([^:\/?\n]+)",
+        /^(?:https?:\/\/)?(?:www\d?\.)?([^\/\n\?:]+\.[^\/\n\?:]+)/i,
       ),
       urlLinkPattern: new RegExp(
         "^https?://www\\." + // valid prefix
@@ -106,7 +107,15 @@ export default {
         : this.urlLinkPattern.test(pUrl);
     },
     truncateUrl(pUrl) {
-      return this.justDomain ? this.urlDomainPattern.exec(pUrl)[1] : pUrl;
+      let result = pUrl;
+      if (this.justDomain) {
+        result = this.urlDomainPattern.exec(pUrl)[1];
+        let segments = result.split(".");
+        if (segments.length > 2) {
+          result = segments.slice(-2).join(".");
+        }
+      }
+      return result;
     },
     handleBlur(event) {
       if (this.newUrl === "") {

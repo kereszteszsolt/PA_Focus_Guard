@@ -16924,6 +16924,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_utils_languages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../js/utils/languages */ "./src/js/utils/languages/index.js");
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     lang: function lang() {
@@ -16961,7 +16962,7 @@ __webpack_require__.r(__webpack_exports__);
       newUrl: "",
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
-      urlDomainPattern: new RegExp("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:[^.\/?\n]+\.)?([^:\/?\n]+)"),
+      urlDomainPattern: new RegExp(/^(?:https?:\/\/)?(?:www\d?\.)?([^\/\n\?:]+\.[^\/\n\?:]+)/i),
       urlLinkPattern: new RegExp("^https?://www\\." +
       // valid prefix
       "|^http?://www\\." +
@@ -17031,7 +17032,15 @@ __webpack_require__.r(__webpack_exports__);
       return this.justDomain ? this.urlDomainPattern.test(pUrl) : this.urlLinkPattern.test(pUrl);
     },
     truncateUrl: function truncateUrl(pUrl) {
-      return this.justDomain ? this.urlDomainPattern.test(pUrl) ? pUrl : this.urlDomainPattern.exec(pUrl)[1] : pUrl;
+      var result = pUrl;
+      if (this.justDomain) {
+        result = this.urlDomainPattern.exec(pUrl)[1];
+        var segments = result.split(".");
+        if (segments.length > 2) {
+          result = segments.slice(-2).join(".");
+        }
+      }
+      return result;
     },
     handleBlur: function handleBlur(event) {
       var _this2 = this;
