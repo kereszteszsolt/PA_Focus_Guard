@@ -35,9 +35,9 @@ export default {
 };
 </script>
 <template>
-  <h1>
+  <div class="title">
     {{ lang.getTranslation(fgLanguage, funcName) }}
-  </h1>
+  </div>
   <div class="about">
     <div class="about-paragraph">
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_p1") }}</p>
@@ -128,12 +128,17 @@ export default {
 <style scoped lang="scss">
 @import "../../scss/common.scss";
 
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
 .about {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
   margin-bottom: 1rem;
 
   .about-paragraph {
@@ -150,8 +155,7 @@ export default {
     text-align: left;
     justify-content: left;
     text-indent: 1em;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .social-media-links {
@@ -160,7 +164,6 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
     margin-bottom: 1rem;
 
     .social-media-item {
@@ -187,8 +190,8 @@ export default {
       }
     }
   }
+
   .donation {
-    margin-top: 2rem;
     h2 {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
@@ -203,7 +206,7 @@ export default {
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      margin-top: 1rem;
+      margin-bottom: 1rem;
 
       a {
         display: flex;

@@ -208,7 +208,7 @@ export default {
 </script>
 
 <template>
-  <h1>{{ lang.getTranslation(fgLanguage, funcName) }}</h1>
+  <div class="title">{{ lang.getTranslation(fgLanguage, funcName) }}</div>
   <div class="urlList">
     <table>
       <thead>
@@ -302,7 +302,11 @@ export default {
 
 <style scoped lang="scss">
 @import "../../scss/common.scss";
-
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
 .urlList {
   table {
     width: 100%;
