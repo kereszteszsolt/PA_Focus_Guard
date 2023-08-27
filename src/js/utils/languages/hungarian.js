@@ -4,6 +4,9 @@ export const hungarian = {
   fgAbout: "Névjegy",
   fgLanguage: "Nyelv",
   fgActive: "Aktív",
+  fgSettings: "Beállítások",
+  fgOn: "Be",
+  fgOff: "Ki",
 
   markedForBlock: "Letiltásra jelölve",
   permanentlyBlocked: "Véglegesen letiltva",

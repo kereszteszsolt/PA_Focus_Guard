@@ -16803,13 +16803,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/utils/scripts/dataAccess */ "./src/js/utils/scripts/dataAccess.js");
 /* harmony import */ var _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/utils/constants */ "./src/js/utils/constants/index.js");
+/* harmony import */ var _js_utils_languages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/utils/languages */ "./src/js/utils/languages/index.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  computed: {
+    lang: function lang() {
+      return _js_utils_languages__WEBPACK_IMPORTED_MODULE_2__;
+    }
+  },
   data: function data() {
     return {
-      appData: {
-        focusMode: false
+      fgAppData: {
+        focusMode: false,
+        fgLanguage: _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.languages.ENGLISH
       }
     };
   },
@@ -16818,21 +16826,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     activate: function activate() {
-      this.appData.focusMode = true;
-      this.saveData(this.appData);
+      this.fgAppData.focusMode = true;
+      this.saveData(this.fgAppData);
     },
     deactivate: function deactivate() {
-      this.appData.focusMode = false;
-      this.saveData(this.appData);
+      this.fgAppData.focusMode = false;
+      this.saveData(this.fgAppData);
     },
     loadData: function loadData() {
       var _this = this;
       _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.loadData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA).then(function (data) {
-        _this.appData = data;
+        _this.fgAppData = data;
       });
     },
     saveData: function saveData() {
-      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA, this.appData);
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA, this.fgAppData);
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -16875,26 +16883,26 @@ var _hoisted_3 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'button-danger': !$data.appData.focusMode,
-      'button-danger-is-off': $data.appData.focusMode
+      'button-danger': !$data.fgAppData.focusMode,
+      'button-danger-is-off': $data.fgAppData.focusMode
     }),
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.deactivate && $options.deactivate.apply($options, arguments);
     })
-  }, " Off ", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgOff")), 3 /* TEXT, CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'button-success': $data.appData.focusMode,
-      'button-success-is-off': !$data.appData.focusMode
+      'button-success': $data.fgAppData.focusMode,
+      'button-success-is-off': !$data.fgAppData.focusMode
     }),
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.activate && $options.activate.apply($options, arguments);
     })
-  }, " On ", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "button-primary",
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgOn")), 3 /* TEXT, CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "button-primary button-settings",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.settings && $options.settings.apply($options, arguments);
     })
-  }, "settings")]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgSettings")), 1 /* TEXT */)]);
 }
 
 /***/ }),
@@ -16983,6 +16991,258 @@ var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
 
 /***/ }),
 
+/***/ "./src/js/utils/languages/english.js":
+/*!*******************************************!*\
+  !*** ./src/js/utils/languages/english.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   english: () => (/* binding */ english)
+/* harmony export */ });
+var english = {
+  fgBlockedWebsiteByDomain: "Blocked websites by domain",
+  fgBlockedWebsiteByUrl: "Blocked websites by URL",
+  fgAbout: "About",
+  fgLanguage: "Language",
+  fgActive: "Active",
+  fgSettings: "Settings",
+  fgOn: "On",
+  fgOff: "Off",
+  markedForBlock: "Marked for Block",
+  permanentlyBlocked: "Permanently Blocked",
+  remove: "Remove",
+  prev: "Prev",
+  next: "Next",
+  addSite: "Add Site:",
+  add: "Add",
+  invalidDomain: "Invalid domain!",
+  invalidUrl: "Invalid URL!",
+  duplicatedDomain: "Duplicated domain!",
+  duplicatedUrl: "Duplicated url!",
+  aboutText_p1: "This browser extension is designed to help you maintain focus when working on tasks or pursuing your goals. The most effective way to maintain focus is by only disabling the extension when you truly need a break. When you're looking to have some leisure time, let it rest, but otherwise, keep it active to always remind you that you have a goal to work towards during times when you're not setting aside specific time for leisure.",
+  aboutText_p2: "For English and Hungarian descriptions of the extension, please click on the YouTube links below. I'll explain how to use the extension in those videos.",
+  aboutText_p3: "If you'd like to connect on social media, you can do so through the links below:",
+  aboutText_thanks: "Thank you for your interest, and I look forward to connecting with you on various platforms!",
+  donationText_p1: "Would you like to contribute to my work and support its development? Your support means a lot to me and helps me grow. Here are some ways you can help:",
+  donationText_p2_1: "Moreover, you can show your support in various alternative ways:",
+  donationText_p2_11: "- Connect with me on Social Media: Feel free to visit my profiles on Facebook, Instagram, Twitter, and more.",
+  donationText_p2_12: "- Subscribe to my YouTube channel:",
+  donationText_p2_13: "- Engage with my content: Liking, sharing, and leaving comments means a great deal to me.",
+  donationText_p2_2: "If you'd like to contribute financially, you can choose from the following options:",
+  donationText_p3_1: "Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your involvement.",
+  donationText_p3_2: "Thank you for being a part of my journey and supporting my endeavors!",
+  donationText_p3_3: "Warmest regards, [Your Name]"
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/german.js":
+/*!******************************************!*\
+  !*** ./src/js/utils/languages/german.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   german: () => (/* binding */ german)
+/* harmony export */ });
+var german = {
+  fgBlockedWebsiteByDomain: "Gesperrte Websites nach Domain",
+  fgBlockedWebsiteByUrl: "Gesperrte Websites nach URL",
+  fgAbout: "Über",
+  fgLanguage: "Sprache",
+  fgActive: "Aktiv",
+  fgSettings: "Einstellungen",
+  fgOn: "An",
+  fgOff: "Aus",
+  markedForBlock: "Zur Sperrliste hinzugefügt",
+  permanentlyBlocked: "Dauerhaft gesperrt",
+  remove: "Entfernen",
+  prev: "Zurück",
+  next: "Weiter",
+  addSite: "Website hinzufügen:",
+  add: "Hinzufügen",
+  invalidDomain: "Ungültige Domain!",
+  invalidUrl: "Ungültige URL!",
+  duplicatedDomain: "Doppelte Domain!",
+  duplicatedUrl: "Doppelte URL!",
+  aboutText_p1: "Diese Browsererweiterung soll Ihnen dabei helfen, sich auf Aufgaben oder Ziele zu konzentrieren. Die effektivste Methode, um die Konzentration aufrechtzuerhalten, besteht darin, die Erweiterung nur dann zu deaktivieren, wenn Sie wirklich eine Pause benötigen. Wenn Sie sich entspannen möchten, lassen Sie sie ruhen. Ansonsten halten Sie sie aktiv, um sich immer daran zu erinnern, dass Sie ein Ziel haben, auf das Sie hinarbeiten sollten, wenn Sie keine spezifische Zeit für Entspannung vorgesehen haben.",
+  aboutText_p2: "Für englische und ungarische Beschreibungen der Erweiterung klicken Sie bitte auf die unten stehenden YouTube-Links. Dort erkläre ich, wie Sie die Erweiterung verwenden können.",
+  aboutText_p3: "Wenn Sie sich auf sozialen Medien verbinden möchten, können Sie dies über die folgenden Links tun:",
+  aboutText_thanks: "Vielen Dank für Ihr Interesse. Ich freue mich darauf, auf verschiedenen Plattformen mit Ihnen in Kontakt zu treten!",
+  donationText_p1: "Möchtest du meine Arbeit unterstützen und zu ihrer Entwicklung beitragen? Deine Unterstützung bedeutet mir viel und hilft mir zu wachsen. Hier sind einige Möglichkeiten, wie du helfen kannst:",
+  donationText_p2_1: "Außerdem kannst du deine Unterstützung auf verschiedene alternative Arten zeigen:",
+  donationText_p2_11: "- Verbinde dich mit mir in den sozialen Medien: Besuche gerne meine Profile auf Facebook, Instagram, Twitter und mehr.",
+  donationText_p2_12: "- Abonniere meinen YouTube-Kanal:",
+  donationText_p2_13: "- Interagiere mit meinem Inhalt: Liken, Teilen und Kommentieren bedeuten mir sehr viel.",
+  donationText_p2_2: "Wenn du finanziell dazu beitragen möchtest, stehen dir folgende Optionen zur Verfügung:",
+  donationText_p3_1: "Deine Unterstützung, in welcher Form auch immer, wird sehr geschätzt, und ich möchte dir herzlich für deine Beteiligung danken.",
+  donationText_p3_2: "Danke, dass du ein Teil meiner Reise bist und meine Bemühungen unterstützt!",
+  donationText_p3_3: "Mit freundlichen Grüßen, [Dein Name]"
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/hungarian.js":
+/*!*********************************************!*\
+  !*** ./src/js/utils/languages/hungarian.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   hungarian: () => (/* binding */ hungarian)
+/* harmony export */ });
+var hungarian = {
+  fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
+  fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
+  fgAbout: "Névjegy",
+  fgLanguage: "Nyelv",
+  fgActive: "Aktív",
+  fgSettings: "Beállítások",
+  fgOn: "Be",
+  fgOff: "Ki",
+  markedForBlock: "Letiltásra jelölve",
+  permanentlyBlocked: "Véglegesen letiltva",
+  remove: "Eltávolítás",
+  prev: "Előző",
+  next: "Következő",
+  addSite: "Weboldal hozzáadása:",
+  add: "Hozzáadás",
+  invalidDomain: "Érvénytelen domain!",
+  invalidUrl: "Érvénytelen URL!",
+  duplicatedDomain: "A domain már létezik!",
+  duplicatedUrl: "Az URL már létezik!",
+  aboutText_p1: "Ez a böngésző kiegészítő arra szolgál, hogy segítsen fenntartani a koncentrációt, amikor munkádban vagy céljaid elérésében szeretnél dolgozni. A legideálisabb módja annak, hogy megőrizd a fókuszt, az, ha csak akkor kapcsolod ki a kiegészítőt. Amikor szórakozni szeretnél, hagyd, hogy pihenjen, de minden más időben tartsd bekapcsolva, hogy mindig emlékeztesse: van célod, amelyre koncentrálnod kell.",
+  aboutText_p2: "A kiegészítőhöz angol és magyar nyelvű leírást találsz a YouTube linkek alatt. Ezek a videók részletesen bemutatják, hogyan kell használni a kiegészítőt.",
+  aboutText_p3: "Ha szeretnél követni a közösségi médiában, az alábbi linkeken megtalálsz:",
+  aboutText_thanks: "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
+  donationText_p1: "Szeretnél hozzájárulni munkámban és támogatni fejlődését? A támogatásod számomra rendkívül fontos és segít abban, hogy fejlődjek. Íme néhány mód, amivel segíthetsz:",
+  donationText_p2_1: "Emellett más alternatív módokon is kifejezheted támogatásod:",
+  donationText_p2_11: "- Kapcsolódj velem a közösségi média platformokon: Látogass el Facebook, Instagram, Twitter és más profiljaimra.",
+  donationText_p2_12: "- Iratkozz fel YouTube csatornámra:",
+  donationText_p2_13: "- Részt vegyél a tartalmaimban: Lájkolás, megosztás és hozzászólások írása nekem rendkívül sokat jelent.",
+  donationText_p2_2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
+  donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékelve van, és hálásan köszönöm a részvételedet.",
+  donationText_p3_2: "Köszönöm, hogy velem vagy és támogatod törekvéseimet!",
+  donationText_p3_3: "Szívélyes üdvözlettel, [Your Name]"
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/index.js":
+/*!*****************************************!*\
+  !*** ./src/js/utils/languages/index.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   english: () => (/* reexport safe */ _english__WEBPACK_IMPORTED_MODULE_1__.english),
+/* harmony export */   german: () => (/* reexport safe */ _german__WEBPACK_IMPORTED_MODULE_3__.german),
+/* harmony export */   getTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTranslation),
+/* harmony export */   hungarian: () => (/* reexport safe */ _hungarian__WEBPACK_IMPORTED_MODULE_2__.hungarian),
+/* harmony export */   romanian: () => (/* reexport safe */ _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian)
+/* harmony export */ });
+/* harmony import */ var _langFunctions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./langFunctions */ "./src/js/utils/languages/langFunctions.js");
+/* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
+/* harmony import */ var _hungarian__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hungarian */ "./src/js/utils/languages/hungarian.js");
+/* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
+/* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/langFunctions.js":
+/*!*************************************************!*\
+  !*** ./src/js/utils/languages/langFunctions.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getTranslation: () => (/* binding */ getTranslation)
+/* harmony export */ });
+/* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
+/* harmony import */ var _hungarian__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hungarian */ "./src/js/utils/languages/hungarian.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/utils/constants/index.js");
+/* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
+/* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+
+
+
+
+
+var getTranslation = function getTranslation(language, key) {
+  switch (language) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ENGLISH:
+      return _english__WEBPACK_IMPORTED_MODULE_0__.english[key];
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.HUNGARIAN:
+      return _hungarian__WEBPACK_IMPORTED_MODULE_1__.hungarian[key];
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.GERMAN:
+      return _german__WEBPACK_IMPORTED_MODULE_3__.german[key];
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ROMANIAN:
+      return _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian[key];
+    default:
+      return _english__WEBPACK_IMPORTED_MODULE_0__.english[key];
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/romanian.js":
+/*!********************************************!*\
+  !*** ./src/js/utils/languages/romanian.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   romanian: () => (/* binding */ romanian)
+/* harmony export */ });
+var romanian = {
+  fgBlockedWebsiteByDomain: "Site-uri blocate după domeniu",
+  fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
+  fgAbout: "Despre",
+  fgLanguage: "Limbă",
+  fgActive: "Activ",
+  fgSettings: "Setări",
+  fgOn: "Pornit",
+  fgOff: "Oprit",
+  markedForBlock: "Marcat pentru Blocare",
+  permanentlyBlocked: "Blocat Permanent",
+  remove: "Eliminare",
+  prev: "Anterior",
+  next: "Următor",
+  addSite: "Adăugare Site:",
+  add: "Adăugare",
+  invalidDomain: "Domeniu nevalid!",
+  invalidUrl: "URL nevalid!",
+  duplicatedDomain: "Domeniu duplicat!",
+  duplicatedUrl: "URL duplicat!",
+  aboutText_p1: "Această extensie pentru browser este concepută pentru a vă ajuta să vă mențineți concentrarea atunci când lucrați la sarcini sau vă urmăriți obiectivele. Cea mai eficientă modalitate de a vă menține concentrarea este să dezactivați extensia doar atunci când aveți cu adevărat nevoie de o pauză. Când doriți să aveți timp de relaxare, lăsați-o să se odihnească, dar în rest, mențineți-o activată pentru a vă aminti întotdeauna că aveți un obiectiv către care trebuie să lucrați în timpurile în care nu alocați timp specific pentru relaxare.",
+  aboutText_p2: "Pentru descrieri în limba engleză și maghiară ale extensiei, vă rog să faceți clic pe linkurile YouTube de mai jos. Voi explica cum se utilizează extensia în acele videoclipuri.",
+  aboutText_p3: "Dacă doriți să vă conectați pe rețelele de socializare, o puteți face prin intermediul linkurilor de mai jos:",
+  aboutText_thanks: "Vă mulțumesc pentru interesul dumneavoastră și aștept cu nerăbdare să ne conectăm pe diferite platforme!",
+  donationText_p1: "Doriți să contribuiți la munca mea și să sprijiniți dezvoltarea acesteia? Sprijinul tău înseamnă mult pentru mine și mă ajută să cresc. Iată câteva modalități în care poți ajuta:",
+  donationText_p2_1: "În plus, poți arăta sprijinul tău în diverse moduri alternative:",
+  donationText_p2_11: "- Conectează-te cu mine pe rețelele de socializare: Fii binevenit să vizitezi profilurile mele de pe Facebook, Instagram, Twitter și altele.",
+  donationText_p2_12: "- Abonează-te la canalul meu de YouTube:",
+  donationText_p2_13: "- Interacționează cu conținutul meu: Apreciez foarte mult aprecierile, distribuirile și comentariile.",
+  donationText_p2_2: "Dacă dorești să contribui financiar, ai la dispoziție următoarele opțiuni:",
+  donationText_p3_1: "Sprijinul tău, în orice formă, este extrem de apreciat, și doresc să îți mulțumesc din suflet pentru implicarea ta.",
+  donationText_p3_2: "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
+  donationText_p3_3: "Cu cele mai bune urări, [Numele Tău]"
+};
+
+/***/ }),
+
 /***/ "./src/js/utils/scripts/dataAccess.js":
 /*!********************************************!*\
   !*** ./src/js/utils/scripts/dataAccess.js ***!
@@ -17051,7 +17311,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-b64ea48c]:hover {\n  background-color: #81661c;\n}\n.popup-container[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  background-color: floralwhite;\n  padding: 0;\n  color: #574513;\n  font-weight: bold;\n  align-items: center;\n  height: 100vh;\n}\n.on-off[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  padding: 1rem;\n  width: 100%;\n}\n.p-title[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  justify-content: space-around;\n  font-size: 1.5rem;\n  padding: 0.25rem;\n}\n.button-success[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success[data-v-b64ea48c]:hover {\n  border-left: 0px;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  border-right: 0px;\n}\n.button-success-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #2ecc71;\n  border-color: #2ecc71;\n  width: 100%;\n  border-left: 0px;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-danger-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #e74c3c;\n  border-color: #e74c3c;\n  width: 100%;\n  border-right: 0px;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-b64ea48c]:hover {\n  background-color: #81661c;\n}\n.popup-container[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  background-color: floralwhite;\n  padding: 0;\n  color: #574513;\n  font-weight: bold;\n  align-items: center;\n  height: 100vh;\n}\n.on-off[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  padding: 1rem;\n  width: 100%;\n}\n.p-title[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  justify-content: space-around;\n  font-size: 1.5rem;\n  padding: 0.25rem;\n}\n.button-success[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success[data-v-b64ea48c]:hover {\n  border-left: 0px;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  border-right: 0px;\n}\n.button-success-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #2ecc71;\n  border-color: #2ecc71;\n  width: 100%;\n  border-left: 0px;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-danger-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #e74c3c;\n  border-color: #e74c3c;\n  width: 100%;\n  border-right: 0px;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-settings[data-v-b64ea48c] {\n  width: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

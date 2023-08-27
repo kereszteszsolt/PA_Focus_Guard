@@ -4,6 +4,9 @@ export const english = {
   fgAbout: "About",
   fgLanguage: "Language",
   fgActive: "Active",
+  fgSettings: "Settings",
+  fgOn: "On",
+  fgOff: "Off",
 
   markedForBlock: "Marked for Block",
   permanentlyBlocked: "Permanently Blocked",

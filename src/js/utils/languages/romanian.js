@@ -4,6 +4,9 @@ export const romanian = {
   fgAbout: "Despre",
   fgLanguage: "Limbă",
   fgActive: "Activ",
+  fgSettings: "Setări",
+  fgOn: "Pornit",
+  fgOff: "Oprit",
 
   markedForBlock: "Marcat pentru Blocare",
   permanentlyBlocked: "Blocat Permanent",

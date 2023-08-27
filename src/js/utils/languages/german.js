@@ -4,6 +4,9 @@ export const german = {
   fgAbout: "Über",
   fgLanguage: "Sprache",
   fgActive: "Aktiv",
+  fgSettings: "Einstellungen",
+  fgOn: "An",
+  fgOff: "Aus",
 
   markedForBlock: "Zur Sperrliste hinzugefügt",
   permanentlyBlocked: "Dauerhaft gesperrt",
