@@ -17312,14 +17312,24 @@ var _hoisted_8 = {
   "class": "about-paragraph"
 };
 var _hoisted_9 = {
-  "class": "donation"
-};
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"donation-item\" data-v-81cedd14><a href=\"https://www.paypal.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-paypal-48.png\" alt=\"paypal\" data-v-81cedd14><span data-v-81cedd14>PayPal</span></a><a href=\"https://www.patreon.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-patreon-48.png\" alt=\"patreon\" data-v-81cedd14><span data-v-81cedd14>Patreon</span></a><a href=\"https://www.buymeacoffee.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-coffee-to-go-48.png\" alt=\"coffee\" data-v-81cedd14><span data-v-81cedd14>Buy me a coffee</span></a></div>", 1);
-var _hoisted_11 = {
   "class": "about-paragraph"
 };
+var _hoisted_10 = {
+  "class": "donation"
+};
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"donation-item\" data-v-81cedd14><a href=\"https://www.paypal.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-paypal-48.png\" alt=\"paypal\" data-v-81cedd14><span data-v-81cedd14>PayPal</span></a><a href=\"https://www.patreon.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-patreon-48.png\" alt=\"patreon\" data-v-81cedd14><span data-v-81cedd14>Patreon</span></a><a href=\"https://www.buymeacoffee.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-coffee-to-go-48.png\" alt=\"coffee\" data-v-81cedd14><span data-v-81cedd14>Buy me a coffee</span></a></div>", 1);
+var _hoisted_12 = {
+  "class": "about-paragraph"
+};
+var _hoisted_13 = {
+  "class": "about-paragraph"
+};
+var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Keresztes Zsolt")], -1 /* HOISTED */);
+});
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, $props.funcName)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p2_1")), 1 /* TEXT */), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p2_2")), 1 /* TEXT */), _hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p3")), 1 /* TEXT */)]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p2_1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p2_11")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p2_12")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p2_13")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p2_2")), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donation")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText")), 1 /* TEXT */), _hoisted_10]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p3_1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p3_2")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p3_3")), 1 /* TEXT */)])])], 64 /* STABLE_FRAGMENT */);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, $props.funcName)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p2_1")), 1 /* TEXT */), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p2_2")), 1 /* TEXT */), _hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p3")), 1 /* TEXT */)]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1_1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1_2")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1_3")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1_4")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1_5")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p1_6")), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p2")), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donation")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText")), 1 /* TEXT */), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p3_1")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "donationText_p3_2")), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_p4")), 1 /* TEXT */), _hoisted_14])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -17707,15 +17717,17 @@ var english = {
   aboutText_p2_2: "For more information on how it works, watch the following YoutTube videos in English and Hungarian.",
   aboutText_p3: "If you want to follow me on social media, you can find me on the following sites:",
   aboutText_thanks: "Thank you for your interest, and I look forward to connecting with you on various platforms!",
-  donationText_p1: "Would you like to contribute to my work and support its development? Your support means a lot to me and helps me grow. Here are some ways you can help:",
-  donationText_p2_1: "Moreover, you can show your support in various alternative ways:",
-  donationText_p2_11: "- Connect with me on Social Media: Feel free to visit my profiles on Facebook, Instagram, Twitter, and more.",
-  donationText_p2_12: "- Subscribe to my YouTube channel:",
-  donationText_p2_13: "- Engage with my content: Liking, sharing, and leaving comments means a great deal to me.",
-  donationText_p2_2: "If you'd like to contribute financially, you can choose from the following options:",
+  donationText_p1: "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
+  donationText_p1_1: "- Subscribe to my YouTube channels.",
+  donationText_p1_2: "- Follow me on Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "-  Like, comment, share my content",
+  donationText_p1_4: "-  Talk to other followers in the comment section",
+  donationText_p1_5: "-  Give some stars to my github repos",
+  donationText_p1_6: "-  Rate my apps and extensions on different platforms: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
+  donationText_p2: "If you'd like to contribute financially, you can choose from the following options:",
   donationText_p3_1: "Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your involvement.",
   donationText_p3_2: "Thank you for being a part of my journey and supporting my endeavors!",
-  donationText_p3_3: "Warmest regards, [Your Name]"
+  aboutText_p4: "Warmest regards,"
 };
 
 /***/ }),
@@ -17753,17 +17765,18 @@ var german = {
   aboutText_p1: "Dieses Add-on hilft Ihnen, sich zu konzentrieren, und bewahrt Sie vor den Verlockungen von Unterhaltungsseiten. \n" + "Die beste Wirkung erzielen Sie, wenn Sie die Erweiterung immer aktiviert lassen und sie nur dann ausschalten, wenn Sie Unterhaltungsprogramme geplant haben.\n" + "Solange sie aktiv ist, zeigt die Erweiterung ein Bild anstelle der verbotenen Seite an, um Sie daran zu erinnern, sich auf Ihre Arbeit zu konzentrieren.",
   aboutText_p2_1: "Die Erweiterung läuft offline nur lokal im Browser und überträgt keine Daten.  \n" + 'Die Einstellungen und Listen werden lokal im Browser in "Local Storage" gespeichert. Der Quellcode kann über den folgenden GitHub-Link eingesehen werden.',
   aboutText_p2_2: "Weitere Informationen zur Funktionsweise finden Sie in den folgenden YoutTube-Videos auf Englisch und Ungarisch.",
-  aboutText_p3: "Wenn Sie mir in den sozialen Medien folgen möchten, finden Sie mich auf der folgenden Plattform:",
+  aboutText_p3: "Wenn Sie mir in den sozialen Medien folgen möchten, finden Sie mich auf den folgenden Plattformen:",
   aboutText_thanks: "Vielen Dank für Ihr Interesse. Ich freue mich darauf, auf verschiedenen Plattformen mit Ihnen in Kontakt zu treten!",
-  donationText_p1: "Möchtest du meine Arbeit unterstützen und zu ihrer Entwicklung beitragen? Deine Unterstützung bedeutet mir viel und hilft mir zu wachsen. Hier sind einige Möglichkeiten, wie du helfen kannst:",
-  donationText_p2_1: "Außerdem kannst du deine Unterstützung auf verschiedene alternative Arten zeigen:",
-  donationText_p2_11: "- Verbinde dich mit mir in den sozialen Medien: Besuche gerne meine Profile auf Facebook, Instagram, Twitter und mehr.",
-  donationText_p2_12: "- Abonniere meinen YouTube-Kanal:",
-  donationText_p2_13: "- Interagiere mit meinem Inhalt: Liken, Teilen und Kommentieren bedeuten mir sehr viel.",
-  donationText_p2_2: "Wenn du finanziell dazu beitragen möchtest, stehen dir folgende Optionen zur Verfügung:",
+  donationText_p1_1: "- Abonnieren Sie meine YouTube-Kanäle.",
+  donationText_p1_2: "- Folgen Sie mir auf Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "- Like, kommentiere, teile meine Inhalte",
+  donationText_p1_4: "- Sprich mit anderen Followern im Kommentarbereich",
+  donationText_p1_5: "- Gib meinen Github-Repos ein paar Sterne",
+  donationText_p1_6: "- Bewerten Sie meine Apps und Erweiterungen auf verschiedenen Plattformen: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, usw.",
+  donationText_p2: "Wenn du finanziell dazu beitragen möchtest, stehen dir folgende Optionen zur Verfügung:",
   donationText_p3_1: "Deine Unterstützung, in welcher Form auch immer, wird sehr geschätzt, und ich möchte dir herzlich für deine Beteiligung danken.",
   donationText_p3_2: "Danke, dass du ein Teil meiner Reise bist und meine Bemühungen unterstützt!",
-  donationText_p3_3: "Mit freundlichen Grüßen, [Dein Name]"
+  aboutText_p4: "Mit freundlichen Grüßen,"
 };
 
 /***/ }),
@@ -17801,17 +17814,18 @@ var hungarian = {
   aboutText_p1: "Ez a bővítmény segít megtartani a fókusz állapotát és megment a szórakoztató oldalak csábításától. \n" + "A legjobb hatás érdekében tartsd mindig aktívan és csak akkor kapcsold ki, ha be van tervezve a szórakozás.\n" + "A bővítmény amíg aktív egy képet fog megjeleníteni a tiltott oldal helyett ami emlékeztet, hogy a munkádra fókuszálj.",
   aboutText_p2_1: "A bővítmény offline csak lokálisan a böngészőben fut és nem továbbit adatot. \n" + 'A beállításokat és listákat lokálisan a böngészőben a "Local Storage"-ba menti. A forráskód megtekinthető a következő GitHub linkre kattintva.',
   aboutText_p2_2: "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
-  aboutText_p3: "Ha szeretnél követni a közösségi médiában, a következő platformon találsz meg:",
+  aboutText_p3: "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
   aboutText_thanks: "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
-  donationText_p1: "Szeretnél hozzájárulni munkámban és támogatni fejlődését? A támogatásod számomra rendkívül fontos és segít abban, hogy fejlődjek. Íme néhány mód, amivel segíthetsz:",
-  donationText_p2_1: "Emellett más alternatív módokon is kifejezheted támogatásod:",
-  donationText_p2_11: "- Kapcsolódj velem a közösségi média platformokon: Látogass el Facebook, Instagram, Twitter és más profiljaimra.",
-  donationText_p2_12: "- Iratkozz fel YouTube csatornámra:",
-  donationText_p2_13: "- Részt vegyél a tartalmaimban: Lájkolás, megosztás és hozzászólások írása nekem rendkívül sokat jelent.",
-  donationText_p2_2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
+  donationText_p1_1: "- Iratkozz fel a YouTube csatornáimra.",
+  donationText_p1_2: "- Kövess engem Instagramon, Facebookon, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "- Tetszik, kommentáld, oszd meg a tartalmaimat",
+  donationText_p1_4: "- Beszélgess más követőkkel a kommentszekcióban",
+  donationText_p1_5: "- Adj néhány csillagot a github repóimnak",
+  donationText_p1_6: "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
+  donationText_p2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
   donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékelve van, és hálásan köszönöm a részvételedet.",
   donationText_p3_2: "Köszönöm, hogy velem vagy és támogatod törekvéseimet!",
-  donationText_p3_3: "Szívélyes üdvözlettel, [Your Name]"
+  aboutText_p4: "Szívélyes üdvözlettel,"
 };
 
 /***/ }),
@@ -17915,15 +17929,16 @@ var romanian = {
   aboutText_p2_2: "Pentru mai multe informații despre cum funcționează, urmăriți următoarele videoclipuri YoutTube în engleză și maghiară.",
   aboutText_p3: "Dacă doriți să mă urmăriți pe rețelele de socializare, mă puteți găsi pe următoarele platforme:",
   aboutText_thanks: "Vă mulțumesc pentru interesul dumneavoastră și aștept cu nerăbdare să ne conectăm pe diferite platforme!",
-  donationText_p1: "Doriți să contribuiți la munca mea și să sprijiniți dezvoltarea acesteia? Sprijinul tău înseamnă mult pentru mine și mă ajută să cresc. Iată câteva modalități în care poți ajuta:",
-  donationText_p2_1: "În plus, poți arăta sprijinul tău în diverse moduri alternative:",
-  donationText_p2_11: "- Conectează-te cu mine pe rețelele de socializare: Fii binevenit să vizitezi profilurile mele de pe Facebook, Instagram, Twitter și altele.",
-  donationText_p2_12: "- Abonează-te la canalul meu de YouTube:",
-  donationText_p2_13: "- Interacționează cu conținutul meu: Apreciez foarte mult aprecierile, distribuirile și comentariile.",
-  donationText_p2_2: "Dacă dorești să contribui financiar, ai la dispoziție următoarele opțiuni:",
+  donationText_p1: "Dacă apreciați eforturile mele și doriți să mă sprijiniți, iată câteva idei despre cum puteți face acest lucru:",
+  donationText_p1_1: "- Abonează-te la canalele mele YouTube.",
+  donationText_p1_2: "- Urmăriți-mă pe Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "- Dă like, comentează, distribuie conținutul meu",
+  donationText_p1_4: "- Vorbește cu alți urmăritori în secțiunea de comentarii",
+  donationText_p1_5: "- Dați câteva stele pentru repourile mele github",
+  donationText_p1_6: "- Evaluați aplicațiile și extensiile mele pe diferite platforme: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
   donationText_p3_1: "Sprijinul tău, în orice formă, este extrem de apreciat, și doresc să îți mulțumesc din suflet pentru implicarea ta.",
   donationText_p3_2: "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
-  donationText_p3_3: "Cu cele mai bune urări, [Numele Tău]"
+  aboutText_p4: "Cu cele mai bune urări,"
 };
 
 /***/ }),

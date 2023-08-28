@@ -36,22 +36,23 @@ export const english = {
     "Thank you for your interest, and I look forward to connecting with you on various platforms!",
 
   donationText_p1:
-    "Would you like to contribute to my work and support its development? Your support means a lot to me and helps me grow. Here are some ways you can help:",
+    "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
 
-  donationText_p2_1:
-    "Moreover, you can show your support in various alternative ways:",
-  donationText_p2_11:
-    "- Connect with me on Social Media: Feel free to visit my profiles on Facebook, Instagram, Twitter, and more.",
-  donationText_p2_12: "- Subscribe to my YouTube channel:",
-  donationText_p2_13:
-    "- Engage with my content: Liking, sharing, and leaving comments means a great deal to me.",
+  donationText_p1_1: "- Subscribe to my YouTube channels.",
+  donationText_p1_2:
+    "- Follow me on Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "-  Like, comment, share my content",
+  donationText_p1_4: "-  Talk to other followers in the comment section",
+  donationText_p1_5: "-  Give some stars to my github repos",
+  donationText_p1_6:
+    "-  Rate my apps and extensions on different platforms: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
 
-  donationText_p2_2:
+  donationText_p2:
     "If you'd like to contribute financially, you can choose from the following options:",
 
   donationText_p3_1:
     "Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your involvement.",
   donationText_p3_2:
     "Thank you for being a part of my journey and supporting my endeavors!",
-  donationText_p3_3: "Warmest regards, [Your Name]",
+  aboutText_p4: "Warmest regards,",
 };

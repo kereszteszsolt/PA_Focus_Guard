@@ -93,13 +93,16 @@ export default {
       </div>
     </div>
     <div class="about-paragraph">
-      <p>{{ lang.getTranslation(fgLanguage, "aboutText_thanks") }}</p>
       <p>{{ lang.getTranslation(fgLanguage, "donationText_p1") }}</p>
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_1") }}</p>
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_11") }}</p>
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_12") }}</p>
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_13") }}</p>
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2_2") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_1") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_2") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_3") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_4") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_5") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_6") }}</p>
+    </div>
+    <div class="about-paragraph">
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2") }}</p>
     </div>
     <div class="donation">
       <h2>{{ lang.getTranslation(fgLanguage, "donation") }}</h2>
@@ -124,7 +127,10 @@ export default {
     <div class="about-paragraph">
       <p>{{ lang.getTranslation(fgLanguage, "donationText_p3_1") }}</p>
       <p>{{ lang.getTranslation(fgLanguage, "donationText_p3_2") }}</p>
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p3_3") }}</p>
+    </div>
+    <div class="about-paragraph">
+      <p>{{ lang.getTranslation(fgLanguage, "aboutText_p4") }}</p>
+      <p><b>Keresztes Zsolt</b></p>
     </div>
   </div>
 </template>
