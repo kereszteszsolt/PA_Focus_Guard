@@ -1,16 +1,16 @@
 export const blockByDomainList = [
   {
-    url: "www.facebook.com",
+    url: "facebook.com",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },
   {
-    url: "www.youtube.com",
+    url: "youtube.com",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },
   {
-    url: "www.twitter.com",
+    url: "twitter.com",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },

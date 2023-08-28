@@ -1,26 +1,53 @@
 <script>
 import BlockByUrl from "./components/BlockByUrl.vue";
-import BlockElements from "./components/BlockElements.vue";
 import * as config from "../js/config";
+import About from "./components/About.vue";
+import Language from "./components/Language.vue";
+import * as constants from "../js/utils/constants";
+import * as dataAccess from "../js/utils/scripts/dataAccess";
+import * as lang from "../js/utils/languages";
 
 export default {
   computed: {
+    lang() {
+      return lang;
+    },
     config() {
       return config;
     },
   },
   components: {
     BlockByUrl: BlockByUrl,
-    BlockElements: BlockElements,
+    About: About,
+    Language: Language,
   },
   data() {
     return {
       selectedFunctionality: config.fgAppFunctionalities[0],
+      appFunctionalities: config.fgAppFunctionalities,
+      fgAppData: {
+        fgActive: false,
+        fgLanguage: constants.languages.ENGLISH,
+      },
     };
+  },
+  created() {
+    this.loadData();
+    if (window.location.hash === "#language") {
+      this.selectedFunctionality = config.fgAppFunctionalities.filter(
+        (s) => s.funcName === constants.componentNames.FG_LANGUAGE,
+      )[0];
+      window.location.hash = "";
+    }
   },
   methods: {
     selectFunctionality(func) {
       this.selectedFunctionality = func;
+    },
+    loadData() {
+      dataAccess.loadData(constants.localStorage.FG_APP_DATA).then((data) => {
+        this.fgAppData = data;
+      });
     },
   },
 };
@@ -28,7 +55,7 @@ export default {
 
 <template>
   <div class="app-bar">
-    <div class="container">Focus Guard: Options</div>
+    <div class="container">Focus Guard</div>
   </div>
   <div class="container main">
     <div class="sidebar">
@@ -42,7 +69,7 @@ export default {
               active: item.funcName === selectedFunctionality.funcName,
             }"
             v-on:click="selectFunctionality(item)"
-            >{{ item.funcName }}</a
+            >{{ lang.getTranslation(fgAppData.fgLanguage, item.funcName) }}</a
           >
         </li>
       </ul>
@@ -54,6 +81,7 @@ export default {
         :funcName="selectedFunctionality.funcName"
         :storageName="selectedFunctionality.storageName"
         :justDomain="selectedFunctionality.justDomain"
+        :fgLanguage="fgAppData.fgLanguage"
       ></component>
     </div>
   </div>

@@ -2,11 +2,11 @@ import * as constants from "./utils/constants";
 import * as dataAccess from "./utils/scripts/dataAccess.js";
 import * as defaults from "./utils/defaults";
 import { blockOrAllow } from "./background/blockAndRedirect";
-import { blockElements } from "./background/elementBlockers";
 
 //load default values when extension is loaded
 let fgAppData = {
   focusMode: false,
+  fgLanguage: constants.languages.ENGLISH,
 };
 let fgBlockedWebsitesByDomain = [];
 let fgBlockedWebsitesByUrl = [];
@@ -27,10 +27,6 @@ async function setDefaultValues() {
     await dataAccess.saveData(
       constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL,
       defaults.blockByUrlList,
-    );
-    await dataAccess.saveData(
-      constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES,
-      defaults.blockElementsOnWebsitesList,
     );
   } catch (error) {
     console.error("Error setting default values:", error);
@@ -56,11 +52,6 @@ async function readData(afterReadData) {
 }
 
 await readData(async () => {
-  console.log("fgActive", fgAppData.focusMode);
-  console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
-  console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
-  console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
-
   await blockOrAllow(
     fgAppData.focusMode,
     fgBlockedWebsitesByDomain,
@@ -75,7 +66,6 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       fgAppData = JSON.parse(
         changes[constants.localStorage.FG_APP_DATA].newValue,
       );
-      console.log("fired: fgAppData", fgAppData);
     }
     if (constants.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN in changes) {
       fgBlockedWebsitesByDomain = JSON.parse(
@@ -87,27 +77,16 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
         changes[constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue,
       );
     }
-    if (constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES in changes) {
-      fgBlockedElementsOnWebsites = JSON.parse(
-        changes[constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES]
-          .newValue,
-      );
-    }
 
     await blockOrAllow(
       fgAppData.focusMode,
       fgBlockedWebsitesByDomain,
       fgBlockedWebsitesByUrl,
     );
-
-    //  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
   }
 });
 
 chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-  if (changeInfo.status === "complete") {
-    await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-  }
   await blockOrAllow(
     fgAppData.focusMode,
     fgBlockedWebsitesByDomain,

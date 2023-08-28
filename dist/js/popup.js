@@ -16803,13 +16803,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/utils/scripts/dataAccess */ "./src/js/utils/scripts/dataAccess.js");
 /* harmony import */ var _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/utils/constants */ "./src/js/utils/constants/index.js");
+/* harmony import */ var _js_utils_languages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/utils/languages */ "./src/js/utils/languages/index.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  computed: {
+    lang: function lang() {
+      return _js_utils_languages__WEBPACK_IMPORTED_MODULE_2__;
+    }
+  },
   data: function data() {
     return {
-      appData: {
-        focusMode: false
+      fgAppData: {
+        focusMode: false,
+        fgLanguage: _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.languages.ENGLISH
       }
     };
   },
@@ -16818,21 +16826,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     activate: function activate() {
-      this.appData.focusMode = true;
-      this.saveData(this.appData);
+      this.fgAppData.focusMode = true;
+      this.saveData(this.fgAppData);
     },
     deactivate: function deactivate() {
-      this.appData.focusMode = false;
-      this.saveData(this.appData);
+      this.fgAppData.focusMode = false;
+      this.saveData(this.fgAppData);
     },
     loadData: function loadData() {
       var _this = this;
       _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.loadData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA).then(function (data) {
-        _this.appData = data;
+        _this.fgAppData = data;
       });
     },
     saveData: function saveData() {
-      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA, this.appData);
+      _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.saveData(_js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.localStorage.FG_APP_DATA, this.fgAppData);
     },
     settings: function settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -16875,71 +16883,27 @@ var _hoisted_3 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'button-danger': !$data.appData.focusMode,
-      'button-danger-is-off': $data.appData.focusMode
+      'button-danger': !$data.fgAppData.focusMode,
+      'button-danger-is-off': $data.fgAppData.focusMode
     }),
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.deactivate && $options.deactivate.apply($options, arguments);
     })
-  }, " Off ", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgOff")), 3 /* TEXT, CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'button-success': $data.appData.focusMode,
-      'button-success-is-off': !$data.appData.focusMode
+      'button-success': $data.fgAppData.focusMode,
+      'button-success-is-off': !$data.fgAppData.focusMode
     }),
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.activate && $options.activate.apply($options, arguments);
     })
-  }, " On ", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "button-primary",
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgOn")), 3 /* TEXT, CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "button-primary button-settings",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.settings && $options.settings.apply($options, arguments);
     })
-  }, "settings")]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgSettings")), 1 /* TEXT */)]);
 }
-
-/***/ }),
-
-/***/ "./src/js/utils/constants/blockElementsOnWebActions.js":
-/*!*************************************************************!*\
-  !*** ./src/js/utils/constants/blockElementsOnWebActions.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   BLOCK_FACEBOOK_ELEMENTS: () => (/* binding */ BLOCK_FACEBOOK_ELEMENTS),
-/* harmony export */   BLOCK_INSTAGRAM_ELEMENTS: () => (/* binding */ BLOCK_INSTAGRAM_ELEMENTS),
-/* harmony export */   BLOCK_LINKEDIN_ELEMENTS: () => (/* binding */ BLOCK_LINKEDIN_ELEMENTS),
-/* harmony export */   BLOCK_TWITTER_ELEMENTS: () => (/* binding */ BLOCK_TWITTER_ELEMENTS),
-/* harmony export */   BLOCK_YOUTUBE_ELEMENTS: () => (/* binding */ BLOCK_YOUTUBE_ELEMENTS)
-/* harmony export */ });
-var BLOCK_YOUTUBE_ELEMENTS = "blockYoutubeElementsAction";
-var BLOCK_FACEBOOK_ELEMENTS = "blockFacebookElementsAction";
-var BLOCK_TWITTER_ELEMENTS = "blockTwitterElementsAction";
-var BLOCK_LINKEDIN_ELEMENTS = "blockLinkedinElementsAction";
-var BLOCK_INSTAGRAM_ELEMENTS = "blockInstagramElementsAction";
-
-/***/ }),
-
-/***/ "./src/js/utils/constants/blockElementsOnWebRuleNames.js":
-/*!***************************************************************!*\
-  !*** ./src/js/utils/constants/blockElementsOnWebRuleNames.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
-/* harmony export */   YOUTUBE_ALL_IMAGES: () => (/* binding */ YOUTUBE_ALL_IMAGES),
-/* harmony export */   YOUTUBE_CHANNEL_NAME: () => (/* binding */ YOUTUBE_CHANNEL_NAME),
-/* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
-/* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
-/* harmony export */ });
-var YOUTUBE_THUMBNAIL = "youtube-thumbnail";
-var YOUTUBE_VIDEO_TITLE = "youtube-video-title";
-var YOUTUBE_CHANNEL_NAME = "youtube-channel-name";
-var YOUTUBE_ALL_IMAGES = "youtube-all-images";
-var FACEBOOK_REELS = "facebook-reels";
 
 /***/ }),
 
@@ -16951,13 +16915,15 @@ var FACEBOOK_REELS = "facebook-reels";
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   FG_BLOCKED_ELEMENTS_ON_WEBSITES: () => (/* binding */ FG_BLOCKED_ELEMENTS_ON_WEBSITES),
+/* harmony export */   FG_ABOUT: () => (/* binding */ FG_ABOUT),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
-/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
+/* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
-var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
+var FG_ABOUT = "fgAbout";
+var FG_LANGUAGE = "fgLanguage";
 
 /***/ }),
 
@@ -16969,15 +16935,13 @@ var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   blockElementsActions: () => (/* reexport module object */ _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__),
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_1__),
-/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__),
-/* harmony export */   ruleNames: () => (/* reexport module object */ _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__)
+/* harmony export */   languages: () => (/* reexport module object */ _languages__WEBPACK_IMPORTED_MODULE_2__),
+/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__)
 /* harmony export */ });
 /* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ "./src/js/utils/constants/localStorage.js");
 /* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentNames */ "./src/js/utils/constants/componentNames.js");
-/* harmony import */ var _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockElementsOnWebActions */ "./src/js/utils/constants/blockElementsOnWebActions.js");
-/* harmony import */ var _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blockElementsOnWebRuleNames */ "./src/js/utils/constants/blockElementsOnWebRuleNames.js");
+/* harmony import */ var _languages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./languages */ "./src/js/utils/constants/languages.js");
 
 
 
@@ -16985,7 +16949,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/***/ }),
 
+/***/ "./src/js/utils/constants/languages.js":
+/*!*********************************************!*\
+  !*** ./src/js/utils/constants/languages.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ENGLISH: () => (/* binding */ ENGLISH),
+/* harmony export */   GERMAN: () => (/* binding */ GERMAN),
+/* harmony export */   HUNGARIAN: () => (/* binding */ HUNGARIAN),
+/* harmony export */   ROMANIAN: () => (/* binding */ ROMANIAN)
+/* harmony export */ });
+var HUNGARIAN = "hungarian";
+var ENGLISH = "english";
+var GERMAN = "german";
+var ROMANIAN = "romanian";
 
 /***/ }),
 
@@ -16997,17 +16979,276 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   FG_ACTIVE: () => (/* binding */ FG_ACTIVE),
 /* harmony export */   FG_APP_DATA: () => (/* binding */ FG_APP_DATA),
 /* harmony export */   FG_BLOCKED_ELEMENTS_ON_WEBSITES: () => (/* binding */ FG_BLOCKED_ELEMENTS_ON_WEBSITES),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
 /* harmony export */ });
-var FG_ACTIVE = "fgActive";
 var FG_APP_DATA = "fgAppData";
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsitesByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsitesByUrl";
 var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/english.js":
+/*!*******************************************!*\
+  !*** ./src/js/utils/languages/english.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   english: () => (/* binding */ english)
+/* harmony export */ });
+var english = {
+  fgBlockedWebsiteByDomain: "Blocked websites by domain",
+  fgBlockedWebsiteByUrl: "Blocked websites by URL",
+  fgAbout: "About",
+  fgLanguage: "Language",
+  fgActive: "Active",
+  fgSettings: "Settings",
+  fgOn: "On",
+  fgOff: "Off",
+  markedForBlock: "Marked for Block",
+  permanentlyBlocked: "Permanently Blocked",
+  remove: "Remove",
+  prev: "Prev",
+  next: "Next",
+  addSite: "Add Site:",
+  add: "Add",
+  invalidDomain: "Invalid domain!",
+  invalidUrl: "Invalid URL!",
+  duplicatedDomain: "Duplicated domain!",
+  duplicatedUrl: "Duplicated url!",
+  aboutText_p1: "This add-on will help you maintain your focus and save you from the lure of entertainment sites. \n" + "For best effect, keep it active at all times and only turn it off when you have entertainment scheduled.\n" + "As long as it's active, the extension will display an image instead of the forbidden page to remind you to focus on your work.",
+  aboutText_p2_1: "The extension runs offline only locally in the browser and does not transfer any data.  \n" + 'The settings and lists are saved locally in the browser to "Local Storage". The source code can be viewed by clicking on the following GitHub link. ',
+  aboutText_p2_2: "For more information on how it works, watch the following YoutTube videos in English and Hungarian.",
+  aboutText_p3: "If you want to follow me on social media, you can find me on the following sites:",
+  aboutText_thanks: "Thank you for your interest, and I look forward to connecting with you on various platforms!",
+  donationText_p1: "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
+  donationText_p1_1: "- Subscribe to my YouTube channels.",
+  donationText_p1_2: "- Follow me on Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "-  Like, comment, share my content",
+  donationText_p1_4: "-  Talk to other followers in the comment section",
+  donationText_p1_5: "-  Give some stars to my github repos",
+  donationText_p1_6: "-  Rate my apps and extensions on different platforms: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
+  donationText_p2: "If you'd like to contribute financially, you can choose from the following options:",
+  donationText_p3_1: "Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your involvement.",
+  donationText_p3_2: "Thank you for being a part of my journey and supporting my endeavors!",
+  aboutText_p4: "Warmest regards,"
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/german.js":
+/*!******************************************!*\
+  !*** ./src/js/utils/languages/german.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   german: () => (/* binding */ german)
+/* harmony export */ });
+var german = {
+  fgBlockedWebsiteByDomain: "Gesperrte Websites nach Domain",
+  fgBlockedWebsiteByUrl: "Gesperrte Websites nach URL",
+  fgAbout: "Über",
+  fgLanguage: "Sprache",
+  fgActive: "Aktiv",
+  fgSettings: "Einstellungen",
+  fgOn: "An",
+  fgOff: "Aus",
+  markedForBlock: "Zur Sperrliste hinzugefügt",
+  permanentlyBlocked: "Dauerhaft gesperrt",
+  remove: "Entfernen",
+  prev: "Zurück",
+  next: "Weiter",
+  addSite: "Website hinzufügen:",
+  add: "Hinzufügen",
+  invalidDomain: "Ungültige Domain!",
+  invalidUrl: "Ungültige URL!",
+  duplicatedDomain: "Doppelte Domain!",
+  duplicatedUrl: "Doppelte URL!",
+  aboutText_p1: "Dieses Add-on hilft Ihnen, sich zu konzentrieren, und bewahrt Sie vor den Verlockungen von Unterhaltungsseiten. \n" + "Die beste Wirkung erzielen Sie, wenn Sie die Erweiterung immer aktiviert lassen und sie nur dann ausschalten, wenn Sie Unterhaltungsprogramme geplant haben.\n" + "Solange sie aktiv ist, zeigt die Erweiterung ein Bild anstelle der verbotenen Seite an, um Sie daran zu erinnern, sich auf Ihre Arbeit zu konzentrieren.",
+  aboutText_p2_1: "Die Erweiterung läuft offline nur lokal im Browser und überträgt keine Daten.  \n" + 'Die Einstellungen und Listen werden lokal im Browser in "Local Storage" gespeichert. Der Quellcode kann über den folgenden GitHub-Link eingesehen werden.',
+  aboutText_p2_2: "Weitere Informationen zur Funktionsweise finden Sie in den folgenden YoutTube-Videos auf Englisch und Ungarisch.",
+  aboutText_p3: "Wenn Sie mir in den sozialen Medien folgen möchten, finden Sie mich auf den folgenden Plattformen:",
+  aboutText_thanks: "Vielen Dank für Ihr Interesse. Ich freue mich darauf, auf verschiedenen Plattformen mit Ihnen in Kontakt zu treten!",
+  donationText_p1_1: "- Abonnieren Sie meine YouTube-Kanäle.",
+  donationText_p1_2: "- Folgen Sie mir auf Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "- Like, kommentiere, teile meine Inhalte",
+  donationText_p1_4: "- Sprich mit anderen Followern im Kommentarbereich",
+  donationText_p1_5: "- Gib meinen Github-Repos ein paar Sterne",
+  donationText_p1_6: "- Bewerten Sie meine Apps und Erweiterungen auf verschiedenen Plattformen: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, usw.",
+  donationText_p2: "Wenn du finanziell dazu beitragen möchtest, stehen dir folgende Optionen zur Verfügung:",
+  donationText_p3_1: "Deine Unterstützung, in welcher Form auch immer, wird sehr geschätzt, und ich möchte dir herzlich für deine Beteiligung danken.",
+  donationText_p3_2: "Danke, dass du ein Teil meiner Reise bist und meine Bemühungen unterstützt!",
+  aboutText_p4: "Mit freundlichen Grüßen,"
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/hungarian.js":
+/*!*********************************************!*\
+  !*** ./src/js/utils/languages/hungarian.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   hungarian: () => (/* binding */ hungarian)
+/* harmony export */ });
+var hungarian = {
+  fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
+  fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
+  fgAbout: "Névjegy",
+  fgLanguage: "Nyelv",
+  fgActive: "Aktív",
+  fgSettings: "Beállítások",
+  fgOn: "Be",
+  fgOff: "Ki",
+  markedForBlock: "Letiltásra jelölve",
+  permanentlyBlocked: "Permanens tiltás",
+  remove: "Eltávolítás",
+  prev: "Előző",
+  next: "Következő",
+  addSite: "Weboldal hozzáadása:",
+  add: "Hozzáadás",
+  invalidDomain: "Érvénytelen domain!",
+  invalidUrl: "Érvénytelen URL!",
+  duplicatedDomain: "A domain már létezik!",
+  duplicatedUrl: "Az URL már létezik!",
+  aboutText_p1: "Ez a bővítmény segít megtartani a fókusz állapotát és megment a szórakoztató oldalak csábításától. \n" + "A legjobb hatás érdekében tartsd mindig aktívan és csak akkor kapcsold ki, ha be van tervezve a szórakozás.\n" + "A bővítmény amíg aktív egy képet fog megjeleníteni a tiltott oldal helyett ami emlékeztet, hogy a munkádra fókuszálj.",
+  aboutText_p2_1: "A bővítmény offline csak lokálisan a böngészőben fut és nem továbbit adatot. \n" + 'A beállításokat és listákat lokálisan a böngészőben a "Local Storage"-ba menti. A forráskód megtekinthető a következő GitHub linkre kattintva.',
+  aboutText_p2_2: "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
+  aboutText_p3: "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
+  aboutText_thanks: "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
+  donationText_p1_1: "- Iratkozz fel a YouTube csatornáimra.",
+  donationText_p1_2: "- Kövess engem Instagramon, Facebookon, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "- Tetszik, kommentáld, oszd meg a tartalmaimat",
+  donationText_p1_4: "- Beszélgess más követőkkel a kommentszekcióban",
+  donationText_p1_5: "- Adj néhány csillagot a github repóimnak",
+  donationText_p1_6: "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
+  donationText_p2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
+  donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékes és hálásan köszönöm a támogatásodat.",
+  donationText_p3_2: "Köszönöm, hogy velem tartasz és támogatod törekvéseimet!",
+  aboutText_p4: "Szívélyes üdvözlettel,"
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/index.js":
+/*!*****************************************!*\
+  !*** ./src/js/utils/languages/index.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   english: () => (/* reexport safe */ _english__WEBPACK_IMPORTED_MODULE_1__.english),
+/* harmony export */   german: () => (/* reexport safe */ _german__WEBPACK_IMPORTED_MODULE_3__.german),
+/* harmony export */   getTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTranslation),
+/* harmony export */   hungarian: () => (/* reexport safe */ _hungarian__WEBPACK_IMPORTED_MODULE_2__.hungarian),
+/* harmony export */   romanian: () => (/* reexport safe */ _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian)
+/* harmony export */ });
+/* harmony import */ var _langFunctions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./langFunctions */ "./src/js/utils/languages/langFunctions.js");
+/* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
+/* harmony import */ var _hungarian__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hungarian */ "./src/js/utils/languages/hungarian.js");
+/* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
+/* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/langFunctions.js":
+/*!*************************************************!*\
+  !*** ./src/js/utils/languages/langFunctions.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getTranslation: () => (/* binding */ getTranslation)
+/* harmony export */ });
+/* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
+/* harmony import */ var _hungarian__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hungarian */ "./src/js/utils/languages/hungarian.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/utils/constants/index.js");
+/* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
+/* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+
+
+
+
+
+var getTranslation = function getTranslation(language, key) {
+  switch (language) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ENGLISH:
+      return _english__WEBPACK_IMPORTED_MODULE_0__.english[key];
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.HUNGARIAN:
+      return _hungarian__WEBPACK_IMPORTED_MODULE_1__.hungarian[key];
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.GERMAN:
+      return _german__WEBPACK_IMPORTED_MODULE_3__.german[key];
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ROMANIAN:
+      return _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian[key];
+    default:
+      return _english__WEBPACK_IMPORTED_MODULE_0__.english[key];
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/romanian.js":
+/*!********************************************!*\
+  !*** ./src/js/utils/languages/romanian.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   romanian: () => (/* binding */ romanian)
+/* harmony export */ });
+var romanian = {
+  fgBlockedWebsiteByDomain: "Site-uri blocate după domeniu",
+  fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
+  fgAbout: "Despre",
+  fgLanguage: "Limbă",
+  fgActive: "Activ",
+  fgSettings: "Setări",
+  fgOn: "Pornit",
+  fgOff: "Oprit",
+  markedForBlock: "Marcat pentru Blocare",
+  permanentlyBlocked: "Blocat Permanent",
+  remove: "Eliminare",
+  prev: "Anterior",
+  next: "Următor",
+  addSite: "Adăugare Site:",
+  add: "Adăugare",
+  invalidDomain: "Domeniu nevalid!",
+  invalidUrl: "URL nevalid!",
+  duplicatedDomain: "Domeniu duplicat!",
+  duplicatedUrl: "URL duplicat!",
+  aboutText_p1: "Acest add-on vă ajută să vă păstrați concentrarea și vă scutește de tentația site-urilor de divertisment. \n" + "Pentru un efect optim, mențineți-l activ în permanență și dezactivați-l doar atunci când aveți programată o emisiune de divertisment.\n" + "Atât timp cât este activă, extensia va afișa o imagine în locul paginii interzise pentru a vă reaminti să vă concentrați asupra muncii dumneavoastră.",
+  aboutText_p2_1: "Extensia rulează offline doar la nivel local în browser și nu transferă niciun fel de date. \n" + 'Setările și listele sunt salvate local în browser în "Local Storage". Codul sursă poate fi vizualizat făcând clic pe următorul link GitHub.',
+  aboutText_p2_2: "Pentru mai multe informații despre cum funcționează, urmăriți următoarele videoclipuri YoutTube în engleză și maghiară.",
+  aboutText_p3: "Dacă doriți să mă urmăriți pe rețelele de socializare, mă puteți găsi pe următoarele platforme:",
+  aboutText_thanks: "Vă mulțumesc pentru interesul dumneavoastră și aștept cu nerăbdare să ne conectăm pe diferite platforme!",
+  donationText_p1: "Dacă apreciați eforturile mele și doriți să mă sprijiniți, iată câteva idei despre cum puteți face acest lucru:",
+  donationText_p1_1: "- Abonează-te la canalele mele YouTube.",
+  donationText_p1_2: "- Urmăriți-mă pe Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
+  donationText_p1_3: "- Dă like, comentează, distribuie conținutul meu",
+  donationText_p1_4: "- Vorbește cu alți urmăritori în secțiunea de comentarii",
+  donationText_p1_5: "- Dați câteva stele pentru repourile mele github",
+  donationText_p1_6: "- Evaluați aplicațiile și extensiile mele pe diferite platforme: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
+  donationText_p3_1: "Sprijinul tău, în orice formă, este extrem de apreciat, și doresc să îți mulțumesc din suflet pentru implicarea ta.",
+  donationText_p3_2: "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
+  aboutText_p4: "Cu cele mai bune urări,"
+};
 
 /***/ }),
 
@@ -17079,7 +17320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-b64ea48c]:hover {\n  background-color: #81661c;\n}\n.popup-container[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  background-color: floralwhite;\n  padding: 0;\n  color: #574513;\n  font-weight: bold;\n  align-items: center;\n  height: 100vh;\n}\n.on-off[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  padding: 1rem;\n  width: 100%;\n}\n.p-title[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  justify-content: space-around;\n  font-size: 1.5rem;\n  padding: 0.25rem;\n}\n.button-success[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success[data-v-b64ea48c]:hover {\n  border-left: 0px;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  border-right: 0px;\n}\n.button-success-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #2ecc71;\n  border-color: #2ecc71;\n  width: 100%;\n  border-left: 0px;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-danger-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #e74c3c;\n  border-color: #e74c3c;\n  width: 100%;\n  border-right: 0px;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-b64ea48c]:hover {\n  background-color: #81661c;\n}\n.popup-container[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  background-color: floralwhite;\n  padding: 0;\n  color: #574513;\n  font-weight: bold;\n  align-items: center;\n  height: 100vh;\n}\n.on-off[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  padding: 1rem;\n  width: 100%;\n}\n.p-title[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  justify-content: space-around;\n  font-size: 1.5rem;\n  padding: 0.25rem;\n}\n.button-success[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success[data-v-b64ea48c]:hover {\n  border-left: 0px;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  border-right: 0px;\n}\n.button-success-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #2ecc71;\n  border-color: #2ecc71;\n  width: 100%;\n  border-left: 0px;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-danger-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #e74c3c;\n  border-color: #e74c3c;\n  width: 100%;\n  border-right: 0px;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-settings[data-v-b64ea48c] {\n  width: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -1,11 +1,18 @@
 <script>
 import * as dataAccess from "../js/utils/scripts/dataAccess";
 import * as constants from "../js/utils/constants";
+import * as lang from "../js/utils/languages";
 export default {
+  computed: {
+    lang() {
+      return lang;
+    },
+  },
   data() {
     return {
-      appData: {
+      fgAppData: {
         focusMode: false,
+        fgLanguage: constants.languages.ENGLISH,
       },
     };
   },
@@ -14,20 +21,20 @@ export default {
   },
   methods: {
     activate() {
-      this.appData.focusMode = true;
-      this.saveData(this.appData);
+      this.fgAppData.focusMode = true;
+      this.saveData(this.fgAppData);
     },
     deactivate() {
-      this.appData.focusMode = false;
-      this.saveData(this.appData);
+      this.fgAppData.focusMode = false;
+      this.saveData(this.fgAppData);
     },
     loadData() {
       dataAccess.loadData(constants.localStorage.FG_APP_DATA).then((data) => {
-        this.appData = data;
+        this.fgAppData = data;
       });
     },
     saveData() {
-      dataAccess.saveData(constants.localStorage.FG_APP_DATA, this.appData);
+      dataAccess.saveData(constants.localStorage.FG_APP_DATA, this.fgAppData);
     },
     settings() {
       if (chrome.runtime.openOptionsPage) {
@@ -46,24 +53,26 @@ export default {
     <div class="on-off">
       <button
         :class="{
-          'button-danger': !appData.focusMode,
-          'button-danger-is-off': appData.focusMode,
+          'button-danger': !fgAppData.focusMode,
+          'button-danger-is-off': fgAppData.focusMode,
         }"
         @click="deactivate"
       >
-        Off
+        {{ lang.getTranslation(fgAppData.fgLanguage, "fgOff") }}
       </button>
       <button
         :class="{
-          'button-success': appData.focusMode,
-          'button-success-is-off': !appData.focusMode,
+          'button-success': fgAppData.focusMode,
+          'button-success-is-off': !fgAppData.focusMode,
         }"
         @click="activate"
       >
-        On
+        {{ lang.getTranslation(fgAppData.fgLanguage, "fgOn") }}
       </button>
     </div>
-    <button class="button-primary" @click="settings">settings</button>
+    <button class="button-primary button-settings" @click="settings">
+      {{ lang.getTranslation(fgAppData.fgLanguage, "fgSettings") }}
+    </button>
   </div>
 </template>
 
@@ -144,5 +153,9 @@ export default {
   &:hover {
     color: $fg-white-color;
   }
+}
+
+.button-settings {
+  width: auto;
 }
 </style>

@@ -1,7 +1,13 @@
 <script>
 import * as dataAccess from "../../js/utils/scripts/dataAccess";
+import * as lang from "../../js/utils/languages";
 
 export default {
+  computed: {
+    lang() {
+      return lang;
+    },
+  },
   props: {
     funcTitle: {
       type: String,
@@ -19,6 +25,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    fgLanguage: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -30,18 +40,26 @@ export default {
       showInvalidErrorMessage: false,
       showDuplicatedErrorMessage: false,
       urlDomainPattern: new RegExp(
-        "^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)",
+        /^(?:https?:\/\/)?(?:www\d?\.)?([^\/\n\?:]+\.[^\/\n\?:]+)/i,
       ),
       urlLinkPattern: new RegExp(
-        "^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$",
+        "^https?://www\\." + // valid prefix
+          "|^http?://www\\." + // valid prefix
+          "([a-zA-Z0-9_-]+\\.)+" + // valid domain
+          "[a-zA-Z]{2,}" + // valid domain
+          "(/[a-zA-Z0-9_-]+)*$" + // valid subdomain or route
+          "|^https?://([a-zA-Z0-9_-]+\\.)+" + // valid subdomain
+          "www\\." + // valid prefix
+          "([a-zA-Z0-9_-]+\\.)+" + // valid domain
+          "[a-zA-Z]{2,}" + // valid domain
+          "(/[a-zA-Z0-9_-]+)*$", // valid route
       ),
       urlList: [],
+      placeholderText: "",
     };
   },
   created() {
     this.loadFromStorage();
-    this.calculateNumberOfPages();
-    this.calculateCurrentPageItems();
   },
   watch: {
     storageName: {
@@ -53,8 +71,10 @@ export default {
     loadFromStorage() {
       dataAccess.loadData(this.storageName).then((data) => {
         this.urlList = data;
+        this.newUrl = "";
         this.calculateNumberOfPages();
         this.calculateCurrentPageItems();
+        this.calculatePlaceholderText();
       });
     },
     saveToStorage() {
@@ -87,7 +107,15 @@ export default {
         : this.urlLinkPattern.test(pUrl);
     },
     truncateUrl(pUrl) {
-      return this.justDomain ? this.urlDomainPattern.exec(pUrl)[1] : pUrl;
+      let result = pUrl;
+      if (this.justDomain) {
+        result = this.urlDomainPattern.exec(pUrl)[1];
+        let segments = result.split(".");
+        if (segments.length > 2) {
+          result = segments.slice(-2).join(".");
+        }
+      }
+      return result;
     },
     handleBlur(event) {
       if (this.newUrl === "") {
@@ -170,24 +198,29 @@ export default {
       });
       this.saveToStorage();
     },
+    calculatePlaceholderText() {
+      this.placeholderText = this.justDomain
+        ? "example.com"
+        : "https://www.example.com/something";
+    },
   },
 };
 </script>
 
 <template>
-  <h1>{{ funcTitle }}</h1>
+  <div class="title">{{ lang.getTranslation(fgLanguage, funcName) }}</div>
   <div class="urlList">
     <table>
       <thead>
         <tr>
           <th>URL</th>
           <th @click="markAllForBlockCurrPage(currentPageItems)">
-            Marked for Block
+            {{ lang.getTranslation(fgLanguage, "markedForBlock") }}
           </th>
           <th @click="markAllForPermanentlyBlockCurrPage(currentPageItems)">
-            Permanently Blocked
+            {{ lang.getTranslation(fgLanguage, "permanentlyBlocked") }}
           </th>
-          <th>Remove</th>
+          <th>{{ lang.getTranslation(fgLanguage, "remove") }}</th>
         </tr>
       </thead>
       <tbody>
@@ -226,7 +259,7 @@ export default {
       :disabled="currentPage === 1"
       class="button-primary"
     >
-      Prev
+      {{ lang.getTranslation(fgLanguage, "prev") }}
     </button>
     <span>{{ currentPage }} / {{ numberOfPages }}</span>
     <button
@@ -234,32 +267,46 @@ export default {
       :disabled="currentPage === numberOfPages"
       class="button-primary"
     >
-      Next
+      {{ lang.getTranslation(fgLanguage, "next") }}
     </button>
   </div>
   <div class="add-url-container">
-    <p>Add site:</p>
+    <p>{{ lang.getTranslation(fgLanguage, "addSite") }}</p>
     <div class="input-wrapper">
       <input
         type="text"
-        placeholder="example.com"
+        :placeholder="placeholderText"
         v-model="newUrl"
         @blur="handleBlur"
       />
-      <button @click="addUrl" class="add-url">Add</button>
+      <button @click="addUrl" class="add-url">
+        {{ lang.getTranslation(fgLanguage, "add") }}
+      </button>
     </div>
-    <label v-if="showInvalidErrorMessage" class="error-message"
-      >Invalid domain</label
+    <label v-if="showInvalidErrorMessage" class="error-message">
+      {{
+        justDomain
+          ? lang.getTranslation(fgLanguage, "invalidDomain")
+          : lang.getTranslation(fgLanguage, "invalidUrl")
+      }}</label
     >
-    <label v-if="showDuplicatedErrorMessage" class="error-message"
-      >Duplicated domain</label
+    <label v-if="showDuplicatedErrorMessage" class="error-message">
+      {{
+        justDomain
+          ? lang.getTranslation(fgLanguage, "duplicatedDomain")
+          : lang.getTranslation(fgLanguage, "duplicatedUrl")
+      }}</label
     >
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../scss/common.scss";
-
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
 .urlList {
   table {
     width: 100%;

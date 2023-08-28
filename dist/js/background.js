@@ -14,7 +14,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/scripts/dataAccess.js */ "./src/js/utils/scripts/dataAccess.js");
 /* harmony import */ var _utils_defaults__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/defaults */ "./src/js/utils/defaults/index.js");
 /* harmony import */ var _background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./background/blockAndRedirect */ "./src/js/background/blockAndRedirect.js");
-/* harmony import */ var _background_elementBlockers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./background/elementBlockers */ "./src/js/background/elementBlockers.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -24,10 +23,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 //load default values when extension is loaded
 var fgAppData = {
-  focusMode: false
+  focusMode: false,
+  fgLanguage: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.languages.ENGLISH
 };
 var fgBlockedWebsitesByDomain = [];
 var fgBlockedWebsitesByUrl = [];
@@ -64,20 +63,17 @@ function _setDefaultValues() {
           _context5.next = 7;
           return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL, _utils_defaults__WEBPACK_IMPORTED_MODULE_2__.blockByUrlList);
         case 7:
-          _context5.next = 9;
-          return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES, _utils_defaults__WEBPACK_IMPORTED_MODULE_2__.blockElementsOnWebsitesList);
-        case 9:
-          _context5.next = 14;
+          _context5.next = 12;
           break;
-        case 11:
-          _context5.prev = 11;
+        case 9:
+          _context5.prev = 9;
           _context5.t0 = _context5["catch"](0);
           console.error("Error setting default values:", _context5.t0);
-        case 14:
+        case 12:
         case "end":
           return _context5.stop();
       }
-    }, _callee5, null, [[0, 11]]);
+    }, _callee5, null, [[0, 9]]);
   }));
   return _setDefaultValues.apply(this, arguments);
 }
@@ -126,13 +122,9 @@ await readData( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime
   return _regeneratorRuntime().wrap(function _callee2$(_context2) {
     while (1) switch (_context2.prev = _context2.next) {
       case 0:
-        console.log("fgActive", fgAppData.focusMode);
-        console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
-        console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
-        console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
-        _context2.next = 6;
+        _context2.next = 2;
         return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-      case 6:
+      case 2:
       case "end":
         return _context2.stop();
     }
@@ -146,12 +138,11 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           if (!(namespace === "sync")) {
-            _context3.next = 7;
+            _context3.next = 6;
             break;
           }
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA in changes) {
             fgAppData = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA].newValue);
-            console.log("fired: fgAppData", fgAppData);
           }
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN in changes) {
             fgBlockedWebsitesByDomain = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_DOMAIN].newValue);
@@ -159,12 +150,9 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL in changes) {
             fgBlockedWebsitesByUrl = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue);
           }
-          if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES in changes) {
-            fgBlockedElementsOnWebsites = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES].newValue);
-          }
-          _context3.next = 7;
+          _context3.next = 6;
           return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 7:
+        case 6:
         case "end":
           return _context3.stop();
       }
@@ -179,16 +167,9 @@ chrome.tabs.onUpdated.addListener( /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
-          if (!(changeInfo.status === "complete")) {
-            _context4.next = 3;
-            break;
-          }
-          _context4.next = 3;
-          return (0,_background_elementBlockers__WEBPACK_IMPORTED_MODULE_4__.blockElements)(fgAppData.focusMode, fgBlockedElementsOnWebsites);
-        case 3:
-          _context4.next = 5;
+          _context4.next = 2;
           return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 5:
+        case 2:
         case "end":
           return _context4.stop();
       }
@@ -233,31 +214,6 @@ var getDynamicRules = function getDynamicRules() {
     });
   });
 };
-
-// const removeDynamicRules = (ruleIds) => {
-//   return new Promise((resolve, reject) => {
-//     chrome.declarativeNetRequest.updateDynamicRules(
-//       { removeRuleIds: ruleIds },
-//       () => {
-//         if (chrome.runtime.lastError) {
-//           reject(
-//             new Error(
-//               `Error removing rules: ${chrome.runtime.lastError.message}`,
-//             ),
-//           );
-//         }
-//         resolve();
-//       },
-//     );
-//   });
-// };
-// const getAndRemoveOldDynamicRules = async () => {
-//   const rules = await getDynamicRules();
-//   const ruleIds = rules.map((rule) => rule.id);
-//   console.log("ruleIds", ruleIds);
-//   await removeDynamicRules(ruleIds);
-// };
-
 var createFGRule = function createFGRule(item, index) {
   return {
     id: index,
@@ -285,7 +241,6 @@ var calculateNewDynamicRules = function calculateNewDynamicRules(focusMode, fgBl
         rules.push(createFGRule(item, index++));
       }
     });
-    console.log("rules", rules);
     resolve(rules);
   });
 };
@@ -303,7 +258,6 @@ var closeBlockedTabs = function closeBlockedTabs(focusMode, fgBlockedWebsitesByD
       var blockedItems = [].concat(_toConsumableArray(fgBlockedWebsitesByDomain), _toConsumableArray(fgBlockedWebsitesByUrl)).filter(function (item) {
         return item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked);
       });
-      console.log("blockedItems", blockedItems);
       blockedItems.forEach(function (item) {
         tabs.forEach(function (tab) {
           if (tab.url.includes(item.url)) {
@@ -324,37 +278,23 @@ var blockOrAllow = /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          console.log("blockOrAllow............");
-          console.log("focusMode", focusMode);
-          console.log("focusMode == true", focusMode == true);
-          console.log("focusMode === true", focusMode === true);
-          if (focusMode) {
-            console.log("focusMode is true");
-          }
-
-          // console.log("1.a start block and remove old rules");
-          //await getAndRemoveOldDynamicRules();
-          //console.log("1.b end block and remove old rules");
-          //console.log("2.a start calculate new rules");
-          _context.next = 7;
+          _context.next = 2;
           return calculateNewDynamicRules(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 7:
+        case 2:
           rules = _context.sent;
-          _context.next = 10;
+          _context.next = 5;
           return getDynamicRules();
-        case 10:
+        case 5:
           oldRules = _context.sent;
           oldRuleIds = oldRules.map(function (rule) {
             return rule.id;
           });
-          _context.next = 14;
+          _context.next = 9;
           return applyNewDynamicRules(rules, oldRuleIds);
-        case 14:
-          // console.log("3.b end apply new rules");
-          console.log("4.a start close blocked tabs");
-          _context.next = 17;
+        case 9:
+          _context.next = 11;
           return closeBlockedTabs(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 17:
+        case 11:
         case "end":
           return _context.stop();
       }
@@ -367,112 +307,6 @@ var blockOrAllow = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/js/background/elementBlockers.js":
-/*!**********************************************!*\
-  !*** ./src/js/background/elementBlockers.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   blockElements: () => (/* binding */ blockElements)
-/* harmony export */ });
-var sendMessageToTab = function sendMessageToTab(tabId, focusMode, webSite) {
-  return new Promise(function (resolve, reject) {
-    chrome.tabs.sendMessage(tabId, {
-      action: webSite.action,
-      focusMode: focusMode,
-      elementRules: webSite.elementRules
-    }, function (response) {
-      if (chrome.runtime.lastError) {
-        reject("Error in sendMessageToTab: " + chrome.runtime.lastError.message);
-      } else if (response && response.error) {
-        reject("Error in sendMessageToTab: " + response.error);
-      } else {
-        resolve();
-      }
-    });
-  });
-};
-var isActiveRule = function isActiveRule(focusMode, elementRule) {
-  console.log("isActiveRule called");
-  console.log("elementRule", elementRule);
-  console.log("focusMode", focusMode);
-  console.log("isActiveRule", elementRule.isMarkedForBlock && (focusMode || elementRule.isPermanentlyBlocked));
-  return elementRule.isMarkedForBlock && (focusMode || elementRule.isPermanentlyBlocked);
-};
-var blockElements = function blockElements(focusMode, blockElementsOnWebsitesList) {
-  return new Promise(function (resolve, reject) {
-    chrome.tabs.query({}, function (tabs) {
-      if (chrome.runtime.lastError) {
-        reject("Error in blockElements: " + chrome.runtime.lastError.message);
-      } else {
-        var promises = [];
-        tabs.forEach(function (tab) {
-          blockElementsOnWebsitesList.forEach(function (webSite) {
-            if (tab.url.includes(webSite.domain) && webSite.elementRules.filter(function (r) {
-              return isActiveRule(focusMode, r);
-            }).length > 0) {
-              promises.push(sendMessageToTab(tab.id, focusMode, webSite));
-            }
-          });
-        });
-        Promise.all(promises).then(function () {
-          resolve();
-        })["catch"](function (error) {
-          reject("Error in blockElements: " + error);
-        });
-      }
-    });
-  });
-};
-
-/***/ }),
-
-/***/ "./src/js/utils/constants/blockElementsOnWebActions.js":
-/*!*************************************************************!*\
-  !*** ./src/js/utils/constants/blockElementsOnWebActions.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   BLOCK_FACEBOOK_ELEMENTS: () => (/* binding */ BLOCK_FACEBOOK_ELEMENTS),
-/* harmony export */   BLOCK_INSTAGRAM_ELEMENTS: () => (/* binding */ BLOCK_INSTAGRAM_ELEMENTS),
-/* harmony export */   BLOCK_LINKEDIN_ELEMENTS: () => (/* binding */ BLOCK_LINKEDIN_ELEMENTS),
-/* harmony export */   BLOCK_TWITTER_ELEMENTS: () => (/* binding */ BLOCK_TWITTER_ELEMENTS),
-/* harmony export */   BLOCK_YOUTUBE_ELEMENTS: () => (/* binding */ BLOCK_YOUTUBE_ELEMENTS)
-/* harmony export */ });
-var BLOCK_YOUTUBE_ELEMENTS = "blockYoutubeElementsAction";
-var BLOCK_FACEBOOK_ELEMENTS = "blockFacebookElementsAction";
-var BLOCK_TWITTER_ELEMENTS = "blockTwitterElementsAction";
-var BLOCK_LINKEDIN_ELEMENTS = "blockLinkedinElementsAction";
-var BLOCK_INSTAGRAM_ELEMENTS = "blockInstagramElementsAction";
-
-/***/ }),
-
-/***/ "./src/js/utils/constants/blockElementsOnWebRuleNames.js":
-/*!***************************************************************!*\
-  !*** ./src/js/utils/constants/blockElementsOnWebRuleNames.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   FACEBOOK_REELS: () => (/* binding */ FACEBOOK_REELS),
-/* harmony export */   YOUTUBE_ALL_IMAGES: () => (/* binding */ YOUTUBE_ALL_IMAGES),
-/* harmony export */   YOUTUBE_CHANNEL_NAME: () => (/* binding */ YOUTUBE_CHANNEL_NAME),
-/* harmony export */   YOUTUBE_THUMBNAIL: () => (/* binding */ YOUTUBE_THUMBNAIL),
-/* harmony export */   YOUTUBE_VIDEO_TITLE: () => (/* binding */ YOUTUBE_VIDEO_TITLE)
-/* harmony export */ });
-var YOUTUBE_THUMBNAIL = "youtube-thumbnail";
-var YOUTUBE_VIDEO_TITLE = "youtube-video-title";
-var YOUTUBE_CHANNEL_NAME = "youtube-channel-name";
-var YOUTUBE_ALL_IMAGES = "youtube-all-images";
-var FACEBOOK_REELS = "facebook-reels";
-
-/***/ }),
-
 /***/ "./src/js/utils/constants/componentNames.js":
 /*!**************************************************!*\
   !*** ./src/js/utils/constants/componentNames.js ***!
@@ -481,13 +315,15 @@ var FACEBOOK_REELS = "facebook-reels";
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   FG_BLOCKED_ELEMENTS_ON_WEBSITES: () => (/* binding */ FG_BLOCKED_ELEMENTS_ON_WEBSITES),
+/* harmony export */   FG_ABOUT: () => (/* binding */ FG_ABOUT),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
-/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
+/* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
+/* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
-var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
+var FG_ABOUT = "fgAbout";
+var FG_LANGUAGE = "fgLanguage";
 
 /***/ }),
 
@@ -499,15 +335,13 @@ var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   blockElementsActions: () => (/* reexport module object */ _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__),
 /* harmony export */   componentNames: () => (/* reexport module object */ _componentNames__WEBPACK_IMPORTED_MODULE_1__),
-/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__),
-/* harmony export */   ruleNames: () => (/* reexport module object */ _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__)
+/* harmony export */   languages: () => (/* reexport module object */ _languages__WEBPACK_IMPORTED_MODULE_2__),
+/* harmony export */   localStorage: () => (/* reexport module object */ _localStorage__WEBPACK_IMPORTED_MODULE_0__)
 /* harmony export */ });
 /* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ "./src/js/utils/constants/localStorage.js");
 /* harmony import */ var _componentNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./componentNames */ "./src/js/utils/constants/componentNames.js");
-/* harmony import */ var _blockElementsOnWebActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockElementsOnWebActions */ "./src/js/utils/constants/blockElementsOnWebActions.js");
-/* harmony import */ var _blockElementsOnWebRuleNames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blockElementsOnWebRuleNames */ "./src/js/utils/constants/blockElementsOnWebRuleNames.js");
+/* harmony import */ var _languages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./languages */ "./src/js/utils/constants/languages.js");
 
 
 
@@ -515,7 +349,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/***/ }),
 
+/***/ "./src/js/utils/constants/languages.js":
+/*!*********************************************!*\
+  !*** ./src/js/utils/constants/languages.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ENGLISH: () => (/* binding */ ENGLISH),
+/* harmony export */   GERMAN: () => (/* binding */ GERMAN),
+/* harmony export */   HUNGARIAN: () => (/* binding */ HUNGARIAN),
+/* harmony export */   ROMANIAN: () => (/* binding */ ROMANIAN)
+/* harmony export */ });
+var HUNGARIAN = "hungarian";
+var ENGLISH = "english";
+var GERMAN = "german";
+var ROMANIAN = "romanian";
 
 /***/ }),
 
@@ -527,13 +379,11 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   FG_ACTIVE: () => (/* binding */ FG_ACTIVE),
 /* harmony export */   FG_APP_DATA: () => (/* binding */ FG_APP_DATA),
 /* harmony export */   FG_BLOCKED_ELEMENTS_ON_WEBSITES: () => (/* binding */ FG_BLOCKED_ELEMENTS_ON_WEBSITES),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL)
 /* harmony export */ });
-var FG_ACTIVE = "fgActive";
 var FG_APP_DATA = "fgAppData";
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsitesByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsitesByUrl";
@@ -552,15 +402,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   blockByDomainList: () => (/* binding */ blockByDomainList)
 /* harmony export */ });
 var blockByDomainList = [{
-  url: "www.facebook.com",
+  url: "facebook.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "www.youtube.com",
+  url: "youtube.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "www.twitter.com",
+  url: "twitter.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }];
@@ -605,74 +455,6 @@ var blockByUrlList = [{
 
 /***/ }),
 
-/***/ "./src/js/utils/defaults/blockElementsOnWebsites.js":
-/*!**********************************************************!*\
-  !*** ./src/js/utils/defaults/blockElementsOnWebsites.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   blockElementsOnWebsitesList: () => (/* binding */ blockElementsOnWebsitesList)
-/* harmony export */ });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/utils/constants/index.js");
-
-var blockElementsOnWebsitesList = [{
-  domain: "youtube.com",
-  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_YOUTUBE_ELEMENTS,
-  elementRules: [{
-    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_THUMBNAIL,
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }, {
-    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_VIDEO_TITLE,
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }, {
-    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_CHANNEL_NAME,
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }, {
-    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.YOUTUBE_ALL_IMAGES,
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }]
-}, {
-  domain: "facebook.com",
-  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_FACEBOOK_ELEMENTS,
-  elementRules: [{
-    ruleName: _constants__WEBPACK_IMPORTED_MODULE_0__.ruleNames.FACEBOOK_REELS,
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }]
-}, {
-  domain: "instagram.com",
-  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_INSTAGRAM_ELEMENTS,
-  elementRules: [{
-    ruleName: "instagram-reels",
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }]
-}, {
-  domain: "twitter.com",
-  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_TWITTER_ELEMENTS,
-  elementRules: [{
-    ruleName: "twitter-trends",
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }]
-}, {
-  domain: "linkedin.com",
-  action: _constants__WEBPACK_IMPORTED_MODULE_0__.blockElementsActions.BLOCK_LINKEDIN_ELEMENTS,
-  elementRules: [{
-    ruleName: "linkedin-trends",
-    isMarkedForBlock: false,
-    isPermanentlyBlocked: false
-  }]
-}];
-
-/***/ }),
-
 /***/ "./src/js/utils/defaults/index.js":
 /*!****************************************!*\
   !*** ./src/js/utils/defaults/index.js ***!
@@ -682,13 +464,10 @@ var blockElementsOnWebsitesList = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   blockByDomainList: () => (/* reexport safe */ _blockByDomain__WEBPACK_IMPORTED_MODULE_0__.blockByDomainList),
-/* harmony export */   blockByUrlList: () => (/* reexport safe */ _blockByUrl__WEBPACK_IMPORTED_MODULE_1__.blockByUrlList),
-/* harmony export */   blockElementsOnWebsitesList: () => (/* reexport safe */ _blockElementsOnWebsites__WEBPACK_IMPORTED_MODULE_2__.blockElementsOnWebsitesList)
+/* harmony export */   blockByUrlList: () => (/* reexport safe */ _blockByUrl__WEBPACK_IMPORTED_MODULE_1__.blockByUrlList)
 /* harmony export */ });
 /* harmony import */ var _blockByDomain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockByDomain */ "./src/js/utils/defaults/blockByDomain.js");
 /* harmony import */ var _blockByUrl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blockByUrl */ "./src/js/utils/defaults/blockByUrl.js");
-/* harmony import */ var _blockElementsOnWebsites__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blockElementsOnWebsites */ "./src/js/utils/defaults/blockElementsOnWebsites.js");
-
 
 
 
