@@ -55,7 +55,7 @@ export default {
 
 <template>
   <div class="app-bar">
-    <div class="container">Focus Guard: Options</div>
+    <div class="container">Focus Guard</div>
   </div>
   <div class="container main">
     <div class="sidebar">
