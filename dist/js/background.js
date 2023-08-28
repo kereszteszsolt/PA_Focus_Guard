@@ -122,13 +122,9 @@ await readData( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime
   return _regeneratorRuntime().wrap(function _callee2$(_context2) {
     while (1) switch (_context2.prev = _context2.next) {
       case 0:
-        console.log("fgAppData", fgAppData);
-        console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
-        console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
-        console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
-        _context2.next = 6;
+        _context2.next = 2;
         return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-      case 6:
+      case 2:
       case "end":
         return _context2.stop();
     }
@@ -142,7 +138,7 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           if (!(namespace === "sync")) {
-            _context3.next = 7;
+            _context3.next = 6;
             break;
           }
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA in changes) {
@@ -154,16 +150,9 @@ chrome.storage.onChanged.addListener( /*#__PURE__*/function () {
           if (_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL in changes) {
             fgBlockedWebsitesByUrl = JSON.parse(changes[_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue);
           }
-          // if (constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES in changes) {
-          //   fgBlockedElementsOnWebsites = JSON.parse(
-          //     changes[constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES]
-          //       .newValue,
-          //   );
-          // }
-          console.log("fgAppData", fgAppData);
-          _context3.next = 7;
+          _context3.next = 6;
           return (0,_background_blockAndRedirect__WEBPACK_IMPORTED_MODULE_3__.blockOrAllow)(fgAppData.focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 7:
+        case 6:
         case "end":
           return _context3.stop();
       }
@@ -225,31 +214,6 @@ var getDynamicRules = function getDynamicRules() {
     });
   });
 };
-
-// const removeDynamicRules = (ruleIds) => {
-//   return new Promise((resolve, reject) => {
-//     chrome.declarativeNetRequest.updateDynamicRules(
-//       { removeRuleIds: ruleIds },
-//       () => {
-//         if (chrome.runtime.lastError) {
-//           reject(
-//             new Error(
-//               `Error removing rules: ${chrome.runtime.lastError.message}`,
-//             ),
-//           );
-//         }
-//         resolve();
-//       },
-//     );
-//   });
-// };
-// const getAndRemoveOldDynamicRules = async () => {
-//   const rules = await getDynamicRules();
-//   const ruleIds = rules.map((rule) => rule.id);
-//   console.log("ruleIds", ruleIds);
-//   await removeDynamicRules(ruleIds);
-// };
-
 var createFGRule = function createFGRule(item, index) {
   return {
     id: index,
@@ -277,7 +241,6 @@ var calculateNewDynamicRules = function calculateNewDynamicRules(focusMode, fgBl
         rules.push(createFGRule(item, index++));
       }
     });
-    console.log("rules", rules);
     resolve(rules);
   });
 };
@@ -295,7 +258,6 @@ var closeBlockedTabs = function closeBlockedTabs(focusMode, fgBlockedWebsitesByD
       var blockedItems = [].concat(_toConsumableArray(fgBlockedWebsitesByDomain), _toConsumableArray(fgBlockedWebsitesByUrl)).filter(function (item) {
         return item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked);
       });
-      console.log("blockedItems", blockedItems);
       blockedItems.forEach(function (item) {
         tabs.forEach(function (tab) {
           if (tab.url.includes(item.url)) {
@@ -316,37 +278,23 @@ var blockOrAllow = /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          console.log("blockOrAllow............");
-          console.log("focusMode", focusMode);
-          console.log("focusMode == true", focusMode == true);
-          console.log("focusMode === true", focusMode === true);
-          if (focusMode) {
-            console.log("focusMode is true");
-          }
-
-          // console.log("1.a start block and remove old rules");
-          //await getAndRemoveOldDynamicRules();
-          //console.log("1.b end block and remove old rules");
-          //console.log("2.a start calculate new rules");
-          _context.next = 7;
+          _context.next = 2;
           return calculateNewDynamicRules(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 7:
+        case 2:
           rules = _context.sent;
-          _context.next = 10;
+          _context.next = 5;
           return getDynamicRules();
-        case 10:
+        case 5:
           oldRules = _context.sent;
           oldRuleIds = oldRules.map(function (rule) {
             return rule.id;
           });
-          _context.next = 14;
+          _context.next = 9;
           return applyNewDynamicRules(rules, oldRuleIds);
-        case 14:
-          // console.log("3.b end apply new rules");
-          console.log("4.a start close blocked tabs");
-          _context.next = 17;
+        case 9:
+          _context.next = 11;
           return closeBlockedTabs(focusMode, fgBlockedWebsitesByDomain, fgBlockedWebsitesByUrl);
-        case 17:
+        case 11:
         case "end":
           return _context.stop();
       }

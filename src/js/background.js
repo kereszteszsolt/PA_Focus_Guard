@@ -52,11 +52,6 @@ async function readData(afterReadData) {
 }
 
 await readData(async () => {
-  console.log("fgAppData", fgAppData);
-  console.log("fgBlockedWebsitesByDomain", fgBlockedWebsitesByDomain);
-  console.log("fgBlockedWebsitesByUrl", fgBlockedWebsitesByUrl);
-  console.log("fgBlockedElementsOnWebsites", fgBlockedElementsOnWebsites);
-
   await blockOrAllow(
     fgAppData.focusMode,
     fgBlockedWebsitesByDomain,
@@ -82,21 +77,12 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
         changes[constants.localStorage.FG_BLOCKED_WEBSITES_BY_URL].newValue,
       );
     }
-    // if (constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES in changes) {
-    //   fgBlockedElementsOnWebsites = JSON.parse(
-    //     changes[constants.localStorage.FG_BLOCKED_ELEMENTS_ON_WEBSITES]
-    //       .newValue,
-    //   );
-    // }
-    console.log("fgAppData", fgAppData);
 
     await blockOrAllow(
       fgAppData.focusMode,
       fgBlockedWebsitesByDomain,
       fgBlockedWebsitesByUrl,
     );
-
-    //  await blockElements(fgAppData.focusMode, fgBlockedElementsOnWebsites);
   }
 });
 

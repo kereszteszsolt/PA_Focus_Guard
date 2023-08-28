@@ -13,30 +13,6 @@ const getDynamicRules = () => {
   });
 };
 
-// const removeDynamicRules = (ruleIds) => {
-//   return new Promise((resolve, reject) => {
-//     chrome.declarativeNetRequest.updateDynamicRules(
-//       { removeRuleIds: ruleIds },
-//       () => {
-//         if (chrome.runtime.lastError) {
-//           reject(
-//             new Error(
-//               `Error removing rules: ${chrome.runtime.lastError.message}`,
-//             ),
-//           );
-//         }
-//         resolve();
-//       },
-//     );
-//   });
-// };
-// const getAndRemoveOldDynamicRules = async () => {
-//   const rules = await getDynamicRules();
-//   const ruleIds = rules.map((rule) => rule.id);
-//   console.log("ruleIds", ruleIds);
-//   await removeDynamicRules(ruleIds);
-// };
-
 const createFGRule = (item, index) => ({
   id: index,
   priority: 1,
@@ -67,7 +43,6 @@ const calculateNewDynamicRules = (
         }
       },
     );
-    console.log("rules", rules);
     resolve(rules);
   });
 };
@@ -96,7 +71,6 @@ const closeBlockedTabs = (
           item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked),
       );
 
-      console.log("blockedItems", blockedItems);
       blockedItems.forEach((item) => {
         tabs.forEach((tab) => {
           if (tab.url.includes(item.url)) {
@@ -116,36 +90,19 @@ export const blockOrAllow = async (
   fgBlockedWebsitesByDomain,
   fgBlockedWebsitesByUrl,
 ) => {
-  console.log("blockOrAllow............");
-  console.log("focusMode", focusMode);
-  console.log("focusMode == true", focusMode == true);
-  console.log("focusMode === true", focusMode === true);
-  if (focusMode) {
-    console.log("focusMode is true");
-  }
-
-  // console.log("1.a start block and remove old rules");
-  //await getAndRemoveOldDynamicRules();
-  //console.log("1.b end block and remove old rules");
-  //console.log("2.a start calculate new rules");
   const rules = await calculateNewDynamicRules(
     focusMode,
     fgBlockedWebsitesByDomain,
     fgBlockedWebsitesByUrl,
   );
-  // console.log("2.b end calculate new rules");
-  //  console.log("3.a start apply new rules");
   const oldRules = await getDynamicRules();
   const oldRuleIds = oldRules.map((rule) => rule.id);
 
   await applyNewDynamicRules(rules, oldRuleIds);
 
-  // console.log("3.b end apply new rules");
-  console.log("4.a start close blocked tabs");
   await closeBlockedTabs(
     focusMode,
     fgBlockedWebsitesByDomain,
     fgBlockedWebsitesByUrl,
   );
-  //console.log("4.b end close blocked tabs");
 };

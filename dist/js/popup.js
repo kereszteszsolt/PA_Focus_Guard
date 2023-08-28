@@ -17132,8 +17132,8 @@ var hungarian = {
   donationText_p1_5: "- Adj néhány csillagot a github repóimnak",
   donationText_p1_6: "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
   donationText_p2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
-  donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékelve van, és hálásan köszönöm a részvételedet.",
-  donationText_p3_2: "Köszönöm, hogy velem vagy és támogatod törekvéseimet!",
+  donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékes és hálásan köszönöm a támogatásodat.",
+  donationText_p3_2: "Köszönöm, hogy velem tartasz és támogatod törekvéseimet!",
   aboutText_p4: "Szívélyes üdvözlettel,"
 };
 
