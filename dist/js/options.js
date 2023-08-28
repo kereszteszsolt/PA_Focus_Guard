@@ -16924,7 +16924,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_utils_languages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../js/utils/languages */ "./src/js/utils/languages/index.js");
 
 
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     lang: function lang() {
@@ -17802,7 +17801,7 @@ var hungarian = {
   fgOn: "Be",
   fgOff: "Ki",
   markedForBlock: "Letiltásra jelölve",
-  permanentlyBlocked: "Véglegesen letiltva",
+  permanentlyBlocked: "Permanens tiltás",
   remove: "Eltávolítás",
   prev: "Előző",
   next: "Következő",

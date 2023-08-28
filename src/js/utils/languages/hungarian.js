@@ -9,7 +9,7 @@ export const hungarian = {
   fgOff: "Ki",
 
   markedForBlock: "Letiltásra jelölve",
-  permanentlyBlocked: "Véglegesen letiltva",
+  permanentlyBlocked: "Permanens tiltás",
   remove: "Eltávolítás",
   prev: "Előző",
   next: "Következő",
