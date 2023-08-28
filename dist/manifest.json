@@ -5,8 +5,7 @@
   "permissions": [
     "declarativeNetRequestWithHostAccess",
     "storage",
-    "tabs",
-    "scripting"
+    "tabs"
   ],
   "icons": {
     "128": "assets/icons/icon-80.png"
