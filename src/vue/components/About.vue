@@ -41,7 +41,11 @@ export default {
   <div class="about">
     <div class="about-paragraph">
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_p1") }}</p>
-      <p>{{ lang.getTranslation(fgLanguage, "aboutText_p2") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "aboutText_p2_1") }}</p>
+      <p><a href="https://github.com/">Github Focus Guard</a></p>
+      <p>{{ lang.getTranslation(fgLanguage, "aboutText_p2_2") }}</p>
+      <p><a href="https://www.youtube.com/">Youtube English</a></p>
+      <p><a href="https://www.youtube.com/">Youtube Hungarian</a></p>
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_p3") }}</p>
     </div>
     <div class="social-media-links">

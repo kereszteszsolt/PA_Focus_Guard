@@ -21,11 +21,16 @@ export const hungarian = {
   duplicatedUrl: "Az URL már létezik!",
 
   aboutText_p1:
-    "Ez a böngésző kiegészítő arra szolgál, hogy segítsen fenntartani a koncentrációt, amikor munkádban vagy céljaid elérésében szeretnél dolgozni. A legideálisabb módja annak, hogy megőrizd a fókuszt, az, ha csak akkor kapcsolod ki a kiegészítőt. Amikor szórakozni szeretnél, hagyd, hogy pihenjen, de minden más időben tartsd bekapcsolva, hogy mindig emlékeztesse: van célod, amelyre koncentrálnod kell.",
-  aboutText_p2:
-    "A kiegészítőhöz angol és magyar nyelvű leírást találsz a YouTube linkek alatt. Ezek a videók részletesen bemutatják, hogyan kell használni a kiegészítőt.",
+    "Ez a bővítmény segít megtartani a fókusz állapotát és megment a szórakoztató oldalak csábításától. \n" +
+    "A legjobb hatás érdekében tartsd mindig aktívan és csak akkor kapcsold ki, ha be van tervezve a szórakozás.\n" +
+    "A bővítmény amíg aktív egy képet fog megjeleníteni a tiltott oldal helyett ami emlékeztet, hogy a munkádra fókuszálj.",
+  aboutText_p2_1:
+    "A bővítmény offline csak lokálisan a böngészőben fut és nem továbbit adatot. \n" +
+    'A beállításokat és listákat lokálisan a böngészőben a "Local Storage"-ba menti. A forráskód megtekinthető a következő GitHub linkre kattintva.',
+  aboutText_p2_2:
+    "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
   aboutText_p3:
-    "Ha szeretnél követni a közösségi médiában, az alábbi linkeken megtalálsz:",
+    "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
 
   aboutText_thanks:
     "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",

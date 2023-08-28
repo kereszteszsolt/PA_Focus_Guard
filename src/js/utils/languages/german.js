@@ -21,11 +21,16 @@ export const german = {
   duplicatedUrl: "Doppelte URL!",
 
   aboutText_p1:
-    "Diese Browsererweiterung soll Ihnen dabei helfen, sich auf Aufgaben oder Ziele zu konzentrieren. Die effektivste Methode, um die Konzentration aufrechtzuerhalten, besteht darin, die Erweiterung nur dann zu deaktivieren, wenn Sie wirklich eine Pause benötigen. Wenn Sie sich entspannen möchten, lassen Sie sie ruhen. Ansonsten halten Sie sie aktiv, um sich immer daran zu erinnern, dass Sie ein Ziel haben, auf das Sie hinarbeiten sollten, wenn Sie keine spezifische Zeit für Entspannung vorgesehen haben.",
-  aboutText_p2:
-    "Für englische und ungarische Beschreibungen der Erweiterung klicken Sie bitte auf die unten stehenden YouTube-Links. Dort erkläre ich, wie Sie die Erweiterung verwenden können.",
+    "Dieses Add-on hilft Ihnen, sich zu konzentrieren, und bewahrt Sie vor den Verlockungen von Unterhaltungsseiten. \n" +
+    "Die beste Wirkung erzielen Sie, wenn Sie die Erweiterung immer aktiviert lassen und sie nur dann ausschalten, wenn Sie Unterhaltungsprogramme geplant haben.\n" +
+    "Solange sie aktiv ist, zeigt die Erweiterung ein Bild anstelle der verbotenen Seite an, um Sie daran zu erinnern, sich auf Ihre Arbeit zu konzentrieren.",
+  aboutText_p2_1:
+    "Die Erweiterung läuft offline nur lokal im Browser und überträgt keine Daten.  \n" +
+    'Die Einstellungen und Listen werden lokal im Browser in "Local Storage" gespeichert. Der Quellcode kann über den folgenden GitHub-Link eingesehen werden.',
+  aboutText_p2_2:
+    "Weitere Informationen zur Funktionsweise finden Sie in den folgenden YoutTube-Videos auf Englisch und Ungarisch.",
   aboutText_p3:
-    "Wenn Sie sich auf sozialen Medien verbinden möchten, können Sie dies über die folgenden Links tun:",
+    "Wenn Sie mir in den sozialen Medien folgen möchten, finden Sie mich auf den folgenden Plattformen:",
 
   aboutText_thanks:
     "Vielen Dank für Ihr Interesse. Ich freue mich darauf, auf verschiedenen Plattformen mit Ihnen in Kontakt zu treten!",

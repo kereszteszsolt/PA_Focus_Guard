@@ -21,11 +21,16 @@ export const romanian = {
   duplicatedUrl: "URL duplicat!",
 
   aboutText_p1:
-    "Această extensie pentru browser este concepută pentru a vă ajuta să vă mențineți concentrarea atunci când lucrați la sarcini sau vă urmăriți obiectivele. Cea mai eficientă modalitate de a vă menține concentrarea este să dezactivați extensia doar atunci când aveți cu adevărat nevoie de o pauză. Când doriți să aveți timp de relaxare, lăsați-o să se odihnească, dar în rest, mențineți-o activată pentru a vă aminti întotdeauna că aveți un obiectiv către care trebuie să lucrați în timpurile în care nu alocați timp specific pentru relaxare.",
-  aboutText_p2:
-    "Pentru descrieri în limba engleză și maghiară ale extensiei, vă rog să faceți clic pe linkurile YouTube de mai jos. Voi explica cum se utilizează extensia în acele videoclipuri.",
+    "Acest add-on vă ajută să vă păstrați concentrarea și vă scutește de tentația site-urilor de divertisment. \n" +
+    "Pentru un efect optim, mențineți-l activ în permanență și dezactivați-l doar atunci când aveți programată o emisiune de divertisment.\n" +
+    "Atât timp cât este activă, extensia va afișa o imagine în locul paginii interzise pentru a vă reaminti să vă concentrați asupra muncii dumneavoastră.",
+  aboutText_p2_1:
+    "Extensia rulează offline doar la nivel local în browser și nu transferă niciun fel de date. \n" +
+    'Setările și listele sunt salvate local în browser în "Local Storage". Codul sursă poate fi vizualizat făcând clic pe următorul link GitHub.',
+  aboutText_p2_2:
+    "Pentru mai multe informații despre cum funcționează, urmăriți următoarele videoclipuri YoutTube în engleză și maghiară.",
   aboutText_p3:
-    "Dacă doriți să vă conectați pe rețelele de socializare, o puteți face prin intermediul linkurilor de mai jos:",
+    "Dacă doriți să mă urmăriți pe rețelele de socializare, mă puteți găsi pe următoarele platforme:",
 
   aboutText_thanks:
     "Vă mulțumesc pentru interesul dumneavoastră și aștept cu nerăbdare să ne conectăm pe diferite platforme!",

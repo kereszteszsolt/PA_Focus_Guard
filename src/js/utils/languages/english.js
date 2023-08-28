@@ -21,11 +21,16 @@ export const english = {
   duplicatedUrl: "Duplicated url!",
 
   aboutText_p1:
-    "This browser extension is designed to help you maintain focus when working on tasks or pursuing your goals. The most effective way to maintain focus is by only disabling the extension when you truly need a break. When you're looking to have some leisure time, let it rest, but otherwise, keep it active to always remind you that you have a goal to work towards during times when you're not setting aside specific time for leisure.",
-  aboutText_p2:
-    "For English and Hungarian descriptions of the extension, please click on the YouTube links below. I'll explain how to use the extension in those videos.",
+    "This add-on will help you maintain your focus and save you from the lure of entertainment sites. \n" +
+    "For best effect, keep it active at all times and only turn it off when you have entertainment scheduled.\n" +
+    "As long as it's active, the extension will display an image instead of the forbidden page to remind you to focus on your work.",
+  aboutText_p2_1:
+    "The extension runs offline only locally in the browser and does not transfer any data.  \n" +
+    'The settings and lists are saved locally in the browser to "Local Storage". The source code can be viewed by clicking on the following GitHub link. ',
+  aboutText_p2_2:
+    "For more information on how it works, watch the following YoutTube videos in English and Hungarian.",
   aboutText_p3:
-    "If you'd like to connect on social media, you can do so through the links below:",
+    "If you want to follow me on social media, you can find me on the following sites:",
 
   aboutText_thanks:
     "Thank you for your interest, and I look forward to connecting with you on various platforms!",
