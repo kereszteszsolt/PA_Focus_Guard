@@ -17002,6 +17002,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       _js_utils_scripts_dataAccess__WEBPACK_IMPORTED_MODULE_0__.loadData(this.storageName).then(function (data) {
         _this.urlList = data;
+        _this.newUrl = "";
         _this.calculateNumberOfPages();
         _this.calculateCurrentPageItems();
         _this.calculatePlaceholderText();

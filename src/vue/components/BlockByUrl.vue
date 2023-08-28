@@ -1,7 +1,6 @@
 <script>
 import * as dataAccess from "../../js/utils/scripts/dataAccess";
 import * as lang from "../../js/utils/languages";
-import { tr } from "vuetify/locale";
 
 export default {
   computed: {
@@ -72,6 +71,7 @@ export default {
     loadFromStorage() {
       dataAccess.loadData(this.storageName).then((data) => {
         this.urlList = data;
+        this.newUrl = "";
         this.calculateNumberOfPages();
         this.calculateCurrentPageItems();
         this.calculatePlaceholderText();
