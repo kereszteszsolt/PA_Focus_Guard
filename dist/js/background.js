@@ -316,6 +316,7 @@ var blockOrAllow = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FG_ABOUT: () => (/* binding */ FG_ABOUT),
+/* harmony export */   FG_ACKNOWLEDGMENTS: () => (/* binding */ FG_ACKNOWLEDGMENTS),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
@@ -324,6 +325,7 @@ var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
+var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
 
 /***/ }),
 

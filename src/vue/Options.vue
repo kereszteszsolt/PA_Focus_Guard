@@ -3,6 +3,7 @@ import BlockByUrl from "./components/BlockByUrl.vue";
 import * as config from "../js/config";
 import About from "./components/About.vue";
 import Language from "./components/Language.vue";
+import Acknowledgments from "./components/Acknowledgments.vue";
 import * as constants from "../js/utils/constants";
 import * as dataAccess from "../js/utils/scripts/dataAccess";
 import * as lang from "../js/utils/languages";
@@ -20,6 +21,7 @@ export default {
     BlockByUrl: BlockByUrl,
     About: About,
     Language: Language,
+    Acknowledgments: Acknowledgments,
   },
   data() {
     return {
@@ -83,12 +85,54 @@ export default {
         :justDomain="selectedFunctionality.justDomain"
         :fgLanguage="fgAppData.fgLanguage"
       ></component>
+
+      <div class="footer">
+        <hr />
+        <div class="about-paragraph footer-text">
+          <p>Focus Guard © 2023 - Keresztes Zsolt</p>
+          <p>Version: 1.0.0</p>
+          <p>Free Software. Opensource.</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
 @import "../scss/common.scss";
+
+.footer {
+  margin-top: auto;
+  color: $fg-primary-color;
+}
+
+hr {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: $fg-secondary-color;
+
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 .app-bar {
   display: flex;
@@ -116,6 +160,7 @@ export default {
   box-shadow: 0 5px 20px rgba(139, 69, 19, 0.2);
   padding: 1rem;
   border-radius: 5px;
+  min-height: 775px;
 }
 
 .sidebar {

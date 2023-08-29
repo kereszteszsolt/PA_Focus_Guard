@@ -1,4 +1,5 @@
 import * as constants from "../utils/constants";
+import { FG_AKNOWLEDGMENTS } from "../utils/constants/componentNames";
 
 export const fgAppFunctionalities = [
   {
@@ -26,6 +27,13 @@ export const fgAppFunctionalities = [
     funcTitle: "About",
     funcName: constants.componentNames.FG_ABOUT,
     containerComponent: "About",
+    storageName: "",
+    justDomain: false,
+  },
+  {
+    funcTitle: "Acknowledgments",
+    funcName: constants.componentNames.FG_ACKNOWLEDGMENTS,
+    containerComponent: "Acknowledgments",
     storageName: "",
     justDomain: false,
   },

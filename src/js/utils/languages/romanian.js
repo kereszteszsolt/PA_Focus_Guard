@@ -3,6 +3,7 @@ export const romanian = {
   fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
   fgAbout: "Despre",
   fgLanguage: "Limbă",
+  fgAcknowledgments: "Mulțumiri",
   fgActive: "Activ",
   fgSettings: "Setări",
   fgOn: "Pornit",

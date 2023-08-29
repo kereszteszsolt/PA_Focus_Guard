@@ -3,6 +3,7 @@ export const english = {
   fgBlockedWebsiteByUrl: "Blocked websites by URL",
   fgAbout: "About",
   fgLanguage: "Language",
+  fgAcknowledgments: "Acknowledgments",
   fgActive: "Active",
   fgSettings: "Settings",
   fgOn: "On",
