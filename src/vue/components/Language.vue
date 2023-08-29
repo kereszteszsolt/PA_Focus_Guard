@@ -118,12 +118,6 @@ export default {
 </template>
 <style scoped lang="scss">
 .language {
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
   .radio-group {
     .radio-row {
       margin-bottom: 0.5rem;

@@ -147,11 +147,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../../scss/common.scss";
-.title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
 .about {
   display: flex;
   flex-direction: column;

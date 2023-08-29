@@ -82,3 +82,9 @@ html {
 .button-primary {
   @include button($fg-primary-color, lighten($fg-primary-color, 10%));
 }
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
