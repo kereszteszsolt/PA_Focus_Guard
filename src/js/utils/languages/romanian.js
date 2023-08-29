@@ -52,4 +52,10 @@ export const romanian = {
   donationText_p3_2:
     "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
   aboutText_p4: "Cu cele mai bune urări,",
+
+  aboutText_thanks_stock_photos: "Mulțumesc pentru fotografiile gratuite:",
+  aboutText_thanks_stock_icons: "Mulțumesc pentru pictogramele gratuite:",
+  aboutText_thanks_crash_course:
+    'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' +
+    "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
 };

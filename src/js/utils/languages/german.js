@@ -55,4 +55,10 @@ export const german = {
   donationText_p3_2:
     "Danke, dass du ein Teil meiner Reise bist und meine Bemühungen unterstützt!",
   aboutText_p4: "Mit freundlichen Grüßen,",
+
+  aboutText_thanks_stock_photos: "Danke für die kostenlosen Stockfotos:",
+  aboutText_thanks_stock_icons: "Danke für die kostenlosen Icons:",
+  aboutText_thanks_crash_course:
+    'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' +
+    "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen.",
 };

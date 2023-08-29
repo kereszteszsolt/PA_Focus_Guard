@@ -53,4 +53,10 @@ export const hungarian = {
     "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékes és hálásan köszönöm a támogatásodat.",
   donationText_p3_2: "Köszönöm, hogy velem tartasz és támogatod törekvéseimet!",
   aboutText_p4: "Szívélyes üdvözlettel,",
+
+  aboutText_thanks_stock_photos: "Köszönöm az ingyenes stock fotókat:",
+  aboutText_thanks_stock_icons: "Köszönöm a ingyenes ikonokat:",
+  aboutText_thanks_crash_course:
+    'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' +
+    "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
 };

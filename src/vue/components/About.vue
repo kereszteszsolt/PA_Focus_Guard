@@ -42,7 +42,11 @@ export default {
     <div class="about-paragraph">
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_p1") }}</p>
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_p2_1") }}</p>
-      <p><a href="https://github.com/">Github Focus Guard</a></p>
+      <p>
+        <a href="https://github.com/kereszteszsolt/PA_Focus_Guard"
+          >Github Focus Guard</a
+        >
+      </p>
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_p2_2") }}</p>
       <p><a href="https://www.youtube.com/">Youtube English</a></p>
       <p><a href="https://www.youtube.com/">Youtube Hungarian</a></p>
@@ -52,7 +56,13 @@ export default {
       <div class="social-media-item">
         <a href="https://www.youtube.com/channel/">
           <img src="/assets/icons/icons8-youtube-48.png" alt="youtube" />
-          <span>Youtube</span>
+          <span>Youtube Hu</span>
+        </a>
+      </div>
+      <div class="social-media-item">
+        <a href="https://www.youtube.com/channel/">
+          <img src="/assets/icons/icons8-youtube-48.png" alt="youtube" />
+          <span>Youtube En</span>
         </a>
       </div>
       <div class="social-media-item">
@@ -133,10 +143,84 @@ export default {
       <p><b>Keresztes Zsolt</b></p>
     </div>
   </div>
+  <hr />
+  <div class="about-paragraph thanks">
+    <p>© 2023 - Keresztes Zsolt</p>
+    <p>Free Software. Opensource.</p>
+  </div>
+  <div class="about-paragraph thanks">
+    <p>
+      {{ lang.getTranslation(fgLanguage, "aboutText_thanks_stock_photos") }}
+    </p>
+    <a
+      href="https://pixabay.com/photos/focalizare-a-inspira-inspira%C8%9Bie-5519780/"
+    >
+      "Focus"
+    </a>
+    by
+    <a href="https://pixabay.com/users/homegrounds-18055885/">Homegrounds</a>
+    from Pixabay
+  </div>
+  <div class="about-paragraph thanks">
+    <p>
+      {{ lang.getTranslation(fgLanguage, "aboutText_thanks_stock_icons") }}
+    </p>
+    <div>
+      <a target="_blank" href="https://icons8.com/icon/19318/youtube"
+        >YouTube</a
+      >
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </div>
+    <div>
+      <a target="_blank" href="https://icons8.com/icon/32323/instagram"
+        >Instagram</a
+      >
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </div>
+    <div>
+      <a target="_blank" href="https://icons8.com/icon/13912/facebook"
+        >Facebook</a
+      >
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </div>
+    <div>
+      <a target="_blank" href="https://icons8.com/icon/xuvGCOXi8Wyg/linkedin"
+        >LinkedIn</a
+      >
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </div>
+    <div>
+      <a target="_blank" href="https://icons8.com/icon/13963/twitter"
+        >Twitter</a
+      >
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </div>
+    <div>
+      <a target="_blank" href="https://icons8.com/icon/fmFqQmR0UdsR/github"
+        >GitHub</a
+      >
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </div>
+    <div>
+      <a target="_blank" href="https://icons8.com/icon/118640/tiktok">TikTok</a>
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </div>
+  </div>
+  <div class="about-paragraph thanks">
+    <p>
+      {{ lang.getTranslation(fgLanguage, "aboutText_thanks_crash_course") }}
+    </p>
+    <a href="https://youtu.be/kYl271X2LNA">https://youtu.be/kYl271X2LNA</a>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../scss/common.scss";
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 
 .title {
   font-size: 1.5rem;
@@ -144,6 +228,9 @@ export default {
   margin-bottom: 0.5rem;
 }
 
+.thanks {
+  margin-bottom: 0.5rem;
+}
 .about {
   display: flex;
   flex-direction: column;

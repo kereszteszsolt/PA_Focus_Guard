@@ -32,9 +32,6 @@ export const english = {
   aboutText_p3:
     "If you want to follow me on social media, you can find me on the following sites:",
 
-  aboutText_thanks:
-    "Thank you for your interest, and I look forward to connecting with you on various platforms!",
-
   donationText_p1:
     "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
 
@@ -55,4 +52,10 @@ export const english = {
   donationText_p3_2:
     "Thank you for being a part of my journey and supporting my endeavors!",
   aboutText_p4: "Warmest regards,",
+
+  aboutText_thanks_stock_photos: "Thank for the free stock photos:",
+  aboutText_thanks_stock_icons: "Thank for the free icons:",
+  aboutText_thanks_crash_course:
+    'Thank you for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' +
+    "This course was a great help in starting to build extensions with Vue.",
 };

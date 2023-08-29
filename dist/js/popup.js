@@ -17025,7 +17025,6 @@ var english = {
   aboutText_p2_1: "The extension runs offline only locally in the browser and does not transfer any data.  \n" + 'The settings and lists are saved locally in the browser to "Local Storage". The source code can be viewed by clicking on the following GitHub link. ',
   aboutText_p2_2: "For more information on how it works, watch the following YoutTube videos in English and Hungarian.",
   aboutText_p3: "If you want to follow me on social media, you can find me on the following sites:",
-  aboutText_thanks: "Thank you for your interest, and I look forward to connecting with you on various platforms!",
   donationText_p1: "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
   donationText_p1_1: "- Subscribe to my YouTube channels.",
   donationText_p1_2: "- Follow me on Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
@@ -17036,7 +17035,10 @@ var english = {
   donationText_p2: "If you'd like to contribute financially, you can choose from the following options:",
   donationText_p3_1: "Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your involvement.",
   donationText_p3_2: "Thank you for being a part of my journey and supporting my endeavors!",
-  aboutText_p4: "Warmest regards,"
+  aboutText_p4: "Warmest regards,",
+  aboutText_thanks_stock_photos: "Thank for the free stock photos:",
+  aboutText_thanks_stock_icons: "Thank for the free icons:",
+  aboutText_thanks_crash_course: 'Thank you for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue."
 };
 
 /***/ }),
@@ -17086,7 +17088,10 @@ var german = {
   donationText_p2: "Wenn du finanziell dazu beitragen möchtest, stehen dir folgende Optionen zur Verfügung:",
   donationText_p3_1: "Deine Unterstützung, in welcher Form auch immer, wird sehr geschätzt, und ich möchte dir herzlich für deine Beteiligung danken.",
   donationText_p3_2: "Danke, dass du ein Teil meiner Reise bist und meine Bemühungen unterstützt!",
-  aboutText_p4: "Mit freundlichen Grüßen,"
+  aboutText_p4: "Mit freundlichen Grüßen,",
+  aboutText_thanks_stock_photos: "Danke für die kostenlosen Stockfotos:",
+  aboutText_thanks_stock_icons: "Danke für die kostenlosen Icons:",
+  aboutText_thanks_crash_course: 'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' + "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen."
 };
 
 /***/ }),
@@ -17136,7 +17141,10 @@ var hungarian = {
   donationText_p2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
   donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékes és hálásan köszönöm a támogatásodat.",
   donationText_p3_2: "Köszönöm, hogy velem tartasz és támogatod törekvéseimet!",
-  aboutText_p4: "Szívélyes üdvözlettel,"
+  aboutText_p4: "Szívélyes üdvözlettel,",
+  aboutText_thanks_stock_photos: "Köszönöm az ingyenes stock fotókat:",
+  aboutText_thanks_stock_icons: "Köszönöm a ingyenes ikonokat:",
+  aboutText_thanks_crash_course: 'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' + "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében."
 };
 
 /***/ }),
@@ -17249,7 +17257,10 @@ var romanian = {
   donationText_p1_6: "- Evaluați aplicațiile și extensiile mele pe diferite platforme: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
   donationText_p3_1: "Sprijinul tău, în orice formă, este extrem de apreciat, și doresc să îți mulțumesc din suflet pentru implicarea ta.",
   donationText_p3_2: "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
-  aboutText_p4: "Cu cele mai bune urări,"
+  aboutText_p4: "Cu cele mai bune urări,",
+  aboutText_thanks_stock_photos: "Mulțumesc pentru fotografiile gratuite:",
+  aboutText_thanks_stock_icons: "Mulțumesc pentru pictogramele gratuite:",
+  aboutText_thanks_crash_course: 'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' + "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue."
 };
 
 /***/ }),
