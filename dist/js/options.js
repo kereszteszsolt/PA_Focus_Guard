@@ -17307,7 +17307,7 @@ var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
     href: "https://www.youtube.com/"
   }, "Youtube Hungarian")], -1 /* HOISTED */);
 });
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"social-media-links\" data-v-81cedd14><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.youtube.com/channel/\" data-v-81cedd14><img src=\"/assets/icons/icons8-youtube-48.png\" alt=\"youtube\" data-v-81cedd14><span data-v-81cedd14>Youtube</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.instagram.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-instagram-48.png\" alt=\"instagram\" data-v-81cedd14><span data-v-81cedd14>Instagram</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.facebook.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-facebook-48.png\" alt=\"facebook\" data-v-81cedd14><span data-v-81cedd14>Facebook</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.linkedin.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-linkedin-48.png\" alt=\"linkedin\" data-v-81cedd14><span data-v-81cedd14>LinkedIn</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.twitter.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-twitter-48.png\" alt=\"twitter\" data-v-81cedd14><span data-v-81cedd14>Twitter</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.github.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-github-48.png\" alt=\"github\" data-v-81cedd14><span data-v-81cedd14>GitHub</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.tiktok.com/\" data-v-81cedd14><img src=\"/assets/icons/icons8-tiktok-48.png\" alt=\"tiktok\" data-v-81cedd14><span data-v-81cedd14>TikTok</span></a></div></div>", 1);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"social-media-links\" data-v-81cedd14><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.youtube.com/channel/\" data-v-81cedd14><img src=\"/assets/icons/icons8-youtube-48.png\" alt=\"youtube\" data-v-81cedd14><span data-v-81cedd14>Youtube</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.instagram.com/kereszteszsolt_kzs\" data-v-81cedd14><img src=\"/assets/icons/icons8-instagram-48.png\" alt=\"instagram\" data-v-81cedd14><span data-v-81cedd14>Instagram</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.facebook.com/KeresztesZsolt.kzs\" data-v-81cedd14><img src=\"/assets/icons/icons8-facebook-48.png\" alt=\"facebook\" data-v-81cedd14><span data-v-81cedd14>Facebook</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.linkedin.com/in/keresztes-zsolt\" data-v-81cedd14><img src=\"/assets/icons/icons8-linkedin-48.png\" alt=\"linkedin\" data-v-81cedd14><span data-v-81cedd14>LinkedIn</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://twitter.com/KeresztesZsolti\" data-v-81cedd14><img src=\"/assets/icons/icons8-twitter-48.png\" alt=\"twitter\" data-v-81cedd14><span data-v-81cedd14>Twitter / X</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://github.com/kereszteszsolt\" data-v-81cedd14><img src=\"/assets/icons/icons8-github-48.png\" alt=\"github\" data-v-81cedd14><span data-v-81cedd14>GitHub</span></a></div><div class=\"social-media-item\" data-v-81cedd14><a href=\"https://www.tiktok.com/@kereszteszsolti\" data-v-81cedd14><img src=\"/assets/icons/icons8-tiktok-48.png\" alt=\"tiktok\" data-v-81cedd14><span data-v-81cedd14>TikTok</span></a></div></div>", 1);
 var _hoisted_8 = {
   "class": "about-paragraph"
 };
@@ -17767,6 +17767,7 @@ var german = {
   aboutText_p2_2: "Weitere Informationen zur Funktionsweise finden Sie in den folgenden YoutTube-Videos auf Englisch und Ungarisch.",
   aboutText_p3: "Wenn Sie mir in den sozialen Medien folgen möchten, finden Sie mich auf den folgenden Plattformen:",
   aboutText_thanks: "Vielen Dank für Ihr Interesse. Ich freue mich darauf, auf verschiedenen Plattformen mit Ihnen in Kontakt zu treten!",
+  donationText_p1: "Wenn Sie meine Bemühungen zu schätzen wissen und mich unterstützen möchten, finden Sie hier einige Ideen, wie Sie dies tun können:",
   donationText_p1_1: "- Abonnieren Sie meine YouTube-Kanäle.",
   donationText_p1_2: "- Folgen Sie mir auf Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
   donationText_p1_3: "- Like, kommentiere, teile meine Inhalte",
@@ -17816,11 +17817,12 @@ var hungarian = {
   aboutText_p2_2: "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
   aboutText_p3: "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
   aboutText_thanks: "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
+  donationText_p1: "Ha értékeled az erőfeszítéseimet és támogatni szeretnél, íme néhány ötlet, hogyan teheted ezt meg:",
   donationText_p1_1: "- Iratkozz fel a YouTube csatornáimra.",
   donationText_p1_2: "- Kövess engem Instagramon, Facebookon, X (Twitter), Linkedin, Tiktok, GitHub",
-  donationText_p1_3: "- Tetszik, kommentáld, oszd meg a tartalmaimat",
+  donationText_p1_3: "- Like-old, kommentáld, oszd meg a tartalmaimat",
   donationText_p1_4: "- Beszélgess más követőkkel a kommentszekcióban",
-  donationText_p1_5: "- Adj néhány csillagot a github repóimnak",
+  donationText_p1_5: "- Adj néhány csillagot a github repo-imnak",
   donationText_p1_6: "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
   donationText_p2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
   donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékes és hálásan köszönöm a támogatásodat.",

@@ -35,12 +35,14 @@ export const hungarian = {
   aboutText_thanks:
     "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
 
+  donationText_p1:
+    "Ha értékeled az erőfeszítéseimet és támogatni szeretnél, íme néhány ötlet, hogyan teheted ezt meg:",
   donationText_p1_1: "- Iratkozz fel a YouTube csatornáimra.",
   donationText_p1_2:
     "- Kövess engem Instagramon, Facebookon, X (Twitter), Linkedin, Tiktok, GitHub",
-  donationText_p1_3: "- Tetszik, kommentáld, oszd meg a tartalmaimat",
+  donationText_p1_3: "- Like-old, kommentáld, oszd meg a tartalmaimat",
   donationText_p1_4: "- Beszélgess más követőkkel a kommentszekcióban",
-  donationText_p1_5: "- Adj néhány csillagot a github repóimnak",
+  donationText_p1_5: "- Adj néhány csillagot a github repo-imnak",
   donationText_p1_6:
     "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
 

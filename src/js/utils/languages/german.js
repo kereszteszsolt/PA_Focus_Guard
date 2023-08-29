@@ -35,6 +35,9 @@ export const german = {
   aboutText_thanks:
     "Vielen Dank für Ihr Interesse. Ich freue mich darauf, auf verschiedenen Plattformen mit Ihnen in Kontakt zu treten!",
 
+  donationText_p1:
+    "Wenn Sie meine Bemühungen zu schätzen wissen und mich unterstützen möchten, finden Sie hier einige Ideen, wie Sie dies tun können:",
+
   donationText_p1_1: "- Abonnieren Sie meine YouTube-Kanäle.",
   donationText_p1_2:
     "- Folgen Sie mir auf Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",

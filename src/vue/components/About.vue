@@ -56,37 +56,37 @@ export default {
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.instagram.com/">
+        <a href="https://www.instagram.com/kereszteszsolt_kzs">
           <img src="/assets/icons/icons8-instagram-48.png" alt="instagram" />
           <span>Instagram</span>
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.facebook.com/">
+        <a href="https://www.facebook.com/KeresztesZsolt.kzs">
           <img src="/assets/icons/icons8-facebook-48.png" alt="facebook" />
           <span>Facebook</span>
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.linkedin.com/">
+        <a href="https://www.linkedin.com/in/keresztes-zsolt">
           <img src="/assets/icons/icons8-linkedin-48.png" alt="linkedin" />
           <span>LinkedIn</span>
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.twitter.com/">
+        <a href="https://twitter.com/KeresztesZsolti">
           <img src="/assets/icons/icons8-twitter-48.png" alt="twitter" />
-          <span>Twitter</span>
+          <span>Twitter / X</span>
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.github.com/">
+        <a href="https://github.com/kereszteszsolt">
           <img src="/assets/icons/icons8-github-48.png" alt="github" />
           <span>GitHub</span>
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.tiktok.com/">
+        <a href="https://www.tiktok.com/@kereszteszsolti">
           <img src="/assets/icons/icons8-tiktok-48.png" alt="tiktok" />
           <span>TikTok</span>
         </a>
