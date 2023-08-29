@@ -45,14 +45,18 @@ export default {
           {{ lang.getTranslation(fgLanguage, "aboutText_thanks_stock_photos") }}
         </b>
       </p>
-      <a
-        href="https://pixabay.com/photos/focalizare-a-inspira-inspira%C8%9Bie-5519780/"
-      >
-        "Focus"
-      </a>
-      by
-      <a href="https://pixabay.com/users/homegrounds-18055885/">Homegrounds</a>
-      from Pixabay
+      <span>
+        <a
+          href="https://pixabay.com/photos/focalizare-a-inspira-inspira%C8%9Bie-5519780/"
+        >
+          "Focus"
+        </a>
+        by
+        <a href="https://pixabay.com/users/homegrounds-18055885/"
+          >Homegrounds</a
+        >
+        from Pixabay
+      </span>
     </div>
     <div class="about-paragraph thanks">
       <p>
@@ -136,8 +140,11 @@ export default {
   }
 
   .about-paragraph {
+    display: flex;
     margin-bottom: 20px;
     text-align: center;
+    flex-direction: column;
+    align-items: center;
 
     p {
       margin-bottom: 10px;

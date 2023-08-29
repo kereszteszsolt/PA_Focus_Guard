@@ -17047,9 +17047,9 @@ var english = {
   donationText_p3_1: "Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your involvement.",
   donationText_p3_2: "Thank you for being a part of my journey and supporting my endeavors!",
   aboutText_p4: "Warmest regards,",
-  aboutText_thanks_stock_photos: "Thank for the free stock photos:",
-  aboutText_thanks_stock_icons: "Thank for the free icons:",
-  aboutText_thanks_crash_course: 'Thank you for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue."
+  aboutText_thanks_stock_photos: "Thanks for the free stock photos:",
+  aboutText_thanks_stock_icons: "Thanks for the free icons:",
+  aboutText_thanks_crash_course: 'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue."
 };
 
 /***/ }),
