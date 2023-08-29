@@ -152,8 +152,8 @@ export default {
         border-radius: 50%;
         background-color: $fg-primary-color;
         position: relative;
-        top: 3px;
-        left: 3px;
+        top: 0px;
+        left: 2px;
         opacity: 0;
         transform: scale(0);
         transition:
