@@ -47,10 +47,13 @@ export default {
           >Github Focus Guard</a
         >
       </p>
-      <p>{{ lang.getTranslation(fgLanguage, "aboutText_p2_2") }}</p>
-      <p><a href="https://www.youtube.com/">Youtube English</a></p>
-      <p><a href="https://www.youtube.com/">Youtube Hungarian</a></p>
-      <p>{{ lang.getTranslation(fgLanguage, "aboutText_p3") }}</p>
+      <!--      waiting for finish the video(s)-->
+      <!--      <p>-->
+      <!--        {{ lang.getTranslation(fgLanguage, "aboutText_p2_2_prodDescYTVideo") }}-->
+      <!--      </p>-->
+      <!--      <p><a href="https://www.youtube.com/">Youtube English</a></p>-->
+      <!--      <p><a href="https://www.youtube.com/">Youtube Hungarian</a></p>-->
+      <p>{{ lang.getTranslation(fgLanguage, "aboutText_p3_socialMedia") }}</p>
     </div>
     <div class="social-media-links">
       <div class="social-media-item">
@@ -103,7 +106,7 @@ export default {
       </div>
     </div>
     <div class="about-paragraph">
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1") }}</p>
+      <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_donation") }}</p>
       <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_1") }}</p>
       <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_2") }}</p>
       <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_3") }}</p>
@@ -112,7 +115,14 @@ export default {
       <p>{{ lang.getTranslation(fgLanguage, "donationText_p1_6") }}</p>
     </div>
     <div class="about-paragraph">
-      <p>{{ lang.getTranslation(fgLanguage, "donationText_p2") }}</p>
+      <p>
+        {{
+          lang.getTranslation(
+            fgLanguage,
+            "donationText_p2_donation_financially",
+          )
+        }}
+      </p>
     </div>
     <div class="donation">
       <h2>{{ lang.getTranslation(fgLanguage, "donation") }}</h2>

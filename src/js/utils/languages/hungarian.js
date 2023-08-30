@@ -28,15 +28,15 @@ export const hungarian = {
   aboutText_p2_1:
     "A bővítmény offline csak lokálisan a böngészőben fut és nem továbbit adatot. \n" +
     'A beállításokat és listákat lokálisan a böngészőben a "Local Storage"-ba menti. A forráskód megtekinthető a következő GitHub linkre kattintva.',
-  aboutText_p2_2:
+  aboutText_p2_2_prodDescYTVideo:
     "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
-  aboutText_p3:
+  aboutText_p3_socialMedia:
     "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
 
   aboutText_thanks:
     "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
 
-  donationText_p1:
+  donationText_p1_donation:
     "Ha értékeled az erőfeszítéseimet és támogatni szeretnél, íme néhány ötlet, hogyan teheted ezt meg:",
   donationText_p1_1: "- Iratkozz fel a YouTube csatornáimra.",
   donationText_p1_2:
@@ -47,7 +47,7 @@ export const hungarian = {
   donationText_p1_6:
     "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
 
-  donationText_p2:
+  donationText_p2_donation_financially:
     "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
 
   donationText_p3_1:
