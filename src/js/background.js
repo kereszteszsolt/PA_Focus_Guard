@@ -7,6 +7,7 @@ import { blockOrAllow } from "./background/blockAndRedirect";
 let fgAppData = {
   focusMode: false,
   fgLanguage: constants.languages.ENGLISH,
+  fgVersion: chrome.runtime.getManifest().version,
 };
 let fgBlockedWebsitesByDomain = [];
 let fgBlockedWebsitesByUrl = [];

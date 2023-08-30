@@ -13,7 +13,9 @@ export default {
       fgAppData: {
         focusMode: false,
         fgLanguage: constants.languages.ENGLISH,
+        fgVersion: "",
       },
+      currentYear: new Date().getFullYear(),
     };
   },
   created() {
@@ -77,9 +79,9 @@ export default {
     <div class="footer">
       <hr />
       <div class="about-paragraph footer-text">
-        <p>Focus Guard © 2023 - Keresztes Zsolt</p>
+        <p>Focus Guard © {{ currentYear }} - Keresztes Zsolt</p>
         <p>Free Software. Opensource.</p>
-        <p>Version: 1.0.0</p>
+        <p>Version: {{ fgAppData.fgVersion }}</p>
       </div>
     </div>
   </div>

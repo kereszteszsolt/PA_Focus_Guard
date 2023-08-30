@@ -16817,8 +16817,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       fgAppData: {
         focusMode: false,
-        fgLanguage: _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.languages.ENGLISH
-      }
+        fgLanguage: _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.languages.ENGLISH,
+        fgVersion: ""
+      },
+      currentYear: new Date().getFullYear()
     };
   },
   created: function created() {
@@ -16880,12 +16882,17 @@ var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_3 = {
   "class": "on-off"
 };
-var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "footer"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "about-paragraph footer-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Focus Guard © 2023 - Keresztes Zsolt"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Free Software. Opensource."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Version: 1.0.0")])], -1 /* HOISTED */);
+var _hoisted_4 = {
+  "class": "footer"
+};
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+});
+var _hoisted_6 = {
+  "class": "about-paragraph footer-text"
+};
+var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Free Software. Opensource.", -1 /* HOISTED */);
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -16910,7 +16917,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.settings && $options.settings.apply($options, arguments);
     })
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgSettings")), 1 /* TEXT */), _hoisted_4]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgSettings")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Focus Guard © " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentYear) + " - Keresztes Zsolt", 1 /* TEXT */), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Version: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.fgAppData.fgVersion), 1 /* TEXT */)])])]);
 }
 
 /***/ }),

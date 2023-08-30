@@ -26,7 +26,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //load default values when extension is loaded
 var fgAppData = {
   focusMode: false,
-  fgLanguage: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.languages.ENGLISH
+  fgLanguage: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.languages.ENGLISH,
+  fgVersion: chrome.runtime.getManifest().version
 };
 var fgBlockedWebsitesByDomain = [];
 var fgBlockedWebsitesByUrl = [];
