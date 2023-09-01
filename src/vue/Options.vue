@@ -95,7 +95,7 @@ export default {
         <div class="about-paragraph footer-text">
           <p>Focus Guard © {{ currentYear }} - Keresztes Zsolt</p>
           <p>Version: {{ fgAppData.fgVersion }}</p>
-          <p>Free Software. Opensource.</p>
+          <p>Free Software.</p>
         </div>
       </div>
     </div>
