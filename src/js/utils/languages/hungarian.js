@@ -61,4 +61,6 @@ export const hungarian = {
   aboutText_thanks_crash_course:
     'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' +
     "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
+  aboutText_thanks_free_apps:
+    'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.',
 };

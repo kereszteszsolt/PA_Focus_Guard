@@ -17255,7 +17255,8 @@ var english = {
   aboutText_p4: "Warmest regards,",
   aboutText_thanks_stock_photos: "Thanks for the free stock photos:",
   aboutText_thanks_stock_icons: "Thanks for the free icons:",
-  aboutText_thanks_crash_course: 'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue."
+  aboutText_thanks_crash_course: 'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue.",
+  aboutText_thanks_free_apps: 'The "Product Icon" is my work and I created it with the help of the free "Canva" & Gimp.'
 };
 
 /***/ }),
@@ -17310,7 +17311,8 @@ var german = {
   aboutText_p4: "Mit freundlichen Grüßen,",
   aboutText_thanks_stock_photos: "Danke für die kostenlosen Stockfotos:",
   aboutText_thanks_stock_icons: "Danke für die kostenlosen Icons:",
-  aboutText_thanks_crash_course: 'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' + "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen."
+  aboutText_thanks_crash_course: 'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' + "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen.",
+  aboutText_dankt_free_apps: 'Das "Produkt-Icon" ist mein Werk und ich habe es mit Hilfe der kostenlosen "Canva" & Gimp erstellt.'
 };
 
 /***/ }),
@@ -17365,7 +17367,8 @@ var hungarian = {
   aboutText_p4: "Szívélyes üdvözlettel,",
   aboutText_thanks_stock_photos: "Köszönöm az ingyenes stock fotókat:",
   aboutText_thanks_stock_icons: "Köszönöm a ingyenes ikonokat:",
-  aboutText_thanks_crash_course: 'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' + "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében."
+  aboutText_thanks_crash_course: 'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' + "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
+  aboutText_thanks_free_apps: 'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.'
 };
 
 /***/ }),
@@ -17519,7 +17522,8 @@ var romanian = {
   aboutText_p4: "Cu cele mai bune urări,",
   aboutText_thanks_stock_photos: "Mulțumesc pentru fotografiile gratuite:",
   aboutText_thanks_stock_icons: "Mulțumesc pentru pictogramele gratuite:",
-  aboutText_thanks_crash_course: 'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' + "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue."
+  aboutText_thanks_crash_course: 'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' + "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
+  aboutText_thanks_free_apps: 'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.'
 };
 
 /***/ }),

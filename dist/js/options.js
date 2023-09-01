@@ -17489,9 +17489,11 @@ var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
     href: "https://youtu.be/kYl271X2LNA"
   }, "https://youtu.be/kYl271X2LNA", -1 /* HOISTED */);
 });
-
+var _hoisted_15 = {
+  "class": "about-paragraph thanks"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, $props.funcName)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks_stock_photos")), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks_stock_icons")), 1 /* TEXT */)]), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks_crash_course")), 1 /* TEXT */)]), _hoisted_14])])], 64 /* STABLE_FRAGMENT */);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, $props.funcName)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks_stock_photos")), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks_stock_icons")), 1 /* TEXT */)]), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks_crash_course")), 1 /* TEXT */)]), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "aboutText_thanks_free_apps")), 1 /* TEXT */)])])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -18139,7 +18141,8 @@ var english = {
   aboutText_p4: "Warmest regards,",
   aboutText_thanks_stock_photos: "Thanks for the free stock photos:",
   aboutText_thanks_stock_icons: "Thanks for the free icons:",
-  aboutText_thanks_crash_course: 'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue."
+  aboutText_thanks_crash_course: 'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue.",
+  aboutText_thanks_free_apps: 'The "Product Icon" is my work and I created it with the help of the free "Canva" & Gimp.'
 };
 
 /***/ }),
@@ -18194,7 +18197,8 @@ var german = {
   aboutText_p4: "Mit freundlichen Grüßen,",
   aboutText_thanks_stock_photos: "Danke für die kostenlosen Stockfotos:",
   aboutText_thanks_stock_icons: "Danke für die kostenlosen Icons:",
-  aboutText_thanks_crash_course: 'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' + "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen."
+  aboutText_thanks_crash_course: 'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' + "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen.",
+  aboutText_dankt_free_apps: 'Das "Produkt-Icon" ist mein Werk und ich habe es mit Hilfe der kostenlosen "Canva" & Gimp erstellt.'
 };
 
 /***/ }),
@@ -18249,7 +18253,8 @@ var hungarian = {
   aboutText_p4: "Szívélyes üdvözlettel,",
   aboutText_thanks_stock_photos: "Köszönöm az ingyenes stock fotókat:",
   aboutText_thanks_stock_icons: "Köszönöm a ingyenes ikonokat:",
-  aboutText_thanks_crash_course: 'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' + "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében."
+  aboutText_thanks_crash_course: 'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' + "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
+  aboutText_thanks_free_apps: 'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.'
 };
 
 /***/ }),
@@ -18403,7 +18408,8 @@ var romanian = {
   aboutText_p4: "Cu cele mai bune urări,",
   aboutText_thanks_stock_photos: "Mulțumesc pentru fotografiile gratuite:",
   aboutText_thanks_stock_icons: "Mulțumesc pentru pictogramele gratuite:",
-  aboutText_thanks_crash_course: 'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' + "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue."
+  aboutText_thanks_crash_course: 'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' + "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
+  aboutText_thanks_free_apps: 'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.'
 };
 
 /***/ }),

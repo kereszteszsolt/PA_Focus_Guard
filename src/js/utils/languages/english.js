@@ -60,4 +60,6 @@ export const english = {
   aboutText_thanks_crash_course:
     'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' +
     "This course was a great help in starting to build extensions with Vue.",
+  aboutText_thanks_free_apps:
+    'The "Product Icon" is my work and I created it with the help of the free "Canva" & Gimp.',
 };

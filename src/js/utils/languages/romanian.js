@@ -60,4 +60,6 @@ export const romanian = {
   aboutText_thanks_crash_course:
     'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' +
     "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
+  aboutText_thanks_free_apps:
+    'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.',
 };

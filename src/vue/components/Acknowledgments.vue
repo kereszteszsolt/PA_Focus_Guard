@@ -115,6 +115,13 @@ export default {
       </p>
       <a href="https://youtu.be/kYl271X2LNA">https://youtu.be/kYl271X2LNA</a>
     </div>
+    <div class="about-paragraph thanks">
+      <p>
+        <b>
+          {{ lang.getTranslation(fgLanguage, "aboutText_thanks_free_apps") }}
+        </b>
+      </p>
+    </div>
   </div>
 </template>
 <style scoped lang="scss">

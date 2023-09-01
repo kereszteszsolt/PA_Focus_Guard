@@ -63,4 +63,6 @@ export const german = {
   aboutText_thanks_crash_course:
     'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' +
     "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen.",
+  aboutText_dankt_free_apps:
+    'Das "Produkt-Icon" ist mein Werk und ich habe es mit Hilfe der kostenlosen "Canva" & Gimp erstellt.',
 };
