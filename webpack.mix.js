@@ -13,7 +13,7 @@ mix
   .copy("src/html/message.html", "dist/html")
   .copy("src/manifest.json", "dist")
   .copy("src/assets/pictures/focus.jpg", "dist/assets/pictures")
-  .copy("src/assets/icons/focus.png", "dist/assets/icons")
+  .copy("src/assets/icons/kzs-focus.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-youtube-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-facebook-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-instagram-48.png", "dist/assets/icons")

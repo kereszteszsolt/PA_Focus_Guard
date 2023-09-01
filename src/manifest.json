@@ -8,7 +8,7 @@
     "tabs"
   ],
   "icons": {
-    "128": "assets/icons/focus.png"
+    "128": "assets/icons/kzs-focus.png"
   },
   "host_permissions": [
     "<all_urls>"
