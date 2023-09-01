@@ -60,7 +60,7 @@ export const gtcHungarian = {
         "Amennyiben a felhasználó módosítja a szoftvert saját felhasználásra, köteles kicserélni az alkalmazás" +
         " ikonját és minden olyan elemet, amely a terjesztőre vagy eredeti fejlesztőre utal. Amennyiben a felhasználó" +
         " terjeszti a módosított verziót, köteles a szoftvert saját nevében terjeszteni, beleértve a social media" +
-        " oldalak, adományozó oldalak és aláírás területeket is. Amennyiben a felhasználó szeretné megjelölni a " +
+        ' oldalak, adományozó oldalak és aláírás területeket is (pl. "Névjegy" oldal). Amennyiben a felhasználó szeretné megjelölni a ' +
         "változat eredeti forrását, azt szívesen fogadom.",
     },
   ],

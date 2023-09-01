@@ -57,7 +57,7 @@ export const gtcEnglish = {
       text:
         "If a user modifies the software for their own use, they are required to replace the application icon" +
         " and any elements referring to the distributor or original developer. If the user distributes the modified version," +
-        " they must do so under their own name, including on social media pages, donation pages, and signature areas." +
+        " they must do so under their own name, including on social media pages, donation pages, and signature areas.(eg. About page)" +
         " If the user wishes to attribute the original source of the version, it is welcomed.",
     },
   ],
@@ -65,7 +65,7 @@ export const gtcEnglish = {
     "Please be aware that decisions regarding the use of the software are made at your own discretion." +
       " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.",
     "If you have any questions or feedback about the software, I welcome your input." +
-      " Contact information can be found on the Contact / Github page.",
+      " Contact information can be found on the About / Github page.",
     "The General Terms and Conditions will come into effect on September 1, 2023, and will remain in effect unless" +
       " later amended or revoked.",
     "Thank you for your interest in the software, and enjoy using it!",

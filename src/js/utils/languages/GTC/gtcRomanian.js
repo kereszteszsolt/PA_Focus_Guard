@@ -55,7 +55,7 @@ export const gtcRomanian = {
       text:
         "Dacă un utilizator efectuează modificări asupra software-ului în scopul propriu, el este obligat să înlocuiască icon-ul aplicației" +
         " și orice elemente care se referă la distribuitorul sau dezvoltatorul original. Dacă utilizatorul distribuie versiunea modificată," +
-        " acesta trebuie să o facă sub numele său propriu, inclusiv pe paginile de social media, paginile de donații și în zonele pentru semnături." +
+        ' acesta trebuie să o facă sub numele său propriu, inclusiv pe paginile de social media, paginile de donații și în zonele pentru semnături.(e.x. pagina "Despre")' +
         " Dacă utilizatorul dorește să atribuie sursa originală a versiunii, acest lucru este binevenit.",
     },
   ],
@@ -63,7 +63,7 @@ export const gtcRomanian = {
     "Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." +
       " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.",
     "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." +
-      " Informațiile de contact se găsesc pe pagina de Contact / Github.",
+      ' Informațiile de contact se găsesc pe pagina de "Despre" / "Github".',
     "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" +
       " în care vor fi ulterior modificați sau revocați.",
     "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!",
