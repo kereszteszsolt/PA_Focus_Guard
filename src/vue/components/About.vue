@@ -130,16 +130,16 @@ export default {
         {{ lang.getTranslation(fgLanguage, "donationText") }}
       </p>
       <div class="donation-item">
-        <a href="https://www.paypal.com/">
-          <img src="/assets/icons/icons8-paypal-48.png" alt="paypal" />
-          <span>PayPal</span>
-        </a>
-        <a href="https://www.patreon.com/">
-          <img src="/assets/icons/icons8-patreon-48.png" alt="patreon" />
-          <span>Patreon</span>
-        </a>
-        <a href="https://www.buymeacoffee.com/">
-          <img src="/assets/icons/icons8-coffee-to-go-48.png" alt="coffee" />
+        <!--        <a href="https://www.paypal.com/">-->
+        <!--          <img src="/assets/buttons/paypal.png" alt="paypal" />-->
+        <!--          <span>PayPal</span>-->
+        <!--        </a>-->
+        <!--        <a href="https://www.patreon.com/">-->
+        <!--          <img src="/assets/buttons/patreon.png" alt="patreon" />-->
+        <!--          <span>Patreon</span>-->
+        <!--        </a>-->
+        <a href="https://www.buymeacoffee.com/KeresztesZsolt">
+          <img src="/assets/buttons/buy-me-a-coffee.png" alt="coffee" />
           <span>Buy me a coffee</span>
         </a>
       </div>
@@ -240,7 +240,7 @@ export default {
         margin: 0.5rem;
 
         img {
-          width: 3rem;
+          width: auto;
           height: 3rem;
         }
 

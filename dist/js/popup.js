@@ -16934,6 +16934,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FG_ACKNOWLEDGMENTS: () => (/* binding */ FG_ACKNOWLEDGMENTS),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
+/* harmony export */   FG_GTC: () => (/* binding */ FG_GTC),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
@@ -16941,6 +16942,7 @@ var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
 var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
+var FG_GTC = "fgGtc";
 
 /***/ }),
 
@@ -17008,6 +17010,166 @@ var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
 
 /***/ }),
 
+/***/ "./src/js/utils/languages/GTC/gtcEnglish.js":
+/*!**************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcEnglish.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcEnglish: () => (/* binding */ gtcEnglish)
+/* harmony export */ });
+var gtcEnglish = {
+  title: "General Terms and Conditions (GTC)",
+  preface: "The following are the General Terms and Conditions (hereinafter: GTC) for the use of the software. " + "By installing and using the software, you accept the following terms and conditions.",
+  chapters: [{
+    title: "Free Use:",
+    text: "The software is freely accessible and no financial payment is required to use it."
+  }, {
+    title: "Disclaimer:",
+    text: "The creator and distributor of the software assumes no responsibility for problems or possible damages arising from the use of the software."
+  }, {
+    title: "Data Collection by Third Parties:",
+    text: "It is possible that third parties collect data (e.g. through the software distribution or donation platform). " + "The user is responsible for such data collection under the privacy policies of the respective platforms."
+  }, {
+    title: "Donation is Optional:",
+    text: "Donation is completely optional and does not come with any benefits or disadvantages. " + "Donors express their gratitude and donations support the developer and his entire work."
+  }, {
+    title: "Free Use and Customization:",
+    text: "The software can be used, customized and modified freely by anyone according to their own preferences."
+  }, {
+    title: "Legal Compliance:",
+    text: "During the use of the software, it is the user's responsibility to comply with the applicable laws and regulations."
+  }, {
+    title: "User Modifications:",
+    text: "If the user modifies the software for their own use, they are obliged to replace the application icon and any other element that refers to the distributor or original developer. " + "If the user distributes the modified version, they are obliged to distribute the software in their own name, including social media pages, donation pages and signature areas. " + "If the user would like to mark the original source of the version, it will be gladly accepted."
+  }],
+  afterText: ["Please note that decisions regarding the use of the software are made at your own risk. " + "If the user does not agree with the terms and conditions set forth in the GTC, we recommend that you do not install or use the software.", "If you have any questions or comments about the software, I would be happy to receive your feedback. " + "Contact options can be found on the About page / Github page.", "The General Terms and Conditions will come into force on September 1, 2023 and will remain in force unless they are later amended or revoked.", "Thank you for your interest in the software and enjoy using it!"]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/GTC/gtcGerman.js":
+/*!*************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcGerman.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcGerman: () => (/* binding */ gtcGerman)
+/* harmony export */ });
+var gtcGerman = {
+  title: "Allgemeine Geschäftsbedingungen (AGB)",
+  preface: "Die folgenden Allgemeinen Geschäftsbedingungen (im Folgenden: AGB) gelten für die Nutzung der Software. " + "Durch die Installation und Nutzung der Software akzeptieren Sie die folgenden Bedingungen.",
+  chapters: [{
+    title: "Kostenlose Nutzung:",
+    text: "Die Software ist frei zugänglich und es ist keine finanzielle Zahlung erforderlich, um sie zu nutzen."
+  }, {
+    title: "Haftungsausschluss:",
+    text: "Der Ersteller und Vertreiber der Software übernimmt keine Verantwortung für Probleme oder mögliche Schäden, die sich aus der Nutzung der Software ergeben."
+  }, {
+    title: "Datenerhebung durch Dritte:",
+    text: "Es ist möglich, dass Dritte Daten sammeln (z. B. über die Softwareverteilungs- oder Spendenplattform). " + "Der Benutzer ist für eine solche Datenerhebung gemäß den Datenschutzrichtlinien der jeweiligen Plattformen verantwortlich."
+  }, {
+    title: "Spenden sind optional:",
+    text: "Spenden sind völlig optional und gehen nicht mit Vorteilen oder Nachteilen einher. " + "Spender drücken ihre Dankbarkeit aus und Spenden unterstützen den Entwickler und seine gesamte Arbeit."
+  }, {
+    title: "Freie Nutzung und Anpassung:",
+    text: "Die Software kann von jedermann frei nach eigenen Vorlieben verwendet, angepasst und geändert werden."
+  }, {
+    title: "Rechtliche Einhaltung:",
+    text: "Während der Nutzung der Software ist der Benutzer dafür verantwortlich, die geltenden Gesetze und Vorschriften einzuhalten."
+  }, {
+    title: "Benutzermodifikationen:",
+    text: "Wenn der Benutzer die Software für den eigenen Gebrauch modifiziert, ist er verpflichtet, das Anwendungssymbol und alle anderen Elemente, die auf den Vertreiber oder den ursprünglichen Entwickler verweisen, zu ersetzen. " + "Wenn der Benutzer die modifizierte Version verteilt, ist er verpflichtet, die Software in seinem eigenen Namen zu verteilen, einschließlich Social-Media-Seiten, Spenden-Seiten und Signaturbereichen. " + "Wenn der Benutzer die ursprüngliche Quelle der Version markieren möchte, wird dies gerne akzeptiert."
+  }],
+  afterText: ["Bitte beachten Sie, dass Entscheidungen bezüglich der Nutzung der Software auf eigenes Risiko getroffen werden. " + "Wenn der Benutzer mit den in den AGB festgelegten Bedingungen nicht einverstanden ist, empfehlen wir, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Kommentare zur Software haben, würde ich mich über Ihr Feedback freuen. " + "Kontaktmöglichkeiten finden Sie auf der Infoseite / Github-Seite.", "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, es sei denn, sie werden später geändert oder aufgehoben.", "Vielen Dank für Ihr Interesse an der Software und viel Spaß bei der Verwendung!"]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/GTC/gtcHungarian.js":
+/*!****************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcHungarian.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcHungarian: () => (/* binding */ gtcHungarian)
+/* harmony export */ });
+var gtcHungarian = {
+  title: "Általános Szerződési Feltételek (Á.SZ.F.)",
+  preface: "Az alábbiakban megtalálhatók a szoftver használatára vonatkozó Általános Szerződési Feltételek " + "(a továbbiakban: Á.SZ.F.). A szoftver telepítésével és használatával az alábbi feltételeket elfogadja.",
+  chapters: [{
+    title: "Ingyenes Használat:",
+    text: "A szoftver ingyenesen hozzáférhető, és nem szükséges anyagi kifizetés a használatához."
+  }, {
+    title: "Felelősségkizárás:",
+    text: "A szoftver készítője és terjesztője nem vállal semmilyen felelősséget a szoftver használatából eredő" + " problémákért vagy esetleges károkért."
+  }, {
+    title: "Adatgyűjtés Harmadik Felek Által: ",
+    text: "Lehetséges, hogy harmadik felek adatgyűjtést végeznek (például a szoftver terjesztési vagy adományozási" + "platformján keresztül). Az ilyen adatgyűjtésért a felhasználót az adott platformok saját adatvédelmi irányelvei terhelik."
+  }, {
+    title: "Adakozás Opcionális: ",
+    text: "Az adakozás teljes mértékben opcionális tevékenység, és nem jár semmilyen előnnyel vagy hátránnyal. " + "Az adakozók hálájukat fejezik ki, és az adományok a fejlesztőt és teljes munkásságát támogatják."
+  }, {
+    title: "Szabad Felhasználás és Testreszabás: ",
+    text: "A szoftvert bárki szabadon használhatja, testre szabhatja és módosíthatja a saját preferenciáinak megfelelően."
+  }, {
+    title: "Jogi Megfelelés:",
+    text: "A szoftver használata során kötelessége minden felhasználónak betartani a vonatkozó jogszabályokat és szabályozásokat."
+  }, {
+    title: "Felhasználói Módosítások: ",
+    text: "Amennyiben a felhasználó módosítja a szoftvert saját felhasználásra, köteles kicserélni az alkalmazás" + " ikonját és minden olyan elemet, amely a terjesztőre vagy eredeti fejlesztőre utal. Amennyiben a felhasználó" + " terjeszti a módosított verziót, köteles a szoftvert saját nevében terjeszteni, beleértve a social media" + " oldalak, adományozó oldalak és aláírás területeket is. Amennyiben a felhasználó szeretné megjelölni a " + "változat eredeti forrását, azt szívesen lesznek fogadva."
+  }],
+  afterText: ["Felhívjuk a figyelmet, hogy a szoftver használatával kapcsolatos döntések saját felelősségre történnek. " + "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javasoljuk," + " hogy ne telepítse vagy ne használja a szoftvert.", "Amennyiben kérdése vagy észrevétele van a szoftverrel kapcsolatban, örömmel veszem a visszajelzéseit." + " A kapcsolatfelvételi lehetőségek megtalálhatók a Néyvjegy oldalon / Github oldalon.", "Az Általános Szerződési Feltételek 2023. szeptember 1-jétől lépnek életbe és hatályban maradnak, kivéve," + " ha azokat később módosításra vagy visszavonásra kerülnek.", "Köszönöm az érdeklődést a szoftver iránt, és jó felhasználást kívánok!"]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/GTC/gtcRomanian.js":
+/*!***************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcRomanian.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcRomanian: () => (/* binding */ gtcRomanian)
+/* harmony export */ });
+var gtcRomanian = {
+  title: "Termeni și Condiții Generale (TCG)",
+  preface: "Următoarele sunt Termenii și Condițiile Generale (denumite în continuare: TCG) pentru utilizarea software-ului. " + "Prin instalarea și utilizarea software-ului, acceptați următoarele termeni și condiții.",
+  chapters: [{
+    title: "Utilizare Gratuită:",
+    text: "Software-ul este liber accesibil și nu este necesară nicio plată financiară pentru utilizarea acestuia."
+  }, {
+    title: "Renunțare la Răspundere:",
+    text: "Creatorul și distribuitorul software-ului nu își asumă nicio responsabilitate pentru probleme sau posibile daune rezultate din utilizarea software-ului."
+  }, {
+    title: "Colectarea Datelor de Către Terți:",
+    text: "Este posibil ca terții să colecteze date (de exemplu, prin platforma de distribuție sau de donații a software-ului). " + "Utilizatorul este responsabil pentru această colectare de date în conformitate cu politicile de confidențialitate ale platformelor respective."
+  }, {
+    title: "Donația este Opțională:",
+    text: "Donația este complet opțională și nu vine cu niciun beneficiu sau dezavantaj. " + "Donatorii își exprimă recunoștința, iar donațiile sprijină dezvoltatorul și întreaga sa muncă."
+  }, {
+    title: "Utilizare și Personalizare Gratuită:",
+    text: "Software-ul poate fi utilizat, personalizat și modificat liber de oricine în funcție de propriile preferințe."
+  }, {
+    title: "Conformitate Legală:",
+    text: "În timpul utilizării software-ului, utilizatorul este responsabil să respecte legile și reglementările aplicabile."
+  }, {
+    title: "Modificări ale Utilizatorului:",
+    text: "Dacă utilizatorul modifică software-ul pentru utilizarea proprie, este obligat să înlocuiască pictograma aplicației și orice alt element care face referire la distribuitor sau dezvoltatorul original. " + "Dacă utilizatorul distribuie versiunea modificată, este obligat să distribuie software-ul în numele său, inclusiv paginile de socializare, paginile de donații și zonele de semnătură. " + "Dacă utilizatorul dorește să marcheze sursa originală a versiunii, aceasta va fi acceptată cu plăcere."
+  }],
+  afterText: ["Vă rugăm să rețineți că deciziile referitoare la utilizarea software-ului sunt luate pe propriul risc. " + "Dacă utilizatorul nu este de acord cu termenii și condițiile stabilite în TCG, vă recomandăm să nu instalați sau să utilizați software-ul.", "Dacă aveți întrebări sau comentarii despre software, aș fi bucuros să primesc feedback-ul dvs. " + "Opțiunile de contact pot fi găsite pe pagina Despre / pagina Github.", "Termenii și condițiile generale vor intra în vigoare la 1 septembrie 2023 și vor rămâne în vigoare cu excepția cazului în care vor fi ulterior modificate sau anulate.", "Vă mulțumim pentru interesul dvs. pentru software și vă bucurați de utilizarea acestuia!"]
+};
+
+/***/ }),
+
 /***/ "./src/js/utils/languages/english.js":
 /*!*******************************************!*\
   !*** ./src/js/utils/languages/english.js ***!
@@ -17025,6 +17187,7 @@ var english = {
   fgLanguage: "Language",
   fgAcknowledgments: "Acknowledgments",
   fgActive: "Active",
+  fgGtc: "General Terms and Conditions (GTC)",
   fgSettings: "Settings",
   fgOn: "On",
   fgOff: "Off",
@@ -17078,6 +17241,7 @@ var german = {
   fgLanguage: "Sprache",
   fgAcknowledgments: "Danksagungen",
   fgActive: "Aktiv",
+  fgGtc: "Allgemeine Geschäftsbedingungen (AGB)",
   fgSettings: "Einstellungen",
   fgOn: "An",
   fgOff: "Aus",
@@ -17132,6 +17296,7 @@ var hungarian = {
   fgLanguage: "Nyelv",
   fgAcknowledgments: "Köszönetnyilvánítások",
   fgActive: "Aktív",
+  fgGtc: "Általános Szerződési Feltételek (ÁSZF)",
   fgSettings: "Beállítások",
   fgOn: "Be",
   fgOff: "Ki",
@@ -17179,7 +17344,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   english: () => (/* reexport safe */ _english__WEBPACK_IMPORTED_MODULE_1__.english),
 /* harmony export */   german: () => (/* reexport safe */ _german__WEBPACK_IMPORTED_MODULE_3__.german),
+/* harmony export */   getGtcTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getGtcTranslation),
 /* harmony export */   getTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTranslation),
+/* harmony export */   gtcEnglish: () => (/* reexport safe */ _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish),
+/* harmony export */   gtcGerman: () => (/* reexport safe */ _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__.gtcGerman),
+/* harmony export */   gtcHungarian: () => (/* reexport safe */ _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__.gtcHungarian),
+/* harmony export */   gtcRomanian: () => (/* reexport safe */ _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__.gtcRomanian),
 /* harmony export */   hungarian: () => (/* reexport safe */ _hungarian__WEBPACK_IMPORTED_MODULE_2__.hungarian),
 /* harmony export */   romanian: () => (/* reexport safe */ _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian)
 /* harmony export */ });
@@ -17188,6 +17358,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hungarian__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hungarian */ "./src/js/utils/languages/hungarian.js");
 /* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
 /* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+/* harmony import */ var _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./GTC/gtcEnglish */ "./src/js/utils/languages/GTC/gtcEnglish.js");
+/* harmony import */ var _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GTC/gtcHungarian */ "./src/js/utils/languages/GTC/gtcHungarian.js");
+/* harmony import */ var _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GTC/gtcGerman */ "./src/js/utils/languages/GTC/gtcGerman.js");
+/* harmony import */ var _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./GTC/gtcRomanian */ "./src/js/utils/languages/GTC/gtcRomanian.js");
+
+
+
+
 
 
 
@@ -17204,6 +17382,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getGtcTranslation: () => (/* binding */ getGtcTranslation),
 /* harmony export */   getTranslation: () => (/* binding */ getTranslation)
 /* harmony export */ });
 /* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
@@ -17211,6 +17390,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/utils/constants/index.js");
 /* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
 /* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+/* harmony import */ var _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./GTC/gtcEnglish */ "./src/js/utils/languages/GTC/gtcEnglish.js");
+/* harmony import */ var _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GTC/gtcHungarian */ "./src/js/utils/languages/GTC/gtcHungarian.js");
+/* harmony import */ var _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GTC/gtcGerman */ "./src/js/utils/languages/GTC/gtcGerman.js");
+/* harmony import */ var _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./GTC/gtcRomanian */ "./src/js/utils/languages/GTC/gtcRomanian.js");
+
+
+
+
 
 
 
@@ -17228,6 +17415,20 @@ var getTranslation = function getTranslation(language, key) {
       return _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian[key];
     default:
       return _english__WEBPACK_IMPORTED_MODULE_0__.english[key];
+  }
+};
+var getGtcTranslation = function getGtcTranslation(language) {
+  switch (language) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ENGLISH:
+      return _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.HUNGARIAN:
+      return _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__.gtcHungarian;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.GERMAN:
+      return _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__.gtcGerman;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ROMANIAN:
+      return _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__.gtcRomanian;
+    default:
+      return _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish;
   }
 };
 
@@ -17250,6 +17451,7 @@ var romanian = {
   fgLanguage: "Limbă",
   fgAcknowledgments: "Mulțumiri",
   fgActive: "Activ",
+  fgGtc: "Termeni și condiții generale (TCG)",
   fgSettings: "Setări",
   fgOn: "Pornit",
   fgOff: "Oprit",

@@ -5,6 +5,7 @@ export const german = {
   fgLanguage: "Sprache",
   fgAcknowledgments: "Danksagungen",
   fgActive: "Aktiv",
+  fgGtc: "Allgemeine Geschäftsbedingungen (AGB)",
   fgSettings: "Einstellungen",
   fgOn: "An",
   fgOff: "Aus",

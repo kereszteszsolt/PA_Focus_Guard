@@ -320,6 +320,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FG_ACKNOWLEDGMENTS: () => (/* binding */ FG_ACKNOWLEDGMENTS),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
+/* harmony export */   FG_GTC: () => (/* binding */ FG_GTC),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
@@ -327,6 +328,7 @@ var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
 var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
+var FG_GTC = "fgGtc";
 
 /***/ }),
 

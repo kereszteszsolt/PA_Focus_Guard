@@ -5,6 +5,7 @@ export const romanian = {
   fgLanguage: "Limbă",
   fgAcknowledgments: "Mulțumiri",
   fgActive: "Activ",
+  fgGtc: "Termeni și condiții generale (TCG)",
   fgSettings: "Setări",
   fgOn: "Pornit",
   fgOff: "Oprit",

@@ -5,6 +5,7 @@ export const hungarian = {
   fgLanguage: "Nyelv",
   fgAcknowledgments: "Köszönetnyilvánítások",
   fgActive: "Aktív",
+  fgGtc: "Általános Szerződési Feltételek (ÁSZF)",
   fgSettings: "Beállítások",
   fgOn: "Be",
   fgOff: "Ki",

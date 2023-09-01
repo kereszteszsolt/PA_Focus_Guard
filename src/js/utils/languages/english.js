@@ -5,6 +5,7 @@ export const english = {
   fgLanguage: "Language",
   fgAcknowledgments: "Acknowledgments",
   fgActive: "Active",
+  fgGtc: "General Terms and Conditions (GTC)",
   fgSettings: "Settings",
   fgOn: "On",
   fgOff: "Off",

@@ -37,4 +37,11 @@ export const fgAppFunctionalities = [
     storageName: "",
     justDomain: false,
   },
+  {
+    funcTitle: "Gtc",
+    funcName: constants.componentNames.FG_GTC,
+    containerComponent: "Gtc",
+    storageName: "",
+    justDomain: false,
+  },
 ];

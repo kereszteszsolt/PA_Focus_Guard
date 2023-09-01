@@ -4,6 +4,7 @@ import * as config from "../js/config";
 import About from "./components/About.vue";
 import Language from "./components/Language.vue";
 import Acknowledgments from "./components/Acknowledgments.vue";
+import Gtc from "./components/Gtc.vue";
 import * as constants from "../js/utils/constants";
 import * as dataAccess from "../js/utils/scripts/dataAccess";
 import * as lang from "../js/utils/languages";
@@ -22,6 +23,7 @@ export default {
     About: About,
     Language: Language,
     Acknowledgments: Acknowledgments,
+    Gtc: Gtc,
   },
   data() {
     return {
