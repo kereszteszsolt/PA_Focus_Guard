@@ -26,7 +26,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //load default values when extension is loaded
 var fgAppData = {
   focusMode: false,
-  fgLanguage: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.languages.ENGLISH
+  fgLanguage: _utils_constants__WEBPACK_IMPORTED_MODULE_0__.languages.ENGLISH,
+  fgVersion: chrome.runtime.getManifest().version
 };
 var fgBlockedWebsitesByDomain = [];
 var fgBlockedWebsitesByUrl = [];
@@ -316,14 +317,18 @@ var blockOrAllow = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FG_ABOUT: () => (/* binding */ FG_ABOUT),
+/* harmony export */   FG_ACKNOWLEDGMENTS: () => (/* binding */ FG_ACKNOWLEDGMENTS),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
+/* harmony export */   FG_GTC: () => (/* binding */ FG_GTC),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
+var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
+var FG_GTC = "fgGtc";
 
 /***/ }),
 
@@ -406,7 +411,15 @@ var blockByDomainList = [{
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "youtube.com",
+  url: "instagram.com",
+  isMarkedForBlock: false,
+  isPermanentlyBlocked: false
+}, {
+  url: "reddit.com",
+  isMarkedForBlock: false,
+  isPermanentlyBlocked: false
+}, {
+  url: "tiktok.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
@@ -428,11 +441,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   blockByUrlList: () => (/* binding */ blockByUrlList)
 /* harmony export */ });
 var blockByUrlList = [{
-  url: "https://www.facebook.com/reel",
+  url: "https://www.facebook.com/watch",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "https://www.facebook.com/watch",
+  url: "https://www.instagram.com/stories",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
@@ -440,7 +453,7 @@ var blockByUrlList = [{
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "https://www.youtube.com/shorts",
+  url: "https://www.facebook.com/reel",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
@@ -448,7 +461,7 @@ var blockByUrlList = [{
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "https://www.instagram.com/stories",
+  url: "https://www.youtube.com/shorts",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }];

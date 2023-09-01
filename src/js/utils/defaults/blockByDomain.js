@@ -5,7 +5,17 @@ export const blockByDomainList = [
     isPermanentlyBlocked: false,
   },
   {
-    url: "youtube.com",
+    url: "instagram.com",
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false,
+  },
+  {
+    url: "reddit.com",
+    isMarkedForBlock: false,
+    isPermanentlyBlocked: false,
+  },
+  {
+    url: "tiktok.com",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },

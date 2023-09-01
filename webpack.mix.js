@@ -13,7 +13,7 @@ mix
   .copy("src/html/message.html", "dist/html")
   .copy("src/manifest.json", "dist")
   .copy("src/assets/pictures/focus.jpg", "dist/assets/pictures")
-  .copy("src/assets/icons/icon-80.png", "dist/assets/icons")
+  .copy("src/assets/icons/kzs-focus.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-youtube-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-facebook-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-instagram-48.png", "dist/assets/icons")
@@ -23,7 +23,9 @@ mix
   .copy("src/assets/icons/icons8-tiktok-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-patreon-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-paypal-48.png", "dist/assets/icons")
-  .copy("src/assets/icons/icons8-coffee-to-go-48.png", "dist/assets/icons")
+  .copy("src/assets/buttons/buy-me-a-coffee.png", "dist/assets/buttons")
+  .copy("src/assets/buttons/patreon.png", "dist/assets/buttons")
+  .copy("src/assets/buttons/paypal.png", "dist/assets/buttons")
   .options({
     processCssUrls: false,
   });

@@ -13,7 +13,9 @@ export default {
       fgAppData: {
         focusMode: false,
         fgLanguage: constants.languages.ENGLISH,
+        fgVersion: "",
       },
+      currentYear: new Date().getFullYear(),
     };
   },
   created() {
@@ -73,11 +75,53 @@ export default {
     <button class="button-primary button-settings" @click="settings">
       {{ lang.getTranslation(fgAppData.fgLanguage, "fgSettings") }}
     </button>
+
+    <div class="footer">
+      <hr />
+      <div class="about-paragraph footer-text">
+        <p>Focus Guard © {{ currentYear }} - Keresztes Zsolt</p>
+        <p>Free Software. Opensource.</p>
+        <p>Version: {{ fgAppData.fgVersion }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../scss/common.scss";
+
+.footer {
+  margin-top: auto;
+  color: $fg-primary-color;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: $fg-secondary-color;
+
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: normal;
+  font-size: 0.75rem;
+}
 
 .popup-container {
   display: flex;

@@ -1,11 +1,11 @@
 export const blockByUrlList = [
   {
-    url: "https://www.facebook.com/reel",
+    url: "https://www.facebook.com/watch",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },
   {
-    url: "https://www.facebook.com/watch",
+    url: "https://www.instagram.com/stories",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },
@@ -15,7 +15,7 @@ export const blockByUrlList = [
     isPermanentlyBlocked: false,
   },
   {
-    url: "https://www.youtube.com/shorts",
+    url: "https://www.facebook.com/reel",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },
@@ -25,7 +25,7 @@ export const blockByUrlList = [
     isPermanentlyBlocked: false,
   },
   {
-    url: "https://www.instagram.com/stories",
+    url: "https://www.youtube.com/shorts",
     isMarkedForBlock: false,
     isPermanentlyBlocked: false,
   },

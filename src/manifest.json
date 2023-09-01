@@ -1,14 +1,14 @@
 {
   "name": "Focus Guard",
   "version": "1.0.0",
-  "description": "Focus Guard for Google Chrome",
+  "description": "Focus Guard is a website blocker that helps you stay focused on your work or studies by blocking distracting websites.",
   "permissions": [
     "declarativeNetRequestWithHostAccess",
     "storage",
     "tabs"
   ],
   "icons": {
-    "128": "assets/icons/icon-80.png"
+    "128": "assets/icons/kzs-focus.png"
   },
   "host_permissions": [
     "<all_urls>"

@@ -117,19 +117,57 @@ export default {
   </div>
 </template>
 <style scoped lang="scss">
+@import "../../scss/common.scss";
+//color: $fg-primary-color;
 .language {
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
   .radio-group {
     .radio-row {
       margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+
+      input[type="radio"] {
+        margin-right: 0.5rem;
+        width: 16px;
+        height: 16px;
+        appearance: none;
+        border: 1px solid $fg-secondary-color;
+        border-radius: 50%;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          background-color 0.2s;
+
+        &:checked {
+          border-color: $fg-primary-color;
+          // background-color: $fg-primary-color;
+        }
+      }
+
+      input[type="radio"]::before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $fg-primary-color;
+        position: relative;
+        top: 0px;
+        left: 2px;
+        opacity: 0;
+        transform: scale(0);
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+
+      input[type="radio"]:checked::before {
+        opacity: 1;
+        transform: scale(1);
+      }
 
       label {
-        margin-left: 0.5rem;
+        margin: 0;
       }
     }
   }

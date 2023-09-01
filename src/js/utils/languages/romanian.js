@@ -3,7 +3,9 @@ export const romanian = {
   fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
   fgAbout: "Despre",
   fgLanguage: "Limbă",
+  fgAcknowledgments: "Mulțumiri",
   fgActive: "Activ",
+  fgGtc: "Termeni și condiții generale (TCG)",
   fgSettings: "Setări",
   fgOn: "Pornit",
   fgOff: "Oprit",
@@ -27,15 +29,15 @@ export const romanian = {
   aboutText_p2_1:
     "Extensia rulează offline doar la nivel local în browser și nu transferă niciun fel de date. \n" +
     'Setările și listele sunt salvate local în browser în "Local Storage". Codul sursă poate fi vizualizat făcând clic pe următorul link GitHub.',
-  aboutText_p2_2:
+  aboutText_p2_2_prodDescYTVideo:
     "Pentru mai multe informații despre cum funcționează, urmăriți următoarele videoclipuri YoutTube în engleză și maghiară.",
-  aboutText_p3:
+  aboutText_p3_socialMedia:
     "Dacă doriți să mă urmăriți pe rețelele de socializare, mă puteți găsi pe următoarele platforme:",
 
   aboutText_thanks:
     "Vă mulțumesc pentru interesul dumneavoastră și aștept cu nerăbdare să ne conectăm pe diferite platforme!",
 
-  donationText_p1:
+  donationText_p1_donation:
     "Dacă apreciați eforturile mele și doriți să mă sprijiniți, iată câteva idei despre cum puteți face acest lucru:",
 
   donationText_p1_1: "- Abonează-te la canalele mele YouTube.",
@@ -52,4 +54,12 @@ export const romanian = {
   donationText_p3_2:
     "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
   aboutText_p4: "Cu cele mai bune urări,",
+
+  aboutText_thanks_stock_photos: "Mulțumesc pentru fotografiile gratuite:",
+  aboutText_thanks_stock_icons: "Mulțumesc pentru pictogramele gratuite:",
+  aboutText_thanks_crash_course:
+    'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' +
+    "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
+  aboutText_thanks_free_apps:
+    'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.',
 };

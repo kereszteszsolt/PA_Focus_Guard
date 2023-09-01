@@ -1,9 +1,11 @@
 export const hungarian = {
   fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
   fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
-  fgAbout: "Névjegy",
+  fgAbout: "A bővítményről",
   fgLanguage: "Nyelv",
+  fgAcknowledgments: "Köszönetnyilvánítások",
   fgActive: "Aktív",
+  fgGtc: "Általános Szerződési Feltételek (ÁSZF)",
   fgSettings: "Beállítások",
   fgOn: "Be",
   fgOff: "Ki",
@@ -27,28 +29,38 @@ export const hungarian = {
   aboutText_p2_1:
     "A bővítmény offline csak lokálisan a böngészőben fut és nem továbbit adatot. \n" +
     'A beállításokat és listákat lokálisan a böngészőben a "Local Storage"-ba menti. A forráskód megtekinthető a következő GitHub linkre kattintva.',
-  aboutText_p2_2:
+  aboutText_p2_2_prodDescYTVideo:
     "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
-  aboutText_p3:
+  aboutText_p3_socialMedia:
     "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
 
   aboutText_thanks:
     "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
 
+  donationText_p1_donation:
+    "Ha értékeled az erőfeszítéseimet és támogatni szeretnél, íme néhány ötlet, hogyan teheted ezt meg:",
   donationText_p1_1: "- Iratkozz fel a YouTube csatornáimra.",
   donationText_p1_2:
     "- Kövess engem Instagramon, Facebookon, X (Twitter), Linkedin, Tiktok, GitHub",
-  donationText_p1_3: "- Tetszik, kommentáld, oszd meg a tartalmaimat",
+  donationText_p1_3: "- Like-old, kommentáld, oszd meg a tartalmaimat",
   donationText_p1_4: "- Beszélgess más követőkkel a kommentszekcióban",
-  donationText_p1_5: "- Adj néhány csillagot a github repóimnak",
+  donationText_p1_5: "- Adj néhány csillagot a github repo-imnak",
   donationText_p1_6:
     "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
 
-  donationText_p2:
+  donationText_p2_donation_financially:
     "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
 
   donationText_p3_1:
     "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékes és hálásan köszönöm a támogatásodat.",
   donationText_p3_2: "Köszönöm, hogy velem tartasz és támogatod törekvéseimet!",
   aboutText_p4: "Szívélyes üdvözlettel,",
+
+  aboutText_thanks_stock_photos: "Köszönöm az ingyenes stock fotókat:",
+  aboutText_thanks_stock_icons: "Köszönöm a ingyenes ikonokat:",
+  aboutText_thanks_crash_course:
+    'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' +
+    "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
+  aboutText_thanks_free_apps:
+    'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.',
 };

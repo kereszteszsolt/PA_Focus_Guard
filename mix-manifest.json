@@ -7,7 +7,7 @@
     "/dist/html/message.html": "/dist/html/message.html",
     "/dist/manifest.json": "/dist/manifest.json",
     "/dist/assets/pictures/focus.jpg": "/dist/assets/pictures/focus.jpg",
-    "/dist/assets/icons/icon-80.png": "/dist/assets/icons/icon-80.png",
+    "/dist/assets/icons/kzs-focus.png": "/dist/assets/icons/kzs-focus.png",
     "/dist/assets/icons/icons8-youtube-48.png": "/dist/assets/icons/icons8-youtube-48.png",
     "/dist/assets/icons/icons8-facebook-48.png": "/dist/assets/icons/icons8-facebook-48.png",
     "/dist/assets/icons/icons8-instagram-48.png": "/dist/assets/icons/icons8-instagram-48.png",
@@ -17,5 +17,7 @@
     "/dist/assets/icons/icons8-tiktok-48.png": "/dist/assets/icons/icons8-tiktok-48.png",
     "/dist/assets/icons/icons8-patreon-48.png": "/dist/assets/icons/icons8-patreon-48.png",
     "/dist/assets/icons/icons8-paypal-48.png": "/dist/assets/icons/icons8-paypal-48.png",
-    "/dist/assets/icons/icons8-coffee-to-go-48.png": "/dist/assets/icons/icons8-coffee-to-go-48.png"
+    "/dist/assets/buttons/buy-me-a-coffee.png": "/dist/assets/buttons/buy-me-a-coffee.png",
+    "/dist/assets/buttons/patreon.png": "/dist/assets/buttons/patreon.png",
+    "/dist/assets/buttons/paypal.png": "/dist/assets/buttons/paypal.png"
 }

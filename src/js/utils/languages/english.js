@@ -3,7 +3,9 @@ export const english = {
   fgBlockedWebsiteByUrl: "Blocked websites by URL",
   fgAbout: "About",
   fgLanguage: "Language",
+  fgAcknowledgments: "Acknowledgments",
   fgActive: "Active",
+  fgGtc: "General Terms and Conditions (GTC)",
   fgSettings: "Settings",
   fgOn: "On",
   fgOff: "Off",
@@ -27,15 +29,12 @@ export const english = {
   aboutText_p2_1:
     "The extension runs offline only locally in the browser and does not transfer any data.  \n" +
     'The settings and lists are saved locally in the browser to "Local Storage". The source code can be viewed by clicking on the following GitHub link. ',
-  aboutText_p2_2:
+  aboutText_p2_2_prodDescYTVideo:
     "For more information on how it works, watch the following YoutTube videos in English and Hungarian.",
-  aboutText_p3:
+  aboutText_p3_socialMedia:
     "If you want to follow me on social media, you can find me on the following sites:",
 
-  aboutText_thanks:
-    "Thank you for your interest, and I look forward to connecting with you on various platforms!",
-
-  donationText_p1:
+  donationText_p1_donation:
     "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
 
   donationText_p1_1: "- Subscribe to my YouTube channels.",
@@ -47,7 +46,7 @@ export const english = {
   donationText_p1_6:
     "-  Rate my apps and extensions on different platforms: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
 
-  donationText_p2:
+  donationText_p2_donation_financially:
     "If you'd like to contribute financially, you can choose from the following options:",
 
   donationText_p3_1:
@@ -55,4 +54,12 @@ export const english = {
   donationText_p3_2:
     "Thank you for being a part of my journey and supporting my endeavors!",
   aboutText_p4: "Warmest regards,",
+
+  aboutText_thanks_stock_photos: "Thanks for the free stock photos:",
+  aboutText_thanks_stock_icons: "Thanks for the free icons:",
+  aboutText_thanks_crash_course:
+    'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' +
+    "This course was a great help in starting to build extensions with Vue.",
+  aboutText_thanks_free_apps:
+    'The "Product Icon" is my work and I created it with the help of the free "Canva" & Gimp.',
 };

@@ -16817,8 +16817,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       fgAppData: {
         focusMode: false,
-        fgLanguage: _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.languages.ENGLISH
-      }
+        fgLanguage: _js_utils_constants__WEBPACK_IMPORTED_MODULE_1__.languages.ENGLISH,
+        fgVersion: ""
+      },
+      currentYear: new Date().getFullYear()
     };
   },
   created: function created() {
@@ -16880,6 +16882,19 @@ var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_3 = {
   "class": "on-off"
 };
+var _hoisted_4 = {
+  "class": "footer"
+};
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+});
+var _hoisted_6 = {
+  "class": "about-paragraph footer-text"
+};
+var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Free Software. Opensource.", -1 /* HOISTED */);
+});
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
@@ -16902,7 +16917,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.settings && $options.settings.apply($options, arguments);
     })
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgSettings")), 1 /* TEXT */)]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($data.fgAppData.fgLanguage, "fgSettings")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Focus Guard © " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentYear) + " - Keresztes Zsolt", 1 /* TEXT */), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Version: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.fgAppData.fgVersion), 1 /* TEXT */)])])]);
 }
 
 /***/ }),
@@ -16916,14 +16931,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FG_ABOUT: () => (/* binding */ FG_ABOUT),
+/* harmony export */   FG_ACKNOWLEDGMENTS: () => (/* binding */ FG_ACKNOWLEDGMENTS),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
+/* harmony export */   FG_GTC: () => (/* binding */ FG_GTC),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
 var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
 var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
+var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
+var FG_GTC = "fgGtc";
 
 /***/ }),
 
@@ -16991,6 +17010,202 @@ var FG_BLOCKED_ELEMENTS_ON_WEBSITES = "fgBlockedElementsOnWebsites";
 
 /***/ }),
 
+/***/ "./src/js/utils/languages/GTC/gtcEnglish.js":
+/*!**************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcEnglish.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcEnglish: () => (/* binding */ gtcEnglish)
+/* harmony export */ });
+var gtcEnglish = {
+  title: "General Terms and Conditions (GTC)",
+  preface: "Below you can find the General Terms and Conditions (hereinafter referred to as GTC) " + "applicable to the use of the software. By installing and using the software, you agree to the following terms.",
+  chapters: [{
+    title: "Free Usage:",
+    text: "The software is freely accessible, and no financial payment is required for its use."
+  }, {
+    title: "Developer Information:",
+    text: "The software has been created by an individual as a hobbyist developer, and no official corporate" + " entity is behind it. The developer operates the project entirely voluntarily."
+  }, {
+    title: "Local Data Storage:",
+    text: "URLs and domain lists collected by the software are stored exclusively in local storage within the user's browser." + " This data is not transmitted or shared with third parties and is solely necessary for the functioning of the software."
+  }, {
+    title: "Local Storage:",
+    text: "Local storage is a web browser feature that allows for the storage of small amounts of data locally on the user's device." + " This data is accessible only within the specific browser, and other websites or applications cannot access it."
+  }, {
+    title: "Disclaimer of Liability:",
+    text: "The creator and distributor of the software do not assume any responsibility for issues or potential damages resulting" + " from the use of the software."
+  }, {
+    title: "Data Collection by Third Parties:",
+    text: "It is possible that third parties may engage in data collection (e.g., through the software's distribution or donation platform)." + " For such data collection, the user is subject to the data protection policies of the respective platforms."
+  }, {
+    title: "Optional Donations:",
+    text: "Donations are entirely optional and come with no advantages or disadvantages. Donors express their gratitude," + " and donations support the developer and their work."
+  }, {
+    title: "Free Use and Customization:",
+    text: "Anyone is free to use, customize, and modify the software according to their own preferences."
+  }, {
+    title: "Legal Compliance:",
+    text: "While using the software, all users are obligated to adhere to applicable laws and regulations."
+  }, {
+    title: "User Modifications:",
+    text: "If a user modifies the software for their own use, they are required to replace the application icon" + " and any elements referring to the distributor or original developer. If the user distributes the modified version," + " they must do so under their own name, including on social media pages, donation pages, and signature areas.(eg. About page)" + " If the user wishes to attribute the original source of the version, it is welcomed."
+  }],
+  afterText: ["Please be aware that decisions regarding the use of the software are made at your own discretion." + " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.", "If you have any questions or feedback about the software, I welcome your input." + " Contact information can be found on the About / Github page.", "The General Terms and Conditions will come into effect on September 1, 2023, and will remain in effect unless" + " later amended or revoked.", "Thank you for your interest in the software, and enjoy using it!"]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/GTC/gtcGerman.js":
+/*!*************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcGerman.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcGerman: () => (/* binding */ gtcGerman)
+/* harmony export */ });
+var gtcGerman = {
+  title: "Allgemeine Geschäftsbedingungen (AGB)",
+  preface: "Im Folgenden finden Sie die Allgemeinen Geschäftsbedingungen (nachfolgend als AGB bezeichnet), die für die Verwendung der Software gelten." + " Durch die Installation und Nutzung der Software akzeptieren Sie die folgenden Bedingungen.",
+  chapters: [{
+    title: "Kostenlose Nutzung:",
+    text: "Die Software ist frei zugänglich, und es ist keine finanzielle Zahlung für die Nutzung erforderlich."
+  }, {
+    title: "Entwicklerinformationen:",
+    text: "Die Software wurde von einer Einzelperson als Hobby-Entwickler erstellt, und es steht kein offizielles" + " Unternehmensorgan dahinter. Der Entwickler betreibt das Projekt vollständig ehrenamtlich."
+  }, {
+    title: "Lokale Datenspeicherung:",
+    text: "Die von der Software gesammelten URLs und Domain-Listen werden ausschließlich im lokalen Speicher innerhalb des Browsers des Benutzers gespeichert." + " Diese Daten werden nicht an Dritte übertragen oder mit ihnen geteilt und dienen ausschließlich dem reibungslosen Betrieb der Software."
+  }, {
+    title: "Lokaler Speicher:",
+    text: "Lokaler Speicher ist eine Funktion des Webbrowsers, die die Speicherung kleiner Datenmengen lokal auf dem Gerät des Benutzers ermöglicht." + " Diese Daten sind nur innerhalb des spezifischen Browsers zugänglich, und andere Websites oder Anwendungen können nicht darauf zugreifen."
+  }, {
+    title: "Haftungsausschluss:",
+    text: "Der Ersteller und Vertrieb der Software übernehmen keine Verantwortung für Probleme oder mögliche Schäden," + " die sich aus der Verwendung der Software ergeben."
+  }, {
+    title: "Datenwiedergabe durch Dritte:",
+    text: "Es ist möglich, dass Dritte Datenerfassung betreiben (z. B. über die Vertriebs- oder Spendenplattform der Software)." + " Für solche Datenerfassungen unterliegt der Benutzer den Datenschutzrichtlinien der jeweiligen Plattformen."
+  }, {
+    title: "Optionale Spenden:",
+    text: "Spenden sind völlig optional und gehen weder mit Vor- noch Nachteilen einher. Spender drücken ihre Dankbarkeit aus," + " und Spenden unterstützen den Entwickler und seine Arbeit."
+  }, {
+    title: "Freie Nutzung und Anpassung:",
+    text: "Jeder kann die Software frei verwenden, anpassen und modifizieren, um seinen eigenen Präferenzen gerecht zu werden."
+  }, {
+    title: "Rechtliche Einhaltung:",
+    text: "Bei der Verwendung der Software sind alle Benutzer verpflichtet, geltende Gesetze und Vorschriften einzuhalten."
+  }, {
+    title: "Benutzermodifikationen:",
+    text: "Wenn ein Benutzer die Software für seine eigenen Zwecke modifiziert, ist er verpflichtet, das Anwendungssymbol" + " und alle Elemente, die auf den Distributor oder den ursprünglichen Entwickler hinweisen, zu ersetzen. Wenn der Benutzer die modifizierte Version" + ' verbreitet, muss er dies unter seinem eigenen Namen tun, einschließlich auf Social-Media-Seiten, Spendenplattformen und in Signaturbereichen (z.b. "Über" site).' + " Wenn der Benutzer die ursprüngliche Quelle der Version angeben möchte, wird dies gerne begrüßt."
+  }],
+  afterText: ["Bitte beachten Sie, dass Entscheidungen im Zusammenhang mit der Verwendung der Software in Ihrem eigenen Ermessen getroffen werden." + " Wenn Sie mit den in den AGB festgelegten Bedingungen nicht einverstanden sind, wird empfohlen, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Feedback zur Software haben, freue ich mich über Ihre Rückmeldung." + ' Kontaktinformationen finden Sie auf der "Über"- / "Github"-Seite.', "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, sofern sie nicht später geändert oder aufgehoben werden.", "Vielen Dank für Ihr Interesse an der Software, und viel Spaß bei der Verwendung!"]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/GTC/gtcHungarian.js":
+/*!****************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcHungarian.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcHungarian: () => (/* binding */ gtcHungarian)
+/* harmony export */ });
+var gtcHungarian = {
+  title: "Általános Szerződési Feltételek (Á.SZ.F.)",
+  preface: "Az alábbiakban megtalálhatók a szoftver használatára vonatkozó Általános Szerződési Feltételek " + "(a továbbiakban: Á.SZ.F.). A szoftver telepítésével és használatával az alábbi feltételeket elfogadja.",
+  chapters: [{
+    title: "Ingyenes Használat:",
+    text: "A szoftver ingyenesen hozzáférhető, és nem szükséges anyagi kifizetés a használatához."
+  }, {
+    title: "Fejlesztői Információk:",
+    text: "A szoftvert egy magánszemély, fejlesztői hobbiként készítette, és semmilyen hivatalos vállalati" + " szervezet nem áll mögötte. A fejlesztő teljesen önkéntesen működteti a projektet."
+  }, {
+    title: "Adatok Lokális Tárolása:",
+    text: "A szoftver által gyűjtött URL-ek és domain listák kizárólag lokális tárolásra kerülnek, azaz " + "a felhasználó saját böngészőjének local storage funkciójában. Ezek az adatok nem kerülnek továbbításra" + " vagy megosztásra harmadik felekkel, és kizárólag a szoftver működéséhez szükségesek."
+  }, {
+    title: "Local Storage:",
+    text: 'A "local storage" (lokális tárolás) egy olyan webböngésző funkció, amely lehetővé teszi,' + " hogy kis mennyiségű adatot tároljunk helyileg a felhasználó eszközén. Ez az adat csak a konkrét" + " böngészőben érhető el, és más weboldalak vagy alkalmazások nem férhetnek hozzá. "
+  }, {
+    title: "Felelősségkizárás:",
+    text: "A szoftver készítője és terjesztője nem vállal semmilyen felelősséget a szoftver használatából eredő" + " problémákért vagy esetleges károkért."
+  }, {
+    title: "Adatgyűjtés Harmadik Felek Által: ",
+    text: "Lehetséges, hogy harmadik felek adatgyűjtést végeznek (például a szoftver terjesztési vagy adományozási" + "platformján keresztül). Az ilyen adatgyűjtésért a felhasználót az adott platformok saját adatvédelmi irányelvei terhelik."
+  }, {
+    title: "Adakozás Opcionális: ",
+    text: "Az adakozás teljes mértékben opcionális tevékenység, és nem jár semmilyen előnnyel vagy hátránnyal. " + "Az adakozók hálájukat fejezik ki, és az adományok a fejlesztőt és teljes munkásságát támogatják."
+  }, {
+    title: "Szabad Felhasználás és Testreszabás: ",
+    text: "A szoftvert bárki szabadon használhatja, testre szabhatja és módosíthatja a saját preferenciáinak megfelelően."
+  }, {
+    title: "Jogi Megfelelés:",
+    text: "A szoftver használata során kötelessége minden felhasználónak betartani a vonatkozó jogszabályokat és szabályozásokat."
+  }, {
+    title: "Felhasználói Módosítások: ",
+    text: "Amennyiben a felhasználó módosítja a szoftvert saját felhasználásra, köteles kicserélni az alkalmazás" + " ikonját és minden olyan elemet, amely a terjesztőre vagy eredeti fejlesztőre utal. Amennyiben a felhasználó" + " terjeszti a módosított verziót, köteles a szoftvert saját nevében terjeszteni, beleértve a social media" + ' oldalak, adományozó oldalak és aláírás területeket is (pl. "A bővítményről" oldal). Amennyiben a felhasználó szeretné megjelölni a ' + "változat eredeti forrását, azt szívesen fogadom."
+  }],
+  afterText: ["Felhívom a figyelmet, hogy a szoftver használatával kapcsolatos döntések saját felelősségre történnek. " + "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javaslom," + " hogy ne telepítse vagy ne használja a szoftvert.", "Amennyiben kérdése vagy észrevétele van a szoftverrel kapcsolatban, örömmel veszem a visszajelzéseit." + ' A kapcsolatfelvételi lehetőségek megtalálhatók a "A bővítményről" oldalon / Github oldalon.', "Az Általános Szerződési Feltételek 2023. szeptember 1-jétől lépnek életbe és hatályban maradnak, kivéve," + " ha azokat később módosításra vagy visszavonásra kerülnek.", "Köszönöm az érdeklődést a szoftver iránt, és jó felhasználást kívánok!"]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/GTC/gtcRomanian.js":
+/*!***************************************************!*\
+  !*** ./src/js/utils/languages/GTC/gtcRomanian.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gtcRomanian: () => (/* binding */ gtcRomanian)
+/* harmony export */ });
+var gtcRomanian = {
+  title: "Termeni și Condiții Generale (TCG)",
+  preface: "Mai jos găsiți Termenii și Condițiile Generale (denumiți în continuare TCG) aplicabili utilizării software-ului." + " Prin instalarea și utilizarea software-ului, sunteți de acord cu următoarele condiții.",
+  chapters: [{
+    title: "Utilizare Gratuită:",
+    text: "Software-ul este gratuit și nu este necesară nicio plată financiară pentru utilizare."
+  }, {
+    title: "Informații despre Dezvoltator:",
+    text: "Software-ul a fost creat de o persoană în calitate de dezvoltator pasionat, fără a exista o entitate corporativă oficială în spatele său." + " Dezvoltatorul operează proiectul în întregime voluntar."
+  }, {
+    title: "Stocare Locală a Datelor:",
+    text: "URL-urile și listele de domenii colectate de software sunt stocate exclusiv local în interiorul browser-ului utilizatorului." + " Aceste date nu sunt transmise sau partajate cu terțe părți și sunt necesare doar pentru funcționarea software-ului."
+  }, {
+    title: "Stocare Locală:",
+    text: "Stocarea locală este o funcționalitate a browser-ului web care permite stocarea unor cantități mici de date local pe dispozitivul utilizatorului." + " Aceste date sunt accesibile doar în cadrul browser-ului specific și nu pot fi accesate de alte site-uri web sau aplicații."
+  }, {
+    title: "Renunțare la Răspundere:",
+    text: "Creatorul și distribuitorul software-ului nu își asumă nicio responsabilitate pentru probleme sau posibile daune rezultate din utilizarea software-ului."
+  }, {
+    title: "Colectare Date de Către Terți:",
+    text: "Este posibil ca terțe părți să efectueze colectarea de date (de exemplu, prin intermediul platformei de distribuție sau donații a software-ului)." + " Pentru astfel de colectări de date, utilizatorul este supus politicilor de protecție a datelor ale platformelor respective."
+  }, {
+    title: "Donații Optionale:",
+    text: "Donațiile sunt complet opționale și nu vin cu avantaje sau dezavantaje. Donatorii își exprimă recunoștința," + " iar donațiile susțin dezvoltatorul și munca sa."
+  }, {
+    title: "Utilizare și Personalizare Liberă:",
+    text: "Oricine are dreptul să utilizeze, să personalizeze și să modifice software-ul în funcție de propriile preferințe."
+  }, {
+    title: "Conformitate Legală:",
+    text: "La utilizarea software-ului, toți utilizatorii au obligația de a respecta legile și reglementările aplicabile."
+  }, {
+    title: "Modificări Efectuate de Utilizatori:",
+    text: "Dacă un utilizator efectuează modificări asupra software-ului în scopul propriu, el este obligat să înlocuiască icon-ul aplicației" + " și orice elemente care se referă la distribuitorul sau dezvoltatorul original. Dacă utilizatorul distribuie versiunea modificată," + ' acesta trebuie să o facă sub numele său propriu, inclusiv pe paginile de social media, paginile de donații și în zonele pentru semnături.(e.x. pagina "Despre")' + " Dacă utilizatorul dorește să atribuie sursa originală a versiunii, acest lucru este binevenit."
+  }],
+  afterText: ["Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." + " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.", "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." + ' Informațiile de contact se găsesc pe pagina de "Despre" / "Github".', "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" + " în care vor fi ulterior modificați sau revocați.", "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!"]
+};
+
+/***/ }),
+
 /***/ "./src/js/utils/languages/english.js":
 /*!*******************************************!*\
   !*** ./src/js/utils/languages/english.js ***!
@@ -17006,7 +17221,9 @@ var english = {
   fgBlockedWebsiteByUrl: "Blocked websites by URL",
   fgAbout: "About",
   fgLanguage: "Language",
+  fgAcknowledgments: "Acknowledgments",
   fgActive: "Active",
+  fgGtc: "General Terms and Conditions (GTC)",
   fgSettings: "Settings",
   fgOn: "On",
   fgOff: "Off",
@@ -17023,20 +17240,23 @@ var english = {
   duplicatedUrl: "Duplicated url!",
   aboutText_p1: "This add-on will help you maintain your focus and save you from the lure of entertainment sites. \n" + "For best effect, keep it active at all times and only turn it off when you have entertainment scheduled.\n" + "As long as it's active, the extension will display an image instead of the forbidden page to remind you to focus on your work.",
   aboutText_p2_1: "The extension runs offline only locally in the browser and does not transfer any data.  \n" + 'The settings and lists are saved locally in the browser to "Local Storage". The source code can be viewed by clicking on the following GitHub link. ',
-  aboutText_p2_2: "For more information on how it works, watch the following YoutTube videos in English and Hungarian.",
-  aboutText_p3: "If you want to follow me on social media, you can find me on the following sites:",
-  aboutText_thanks: "Thank you for your interest, and I look forward to connecting with you on various platforms!",
-  donationText_p1: "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
+  aboutText_p2_2_prodDescYTVideo: "For more information on how it works, watch the following YoutTube videos in English and Hungarian.",
+  aboutText_p3_socialMedia: "If you want to follow me on social media, you can find me on the following sites:",
+  donationText_p1_donation: "If you appreciate my efforts and want to support me, here are some ideas on how you can do so:",
   donationText_p1_1: "- Subscribe to my YouTube channels.",
   donationText_p1_2: "- Follow me on Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
   donationText_p1_3: "-  Like, comment, share my content",
   donationText_p1_4: "-  Talk to other followers in the comment section",
   donationText_p1_5: "-  Give some stars to my github repos",
   donationText_p1_6: "-  Rate my apps and extensions on different platforms: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
-  donationText_p2: "If you'd like to contribute financially, you can choose from the following options:",
+  donationText_p2_donation_financially: "If you'd like to contribute financially, you can choose from the following options:",
   donationText_p3_1: "Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your involvement.",
   donationText_p3_2: "Thank you for being a part of my journey and supporting my endeavors!",
-  aboutText_p4: "Warmest regards,"
+  aboutText_p4: "Warmest regards,",
+  aboutText_thanks_stock_photos: "Thanks for the free stock photos:",
+  aboutText_thanks_stock_icons: "Thanks for the free icons:",
+  aboutText_thanks_crash_course: 'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue.",
+  aboutText_thanks_free_apps: 'The "Product Icon" is my work and I created it with the help of the free "Canva" & Gimp.'
 };
 
 /***/ }),
@@ -17056,7 +17276,9 @@ var german = {
   fgBlockedWebsiteByUrl: "Gesperrte Websites nach URL",
   fgAbout: "Über",
   fgLanguage: "Sprache",
+  fgAcknowledgments: "Danksagungen",
   fgActive: "Aktiv",
+  fgGtc: "Allgemeine Geschäftsbedingungen (AGB)",
   fgSettings: "Einstellungen",
   fgOn: "An",
   fgOff: "Aus",
@@ -17073,19 +17295,24 @@ var german = {
   duplicatedUrl: "Doppelte URL!",
   aboutText_p1: "Dieses Add-on hilft Ihnen, sich zu konzentrieren, und bewahrt Sie vor den Verlockungen von Unterhaltungsseiten. \n" + "Die beste Wirkung erzielen Sie, wenn Sie die Erweiterung immer aktiviert lassen und sie nur dann ausschalten, wenn Sie Unterhaltungsprogramme geplant haben.\n" + "Solange sie aktiv ist, zeigt die Erweiterung ein Bild anstelle der verbotenen Seite an, um Sie daran zu erinnern, sich auf Ihre Arbeit zu konzentrieren.",
   aboutText_p2_1: "Die Erweiterung läuft offline nur lokal im Browser und überträgt keine Daten.  \n" + 'Die Einstellungen und Listen werden lokal im Browser in "Local Storage" gespeichert. Der Quellcode kann über den folgenden GitHub-Link eingesehen werden.',
-  aboutText_p2_2: "Weitere Informationen zur Funktionsweise finden Sie in den folgenden YoutTube-Videos auf Englisch und Ungarisch.",
-  aboutText_p3: "Wenn Sie mir in den sozialen Medien folgen möchten, finden Sie mich auf den folgenden Plattformen:",
+  aboutText_p2_2_prodDescYTVideo: "Weitere Informationen zur Funktionsweise finden Sie in den folgenden YoutTube-Videos auf Englisch und Ungarisch.",
+  aboutText_p3_socialMedia: "Wenn Sie mir in den sozialen Medien folgen möchten, finden Sie mich auf den folgenden Plattformen:",
   aboutText_thanks: "Vielen Dank für Ihr Interesse. Ich freue mich darauf, auf verschiedenen Plattformen mit Ihnen in Kontakt zu treten!",
+  donationText_p1_donation: "Wenn Sie meine Bemühungen zu schätzen wissen und mich unterstützen möchten, finden Sie hier einige Ideen, wie Sie dies tun können:",
   donationText_p1_1: "- Abonnieren Sie meine YouTube-Kanäle.",
   donationText_p1_2: "- Folgen Sie mir auf Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
   donationText_p1_3: "- Like, kommentiere, teile meine Inhalte",
   donationText_p1_4: "- Sprich mit anderen Followern im Kommentarbereich",
   donationText_p1_5: "- Gib meinen Github-Repos ein paar Sterne",
   donationText_p1_6: "- Bewerten Sie meine Apps und Erweiterungen auf verschiedenen Plattformen: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, usw.",
-  donationText_p2: "Wenn du finanziell dazu beitragen möchtest, stehen dir folgende Optionen zur Verfügung:",
+  donationText_p2_donation_financially: "Wenn du finanziell dazu beitragen möchtest, stehen dir folgende Optionen zur Verfügung:",
   donationText_p3_1: "Deine Unterstützung, in welcher Form auch immer, wird sehr geschätzt, und ich möchte dir herzlich für deine Beteiligung danken.",
   donationText_p3_2: "Danke, dass du ein Teil meiner Reise bist und meine Bemühungen unterstützt!",
-  aboutText_p4: "Mit freundlichen Grüßen,"
+  aboutText_p4: "Mit freundlichen Grüßen,",
+  aboutText_thanks_stock_photos: "Danke für die kostenlosen Stockfotos:",
+  aboutText_thanks_stock_icons: "Danke für die kostenlosen Icons:",
+  aboutText_thanks_crash_course: 'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' + "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen.",
+  aboutText_dankt_free_apps: 'Das "Produkt-Icon" ist mein Werk und ich habe es mit Hilfe der kostenlosen "Canva" & Gimp erstellt.'
 };
 
 /***/ }),
@@ -17103,9 +17330,11 @@ __webpack_require__.r(__webpack_exports__);
 var hungarian = {
   fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
   fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
-  fgAbout: "Névjegy",
+  fgAbout: "A bővítményről",
   fgLanguage: "Nyelv",
+  fgAcknowledgments: "Köszönetnyilvánítások",
   fgActive: "Aktív",
+  fgGtc: "Általános Szerződési Feltételek (ÁSZF)",
   fgSettings: "Beállítások",
   fgOn: "Be",
   fgOff: "Ki",
@@ -17122,19 +17351,24 @@ var hungarian = {
   duplicatedUrl: "Az URL már létezik!",
   aboutText_p1: "Ez a bővítmény segít megtartani a fókusz állapotát és megment a szórakoztató oldalak csábításától. \n" + "A legjobb hatás érdekében tartsd mindig aktívan és csak akkor kapcsold ki, ha be van tervezve a szórakozás.\n" + "A bővítmény amíg aktív egy képet fog megjeleníteni a tiltott oldal helyett ami emlékeztet, hogy a munkádra fókuszálj.",
   aboutText_p2_1: "A bővítmény offline csak lokálisan a böngészőben fut és nem továbbit adatot. \n" + 'A beállításokat és listákat lokálisan a böngészőben a "Local Storage"-ba menti. A forráskód megtekinthető a következő GitHub linkre kattintva.',
-  aboutText_p2_2: "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
-  aboutText_p3: "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
+  aboutText_p2_2_prodDescYTVideo: "A további  működéssel kapcsolatos információt találsz a következő YoutTube videókban, angolul és magyarul.",
+  aboutText_p3_socialMedia: "Ha szeretnél követni a közösségi médiában, a következő platformokon találsz meg:",
   aboutText_thanks: "Köszönöm, hogy érdeklődsz, és várom, hogy csatlakozz hozzám a különböző platformokon!",
+  donationText_p1_donation: "Ha értékeled az erőfeszítéseimet és támogatni szeretnél, íme néhány ötlet, hogyan teheted ezt meg:",
   donationText_p1_1: "- Iratkozz fel a YouTube csatornáimra.",
   donationText_p1_2: "- Kövess engem Instagramon, Facebookon, X (Twitter), Linkedin, Tiktok, GitHub",
-  donationText_p1_3: "- Tetszik, kommentáld, oszd meg a tartalmaimat",
+  donationText_p1_3: "- Like-old, kommentáld, oszd meg a tartalmaimat",
   donationText_p1_4: "- Beszélgess más követőkkel a kommentszekcióban",
-  donationText_p1_5: "- Adj néhány csillagot a github repóimnak",
+  donationText_p1_5: "- Adj néhány csillagot a github repo-imnak",
   donationText_p1_6: "- Értékeld az alkalmazásaimat és bővítményeimet különböző platformokon: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store stb.",
-  donationText_p2: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
+  donationText_p2_donation_financially: "Ha anyagi támogatással is szeretnél segíteni, választhatsz az alábbi lehetőségek közül:",
   donationText_p3_1: "A támogatásod, bármilyen formában is nyújtsd, rendkívüli mértékben értékes és hálásan köszönöm a támogatásodat.",
   donationText_p3_2: "Köszönöm, hogy velem tartasz és támogatod törekvéseimet!",
-  aboutText_p4: "Szívélyes üdvözlettel,"
+  aboutText_p4: "Szívélyes üdvözlettel,",
+  aboutText_thanks_stock_photos: "Köszönöm az ingyenes stock fotókat:",
+  aboutText_thanks_stock_icons: "Köszönöm a ingyenes ikonokat:",
+  aboutText_thanks_crash_course: 'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' + "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
+  aboutText_thanks_free_apps: 'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.'
 };
 
 /***/ }),
@@ -17149,7 +17383,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   english: () => (/* reexport safe */ _english__WEBPACK_IMPORTED_MODULE_1__.english),
 /* harmony export */   german: () => (/* reexport safe */ _german__WEBPACK_IMPORTED_MODULE_3__.german),
+/* harmony export */   getGtcTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getGtcTranslation),
 /* harmony export */   getTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTranslation),
+/* harmony export */   gtcEnglish: () => (/* reexport safe */ _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish),
+/* harmony export */   gtcGerman: () => (/* reexport safe */ _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__.gtcGerman),
+/* harmony export */   gtcHungarian: () => (/* reexport safe */ _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__.gtcHungarian),
+/* harmony export */   gtcRomanian: () => (/* reexport safe */ _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__.gtcRomanian),
 /* harmony export */   hungarian: () => (/* reexport safe */ _hungarian__WEBPACK_IMPORTED_MODULE_2__.hungarian),
 /* harmony export */   romanian: () => (/* reexport safe */ _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian)
 /* harmony export */ });
@@ -17158,6 +17397,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hungarian__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hungarian */ "./src/js/utils/languages/hungarian.js");
 /* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
 /* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+/* harmony import */ var _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./GTC/gtcEnglish */ "./src/js/utils/languages/GTC/gtcEnglish.js");
+/* harmony import */ var _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GTC/gtcHungarian */ "./src/js/utils/languages/GTC/gtcHungarian.js");
+/* harmony import */ var _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GTC/gtcGerman */ "./src/js/utils/languages/GTC/gtcGerman.js");
+/* harmony import */ var _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./GTC/gtcRomanian */ "./src/js/utils/languages/GTC/gtcRomanian.js");
+
+
+
+
 
 
 
@@ -17174,6 +17421,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getGtcTranslation: () => (/* binding */ getGtcTranslation),
 /* harmony export */   getTranslation: () => (/* binding */ getTranslation)
 /* harmony export */ });
 /* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
@@ -17181,6 +17429,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/js/utils/constants/index.js");
 /* harmony import */ var _german__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./german */ "./src/js/utils/languages/german.js");
 /* harmony import */ var _romanian__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./romanian */ "./src/js/utils/languages/romanian.js");
+/* harmony import */ var _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./GTC/gtcEnglish */ "./src/js/utils/languages/GTC/gtcEnglish.js");
+/* harmony import */ var _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GTC/gtcHungarian */ "./src/js/utils/languages/GTC/gtcHungarian.js");
+/* harmony import */ var _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GTC/gtcGerman */ "./src/js/utils/languages/GTC/gtcGerman.js");
+/* harmony import */ var _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./GTC/gtcRomanian */ "./src/js/utils/languages/GTC/gtcRomanian.js");
+
+
+
+
 
 
 
@@ -17198,6 +17454,20 @@ var getTranslation = function getTranslation(language, key) {
       return _romanian__WEBPACK_IMPORTED_MODULE_4__.romanian[key];
     default:
       return _english__WEBPACK_IMPORTED_MODULE_0__.english[key];
+  }
+};
+var getGtcTranslation = function getGtcTranslation(language) {
+  switch (language) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ENGLISH:
+      return _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.HUNGARIAN:
+      return _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__.gtcHungarian;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.GERMAN:
+      return _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__.gtcGerman;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ROMANIAN:
+      return _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__.gtcRomanian;
+    default:
+      return _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish;
   }
 };
 
@@ -17218,7 +17488,9 @@ var romanian = {
   fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
   fgAbout: "Despre",
   fgLanguage: "Limbă",
+  fgAcknowledgments: "Mulțumiri",
   fgActive: "Activ",
+  fgGtc: "Termeni și condiții generale (TCG)",
   fgSettings: "Setări",
   fgOn: "Pornit",
   fgOff: "Oprit",
@@ -17235,10 +17507,10 @@ var romanian = {
   duplicatedUrl: "URL duplicat!",
   aboutText_p1: "Acest add-on vă ajută să vă păstrați concentrarea și vă scutește de tentația site-urilor de divertisment. \n" + "Pentru un efect optim, mențineți-l activ în permanență și dezactivați-l doar atunci când aveți programată o emisiune de divertisment.\n" + "Atât timp cât este activă, extensia va afișa o imagine în locul paginii interzise pentru a vă reaminti să vă concentrați asupra muncii dumneavoastră.",
   aboutText_p2_1: "Extensia rulează offline doar la nivel local în browser și nu transferă niciun fel de date. \n" + 'Setările și listele sunt salvate local în browser în "Local Storage". Codul sursă poate fi vizualizat făcând clic pe următorul link GitHub.',
-  aboutText_p2_2: "Pentru mai multe informații despre cum funcționează, urmăriți următoarele videoclipuri YoutTube în engleză și maghiară.",
-  aboutText_p3: "Dacă doriți să mă urmăriți pe rețelele de socializare, mă puteți găsi pe următoarele platforme:",
+  aboutText_p2_2_prodDescYTVideo: "Pentru mai multe informații despre cum funcționează, urmăriți următoarele videoclipuri YoutTube în engleză și maghiară.",
+  aboutText_p3_socialMedia: "Dacă doriți să mă urmăriți pe rețelele de socializare, mă puteți găsi pe următoarele platforme:",
   aboutText_thanks: "Vă mulțumesc pentru interesul dumneavoastră și aștept cu nerăbdare să ne conectăm pe diferite platforme!",
-  donationText_p1: "Dacă apreciați eforturile mele și doriți să mă sprijiniți, iată câteva idei despre cum puteți face acest lucru:",
+  donationText_p1_donation: "Dacă apreciați eforturile mele și doriți să mă sprijiniți, iată câteva idei despre cum puteți face acest lucru:",
   donationText_p1_1: "- Abonează-te la canalele mele YouTube.",
   donationText_p1_2: "- Urmăriți-mă pe Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub",
   donationText_p1_3: "- Dă like, comentează, distribuie conținutul meu",
@@ -17247,7 +17519,11 @@ var romanian = {
   donationText_p1_6: "- Evaluați aplicațiile și extensiile mele pe diferite platforme: Chrome Web Store, Google Play Store, Apple App Store, Microsoft Store, etc.",
   donationText_p3_1: "Sprijinul tău, în orice formă, este extrem de apreciat, și doresc să îți mulțumesc din suflet pentru implicarea ta.",
   donationText_p3_2: "Îți mulțumesc că faci parte din călătoria mea și sprijini eforturile mele!",
-  aboutText_p4: "Cu cele mai bune urări,"
+  aboutText_p4: "Cu cele mai bune urări,",
+  aboutText_thanks_stock_photos: "Mulțumesc pentru fotografiile gratuite:",
+  aboutText_thanks_stock_icons: "Mulțumesc pentru pictogramele gratuite:",
+  aboutText_thanks_crash_course: 'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' + "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
+  aboutText_thanks_free_apps: 'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.'
 };
 
 /***/ }),
@@ -17320,7 +17596,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-b64ea48c]:hover {\n  background-color: #81661c;\n}\n.popup-container[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  background-color: floralwhite;\n  padding: 0;\n  color: #574513;\n  font-weight: bold;\n  align-items: center;\n  height: 100vh;\n}\n.on-off[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  padding: 1rem;\n  width: 100%;\n}\n.p-title[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  justify-content: space-around;\n  font-size: 1.5rem;\n  padding: 0.25rem;\n}\n.button-success[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success[data-v-b64ea48c]:hover {\n  border-left: 0px;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  border-right: 0px;\n}\n.button-success-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #2ecc71;\n  border-color: #2ecc71;\n  width: 100%;\n  border-left: 0px;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-danger-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #e74c3c;\n  border-color: #e74c3c;\n  width: 100%;\n  border-right: 0px;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-settings[data-v-b64ea48c] {\n  width: auto;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*[data-v-b64ea48c] {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nhtml[data-v-b64ea48c] {\n  background-color: #f4f1e8; /* Set a light beige color as the base background */\n  background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px); /* Create the faded yellow-brown paper texture using linear gradients */\n  background-size: 20px 20px; /* Adjust the size of the paper texture cells */\n  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow to the paper texture */\n  height: 100vh;\n}\n.container[data-v-b64ea48c] {\n  max-width: 100%;\n  padding-right: 1rem;\n  padding-left: 1rem;\n  margin-top: 0;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 576px) {\n.container[data-v-b64ea48c] {\n    max-width: 540px;\n}\n}\n@media (min-width: 768px) {\n.container[data-v-b64ea48c] {\n    max-width: 720px;\n}\n}\n@media (min-width: 992px) {\n.container[data-v-b64ea48c] {\n    max-width: 960px;\n}\n}\n@media (min-width: 1200px) {\n.container[data-v-b64ea48c] {\n    max-width: 1140px;\n}\n}\n.button-success[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #2ecc71;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #2ecc71 0.3s ease;\n  border: 2px solid #2ecc71;\n}\n.button-success[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #e74c3c;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #e74c3c 0.3s ease;\n  border: 2px solid #e74c3c;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-primary[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: #574513;\n  color: floralwhite;\n  cursor: pointer;\n  transition: #574513 0.3s ease;\n  border: 2px solid #574513;\n}\n.button-primary[data-v-b64ea48c]:hover {\n  background-color: #81661c;\n}\n.title[data-v-b64ea48c] {\n  font-size: 1.5rem;\n  font-weight: bold;\n  margin-bottom: 0.5rem;\n}\n.footer[data-v-b64ea48c] {\n  margin-top: auto;\n  color: #574513;\n  width: 100%;\n  margin-bottom: 0.5rem;\n}\nhr[data-v-b64ea48c] {\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n  color: #7f8c8d;\n  border: 0;\n  height: 1px;\n  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n}\n.footer-text[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-weight: normal;\n  font-size: 0.75rem;\n}\n.popup-container[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  background-color: floralwhite;\n  padding: 0;\n  color: #574513;\n  font-weight: bold;\n  align-items: center;\n  height: 100vh;\n}\n.on-off[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  padding: 1rem;\n  width: 100%;\n}\n.p-title[data-v-b64ea48c] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  background-color: #574513;\n  color: floralwhite;\n  font-weight: bold;\n  align-items: center;\n  justify-content: space-around;\n  font-size: 1.5rem;\n  padding: 0.25rem;\n}\n.button-success[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success[data-v-b64ea48c]:hover {\n  border-left: 0px;\n}\n.button-danger[data-v-b64ea48c] {\n  width: 100%;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger[data-v-b64ea48c]:hover {\n  border-right: 0px;\n}\n.button-success-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #2ecc71;\n  border-color: #2ecc71;\n  width: 100%;\n  border-left: 0px;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  background-color: #54d98c;\n}\n.button-success-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-danger-is-off[data-v-b64ea48c] {\n  width: 100px;\n  padding: 8px 16px;\n  font-size: 16px;\n  border: none;\n  border-radius: 4px;\n  background-color: floralwhite;\n  color: floralwhite;\n  cursor: pointer;\n  transition: floralwhite 0.3s ease;\n  border: 2px solid floralwhite;\n  color: #e74c3c;\n  border-color: #e74c3c;\n  width: 100%;\n  border-right: 0px;\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  background-color: #ed7669;\n}\n.button-danger-is-off[data-v-b64ea48c]:hover {\n  color: floralwhite;\n}\n.button-settings[data-v-b64ea48c] {\n  width: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
