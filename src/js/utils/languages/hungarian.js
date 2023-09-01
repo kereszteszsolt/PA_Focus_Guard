@@ -1,7 +1,7 @@
 export const hungarian = {
   fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
   fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
-  fgAbout: "Névjegy",
+  fgAbout: "A bővítményről",
   fgLanguage: "Nyelv",
   fgAcknowledgments: "Köszönetnyilvánítások",
   fgActive: "Aktív",

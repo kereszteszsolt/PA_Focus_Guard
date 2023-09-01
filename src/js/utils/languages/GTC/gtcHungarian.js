@@ -60,7 +60,7 @@ export const gtcHungarian = {
         "Amennyiben a felhasználó módosítja a szoftvert saját felhasználásra, köteles kicserélni az alkalmazás" +
         " ikonját és minden olyan elemet, amely a terjesztőre vagy eredeti fejlesztőre utal. Amennyiben a felhasználó" +
         " terjeszti a módosított verziót, köteles a szoftvert saját nevében terjeszteni, beleértve a social media" +
-        ' oldalak, adományozó oldalak és aláírás területeket is (pl. "Névjegy" oldal). Amennyiben a felhasználó szeretné megjelölni a ' +
+        ' oldalak, adományozó oldalak és aláírás területeket is (pl. "A bővítményről" oldal). Amennyiben a felhasználó szeretné megjelölni a ' +
         "változat eredeti forrását, azt szívesen fogadom.",
     },
   ],
@@ -69,7 +69,7 @@ export const gtcHungarian = {
       "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javaslom," +
       " hogy ne telepítse vagy ne használja a szoftvert.",
     "Amennyiben kérdése vagy észrevétele van a szoftverrel kapcsolatban, örömmel veszem a visszajelzéseit." +
-      " A kapcsolatfelvételi lehetőségek megtalálhatók a Néyvjegy oldalon / Github oldalon.",
+      ' A kapcsolatfelvételi lehetőségek megtalálhatók a "A bővítményről" oldalon / Github oldalon.',
     "Az Általános Szerződési Feltételek 2023. szeptember 1-jétől lépnek életbe és hatályban maradnak, kivéve," +
       " ha azokat később módosításra vagy visszavonásra kerülnek.",
     "Köszönöm az érdeklődést a szoftver iránt, és jó felhasználást kívánok!",
