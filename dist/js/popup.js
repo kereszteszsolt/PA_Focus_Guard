@@ -17022,30 +17022,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var gtcEnglish = {
   title: "General Terms and Conditions (GTC)",
-  preface: "The following are the General Terms and Conditions (hereinafter: GTC) for the use of the software. " + "By installing and using the software, you accept the following terms and conditions.",
+  preface: "Below you can find the General Terms and Conditions (hereinafter referred to as GTC) " + "applicable to the use of the software. By installing and using the software, you agree to the following terms.",
   chapters: [{
-    title: "Free Use:",
-    text: "The software is freely accessible and no financial payment is required to use it."
+    title: "Free Usage:",
+    text: "The software is freely accessible, and no financial payment is required for its use."
   }, {
-    title: "Disclaimer:",
-    text: "The creator and distributor of the software assumes no responsibility for problems or possible damages arising from the use of the software."
+    title: "Developer Information:",
+    text: "The software has been created by an individual as a hobbyist developer, and no official corporate" + " entity is behind it. The developer operates the project entirely voluntarily."
+  }, {
+    title: "Local Data Storage:",
+    text: "URLs and domain lists collected by the software are stored exclusively in local storage within the user's browser." + " This data is not transmitted or shared with third parties and is solely necessary for the functioning of the software."
+  }, {
+    title: "Local Storage:",
+    text: "Local storage is a web browser feature that allows for the storage of small amounts of data locally on the user's device." + " This data is accessible only within the specific browser, and other websites or applications cannot access it."
+  }, {
+    title: "Disclaimer of Liability:",
+    text: "The creator and distributor of the software do not assume any responsibility for issues or potential damages resulting" + " from the use of the software."
   }, {
     title: "Data Collection by Third Parties:",
-    text: "It is possible that third parties collect data (e.g. through the software distribution or donation platform). " + "The user is responsible for such data collection under the privacy policies of the respective platforms."
+    text: "It is possible that third parties may engage in data collection (e.g., through the software's distribution or donation platform)." + " For such data collection, the user is subject to the data protection policies of the respective platforms."
   }, {
-    title: "Donation is Optional:",
-    text: "Donation is completely optional and does not come with any benefits or disadvantages. " + "Donors express their gratitude and donations support the developer and his entire work."
+    title: "Optional Donations:",
+    text: "Donations are entirely optional and come with no advantages or disadvantages. Donors express their gratitude," + " and donations support the developer and their work."
   }, {
     title: "Free Use and Customization:",
-    text: "The software can be used, customized and modified freely by anyone according to their own preferences."
+    text: "Anyone is free to use, customize, and modify the software according to their own preferences."
   }, {
     title: "Legal Compliance:",
-    text: "During the use of the software, it is the user's responsibility to comply with the applicable laws and regulations."
+    text: "While using the software, all users are obligated to adhere to applicable laws and regulations."
   }, {
     title: "User Modifications:",
-    text: "If the user modifies the software for their own use, they are obliged to replace the application icon and any other element that refers to the distributor or original developer. " + "If the user distributes the modified version, they are obliged to distribute the software in their own name, including social media pages, donation pages and signature areas. " + "If the user would like to mark the original source of the version, it will be gladly accepted."
+    text: "If a user modifies the software for their own use, they are required to replace the application icon" + " and any elements referring to the distributor or original developer. If the user distributes the modified version," + " they must do so under their own name, including on social media pages, donation pages, and signature areas." + " If the user wishes to attribute the original source of the version, it is welcomed."
   }],
-  afterText: ["Please note that decisions regarding the use of the software are made at your own risk. " + "If the user does not agree with the terms and conditions set forth in the GTC, we recommend that you do not install or use the software.", "If you have any questions or comments about the software, I would be happy to receive your feedback. " + "Contact options can be found on the About page / Github page.", "The General Terms and Conditions will come into force on September 1, 2023 and will remain in force unless they are later amended or revoked.", "Thank you for your interest in the software and enjoy using it!"]
+  afterText: ["Please be aware that decisions regarding the use of the software are made at your own discretion." + " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.", "If you have any questions or feedback about the software, I welcome your input." + " Contact information can be found on the Contact / Github page.", "The General Terms and Conditions will come into effect on September 1, 2023, and will remain in effect unless" + " later amended or revoked.", "Thank you for your interest in the software, and enjoy using it!"]
 };
 
 /***/ }),
@@ -17062,30 +17071,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var gtcGerman = {
   title: "Allgemeine Geschäftsbedingungen (AGB)",
-  preface: "Die folgenden Allgemeinen Geschäftsbedingungen (im Folgenden: AGB) gelten für die Nutzung der Software. " + "Durch die Installation und Nutzung der Software akzeptieren Sie die folgenden Bedingungen.",
+  preface: "Im Folgenden finden Sie die Allgemeinen Geschäftsbedingungen (nachfolgend als AGB bezeichnet), die für die Verwendung der Software gelten." + " Durch die Installation und Nutzung der Software akzeptieren Sie die folgenden Bedingungen.",
   chapters: [{
     title: "Kostenlose Nutzung:",
-    text: "Die Software ist frei zugänglich und es ist keine finanzielle Zahlung erforderlich, um sie zu nutzen."
+    text: "Die Software ist frei zugänglich, und es ist keine finanzielle Zahlung für die Nutzung erforderlich."
+  }, {
+    title: "Entwicklerinformationen:",
+    text: "Die Software wurde von einer Einzelperson als Hobby-Entwickler erstellt, und es steht kein offizielles" + " Unternehmensorgan dahinter. Der Entwickler betreibt das Projekt vollständig ehrenamtlich."
+  }, {
+    title: "Lokale Datenspeicherung:",
+    text: "Die von der Software gesammelten URLs und Domain-Listen werden ausschließlich im lokalen Speicher innerhalb des Browsers des Benutzers gespeichert." + " Diese Daten werden nicht an Dritte übertragen oder mit ihnen geteilt und dienen ausschließlich dem reibungslosen Betrieb der Software."
+  }, {
+    title: "Lokaler Speicher:",
+    text: "Lokaler Speicher ist eine Funktion des Webbrowsers, die die Speicherung kleiner Datenmengen lokal auf dem Gerät des Benutzers ermöglicht." + " Diese Daten sind nur innerhalb des spezifischen Browsers zugänglich, und andere Websites oder Anwendungen können nicht darauf zugreifen."
   }, {
     title: "Haftungsausschluss:",
-    text: "Der Ersteller und Vertreiber der Software übernimmt keine Verantwortung für Probleme oder mögliche Schäden, die sich aus der Nutzung der Software ergeben."
+    text: "Der Ersteller und Vertrieb der Software übernehmen keine Verantwortung für Probleme oder mögliche Schäden," + " die sich aus der Verwendung der Software ergeben."
   }, {
-    title: "Datenerhebung durch Dritte:",
-    text: "Es ist möglich, dass Dritte Daten sammeln (z. B. über die Softwareverteilungs- oder Spendenplattform). " + "Der Benutzer ist für eine solche Datenerhebung gemäß den Datenschutzrichtlinien der jeweiligen Plattformen verantwortlich."
+    title: "Datenwiedergabe durch Dritte:",
+    text: "Es ist möglich, dass Dritte Datenerfassung betreiben (z. B. über die Vertriebs- oder Spendenplattform der Software)." + " Für solche Datenerfassungen unterliegt der Benutzer den Datenschutzrichtlinien der jeweiligen Plattformen."
   }, {
-    title: "Spenden sind optional:",
-    text: "Spenden sind völlig optional und gehen nicht mit Vorteilen oder Nachteilen einher. " + "Spender drücken ihre Dankbarkeit aus und Spenden unterstützen den Entwickler und seine gesamte Arbeit."
+    title: "Optionale Spenden:",
+    text: "Spenden sind völlig optional und gehen weder mit Vor- noch Nachteilen einher. Spender drücken ihre Dankbarkeit aus," + " und Spenden unterstützen den Entwickler und seine Arbeit."
   }, {
     title: "Freie Nutzung und Anpassung:",
-    text: "Die Software kann von jedermann frei nach eigenen Vorlieben verwendet, angepasst und geändert werden."
+    text: "Jeder kann die Software frei verwenden, anpassen und modifizieren, um seinen eigenen Präferenzen gerecht zu werden."
   }, {
     title: "Rechtliche Einhaltung:",
-    text: "Während der Nutzung der Software ist der Benutzer dafür verantwortlich, die geltenden Gesetze und Vorschriften einzuhalten."
+    text: "Bei der Verwendung der Software sind alle Benutzer verpflichtet, geltende Gesetze und Vorschriften einzuhalten."
   }, {
     title: "Benutzermodifikationen:",
-    text: "Wenn der Benutzer die Software für den eigenen Gebrauch modifiziert, ist er verpflichtet, das Anwendungssymbol und alle anderen Elemente, die auf den Vertreiber oder den ursprünglichen Entwickler verweisen, zu ersetzen. " + "Wenn der Benutzer die modifizierte Version verteilt, ist er verpflichtet, die Software in seinem eigenen Namen zu verteilen, einschließlich Social-Media-Seiten, Spenden-Seiten und Signaturbereichen. " + "Wenn der Benutzer die ursprüngliche Quelle der Version markieren möchte, wird dies gerne akzeptiert."
+    text: "Wenn ein Benutzer die Software für seine eigenen Zwecke modifiziert, ist er verpflichtet, das Anwendungssymbol" + " und alle Elemente, die auf den Distributor oder den ursprünglichen Entwickler hinweisen, zu ersetzen. Wenn der Benutzer die modifizierte Version" + " verbreitet, muss er dies unter seinem eigenen Namen tun, einschließlich auf Social-Media-Seiten, Spendenplattformen und in Signaturbereichen." + " Wenn der Benutzer die ursprüngliche Quelle der Version angeben möchte, wird dies gerne begrüßt."
   }],
-  afterText: ["Bitte beachten Sie, dass Entscheidungen bezüglich der Nutzung der Software auf eigenes Risiko getroffen werden. " + "Wenn der Benutzer mit den in den AGB festgelegten Bedingungen nicht einverstanden ist, empfehlen wir, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Kommentare zur Software haben, würde ich mich über Ihr Feedback freuen. " + "Kontaktmöglichkeiten finden Sie auf der Infoseite / Github-Seite.", "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, es sei denn, sie werden später geändert oder aufgehoben.", "Vielen Dank für Ihr Interesse an der Software und viel Spaß bei der Verwendung!"]
+  afterText: ["Bitte beachten Sie, dass Entscheidungen im Zusammenhang mit der Verwendung der Software in Ihrem eigenen Ermessen getroffen werden." + " Wenn Sie mit den in den AGB festgelegten Bedingungen nicht einverstanden sind, wird empfohlen, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Feedback zur Software haben, freue ich mich über Ihre Rückmeldung." + " Kontaktinformationen finden Sie auf der Kontakt- / Github-Seite.", "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, sofern sie nicht später geändert oder aufgehoben werden.", "Vielen Dank für Ihr Interesse an der Software, und viel Spaß bei der Verwendung!"]
 };
 
 /***/ }),
@@ -17106,6 +17124,15 @@ var gtcHungarian = {
   chapters: [{
     title: "Ingyenes Használat:",
     text: "A szoftver ingyenesen hozzáférhető, és nem szükséges anyagi kifizetés a használatához."
+  }, {
+    title: "Fejlesztői Információk:",
+    text: "A szoftvert egy magánszemély, fejlesztői hobbiként készítette, és semmilyen hivatalos vállalati" + " szervezet nem áll mögötte. A fejlesztő teljesen önkéntesen működteti a projektet."
+  }, {
+    title: "Adatok Lokális Tárolása:",
+    text: "A szoftver által gyűjtött URL-ek és domain listák kizárólag lokális tárolásra kerülnek, azaz " + "a felhasználó saját böngészőjének local storage funkciójában. Ezek az adatok nem kerülnek továbbításra" + " vagy megosztásra harmadik felekkel, és kizárólag a szoftver működéséhez szükségesek."
+  }, {
+    title: "Local Storage:",
+    text: 'A "local storage" (lokális tárolás) egy olyan webböngésző funkció, amely lehetővé teszi,' + " hogy kis mennyiségű adatot tároljunk helyileg a felhasználó eszközén. Ez az adat csak a konkrét" + " böngészőben érhető el, és más weboldalak vagy alkalmazások nem férhetnek hozzá. "
   }, {
     title: "Felelősségkizárás:",
     text: "A szoftver készítője és terjesztője nem vállal semmilyen felelősséget a szoftver használatából eredő" + " problémákért vagy esetleges károkért."
@@ -17142,30 +17169,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var gtcRomanian = {
   title: "Termeni și Condiții Generale (TCG)",
-  preface: "Următoarele sunt Termenii și Condițiile Generale (denumite în continuare: TCG) pentru utilizarea software-ului. " + "Prin instalarea și utilizarea software-ului, acceptați următoarele termeni și condiții.",
+  preface: "Mai jos găsiți Termenii și Condițiile Generale (denumiți în continuare TCG) aplicabili utilizării software-ului." + " Prin instalarea și utilizarea software-ului, sunteți de acord cu următoarele condiții.",
   chapters: [{
     title: "Utilizare Gratuită:",
-    text: "Software-ul este liber accesibil și nu este necesară nicio plată financiară pentru utilizarea acestuia."
+    text: "Software-ul este gratuit și nu este necesară nicio plată financiară pentru utilizare."
+  }, {
+    title: "Informații despre Dezvoltator:",
+    text: "Software-ul a fost creat de o persoană în calitate de dezvoltator pasionat, fără a exista o entitate corporativă oficială în spatele său." + " Dezvoltatorul operează proiectul în întregime voluntar."
+  }, {
+    title: "Stocare Locală a Datelor:",
+    text: "URL-urile și listele de domenii colectate de software sunt stocate exclusiv local în interiorul browser-ului utilizatorului." + " Aceste date nu sunt transmise sau partajate cu terțe părți și sunt necesare doar pentru funcționarea software-ului."
+  }, {
+    title: "Stocare Locală:",
+    text: "Stocarea locală este o funcționalitate a browser-ului web care permite stocarea unor cantități mici de date local pe dispozitivul utilizatorului." + " Aceste date sunt accesibile doar în cadrul browser-ului specific și nu pot fi accesate de alte site-uri web sau aplicații."
   }, {
     title: "Renunțare la Răspundere:",
     text: "Creatorul și distribuitorul software-ului nu își asumă nicio responsabilitate pentru probleme sau posibile daune rezultate din utilizarea software-ului."
   }, {
-    title: "Colectarea Datelor de Către Terți:",
-    text: "Este posibil ca terții să colecteze date (de exemplu, prin platforma de distribuție sau de donații a software-ului). " + "Utilizatorul este responsabil pentru această colectare de date în conformitate cu politicile de confidențialitate ale platformelor respective."
+    title: "Colectare Date de Către Terți:",
+    text: "Este posibil ca terțe părți să efectueze colectarea de date (de exemplu, prin intermediul platformei de distribuție sau donații a software-ului)." + " Pentru astfel de colectări de date, utilizatorul este supus politicilor de protecție a datelor ale platformelor respective."
   }, {
-    title: "Donația este Opțională:",
-    text: "Donația este complet opțională și nu vine cu niciun beneficiu sau dezavantaj. " + "Donatorii își exprimă recunoștința, iar donațiile sprijină dezvoltatorul și întreaga sa muncă."
+    title: "Donații Optionale:",
+    text: "Donațiile sunt complet opționale și nu vin cu avantaje sau dezavantaje. Donatorii își exprimă recunoștința," + " iar donațiile susțin dezvoltatorul și munca sa."
   }, {
-    title: "Utilizare și Personalizare Gratuită:",
-    text: "Software-ul poate fi utilizat, personalizat și modificat liber de oricine în funcție de propriile preferințe."
+    title: "Utilizare și Personalizare Liberă:",
+    text: "Oricine are dreptul să utilizeze, să personalizeze și să modifice software-ul în funcție de propriile preferințe."
   }, {
     title: "Conformitate Legală:",
-    text: "În timpul utilizării software-ului, utilizatorul este responsabil să respecte legile și reglementările aplicabile."
+    text: "La utilizarea software-ului, toți utilizatorii au obligația de a respecta legile și reglementările aplicabile."
   }, {
-    title: "Modificări ale Utilizatorului:",
-    text: "Dacă utilizatorul modifică software-ul pentru utilizarea proprie, este obligat să înlocuiască pictograma aplicației și orice alt element care face referire la distribuitor sau dezvoltatorul original. " + "Dacă utilizatorul distribuie versiunea modificată, este obligat să distribuie software-ul în numele său, inclusiv paginile de socializare, paginile de donații și zonele de semnătură. " + "Dacă utilizatorul dorește să marcheze sursa originală a versiunii, aceasta va fi acceptată cu plăcere."
+    title: "Modificări Efectuate de Utilizatori:",
+    text: "Dacă un utilizator efectuează modificări asupra software-ului în scopul propriu, el este obligat să înlocuiască icon-ul aplicației" + " și orice elemente care se referă la distribuitorul sau dezvoltatorul original. Dacă utilizatorul distribuie versiunea modificată," + " acesta trebuie să o facă sub numele său propriu, inclusiv pe paginile de social media, paginile de donații și în zonele pentru semnături." + " Dacă utilizatorul dorește să atribuie sursa originală a versiunii, acest lucru este binevenit."
   }],
-  afterText: ["Vă rugăm să rețineți că deciziile referitoare la utilizarea software-ului sunt luate pe propriul risc. " + "Dacă utilizatorul nu este de acord cu termenii și condițiile stabilite în TCG, vă recomandăm să nu instalați sau să utilizați software-ul.", "Dacă aveți întrebări sau comentarii despre software, aș fi bucuros să primesc feedback-ul dvs. " + "Opțiunile de contact pot fi găsite pe pagina Despre / pagina Github.", "Termenii și condițiile generale vor intra în vigoare la 1 septembrie 2023 și vor rămâne în vigoare cu excepția cazului în care vor fi ulterior modificate sau anulate.", "Vă mulțumim pentru interesul dvs. pentru software și vă bucurați de utilizarea acestuia!"]
+  afterText: ["Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." + " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.", "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." + " Informațiile de contact se găsesc pe pagina de Contact / Github.", "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" + " în care vor fi ulterior modificați sau revocați.", "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!"]
 };
 
 /***/ }),

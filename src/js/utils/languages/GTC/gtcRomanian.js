@@ -1,51 +1,71 @@
 export const gtcRomanian = {
   title: "Termeni și Condiții Generale (TCG)",
   preface:
-    "Următoarele sunt Termenii și Condițiile Generale (denumite în continuare: TCG) pentru utilizarea software-ului. " +
-    "Prin instalarea și utilizarea software-ului, acceptați următoarele termeni și condiții.",
+    "Mai jos găsiți Termenii și Condițiile Generale (denumiți în continuare TCG) aplicabili utilizării software-ului." +
+    " Prin instalarea și utilizarea software-ului, sunteți de acord cu următoarele condiții.",
   chapters: [
     {
       title: "Utilizare Gratuită:",
-      text: "Software-ul este liber accesibil și nu este necesară nicio plată financiară pentru utilizarea acestuia.",
+      text: "Software-ul este gratuit și nu este necesară nicio plată financiară pentru utilizare.",
+    },
+    {
+      title: "Informații despre Dezvoltator:",
+      text:
+        "Software-ul a fost creat de o persoană în calitate de dezvoltator pasionat, fără a exista o entitate corporativă oficială în spatele său." +
+        " Dezvoltatorul operează proiectul în întregime voluntar.",
+    },
+    {
+      title: "Stocare Locală a Datelor:",
+      text:
+        "URL-urile și listele de domenii colectate de software sunt stocate exclusiv local în interiorul browser-ului utilizatorului." +
+        " Aceste date nu sunt transmise sau partajate cu terțe părți și sunt necesare doar pentru funcționarea software-ului.",
+    },
+    {
+      title: "Stocare Locală:",
+      text:
+        "Stocarea locală este o funcționalitate a browser-ului web care permite stocarea unor cantități mici de date local pe dispozitivul utilizatorului." +
+        " Aceste date sunt accesibile doar în cadrul browser-ului specific și nu pot fi accesate de alte site-uri web sau aplicații.",
     },
     {
       title: "Renunțare la Răspundere:",
       text: "Creatorul și distribuitorul software-ului nu își asumă nicio responsabilitate pentru probleme sau posibile daune rezultate din utilizarea software-ului.",
     },
     {
-      title: "Colectarea Datelor de Către Terți:",
+      title: "Colectare Date de Către Terți:",
       text:
-        "Este posibil ca terții să colecteze date (de exemplu, prin platforma de distribuție sau de donații a software-ului). " +
-        "Utilizatorul este responsabil pentru această colectare de date în conformitate cu politicile de confidențialitate ale platformelor respective.",
+        "Este posibil ca terțe părți să efectueze colectarea de date (de exemplu, prin intermediul platformei de distribuție sau donații a software-ului)." +
+        " Pentru astfel de colectări de date, utilizatorul este supus politicilor de protecție a datelor ale platformelor respective.",
     },
     {
-      title: "Donația este Opțională:",
+      title: "Donații Optionale:",
       text:
-        "Donația este complet opțională și nu vine cu niciun beneficiu sau dezavantaj. " +
-        "Donatorii își exprimă recunoștința, iar donațiile sprijină dezvoltatorul și întreaga sa muncă.",
+        "Donațiile sunt complet opționale și nu vin cu avantaje sau dezavantaje. Donatorii își exprimă recunoștința," +
+        " iar donațiile susțin dezvoltatorul și munca sa.",
     },
     {
-      title: "Utilizare și Personalizare Gratuită:",
-      text: "Software-ul poate fi utilizat, personalizat și modificat liber de oricine în funcție de propriile preferințe.",
+      title: "Utilizare și Personalizare Liberă:",
+      text: "Oricine are dreptul să utilizeze, să personalizeze și să modifice software-ul în funcție de propriile preferințe.",
     },
     {
       title: "Conformitate Legală:",
-      text: "În timpul utilizării software-ului, utilizatorul este responsabil să respecte legile și reglementările aplicabile.",
+      text: "La utilizarea software-ului, toți utilizatorii au obligația de a respecta legile și reglementările aplicabile.",
     },
     {
-      title: "Modificări ale Utilizatorului:",
+      title: "Modificări Efectuate de Utilizatori:",
       text:
-        "Dacă utilizatorul modifică software-ul pentru utilizarea proprie, este obligat să înlocuiască pictograma aplicației și orice alt element care face referire la distribuitor sau dezvoltatorul original. " +
-        "Dacă utilizatorul distribuie versiunea modificată, este obligat să distribuie software-ul în numele său, inclusiv paginile de socializare, paginile de donații și zonele de semnătură. " +
-        "Dacă utilizatorul dorește să marcheze sursa originală a versiunii, aceasta va fi acceptată cu plăcere.",
+        "Dacă un utilizator efectuează modificări asupra software-ului în scopul propriu, el este obligat să înlocuiască icon-ul aplicației" +
+        " și orice elemente care se referă la distribuitorul sau dezvoltatorul original. Dacă utilizatorul distribuie versiunea modificată," +
+        " acesta trebuie să o facă sub numele său propriu, inclusiv pe paginile de social media, paginile de donații și în zonele pentru semnături." +
+        " Dacă utilizatorul dorește să atribuie sursa originală a versiunii, acest lucru este binevenit.",
     },
   ],
   afterText: [
-    "Vă rugăm să rețineți că deciziile referitoare la utilizarea software-ului sunt luate pe propriul risc. " +
-      "Dacă utilizatorul nu este de acord cu termenii și condițiile stabilite în TCG, vă recomandăm să nu instalați sau să utilizați software-ul.",
-    "Dacă aveți întrebări sau comentarii despre software, aș fi bucuros să primesc feedback-ul dvs. " +
-      "Opțiunile de contact pot fi găsite pe pagina Despre / pagina Github.",
-    "Termenii și condițiile generale vor intra în vigoare la 1 septembrie 2023 și vor rămâne în vigoare cu excepția cazului în care vor fi ulterior modificate sau anulate.",
-    "Vă mulțumim pentru interesul dvs. pentru software și vă bucurați de utilizarea acestuia!",
+    "Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." +
+      " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.",
+    "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." +
+      " Informațiile de contact se găsesc pe pagina de Contact / Github.",
+    "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" +
+      " în care vor fi ulterior modificați sau revocați.",
+    "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!",
   ],
 };

@@ -9,6 +9,26 @@ export const gtcHungarian = {
       text: "A szoftver ingyenesen hozzáférhető, és nem szükséges anyagi kifizetés a használatához.",
     },
     {
+      title: "Fejlesztői Információk:",
+      text:
+        "A szoftvert egy magánszemély, fejlesztői hobbiként készítette, és semmilyen hivatalos vállalati" +
+        " szervezet nem áll mögötte. A fejlesztő teljesen önkéntesen működteti a projektet.",
+    },
+    {
+      title: "Adatok Lokális Tárolása:",
+      text:
+        "A szoftver által gyűjtött URL-ek és domain listák kizárólag lokális tárolásra kerülnek, azaz " +
+        "a felhasználó saját böngészőjének local storage funkciójában. Ezek az adatok nem kerülnek továbbításra" +
+        " vagy megosztásra harmadik felekkel, és kizárólag a szoftver működéséhez szükségesek.",
+    },
+    {
+      title: "Local Storage:",
+      text:
+        'A "local storage" (lokális tárolás) egy olyan webböngésző funkció, amely lehetővé teszi,' +
+        " hogy kis mennyiségű adatot tároljunk helyileg a felhasználó eszközén. Ez az adat csak a konkrét" +
+        " böngészőben érhető el, és más weboldalak vagy alkalmazások nem férhetnek hozzá. ",
+    },
+    {
       title: "Felelősségkizárás:",
       text:
         "A szoftver készítője és terjesztője nem vállal semmilyen felelősséget a szoftver használatából eredő" +
