@@ -407,15 +407,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   blockByDomainList: () => (/* binding */ blockByDomainList)
 /* harmony export */ });
 var blockByDomainList = [{
-  url: "facebook.com",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
-}, {
-  url: "youtube.com",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
-}, {
-  url: "twitter.com",
+  url: "example.com",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }];
@@ -433,27 +425,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   blockByUrlList: () => (/* binding */ blockByUrlList)
 /* harmony export */ });
 var blockByUrlList = [{
-  url: "https://www.facebook.com/reel",
+  url: "https://www.example.com/watch",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }, {
-  url: "https://www.facebook.com/watch",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
-}, {
-  url: "https://www.facebook.com/stories",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
-}, {
-  url: "https://www.youtube.com/shorts",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
-}, {
-  url: "https://www.instagram.com/reels",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
-}, {
-  url: "https://www.instagram.com/stories",
+  url: "https://www.example.com/stories",
   isMarkedForBlock: false,
   isPermanentlyBlocked: false
 }];
