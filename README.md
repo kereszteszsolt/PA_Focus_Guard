@@ -1,4 +1,6 @@
-https://www.buymeacoffee.com/kereszteszsolt
+chrome webstore: https://chrome.google.com/webstore/detail/focus-guard/bdfnblnbjckkhknignkpmckeelfplill?utm_source=ext_sidebar&hl=en-US
+
+donatios: https://www.buymeacoffee.com/kereszteszsolt
 
 # PA_Focus_Guard
 "Focus Guard: Your Key to Productivity and Success."
