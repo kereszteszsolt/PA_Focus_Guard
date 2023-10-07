@@ -63,4 +63,6 @@ export const hungarian = {
     "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
   aboutText_thanks_free_apps:
     'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.',
+
+  domain: "Domain",
 };

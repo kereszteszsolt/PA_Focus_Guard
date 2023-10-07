@@ -62,4 +62,6 @@ export const romanian = {
     "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
   aboutText_thanks_free_apps:
     'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.',
+
+  domain: "Domeniu",
 };

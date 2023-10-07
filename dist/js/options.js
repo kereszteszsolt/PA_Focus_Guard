@@ -17519,40 +17519,37 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "urlList"
 };
-var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "URL", -1 /* HOISTED */);
-});
-var _hoisted_4 = {
+var _hoisted_3 = {
   "class": "checkbox"
 };
-var _hoisted_5 = ["id", "checked", "onChange"];
-var _hoisted_6 = {
+var _hoisted_4 = ["id", "checked", "onChange"];
+var _hoisted_5 = {
   "class": "checkbox"
 };
-var _hoisted_7 = ["id", "checked", "onChange"];
-var _hoisted_8 = ["onClick"];
-var _hoisted_9 = {
+var _hoisted_6 = ["id", "checked", "onChange"];
+var _hoisted_7 = ["onClick"];
+var _hoisted_8 = {
   "class": "pagination-controls"
 };
+var _hoisted_9 = ["disabled"];
 var _hoisted_10 = ["disabled"];
-var _hoisted_11 = ["disabled"];
-var _hoisted_12 = {
+var _hoisted_11 = {
   "class": "add-url-container"
 };
-var _hoisted_13 = {
+var _hoisted_12 = {
   "class": "input-wrapper"
 };
-var _hoisted_14 = ["placeholder"];
-var _hoisted_15 = {
+var _hoisted_13 = ["placeholder"];
+var _hoisted_14 = {
   key: 0,
   "class": "error-message"
 };
-var _hoisted_16 = {
+var _hoisted_15 = {
   key: 1,
   "class": "error-message"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, $props.funcName)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, $props.funcName)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "domain") : "URL"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.markAllForBlockCurrPage($data.currentPageItems);
     })
@@ -17563,38 +17560,38 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "permanentlyBlocked")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "remove")), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.currentPageItems, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: item.url
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.url), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.url), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       type: "checkbox",
       id: item.url,
       checked: item.isMarkedForBlock,
       onChange: function onChange($event) {
         return $options.markForBlock(item);
       }
-    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_5)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_4)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       type: "checkbox",
       id: item.url,
       checked: item.isPermanentlyBlocked,
       onChange: function onChange($event) {
         return $options.markForPermanentlyBlock(item);
       }
-    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_7)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.removeUrl(item.url);
       }
-    }, "X", 8 /* PROPS */, _hoisted_8)])]);
-  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, "X", 8 /* PROPS */, _hoisted_7)])]);
+  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.flipPage('prev');
     }),
     disabled: $data.currentPage === 1,
     "class": "button-primary"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "prev")), 9 /* TEXT, PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentPage) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.numberOfPages), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "prev")), 9 /* TEXT, PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentPage) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.numberOfPages), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.flipPage('next');
     }),
     disabled: $data.currentPage === $data.numberOfPages,
     "class": "button-primary"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "next")), 9 /* TEXT, PROPS */, _hoisted_11)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "addSite")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "next")), 9 /* TEXT, PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "addSite")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     placeholder: $data.placeholderText,
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
@@ -17603,12 +17600,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onBlur: _cache[5] || (_cache[5] = function () {
       return $options.handleBlur && $options.handleBlur.apply($options, arguments);
     })
-  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_14), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newUrl]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_13), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newUrl]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function () {
       return $options.addUrl && $options.addUrl.apply($options, arguments);
     }),
     "class": "add-url"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "add")), 1 /* TEXT */)]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "invalidDomain") : $options.lang.getTranslation($props.fgLanguage, "invalidUrl")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "duplicatedDomain") : $options.lang.getTranslation($props.fgLanguage, "duplicatedUrl")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "add")), 1 /* TEXT */)]), $data.showInvalidErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "invalidDomain") : $options.lang.getTranslation($props.fgLanguage, "invalidUrl")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showDuplicatedErrorMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "duplicatedDomain") : $options.lang.getTranslation($props.fgLanguage, "duplicatedUrl")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -18142,7 +18139,8 @@ var english = {
   aboutText_thanks_stock_photos: "Thanks for the free stock photos:",
   aboutText_thanks_stock_icons: "Thanks for the free icons:",
   aboutText_thanks_crash_course: 'Thanks for the free crash course "Building a Simple Google Chrome Extension with Vue" by Andrew Schmelyun. \n' + "This course was a great help in starting to build extensions with Vue.",
-  aboutText_thanks_free_apps: 'The "Product Icon" is my work and I created it with the help of the free "Canva" & Gimp.'
+  aboutText_thanks_free_apps: 'The "Product Icon" is my work and I created it with the help of the free "Canva" & Gimp.',
+  domain: "Domain"
 };
 
 /***/ }),
@@ -18198,7 +18196,8 @@ var german = {
   aboutText_thanks_stock_photos: "Danke für die kostenlosen Stockfotos:",
   aboutText_thanks_stock_icons: "Danke für die kostenlosen Icons:",
   aboutText_thanks_crash_course: 'Danke für den kostenlosen Crashkurs "Building a Simple Google Chrome Extension with Vue" von Andrew Schmelyun. \n' + "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen.",
-  aboutText_dankt_free_apps: 'Das "Produkt-Icon" ist mein Werk und ich habe es mit Hilfe der kostenlosen "Canva" & Gimp erstellt.'
+  aboutText_dankt_free_apps: 'Das "Produkt-Icon" ist mein Werk und ich habe es mit Hilfe der kostenlosen "Canva" & Gimp erstellt.',
+  domain: "Domain"
 };
 
 /***/ }),
@@ -18254,7 +18253,8 @@ var hungarian = {
   aboutText_thanks_stock_photos: "Köszönöm az ingyenes stock fotókat:",
   aboutText_thanks_stock_icons: "Köszönöm a ingyenes ikonokat:",
   aboutText_thanks_crash_course: 'Köszönöm az ingyenes "Building a Simple Google Chrome Extension with Vue" tanfolyamot Andrew Schmelyun-nak. \n' + "Ez a tanfolyam nagy segítség volt a Vue-val való bővítmények készítésének elkezdésében.",
-  aboutText_thanks_free_apps: 'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.'
+  aboutText_thanks_free_apps: 'A "Termék ikon" az én munkám, és az ingyenes "Canva" & Gimp segítségével készítettem.',
+  domain: "Domain"
 };
 
 /***/ }),
@@ -18409,7 +18409,8 @@ var romanian = {
   aboutText_thanks_stock_photos: "Mulțumesc pentru fotografiile gratuite:",
   aboutText_thanks_stock_icons: "Mulțumesc pentru pictogramele gratuite:",
   aboutText_thanks_crash_course: 'Mulțumesc pentru cursul gratuit "Building a Simple Google Chrome Extension with Vue" de Andrew Schmelyun. \n' + "Acest curs a fost de mare ajutor în începerea construirii de extensii cu Vue.",
-  aboutText_thanks_free_apps: 'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.'
+  aboutText_thanks_free_apps: 'Pictograma "Product Icon" este opera mea și am creat-o cu ajutorul aplicațiilor gratuite "Canva" și Gimp.',
+  domain: "Domeniu"
 };
 
 /***/ }),

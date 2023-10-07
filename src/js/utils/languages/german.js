@@ -65,4 +65,6 @@ export const german = {
     "Dieser Kurs war eine große Hilfe, um mit dem Bau von Erweiterungen mit Vue zu beginnen.",
   aboutText_dankt_free_apps:
     'Das "Produkt-Icon" ist mein Werk und ich habe es mit Hilfe der kostenlosen "Canva" & Gimp erstellt.',
+
+  domain: "Domain",
 };
