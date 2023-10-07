@@ -213,7 +213,9 @@ export default {
     <table>
       <thead>
         <tr>
-          <th>URL</th>
+          <th>
+            {{ justDomain ? lang.getTranslation(fgLanguage, "domain") : "URL" }}
+          </th>
           <th @click="markAllForBlockCurrPage(currentPageItems)">
             {{ lang.getTranslation(fgLanguage, "markedForBlock") }}
           </th>

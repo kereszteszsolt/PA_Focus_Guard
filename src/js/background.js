@@ -14,8 +14,22 @@ let fgBlockedWebsitesByUrl = [];
 let fgBlockedElementsOnWebsites = [];
 
 //when installed, set default values
-chrome.runtime.onInstalled.addListener(async function () {
-  await setDefaultValues();
+//on update, update version number
+chrome.runtime.onInstalled.addListener(async function (details) {
+  switch (details.reason) {
+    case "install":
+      await setDefaultValues();
+      break;
+    case "update":
+      await readData(async () => {
+        fgAppData.fgVersion = chrome.runtime.getManifest().version;
+        await dataAccess.saveData(
+          constants.localStorage.FG_APP_DATA,
+          fgAppData,
+        );
+      });
+      break;
+  }
 });
 
 async function setDefaultValues() {
