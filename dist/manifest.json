@@ -1,7 +1,7 @@
 {
   "name": "Focus Guard",
   "version": "1.0.3",
-  "description": "Focus Guard is a website blocker that helps you stay focused on your work or studies by blocking distracting websites.",
+  "description": "Focus Guard is a \"website blocker\" that helps you stay focused on your work or studies by redirecting you to a local page with a Focus message.",
   "permissions": [
     "declarativeNetRequestWithHostAccess",
     "storage",
