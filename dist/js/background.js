@@ -58,6 +58,11 @@ chrome.runtime.onInstalled.addListener( /*#__PURE__*/function () {
                   _context.next = 3;
                   return _utils_scripts_dataAccess_js__WEBPACK_IMPORTED_MODULE_1__.saveData(_utils_constants__WEBPACK_IMPORTED_MODULE_0__.localStorage.FG_APP_DATA, fgAppData);
                 case 3:
+                  fgBlockedWebsitesByUrl = fgBlockedWebsitesByUrl.map(function (item) {
+                    item.isDisabled = item.hasOwnProperty("isMarkedForBlock") ? !item.isMarkedForBlock : false;
+                    return item;
+                  });
+                case 4:
                 case "end":
                   return _context.stop();
               }
@@ -267,7 +272,7 @@ var calculateNewDynamicRules = function calculateNewDynamicRules(focusMode, fgBl
 
     // Combine filtering and mapping for domain and URL rules
     [].concat(_toConsumableArray(fgBlockedWebsitesByDomain), _toConsumableArray(fgBlockedWebsitesByUrl)).forEach(function (item) {
-      if (item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked)) {
+      if (!item.isDisabled && (focusMode || item.isPermanentlyBlocked)) {
         rules.push(createFGRule(item, index++));
       }
     });
@@ -286,7 +291,7 @@ var closeBlockedTabs = function closeBlockedTabs(focusMode, fgBlockedWebsitesByD
   return new Promise(function (resolve) {
     chrome.tabs.query({}, function (tabs) {
       var blockedItems = [].concat(_toConsumableArray(fgBlockedWebsitesByDomain), _toConsumableArray(fgBlockedWebsitesByUrl)).filter(function (item) {
-        return item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked);
+        return !item.isDisabled && (focusMode || item.isPermanentlyBlocked);
       });
       blockedItems.forEach(function (item) {
         tabs.forEach(function (tab) {
@@ -437,24 +442,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var blockByDomainList = [{
   url: "facebook.com",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "instagram.com",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "reddit.com",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "tiktok.com",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "twitter.com",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  //isMarkedForBlock: false,
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }];
 
 /***/ }),
@@ -471,28 +477,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var blockByUrlList = [{
   url: "https://www.facebook.com/watch",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "https://www.instagram.com/stories",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "https://www.facebook.com/stories",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "https://www.facebook.com/reel",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "https://www.instagram.com/reels",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }, {
   url: "https://www.youtube.com/shorts",
-  isMarkedForBlock: false,
-  isPermanentlyBlocked: false
+  isPermanentlyBlocked: false,
+  isDisabled: false
 }];
 
 /***/ }),

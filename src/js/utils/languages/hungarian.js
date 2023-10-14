@@ -11,7 +11,8 @@ export const hungarian = {
   fgOff: "Ki",
 
   markedForBlock: "Letiltásra jelölve",
-  permanentlyBlocked: "Permanens tiltás",
+  isDisabled: "Inaktív szabály",
+  permanentlyBlocked: "Állandóan aktív szabály",
   remove: "Eltávolítás",
   prev: "Előző",
   next: "Következő",

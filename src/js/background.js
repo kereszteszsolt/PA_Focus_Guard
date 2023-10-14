@@ -27,6 +27,12 @@ chrome.runtime.onInstalled.addListener(async function (details) {
           constants.localStorage.FG_APP_DATA,
           fgAppData,
         );
+        fgBlockedWebsitesByUrl = fgBlockedWebsitesByUrl.map((item) => {
+          item.isDisabled = item.hasOwnProperty("isMarkedForBlock")
+            ? !item.isMarkedForBlock
+            : false;
+          return item;
+        });
       });
       break;
   }

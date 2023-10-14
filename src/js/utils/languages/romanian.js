@@ -11,7 +11,8 @@ export const romanian = {
   fgOff: "Oprit",
 
   markedForBlock: "Marcat pentru Blocare",
-  permanentlyBlocked: "Blocat Permanent",
+  isDisabled: "Regulă dezactivată",
+  permanentlyBlocked: "Regulă permanent activă",
   remove: "Eliminare",
   prev: "Anterior",
   next: "Următor",

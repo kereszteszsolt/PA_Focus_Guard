@@ -1,27 +1,28 @@
 export const blockByDomainList = [
   {
     url: "facebook.com",
-    isMarkedForBlock: false,
     isPermanentlyBlocked: false,
+    isDisabled: false,
   },
   {
     url: "instagram.com",
-    isMarkedForBlock: false,
     isPermanentlyBlocked: false,
+    isDisabled: false,
   },
   {
     url: "reddit.com",
-    isMarkedForBlock: false,
     isPermanentlyBlocked: false,
+    isDisabled: false,
   },
   {
     url: "tiktok.com",
-    isMarkedForBlock: false,
     isPermanentlyBlocked: false,
+    isDisabled: false,
   },
   {
     url: "twitter.com",
-    isMarkedForBlock: false,
+    //isMarkedForBlock: false,
     isPermanentlyBlocked: false,
+    isDisabled: false,
   },
 ];

@@ -152,12 +152,12 @@ export default {
       this.calculateCurrentPageItems();
       this.saveToStorage();
     },
-    markForBlock(item) {
-      if (item.isMarkedForBlock) {
-        item.isMarkedForBlock = false;
-        item.isPermanentlyBlocked = false;
+    markForDisabled(item) {
+      if (item.isDisabled) {
+        item.isDisabled = false;
       } else {
-        item.isMarkedForBlock = true;
+        item.isDisabled = true;
+        item.isPermanentlyBlocked = false;
       }
       this.saveToStorage();
     },
@@ -166,20 +166,20 @@ export default {
         item.isPermanentlyBlocked = false;
       } else {
         item.isPermanentlyBlocked = true;
-        item.isMarkedForBlock = true;
+        item.isDisabled = false;
       }
       this.saveToStorage();
     },
-    markAllForBlockCurrPage() {
-      const allCurrPageItemsAreMarkedForBlock = this.currentPageItems.every(
-        (item) => item.isMarkedForBlock,
+    markAllForDisabledCurrPage() {
+      const allCurrPageItemsAreMarkedForDisabled = this.currentPageItems.every(
+        (item) => item.isDisabled,
       );
       this.currentPageItems.forEach((item) => {
-        if (allCurrPageItemsAreMarkedForBlock) {
-          item.isMarkedForBlock = false;
-          item.isPermanentlyBlocked = false;
+        if (allCurrPageItemsAreMarkedForDisabled) {
+          item.isDisabled = false;
         } else {
-          item.isMarkedForBlock = true;
+          item.isDisabled = true;
+          item.isPermanentlyBlocked = false;
         }
       });
       this.saveToStorage();
@@ -193,7 +193,7 @@ export default {
           item.isPermanentlyBlocked = false;
         } else {
           item.isPermanentlyBlocked = true;
-          item.isMarkedForBlock = true;
+          item.isDisabled = false;
         }
       });
       this.saveToStorage();
@@ -216,27 +216,19 @@ export default {
           <th>
             {{ justDomain ? lang.getTranslation(fgLanguage, "domain") : "URL" }}
           </th>
-          <th @click="markAllForBlockCurrPage(currentPageItems)">
-            {{ lang.getTranslation(fgLanguage, "markedForBlock") }}
-          </th>
           <th @click="markAllForPermanentlyBlockCurrPage(currentPageItems)">
             {{ lang.getTranslation(fgLanguage, "permanentlyBlocked") }}
+          </th>
+          <th @click="markAllForDisabledCurrPage(currentPageItems)">
+            {{ lang.getTranslation(fgLanguage, "isDisabled") }}
           </th>
           <th>{{ lang.getTranslation(fgLanguage, "remove") }}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in currentPageItems" v-bind:key="item.url">
-          <td>{{ item.url }}</td>
-          <td>
-            <label class="checkbox">
-              <input
-                type="checkbox"
-                :id="item.url"
-                :checked="item.isMarkedForBlock"
-                @change="markForBlock(item)"
-              />
-            </label>
+          <td v-bind:class="{ disabledRule: item.isDisabled }">
+            {{ item.url }}
           </td>
           <td>
             <label class="checkbox">
@@ -245,6 +237,16 @@ export default {
                 :id="item.url"
                 :checked="item.isPermanentlyBlocked"
                 @change="markForPermanentlyBlock(item)"
+              />
+            </label>
+          </td>
+          <td>
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                :id="item.url"
+                :checked="item.isDisabled"
+                @change="markForDisabled(item)"
               />
             </label>
           </td>
@@ -495,5 +497,9 @@ button {
       }
     }
   }
+}
+.disabledRule {
+  text-decoration: line-through;
+  color: lighten($fg-secondary-color, 10%);
 }
 </style>

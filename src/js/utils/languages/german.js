@@ -11,7 +11,8 @@ export const german = {
   fgOff: "Aus",
 
   markedForBlock: "Zur Sperrliste hinzugefügt",
-  permanentlyBlocked: "Dauerhaft gesperrt",
+  isDisabled: "Deaktivierte Regel",
+  permanentlyBlocked: "Dauerhaft aktive Regel",
   remove: "Entfernen",
   prev: "Zurück",
   next: "Weiter",

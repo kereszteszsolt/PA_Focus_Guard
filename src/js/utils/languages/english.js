@@ -11,7 +11,8 @@ export const english = {
   fgOff: "Off",
 
   markedForBlock: "Marked for Block",
-  permanentlyBlocked: "Permanently Blocked",
+  isDisabled: "Disabled rule",
+  permanentlyBlocked: "Permanently Active Rule",
   remove: "Remove",
   prev: "Prev",
   next: "Next",
