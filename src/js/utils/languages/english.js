@@ -18,6 +18,8 @@ export const english = {
   prev: "Prev",
   next: "Next",
   addSite: "Add Site:",
+  addUrl: "Add URL:",
+  addDomain: "Add Domain:",
   add: "Add",
   invalidDomain: "Invalid domain!",
   invalidUrl: "Invalid URL!",

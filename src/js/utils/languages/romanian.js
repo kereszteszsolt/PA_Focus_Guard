@@ -18,6 +18,8 @@ export const romanian = {
   prev: "Anterior",
   next: "Următor",
   addSite: "Adăugare Site:",
+  addUrl: "Adăugare URL:",
+  addDomain: "Adăugare Domeniu:",
   add: "Adăugare",
   invalidDomain: "Domeniu nevalid!",
   invalidUrl: "URL nevalid!",

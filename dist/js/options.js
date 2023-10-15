@@ -17600,7 +17600,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     disabled: $data.currentPage === $data.numberOfPages,
     "class": "button-primary"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "next")), 9 /* TEXT, PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "add")) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "domain") : "URL"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.lang.getTranslation($props.fgLanguage, "next")), 9 /* TEXT, PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.justDomain ? $options.lang.getTranslation($props.fgLanguage, "addDomain") : $options.lang.getTranslation($props.fgLanguage, "addUrl")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     placeholder: $data.placeholderText,
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
@@ -18135,6 +18135,8 @@ var english = {
   prev: "Prev",
   next: "Next",
   addSite: "Add Site:",
+  addUrl: "Add URL:",
+  addDomain: "Add Domain:",
   add: "Add",
   invalidDomain: "Invalid domain!",
   invalidUrl: "Invalid URL!",
@@ -18193,6 +18195,8 @@ var german = {
   prev: "Zurück",
   next: "Weiter",
   addSite: "Website hinzufügen:",
+  addUrl: "URL hinzufügen:",
+  addDomain: "Domäne hinzufügen:",
   add: "Hinzufügen",
   invalidDomain: "Ungültige Domain!",
   invalidUrl: "Ungültige URL!",
@@ -18460,6 +18464,8 @@ var hungarian = {
   prev: "Előző",
   next: "Következő",
   addSite: "Weboldal hozzáadása:",
+  addUrl: "URL hozzáadása:",
+  addDomain: "Domain hozzáadása:",
   add: "Hozzáadás",
   invalidDomain: "Érvénytelen domain!",
   invalidUrl: "Érvénytelen URL!",
@@ -18653,6 +18659,8 @@ var romanian = {
   prev: "Anterior",
   next: "Următor",
   addSite: "Adăugare Site:",
+  addUrl: "Adăugare URL:",
+  addDomain: "Adăugare Domeniu:",
   add: "Adăugare",
   invalidDomain: "Domeniu nevalid!",
   invalidUrl: "URL nevalid!",

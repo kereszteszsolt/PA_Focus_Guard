@@ -276,8 +276,11 @@ export default {
   </div>
   <div class="add-url-container">
     <p>
-      {{ lang.getTranslation(fgLanguage, "add") }}
-      {{ justDomain ? lang.getTranslation(fgLanguage, "domain") : "URL" }}
+      {{
+        justDomain
+          ? lang.getTranslation(fgLanguage, "addDomain")
+          : lang.getTranslation(fgLanguage, "addUrl")
+      }}
     </p>
     <div class="input-wrapper">
       <input

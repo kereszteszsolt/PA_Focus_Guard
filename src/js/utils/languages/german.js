@@ -18,6 +18,8 @@ export const german = {
   prev: "Zurück",
   next: "Weiter",
   addSite: "Website hinzufügen:",
+  addUrl: "URL hinzufügen:",
+  addDomain: "Domäne hinzufügen:",
   add: "Hinzufügen",
   invalidDomain: "Ungültige Domain!",
   invalidUrl: "Ungültige URL!",
