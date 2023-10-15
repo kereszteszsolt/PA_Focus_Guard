@@ -17336,13 +17336,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   htuEnglish: () => (/* binding */ htuEnglish)
 /* harmony export */ });
 var htuEnglish = {
-  title: "How to use",
+  title: "How to Use Focus Guard?",
   preface: "",
   chapters: [{
-    title: "Focus rules by domains",
-    text: "You can add domains to the list. The extension will block all the subdomains of the given domain. For example, if you add 'youtube.com', the extension will block 'www.youtube.com', 'm.youtube.com', 'youtube.com', etc."
+    title: "How to Start a 'Focus Session'?",
+    text: "Click the extension icon in the browser toolbar. Click the 'On' button. " + "The extension will redirect you to the built-in focus page/message. You can add new websites to the list during the 'Focus Session'."
+  }, {
+    title: "How to End a 'Focus Session'?",
+    text: "Click the extension icon in the browser toolbar. Click the 'Off' button. "
+  }, {
+    title: "How to Add a New Domain (Website) to the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by Domains' from the sidebar." + "Complete the input box and click the 'Add New Domain' button. "
+  }, {
+    title: "How to Remove a Domain (Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by Domains' from the sidebar." + "Click the 'Remove' button on the domain's row you want to remove."
+  }, {
+    title: "How to Temporarily Remove a Domain (Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by Domains' from the sidebar." + "Click the 'Disabled Rule' checkbox on the domain's row you want to remove." + "To undo this action, simply uncheck the checkbox."
+  }, {
+    title: "How to Add a New URL (Concrete Page from Website) to the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' from the sidebar." + "Complete the input box and click the 'Add New URL' button. "
+  }, {
+    title: "How to Remove a URL (Concrete Page from Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' from the sidebar." + "Click the 'Remove' button on the URL's row you want to remove."
+  }, {
+    title: "How to Temporarily Remove a URL (Concrete Page from Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' from the sidebar." + "Click the 'Disabled Rule' checkbox on the URL's row you want to remove." + "To undo this action, simply uncheck the checkbox."
+  }, {
+    title: "How to Activate a Permanent 'Focus Rule' on a Specific URL/Domain?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' or 'Focus Rules by Domains' from the sidebar." + "Click the 'Permanently Active Rule' checkbox on the row you want to activate." + "To undo this action, simply uncheck the checkbox."
+  }, {
+    title: "How to Use 'Focus Guard' in 'Incognito Mode'?",
+    text: "Right-Click the extension icon in the browser toolbar. Click the 'Manage Extension' option." + "Scroll down to the 'Allow in Incognito' option and check the checkbox. To undo, simply switch it off at the same place."
+  }, {
+    title: "How to Remove 'Focus Guard' from the Browser?",
+    text: "Right-Click the extension icon in the browser toolbar. Click 'Remove from Chrome' option."
   }],
-  afterword: ["If you have any questions, feel free to contact me at: "]
+  afterword: [" "]
 };
 
 /***/ }),
@@ -17358,13 +17388,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   htuGerman: () => (/* binding */ htuGerman)
 /* harmony export */ });
 var htuGerman = {
-  title: "Wie zu benutzen",
+  title: "Wie benutzt man den Focus Guard?",
   preface: "",
   chapters: [{
-    title: "Fokusregeln nach Domains",
-    text: "Sie können Domains zur Liste hinzufügen. Die Erweiterung blockiert alle Subdomains der angegebenen Domain. Wenn Sie beispielsweise 'youtube.com' hinzufügen, blockiert die Erweiterung 'www.youtube.com', 'm.youtube.com', 'youtube.com' usw."
+    title: "Wie startet man eine 'Fokussitzung'?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Ein'. " + "Die Erweiterung leitet dich zur integrierten Fokusseite/-nachricht um. Du kannst während der 'Fokussitzung' neue Websites zur Liste hinzufügen."
+  }, {
+    title: "Wie beendet man eine 'Fokussitzung'?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Aus'."
+  }, {
+    title: "Wie fügt man eine neue Domain (Website) zur Liste hinzu?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach Domains' im Seitenmenü aus." + "Fülle das Eingabefeld aus und klicke auf die Schaltfläche 'Neue Domain hinzufügen'."
+  }, {
+    title: "Wie entfernt man eine Domain (Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach Domains' im Seitenmenü aus." + "Klicke auf die Schaltfläche 'Entfernen' in der Zeile der Domain, die du entfernen möchtest."
+  }, {
+    title: "Wie entfernt man vorübergehend eine Domain (Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach Domains' im Seitenmenü aus." + "Aktiviere das Kontrollkästchen 'Regel deaktivieren' in der Zeile der Domain, die du entfernen möchtest." + "Um diesen Vorgang rückgängig zu machen, deaktiviere einfach das Kontrollkästchen erneut."
+  }, {
+    title: "Wie fügt man eine neue URL (konkrete Seite von einer Website) zur Liste hinzu?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' im Seitenmenü aus." + "Fülle das Eingabefeld aus und klicke auf die Schaltfläche 'Neue URL hinzufügen'."
+  }, {
+    title: "Wie entfernt man eine URL (konkrete Seite von einer Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' im Seitenmenü aus." + "Klicke auf die Schaltfläche 'Entfernen' in der Zeile der URL, die du entfernen möchtest."
+  }, {
+    title: "Wie entfernt man vorübergehend eine URL (konkrete Seite von einer Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' im Seitenmenü aus." + "Aktiviere das Kontrollkästchen 'Regel deaktivieren' in der Zeile der URL, die du entfernen möchtest." + "Um diesen Vorgang rückgängig zu machen, deaktiviere einfach das Kontrollkästchen erneut."
+  }, {
+    title: "Wie aktiviert man eine dauerhafte 'Fokusregel' für eine spezifische URL/Domain?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' oder 'Fokusregeln nach Domains' im Seitenmenü aus." + "Aktiviere das Kontrollkästchen 'Dauerhaft aktive Regel' in der Zeile, die du aktivieren möchtest." + "Um diesen Vorgang rückgängig zu machen, deaktiviere einfach das Kontrollkästchen erneut."
+  }, {
+    title: "Wie benutzt man den 'Focus Guard' im 'Inkognito-Modus'?",
+    text: "Klicke mit der rechten Maustaste auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Option 'Erweiterung verwalten'." + "Scrolle nach unten zur Option 'Im Inkognito-Modus erlauben' und aktiviere das Kontrollkästchen. Um dies rückgängig zu machen, deaktiviere es einfach am gleichen Ort."
+  }, {
+    title: "Wie entfernt man den 'Focus Guard' aus dem Browser?",
+    text: "Klicke mit der rechten Maustaste auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Option 'Aus Chrome entfernen'."
   }],
-  afterword: ["Wenn Sie Fragen haben, können Sie mich gerne kontaktieren unter: "]
+  afterword: [" "]
 };
 
 /***/ }),
@@ -17380,13 +17440,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   htuHungarian: () => (/* binding */ htuHungarian)
 /* harmony export */ });
 var htuHungarian = {
-  title: "Hogyan használd",
+  title: "Hogyan Használd a Focus Guardot?",
   preface: "",
   chapters: [{
-    title: "Fókusz szabályok domainek alapján",
-    text: "Hozzáadhatsz domaineket a listához. A bővítmény blokkolni fogja az összes aldomain-t a megadott domain-ből. Például, ha hozzáadod a 'youtube.com'-ot, a bővítmény blokkolni fogja a 'www.youtube.com', 'm.youtube.com', 'youtube.com', stb."
+    title: "Hogyan indíts egy 'Focus munkaórát'?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints az 'Be' gombra. " + "A kiterjesztés átirányít téged a beépített fókusz oldalra/üzenetre. Új weboldalakat is hozzáadhatsz a listához a 'Focus munkaóra' alatt."
+  }, {
+    title: "Hogyan fejezd be a 'Focus munkaórát'?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints az 'Ki' gombra. "
+  }, {
+    title: "Hogyan adj hozzá egy új domain-t (weboldalt) a listához?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Töltsd ki a bemeneti mezőt, majd kattints az 'Új domain hozzáadása' gombra. "
+  }, {
+    title: "Hogyan távolíts el egy domain-t (weboldalt) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Kattints az 'Eltávolítás' gombra a domain soránál, amelyet el szeretnél távolítani."
+  }, {
+    title: "Hogyan távolíts el ideiglenesen egy domain-t (weboldalt) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Kattints a 'Letiltott szabály' jelölőnégyzetére a domain soránál, amelyet eltávolítanál." + "Ha vissza akarod állítani ezt a műveletet, egyszerűen vedd ki a pipát a négyzetből."
+  }, {
+    title: "Hogyan adj hozzá egy új URL-t (konkrét oldalt a weboldalról) a listához?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' lehetőséget a menüből." + "Töltsd ki a bemeneti mezőt, majd kattints az 'Új URL hozzáadása' gombra. "
+  }, {
+    title: "Hogyan távolíts el egy URL-t (konkrét oldalt a weboldalról) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' lehetőséget a menüből." + "Kattints az 'Eltávolítás' gombra az URL soránál, amelyet el szeretnél távolítani."
+  }, {
+    title: "Hogyan távolíts el ideiglenesen egy URL-t (konkrét oldalt a weboldalról) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' lehetőséget a menüből." + "Kattints a 'Letiltott szabály' jelölőnégyzetére az URL soránál, amelyet eltávolítanál." + "Ha vissza akarod állítani ezt a műveletet, egyszerűen vedd ki a pipát a négyzetből."
+  }, {
+    title: "Hogyan aktiválj egy állandó 'Focus szabályt' egy specifikus URL-en/Domain-en?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' vagy 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Kattints a 'Állandóan Aktív Szabály' jelölőnégyzetére a soron, amelyet aktiválni szeretnél." + "Ha vissza akarod állítani ezt a műveletet, egyszerűen vedd ki a pipát a négyzetből."
+  }, {
+    title: "Hogyan használd a 'Focus Guard'ot az 'Incognito Módban'?",
+    text: "Jobb-kattints az eszköztáron található kiterjesztés ikonjára. Kattints az 'Eszközkezelés' opcióra." + "Görgess lefelé az 'Engedélyezés inkognitó módban' opcióig, és pipáld ki a jelölőnégyzetet. Visszavonáshoz egyszerűen kapcsold ki ugyanitt."
+  }, {
+    title: "Hogyan távolítsd el a 'Focus Guard'-ot a böngészőből?",
+    text: "Jobb-kattints az eszköztáron található kiterjesztés ikonjára. Kattints a 'Eltávolítás a Chrome-ból' opcióra."
   }],
-  afterword: ["Ha kérdésed van, nyugodtan keress meg itt: "]
+  afterword: [" "]
 };
 
 /***/ }),
@@ -17402,13 +17492,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   htuRomanian: () => (/* binding */ htuRomanian)
 /* harmony export */ });
 var htuRomanian = {
-  title: "Cum să folosești",
+  title: "Cum să folosești Focus Guard?",
   preface: "",
   chapters: [{
-    title: "Reguli de focalizare pe domenii",
-    text: "Puteți adăuga domenii la listă. Extensia va bloca toate subdomeniile domeniului dat. De exemplu, dacă adăugați 'youtube.com', extensia va bloca 'www.youtube.com', 'm.youtube.com', 'youtube.com', etc."
+    title: "Cum să începi o 'Sesiune de Focus'?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Pornit'. " + "Extensia te va redirecționa către pagina/mesajul de focus încorporat. Poți adăuga noi site-uri web în listă în timpul 'Sesiunii de Focus'."
+  }, {
+    title: "Cum să închei o 'Sesiune de Focus'?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Oprit'."
+  }, {
+    title: "Cum să adaugi un domeniu (site web) nou în listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după Domenii' din meniu." + "Completează caseta de input și apasă pe butonul 'Adaugă domeniu nou'."
+  }, {
+    title: "Cum să elimini un domeniu (site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după Domenii' din meniu." + "Apasă pe butonul 'Elimină' de lângă rândul domeniului pe care vrei să-l elimini."
+  }, {
+    title: "Cum să elimini temporar un domeniu (site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după Domenii' din meniu." + "Apasă pe caseta 'Regulă Dezactivată' de lângă rândul domeniului pe care vrei să-l elimini." + "Dacă vrei să revii asupra acestei acțiuni, doar deselectează caseta."
+  }, {
+    title: "Cum să adaugi o adresă URL (pagină concretă de pe un site web) nouă în listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' din meniu." + "Completează caseta de input și apasă pe butonul 'Adaugă URL nou'."
+  }, {
+    title: "Cum să elimini o adresă URL (pagină concretă de pe un site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' din meniu." + "Apasă pe butonul 'Elimină' de lângă rândul URL-ului pe care vrei să-l elimini."
+  }, {
+    title: "Cum să elimini temporar o adresă URL (pagină concretă de pe un site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' din meniu." + "Apasă pe caseta 'Regulă Dezactivată' de lângă rândul URL-ului pe care vrei să-l elimini." + "Dacă vrei să revii asupra acestei acțiuni, doar deselectează caseta."
+  }, {
+    title: "Cum să activezi o 'Regulă de Focus' permanentă pentru o anumită adresă URL/Domeniu?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' sau 'Reguli de Focus după Domenii' din meniu." + "Apasă pe caseta 'Regulă Permanent Activă' de lângă rândul pe care vrei să o activezi." + "Dacă vrei să revii asupra acestei acțiuni, doar deselectează caseta."
+  }, {
+    title: "Cum să folosești 'Focus Guard' în 'Modul Incognito'?",
+    text: "Click-dreapta pe iconița extensiei din bara de instrumente a browserului. Apasă pe opțiunea 'Administrează extensia'." + "Derulează în jos până la opțiunea 'Permite în modul incognito' și bifează caseta. Pentru a reveni, dezactivează-o în același loc."
+  }, {
+    title: "Cum să elimini 'Focus Guard' din browser?",
+    text: "Click-dreapta pe iconița extensiei din bara de instrumente a browserului. Apasă pe opțiunea 'Elimină din Chrome'."
   }],
-  afterword: ["Dacă aveți întrebări, nu ezitați să mă contactați la: "]
+  afterword: [" "]
 };
 
 /***/ }),
