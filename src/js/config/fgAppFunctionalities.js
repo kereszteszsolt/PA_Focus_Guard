@@ -40,7 +40,14 @@ export const fgAppFunctionalities = [
   {
     funcTitle: "Gtc",
     funcName: constants.componentNames.FG_GTC,
-    containerComponent: "Gtc",
+    containerComponent: "TextComponent",
+    storageName: "",
+    justDomain: false,
+  },
+  {
+    funcTitle: "How To Use",
+    funcName: constants.componentNames.FG_HOW_TO_USE,
+    containerComponent: "TextComponent",
     storageName: "",
     justDomain: false,
   },

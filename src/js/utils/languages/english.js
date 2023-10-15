@@ -1,6 +1,6 @@
 export const english = {
-  fgBlockedWebsiteByDomain: "Blocked websites by domain",
-  fgBlockedWebsiteByUrl: "Blocked websites by URL",
+  fgFocusRulesByDomains: "Focus rules by domains",
+  fgFocusRulesByURLs: "Focus rules by URLs",
   fgAbout: "About",
   fgLanguage: "Language",
   fgAcknowledgments: "Acknowledgments",
@@ -9,6 +9,7 @@ export const english = {
   fgSettings: "Settings",
   fgOn: "On",
   fgOff: "Off",
+  fgHowToUse: "How to use Focus Guard?",
 
   markedForBlock: "Marked for Block",
   isDisabled: "Disabled rule",

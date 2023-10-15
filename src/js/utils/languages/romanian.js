@@ -1,6 +1,6 @@
 export const romanian = {
-  fgBlockedWebsiteByDomain: "Site-uri blocate după domeniu",
-  fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
+  fgFocusRulesByDomains: "Reguli de focusare după domenii",
+  fgFocusRulesByURLs: "Reguli de focusare după URL-uri",
   fgAbout: "Despre",
   fgLanguage: "Limbă",
   fgAcknowledgments: "Mulțumiri",
@@ -9,6 +9,7 @@ export const romanian = {
   fgSettings: "Setări",
   fgOn: "Pornit",
   fgOff: "Oprit",
+  fgHowToUse: "Cum se folosește Focus Guard?",
 
   markedForBlock: "Marcat pentru Blocare",
   isDisabled: "Regulă dezactivată",

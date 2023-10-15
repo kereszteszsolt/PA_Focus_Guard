@@ -16935,14 +16935,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
 /* harmony export */   FG_GTC: () => (/* binding */ FG_GTC),
+/* harmony export */   FG_HOW_TO_USE: () => (/* binding */ FG_HOW_TO_USE),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
-var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
-var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
+var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgFocusRulesByDomains";
+var FG_BLOCKED_WEBSITES_BY_URL = "fgFocusRulesByURLs";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
 var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
 var FG_GTC = "fgGtc";
+var FG_HOW_TO_USE = "fgHowToUse";
 
 /***/ }),
 
@@ -17054,7 +17056,7 @@ var gtcEnglish = {
     title: "User Modifications:",
     text: "If a user modifies the software for their own use, they are required to replace the application icon" + " and any elements referring to the distributor or original developer. If the user distributes the modified version," + " they must do so under their own name, including on social media pages, donation pages, and signature areas.(eg. About page)" + " If the user wishes to attribute the original source of the version, it is welcomed."
   }],
-  afterText: ["Please be aware that decisions regarding the use of the software are made at your own discretion." + " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.", "If you have any questions or feedback about the software, I welcome your input." + " Contact information can be found on the About / Github page.", "The General Terms and Conditions will come into effect on September 1, 2023, and will remain in effect unless" + " later amended or revoked.", "Thank you for your interest in the software, and enjoy using it!"]
+  afterword: ["Please be aware that decisions regarding the use of the software are made at your own discretion." + " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.", "If you have any questions or feedback about the software, I welcome your input." + " Contact information can be found on the About / Github page.", "The General Terms and Conditions will come into effect on September 1, 2023, and will remain in effect unless" + " later amended or revoked.", "Thank you for your interest in the software, and enjoy using it!"]
 };
 
 /***/ }),
@@ -17103,7 +17105,7 @@ var gtcGerman = {
     title: "Benutzermodifikationen:",
     text: "Wenn ein Benutzer die Software für seine eigenen Zwecke modifiziert, ist er verpflichtet, das Anwendungssymbol" + " und alle Elemente, die auf den Distributor oder den ursprünglichen Entwickler hinweisen, zu ersetzen. Wenn der Benutzer die modifizierte Version" + ' verbreitet, muss er dies unter seinem eigenen Namen tun, einschließlich auf Social-Media-Seiten, Spendenplattformen und in Signaturbereichen (z.b. "Über" site).' + " Wenn der Benutzer die ursprüngliche Quelle der Version angeben möchte, wird dies gerne begrüßt."
   }],
-  afterText: ["Bitte beachten Sie, dass Entscheidungen im Zusammenhang mit der Verwendung der Software in Ihrem eigenen Ermessen getroffen werden." + " Wenn Sie mit den in den AGB festgelegten Bedingungen nicht einverstanden sind, wird empfohlen, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Feedback zur Software haben, freue ich mich über Ihre Rückmeldung." + ' Kontaktinformationen finden Sie auf der "Über"- / "Github"-Seite.', "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, sofern sie nicht später geändert oder aufgehoben werden.", "Vielen Dank für Ihr Interesse an der Software, und viel Spaß bei der Verwendung!"]
+  afterword: ["Bitte beachten Sie, dass Entscheidungen im Zusammenhang mit der Verwendung der Software in Ihrem eigenen Ermessen getroffen werden." + " Wenn Sie mit den in den AGB festgelegten Bedingungen nicht einverstanden sind, wird empfohlen, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Feedback zur Software haben, freue ich mich über Ihre Rückmeldung." + ' Kontaktinformationen finden Sie auf der "Über"- / "Github"-Seite.', "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, sofern sie nicht später geändert oder aufgehoben werden.", "Vielen Dank für Ihr Interesse an der Software, und viel Spaß bei der Verwendung!"]
 };
 
 /***/ }),
@@ -17152,7 +17154,7 @@ var gtcHungarian = {
     title: "Felhasználói Módosítások: ",
     text: "Amennyiben a felhasználó módosítja a szoftvert saját felhasználásra, köteles kicserélni az alkalmazás" + " ikonját és minden olyan elemet, amely a terjesztőre vagy eredeti fejlesztőre utal. Amennyiben a felhasználó" + " terjeszti a módosított verziót, köteles a szoftvert saját nevében terjeszteni, beleértve a social media" + ' oldalak, adományozó oldalak és aláírás területeket is (pl. "A bővítményről" oldal). Amennyiben a felhasználó szeretné megjelölni a ' + "változat eredeti forrását, azt szívesen fogadom."
   }],
-  afterText: ["Felhívom a figyelmet, hogy a szoftver használatával kapcsolatos döntések saját felelősségre történnek. " + "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javaslom," + " hogy ne telepítse vagy ne használja a szoftvert.", "Amennyiben kérdése vagy észrevétele van a szoftverrel kapcsolatban, örömmel veszem a visszajelzéseit." + ' A kapcsolatfelvételi lehetőségek megtalálhatók a "A bővítményről" oldalon / Github oldalon.', "Az Általános Szerződési Feltételek 2023. szeptember 1-jétől lépnek életbe és hatályban maradnak, kivéve," + " ha azokat később módosításra vagy visszavonásra kerülnek.", "Köszönöm az érdeklődést a szoftver iránt, és jó felhasználást kívánok!"]
+  afterword: ["Felhívom a figyelmet, hogy a szoftver használatával kapcsolatos döntések saját felelősségre történnek. " + "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javaslom," + " hogy ne telepítse vagy ne használja a szoftvert.", "Amennyiben kérdése vagy észrevétele van a szoftverrel kapcsolatban, örömmel veszem a visszajelzéseit." + ' A kapcsolatfelvételi lehetőségek megtalálhatók a "A bővítményről" oldalon / Github oldalon.', "Az Általános Szerződési Feltételek 2023. szeptember 1-jétől lépnek életbe és hatályban maradnak, kivéve," + " ha azokat később módosításra vagy visszavonásra kerülnek.", "Köszönöm az érdeklődést a szoftver iránt, és jó felhasználást kívánok!"]
 };
 
 /***/ }),
@@ -17201,7 +17203,7 @@ var gtcRomanian = {
     title: "Modificări Efectuate de Utilizatori:",
     text: "Dacă un utilizator efectuează modificări asupra software-ului în scopul propriu, el este obligat să înlocuiască icon-ul aplicației" + " și orice elemente care se referă la distribuitorul sau dezvoltatorul original. Dacă utilizatorul distribuie versiunea modificată," + ' acesta trebuie să o facă sub numele său propriu, inclusiv pe paginile de social media, paginile de donații și în zonele pentru semnături.(e.x. pagina "Despre")' + " Dacă utilizatorul dorește să atribuie sursa originală a versiunii, acest lucru este binevenit."
   }],
-  afterText: ["Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." + " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.", "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." + ' Informațiile de contact se găsesc pe pagina de "Despre" / "Github".', "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" + " în care vor fi ulterior modificați sau revocați.", "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!"]
+  afterword: ["Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." + " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.", "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." + ' Informațiile de contact se găsesc pe pagina de "Despre" / "Github".', "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" + " în care vor fi ulterior modificați sau revocați.", "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!"]
 };
 
 /***/ }),
@@ -17217,8 +17219,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   english: () => (/* binding */ english)
 /* harmony export */ });
 var english = {
-  fgBlockedWebsiteByDomain: "Blocked websites by domain",
-  fgBlockedWebsiteByUrl: "Blocked websites by URL",
+  fgFocusRulesByDomains: "Focus rules by domains",
+  fgFocusRulesByURLs: "Focus rules by URLs",
   fgAbout: "About",
   fgLanguage: "Language",
   fgAcknowledgments: "Acknowledgments",
@@ -17227,6 +17229,7 @@ var english = {
   fgSettings: "Settings",
   fgOn: "On",
   fgOff: "Off",
+  fgHowToUse: "How to use Focus Guard?",
   markedForBlock: "Marked for Block",
   isDisabled: "Disabled rule",
   permanentlyBlocked: "Permanently Active Rule",
@@ -17274,8 +17277,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   german: () => (/* binding */ german)
 /* harmony export */ });
 var german = {
-  fgBlockedWebsiteByDomain: "Gesperrte Websites nach Domain",
-  fgBlockedWebsiteByUrl: "Gesperrte Websites nach URL",
+  fgFocusRulesByDomains: "Fokusregeln nach Domänen",
+  fgFocusRulesByURLs: "Fokusregeln nach URLs",
   fgAbout: "Über",
   fgLanguage: "Sprache",
   fgAcknowledgments: "Danksagungen",
@@ -17284,6 +17287,7 @@ var german = {
   fgSettings: "Einstellungen",
   fgOn: "An",
   fgOff: "Aus",
+  fgHowToUse: "Wie benutzt man Focus Guard?",
   markedForBlock: "Zur Sperrliste hinzugefügt",
   isDisabled: "Deaktivierte Regel",
   permanentlyBlocked: "Dauerhaft aktive Regel",
@@ -17321,6 +17325,94 @@ var german = {
 
 /***/ }),
 
+/***/ "./src/js/utils/languages/howToUse/htuEnglish.js":
+/*!*******************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuEnglish.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuEnglish: () => (/* binding */ htuEnglish)
+/* harmony export */ });
+var htuEnglish = {
+  title: "How to use",
+  preface: "",
+  chapters: [{
+    title: "Focus rules by domains",
+    text: "You can add domains to the list. The extension will block all the subdomains of the given domain. For example, if you add 'youtube.com', the extension will block 'www.youtube.com', 'm.youtube.com', 'youtube.com', etc."
+  }],
+  afterword: ["If you have any questions, feel free to contact me at: "]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/howToUse/htuGerman.js":
+/*!******************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuGerman.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuGerman: () => (/* binding */ htuGerman)
+/* harmony export */ });
+var htuGerman = {
+  title: "Wie zu benutzen",
+  preface: "",
+  chapters: [{
+    title: "Fokusregeln nach Domains",
+    text: "Sie können Domains zur Liste hinzufügen. Die Erweiterung blockiert alle Subdomains der angegebenen Domain. Wenn Sie beispielsweise 'youtube.com' hinzufügen, blockiert die Erweiterung 'www.youtube.com', 'm.youtube.com', 'youtube.com' usw."
+  }],
+  afterword: ["Wenn Sie Fragen haben, können Sie mich gerne kontaktieren unter: "]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/howToUse/htuHungarian.js":
+/*!*********************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuHungarian.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuHungarian: () => (/* binding */ htuHungarian)
+/* harmony export */ });
+var htuHungarian = {
+  title: "Hogyan használd",
+  preface: "",
+  chapters: [{
+    title: "Fókusz szabályok domainek alapján",
+    text: "Hozzáadhatsz domaineket a listához. A bővítmény blokkolni fogja az összes aldomain-t a megadott domain-ből. Például, ha hozzáadod a 'youtube.com'-ot, a bővítmény blokkolni fogja a 'www.youtube.com', 'm.youtube.com', 'youtube.com', stb."
+  }],
+  afterword: ["Ha kérdésed van, nyugodtan keress meg itt: "]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/howToUse/htuRomanian.js":
+/*!********************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuRomanian.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuRomanian: () => (/* binding */ htuRomanian)
+/* harmony export */ });
+var htuRomanian = {
+  title: "Cum să folosești",
+  preface: "",
+  chapters: [{
+    title: "Reguli de focalizare pe domenii",
+    text: "Puteți adăuga domenii la listă. Extensia va bloca toate subdomeniile domeniului dat. De exemplu, dacă adăugați 'youtube.com', extensia va bloca 'www.youtube.com', 'm.youtube.com', 'youtube.com', etc."
+  }],
+  afterword: ["Dacă aveți întrebări, nu ezitați să mă contactați la: "]
+};
+
+/***/ }),
+
 /***/ "./src/js/utils/languages/hungarian.js":
 /*!*********************************************!*\
   !*** ./src/js/utils/languages/hungarian.js ***!
@@ -17332,8 +17424,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   hungarian: () => (/* binding */ hungarian)
 /* harmony export */ });
 var hungarian = {
-  fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
-  fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
+  fgFocusRulesByDomains: "Fókusz szabályok domainek alapján",
+  fgFocusRulesByURLs: "Fókusz szabályok URL-ek alapján",
   fgAbout: "A bővítményről",
   fgLanguage: "Nyelv",
   fgAcknowledgments: "Köszönetnyilvánítások",
@@ -17342,6 +17434,7 @@ var hungarian = {
   fgSettings: "Beállítások",
   fgOn: "Be",
   fgOff: "Ki",
+  fgHowToUse: "Hogyan használd a Focus Guard-ot?",
   markedForBlock: "Letiltásra jelölve",
   isDisabled: "Inaktív szabály",
   permanentlyBlocked: "Állandóan aktív szabály",
@@ -17390,6 +17483,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   english: () => (/* reexport safe */ _english__WEBPACK_IMPORTED_MODULE_1__.english),
 /* harmony export */   german: () => (/* reexport safe */ _german__WEBPACK_IMPORTED_MODULE_3__.german),
 /* harmony export */   getGtcTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getGtcTranslation),
+/* harmony export */   getHTUTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getHTUTranslation),
+/* harmony export */   getTextComponentTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTextComponentTranslation),
 /* harmony export */   getTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTranslation),
 /* harmony export */   gtcEnglish: () => (/* reexport safe */ _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish),
 /* harmony export */   gtcGerman: () => (/* reexport safe */ _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__.gtcGerman),
@@ -17428,6 +17523,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getGtcTranslation: () => (/* binding */ getGtcTranslation),
+/* harmony export */   getHTUTranslation: () => (/* binding */ getHTUTranslation),
+/* harmony export */   getTextComponentTranslation: () => (/* binding */ getTextComponentTranslation),
 /* harmony export */   getTranslation: () => (/* binding */ getTranslation)
 /* harmony export */ });
 /* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
@@ -17439,6 +17536,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GTC/gtcHungarian */ "./src/js/utils/languages/GTC/gtcHungarian.js");
 /* harmony import */ var _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GTC/gtcGerman */ "./src/js/utils/languages/GTC/gtcGerman.js");
 /* harmony import */ var _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./GTC/gtcRomanian */ "./src/js/utils/languages/GTC/gtcRomanian.js");
+/* harmony import */ var _howToUse_htuEnglish__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./howToUse/htuEnglish */ "./src/js/utils/languages/howToUse/htuEnglish.js");
+/* harmony import */ var _howToUse_htuHungarian__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./howToUse/htuHungarian */ "./src/js/utils/languages/howToUse/htuHungarian.js");
+/* harmony import */ var _howToUse_htuGerman__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./howToUse/htuGerman */ "./src/js/utils/languages/howToUse/htuGerman.js");
+/* harmony import */ var _howToUse_htuRomanian__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./howToUse/htuRomanian */ "./src/js/utils/languages/howToUse/htuRomanian.js");
+
+
+
+
 
 
 
@@ -17476,6 +17581,28 @@ var getGtcTranslation = function getGtcTranslation(language) {
       return _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish;
   }
 };
+var getHTUTranslation = function getHTUTranslation(language) {
+  switch (language) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ENGLISH:
+      return _howToUse_htuEnglish__WEBPACK_IMPORTED_MODULE_9__.htuEnglish;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.HUNGARIAN:
+      return _howToUse_htuHungarian__WEBPACK_IMPORTED_MODULE_10__.htuHungarian;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.GERMAN:
+      return _howToUse_htuGerman__WEBPACK_IMPORTED_MODULE_11__.htuGerman;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ROMANIAN:
+      return _howToUse_htuRomanian__WEBPACK_IMPORTED_MODULE_12__.htuRomanian;
+    default:
+      return _howToUse_htuEnglish__WEBPACK_IMPORTED_MODULE_9__.htuEnglish;
+  }
+};
+var getTextComponentTranslation = function getTextComponentTranslation(component, language) {
+  switch (component) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FG_GTC:
+      return getGtcTranslation(language);
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FG_HOW_TO_USE:
+      return getHTUTranslation(language);
+  }
+};
 
 /***/ }),
 
@@ -17490,8 +17617,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   romanian: () => (/* binding */ romanian)
 /* harmony export */ });
 var romanian = {
-  fgBlockedWebsiteByDomain: "Site-uri blocate după domeniu",
-  fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
+  fgFocusRulesByDomains: "Reguli de focusare după domenii",
+  fgFocusRulesByURLs: "Reguli de focusare după URL-uri",
   fgAbout: "Despre",
   fgLanguage: "Limbă",
   fgAcknowledgments: "Mulțumiri",
@@ -17500,6 +17627,7 @@ var romanian = {
   fgSettings: "Setări",
   fgOn: "Pornit",
   fgOff: "Oprit",
+  fgHowToUse: "Cum se folosește Focus Guard?",
   markedForBlock: "Marcat pentru Blocare",
   isDisabled: "Regulă dezactivată",
   permanentlyBlocked: "Regulă permanent activă",

@@ -1,6 +1,6 @@
 export const german = {
-  fgBlockedWebsiteByDomain: "Gesperrte Websites nach Domain",
-  fgBlockedWebsiteByUrl: "Gesperrte Websites nach URL",
+  fgFocusRulesByDomains: "Fokusregeln nach Domänen",
+  fgFocusRulesByURLs: "Fokusregeln nach URLs",
   fgAbout: "Über",
   fgLanguage: "Sprache",
   fgAcknowledgments: "Danksagungen",
@@ -9,6 +9,7 @@ export const german = {
   fgSettings: "Einstellungen",
   fgOn: "An",
   fgOff: "Aus",
+  fgHowToUse: "Wie benutzt man Focus Guard?",
 
   markedForBlock: "Zur Sperrliste hinzugefügt",
   isDisabled: "Deaktivierte Regel",

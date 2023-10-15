@@ -7,6 +7,10 @@ import { gtcEnglish } from "./GTC/gtcEnglish";
 import { gtcHungarian } from "./GTC/gtcHungarian";
 import { gtcGerman } from "./GTC/gtcGerman";
 import { gtcRomanian } from "./GTC/gtcRomanian";
+import { htuEnglish } from "./howToUse/htuEnglish";
+import { htuHungarian } from "./howToUse/htuHungarian";
+import { htuGerman } from "./howToUse/htuGerman";
+import { htuRomanian } from "./howToUse/htuRomanian";
 
 export const getTranslation = (language, key) => {
   switch (language) {
@@ -35,5 +39,29 @@ export const getGtcTranslation = (language) => {
       return gtcRomanian;
     default:
       return gtcEnglish;
+  }
+};
+
+export const getHTUTranslation = (language) => {
+  switch (language) {
+    case constants.languages.ENGLISH:
+      return htuEnglish;
+    case constants.languages.HUNGARIAN:
+      return htuHungarian;
+    case constants.languages.GERMAN:
+      return htuGerman;
+    case constants.languages.ROMANIAN:
+      return htuRomanian;
+    default:
+      return htuEnglish;
+  }
+};
+
+export const getTextComponentTranslation = (component, language) => {
+  switch (component) {
+    case constants.componentNames.FG_GTC:
+      return getGtcTranslation(language);
+    case constants.componentNames.FG_HOW_TO_USE:
+      return getHTUTranslation(language);
   }
 };

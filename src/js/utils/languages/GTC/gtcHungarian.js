@@ -64,7 +64,7 @@ export const gtcHungarian = {
         "változat eredeti forrását, azt szívesen fogadom.",
     },
   ],
-  afterText: [
+  afterword: [
     "Felhívom a figyelmet, hogy a szoftver használatával kapcsolatos döntések saját felelősségre történnek. " +
       "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javaslom," +
       " hogy ne telepítse vagy ne használja a szoftvert.",

@@ -275,7 +275,10 @@ export default {
     </button>
   </div>
   <div class="add-url-container">
-    <p>{{ lang.getTranslation(fgLanguage, "addSite") }}</p>
+    <p>
+      {{ lang.getTranslation(fgLanguage, "add") }}
+      {{ justDomain ? lang.getTranslation(fgLanguage, "domain") : "URL" }}
+    </p>
     <div class="input-wrapper">
       <input
         type="text"

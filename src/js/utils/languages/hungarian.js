@@ -1,6 +1,6 @@
 export const hungarian = {
-  fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
-  fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
+  fgFocusRulesByDomains: "Fókusz szabályok domainek alapján",
+  fgFocusRulesByURLs: "Fókusz szabályok URL-ek alapján",
   fgAbout: "A bővítményről",
   fgLanguage: "Nyelv",
   fgAcknowledgments: "Köszönetnyilvánítások",
@@ -9,6 +9,7 @@ export const hungarian = {
   fgSettings: "Beállítások",
   fgOn: "Be",
   fgOff: "Ki",
+  fgHowToUse: "Hogyan használd a Focus Guard-ot?",
 
   markedForBlock: "Letiltásra jelölve",
   isDisabled: "Inaktív szabály",

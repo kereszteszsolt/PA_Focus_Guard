@@ -59,7 +59,7 @@ export const gtcRomanian = {
         " Dacă utilizatorul dorește să atribuie sursa originală a versiunii, acest lucru este binevenit.",
     },
   ],
-  afterText: [
+  afterword: [
     "Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." +
       " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.",
     "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." +

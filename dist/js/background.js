@@ -355,14 +355,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
 /* harmony export */   FG_GTC: () => (/* binding */ FG_GTC),
+/* harmony export */   FG_HOW_TO_USE: () => (/* binding */ FG_HOW_TO_USE),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
-var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
-var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
+var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgFocusRulesByDomains";
+var FG_BLOCKED_WEBSITES_BY_URL = "fgFocusRulesByURLs";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
 var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
 var FG_GTC = "fgGtc";
+var FG_HOW_TO_USE = "fgHowToUse";
 
 /***/ }),
 
