@@ -73,4 +73,14 @@ export const htuRomanian = {
     },
   ],
   afterword: [" "],
+  links: [
+    {
+      text: "Cum să folosești Focus Guard? (Video) Engleză",
+      url: "https://www.youtube.com/watch?v=EsUjbbI75Io",
+    },
+    {
+      text: "Cum să folosești Focus Guard? (Video) Maghiară",
+      url: "https://www.youtube.com/watch?v=7LSU5hTgSmc",
+    },
+  ],
 };

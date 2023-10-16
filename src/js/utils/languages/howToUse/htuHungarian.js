@@ -74,4 +74,14 @@ export const htuHungarian = {
     },
   ],
   afterword: [" "],
+  links: [
+    {
+      text: "Hogyan használd a Focus Guardot? (Videó) Angol",
+      url: "https://www.youtube.com/watch?v=EsUjbbI75Io",
+    },
+    {
+      text: "Hogyan használd a Focus Guardot? (Videó) Magyar",
+      url: "https://www.youtube.com/watch?v=7LSU5hTgSmc",
+    },
+  ],
 };

@@ -21,7 +21,11 @@ export const blockByDomainList = [
   },
   {
     url: "twitter.com",
-    //isMarkedForBlock: false,
+    isPermanentlyBlocked: false,
+    isDisabled: false,
+  },
+  {
+    url: "linkedin.com",
     isPermanentlyBlocked: false,
     isDisabled: false,
   },

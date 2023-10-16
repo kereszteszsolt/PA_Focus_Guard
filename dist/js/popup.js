@@ -17376,7 +17376,14 @@ var htuEnglish = {
     title: "How to Remove 'Focus Guard' from the Browser?",
     text: "Right-Click the extension icon in the browser toolbar. Click 'Remove from Chrome' option."
   }],
-  afterword: [" "]
+  afterword: [" "],
+  links: [{
+    text: "How to Use Focus Guard? (Video) English",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "How to Use Focus Guard? (Video) Hungarian",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
 };
 
 /***/ }),
@@ -17428,7 +17435,14 @@ var htuGerman = {
     title: "Wie entfernt man den 'Focus Guard' aus dem Browser?",
     text: "Klicke mit der rechten Maustaste auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Option 'Aus Chrome entfernen'."
   }],
-  afterword: [" "]
+  afterword: [" "],
+  links: [{
+    text: "Wie man den Focus Guard benutzt? (Video) Englisch",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "Wie man den Focus Guard benutzt? (Video) Ungarisch",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
 };
 
 /***/ }),
@@ -17480,7 +17494,14 @@ var htuHungarian = {
     title: "Hogyan távolítsd el a 'Focus Guard'-ot a böngészőből?",
     text: "Jobb-kattints az eszköztáron található kiterjesztés ikonjára. Kattints a 'Eltávolítás a Chrome-ból' opcióra."
   }],
-  afterword: [" "]
+  afterword: [" "],
+  links: [{
+    text: "Hogyan használd a Focus Guardot? (Videó) Angol",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "Hogyan használd a Focus Guardot? (Videó) Magyar",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
 };
 
 /***/ }),
@@ -17532,7 +17553,14 @@ var htuRomanian = {
     title: "Cum să elimini 'Focus Guard' din browser?",
     text: "Click-dreapta pe iconița extensiei din bara de instrumente a browserului. Apasă pe opțiunea 'Elimină din Chrome'."
   }],
-  afterword: [" "]
+  afterword: [" "],
+  links: [{
+    text: "Cum să folosești Focus Guard? (Video) Engleză",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "Cum să folosești Focus Guard? (Video) Maghiară",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
 };
 
 /***/ }),

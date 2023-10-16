@@ -74,4 +74,14 @@ export const htuGerman = {
     },
   ],
   afterword: [" "],
+  links: [
+    {
+      text: "Wie man den Focus Guard benutzt? (Video) Englisch",
+      url: "https://www.youtube.com/watch?v=EsUjbbI75Io",
+    },
+    {
+      text: "Wie man den Focus Guard benutzt? (Video) Ungarisch",
+      url: "https://www.youtube.com/watch?v=7LSU5hTgSmc",
+    },
+  ],
 };

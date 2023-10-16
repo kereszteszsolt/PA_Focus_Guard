@@ -62,6 +62,13 @@ export default {
     <p>{{ chapter.text }}</p>
   </div>
 
+  <div v-for="link in textComponent.links" :key="link.id">
+    <div>
+      <h3>{{ link.text }}</h3>
+      <a :href="link.url">{{ link.url }}</a>
+    </div>
+  </div>
+
   <div v-for="aText in textComponent.afterword" :key="aText.id">
     <p>{{ aText }}</p>
   </div>

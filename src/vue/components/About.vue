@@ -47,23 +47,17 @@ export default {
           >Github Focus Guard</a
         >
       </p>
-      <!--      waiting for finish the video(s)-->
-      <!--      <p>-->
-      <!--        {{ lang.getTranslation(fgLanguage, "aboutText_p2_2_prodDescYTVideo") }}-->
-      <!--      </p>-->
-      <!--      <p><a href="https://www.youtube.com/">Youtube English</a></p>-->
-      <!--      <p><a href="https://www.youtube.com/">Youtube Hungarian</a></p>-->
       <p>{{ lang.getTranslation(fgLanguage, "aboutText_p3_socialMedia") }}</p>
     </div>
     <div class="social-media-links">
       <div class="social-media-item">
-        <a href="https://www.youtube.com/channel/">
+        <a href="https://www.youtube.com/@KeresztesZsolt">
           <img src="/assets/icons/icons8-youtube-48.png" alt="youtube" />
           <span>Youtube Hu</span>
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.youtube.com/channel/">
+        <a href="https://www.youtube.com/@KeresztesZsolt-ev/">
           <img src="/assets/icons/icons8-youtube-48.png" alt="youtube" />
           <span>Youtube En</span>
         </a>
@@ -81,7 +75,7 @@ export default {
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.linkedin.com/in/keresztes-zsolt">
+        <a href="https://www.linkedin.com/in/kereszteszsolt">
           <img src="/assets/icons/icons8-linkedin-48.png" alt="linkedin" />
           <span>LinkedIn</span>
         </a>
@@ -102,6 +96,12 @@ export default {
         <a href="https://www.tiktok.com/@kereszteszsolti">
           <img src="/assets/icons/icons8-tiktok-48.png" alt="tiktok" />
           <span>TikTok</span>
+        </a>
+      </div>
+      <div class="social-media-item">
+        <a href="https://www.linktr.ee/kereszteszsolt">
+          <img src="/assets/icons/icons8-linktree-48.png" alt="tiktok" />
+          <span>Linktr.ee</span>
         </a>
       </div>
     </div>
