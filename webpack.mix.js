@@ -23,6 +23,7 @@ mix
   .copy("src/assets/icons/icons8-tiktok-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-patreon-48.png", "dist/assets/icons")
   .copy("src/assets/icons/icons8-paypal-48.png", "dist/assets/icons")
+  .copy("src/assets/icons/icons8-linktree-48.png", "dist/assets/icons")
   .copy("src/assets/buttons/buy-me-a-coffee.png", "dist/assets/buttons")
   .copy("src/assets/buttons/patreon.png", "dist/assets/buttons")
   .copy("src/assets/buttons/paypal.png", "dist/assets/buttons")

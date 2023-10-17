@@ -61,7 +61,7 @@ export const gtcEnglish = {
         " If the user wishes to attribute the original source of the version, it is welcomed.",
     },
   ],
-  afterText: [
+  afterword: [
     "Please be aware that decisions regarding the use of the software are made at your own discretion." +
       " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.",
     "If you have any questions or feedback about the software, I welcome your input." +

@@ -61,7 +61,7 @@ export const gtcGerman = {
         " Wenn der Benutzer die ursprüngliche Quelle der Version angeben möchte, wird dies gerne begrüßt.",
     },
   ],
-  afterText: [
+  afterword: [
     "Bitte beachten Sie, dass Entscheidungen im Zusammenhang mit der Verwendung der Software in Ihrem eigenen Ermessen getroffen werden." +
       " Wenn Sie mit den in den AGB festgelegten Bedingungen nicht einverstanden sind, wird empfohlen, die Software nicht zu installieren oder zu verwenden.",
     "Wenn Sie Fragen oder Feedback zur Software haben, freue ich mich über Ihre Rückmeldung." +

@@ -101,6 +101,12 @@ export default {
         icon by &nbsp;<a target="_blank" href="https://icons8.com">Icons8</a>
       </div>
       <div>
+        <a target="_blank" href="https://icons8.com/icon/9DOe33RY87VM/linktree"
+          >Linktr.ee</a
+        >
+        icon by &nbsp;<a target="_blank" href="https://icons8.com">Icons8</a>
+      </div>
+      <div>
         <a target="_blank" href="https://icons8.com/icon/118640/tiktok"
           >TikTok</a
         >

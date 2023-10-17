@@ -38,7 +38,7 @@ const calculateNewDynamicRules = (
     // Combine filtering and mapping for domain and URL rules
     [...fgBlockedWebsitesByDomain, ...fgBlockedWebsitesByUrl].forEach(
       (item) => {
-        if (item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked)) {
+        if (!item.isDisabled && (focusMode || item.isPermanentlyBlocked)) {
           rules.push(createFGRule(item, index++));
         }
       },
@@ -67,8 +67,7 @@ const closeBlockedTabs = (
         ...fgBlockedWebsitesByDomain,
         ...fgBlockedWebsitesByUrl,
       ].filter(
-        (item) =>
-          item.isMarkedForBlock && (focusMode || item.isPermanentlyBlocked),
+        (item) => !item.isDisabled && (focusMode || item.isPermanentlyBlocked),
       );
 
       blockedItems.forEach((item) => {

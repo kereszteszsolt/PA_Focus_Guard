@@ -16935,14 +16935,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_DOMAIN: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_DOMAIN),
 /* harmony export */   FG_BLOCKED_WEBSITES_BY_URL: () => (/* binding */ FG_BLOCKED_WEBSITES_BY_URL),
 /* harmony export */   FG_GTC: () => (/* binding */ FG_GTC),
+/* harmony export */   FG_HOW_TO_USE: () => (/* binding */ FG_HOW_TO_USE),
 /* harmony export */   FG_LANGUAGE: () => (/* binding */ FG_LANGUAGE)
 /* harmony export */ });
-var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgBlockedWebsiteByDomain";
-var FG_BLOCKED_WEBSITES_BY_URL = "fgBlockedWebsiteByUrl";
+var FG_BLOCKED_WEBSITES_BY_DOMAIN = "fgFocusRulesByDomains";
+var FG_BLOCKED_WEBSITES_BY_URL = "fgFocusRulesByURLs";
 var FG_ABOUT = "fgAbout";
 var FG_LANGUAGE = "fgLanguage";
 var FG_ACKNOWLEDGMENTS = "fgAcknowledgments";
 var FG_GTC = "fgGtc";
+var FG_HOW_TO_USE = "fgHowToUse";
 
 /***/ }),
 
@@ -17054,7 +17056,7 @@ var gtcEnglish = {
     title: "User Modifications:",
     text: "If a user modifies the software for their own use, they are required to replace the application icon" + " and any elements referring to the distributor or original developer. If the user distributes the modified version," + " they must do so under their own name, including on social media pages, donation pages, and signature areas.(eg. About page)" + " If the user wishes to attribute the original source of the version, it is welcomed."
   }],
-  afterText: ["Please be aware that decisions regarding the use of the software are made at your own discretion." + " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.", "If you have any questions or feedback about the software, I welcome your input." + " Contact information can be found on the About / Github page.", "The General Terms and Conditions will come into effect on September 1, 2023, and will remain in effect unless" + " later amended or revoked.", "Thank you for your interest in the software, and enjoy using it!"]
+  afterword: ["Please be aware that decisions regarding the use of the software are made at your own discretion." + " If you do not agree with the terms outlined in the GTC, it is recommended that you do not install or use the software.", "If you have any questions or feedback about the software, I welcome your input." + " Contact information can be found on the About / Github page.", "The General Terms and Conditions will come into effect on September 1, 2023, and will remain in effect unless" + " later amended or revoked.", "Thank you for your interest in the software, and enjoy using it!"]
 };
 
 /***/ }),
@@ -17103,7 +17105,7 @@ var gtcGerman = {
     title: "Benutzermodifikationen:",
     text: "Wenn ein Benutzer die Software für seine eigenen Zwecke modifiziert, ist er verpflichtet, das Anwendungssymbol" + " und alle Elemente, die auf den Distributor oder den ursprünglichen Entwickler hinweisen, zu ersetzen. Wenn der Benutzer die modifizierte Version" + ' verbreitet, muss er dies unter seinem eigenen Namen tun, einschließlich auf Social-Media-Seiten, Spendenplattformen und in Signaturbereichen (z.b. "Über" site).' + " Wenn der Benutzer die ursprüngliche Quelle der Version angeben möchte, wird dies gerne begrüßt."
   }],
-  afterText: ["Bitte beachten Sie, dass Entscheidungen im Zusammenhang mit der Verwendung der Software in Ihrem eigenen Ermessen getroffen werden." + " Wenn Sie mit den in den AGB festgelegten Bedingungen nicht einverstanden sind, wird empfohlen, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Feedback zur Software haben, freue ich mich über Ihre Rückmeldung." + ' Kontaktinformationen finden Sie auf der "Über"- / "Github"-Seite.', "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, sofern sie nicht später geändert oder aufgehoben werden.", "Vielen Dank für Ihr Interesse an der Software, und viel Spaß bei der Verwendung!"]
+  afterword: ["Bitte beachten Sie, dass Entscheidungen im Zusammenhang mit der Verwendung der Software in Ihrem eigenen Ermessen getroffen werden." + " Wenn Sie mit den in den AGB festgelegten Bedingungen nicht einverstanden sind, wird empfohlen, die Software nicht zu installieren oder zu verwenden.", "Wenn Sie Fragen oder Feedback zur Software haben, freue ich mich über Ihre Rückmeldung." + ' Kontaktinformationen finden Sie auf der "Über"- / "Github"-Seite.', "Die Allgemeinen Geschäftsbedingungen treten am 1. September 2023 in Kraft und bleiben in Kraft, sofern sie nicht später geändert oder aufgehoben werden.", "Vielen Dank für Ihr Interesse an der Software, und viel Spaß bei der Verwendung!"]
 };
 
 /***/ }),
@@ -17152,7 +17154,7 @@ var gtcHungarian = {
     title: "Felhasználói Módosítások: ",
     text: "Amennyiben a felhasználó módosítja a szoftvert saját felhasználásra, köteles kicserélni az alkalmazás" + " ikonját és minden olyan elemet, amely a terjesztőre vagy eredeti fejlesztőre utal. Amennyiben a felhasználó" + " terjeszti a módosított verziót, köteles a szoftvert saját nevében terjeszteni, beleértve a social media" + ' oldalak, adományozó oldalak és aláírás területeket is (pl. "A bővítményről" oldal). Amennyiben a felhasználó szeretné megjelölni a ' + "változat eredeti forrását, azt szívesen fogadom."
   }],
-  afterText: ["Felhívom a figyelmet, hogy a szoftver használatával kapcsolatos döntések saját felelősségre történnek. " + "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javaslom," + " hogy ne telepítse vagy ne használja a szoftvert.", "Amennyiben kérdése vagy észrevétele van a szoftverrel kapcsolatban, örömmel veszem a visszajelzéseit." + ' A kapcsolatfelvételi lehetőségek megtalálhatók a "A bővítményről" oldalon / Github oldalon.', "Az Általános Szerződési Feltételek 2023. szeptember 1-jétől lépnek életbe és hatályban maradnak, kivéve," + " ha azokat később módosításra vagy visszavonásra kerülnek.", "Köszönöm az érdeklődést a szoftver iránt, és jó felhasználást kívánok!"]
+  afterword: ["Felhívom a figyelmet, hogy a szoftver használatával kapcsolatos döntések saját felelősségre történnek. " + "Amennyiben a felhasználó nem ért egyet az Á.SZ.F.-ben foglaltakkal, javaslom," + " hogy ne telepítse vagy ne használja a szoftvert.", "Amennyiben kérdése vagy észrevétele van a szoftverrel kapcsolatban, örömmel veszem a visszajelzéseit." + ' A kapcsolatfelvételi lehetőségek megtalálhatók a "A bővítményről" oldalon / Github oldalon.', "Az Általános Szerződési Feltételek 2023. szeptember 1-jétől lépnek életbe és hatályban maradnak, kivéve," + " ha azokat később módosításra vagy visszavonásra kerülnek.", "Köszönöm az érdeklődést a szoftver iránt, és jó felhasználást kívánok!"]
 };
 
 /***/ }),
@@ -17201,7 +17203,7 @@ var gtcRomanian = {
     title: "Modificări Efectuate de Utilizatori:",
     text: "Dacă un utilizator efectuează modificări asupra software-ului în scopul propriu, el este obligat să înlocuiască icon-ul aplicației" + " și orice elemente care se referă la distribuitorul sau dezvoltatorul original. Dacă utilizatorul distribuie versiunea modificată," + ' acesta trebuie să o facă sub numele său propriu, inclusiv pe paginile de social media, paginile de donații și în zonele pentru semnături.(e.x. pagina "Despre")' + " Dacă utilizatorul dorește să atribuie sursa originală a versiunii, acest lucru este binevenit."
   }],
-  afterText: ["Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." + " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.", "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." + ' Informațiile de contact se găsesc pe pagina de "Despre" / "Github".', "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" + " în care vor fi ulterior modificați sau revocați.", "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!"]
+  afterword: ["Vă rugăm să rețineți că deciziile legate de utilizarea software-ului sunt luate la propria dumneavoastră discreție." + " Dacă nu sunteți de acord cu termenii stabiliți în TCG, vă recomandăm să nu instalați sau să nu utilizați software-ul.", "Dacă aveți întrebări sau feedback cu privire la software, vă încurajăm să ne transmiteți acestea." + ' Informațiile de contact se găsesc pe pagina de "Despre" / "Github".', "Termenii și Condițiile Generale vor intra în vigoare la data de 1 septembrie 2023 și vor rămâne în vigoare, cu excepția cazului" + " în care vor fi ulterior modificați sau revocați.", "Vă mulțumim pentru interesul manifestat față de software și vă dorim o utilizare plăcută!"]
 };
 
 /***/ }),
@@ -17217,8 +17219,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   english: () => (/* binding */ english)
 /* harmony export */ });
 var english = {
-  fgBlockedWebsiteByDomain: "Blocked websites by domain",
-  fgBlockedWebsiteByUrl: "Blocked websites by URL",
+  fgFocusRulesByDomains: "Focus rules by domains",
+  fgFocusRulesByURLs: "Focus rules by URLs",
   fgAbout: "About",
   fgLanguage: "Language",
   fgAcknowledgments: "Acknowledgments",
@@ -17227,12 +17229,16 @@ var english = {
   fgSettings: "Settings",
   fgOn: "On",
   fgOff: "Off",
+  fgHowToUse: "How to use Focus Guard?",
   markedForBlock: "Marked for Block",
-  permanentlyBlocked: "Permanently Blocked",
+  isDisabled: "Disabled rule",
+  permanentlyBlocked: "Permanently Active Rule",
   remove: "Remove",
   prev: "Prev",
   next: "Next",
   addSite: "Add Site:",
+  addUrl: "Add URL:",
+  addDomain: "Add Domain:",
   add: "Add",
   invalidDomain: "Invalid domain!",
   invalidUrl: "Invalid URL!",
@@ -17273,8 +17279,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   german: () => (/* binding */ german)
 /* harmony export */ });
 var german = {
-  fgBlockedWebsiteByDomain: "Gesperrte Websites nach Domain",
-  fgBlockedWebsiteByUrl: "Gesperrte Websites nach URL",
+  fgFocusRulesByDomains: "Fokusregeln nach Domänen",
+  fgFocusRulesByURLs: "Fokusregeln nach URLs",
   fgAbout: "Über",
   fgLanguage: "Sprache",
   fgAcknowledgments: "Danksagungen",
@@ -17283,12 +17289,16 @@ var german = {
   fgSettings: "Einstellungen",
   fgOn: "An",
   fgOff: "Aus",
+  fgHowToUse: "Wie benutzt man Focus Guard?",
   markedForBlock: "Zur Sperrliste hinzugefügt",
-  permanentlyBlocked: "Dauerhaft gesperrt",
+  isDisabled: "Deaktivierte Regel",
+  permanentlyBlocked: "Dauerhaft aktive Regel",
   remove: "Entfernen",
   prev: "Zurück",
   next: "Weiter",
   addSite: "Website hinzufügen:",
+  addUrl: "URL hinzufügen:",
+  addDomain: "Domäne hinzufügen:",
   add: "Hinzufügen",
   invalidDomain: "Ungültige Domain!",
   invalidUrl: "Ungültige URL!",
@@ -17319,6 +17329,242 @@ var german = {
 
 /***/ }),
 
+/***/ "./src/js/utils/languages/howToUse/htuEnglish.js":
+/*!*******************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuEnglish.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuEnglish: () => (/* binding */ htuEnglish)
+/* harmony export */ });
+var htuEnglish = {
+  title: "How to Use Focus Guard?",
+  preface: "",
+  chapters: [{
+    title: "How to Start a 'Focus Session'?",
+    text: "Click the extension icon in the browser toolbar. Click the 'On' button. " + "The extension will redirect you to the built-in focus page/message. You can add new websites to the list during the 'Focus Session'."
+  }, {
+    title: "How to End a 'Focus Session'?",
+    text: "Click the extension icon in the browser toolbar. Click the 'Off' button. "
+  }, {
+    title: "How to Add a New Domain (Website) to the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by Domains' from the sidebar." + "Complete the input box and click the 'Add New Domain' button. "
+  }, {
+    title: "How to Remove a Domain (Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by Domains' from the sidebar." + "Click the 'Remove' button on the domain's row you want to remove."
+  }, {
+    title: "How to Temporarily Remove a Domain (Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by Domains' from the sidebar." + "Click the 'Disabled Rule' checkbox on the domain's row you want to remove." + "To undo this action, simply uncheck the checkbox."
+  }, {
+    title: "How to Add a New URL (Concrete Page from Website) to the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' from the sidebar." + "Complete the input box and click the 'Add New URL' button. "
+  }, {
+    title: "How to Remove a URL (Concrete Page from Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' from the sidebar." + "Click the 'Remove' button on the URL's row you want to remove."
+  }, {
+    title: "How to Temporarily Remove a URL (Concrete Page from Website) from the List?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' from the sidebar." + "Click the 'Disabled Rule' checkbox on the URL's row you want to remove." + "To undo this action, simply uncheck the checkbox."
+  }, {
+    title: "How to Activate a Permanent 'Focus Rule' on a Specific URL/Domain?",
+    text: "Click the extension icon in the browser toolbar. Click the Settings button. Choose 'Focus Rules by URLs' or 'Focus Rules by Domains' from the sidebar." + "Click the 'Permanently Active Rule' checkbox on the row you want to activate." + "To undo this action, simply uncheck the checkbox."
+  }, {
+    title: "How to Use 'Focus Guard' in 'Incognito Mode'?",
+    text: "Right-Click the extension icon in the browser toolbar. Click the 'Manage Extension' option." + "Scroll down to the 'Allow in Incognito' option and check the checkbox. To undo, simply switch it off at the same place."
+  }, {
+    title: "How to Remove 'Focus Guard' from the Browser?",
+    text: "Right-Click the extension icon in the browser toolbar. Click 'Remove from Chrome' option."
+  }],
+  afterword: [" "],
+  links: [{
+    text: "How to Use Focus Guard? (Video) English",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "How to Use Focus Guard? (Video) Hungarian",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/howToUse/htuGerman.js":
+/*!******************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuGerman.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuGerman: () => (/* binding */ htuGerman)
+/* harmony export */ });
+var htuGerman = {
+  title: "Wie benutzt man den Focus Guard?",
+  preface: "",
+  chapters: [{
+    title: "Wie startet man eine 'Fokussitzung'?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Ein'. " + "Die Erweiterung leitet dich zur integrierten Fokusseite/-nachricht um. Du kannst während der 'Fokussitzung' neue Websites zur Liste hinzufügen."
+  }, {
+    title: "Wie beendet man eine 'Fokussitzung'?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Aus'."
+  }, {
+    title: "Wie fügt man eine neue Domain (Website) zur Liste hinzu?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach Domains' im Seitenmenü aus." + "Fülle das Eingabefeld aus und klicke auf die Schaltfläche 'Neue Domain hinzufügen'."
+  }, {
+    title: "Wie entfernt man eine Domain (Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach Domains' im Seitenmenü aus." + "Klicke auf die Schaltfläche 'Entfernen' in der Zeile der Domain, die du entfernen möchtest."
+  }, {
+    title: "Wie entfernt man vorübergehend eine Domain (Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach Domains' im Seitenmenü aus." + "Aktiviere das Kontrollkästchen 'Regel deaktivieren' in der Zeile der Domain, die du entfernen möchtest." + "Um diesen Vorgang rückgängig zu machen, deaktiviere einfach das Kontrollkästchen erneut."
+  }, {
+    title: "Wie fügt man eine neue URL (konkrete Seite von einer Website) zur Liste hinzu?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' im Seitenmenü aus." + "Fülle das Eingabefeld aus und klicke auf die Schaltfläche 'Neue URL hinzufügen'."
+  }, {
+    title: "Wie entfernt man eine URL (konkrete Seite von einer Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' im Seitenmenü aus." + "Klicke auf die Schaltfläche 'Entfernen' in der Zeile der URL, die du entfernen möchtest."
+  }, {
+    title: "Wie entfernt man vorübergehend eine URL (konkrete Seite von einer Website) aus der Liste?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' im Seitenmenü aus." + "Aktiviere das Kontrollkästchen 'Regel deaktivieren' in der Zeile der URL, die du entfernen möchtest." + "Um diesen Vorgang rückgängig zu machen, deaktiviere einfach das Kontrollkästchen erneut."
+  }, {
+    title: "Wie aktiviert man eine dauerhafte 'Fokusregel' für eine spezifische URL/Domain?",
+    text: "Klicke auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Schaltfläche 'Einstellungen'. Wähle 'Fokusregeln nach URLs' oder 'Fokusregeln nach Domains' im Seitenmenü aus." + "Aktiviere das Kontrollkästchen 'Dauerhaft aktive Regel' in der Zeile, die du aktivieren möchtest." + "Um diesen Vorgang rückgängig zu machen, deaktiviere einfach das Kontrollkästchen erneut."
+  }, {
+    title: "Wie benutzt man den 'Focus Guard' im 'Inkognito-Modus'?",
+    text: "Klicke mit der rechten Maustaste auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Option 'Erweiterung verwalten'." + "Scrolle nach unten zur Option 'Im Inkognito-Modus erlauben' und aktiviere das Kontrollkästchen. Um dies rückgängig zu machen, deaktiviere es einfach am gleichen Ort."
+  }, {
+    title: "Wie entfernt man den 'Focus Guard' aus dem Browser?",
+    text: "Klicke mit der rechten Maustaste auf das Erweiterungssymbol in der Browser-Symbolleiste. Klicke auf die Option 'Aus Chrome entfernen'."
+  }],
+  afterword: [" "],
+  links: [{
+    text: "Wie man den Focus Guard benutzt? (Video) Englisch",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "Wie man den Focus Guard benutzt? (Video) Ungarisch",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/howToUse/htuHungarian.js":
+/*!*********************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuHungarian.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuHungarian: () => (/* binding */ htuHungarian)
+/* harmony export */ });
+var htuHungarian = {
+  title: "Hogyan Használd a Focus Guardot?",
+  preface: "",
+  chapters: [{
+    title: "Hogyan indíts egy 'Focus munkaórát'?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints az 'Be' gombra. " + "A kiterjesztés átirányít téged a beépített fókusz oldalra/üzenetre. Új weboldalakat is hozzáadhatsz a listához a 'Focus munkaóra' alatt."
+  }, {
+    title: "Hogyan fejezd be a 'Focus munkaórát'?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints az 'Ki' gombra. "
+  }, {
+    title: "Hogyan adj hozzá egy új domain-t (weboldalt) a listához?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Töltsd ki a bemeneti mezőt, majd kattints az 'Új domain hozzáadása' gombra. "
+  }, {
+    title: "Hogyan távolíts el egy domain-t (weboldalt) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Kattints az 'Eltávolítás' gombra a domain soránál, amelyet el szeretnél távolítani."
+  }, {
+    title: "Hogyan távolíts el ideiglenesen egy domain-t (weboldalt) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Kattints a 'Letiltott szabály' jelölőnégyzetére a domain soránál, amelyet eltávolítanál." + "Ha vissza akarod állítani ezt a műveletet, egyszerűen vedd ki a pipát a négyzetből."
+  }, {
+    title: "Hogyan adj hozzá egy új URL-t (konkrét oldalt a weboldalról) a listához?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' lehetőséget a menüből." + "Töltsd ki a bemeneti mezőt, majd kattints az 'Új URL hozzáadása' gombra. "
+  }, {
+    title: "Hogyan távolíts el egy URL-t (konkrét oldalt a weboldalról) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' lehetőséget a menüből." + "Kattints az 'Eltávolítás' gombra az URL soránál, amelyet el szeretnél távolítani."
+  }, {
+    title: "Hogyan távolíts el ideiglenesen egy URL-t (konkrét oldalt a weboldalról) a listáról?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' lehetőséget a menüből." + "Kattints a 'Letiltott szabály' jelölőnégyzetére az URL soránál, amelyet eltávolítanál." + "Ha vissza akarod állítani ezt a műveletet, egyszerűen vedd ki a pipát a négyzetből."
+  }, {
+    title: "Hogyan aktiválj egy állandó 'Focus szabályt' egy specifikus URL-en/Domain-en?",
+    text: "Kattints az böngésző eszköztárban lévő kiterjesztés ikonjára. Kattints a Beállítások gombra. Válaszd ki a 'Focus szabályok URL-ek szerint' vagy 'Focus szabályok domain-ek szerint' lehetőséget a menüből." + "Kattints a 'Állandóan Aktív Szabály' jelölőnégyzetére a soron, amelyet aktiválni szeretnél." + "Ha vissza akarod állítani ezt a műveletet, egyszerűen vedd ki a pipát a négyzetből."
+  }, {
+    title: "Hogyan használd a 'Focus Guard'ot az 'Incognito Módban'?",
+    text: "Jobb-kattints az eszköztáron található kiterjesztés ikonjára. Kattints az 'Eszközkezelés' opcióra." + "Görgess lefelé az 'Engedélyezés inkognitó módban' opcióig, és pipáld ki a jelölőnégyzetet. Visszavonáshoz egyszerűen kapcsold ki ugyanitt."
+  }, {
+    title: "Hogyan távolítsd el a 'Focus Guard'-ot a böngészőből?",
+    text: "Jobb-kattints az eszköztáron található kiterjesztés ikonjára. Kattints a 'Eltávolítás a Chrome-ból' opcióra."
+  }],
+  afterword: [" "],
+  links: [{
+    text: "Hogyan használd a Focus Guardot? (Videó) Angol",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "Hogyan használd a Focus Guardot? (Videó) Magyar",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/languages/howToUse/htuRomanian.js":
+/*!********************************************************!*\
+  !*** ./src/js/utils/languages/howToUse/htuRomanian.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   htuRomanian: () => (/* binding */ htuRomanian)
+/* harmony export */ });
+var htuRomanian = {
+  title: "Cum să folosești Focus Guard?",
+  preface: "",
+  chapters: [{
+    title: "Cum să începi o 'Sesiune de Focus'?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Pornit'. " + "Extensia te va redirecționa către pagina/mesajul de focus încorporat. Poți adăuga noi site-uri web în listă în timpul 'Sesiunii de Focus'."
+  }, {
+    title: "Cum să închei o 'Sesiune de Focus'?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Oprit'."
+  }, {
+    title: "Cum să adaugi un domeniu (site web) nou în listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după Domenii' din meniu." + "Completează caseta de input și apasă pe butonul 'Adaugă domeniu nou'."
+  }, {
+    title: "Cum să elimini un domeniu (site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după Domenii' din meniu." + "Apasă pe butonul 'Elimină' de lângă rândul domeniului pe care vrei să-l elimini."
+  }, {
+    title: "Cum să elimini temporar un domeniu (site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după Domenii' din meniu." + "Apasă pe caseta 'Regulă Dezactivată' de lângă rândul domeniului pe care vrei să-l elimini." + "Dacă vrei să revii asupra acestei acțiuni, doar deselectează caseta."
+  }, {
+    title: "Cum să adaugi o adresă URL (pagină concretă de pe un site web) nouă în listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' din meniu." + "Completează caseta de input și apasă pe butonul 'Adaugă URL nou'."
+  }, {
+    title: "Cum să elimini o adresă URL (pagină concretă de pe un site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' din meniu." + "Apasă pe butonul 'Elimină' de lângă rândul URL-ului pe care vrei să-l elimini."
+  }, {
+    title: "Cum să elimini temporar o adresă URL (pagină concretă de pe un site web) din listă?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' din meniu." + "Apasă pe caseta 'Regulă Dezactivată' de lângă rândul URL-ului pe care vrei să-l elimini." + "Dacă vrei să revii asupra acestei acțiuni, doar deselectează caseta."
+  }, {
+    title: "Cum să activezi o 'Regulă de Focus' permanentă pentru o anumită adresă URL/Domeniu?",
+    text: "Apasă pe iconița extensiei din bara de instrumente a browserului. Apasă pe butonul 'Setări'. Alege 'Reguli de Focus după URL-uri' sau 'Reguli de Focus după Domenii' din meniu." + "Apasă pe caseta 'Regulă Permanent Activă' de lângă rândul pe care vrei să o activezi." + "Dacă vrei să revii asupra acestei acțiuni, doar deselectează caseta."
+  }, {
+    title: "Cum să folosești 'Focus Guard' în 'Modul Incognito'?",
+    text: "Click-dreapta pe iconița extensiei din bara de instrumente a browserului. Apasă pe opțiunea 'Administrează extensia'." + "Derulează în jos până la opțiunea 'Permite în modul incognito' și bifează caseta. Pentru a reveni, dezactivează-o în același loc."
+  }, {
+    title: "Cum să elimini 'Focus Guard' din browser?",
+    text: "Click-dreapta pe iconița extensiei din bara de instrumente a browserului. Apasă pe opțiunea 'Elimină din Chrome'."
+  }],
+  afterword: [" "],
+  links: [{
+    text: "Cum să folosești Focus Guard? (Video) Engleză",
+    url: "https://www.youtube.com/watch?v=EsUjbbI75Io"
+  }, {
+    text: "Cum să folosești Focus Guard? (Video) Maghiară",
+    url: "https://www.youtube.com/watch?v=7LSU5hTgSmc"
+  }]
+};
+
+/***/ }),
+
 /***/ "./src/js/utils/languages/hungarian.js":
 /*!*********************************************!*\
   !*** ./src/js/utils/languages/hungarian.js ***!
@@ -17330,8 +17576,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   hungarian: () => (/* binding */ hungarian)
 /* harmony export */ });
 var hungarian = {
-  fgBlockedWebsiteByDomain: "Letiltott webhelyek domain alapján",
-  fgBlockedWebsiteByUrl: "Letiltott webhelyek URL alapján",
+  fgFocusRulesByDomains: "Fókusz szabályok domainek alapján",
+  fgFocusRulesByURLs: "Fókusz szabályok URL-ek alapján",
   fgAbout: "A bővítményről",
   fgLanguage: "Nyelv",
   fgAcknowledgments: "Köszönetnyilvánítások",
@@ -17340,12 +17586,16 @@ var hungarian = {
   fgSettings: "Beállítások",
   fgOn: "Be",
   fgOff: "Ki",
+  fgHowToUse: "Hogyan használd a Focus Guard-ot?",
   markedForBlock: "Letiltásra jelölve",
-  permanentlyBlocked: "Permanens tiltás",
+  isDisabled: "Inaktív szabály",
+  permanentlyBlocked: "Állandóan aktív szabály",
   remove: "Eltávolítás",
   prev: "Előző",
   next: "Következő",
   addSite: "Weboldal hozzáadása:",
+  addUrl: "URL hozzáadása:",
+  addDomain: "Domain hozzáadása:",
   add: "Hozzáadás",
   invalidDomain: "Érvénytelen domain!",
   invalidUrl: "Érvénytelen URL!",
@@ -17387,6 +17637,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   english: () => (/* reexport safe */ _english__WEBPACK_IMPORTED_MODULE_1__.english),
 /* harmony export */   german: () => (/* reexport safe */ _german__WEBPACK_IMPORTED_MODULE_3__.german),
 /* harmony export */   getGtcTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getGtcTranslation),
+/* harmony export */   getHTUTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getHTUTranslation),
+/* harmony export */   getTextComponentTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTextComponentTranslation),
 /* harmony export */   getTranslation: () => (/* reexport safe */ _langFunctions__WEBPACK_IMPORTED_MODULE_0__.getTranslation),
 /* harmony export */   gtcEnglish: () => (/* reexport safe */ _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish),
 /* harmony export */   gtcGerman: () => (/* reexport safe */ _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__.gtcGerman),
@@ -17425,6 +17677,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getGtcTranslation: () => (/* binding */ getGtcTranslation),
+/* harmony export */   getHTUTranslation: () => (/* binding */ getHTUTranslation),
+/* harmony export */   getTextComponentTranslation: () => (/* binding */ getTextComponentTranslation),
 /* harmony export */   getTranslation: () => (/* binding */ getTranslation)
 /* harmony export */ });
 /* harmony import */ var _english__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./english */ "./src/js/utils/languages/english.js");
@@ -17436,6 +17690,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GTC_gtcHungarian__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GTC/gtcHungarian */ "./src/js/utils/languages/GTC/gtcHungarian.js");
 /* harmony import */ var _GTC_gtcGerman__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GTC/gtcGerman */ "./src/js/utils/languages/GTC/gtcGerman.js");
 /* harmony import */ var _GTC_gtcRomanian__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./GTC/gtcRomanian */ "./src/js/utils/languages/GTC/gtcRomanian.js");
+/* harmony import */ var _howToUse_htuEnglish__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./howToUse/htuEnglish */ "./src/js/utils/languages/howToUse/htuEnglish.js");
+/* harmony import */ var _howToUse_htuHungarian__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./howToUse/htuHungarian */ "./src/js/utils/languages/howToUse/htuHungarian.js");
+/* harmony import */ var _howToUse_htuGerman__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./howToUse/htuGerman */ "./src/js/utils/languages/howToUse/htuGerman.js");
+/* harmony import */ var _howToUse_htuRomanian__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./howToUse/htuRomanian */ "./src/js/utils/languages/howToUse/htuRomanian.js");
+
+
+
+
 
 
 
@@ -17473,6 +17735,28 @@ var getGtcTranslation = function getGtcTranslation(language) {
       return _GTC_gtcEnglish__WEBPACK_IMPORTED_MODULE_5__.gtcEnglish;
   }
 };
+var getHTUTranslation = function getHTUTranslation(language) {
+  switch (language) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ENGLISH:
+      return _howToUse_htuEnglish__WEBPACK_IMPORTED_MODULE_9__.htuEnglish;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.HUNGARIAN:
+      return _howToUse_htuHungarian__WEBPACK_IMPORTED_MODULE_10__.htuHungarian;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.GERMAN:
+      return _howToUse_htuGerman__WEBPACK_IMPORTED_MODULE_11__.htuGerman;
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.languages.ROMANIAN:
+      return _howToUse_htuRomanian__WEBPACK_IMPORTED_MODULE_12__.htuRomanian;
+    default:
+      return _howToUse_htuEnglish__WEBPACK_IMPORTED_MODULE_9__.htuEnglish;
+  }
+};
+var getTextComponentTranslation = function getTextComponentTranslation(component, language) {
+  switch (component) {
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FG_GTC:
+      return getGtcTranslation(language);
+    case _constants__WEBPACK_IMPORTED_MODULE_2__.componentNames.FG_HOW_TO_USE:
+      return getHTUTranslation(language);
+  }
+};
 
 /***/ }),
 
@@ -17487,8 +17771,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   romanian: () => (/* binding */ romanian)
 /* harmony export */ });
 var romanian = {
-  fgBlockedWebsiteByDomain: "Site-uri blocate după domeniu",
-  fgBlockedWebsiteByUrl: "Site-uri blocate după URL",
+  fgFocusRulesByDomains: "Reguli de focusare după domenii",
+  fgFocusRulesByURLs: "Reguli de focusare după URL-uri",
   fgAbout: "Despre",
   fgLanguage: "Limbă",
   fgAcknowledgments: "Mulțumiri",
@@ -17497,12 +17781,16 @@ var romanian = {
   fgSettings: "Setări",
   fgOn: "Pornit",
   fgOff: "Oprit",
+  fgHowToUse: "Cum se folosește Focus Guard?",
   markedForBlock: "Marcat pentru Blocare",
-  permanentlyBlocked: "Blocat Permanent",
+  isDisabled: "Regulă dezactivată",
+  permanentlyBlocked: "Regulă permanent activă",
   remove: "Eliminare",
   prev: "Anterior",
   next: "Următor",
   addSite: "Adăugare Site:",
+  addUrl: "Adăugare URL:",
+  addDomain: "Adăugare Domeniu:",
   add: "Adăugare",
   invalidDomain: "Domeniu nevalid!",
   invalidUrl: "URL nevalid!",
