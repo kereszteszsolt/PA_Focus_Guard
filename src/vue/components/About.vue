@@ -57,7 +57,7 @@ export default {
         </a>
       </div>
       <div class="social-media-item">
-        <a href="https://www.youtube.com/@KeresztesZsolt-ev/">
+        <a href="https://www.youtube.com/@KeresztesZsolti/">
           <img src="/assets/icons/icons8-youtube-48.png" alt="youtube" />
           <span>Youtube En</span>
         </a>
