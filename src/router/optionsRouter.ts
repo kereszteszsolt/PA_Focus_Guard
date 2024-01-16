@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, createWebHistory, Router } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import { Home, Test } from '@/views/options';
 
 export default createRouter(

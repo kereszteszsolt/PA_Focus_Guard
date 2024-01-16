@@ -75,21 +75,14 @@ export const useWebsiteStore = defineStore({
       await this.saveWebsiteLists();
     },
     async updateWebsite(id: string, website: IWebsite): Promise<void> {
-      this.allWebsites = this.allWebsites.map((website) => {
-        if (website.id === id) {
-          return website;
-        }
-        return website;
-      });
+      this.isLoading = true;
+      this.allWebsites = this.allWebsites.map((w) => w.id === id ? website : w);
       await this.saveWebsites();
+      this.isLoading = false;
     },
     async updateWebsiteList(id: string, websiteList: IWebsiteList): Promise<void> {
-      this.websiteLists = this.websiteLists.map((websiteList) => {
-        if (websiteList.id === id) {
-          return websiteList;
-        }
-        return websiteList;
-      });
+      this.isLoading = true;
+      this.websiteLists = this.websiteLists.map((w) => w.id === id ? websiteList : w);
       await this.saveWebsiteLists();
     }
   }

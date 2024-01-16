@@ -1,5 +1,4 @@
 import * as unique from '../unique';
-import * as data from '../data';
 import * as utils from '@/utils';
 import * as constants from '@/constants';
 import { IWebsite, IWebsiteList } from '@/interfaces';
