@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory, createWebHistory, Router } from 'vue-router';
-import Home from '../views/options/Home.vue';
-import Test from '../views/options/Test.vue';
+import { Home, Test } from '@/views/options';
 
 export default createRouter(
     {

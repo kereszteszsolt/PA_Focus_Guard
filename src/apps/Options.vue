@@ -1,6 +1,5 @@
 <script lang="ts">
-import { AppBar } from '@/layouts';
-import Sidebar from '@/layouts/Sidebar.vue';
+import { AppBar, Sidebar } from '@/layouts';
 import { useTheme } from 'vuetify';
 import { computed } from 'vue';
 
