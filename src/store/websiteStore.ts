@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { IWebsite, IWebsiteList } from '@/interfaces';
 import * as constants from '@/constants';
-import { FG_WEBSITE_LISTS } from '@/constants/localStorage';
+import * as utils from '@/utils';
 
-export const websiteStore = defineStore({
+export const useWebsiteStore = defineStore({
   id: 'website',
   state: (): {
     isLoading: boolean,
@@ -23,44 +23,37 @@ export const websiteStore = defineStore({
     },
     getWebsiteListById: (state) => (listId: string) => {
       return state.websiteLists.find((websiteList) => websiteList.id === listId);
+    },
+    getAllWebsites: (state) => {
+      return state.allWebsites;
     }
   },
   actions: {
     async fetchWebsites(): Promise<void> {
       this.isLoading = true;
-      this.allWebsites = await new Promise<IWebsite[]>((resolve) => {
-        chrome.storage.local.get(constants.storage.FG_WEBSITES, (result: any) => {
-          resolve(JSON.parse(result.websites) || []);
-        });
-      });
+      this.allWebsites = await utils.data.fetchEntry(constants.storage.FG_WEBSITES) as IWebsite[];
       this.isLoading = false;
     },
     async fetchWebsiteLists(): Promise<void> {
       this.isLoading = true;
-      this.websiteLists = await new Promise<IWebsiteList[]>((resolve) => {
-        chrome.storage.local.get(constants.storage.FG_WEBSITES, (result: any) => {
-          resolve(JSON.parse(result.websites) || []);
-        });
-      });
+      this.websiteLists = await utils.data.fetchEntry(constants.storage.FG_WEBSITE_LISTS) as IWebsiteList[];
       this.isLoading = false;
     },
     async fetchData(): Promise<void> {
       await this.fetchWebsites();
       await this.fetchWebsiteLists();
+      console.log(this.allWebsites);
+      console.log(this.websiteLists);
     },
     async saveWebsites(): Promise<void> {
-      await new Promise<void>((resolve) => {
-        chrome.storage.local.set({ 'websites': JSON.stringify(this.allWebsites)}, () => {
-          resolve();
-        });
-      });
+      this.isLoading = true;
+      await utils.data.saveEntry(constants.storage.FG_WEBSITES, this.allWebsites);
+      this.isLoading = false;
     },
     async saveWebsiteLists(): Promise<void> {
-      await new Promise<void>((resolve) => {
-        chrome.storage.local.set({ 'websites': JSON.stringify(this.websiteLists)}, () => {
-          resolve();
-        });
-      });
+      this.isLoading = true;
+      await utils.data.saveEntry(constants.storage.FG_WEBSITE_LISTS, this.websiteLists);
+      this.isLoading = false;
     },
     async addWebsite(website: IWebsite): Promise<void> {
       this.allWebsites.push(website);
@@ -98,6 +91,6 @@ export const websiteStore = defineStore({
         return websiteList;
       });
       await this.saveWebsiteLists();
-    },
+    }
   }
 });

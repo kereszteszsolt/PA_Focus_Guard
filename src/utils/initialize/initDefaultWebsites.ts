@@ -1,12 +1,42 @@
-import * as unique from '../unique'
-import { IWebsiteList } from '@/interfaces';
+import * as unique from '../unique';
+import * as data from '../data';
+import * as utils from '@/utils';
+import * as constants from '@/constants';
+import { IWebsite, IWebsiteList } from '@/interfaces';
 
-export const initDefaultWebsites = () => {
+export const initDefaultWebsites = async() => {
   let listOfLists : IWebsiteList[] = []
   let websiteList : IWebsiteList = {
     id: unique.generateUniqueListId(listOfLists),
     name: 'DefaultList',
     order: 0
   }
+
+  await utils.data.saveList<IWebsiteList>(constants.storage.FG_WEBSITE_LISTS, listOfLists);
+  console.log('websiteList', websiteList);
+
+  let allWebsites : IWebsite[] = [];
+  let website1 : IWebsite = {
+    id: unique.generateUniqueListId(allWebsites),
+    listId: websiteList.id,
+    permanentlyActive: false,
+    temporarilyInactive: false,
+    url: 'https://www.google.com',
+    order: 0
+  }
+  allWebsites.push(website1);
+
+  let website2 : IWebsite = {
+    id: unique.generateUniqueListId(allWebsites),
+    listId: websiteList.id,
+    permanentlyActive: false,
+    temporarilyInactive: false,
+    url: 'https://www.youtube.com',
+    order: 1
+  }
+  allWebsites.push(website2);
+
+  await utils.data.saveList<IWebsite>(constants.storage.FG_WEBSITES, allWebsites);
+  console.log('allWebsites', allWebsites);
 }
 
