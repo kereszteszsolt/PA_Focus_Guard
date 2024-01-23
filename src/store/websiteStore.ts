@@ -15,8 +15,8 @@ export const useWebsiteStore = defineStore({
     websiteLists: []
   }),
   getters: {
-    getWebsitesByListId: (state) => (listId: string) => {
-      return state.allWebsites.filter((website) => website.listId === listId);
+    getWebsiteById: (state) => (id: string) => {
+      return state.allWebsites.find((website) => website.id === id);
     },
     getWebsiteLists: (state) => {
       return state.websiteLists;
@@ -26,6 +26,9 @@ export const useWebsiteStore = defineStore({
     },
     getAllWebsites: (state) => {
       return state.allWebsites;
+    },
+    getNextUniqueId(): string {
+      return utils.unique.generateUniqueListId(this.allWebsites);
     }
   },
   actions: {

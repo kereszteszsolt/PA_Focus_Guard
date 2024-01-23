@@ -1,19 +1,32 @@
 <script lang="ts">
 import { useWebsiteStore } from '@/store/websiteStore';
 import { onMounted } from 'vue';
-import { IWebsite } from '@/interfaces';
+import { IWebsite, WebsiteType } from '@/interfaces';
 
 export default {
   name: 'Home',
-  setup() {
+  data: () => {
     const websiteStore = useWebsiteStore();
-
-    onMounted(() => {
-      websiteStore.fetchData();
-    });
+    let dialog = false;
+    let dialogDelete = false;
+    let editingId = '';
+    let editingItem: IWebsite = {
+      id: '',
+      listId: '',
+      url: '',
+      permanentlyActive: false,
+      temporarilyInactive: false,
+      order: 0
+    };
+    let isNewItem = false;
 
     return {
+      dialog,
+      dialogDelete,
+      editingId,
+      editingItem,
       websiteStore,
+      isNewItem,
       headers: [
         { title: 'URL', value: 'url' },
         { title: 'Permanently Active', value: 'permanentlyActive' },
@@ -21,6 +34,14 @@ export default {
         { title: 'Actions', value: 'actions' }
       ]
     };
+  },
+  mounted() {
+    this.websiteStore.fetchData();
+  },
+  computed: {
+    formTitle() {
+      return this.editingId === '' ? 'New Item' : 'Edit Item';
+    }
   },
   methods: {
     setPermanentlyActive(item: IWebsite) {
@@ -30,6 +51,73 @@ export default {
     setTemporarilyInactive(item: IWebsite) {
       item.permanentlyActive = item.temporarilyInactive ? false : item.permanentlyActive;
       this.websiteStore.saveWebsites();
+    },
+    newItem() {
+      this.editingId = this.websiteStore.getNextUniqueId;
+      this.editingItem = {
+        id: this.editingId,
+        listId: '',
+        url: '',
+        permanentlyActive: false,
+        temporarilyInactive: false,
+        order: 0
+      };
+      this.isNewItem = true;
+      this.dialog = true;
+    },
+    editItem(id: string) {
+      console.log('editItem', id);
+      const found = this.websiteStore.getWebsiteById(id);
+      if (found) {
+        this.editingId = found.id;
+        this.editingItem = found;
+        this.dialog = true;
+      } else {
+        console.error('Website not found');
+        // throw new Error('Website not found');  TODO - handle error
+      }
+    },
+    deleteItem(item: IWebsite) {
+      const found = this.websiteStore.getWebsiteById(item.id);
+      if (found) {
+        this.editingId = found.id;
+        this.editingItem = found;
+        this.dialogDelete = true;
+      } else {
+        console.error('Website not found');
+        // throw new Error('Website not found');  TODO - handle error
+      }
+    },
+    deleteItemConfirm() {
+      this.websiteStore.deleteWebsite(this.editingId);
+      this.closeDelete();
+    },
+    close() {
+      this.dialog = false;
+      this.$nextTick(() => {
+        this.editingId = '';
+      });
+    },
+    closeDelete() {
+      this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editingId = '';
+      });
+    },
+    save() {
+      if (this.isNewItem) {
+        this.websiteStore.addWebsite(this.editingItem);
+        this.isNewItem = false;
+      }
+      else {
+        this.websiteStore.updateWebsite(this.editingId, this.editingItem);
+      }
+      this.close();
+    }
+  },
+  watch: {
+    dialog(val) {
+      val || this.close();
     }
   }
 };
@@ -44,8 +132,8 @@ export default {
         :items="websiteStore.getAllWebsites"
         class="elevation-1">
         <template v-slot:item.actions="{ item }">
-          <v-icon small @click="websiteStore.deleteWebsite(item.id)">mdi-delete</v-icon>
-          <v-icon small>mdi-pencil</v-icon>
+          <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+          <v-icon small @click="editItem(item.id)">mdi-pencil</v-icon>
           <v-icon small>mdi-arrow-up</v-icon>
           <v-icon small>mdi-arrow-down</v-icon>
         </template>
@@ -68,6 +156,74 @@ export default {
         <template v-slot:top>
           <v-toolbar flat>
             <v-toolbar-title>Website List</v-toolbar-title>
+
+            <v-spacer></v-spacer>
+            <v-btn color="primary" @click="newItem">
+              New Item
+            </v-btn>
+            <v-dialog v-model="dialog" max-width="900px">
+              <v-card>
+                <v-card-title>
+                  <span class="text-h5">{{ formTitle }}</span>
+                </v-card-title>
+
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="editingItem.url"
+                          label="url"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col cols="12" sm="12" md="6">
+                        <v-checkbox v-model="editingItem.permanentlyActive"
+                                    label="Permanently Active"></v-checkbox>
+                      </v-col>
+                      <v-col cols="12" sm="12" md="6">
+                        <v-checkbox v-model="editingItem.temporarilyInactive"
+                                    label="Temporarily Inactive"></v-checkbox>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue-darken-1" variant="text" @click="close">
+                    Cancel
+                  </v-btn>
+                  <v-btn color="blue-darken-1" variant="text" @click="save">
+                    Save
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+            <v-dialog v-model="dialogDelete" max-width="500px">
+              <v-card>
+                <v-card-title class="text-h5"
+                >Are you sure you want to delete this item?
+                </v-card-title
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
+                  >Cancel
+                  </v-btn
+                  >
+                  <v-btn
+                    color="blue-darken-1"
+                    variant="text"
+                    @click="deleteItemConfirm"
+                  >OK
+                  </v-btn
+                  >
+                  <v-spacer></v-spacer>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-toolbar>
         </template>
       </v-data-table>
