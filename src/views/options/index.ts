@@ -1,4 +1,4 @@
-import Home from './Home.vue';
+import Websites from './Websites.vue';
 import Test from './Test.vue';
 
-export { Home, Test };
+export { Websites, Test };

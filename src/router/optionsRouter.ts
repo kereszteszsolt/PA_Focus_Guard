@@ -1,14 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { Home, Test } from '@/views/options';
+import { Websites, Test } from '@/views/options';
 
 export default createRouter(
     {
       history: createWebHashHistory(),
       routes: [
         {
-          path: '/home',
-          name: 'Options',
-          component: Home
+          path: '/websites',
+          name: 'Websites',
+          component: Websites
         },
         {
           path: '/test',
@@ -17,11 +17,11 @@ export default createRouter(
         },
         {
           path: '/',
-          redirect: '/home'
+          redirect: '/websites'
         },
         {
           path: '/:pathMatch(.*)*',
-          redirect: '/home'
+          redirect: '/websites'
         }]
     }
   );

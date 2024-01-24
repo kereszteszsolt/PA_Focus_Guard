@@ -1,10 +1,9 @@
 <script lang="ts">
 import { useWebsiteStore } from '@/store/websiteStore';
-import { onMounted } from 'vue';
-import { IWebsite, WebsiteType } from '@/interfaces';
+import { IWebsite } from '@/interfaces';
 
 export default {
-  name: 'Home',
+  name: 'Websites',
   data: () => {
     const websiteStore = useWebsiteStore();
     let dialog = false;
