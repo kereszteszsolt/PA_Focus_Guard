@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { IWebsite, IWebsiteList } from '@/interfaces';
+import { IWebsite, IWebsiteList, WebsiteType } from '@/interfaces';
 import * as constants from '@/constants';
 import * as utils from '@/utils';
 
@@ -15,16 +15,19 @@ export const useWebsiteStore = defineStore({
     websiteLists: []
   }),
   getters: {
-    getWebsiteById: (state) => (id: string) => {
+    getWebsiteById: (state) => (id: string): IWebsite | undefined => {
       return state.allWebsites.find((website) => website.id === id);
     },
     getWebsiteLists: (state) => {
       return state.websiteLists;
     },
-    getWebsiteListById: (state) => (listId: string) => {
-      return state.websiteLists.find((websiteList) => websiteList.id === listId);
+    getWebsiteByListId: (state) => (listId: string): IWebsite[] => {
+      return state.allWebsites.filter((website) => website.listId === listId);
     },
-    getAllWebsites: (state) => {
+    getWebsiteListById: (state) => (id: string): IWebsiteList | undefined => {
+      return state.websiteLists.find((websiteList) => websiteList.id === id);
+    },
+    getAllWebsites: (state): IWebsite[] => {
       return state.allWebsites;
     },
     getNextUniqueId(): string {

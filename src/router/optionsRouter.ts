@@ -7,7 +7,12 @@ export default createRouter(
       routes: [
         {
           path: '/websites',
-          name: 'Websites',
+          name: 'WebsitesDefaultList',
+          component: Websites
+        },
+        {
+          path: '/websites/:id',
+          name: 'WebsitesByListId',
           component: Websites
         },
         {
@@ -17,10 +22,6 @@ export default createRouter(
         },
         {
           path: '/',
-          redirect: '/websites'
-        },
-        {
-          path: '/:pathMatch(.*)*',
           redirect: '/websites'
         }]
     }

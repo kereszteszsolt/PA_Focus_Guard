@@ -10,6 +10,13 @@ export const initDefaultWebsites = async() => {
     name: 'DefaultList',
     order: 0
   }
+  listOfLists.push(websiteList);
+  let websiteList2 : IWebsiteList = {
+    id: unique.generateUniqueListId(listOfLists),
+    name: 'DefaultList2',
+    order: 0
+  }
+  listOfLists.push(websiteList2);
 
   await utils.data.saveList<IWebsiteList>(constants.storage.FG_WEBSITE_LISTS, listOfLists);
   console.log('websiteList', websiteList);
@@ -27,7 +34,7 @@ export const initDefaultWebsites = async() => {
 
   let website2 : IWebsite = {
     id: unique.generateUniqueListId(allWebsites),
-    listId: websiteList.id,
+    listId: websiteList2.id,
     permanentlyActive: false,
     temporarilyInactive: false,
     url: 'https://www.youtube.com',

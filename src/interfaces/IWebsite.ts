@@ -7,4 +7,4 @@ export interface IWebsite {
   order: number;
 }
 
-export type WebsiteType = IWebsite | {};
+export type WebsiteType = IWebsite;

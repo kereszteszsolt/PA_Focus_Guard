@@ -1,6 +1,7 @@
 <script lang="ts">
 import { useWebsiteStore } from '@/store/websiteStore';
-import { IWebsite } from '@/interfaces';
+import { IWebsite, WebsiteType } from '@/interfaces';
+import * as path from 'path';
 
 export default {
   name: 'Websites',
@@ -40,6 +41,21 @@ export default {
   computed: {
     formTitle() {
       return this.editingId === '' ? 'New Item' : 'Edit Item';
+    },
+    pathId() {
+      return this.$route.params.id as string;
+    },
+    websiteList() {
+      return this.websiteStore.getWebsiteListById(this.pathId);
+    },
+    websiteListName() {
+      return (this.pathId === 'all' || !this.pathId) ?
+        'All Websites' : this.websiteList?.name;
+    },
+    websites(): WebsiteType[] {
+      return (this.pathId === 'all' || !this.pathId) ?
+        this.websiteStore.getAllWebsites :
+        this.websiteStore.getWebsiteByListId(this.pathId);
     }
   },
   methods: {
@@ -55,10 +71,10 @@ export default {
       this.editingId = this.websiteStore.getNextUniqueId;
       this.editingItem = {
         id: this.editingId,
-        listId: '',
-        url: '',
+        listId: this.pathId,
         permanentlyActive: false,
         temporarilyInactive: false,
+        url: '',
         order: 0
       };
       this.isNewItem = true;
@@ -107,8 +123,7 @@ export default {
       if (this.isNewItem) {
         this.websiteStore.addWebsite(this.editingItem);
         this.isNewItem = false;
-      }
-      else {
+      } else {
         this.websiteStore.updateWebsite(this.editingId, this.editingItem);
       }
       this.close();
@@ -124,110 +139,111 @@ export default {
 
 <template>
   <div v-if="!websiteStore.isLoading">
-    <div v-if="websiteStore.getAllWebsites.length === 0">No Websites</div>
-    <div v-else>
-      <v-data-table
-        :headers="headers"
-        :items="websiteStore.getAllWebsites"
-        class="elevation-1">
-        <template v-slot:item.actions="{ item }">
-          <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
-          <v-icon small @click="editItem(item.id)">mdi-pencil</v-icon>
-          <v-icon small>mdi-arrow-up</v-icon>
-          <v-icon small>mdi-arrow-down</v-icon>
-        </template>
-        <template v-slot:item.permanentlyActive="{ item }">
-          <v-checkbox
-            v-model="item.permanentlyActive"
-            color="primary"
-            @change="setPermanentlyActive(item)"
-            hide-details>
-          </v-checkbox>
-        </template>
-        <template v-slot:item.temporarilyInactive="{ item }">
-          <v-checkbox
-            v-model="item.temporarilyInactive"
-            color="primary"
-            @change="setTemporarilyInactive(item)"
-            hide-details>
-          </v-checkbox>
-        </template>
-        <template v-slot:top>
-          <v-toolbar flat>
-            <v-toolbar-title>Website List</v-toolbar-title>
+    <v-data-table
+      :headers="headers"
+      :items="websites"
+      class="elevation-1">
+      <template v-slot:item.actions="{ item }">
+        <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+        <v-icon small @click="editItem(item.id)">mdi-pencil</v-icon>
+        <v-icon small>mdi-arrow-up</v-icon>
+        <v-icon small>mdi-arrow-down</v-icon>
+      </template>
+      <template v-slot:item.permanentlyActive="{ item }">
+        <v-checkbox
+          v-model="item.permanentlyActive"
+          color="primary"
+          @change="setPermanentlyActive(item)"
+          hide-details>
+        </v-checkbox>
+      </template>
+      <template v-slot:item.temporarilyInactive="{ item }">
+        <v-checkbox
+          v-model="item.temporarilyInactive"
+          color="primary"
+          @change="setTemporarilyInactive(item)"
+          hide-details>
+        </v-checkbox>
+      </template>
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>Website List: {{ websiteListName }}</v-toolbar-title>
 
-            <v-spacer></v-spacer>
-            <v-btn color="primary" @click="newItem">
-              New Item
-            </v-btn>
-            <v-dialog v-model="dialog" max-width="900px">
-              <v-card>
-                <v-card-title>
-                  <span class="text-h5">{{ formTitle }}</span>
-                </v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click="newItem">
+            New Item
+          </v-btn>
+          <v-dialog v-model="dialog" max-width="900px">
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">{{ formTitle }}</span>
+              </v-card-title>
 
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="editingItem.url"
-                          label="url"
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
-                    <v-row>
-                      <v-col cols="12" sm="12" md="6">
-                        <v-checkbox v-model="editingItem.permanentlyActive"
-                                    label="Permanently Active"></v-checkbox>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="6">
-                        <v-checkbox v-model="editingItem.temporarilyInactive"
-                                    label="Temporarily Inactive"></v-checkbox>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card-text>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="12">
+                      <v-text-field
+                        v-model="editingItem.url"
+                        label="url"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="12" md="6">
+                      <v-checkbox v-model="editingItem.permanentlyActive"
+                                  label="Permanently Active"></v-checkbox>
+                    </v-col>
+                    <v-col cols="12" sm="12" md="6">
+                      <v-checkbox v-model="editingItem.temporarilyInactive"
+                                  label="Temporarily Inactive"></v-checkbox>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
 
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="blue-darken-1" variant="text" @click="close">
-                    Cancel
-                  </v-btn>
-                  <v-btn color="blue-darken-1" variant="text" @click="save">
-                    Save
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-            <v-dialog v-model="dialogDelete" max-width="500px">
-              <v-card>
-                <v-card-title class="text-h5"
-                >Are you sure you want to delete this item?
-                </v-card-title
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue-darken-1" variant="text" @click="close">
+                  Cancel
+                </v-btn>
+                <v-btn color="blue-darken-1" variant="text" @click="save">
+                  Save
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-dialog v-model="dialogDelete" max-width="500px">
+            <v-card>
+              <v-card-title class="text-h5"
+              >Are you sure you want to delete this item?
+              </v-card-title
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
+                >Cancel
+                </v-btn
                 >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
-                  >Cancel
-                  </v-btn
-                  >
-                  <v-btn
-                    color="blue-darken-1"
-                    variant="text"
-                    @click="deleteItemConfirm"
-                  >OK
-                  </v-btn
-                  >
-                  <v-spacer></v-spacer>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-          </v-toolbar>
-        </template>
-      </v-data-table>
-    </div>
+                <v-btn
+                  color="blue-darken-1"
+                  variant="text"
+                  @click="deleteItemConfirm"
+                >OK
+                </v-btn
+                >
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-toolbar>
+      </template>
+    </v-data-table>
   </div>
+  <div v-else class="d-flex justify-center align-center fill-height">
+    <v-progress-circular indeterminate color="primary"></v-progress-circular>
+  </div>
+  <div>{{ pathId }}</div>
 </template>
 
 <style scoped lang="scss">
