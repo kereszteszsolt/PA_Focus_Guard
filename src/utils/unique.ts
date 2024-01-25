@@ -6,3 +6,11 @@ export const generateUniqueListId = (list: { id: string }[]): string => {
   }
   return id;
 };
+
+export const generateUniqueOrderNumber = (list: { order: number }[]): number => {
+  let order = 0;
+  while (list.find((item: any) => item.order === order)) {
+    order++;
+  }
+  return order;
+};

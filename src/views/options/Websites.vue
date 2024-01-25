@@ -16,7 +16,8 @@ export default {
       url: '',
       permanentlyActive: false,
       temporarilyInactive: false,
-      order: 0
+      order: -1,
+      globalOrder: -1,
     };
     let isNewItem = false;
 
@@ -75,7 +76,8 @@ export default {
         permanentlyActive: false,
         temporarilyInactive: false,
         url: '',
-        order: 0
+        order: -1,
+        globalOrder: -1,
       };
       this.isNewItem = true;
       this.dialog = true;

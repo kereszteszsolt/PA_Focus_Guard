@@ -5,6 +5,7 @@ export interface IWebsite {
   permanentlyActive: boolean;
   temporarilyInactive: boolean;
   order: number;
+  globalOrder: number;
 }
 
 export type WebsiteType = IWebsite;

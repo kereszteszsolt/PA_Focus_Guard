@@ -28,7 +28,8 @@ export const initDefaultWebsites = async() => {
     permanentlyActive: false,
     temporarilyInactive: false,
     url: 'https://www.google.com',
-    order: 0
+    order: 0,
+    globalOrder: 0,
   }
   allWebsites.push(website1);
 
@@ -38,7 +39,8 @@ export const initDefaultWebsites = async() => {
     permanentlyActive: false,
     temporarilyInactive: false,
     url: 'https://www.youtube.com',
-    order: 1
+    order: 0,
+    globalOrder: 1,
   }
   allWebsites.push(website2);
 

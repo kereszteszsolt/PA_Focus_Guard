@@ -62,10 +62,15 @@ export const useWebsiteStore = defineStore({
       this.isLoading = false;
     },
     async addWebsite(website: IWebsite): Promise<void> {
+      website.id = utils.unique.generateUniqueListId(this.allWebsites);
+      website.order = utils.unique.generateUniqueOrderNumber(this.allWebsites.filter((w) => w.listId === website.listId));
+      website.globalOrder = utils.unique.generateUniqueOrderNumber(this.allWebsites);
       this.allWebsites.push(website);
       await this.saveWebsites();
     },
     async addWebsiteList(websiteList: IWebsiteList): Promise<void> {
+      websiteList.id = utils.unique.generateUniqueListId(this.websiteLists);
+      websiteList.order = utils.unique.generateUniqueOrderNumber(this.websiteLists);
       this.websiteLists.push(websiteList);
       await this.saveWebsiteLists();
     },
