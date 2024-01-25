@@ -17,7 +17,7 @@ export default {
       permanentlyActive: false,
       temporarilyInactive: false,
       order: -1,
-      globalOrder: -1,
+      globalOrder: -1
     };
     let isNewItem = false;
 
@@ -46,6 +46,9 @@ export default {
     pathId() {
       return this.$route.params.id as string;
     },
+    showAll(): boolean {
+      return this.pathId === 'all' || !this.pathId;
+    },
     websiteList() {
       return this.websiteStore.getWebsiteListById(this.pathId);
     },
@@ -69,24 +72,16 @@ export default {
       this.websiteStore.saveWebsites();
     },
     newItem() {
-      this.editingId = this.websiteStore.getNextUniqueId;
       this.editingItem = {
-        id: this.editingId,
-        listId: this.pathId,
-        permanentlyActive: false,
-        temporarilyInactive: false,
-        url: '',
-        order: -1,
-        globalOrder: -1,
+        ...this.editingItem,
+        listId: this.pathId
       };
       this.isNewItem = true;
       this.dialog = true;
     },
     editItem(id: string) {
-      console.log('editItem', id);
       const found = this.websiteStore.getWebsiteById(id);
       if (found) {
-        this.editingId = found.id;
         this.editingItem = found;
         this.dialog = true;
       } else {
@@ -126,7 +121,7 @@ export default {
         this.websiteStore.addWebsite(this.editingItem);
         this.isNewItem = false;
       } else {
-        this.websiteStore.updateWebsite(this.editingId, this.editingItem);
+        this.websiteStore.updateWebsite(this.editingItem.id, this.editingItem);
       }
       this.close();
     }
@@ -172,7 +167,7 @@ export default {
           <v-toolbar-title>Website List: {{ websiteListName }}</v-toolbar-title>
 
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="newItem">
+          <v-btn color="primary" @click="newItem" :disabled="showAll">
             New Item
           </v-btn>
           <v-dialog v-model="dialog" max-width="900px">
