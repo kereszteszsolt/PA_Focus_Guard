@@ -40,14 +40,19 @@ export default {
 <template>
   <v-sheet class="sidebar-lists" color="background">
     <div v-if="!websiteStore.isLoading">
-      <ul>
-        <li v-for="list in websiteStore.getWebsiteLists" :key="list.id">
-          <router-link :to="{ name: 'WebsitesByListId', params: { id: list.id } }">{{ list.name }}l</router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'WebsitesByListId', params: { id: 'all' } }">All Websites</router-link>
-        </li>
-      </ul>
+      <v-list>
+        <v-list-item v-for="list in websiteStore.getWebsiteLists" :key="list.id">
+          <v-list-item-content>
+            <router-link :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">{{ list.name }}</router-link>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list-item-content>
+            <router-link :to="{ name: 'WebsitesByListId', params: { id: 'all' } }" class="router-link">All Websites</router-link>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
     </div>
   </v-sheet>
   <v-btn @click="dialog = true" color="primary" dark>Add Website List</v-btn>
@@ -84,5 +89,13 @@ export default {
 <style scoped lang="scss">
 .sidebar-lists {
   height: 100%;
+}
+.v-list-item {
+  font-size: 1.2rem;
+}
+.router-link {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
 }
 </style>

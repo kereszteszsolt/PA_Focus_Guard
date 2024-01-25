@@ -240,7 +240,6 @@ export default {
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </div>
-  <div>{{ pathId }}</div>
 </template>
 
 <style scoped lang="scss">
