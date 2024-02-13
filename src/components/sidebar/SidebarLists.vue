@@ -32,6 +32,11 @@ export default {
     },
     save() {
       this.websiteStore.addWebsiteList(this.newWebsiteList);
+      this.newWebsiteList = {
+        id: '',
+        name: '',
+        order: 0
+      };
       this.close();
     }
   }
@@ -45,30 +50,32 @@ export default {
         <router-link v-for="list in websiteStore.getWebsiteLists" :key="list.id"
                      :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
           <v-list-item color="primary" :value="list.id">
-            <v-list-item-content>
-              <v-list-item-title>{{ list.name }}</v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-action>
-              <v-menu offset-y open-on-hover open-on-click>
+            <v-list-item-title>{{ list.name }}</v-list-item-title>
+            <template v-slot:append>
+              <v-menu location="start"  open-on-hover open-on-click>
                 <template v-slot:activator="{ props }">
-                  <v-btn icon v-bind="props">
-                    <v-icon>mdi-dots-vertical</v-icon>
-                  </v-btn>
+                  <v-btn v-bind="props" variant="text" icon="mdi-dots-vertical" size="small" ></v-btn>
                 </template>
-                <v-list>
-                    <v-list-item :value="0">
-                      <v-list-item-icon>
-                        <v-icon>mdi-delete</v-icon>
-                      </v-list-item-icon>
-                    </v-list-item>
-                    <v-list-item :value="1">
-                      <v-list-item-icon>
-                        <v-icon>mdi-pencil</v-icon>
-                      </v-list-item-icon>
-                    </v-list-item>
+                <v-list density="compact">
+                  <v-row>
+                    <v-col>
+                      <v-list-item :value="0" @click="websiteStore.deleteWebsiteList(list.id)">
+                        <v-list-item-icon>
+                          <v-icon size="small">mdi-delete</v-icon>
+                        </v-list-item-icon>
+                      </v-list-item>
+                    </v-col>
+                    <v-col>
+                      <v-list-item :value="1">
+                        <v-list-item-icon>
+                          <v-icon size="small">mdi-pencil</v-icon>
+                        </v-list-item-icon>
+                      </v-list-item>
+                    </v-col>
+                  </v-row>
                 </v-list>
               </v-menu>
-            </v-list-item-action>
+            </template>
 
           </v-list-item>
         </router-link>
