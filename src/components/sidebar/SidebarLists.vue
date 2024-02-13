@@ -33,7 +33,8 @@ export default {
     save() {
       this.websiteStore.addWebsiteList(this.newWebsiteList);
       this.close();
-    }}
+    }
+  }
 };
 </script>
 
@@ -41,21 +42,49 @@ export default {
   <v-sheet class="sidebar-lists" color="background">
     <div v-if="!websiteStore.isLoading">
       <v-list>
-        <v-list-item v-for="list in websiteStore.getWebsiteLists" :key="list.id">
-          <v-list-item-content>
-            <router-link :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">{{ list.name }}</router-link>
-          </v-list-item-content>
-        </v-list-item>
+        <router-link v-for="list in websiteStore.getWebsiteLists" :key="list.id"
+                     :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
+          <v-list-item color="primary" :value="list.id">
+            <v-list-item-content>
+              <v-list-item-title>{{ list.name }}</v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-menu offset-y open-on-hover open-on-click>
+                <template v-slot:activator="{ props }">
+                  <v-btn icon v-bind="props">
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item :value="0">
+                      <v-list-item-icon>
+                        <v-icon>mdi-delete</v-icon>
+                      </v-list-item-icon>
+                    </v-list-item>
+                    <v-list-item :value="1">
+                      <v-list-item-icon>
+                        <v-icon>mdi-pencil</v-icon>
+                      </v-list-item-icon>
+                    </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-list-item-action>
+
+          </v-list-item>
+        </router-link>
         <v-divider></v-divider>
         <v-list-item>
-          <v-list-item-content>
-            <router-link :to="{ name: 'WebsitesByListId', params: { id: 'all' } }" class="router-link">All Websites</router-link>
-          </v-list-item-content>
+          <template v-slot:prepend>
+            <v-btn density="compact" icon="mdi-plus" @click="dialog = true"></v-btn>
+          </template>
         </v-list-item>
+        <v-divider></v-divider>
+        <router-link :to="{ name: 'WebsitesByListId', params: { id: 'all' } }" class="router-link">
+          <v-list-item title="All Websites" value="all"></v-list-item>
+        </router-link>
       </v-list>
     </div>
   </v-sheet>
-  <v-btn @click="dialog = true" color="primary" dark>Add Website List</v-btn>
   <v-dialog v-model="dialog" max-width="900px">
     <v-card>
       <v-card-title>
@@ -90,12 +119,14 @@ export default {
 .sidebar-lists {
   height: 100%;
 }
-.v-list-item {
+
+.v-list-item-title {
   font-size: 1.2rem;
+  font-weight: 1200;
 }
+
 .router-link {
   text-decoration: none;
   color: inherit;
-  font-weight: 500;
 }
 </style>
