@@ -143,8 +143,8 @@ export default {
       <template v-slot:item.actions="{ item }">
         <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
         <v-icon small @click="editItem(item.id)">mdi-pencil</v-icon>
-        <v-icon small>mdi-arrow-up</v-icon>
-        <v-icon small>mdi-arrow-down</v-icon>
+        <v-icon small @click="websiteStore.moveUpWebsite(item.id)">mdi-arrow-up</v-icon>
+        <v-icon small @click="websiteStore.moveDownWebsite(item.id)">mdi-arrow-down</v-icon>
       </template>
       <template v-slot:item.permanentlyActive="{ item }">
         <v-checkbox

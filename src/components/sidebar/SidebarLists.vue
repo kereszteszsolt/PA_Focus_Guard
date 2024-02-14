@@ -54,8 +54,8 @@ export default {
           <sidebar-list-item :list-id="list.id" :list-name="list.name"
                               :delete-item="websiteStore.deleteWebsiteList"
                               :edit-item="() => {}"
-                              :move-up="() => {}"
-                              :move-down="() => {}"
+                              :move-up="websiteStore.moveUpWebsiteList"
+                              :move-down="websiteStore.moveDownWebsiteList"
           ></sidebar-list-item>
         </router-link>
         <v-divider></v-divider>

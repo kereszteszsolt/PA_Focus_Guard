@@ -95,6 +95,58 @@ export const useWebsiteStore = defineStore({
       this.isLoading = true;
       this.websiteLists = this.websiteLists.map((w) => w.id === id ? websiteList : w);
       await this.saveWebsiteLists();
-    }
-  }
+    },
+    async moveUpWebsiteList(id: string): Promise<void> {
+      this.isLoading = true;
+      const index = this.websiteLists.findIndex((w) => w.id === id);
+      if (index === 0) {
+        this.isLoading = false;
+        return;
+      }
+      const temp = this.websiteLists[index];
+      this.websiteLists[index] = this.websiteLists[index - 1];
+      this.websiteLists[index - 1] = temp;
+      await this.saveWebsiteLists();
+      this.isLoading = false;
+    },
+    async moveDownWebsiteList(id: string): Promise<void> {
+      this.isLoading = true;
+      const index = this.websiteLists.findIndex((w) => w.id === id);
+      if (index === this.websiteLists.length - 1) {
+        this.isLoading = false;
+        return;
+      }
+      const temp = this.websiteLists[index];
+      this.websiteLists[index] = this.websiteLists[index + 1];
+      this.websiteLists[index + 1] = temp;
+      await this.saveWebsiteLists();
+      this.isLoading = false;
+    },
+    async moveUpWebsite(id: string): Promise<void> {
+      this.isLoading = true;
+      const index = this.allWebsites.findIndex((w) => w.id === id);
+      if (index === 0) {
+        this.isLoading = false;
+        return;
+      }
+      const temp = this.allWebsites[index];
+      this.allWebsites[index] = this.allWebsites[index - 1];
+      this.allWebsites[index - 1] = temp;
+      await this.saveWebsites();
+      this.isLoading = false;
+    },
+    async moveDownWebsite(id: string): Promise<void> {
+      this.isLoading = true;
+      const index = this.allWebsites.findIndex((w) => w.id === id);
+      if (index === this.allWebsites.length - 1) {
+        this.isLoading = false;
+        return;
+      }
+      const temp = this.allWebsites[index];
+      this.allWebsites[index] = this.allWebsites[index + 1];
+      this.allWebsites[index + 1] = temp;
+      await this.saveWebsites();
+      this.isLoading = false;
+    },
+  },
 });

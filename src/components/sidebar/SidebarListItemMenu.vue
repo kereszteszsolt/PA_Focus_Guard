@@ -74,6 +74,7 @@ export default {
   > * {
     //row
     padding: 4px 12px;
+
     > * {
       //col
       padding: 0px;
@@ -83,8 +84,6 @@ export default {
         padding: 4px !important;
       }
     }
-
-
   }
 }
 </style>
