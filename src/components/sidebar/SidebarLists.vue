@@ -1,9 +1,11 @@
 <script lang="ts">
 import { useWebsiteStore } from '@/store/websiteStore';
 import { IWebsiteList } from '@/interfaces';
+import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 
 export default {
   name: 'SidebarLists',
+  components: { SidebarListItem },
   data: () => {
     const websiteStore = useWebsiteStore();
     let dialog = false;
@@ -49,35 +51,12 @@ export default {
       <v-list>
         <router-link v-for="list in websiteStore.getWebsiteLists" :key="list.id"
                      :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
-          <v-list-item color="primary" :value="list.id">
-            <v-list-item-title>{{ list.name }}</v-list-item-title>
-            <template v-slot:append>
-              <v-menu location="start"  open-on-hover open-on-click>
-                <template v-slot:activator="{ props }">
-                  <v-btn v-bind="props" variant="text" icon="mdi-dots-vertical" size="small" ></v-btn>
-                </template>
-                <v-list density="compact">
-                  <v-row>
-                    <v-col>
-                      <v-list-item :value="0" @click="websiteStore.deleteWebsiteList(list.id)">
-                        <v-list-item-icon>
-                          <v-icon size="small">mdi-delete</v-icon>
-                        </v-list-item-icon>
-                      </v-list-item>
-                    </v-col>
-                    <v-col>
-                      <v-list-item :value="1">
-                        <v-list-item-icon>
-                          <v-icon size="small">mdi-pencil</v-icon>
-                        </v-list-item-icon>
-                      </v-list-item>
-                    </v-col>
-                  </v-row>
-                </v-list>
-              </v-menu>
-            </template>
-
-          </v-list-item>
+          <sidebar-list-item :list-id="list.id" :list-name="list.name"
+                              :delete-item="websiteStore.deleteWebsiteList"
+                              :edit-item="() => {}"
+                              :move-up="() => {}"
+                              :move-down="() => {}"
+          ></sidebar-list-item>
         </router-link>
         <v-divider></v-divider>
         <v-list-item>
