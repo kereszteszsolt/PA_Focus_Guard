@@ -73,31 +73,18 @@ export default {
 
   > * {
     //row
-    background-color: #0d47a1;
-    padding: 4px 4px 4px 4px !important;
+    padding: 4px 12px;
     > * {
       //col
-      background-color: #ffeb3b;
-      padding: 0px !important;
+      padding: 0px;
 
       > * {
         //list-item
-        padding: 4px 4px 4px 4px !important;
-        background-color: #00b0ff;
+        padding: 4px !important;
       }
     }
 
-    > *:first-child {
-      //col
-    //  background-color: #ff3b93;
-      padding-left: 8px !important;
-    }
 
-    > *:last-child {
-      //col
-      //  background-color: #ff3b93;
-      padding-right: 8px !important;
-    }
   }
 }
 </style>
