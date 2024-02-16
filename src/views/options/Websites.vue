@@ -1,7 +1,6 @@
 <script lang="ts">
 import { useWebsiteStore } from '@/store/websiteStore';
 import { IWebsite, WebsiteType } from '@/interfaces';
-import * as path from 'path';
 
 export default {
   name: 'Websites',
@@ -167,7 +166,7 @@ export default {
           <v-toolbar-title>Website List: {{ websiteListName }}</v-toolbar-title>
 
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="newItem" :disabled="showAll">
+          <v-btn color="primary" @click="newItem" v-if="!showAll">
             New Item
           </v-btn>
           <v-dialog v-model="dialog" max-width="900px">
