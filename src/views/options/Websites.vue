@@ -1,12 +1,14 @@
 <script lang="ts">
 import { useWebsiteStore } from '@/store/websiteStore';
 import { IWebsite, WebsiteType } from '@/interfaces';
+import EditWebsiteRuleDialog from '@/components/websites/EditWebsiteRuleDialog.vue';
 
 export default {
   name: 'Websites',
+  components: { EditWebsiteRuleDialog },
   data: () => {
     const websiteStore = useWebsiteStore();
-    let dialog = false;
+    let dialog: boolean = false;
     let dialogDelete = false;
     let editingId = '';
     let editingItem: IWebsite = {
@@ -19,6 +21,7 @@ export default {
       globalOrder: -1
     };
     let isNewItem = false;
+    let isValid = true;
 
     return {
       dialog,
@@ -27,6 +30,7 @@ export default {
       editingItem,
       websiteStore,
       isNewItem,
+      isValid,
       headers: [
         { title: 'URL', value: 'url' },
         { title: 'Permanently Active', value: 'permanentlyActive' },
@@ -103,11 +107,11 @@ export default {
       this.websiteStore.deleteWebsite(this.editingId);
       this.closeDelete();
     },
-    close() {
+    closeEdit() {
       this.dialog = false;
-      this.$nextTick(() => {
-        this.editingId = '';
-      });
+      // this.$nextTick(() => {
+      //   this.editingId = '';
+      // });
     },
     closeDelete() {
       this.dialogDelete = false;
@@ -115,19 +119,27 @@ export default {
         this.editingId = '';
       });
     },
-    save() {
+    save(editedItem: IWebsite) {
       if (this.isNewItem) {
-        this.websiteStore.addWebsite(this.editingItem);
+        this.websiteStore.addWebsite(editedItem);
         this.isNewItem = false;
       } else {
-        this.websiteStore.updateWebsite(this.editingItem.id, this.editingItem);
+        this.websiteStore.updateWebsite(this.editingItem.id, editedItem);
       }
-      this.close();
+      this.closeEdit();
+      console.log('save', editedItem);
+    },
+    checkUrl(): boolean {
+      const regexPattern = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+      return regexPattern.test(this.editingItem.url);
+    },
+    validateUrl() {
+      this.isValid = this.checkUrl();
     }
   },
   watch: {
     dialog(val) {
-      val || this.close();
+      val || this.closeEdit();
     }
   }
 };
@@ -169,46 +181,12 @@ export default {
           <v-btn color="primary" @click="newItem" v-if="!showAll">
             New Item
           </v-btn>
-          <v-dialog v-model="dialog" max-width="900px">
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">{{ formTitle }}</span>
-              </v-card-title>
+          <edit-website-rule-dialog
+            :p-item="editingItem"
+            :p-dialog="dialog"
+            :p-close-dialog="closeEdit"
+            :p-save-item="save"></edit-website-rule-dialog>
 
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="12">
-                      <v-text-field
-                        v-model="editingItem.url"
-                        label="url"
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col cols="12" sm="12" md="6">
-                      <v-checkbox v-model="editingItem.permanentlyActive"
-                                  label="Permanently Active"></v-checkbox>
-                    </v-col>
-                    <v-col cols="12" sm="12" md="6">
-                      <v-checkbox v-model="editingItem.temporarilyInactive"
-                                  label="Temporarily Inactive"></v-checkbox>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue-darken-1" variant="text" @click="close">
-                  Cancel
-                </v-btn>
-                <v-btn color="blue-darken-1" variant="text" @click="save">
-                  Save
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
