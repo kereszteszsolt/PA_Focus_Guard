@@ -129,13 +129,6 @@ export default {
       this.closeEdit();
       console.log('save', editedItem);
     },
-    checkUrl(): boolean {
-      const regexPattern = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-      return regexPattern.test(this.editingItem.url);
-    },
-    validateUrl() {
-      this.isValid = this.checkUrl();
-    }
   },
   watch: {
     dialog(val) {
@@ -185,7 +178,9 @@ export default {
             :p-item="editingItem"
             :p-dialog="dialog"
             :p-close-dialog="closeEdit"
-            :p-save-item="save"></edit-website-rule-dialog>
+            :p-save-item="save"
+            :p-is-new-item="isNewItem"
+          ></edit-website-rule-dialog>
 
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>

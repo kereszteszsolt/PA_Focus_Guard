@@ -19,6 +19,10 @@ export default {
     pSaveItem: {
       type: Function,
       required: true
+    },
+    pIsNewItem: {
+      type: Boolean,
+      required: true
     }
   },
   data: () => {
@@ -85,7 +89,7 @@ export default {
       <v-card>
         <v-card-item>
           <v-card-title>
-            <span class="headline">New Item</span>
+            <span class="headline">{{ pIsNewItem ? 'Add New Item' : 'Edit Item' }}</span>
           </v-card-title>
         </v-card-item>
 
@@ -123,8 +127,9 @@ export default {
         </v-card-text>
 
         <v-card-actions>
-          <v-btn @click="close">Cancel</v-btn>
-          <v-btn @click="save" :disabled="!valid">Save</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn @click="close" color="danger">Cancel</v-btn>
+          <v-btn @click="save" :disabled="!valid" color="primary">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
