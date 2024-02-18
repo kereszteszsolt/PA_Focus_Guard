@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { IWebsite, IWebsiteList, WebsiteType } from '@/interfaces';
+import { IWebsite, IWebsiteList } from '@/interfaces';
 import * as constants from '@/constants';
 import * as utils from '@/utils';
 
@@ -99,6 +99,18 @@ export const useWebsiteStore = defineStore({
     },
     async deleteWebsitesByListId(websiteListId: string): Promise<void> {
       this.allWebsites = this.allWebsites.filter(website => website.listId !== websiteListId);
+
+      this.allWebsites.sort((a, b) => a.globalOrder - b.globalOrder);
+      this.allWebsites = this.allWebsites.map((w, index) => {
+        w.globalOrder = index;
+        return w;
+      });
+
+      this.websiteLists.sort((a, b) => a.order - b.order);
+      this.websiteLists = this.websiteLists.map((w, index) => {
+        w.order = index;
+        return w;
+      });
       await this.saveWebsites();
     },
     async deleteWebsiteList(websiteListId: string): Promise<void> {
