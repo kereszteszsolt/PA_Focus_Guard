@@ -2,10 +2,11 @@
 import { useWebsiteStore } from '@/store/websiteStore';
 import { IWebsite, WebsiteType } from '@/interfaces';
 import EditWebsiteRuleDialog from '@/components/websites/EditWebsiteRuleDialog.vue';
+import DeleteWebsiteRuleDialog from '@/components/websites/DeleteWebsiteRuleDialog.vue';
 
 export default {
   name: 'Websites',
-  components: { EditWebsiteRuleDialog },
+  components: { DeleteWebsiteRuleDialog, EditWebsiteRuleDialog },
   data: () => {
     const websiteStore = useWebsiteStore();
     let dialog: boolean = false;
@@ -63,7 +64,7 @@ export default {
       return (this.pathId === 'all' || !this.pathId) ?
         this.websiteStore.getAllWebsites :
         this.websiteStore.getWebsiteByListId(this.pathId);
-    }
+    },
   },
   methods: {
     setPermanentlyActive(item: IWebsite) {
@@ -109,9 +110,9 @@ export default {
     },
     closeEdit() {
       this.dialog = false;
-      // this.$nextTick(() => {
-      //   this.editingId = '';
-      // });
+      this.$nextTick(() => {
+        this.editingId = '';
+      });
     },
     closeDelete() {
       this.dialogDelete = false;
@@ -182,29 +183,14 @@ export default {
             :p-is-new-item="isNewItem"
           ></edit-website-rule-dialog>
 
-          <v-dialog v-model="dialogDelete" max-width="500px">
-            <v-card>
-              <v-card-title class="text-h5"
-              >Are you sure you want to delete this item?
-              </v-card-title
-              >
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
-                >Cancel
-                </v-btn
-                >
-                <v-btn
-                  color="blue-darken-1"
-                  variant="text"
-                  @click="deleteItemConfirm"
-                >OK
-                </v-btn
-                >
-                <v-spacer></v-spacer>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+          <delete-website-rule-dialog
+            :p-is-empty=true
+            :p-item="editingItem"
+            :p-delete-item-confirm="deleteItemConfirm"
+            :p-close-dialog="closeDelete"
+            :p-dialog="dialogDelete">
+          </delete-website-rule-dialog>
+
         </v-toolbar>
       </template>
     </v-data-table>
