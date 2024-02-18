@@ -1,6 +1,6 @@
 <script lang="ts">
-import { useWebsiteStore } from '@/store/websiteStore';
-import { IWebsiteList } from '@/interfaces';
+import { useWebsiteRuleStore } from '@/store/websiteRuleStore';
+import { IWebsiteRuleList } from '@/interfaces';
 import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import EditWebsiteRulesListDialog from '@/components/websites/EditWebsiteRulesListDialog.vue';
 import DeleteWebsiteListRuleDialog from '@/components/websites/DeleteWebsiteListRuleDialog.vue';
@@ -9,10 +9,10 @@ export default {
   name: 'SidebarLists',
   components: { DeleteWebsiteListRuleDialog, EditWebsiteRulesListDialog, SidebarListItem },
   data: () => {
-    const websiteStore = useWebsiteStore();
+    const websiteStore = useWebsiteRuleStore();
     let dialog = false;
     let dialogDelete = false;
-    let editingWebsiteList: IWebsiteList = {
+    let editingWebsiteList: IWebsiteRuleList = {
       id: '',
       name: '',
       order: 0
@@ -40,11 +40,11 @@ export default {
     close() {
       this.dialog = false;
     },
-    save(editedItem: IWebsiteList) {
+    save(editedItem: IWebsiteRuleList) {
       if (this.isNewItem) {
-        this.websiteStore.addWebsiteList(editedItem);
+        this.websiteStore.addWebsiteRuleList(editedItem);
       } else {
-        this.websiteStore.updateWebsiteList(this.editingWebsiteList.id, editedItem);
+        this.websiteStore.updateWebsiteRuleList(this.editingWebsiteList.id, editedItem);
       }
       this.editingWebsiteList = {
         id: '',
@@ -80,7 +80,7 @@ export default {
       this.dialogDelete = false;
     },
     deleteItemConfirm() {
-      this.websiteStore.deleteWebsiteList(this.editingWebsiteList.id);
+      this.websiteStore.deleteWebsiteRuleList(this.editingWebsiteList.id);
       this.editingWebsiteList = {
         id: '',
         name: '',

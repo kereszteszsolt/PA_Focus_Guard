@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IWebsiteList } from '@/interfaces';
+import { IWebsiteRuleList } from '@/interfaces';
 
 export default defineComponent({
   name: 'DeleteWebsiteListRuleDialog',
@@ -10,7 +10,7 @@ export default defineComponent({
       required: true
     },
     pItem: {
-      type: Object as () => IWebsiteList,
+      type: Object as () => IWebsiteRuleList,
       required: true
     },
     pCloseDialog: {
@@ -28,7 +28,7 @@ export default defineComponent({
   },
   data: () => {
     return {
-      item: {} as IWebsiteList,
+      item: {} as IWebsiteRuleList,
       isEmpty: false,
       dialog: false,
       confirmDeleteListItems: false

@@ -1,4 +1,4 @@
-export interface IWebsiteList {
+export interface IWebsiteRuleList {
   id: string;
   name: string;
   order: number;

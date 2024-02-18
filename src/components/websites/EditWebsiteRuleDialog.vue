@@ -1,5 +1,5 @@
 <script lang="ts">
-import { IWebsite } from '@/interfaces';
+import { IWebsiteRule } from '@/interfaces';
 
 export default {
   name: 'EditWebsiteRuleDialog',
@@ -9,7 +9,7 @@ export default {
       required: true
     },
     pItem: {
-      type: Object as () => IWebsite,
+      type: Object as () => IWebsiteRule,
       required: true
     },
     pCloseDialog: {
@@ -70,7 +70,7 @@ export default {
       this.pCloseDialog();
     },
     save() {
-      let editedItem: IWebsite = {
+      let editedItem: IWebsiteRule = {
         ...this.pItem,
         url: this.url,
         permanentlyActive: this.permanentlyActive,

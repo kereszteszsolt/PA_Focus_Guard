@@ -1,4 +1,4 @@
-export interface IWebsite {
+export interface IWebsiteRule {
   id: string;
   listId: string;
   url: string;
@@ -7,5 +7,3 @@ export interface IWebsite {
   order: number;
   globalOrder: number;
 }
-
-export type WebsiteType = IWebsite;

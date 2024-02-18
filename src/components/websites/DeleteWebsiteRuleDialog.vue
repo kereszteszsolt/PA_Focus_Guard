@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IWebsite } from '@/interfaces';
+import { IWebsiteRule } from '@/interfaces';
 
 export default defineComponent({
   name: 'DeleteWebsiteRuleDialog',
@@ -10,7 +10,7 @@ export default defineComponent({
       required: true
     },
     pItem: {
-      type: Object as () => IWebsite,
+      type: Object as () => IWebsiteRule,
       required: true
     },
     pCloseDialog: {
@@ -28,7 +28,7 @@ export default defineComponent({
   },
   data: () => {
     return {
-      item: {} as IWebsite,
+      item: {} as IWebsiteRule,
       isEmpty: false,
       dialog: false
     };

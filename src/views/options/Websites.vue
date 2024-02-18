@@ -1,6 +1,6 @@
 <script lang="ts">
-import { useWebsiteStore } from '@/store/websiteStore';
-import { IWebsite, WebsiteType } from '@/interfaces';
+import { useWebsiteRuleStore } from '@/store/websiteRuleStore';
+import { IWebsiteRule } from '@/interfaces';
 import EditWebsiteRuleDialog from '@/components/websites/EditWebsiteRuleDialog.vue';
 import DeleteWebsiteRuleDialog from '@/components/websites/DeleteWebsiteRuleDialog.vue';
 
@@ -8,11 +8,11 @@ export default {
   name: 'Websites',
   components: { DeleteWebsiteRuleDialog, EditWebsiteRuleDialog },
   data: () => {
-    const websiteStore = useWebsiteStore();
+    const websiteStore = useWebsiteRuleStore();
     let dialog: boolean = false;
     let dialogDelete = false;
     let editingId = '';
-    let editingItem: IWebsite = {
+    let editingItem: IWebsiteRule = {
       id: '',
       listId: '',
       url: '',
@@ -71,20 +71,20 @@ export default {
       return (this.pathId === 'all' || !this.pathId) ?
         'All Websites' : this.websiteList?.name;
     },
-    websites(): WebsiteType[] {
+    websites(): IWebsiteRule[] {
       return (this.pathId === 'all' || !this.pathId) ?
         this.websiteStore.getAllWebsites :
         this.websiteStore.getWebsiteByListId(this.pathId);
     },
   },
   methods: {
-    setPermanentlyActive(item: IWebsite) {
+    setPermanentlyActive(item: IWebsiteRule) {
       item.temporarilyInactive = item.permanentlyActive ? false : item.temporarilyInactive;
-      this.websiteStore.saveWebsites();
+      this.websiteStore.saveWebsiteRules();
     },
-    setTemporarilyInactive(item: IWebsite) {
+    setTemporarilyInactive(item: IWebsiteRule) {
       item.permanentlyActive = item.temporarilyInactive ? false : item.permanentlyActive;
-      this.websiteStore.saveWebsites();
+      this.websiteStore.saveWebsiteRules();
     },
     newItem() {
       this.editingItem = {
@@ -104,7 +104,7 @@ export default {
         // throw new Error('Website not found');  TODO - handle error
       }
     },
-    deleteItem(item: IWebsite) {
+    deleteItem(item: IWebsiteRule) {
       const found = this.websiteStore.getWebsiteById(item.id);
       if (found) {
         this.editingId = found.id;
@@ -116,7 +116,7 @@ export default {
       }
     },
     deleteItemConfirm() {
-      this.websiteStore.deleteWebsite(this.editingId);
+      this.websiteStore.deleteWebsiteRule(this.editingId);
       this.closeDelete();
     },
     closeEdit() {
@@ -131,12 +131,12 @@ export default {
         this.editingId = '';
       });
     },
-    save(editedItem: IWebsite) {
+    save(editedItem: IWebsiteRule) {
       if (this.isNewItem) {
-        this.websiteStore.addWebsite(editedItem);
+        this.websiteStore.addWebsiteRule(editedItem);
         this.isNewItem = false;
       } else {
-        this.websiteStore.updateWebsite(this.editingItem.id, editedItem);
+        this.websiteStore.updateWebsiteRule(this.editingItem.id, editedItem);
       }
       this.closeEdit();
       console.log('save', editedItem);
