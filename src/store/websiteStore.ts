@@ -75,21 +75,24 @@ export const useWebsiteStore = defineStore({
       await this.saveWebsiteLists();
     },
     async deleteWebsite(websiteId: string): Promise<void> {
-      const website: IWebsite | null = this.allWebsites.find((w) => w.id === websiteId) || null;
+      const website: IWebsite | undefined = this.allWebsites.find((w) => w.id === websiteId);
       if (website) {
         this.allWebsites = this.allWebsites.filter((w) => w.id !== websiteId);
 
         let websiteListCrrContext: IWebsite[] = this.allWebsites.filter((w) => w.listId === website.listId);
-
         websiteListCrrContext.sort((a, b) => a.order - b.order);
-
         websiteListCrrContext = websiteListCrrContext.map((w, index) => {
           w.order = index;
           return w;
         });
-
         this.allWebsites = this.allWebsites.filter((w) => w.listId !== website.listId);
         this.allWebsites.push(...websiteListCrrContext);
+
+        this.allWebsites.sort((a, b) => a.globalOrder - b.globalOrder);
+        this.allWebsites = this.allWebsites.map((w, index) => {
+          w.globalOrder = index;
+          return w;
+        });
 
         await this.saveWebsites();
       }
