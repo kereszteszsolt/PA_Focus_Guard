@@ -2,10 +2,12 @@
 import { useWebsiteStore } from '@/store/websiteStore';
 import { IWebsiteList } from '@/interfaces';
 import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
+import EditWebsiteRulesListDialog from '@/components/websites/EditWebsiteRulesListDialog.vue';
+import DeleteWebsiteListRuleDialog from '@/components/websites/DeleteWebsiteListRuleDialog.vue';
 
 export default {
   name: 'SidebarLists',
-  components: { SidebarListItem },
+  components: { DeleteWebsiteListRuleDialog, EditWebsiteRulesListDialog, SidebarListItem },
   data: () => {
     const websiteStore = useWebsiteStore();
     let dialog = false;
@@ -16,12 +18,14 @@ export default {
       order: 0
     };
     let isNewItem = true;
+    let isEmpty = false;
     return {
       websiteStore,
       dialog,
       dialogDelete,
       editingWebsiteList: editingWebsiteList,
-      isNewItem
+      isNewItem,
+      isEmpty
     };
   },
   mounted() {
@@ -36,11 +40,11 @@ export default {
     close() {
       this.dialog = false;
     },
-    save() {
+    save(editedItem: IWebsiteList) {
       if (this.isNewItem) {
-        this.websiteStore.addWebsiteList(this.editingWebsiteList);
+        this.websiteStore.addWebsiteList(editedItem);
       } else {
-        this.websiteStore.updateWebsiteList(this.editingWebsiteList.id, this.editingWebsiteList);
+        this.websiteStore.updateWebsiteList(this.editingWebsiteList.id, editedItem);
       }
       this.editingWebsiteList = {
         id: '',
@@ -64,6 +68,8 @@ export default {
       const found = this.websiteStore.getWebsiteListById(id);
       if (found) {
         this.editingWebsiteList = found;
+        const foundItems = this.websiteStore.getWebsiteByListId(id);
+        this.isEmpty = foundItems.length === 0;
         this.dialogDelete = true;
       } else {
         console.error('Website List not found');
@@ -112,57 +118,12 @@ export default {
       </v-list>
     </div>
   </v-sheet>
-  <v-dialog v-model="dialog" max-width="900px">
-    <v-card>
-      <v-card-title>
-        <span class="headline">Add Website List</span>
-      </v-card-title>
-      <v-card-text>
-        <v-container>
-          <v-row>
-            <v-col cols="12" sm="12">
-              <v-text-field
-                v-model="editingWebsiteList.name"
-                label="Name"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="blue-darken-1" variant="text" @click="close">
-          Cancel
-        </v-btn>
-        <v-btn color="blue-darken-1" variant="text" @click="save">
-          Save
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
-  <v-dialog v-model="dialogDelete" max-width="500px">
-    <v-card>
-      <v-card-title class="text-h5"
-      >Are you sure you want to delete this item?
-      </v-card-title
-      >
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
-        >Cancel
-        </v-btn
-        >
-        <v-btn
-          color="blue-darken-1"
-          variant="text"
-          @click="deleteItemConfirm"
-        >OK
-        </v-btn
-        >
-        <v-spacer></v-spacer>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+  <edit-website-rules-list-dialog :p-dialog="dialog" :p-item="editingWebsiteList" :p-save-item="save"
+                                  :p-is-new-item="isNewItem" :p-close-dialog="close"></edit-website-rules-list-dialog>
+
+  <delete-website-list-rule-dialog :p-dialog="dialogDelete" :p-item="editingWebsiteList"
+                                   :p-delete-item-confirm="deleteItemConfirm" :p-close-dialog="closeDelete"
+                                   :p-is-empty="isEmpty"></delete-website-list-rule-dialog>
 </template>
 
 <style scoped lang="scss">

@@ -75,13 +75,31 @@ export const useWebsiteStore = defineStore({
       await this.saveWebsiteLists();
     },
     async deleteWebsite(websiteId: string): Promise<void> {
-      this.allWebsites = this.allWebsites.filter(website => website.id !== websiteId);
+      const website: IWebsite | null = this.allWebsites.find((w) => w.id === websiteId) || null;
+      if (website) {
+        this.allWebsites = this.allWebsites.filter((w) => w.id !== websiteId);
+
+        let websiteListCrrContext: IWebsite[] = this.allWebsites.filter((w) => w.listId === website.listId);
+
+        websiteListCrrContext.sort((a, b) => a.order - b.order);
+
+        websiteListCrrContext = websiteListCrrContext.map((w, index) => {
+          w.order = index;
+          return w;
+        });
+
+        this.allWebsites = this.allWebsites.filter((w) => w.listId !== website.listId);
+        this.allWebsites.push(...websiteListCrrContext);
+
+        await this.saveWebsites();
+      }
+    },
+    async deleteWebsitesByListId(websiteListId: string): Promise<void> {
+      this.allWebsites = this.allWebsites.filter(website => website.listId !== websiteListId);
       await this.saveWebsites();
     },
     async deleteWebsiteList(websiteListId: string): Promise<void> {
-      if (this.allWebsites.some((website) => website.listId === websiteListId)) {
-        throw new Error('Cannot delete a list that has websites');
-      }
+      await this.deleteWebsitesByListId(websiteListId);
       this.websiteLists = this.websiteLists.filter(websiteList => websiteList.id !== websiteListId);
       await this.saveWebsiteLists();
     },
@@ -147,6 +165,6 @@ export const useWebsiteStore = defineStore({
       this.allWebsites[index + 1] = temp;
       await this.saveWebsites();
       this.isLoading = false;
-    },
-  },
+    }
+  }
 });
