@@ -148,15 +148,15 @@ export const useWebsiteRuleStore = defineStore({
 
       return list;
     },
-    async moveUpWebsiteList(id: string): Promise<void> {
+    async moveUpWebsiteRuleList(id: string): Promise<void> {
       this.websiteRuleLists = this._moveItem(this.websiteRuleLists, id, 'up', 'order');
       await this.saveWebsiteRules();
     },
-    async moveDownWebsiteList(id: string): Promise<void> {
+    async moveDownWebsiteRuleList(id: string): Promise<void> {
       this.websiteRuleLists = this._moveItem(this.websiteRuleLists, id, 'down', 'order');
       await this.saveWebsiteRules();
     },
-    _moveWebsite(id: string, direction: 'up' | 'down'): void {
+    _moveWebsiteRule(id: string, direction: 'up' | 'down'): void {
       const item = this.allWebsiteRules.find((item) => item.id === id);
       if (!item) return;
       const list = this.allWebsiteRules.filter((w) => w.listId === item.listId);
@@ -164,19 +164,19 @@ export const useWebsiteRuleStore = defineStore({
       this.allWebsiteRules = this.allWebsiteRules.filter((w) => w.listId !== item.listId);
       this.allWebsiteRules.push(...editedList);
     },
-    async moveUpWebsite(id: string): Promise<void> {
-      this._moveWebsite(id, 'up');
+    async moveUpWebsiteRule(id: string): Promise<void> {
+      this._moveWebsiteRule(id, 'up');
       await this.saveWebsiteRules();
     },
-    async moveDownWebsite(id: string): Promise<void> {
-      this._moveWebsite(id, 'down');
+    async moveDownWebsiteRule(id: string): Promise<void> {
+      this._moveWebsiteRule(id, 'down');
       await this.saveWebsiteRules();
     },
-    async moveUpWebsiteGlobalOrder(id: string): Promise<void> {
+    async moveUpWebsiteRulesGlobalOrder(id: string): Promise<void> {
       this.allWebsiteRules = this._moveItem(this.allWebsiteRules, id, 'up', 'globalOrder');
       await this.saveWebsiteRules();
     },
-    async moveDownWebsiteGlobalOrder(id: string): Promise<void> {
+    async moveDownWebsiteRulesGlobalOrder(id: string): Promise<void> {
       this.allWebsiteRules = this._moveItem(this.allWebsiteRules, id, 'down', 'globalOrder');
       await this.saveWebsiteRules();
     }

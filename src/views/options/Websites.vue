@@ -56,10 +56,10 @@ export default {
       return this.pathId === 'all' || !this.pathId;
     },
     moveUp(): Function {
-      return this.pathId === 'all' ? this.websiteStore.moveUpWebsiteGlobalOrder : this.websiteStore.moveUpWebsite;
+      return this.pathId === 'all' ? this.websiteStore.moveUpWebsiteRulesGlobalOrder : this.websiteStore.moveUpWebsiteRule;
     },
     moveDown(): Function {
-      return this.pathId === 'all' ? this.websiteStore.moveDownWebsiteGlobalOrder : this.websiteStore.moveDownWebsite;
+      return this.pathId === 'all' ? this.websiteStore.moveDownWebsiteRulesGlobalOrder : this.websiteStore.moveDownWebsiteRule;
     },
     sortByFieldName(): { key: string, order?: boolean |  'asc' | 'desc' }[] {
       return this.pathId === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'order', order: 'asc' }];

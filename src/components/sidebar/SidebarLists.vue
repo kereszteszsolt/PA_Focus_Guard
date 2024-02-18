@@ -101,8 +101,8 @@ export default {
           <sidebar-list-item :list-id="list.id" :list-name="list.name"
                              :delete-item="() => deleteItem(list.id)"
                              :edit-item="() => editItem(list.id)"
-                             :move-up="websiteStore.moveUpWebsiteList"
-                             :move-down="websiteStore.moveDownWebsiteList"
+                             :move-up="websiteStore.moveUpWebsiteRuleList"
+                             :move-down="websiteStore.moveDownWebsiteRuleList"
           ></sidebar-list-item>
         </router-link>
         <v-divider></v-divider>
