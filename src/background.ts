@@ -1,4 +1,5 @@
 import * as utils from '@/utils';
+import * as constants from '@/constants';
 
 chrome.runtime.onInstalled.addListener(async (details) => {
   switch (details.reason) {
@@ -14,5 +15,25 @@ chrome.runtime.onInstalled.addListener(async (details) => {
       await utils.initialize.initLocaleSettingsAndMessages();
       await utils.initializeWebsite.initDefaultWebsites();
       break;
+  }
+});
+
+chrome.storage.onChanged.addListener(async function (changes, namespace) {
+  if (namespace === 'local') {
+    if (constants.storage.FG_APP_DATA in changes) {
+      console.log('Websites changed');
+    }
+    if (constants.storage.FG_WEBSITES in changes) {
+      console.log('Websites changed');
+    }
+    if (constants.storage.FG_WEBSITE_LISTS in changes) {
+      console.log('Website lists changed');
+    }
+    if (constants.storage.FG_LOCALES_SETTINGS in changes) {
+      console.log('Locale settings changed');
+    }
+    if (constants.storage.FG_LOCALES_MESSAGES in changes) {
+      console.log('Locale messages changed');
+    }
   }
 });
