@@ -19,7 +19,7 @@ export const useWebsiteStore = defineStore({
       return state.allWebsites.find((website) => website.id === id);
     },
     getWebsiteLists: (state) => {
-      return state.websiteLists;
+      return utils.order.orderAnythingByField(state.websiteLists, 'order', 'asc');
     },
     getWebsiteByListId: (state) => (listId: string): IWebsite[] => {
       return state.allWebsites.filter((website) => website.listId === listId);
@@ -106,16 +106,18 @@ export const useWebsiteStore = defineStore({
         return w;
       });
 
-      this.websiteLists.sort((a, b) => a.order - b.order);
-      this.websiteLists = this.websiteLists.map((w, index) => {
-        w.order = index;
-        return w;
-      });
       await this.saveWebsites();
     },
     async deleteWebsiteList(websiteListId: string): Promise<void> {
       await this.deleteWebsitesByListId(websiteListId);
       this.websiteLists = this.websiteLists.filter(websiteList => websiteList.id !== websiteListId);
+
+      this.websiteLists.sort((a, b) => a.order - b.order);
+      this.websiteLists = this.websiteLists.map((w, index) => {
+        w.order = index;
+        return w;
+      });
+
       await this.saveWebsiteLists();
     },
     async updateWebsite(id: string, website: IWebsite): Promise<void> {
@@ -130,6 +132,7 @@ export const useWebsiteStore = defineStore({
       await this.saveWebsiteLists();
     },
     _moveItem(list: any[], id: string, direction: 'up' | 'down', field: string): any[] {
+      console.log('list', list);
       const item = list.find((item) => item.id === id);
       if (!item) return list;
 
@@ -153,22 +156,20 @@ export const useWebsiteStore = defineStore({
       this.websiteLists = this._moveItem(this.websiteLists, id, 'down', 'order');
       await this.saveWebsites();
     },
-    async moveUpWebsite(id: string): Promise<void> {
+    _moveWebsite(id: string, direction: 'up' | 'down'): void {
       const item = this.allWebsites.find((item) => item.id === id);
       if (!item) return;
       const list = this.allWebsites.filter((w) => w.listId === item.listId);
-      const editedList = this._moveItem(list, id, 'up', 'order');
+      const editedList = this._moveItem(list, id, direction, 'order');
       this.allWebsites = this.allWebsites.filter((w) => w.listId !== item.listId);
       this.allWebsites.push(...editedList);
+    },
+    async moveUpWebsite(id: string): Promise<void> {
+      this._moveWebsite(id, 'up');
       await this.saveWebsites();
     },
     async moveDownWebsite(id: string): Promise<void> {
-      const item = this.allWebsites.find((item) => item.id === id);
-      if (!item) return;
-      const list = this.allWebsites.filter((w) => w.listId === item.listId);
-      const editedList = this._moveItem(list, id, 'down', 'order');
-      this.allWebsites = this.allWebsites.filter((w) => w.listId !== item.listId);
-      this.allWebsites.push(...editedList);
+      this._moveWebsite(id, 'down');
       await this.saveWebsites();
     },
     async moveUpWebsiteGlobalOrder(id: string): Promise<void> {
