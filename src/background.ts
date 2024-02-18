@@ -23,10 +23,10 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
     if (constants.storage.FG_APP_DATA in changes) {
       console.log('Websites changed');
     }
-    if (constants.storage.FG_WEBSITES in changes) {
+    if (constants.storage.FG_WEBSITE_RULES in changes) {
       console.log('Websites changed');
     }
-    if (constants.storage.FG_WEBSITE_LISTS in changes) {
+    if (constants.storage.FG_WEBSITE_RULE_LISTS in changes) {
       console.log('Website lists changed');
     }
     if (constants.storage.FG_LOCALES_SETTINGS in changes) {

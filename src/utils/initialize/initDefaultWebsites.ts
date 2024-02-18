@@ -18,7 +18,7 @@ export const initDefaultWebsites = async() => {
   }
   listOfLists.push(websiteList2);
 
-  await utils.data.saveList<IWebsiteList>(constants.storage.FG_WEBSITE_LISTS, listOfLists);
+  await utils.data.saveList<IWebsiteList>(constants.storage.FG_WEBSITE_RULE_LISTS, listOfLists);
   console.log('websiteList', websiteList);
 
   let allWebsites : IWebsite[] = [];
@@ -44,7 +44,7 @@ export const initDefaultWebsites = async() => {
   }
   allWebsites.push(website2);
 
-  await utils.data.saveList<IWebsite>(constants.storage.FG_WEBSITES, allWebsites);
+  await utils.data.saveList<IWebsite>(constants.storage.FG_WEBSITE_RULES, allWebsites);
   console.log('allWebsites', allWebsites);
 }
 

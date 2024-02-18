@@ -37,12 +37,12 @@ export const useWebsiteStore = defineStore({
   actions: {
     async fetchWebsites(): Promise<void> {
       this.isLoading = true;
-      this.allWebsites = await utils.data.fetchEntry(constants.storage.FG_WEBSITES) as IWebsite[];
+      this.allWebsites = await utils.data.fetchEntry(constants.storage.FG_WEBSITE_RULES) as IWebsite[];
       this.isLoading = false;
     },
     async fetchWebsiteLists(): Promise<void> {
       this.isLoading = true;
-      this.websiteLists = await utils.data.fetchEntry(constants.storage.FG_WEBSITE_LISTS) as IWebsiteList[];
+      this.websiteLists = await utils.data.fetchEntry(constants.storage.FG_WEBSITE_RULE_LISTS) as IWebsiteList[];
       this.isLoading = false;
     },
     async fetchData(): Promise<void> {
@@ -53,12 +53,12 @@ export const useWebsiteStore = defineStore({
     },
     async saveWebsites(): Promise<void> {
       this.isLoading = true;
-      await utils.data.saveEntry(constants.storage.FG_WEBSITES, this.allWebsites);
+      await utils.data.saveEntry(constants.storage.FG_WEBSITE_RULES, this.allWebsites);
       this.isLoading = false;
     },
     async saveWebsiteLists(): Promise<void> {
       this.isLoading = true;
-      await utils.data.saveEntry(constants.storage.FG_WEBSITE_LISTS, this.websiteLists);
+      await utils.data.saveEntry(constants.storage.FG_WEBSITE_RULE_LISTS, this.websiteLists);
       this.isLoading = false;
     },
     async addWebsite(website: IWebsite): Promise<void> {
