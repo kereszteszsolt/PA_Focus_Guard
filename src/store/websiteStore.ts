@@ -63,14 +63,14 @@ export const useWebsiteStore = defineStore({
     },
     async addWebsite(website: IWebsite): Promise<void> {
       website.id = utils.unique.generateUniqueListId(this.allWebsites);
-      website.order = utils.unique.generateUniqueOrderNumber(this.allWebsites.filter((w) => w.listId === website.listId));
-      website.globalOrder = utils.unique.generateUniqueOrderNumber(this.allWebsites);
+      website.order = utils.unique.generateUniqueNumberByField(this.allWebsites.filter((w) => w.listId === website.listId), 'order');
+      website.globalOrder = utils.unique.generateUniqueNumberByField(this.allWebsites, 'globalOrder');
       this.allWebsites.push(website);
       await this.saveWebsites();
     },
     async addWebsiteList(websiteList: IWebsiteList): Promise<void> {
       websiteList.id = utils.unique.generateUniqueListId(this.websiteLists);
-      websiteList.order = utils.unique.generateUniqueOrderNumber(this.websiteLists);
+      websiteList.order = utils.unique.generateUniqueNumberByField(this.websiteLists, 'order');
       this.websiteLists.push(websiteList);
       await this.saveWebsiteLists();
     },
@@ -129,57 +129,55 @@ export const useWebsiteStore = defineStore({
       this.websiteLists = this.websiteLists.map((w) => w.id === id ? websiteList : w);
       await this.saveWebsiteLists();
     },
+    _moveItem(list: any[], id: string, direction: 'up' | 'down', field: string): any[] {
+      const item = list.find((item) => item.id === id);
+      if (!item) return list;
+
+      const value = item[field];
+      const nextValue = direction === 'up' ? value - 1 : value + 1;
+      if (nextValue < 0 || nextValue >= list.length) return list;
+
+      const nextItem = list.find((item) => item[field] === nextValue);
+      if (!nextItem) return list;
+
+      item[field] = nextValue;
+      nextItem[field] = value;
+
+      return list;
+    },
     async moveUpWebsiteList(id: string): Promise<void> {
-      this.isLoading = true;
-      const index = this.websiteLists.findIndex((w) => w.id === id);
-      if (index === 0) {
-        this.isLoading = false;
-        return;
-      }
-      const temp = this.websiteLists[index];
-      this.websiteLists[index] = this.websiteLists[index - 1];
-      this.websiteLists[index - 1] = temp;
-      await this.saveWebsiteLists();
-      this.isLoading = false;
+      this.websiteLists = this._moveItem(this.websiteLists, id, 'up', 'order');
+      await this.saveWebsites();
     },
     async moveDownWebsiteList(id: string): Promise<void> {
-      this.isLoading = true;
-      const index = this.websiteLists.findIndex((w) => w.id === id);
-      if (index === this.websiteLists.length - 1) {
-        this.isLoading = false;
-        return;
-      }
-      const temp = this.websiteLists[index];
-      this.websiteLists[index] = this.websiteLists[index + 1];
-      this.websiteLists[index + 1] = temp;
-      await this.saveWebsiteLists();
-      this.isLoading = false;
+      this.websiteLists = this._moveItem(this.websiteLists, id, 'down', 'order');
+      await this.saveWebsites();
     },
     async moveUpWebsite(id: string): Promise<void> {
-      this.isLoading = true;
-      const index = this.allWebsites.findIndex((w) => w.id === id);
-      if (index === 0) {
-        this.isLoading = false;
-        return;
-      }
-      const temp = this.allWebsites[index];
-      this.allWebsites[index] = this.allWebsites[index - 1];
-      this.allWebsites[index - 1] = temp;
+      const item = this.allWebsites.find((item) => item.id === id);
+      if (!item) return;
+      const list = this.allWebsites.filter((w) => w.listId === item.listId);
+      const editedList = this._moveItem(list, id, 'up', 'order');
+      this.allWebsites = this.allWebsites.filter((w) => w.listId !== item.listId);
+      this.allWebsites.push(...editedList);
       await this.saveWebsites();
-      this.isLoading = false;
     },
     async moveDownWebsite(id: string): Promise<void> {
-      this.isLoading = true;
-      const index = this.allWebsites.findIndex((w) => w.id === id);
-      if (index === this.allWebsites.length - 1) {
-        this.isLoading = false;
-        return;
-      }
-      const temp = this.allWebsites[index];
-      this.allWebsites[index] = this.allWebsites[index + 1];
-      this.allWebsites[index + 1] = temp;
+      const item = this.allWebsites.find((item) => item.id === id);
+      if (!item) return;
+      const list = this.allWebsites.filter((w) => w.listId === item.listId);
+      const editedList = this._moveItem(list, id, 'down', 'order');
+      this.allWebsites = this.allWebsites.filter((w) => w.listId !== item.listId);
+      this.allWebsites.push(...editedList);
       await this.saveWebsites();
-      this.isLoading = false;
+    },
+    async moveUpWebsiteGlobalOrder(id: string): Promise<void> {
+      this.allWebsites = this._moveItem(this.allWebsites, id, 'up', 'globalOrder');
+      await this.saveWebsites();
+    },
+    async moveDownWebsiteGlobalOrder(id: string): Promise<void> {
+      this.allWebsites = this._moveItem(this.allWebsites, id, 'down', 'globalOrder');
+      await this.saveWebsites();
     }
   }
 });

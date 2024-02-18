@@ -14,3 +14,15 @@ export const generateUniqueOrderNumber = (list: { order: number }[]): number => 
   }
   return order;
 };
+
+export const generateUniqueNumberByField = (list: { [key: string]: any }[], field: string): number => {
+  let number = 0;
+  while (list.find((item: any) => item[field] === number)) {
+    number++;
+  }
+  return number;
+}
+
+export const checkUniqueStringOnArrayByField = (list: { [key: string]: any }[], field: string, value: string): boolean => {
+  return !list.find((item: any) => item[field] === value);
+}

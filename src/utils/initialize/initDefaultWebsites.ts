@@ -14,7 +14,7 @@ export const initDefaultWebsites = async() => {
   let websiteList2 : IWebsiteList = {
     id: unique.generateUniqueListId(listOfLists),
     name: 'DefaultList2',
-    order: 0
+    order: 1
   }
   listOfLists.push(websiteList2);
 

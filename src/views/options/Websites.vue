@@ -36,7 +36,9 @@ export default {
         { title: 'URL', value: 'url' },
         { title: 'Permanently Active', value: 'permanentlyActive' },
         { title: 'Temporarily Inactive', value: 'temporarilyInactive' },
-        { title: 'Actions', value: 'actions' }
+        { title: 'Actions', value: 'actions' },
+        { title: 'Order', value: 'order' },
+        { title: 'Global Order', value: 'globalOrder' }
       ]
     };
   },
@@ -52,6 +54,15 @@ export default {
     },
     showAll(): boolean {
       return this.pathId === 'all' || !this.pathId;
+    },
+    moveUp(): Function {
+      return this.pathId === 'all' ? this.websiteStore.moveUpWebsiteGlobalOrder : this.websiteStore.moveUpWebsite;
+    },
+    moveDown(): Function {
+      return this.pathId === 'all' ? this.websiteStore.moveDownWebsiteGlobalOrder : this.websiteStore.moveDownWebsite;
+    },
+    sortByFieldName(): { key: string, order?: boolean |  'asc' | 'desc' }[] {
+      return this.pathId === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'order', order: 'asc' }];
     },
     websiteList() {
       return this.websiteStore.getWebsiteListById(this.pathId);
@@ -135,7 +146,7 @@ export default {
     dialog(val) {
       val || this.closeEdit();
     }
-  }
+  },
 };
 </script>
 
@@ -144,12 +155,13 @@ export default {
     <v-data-table
       :headers="headers"
       :items="websites"
+      :sort-by="sortByFieldName"
       class="elevation-1">
       <template v-slot:item.actions="{ item }">
         <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
         <v-icon small @click="editItem(item.id)">mdi-pencil</v-icon>
-        <v-icon small @click="websiteStore.moveUpWebsite(item.id)">mdi-arrow-up</v-icon>
-        <v-icon small @click="websiteStore.moveDownWebsite(item.id)">mdi-arrow-down</v-icon>
+        <v-icon small @click="moveUp(item.id)">mdi-arrow-up</v-icon>
+        <v-icon small @click="moveDown(item.id)">mdi-arrow-down</v-icon>
       </template>
       <template v-slot:item.permanentlyActive="{ item }">
         <v-checkbox
