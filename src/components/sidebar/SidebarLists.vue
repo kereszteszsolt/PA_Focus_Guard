@@ -9,7 +9,7 @@ export default {
   name: 'SidebarLists',
   components: { DeleteWebsiteListRuleDialog, EditWebsiteRulesListDialog, SidebarListItem },
   data: () => {
-    const websiteStore = useWebsiteRulesStore();
+    const websiteRulesStore = useWebsiteRulesStore();
     let dialog = false;
     let dialogDelete = false;
     let editingWebsiteList: IWebsiteRuleList = {
@@ -20,7 +20,7 @@ export default {
     let isNewItem = true;
     let isEmpty = false;
     return {
-      websiteStore,
+      websiteRulesStore: websiteRulesStore,
       dialog,
       dialogDelete,
       editingWebsiteList: editingWebsiteList,
@@ -29,7 +29,7 @@ export default {
     };
   },
   mounted() {
-    this.websiteStore.fetchData();
+    this.websiteRulesStore.fetchData();
   },
   computed: {
     pathId() {
@@ -42,9 +42,9 @@ export default {
     },
     save(editedItem: IWebsiteRuleList) {
       if (this.isNewItem) {
-        this.websiteStore.addWebsiteRuleList(editedItem);
+        this.websiteRulesStore.addWebsiteRuleList(editedItem);
       } else {
-        this.websiteStore.updateWebsiteRuleList(this.editingWebsiteList.id, editedItem);
+        this.websiteRulesStore.updateWebsiteRuleList(this.editingWebsiteList.id, editedItem);
       }
       this.editingWebsiteList = {
         id: '',
@@ -54,7 +54,7 @@ export default {
       this.close();
     },
     editItem(id: string) {
-      const found = this.websiteStore.getWebsiteRuleListById(id);
+      const found = this.websiteRulesStore.getWebsiteRuleListById(id);
       if (found) {
         this.editingWebsiteList = found;
         this.dialog = true;
@@ -65,10 +65,10 @@ export default {
       }
     },
     deleteItem(id: string) {
-      const found = this.websiteStore.getWebsiteRuleListById(id);
+      const found = this.websiteRulesStore.getWebsiteRuleListById(id);
       if (found) {
         this.editingWebsiteList = found;
-        const foundItems = this.websiteStore.getWebsiteRuleByListId(id);
+        const foundItems = this.websiteRulesStore.getWebsiteRulesByListId(id);
         this.isEmpty = foundItems.length === 0;
         this.dialogDelete = true;
       } else {
@@ -80,7 +80,7 @@ export default {
       this.dialogDelete = false;
     },
     deleteItemConfirm() {
-      this.websiteStore.deleteWebsiteRuleList(this.editingWebsiteList.id);
+      this.websiteRulesStore.deleteWebsiteRuleList(this.editingWebsiteList.id);
       this.editingWebsiteList = {
         id: '',
         name: '',
@@ -94,15 +94,15 @@ export default {
 
 <template>
   <v-sheet class="sidebar-lists" color="background">
-    <div v-if="!websiteStore.isLoading">
+    <div v-if="!websiteRulesStore.isLoading">
       <v-list>
-        <router-link v-for="list in websiteStore.getWebsiteRuleLists" :key="list.id"
+        <router-link v-for="list in websiteRulesStore.getWebsiteRuleLists" :key="list.id"
                      :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
           <sidebar-list-item :list-id="list.id" :list-name="list.name"
                              :delete-item="() => deleteItem(list.id)"
                              :edit-item="() => editItem(list.id)"
-                             :move-up="websiteStore.moveUpWebsiteRuleList"
-                             :move-down="websiteStore.moveDownWebsiteRuleList"
+                             :move-up="websiteRulesStore.moveUpWebsiteRuleList"
+                             :move-down="websiteRulesStore.moveDownWebsiteRuleList"
           ></sidebar-list-item>
         </router-link>
         <v-divider></v-divider>

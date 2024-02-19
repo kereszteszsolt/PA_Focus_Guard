@@ -74,7 +74,7 @@ export default {
     websiteRules(): IWebsiteRule[] {
       return (this.pathId === 'all' || !this.pathId) ?
         this.websiteRulesStore.getAllWebsiteRules :
-        this.websiteRulesStore.getWebsiteRuleByListId(this.pathId);
+        this.websiteRulesStore.getWebsiteRulesByListId(this.pathId);
     },
   },
   methods: {

@@ -21,7 +21,7 @@ export const useWebsiteRulesStore = defineStore({
     getWebsiteRuleLists: (state) => {
       return utils.order.orderAnythingByField(state.websiteRuleLists, 'order', 'asc');
     },
-    getWebsiteRuleByListId: (state) => (listId: string): IWebsiteRule[] => {
+    getWebsiteRulesByListId: (state) => (listId: string): IWebsiteRule[] => {
       return state.allWebsiteRules.filter((website) => website.listId === listId);
     },
     getWebsiteRuleListById: (state) => (id: string): IWebsiteRuleList | undefined => {
@@ -29,9 +29,6 @@ export const useWebsiteRulesStore = defineStore({
     },
     getAllWebsiteRules: (state): IWebsiteRule[] => {
       return state.allWebsiteRules;
-    },
-    getNextUniqueId(): string {
-      return utils.unique.generateUniqueListId(this.allWebsiteRules);
     }
   },
   actions: {
