@@ -65,7 +65,7 @@ export default {
       return this.pathId === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'order', order: 'asc' }];
     },
     websiteRuleList() {
-      return this.websiteRulesStore.getWebsiteListById(this.pathId);
+      return this.websiteRulesStore.getWebsiteRuleListById(this.pathId);
     },
     websiteRuleListName() {
       return (this.pathId === 'all' || !this.pathId) ?
@@ -73,8 +73,8 @@ export default {
     },
     websiteRules(): IWebsiteRule[] {
       return (this.pathId === 'all' || !this.pathId) ?
-        this.websiteRulesStore.getAllWebsites :
-        this.websiteRulesStore.getWebsiteByListId(this.pathId);
+        this.websiteRulesStore.getAllWebsiteRules :
+        this.websiteRulesStore.getWebsiteRuleByListId(this.pathId);
     },
   },
   methods: {
@@ -95,7 +95,7 @@ export default {
       this.dialog = true;
     },
     editItem(id: string) {
-      const found = this.websiteRulesStore.getWebsiteById(id);
+      const found = this.websiteRulesStore.getWebsiteRuleById(id);
       if (found) {
         this.editingItem = found;
         this.dialog = true;
@@ -105,7 +105,7 @@ export default {
       }
     },
     deleteItem(item: IWebsiteRule) {
-      const found = this.websiteRulesStore.getWebsiteById(item.id);
+      const found = this.websiteRulesStore.getWebsiteRuleById(item.id);
       if (found) {
         this.editingId = found.id;
         this.editingItem = found;

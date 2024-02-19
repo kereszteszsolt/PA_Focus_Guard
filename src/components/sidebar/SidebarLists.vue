@@ -54,7 +54,7 @@ export default {
       this.close();
     },
     editItem(id: string) {
-      const found = this.websiteStore.getWebsiteListById(id);
+      const found = this.websiteStore.getWebsiteRuleListById(id);
       if (found) {
         this.editingWebsiteList = found;
         this.dialog = true;
@@ -65,10 +65,10 @@ export default {
       }
     },
     deleteItem(id: string) {
-      const found = this.websiteStore.getWebsiteListById(id);
+      const found = this.websiteStore.getWebsiteRuleListById(id);
       if (found) {
         this.editingWebsiteList = found;
-        const foundItems = this.websiteStore.getWebsiteByListId(id);
+        const foundItems = this.websiteStore.getWebsiteRuleByListId(id);
         this.isEmpty = foundItems.length === 0;
         this.dialogDelete = true;
       } else {
@@ -96,7 +96,7 @@ export default {
   <v-sheet class="sidebar-lists" color="background">
     <div v-if="!websiteStore.isLoading">
       <v-list>
-        <router-link v-for="list in websiteStore.getWebsiteLists" :key="list.id"
+        <router-link v-for="list in websiteStore.getWebsiteRuleLists" :key="list.id"
                      :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
           <sidebar-list-item :list-id="list.id" :list-name="list.name"
                              :delete-item="() => deleteItem(list.id)"

@@ -15,19 +15,19 @@ export const useWebsiteRulesStore = defineStore({
     websiteRuleLists: []
   }),
   getters: {
-    getWebsiteById: (state) => (id: string): IWebsiteRule | undefined => {
+    getWebsiteRuleById: (state) => (id: string): IWebsiteRule | undefined => {
       return state.allWebsiteRules.find((website) => website.id === id);
     },
-    getWebsiteLists: (state) => {
+    getWebsiteRuleLists: (state) => {
       return utils.order.orderAnythingByField(state.websiteRuleLists, 'order', 'asc');
     },
-    getWebsiteByListId: (state) => (listId: string): IWebsiteRule[] => {
+    getWebsiteRuleByListId: (state) => (listId: string): IWebsiteRule[] => {
       return state.allWebsiteRules.filter((website) => website.listId === listId);
     },
-    getWebsiteListById: (state) => (id: string): IWebsiteRuleList | undefined => {
+    getWebsiteRuleListById: (state) => (id: string): IWebsiteRuleList | undefined => {
       return state.websiteRuleLists.find((websiteList) => websiteList.id === id);
     },
-    getAllWebsites: (state): IWebsiteRule[] => {
+    getAllWebsiteRules: (state): IWebsiteRule[] => {
       return state.allWebsiteRules;
     },
     getNextUniqueId(): string {
