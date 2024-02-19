@@ -1,7 +1,7 @@
 import * as utils from '@/utils';
 import * as constants from '@/constants';
 import { IAppData } from '@/interfaces/IAppData';
-import { IWebsiteRule, ITaskQue } from '@/interfaces';
+import { IWebsiteRule, ITaskQueue } from '@/interfaces';
 import * as scripts from '@/scripts';
 
 let fgAppData: IAppData = {
@@ -9,7 +9,7 @@ let fgAppData: IAppData = {
   version: chrome.runtime.getManifest().version
 };
 let fgWebsiteRules: IWebsiteRule[] = [];
-let taskQue: ITaskQue[] = [];
+let taskQueue: ITaskQueue[] = [];
 
 chrome.runtime.onInstalled.addListener(async (details) => {
   switch (details.reason) {
@@ -48,14 +48,14 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (!tab.url?.includes('chrome-extension://') && !tab.url?.includes('chrome://newtab/')) {
 
-    const taskQueIndex = taskQue.findIndex((tq) => tq.tabId === tabId);
+    const taskQueIndex = taskQueue.findIndex((tq) => tq.tabId === tabId);
     if (taskQueIndex === -1 && tab.url) {
-      taskQue.push({ tabId: tabId, url: tab.url });
-      await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQue);
+      taskQueue.push({ tabId: tabId, url: tab.url });
+      await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQueue);
     } else {
-      if ((taskQueIndex > -1 && taskQueIndex < taskQue.length && tab.url) && (tab.url !== taskQue[taskQueIndex].url)) {
-        taskQue.push({ tabId: tabId, url: tab.url });
-        await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQue);
+      if ((taskQueIndex > -1 && taskQueIndex < taskQueue.length && tab.url) && (tab.url !== taskQueue[taskQueIndex].url)) {
+        taskQueue.push({ tabId: tabId, url: tab.url });
+        await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQueue);
       }
     }
   }

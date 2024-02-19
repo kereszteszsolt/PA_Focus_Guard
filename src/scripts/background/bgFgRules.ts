@@ -1,4 +1,4 @@
-import { IAppData, ITaskQue, IWebsiteRule } from '@/interfaces';
+import { IAppData, ITaskQueue, IWebsiteRule } from '@/interfaces';
 import ResourceType = chrome.declarativeNetRequest.ResourceType;
 import RuleActionType = chrome.declarativeNetRequest.RuleActionType;
 
@@ -72,7 +72,7 @@ export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: 
     });
 };
 
-export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppData: IAppData, fgWebsiteRules: IWebsiteRule[], fgTaskQue: ITaskQue[]): Promise<void> => {
+export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppData: IAppData, fgWebsiteRules: IWebsiteRule[], fgTaskQue: ITaskQueue[]): Promise<void> => {
   chrome.tabs.get(tabId, (tab) => {
     let index = fgTaskQue.findIndex((tq) => tq.tabId === tabId);
     if (index !== -1 && fgTaskQue[index].url === url) {

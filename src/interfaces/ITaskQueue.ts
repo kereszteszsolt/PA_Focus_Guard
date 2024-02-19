@@ -1,4 +1,4 @@
-export interface ITaskQue{
+export interface ITaskQueue {
   tabId: number;
   url: string;
 }
