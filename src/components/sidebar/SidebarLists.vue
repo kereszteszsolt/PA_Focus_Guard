@@ -1,5 +1,5 @@
 <script lang="ts">
-import { useWebsiteRuleStore } from '@/store/websiteRuleStore';
+import { useWebsiteRulesStore } from '@/store/websiteRulesStore';
 import { IWebsiteRuleList } from '@/interfaces';
 import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import EditWebsiteRulesListDialog from '@/components/websites/EditWebsiteRulesListDialog.vue';
@@ -9,7 +9,7 @@ export default {
   name: 'SidebarLists',
   components: { DeleteWebsiteListRuleDialog, EditWebsiteRulesListDialog, SidebarListItem },
   data: () => {
-    const websiteStore = useWebsiteRuleStore();
+    const websiteStore = useWebsiteRulesStore();
     let dialog = false;
     let dialogDelete = false;
     let editingWebsiteList: IWebsiteRuleList = {

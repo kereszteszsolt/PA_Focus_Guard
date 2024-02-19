@@ -3,7 +3,7 @@ import { IWebsiteRule, IWebsiteRuleList } from '@/interfaces';
 import * as constants from '@/constants';
 import * as utils from '@/utils';
 
-export const useWebsiteRuleStore = defineStore({
+export const useWebsiteRulesStore = defineStore({
   id: 'website',
   state: (): {
     isLoading: boolean,

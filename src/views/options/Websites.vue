@@ -1,5 +1,5 @@
 <script lang="ts">
-import { useWebsiteRuleStore } from '@/store/websiteRuleStore';
+import { useWebsiteRulesStore } from '@/store/websiteRulesStore';
 import { IWebsiteRule } from '@/interfaces';
 import EditWebsiteRuleDialog from '@/components/websites/EditWebsiteRuleDialog.vue';
 import DeleteWebsiteRuleDialog from '@/components/websites/DeleteWebsiteRuleDialog.vue';
@@ -8,7 +8,7 @@ export default {
   name: 'Websites',
   components: { DeleteWebsiteRuleDialog, EditWebsiteRuleDialog },
   data: () => {
-    const websiteStore = useWebsiteRuleStore();
+    const websiteRulesStore = useWebsiteRulesStore();
     let dialog: boolean = false;
     let dialogDelete = false;
     let editingId = '';
@@ -29,7 +29,7 @@ export default {
       dialogDelete,
       editingId,
       editingItem,
-      websiteStore,
+      websiteRulesStore: websiteRulesStore,
       isNewItem,
       isValid,
       headers: [
@@ -43,7 +43,7 @@ export default {
     };
   },
   mounted() {
-    this.websiteStore.fetchData();
+    this.websiteRulesStore.fetchData();
   },
   computed: {
     formTitle() {
@@ -56,35 +56,35 @@ export default {
       return this.pathId === 'all' || !this.pathId;
     },
     moveUp(): Function {
-      return this.pathId === 'all' ? this.websiteStore.moveUpWebsiteRulesGlobalOrder : this.websiteStore.moveUpWebsiteRule;
+      return this.pathId === 'all' ? this.websiteRulesStore.moveUpWebsiteRulesGlobalOrder : this.websiteRulesStore.moveUpWebsiteRule;
     },
     moveDown(): Function {
-      return this.pathId === 'all' ? this.websiteStore.moveDownWebsiteRulesGlobalOrder : this.websiteStore.moveDownWebsiteRule;
+      return this.pathId === 'all' ? this.websiteRulesStore.moveDownWebsiteRulesGlobalOrder : this.websiteRulesStore.moveDownWebsiteRule;
     },
     sortByFieldName(): { key: string, order?: boolean |  'asc' | 'desc' }[] {
       return this.pathId === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'order', order: 'asc' }];
     },
-    websiteList() {
-      return this.websiteStore.getWebsiteListById(this.pathId);
+    websiteRuleList() {
+      return this.websiteRulesStore.getWebsiteListById(this.pathId);
     },
-    websiteListName() {
+    websiteRuleListName() {
       return (this.pathId === 'all' || !this.pathId) ?
-        'All Websites' : this.websiteList?.name;
+        'All Websites' : this.websiteRuleList?.name;
     },
-    websites(): IWebsiteRule[] {
+    websiteRules(): IWebsiteRule[] {
       return (this.pathId === 'all' || !this.pathId) ?
-        this.websiteStore.getAllWebsites :
-        this.websiteStore.getWebsiteByListId(this.pathId);
+        this.websiteRulesStore.getAllWebsites :
+        this.websiteRulesStore.getWebsiteByListId(this.pathId);
     },
   },
   methods: {
     setPermanentlyActive(item: IWebsiteRule) {
       item.temporarilyInactive = item.permanentlyActive ? false : item.temporarilyInactive;
-      this.websiteStore.saveWebsiteRules();
+      this.websiteRulesStore.saveWebsiteRules();
     },
     setTemporarilyInactive(item: IWebsiteRule) {
       item.permanentlyActive = item.temporarilyInactive ? false : item.permanentlyActive;
-      this.websiteStore.saveWebsiteRules();
+      this.websiteRulesStore.saveWebsiteRules();
     },
     newItem() {
       this.editingItem = {
@@ -95,7 +95,7 @@ export default {
       this.dialog = true;
     },
     editItem(id: string) {
-      const found = this.websiteStore.getWebsiteById(id);
+      const found = this.websiteRulesStore.getWebsiteById(id);
       if (found) {
         this.editingItem = found;
         this.dialog = true;
@@ -105,7 +105,7 @@ export default {
       }
     },
     deleteItem(item: IWebsiteRule) {
-      const found = this.websiteStore.getWebsiteById(item.id);
+      const found = this.websiteRulesStore.getWebsiteById(item.id);
       if (found) {
         this.editingId = found.id;
         this.editingItem = found;
@@ -116,7 +116,7 @@ export default {
       }
     },
     deleteItemConfirm() {
-      this.websiteStore.deleteWebsiteRule(this.editingId);
+      this.websiteRulesStore.deleteWebsiteRule(this.editingId);
       this.closeDelete();
     },
     closeEdit() {
@@ -133,10 +133,10 @@ export default {
     },
     save(editedItem: IWebsiteRule) {
       if (this.isNewItem) {
-        this.websiteStore.addWebsiteRule(editedItem);
+        this.websiteRulesStore.addWebsiteRule(editedItem);
         this.isNewItem = false;
       } else {
-        this.websiteStore.updateWebsiteRule(this.editingItem.id, editedItem);
+        this.websiteRulesStore.updateWebsiteRule(this.editingItem.id, editedItem);
       }
       this.closeEdit();
       console.log('save', editedItem);
@@ -151,10 +151,10 @@ export default {
 </script>
 
 <template>
-  <div v-if="!websiteStore.isLoading">
+  <div v-if="!websiteRulesStore.isLoading">
     <v-data-table
       :headers="headers"
-      :items="websites"
+      :items="websiteRules"
       :sort-by="sortByFieldName"
       class="elevation-1">
       <template v-slot:item.actions="{ item }">
@@ -181,7 +181,7 @@ export default {
       </template>
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Website List: {{ websiteListName }}</v-toolbar-title>
+          <v-toolbar-title>Website List: {{ websiteRuleListName }}</v-toolbar-title>
 
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="newItem" v-if="!showAll">
