@@ -12,11 +12,7 @@ export default {
     const websiteRulesStore = useWebsiteRulesStore();
     let dialog = false;
     let dialogDelete = false;
-    let editingWebsiteList: IWebsiteRuleList = {
-      id: '',
-      name: '',
-      order: 0
-    };
+    let editingWebsiteList: IWebsiteRuleList = websiteRulesStore.getDummyWebsiteRuleList;
     let isNewItem = true;
     let isEmpty = false;
     return {
@@ -39,18 +35,18 @@ export default {
   methods: {
     close() {
       this.dialog = false;
+      this.$nextTick(() => {
+        this.editingWebsiteList = this.websiteRulesStore.getDummyWebsiteRuleList;
+        this.isNewItem = true;
+      });
     },
     save(editedItem: IWebsiteRuleList) {
       if (this.isNewItem) {
         this.websiteRulesStore.addWebsiteRuleList(editedItem);
       } else {
         this.websiteRulesStore.updateWebsiteRuleList(this.editingWebsiteList.id, editedItem);
+        this.isNewItem = true;
       }
-      this.editingWebsiteList = {
-        id: '',
-        name: '',
-        order: 0
-      };
       this.close();
     },
     editItem(id: string) {
@@ -78,14 +74,12 @@ export default {
     },
     closeDelete() {
       this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editingWebsiteList = this.websiteRulesStore.getDummyWebsiteRuleList;
+      });
     },
     deleteItemConfirm() {
       this.websiteRulesStore.deleteWebsiteRuleList(this.editingWebsiteList.id);
-      this.editingWebsiteList = {
-        id: '',
-        name: '',
-        order: 0
-      };
       this.closeDelete();
     }
   }

@@ -40,6 +40,13 @@ export const useWebsiteRulesStore = defineStore({
         order: -1,
         globalOrder: -1
       };
+    },
+    getDummyWebsiteRuleList: (): IWebsiteRuleList => {
+      return {
+        id: '',
+        name: '',
+        order: -1
+      };
     }
   },
   actions: {
