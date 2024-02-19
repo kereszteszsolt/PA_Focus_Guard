@@ -12,15 +12,7 @@ export default {
     let dialog: boolean = false;
     let dialogDelete = false;
     let editingId = '';
-    let editingItem: IWebsiteRule = {
-      id: '',
-      listId: '',
-      url: '',
-      permanentlyActive: false,
-      temporarilyInactive: false,
-      order: -1,
-      globalOrder: -1
-    };
+    let editingItem: IWebsiteRule = websiteRulesStore.getDummyWebsiteRule;
     let isNewItem = false;
     let isValid = true;
 
@@ -123,12 +115,14 @@ export default {
       this.dialog = false;
       this.$nextTick(() => {
         this.editingId = '';
+        this.editingItem = this.editingItem = this.websiteRulesStore.getDummyWebsiteRule;
       });
     },
     closeDelete() {
       this.dialogDelete = false;
       this.$nextTick(() => {
         this.editingId = '';
+        this.editingItem = this.websiteRulesStore.getDummyWebsiteRule;
       });
     },
     save(editedItem: IWebsiteRule) {

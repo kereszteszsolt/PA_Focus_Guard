@@ -29,6 +29,17 @@ export const useWebsiteRulesStore = defineStore({
     },
     getAllWebsiteRules: (state): IWebsiteRule[] => {
       return state.allWebsiteRules;
+    },
+    getDummyWebsiteRule: (): IWebsiteRule => {
+      return {
+        id: '',
+        listId: '',
+        url: '',
+        permanentlyActive: false,
+        temporarilyInactive: false,
+        order: -1,
+        globalOrder: -1
+      };
     }
   },
   actions: {
