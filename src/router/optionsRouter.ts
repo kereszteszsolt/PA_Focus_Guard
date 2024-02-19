@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { Websites, Test } from '@/views/options';
+import FocusMessage from '@/views/options/FocusMessage.vue';
 
 export default createRouter(
     {
@@ -14,6 +15,11 @@ export default createRouter(
           path: '/websites/:id',
           name: 'WebsitesByListId',
           component: Websites
+        },
+        {
+          path: '/focus-message',
+          name: 'FocusMessage',
+          component: FocusMessage
         },
         {
           path: '/test',

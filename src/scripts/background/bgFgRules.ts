@@ -69,7 +69,7 @@ export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: 
 
       itemsToBlock.forEach((item) => {
         if (tab.url && tab.url.includes(item.url) && tab.id) {
-          chrome.tabs.update(tab.id, { url: '/options.html#/websites' });
+          chrome.tabs.update(tab.id, { url: '/options.html#/focus-message' });
         }
       });
     });
@@ -85,9 +85,8 @@ export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppDa
 
         itemsToBlock.forEach((item) => {
           if (tab.url && tab.url.includes(item.url)) {
-            chrome.tabs.update(tabId, { url: '/options.html#/websites' });
+            chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
             fgTaskQue.splice(index, 1);
-            //writeDistractionAttempt(item, fgAppData);
           }
         });
         resolve();
@@ -96,15 +95,3 @@ export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppDa
   });
 };
 
-// const writeDistractionAttempt = async (item: IWebsiteRule, fgAppData: IAppData): Promise<void> => {
-//   const distractionAttempts: IDistractionAttempt[] = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS) as IDistractionAttempt[] || [];
-//   const distractionAttempt: IDistractionAttempt = {
-//     id: utils.unique.generateUniqueListId(distractionAttempts),
-//     url: item.url,
-//     focusMode: fgAppData.focusMode,
-//     permanentlyActive: item.permanentlyActive,
-//     dateTimestamp: Date.now()
-//   };
-//   distractionAttempts.push(distractionAttempt);
-//   await utils.data.saveList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, distractionAttempts);
-// };
