@@ -17,14 +17,17 @@ export const useStatisticsStore = defineStore({
     getDistractionAttempts: (state): IDistractionAttempt[] => {
       return state.distractionAttempts;
     },
-    getNrOfDistractionAttemptsByLatestHours: (state) => (hours: number): number => {
-      const latestTimestamp = new Date().getTime() - hours * 60 * 60 * 1000;
-      return state.distractionAttempts.filter((attempt) => attempt.dateTimestamp > latestTimestamp).length;
-    },
-    getNrOfDistractionAttemptsByLatestDays: (state) => (days: number): number => {
-      const latestTimestamp = new Date().getTime() - days * 24 * 60 * 60 * 1000;
-      return state.distractionAttempts.filter((attempt) => attempt.dateTimestamp > latestTimestamp).length;
-    },
+    getNrOfDistractionAttempts: (state): number => {
+      return state.distractionAttempts.length;
+    }
+    // getNrOfDistractionAttemptsByLatestHours: (state) => (hours: number): number => {
+    //   const latestTimestamp = new Date().getTime() - hours * 60 * 60 * 1000;
+    //   return state.distractionAttempts.filter((attempt) => attempt.dateTimestamp > latestTimestamp).length;
+    // },
+    // getNrOfDistractionAttemptsByLatestDays: (state) => (days: number): number => {
+    //   const latestTimestamp = new Date().getTime() - days * 24 * 60 * 60 * 1000;
+    //   return state.distractionAttempts.filter((attempt) => attempt.dateTimestamp > latestTimestamp).length;
+    // },
   },
   actions: {
     async fetchDistractionAttempts(): Promise<void> {
@@ -33,9 +36,14 @@ export const useStatisticsStore = defineStore({
       this.isLoading = false;
     },
     async addNewDistractionAttempt(distractionAttempt: IDistractionAttempt): Promise<void> {
+      console.log('Adding new distraction attempt');
       this.isLoading = true;
+      distractionAttempt.id = utils.unique.generateUniqueListId(this.distractionAttempts);
+      console.log(distractionAttempt);
       this.distractionAttempts.push(distractionAttempt);
+      console.log(this.distractionAttempts);
       await utils.data.saveEntry(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, this.distractionAttempts);
+      console.log('Distraction attempts saved');
       this.isLoading = false;
     },
   }

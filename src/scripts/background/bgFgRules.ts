@@ -85,7 +85,7 @@ export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppDa
 
         itemsToBlock.forEach((item) => {
           if (tab.url && tab.url.includes(item.url)) {
-            chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
+            chrome.tabs.update(tabId, { url: '/options.html#/focus-message/'+item.id });
             fgTaskQue.splice(index, 1);
           }
         });

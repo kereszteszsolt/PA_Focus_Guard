@@ -63,9 +63,8 @@ export default {
   </v-row>
   <v-row>
     <v-col>
-      <h1>Distraction Attempts (24h):</h1>
-      <span>{{ statisticsStore.getNrOfDistractionAttemptsByLatestDays(1) }}</span>
-      <span> {{statisticsStore.getDistractionAttempts}}</span>
+      <h1>Distraction Attempts:</h1>
+      <h1>{{ statisticsStore.getNrOfDistractionAttempts }}</h1>
     </v-col>
   </v-row>
 </template>

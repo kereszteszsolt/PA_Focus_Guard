@@ -3,5 +3,4 @@ export interface IDistractionAttempt {
   url: string;
   focusMode: boolean;
   permanentlyActive: boolean;
-  dateTimestamp: number;
 }

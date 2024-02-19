@@ -22,6 +22,11 @@ export default createRouter(
           component: FocusMessage
         },
         {
+          path: '/focus-message/:id',
+          name: 'FocusMessageById',
+          component: FocusMessage
+        },
+        {
           path: '/test',
           name: 'Test',
           component: Test
