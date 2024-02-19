@@ -66,7 +66,6 @@ export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: 
         itemsToBlock.forEach((item) => {
           if (tab.url && tab.url.includes(item.url) && tab.id) {
             chrome.tabs.update(tab.id, { url: '/options.html#/websites' });
-            console.log('Distraction blocked');
           }
         });
       });
@@ -82,11 +81,7 @@ export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppDa
       itemsToBlock.forEach((item) => {
         if (tab.url && tab.url.includes(item.url)) {
           chrome.tabs.update(tabId, { url: '/options.html#/websites' });
-          console.log('Distraction blocked');
-          console.log(fgTaskQue);
           fgTaskQue.splice(index, 1);
-          console.log('TaskQue updated -1');
-          console.log(fgTaskQue);
         }
       });
     }

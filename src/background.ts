@@ -41,33 +41,23 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       console.log(fgWebsiteRules);
     }
 
-    //  await scripts.background.blockOrAllow(fgAppData, fgWebsiteRules);
     await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
   }
 });
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (!tab.url?.includes('chrome-extension://') && !tab.url?.includes('chrome://newtab/')) {
-    // add to taskQue id not already present, check all data from que
+
     const taskQueIndex = taskQue.findIndex((tq) => tq.tabId === tabId);
-    if (taskQueIndex === -1) {
-      taskQue.push({
-        tabId: tabId,
-        url: tab.url || '',
-      });
-      console.log('TaskQue updated if');
-      console.log(tab?.url);
+    if (taskQueIndex === -1 && tab.url) {
+      taskQue.push({ tabId: tabId, url: tab.url });
+      await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQue);
     } else {
-      if (changeInfo.url) {
-        taskQue[taskQueIndex].url = changeInfo.url;
+      if ((taskQueIndex > -1 && taskQueIndex < taskQue.length && tab.url) && (tab.url !== taskQue[taskQueIndex].url)) {
+        taskQue.push({ tabId: tabId, url: tab.url });
+        await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQue);
       }
     }
-    await scripts.background.applyRuleOnSpecificTab(tabId, tab.url || '', fgAppData, fgWebsiteRules, taskQue);
-   // await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-    console.log('Tab updated');
-    // console.log(tab);
-    // console.log(changeInfo);
-    console.log(tabId);
   }
 });
 
