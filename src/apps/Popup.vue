@@ -1,16 +1,20 @@
 <script lang="ts">
 import { useAppDataStore } from '@/store/appDataStore';
+import { useStatisticsStore } from '@/store/statisticsStore';
 
 export default {
   name: 'Popup',
   data() {
     const appDataStore = useAppDataStore();
+    const statisticsStore = useStatisticsStore();
     return {
-      appDataStore
+      appDataStore,
+      statisticsStore
     };
   },
   mounted() {
     this.appDataStore.fetchAppData();
+    this.statisticsStore.fetchDistractionAttempts();
   },
   methods: {
     options() {
@@ -55,6 +59,13 @@ export default {
   <v-row>
     <v-col>
       <v-btn @click="options">Settings</v-btn>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col>
+      <h1>Distraction Attempts (24h):</h1>
+      <span>{{ statisticsStore.getNrOfDistractionAttemptsByLatestDays(1) }}</span>
+      <span> {{statisticsStore.getDistractionAttempts}}</span>
     </v-col>
   </v-row>
 </template>

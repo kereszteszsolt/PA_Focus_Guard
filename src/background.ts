@@ -32,13 +32,13 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
   if (namespace === 'local') {
     if (constants.storage.FG_APP_DATA in changes) {
       fgAppData = JSON.parse(changes[constants.storage.FG_APP_DATA].newValue);
-      console.log('App data changed');
-      console.log(fgAppData);
+      // console.log('App data changed');
+      // console.log(fgAppData);
     }
     if (constants.storage.FG_WEBSITE_RULES in changes) {
       fgWebsiteRules = JSON.parse(changes[constants.storage.FG_WEBSITE_RULES].newValue);
-      console.log('Website rules changed');
-      console.log(fgWebsiteRules);
+      // console.log('Website rules changed');
+      // console.log(fgWebsiteRules);
     }
 
     await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
@@ -60,13 +60,13 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     }
   }
 });
-
-chrome.tabs.onCreated.addListener(async (tab) => {
-  //await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-  console.log('Tab created');
-});
-
-chrome.tabs.onActivated.addListener(async (activeInfo) => {
-  //await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-  console.log('Tab activated');
-});
+//
+// chrome.tabs.onCreated.addListener(async (tab) => {
+//   //await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
+//   console.log('Tab created');
+// });
+//
+// chrome.tabs.onActivated.addListener(async (activeInfo) => {
+//   //await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
+//   console.log('Tab activated');
+// });
