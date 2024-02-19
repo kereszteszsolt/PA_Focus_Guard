@@ -35,8 +35,8 @@ export default {
       <v-btn
         color="danger"
         class="button-off"
-        :class="{'button-off-outlined': appDataStore.getAppData.focusModeActive}"
-        :variant="appDataStore.getAppData.focusModeActive ? 'outlined' : 'flat'"
+        :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
+        :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
         @click="appDataStore.updateFocusModeActive(false)">
         Off
       </v-btn>
@@ -45,8 +45,8 @@ export default {
       <v-btn
         color="success"
         class="button-on"
-        :class="{'button-on-outlined': !appDataStore.getAppData.focusModeActive}"
-        :variant="!appDataStore.getAppData.focusModeActive ? 'outlined' : 'flat'"
+        :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
+        :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
         @click="appDataStore.updateFocusModeActive(true)">
         On
       </v-btn>

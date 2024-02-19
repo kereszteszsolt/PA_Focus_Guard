@@ -1,6 +1,5 @@
 export interface IAppData {
-  focusModeActive: boolean;
-  latestDistractionAttempts: number;
+  focusMode: boolean;
   version: string;
 }
 

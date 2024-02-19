@@ -37,8 +37,7 @@ export default {
   computed: {
     urlRules() {
       return [
-        (v: string) => !!v || 'URL is required',
-        (v: string) => this.validateUrl(v) || 'URL must be valid'
+        (v: string) => !!v || 'URL is required'
       ];
     }
   },

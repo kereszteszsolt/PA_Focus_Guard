@@ -10,8 +10,7 @@ export const useAppDataStore = defineStore('appData', {
   } => ({
     isLoading: true,
     appData: {
-      focusModeActive: false,
-      latestDistractionAttempts: 0,
+      focusMode: false,
       version: '0.0.0',
     },
   }),
@@ -32,7 +31,7 @@ export const useAppDataStore = defineStore('appData', {
       this.isLoading = false;
     },
     async updateFocusModeActive(value: boolean): Promise<void> {
-      this.appData.focusModeActive = value;
+      this.appData.focusMode = value;
       await this.saveAppData();
     }
   },
