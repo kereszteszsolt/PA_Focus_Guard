@@ -18,58 +18,64 @@ export default {
   },
   methods: {
     options() {
-      if (chrome.runtime.openOptionsPage) {
-        chrome.runtime.openOptionsPage();
-      } else {
-        window.open(chrome.runtime.getURL('options.html'));
-      }
+        window.open(chrome.runtime.getURL('options.html#/websites'));
     }
   }
 };
 </script>
 
 <template>
-  <v-row>
-    <v-col>
-      <h1>Focus Mode</h1>
-    </v-col>
-  </v-row>
-  <v-row class="on-off-button-group">
-    <v-col cols="6">
-      <v-btn
-        color="danger"
-        class="button-off"
-        :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
-        :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-        @click="appDataStore.updateFocusModeActive(false)">
-        Off
-      </v-btn>
-    </v-col>
-    <v-col cols="6">
-      <v-btn
-        color="success"
-        class="button-on"
-        :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
-        :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-        @click="appDataStore.updateFocusModeActive(true)">
-        On
-      </v-btn>
-    </v-col>
-  </v-row>
-  <v-row>
-    <v-col>
-      <v-btn @click="options">Settings</v-btn>
-    </v-col>
-  </v-row>
-  <v-row>
-    <v-col>
-      <h1>Distraction Attempts:</h1>
-      <h1>{{ statisticsStore.getNrOfDistractionAttempts }}</h1>
-    </v-col>
-  </v-row>
+  <v-card color="background" class="card">
+    <v-card-item class="pa-0">
+      <v-card-title color="primary">
+        <v-sheet color="primary" class="justify-space-around">
+          <div class="font-weight-bold text-h5 text-center">Focus Guard</div>
+        </v-sheet>
+      </v-card-title>
+    </v-card-item>
+    <v-row class="on-off-button-group">
+      <v-col cols="6">
+        <v-btn
+          color="danger"
+          class="button-off"
+          :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
+          :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
+          @click="appDataStore.updateFocusModeActive(false)">
+          Off
+        </v-btn>
+      </v-col>
+      <v-col cols="6">
+        <v-btn
+          color="success"
+          class="button-on"
+          :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
+          :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
+          @click="appDataStore.updateFocusModeActive(true)">
+          On
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" class="text-center">
+        <v-btn @click="options">Settings</v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" class="text-center">
+        <h6>Distraction Attempts:</h6>
+        <h2>{{ statisticsStore.getNrOfDistractionAttempts }}</h2>
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <style scoped lang="scss">
+.card{
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  height: 100vh;
+}
 .button-off {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -96,6 +102,7 @@ export default {
   //justify-content: center;
   //align-items: center;
   margin: 0 1rem;
+
   > * {
     padding: 1rem 0;
   }
