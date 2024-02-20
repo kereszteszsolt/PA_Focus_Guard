@@ -1,12 +1,26 @@
 <script lang="ts">
 import { useTheme } from 'vuetify';
+import { useAppDataStore } from '@/store';
+import { watchEffect } from 'vue';
 
 export default {
   setup() {
     const theme = useTheme();
+    const appDataStore = useAppDataStore();
+    appDataStore.fetchAppData();
     const toggleTheme = () => {
-      theme.global.name.value = theme.global.current.value.dark ? 'fgLightTheme' : 'fgDarkTheme';
+      let chosenTheme = theme.global.current.value.dark ? 'fgLightTheme' : 'fgDarkTheme';
+      theme.global.name.value = chosenTheme
+      appDataStore.updateFgTheme(chosenTheme);
+      theme.global.name.value = appDataStore.getAppData.fgTheme;
     };
+
+    watchEffect(() => {
+      if (!appDataStore.isLoading) {
+        theme.global.name.value = appDataStore.getAppData.fgTheme;
+      }
+    });
+
     return {
       theme,
       toggleTheme

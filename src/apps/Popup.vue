@@ -1,20 +1,29 @@
 <script lang="ts">
 import { useAppDataStore } from '@/store/appDataStore';
 import { useStatisticsStore } from '@/store/statisticsStore';
+import { useTheme } from 'vuetify';
+import { watchEffect } from 'vue';
 
 export default {
   name: 'Popup',
-  data() {
+  setup() {
     const appDataStore = useAppDataStore();
     const statisticsStore = useStatisticsStore();
+    appDataStore.fetchAppData();
+    statisticsStore.fetchDistractionAttempts();
+    const theme = useTheme();
+    theme.global.name.value = appDataStore.getAppData.fgTheme;
+
+    watchEffect(() => {
+      if (!appDataStore.isLoading) {
+        theme.global.name.value = appDataStore.getAppData.fgTheme;
+      }
+    });
+
     return {
       appDataStore,
       statisticsStore
     };
-  },
-  mounted() {
-    this.appDataStore.fetchAppData();
-    this.statisticsStore.fetchDistractionAttempts();
   },
   methods: {
     options() {
@@ -70,12 +79,13 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.card{
+.card {
   margin: 0;
   padding: 0;
   border-radius: 0;
   height: 100vh;
 }
+
 .button-off {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;

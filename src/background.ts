@@ -6,7 +6,8 @@ import * as scripts from '@/scripts';
 
 let fgAppData: IAppData = {
   focusMode: false,
-  version: chrome.runtime.getManifest().version
+  version: chrome.runtime.getManifest().version,
+  fgTheme: 'fgLightTheme',
 };
 let fgWebsiteRules: IWebsiteRule[] = [];
 let taskQueue: ITaskQueue[] = [];

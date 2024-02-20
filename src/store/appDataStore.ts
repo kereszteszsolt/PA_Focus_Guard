@@ -12,6 +12,7 @@ export const useAppDataStore = defineStore('appData', {
     appData: {
       focusMode: false,
       version: '0.0.0',
+      fgTheme: 'fgLightTheme',
     },
   }),
   getters: {
@@ -33,6 +34,10 @@ export const useAppDataStore = defineStore('appData', {
     async updateFocusModeActive(value: boolean): Promise<void> {
       this.appData.focusMode = value;
       await this.saveAppData();
-    }
+    },
+    async updateFgTheme(theme: string): Promise<void> {
+      this.appData.fgTheme = theme;
+      await this.saveAppData();
+    },
   },
 });

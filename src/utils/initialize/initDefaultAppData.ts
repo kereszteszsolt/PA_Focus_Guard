@@ -6,6 +6,7 @@ export const initDefaultAppData = async () => {
   let data : IAppData = {
     focusMode: false,
     version: '0.0.0',
+    fgTheme: 'fgLightTheme',
   };
   await utils.data.saveEntry(constants.storage.FG_APP_DATA, data);
 }
