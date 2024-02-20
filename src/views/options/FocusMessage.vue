@@ -22,27 +22,32 @@ export default defineComponent({
   computed: {
     pathId() {
       return this.$route.params.id as string;
+    },
+    isLoading() {
+      return this.websiteRulesStore.isLoading || this.statisticsStore.isLoading || this.appDataStore.isLoading;
     }
   },
   mounted() {
     this.statisticsStore.fetchDistractionAttempts();
     this.websiteRulesStore.fetchData();
     this.statisticsStore.fetchDistractionAttempts();
-    this.saveDistractionAttempt();
+   // this.saveDistractionAttempt();
+  },
+  watch: {
   },
   methods: {
-    saveDistractionAttempt() {
-      const websiteRule = this.websiteRulesStore.getWebsiteRuleById(this.pathId);
-      if (websiteRule) {
-        const distractionAttempt = {
-          id : '',
-          url: websiteRule.url,
-          focusMode: true,
-          permanentlyActive: websiteRule.permanentlyActive,
-        };
-        this.statisticsStore.addNewDistractionAttempt(distractionAttempt);
-      }
-    }
+    // saveDistractionAttempt() {
+    //   const websiteRule = this.websiteRulesStore.getWebsiteRuleById(this.pathId);
+    //   if (websiteRule) {
+    //     const distractionAttempt = {
+    //       id : '',
+    //       url: websiteRule.url,
+    //       focusMode: true,
+    //       permanentlyActive: websiteRule.permanentlyActive,
+    //     };
+    //     this.statisticsStore.addNewDistractionAttempt(distractionAttempt);
+    //   }
+    // }
   }
 });
 </script>

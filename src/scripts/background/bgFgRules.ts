@@ -76,20 +76,22 @@ export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: 
   });
 };
 
-export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppData: IAppData, fgWebsiteRules: IWebsiteRule[], fgTaskQue: ITaskQueue[]): Promise<void> => {
-  return new Promise<void>((resolve) => {
+export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppData: IAppData, fgWebsiteRules: IWebsiteRule[], fgTaskQue: ITaskQueue[]): Promise<IWebsiteRule | undefined> => {
+  return new Promise<IWebsiteRule | undefined>((resolve) => {
     chrome.tabs.get(tabId, (tab) => {
       let index = fgTaskQue.findIndex((tq) => tq.tabId === tabId);
       if (index !== -1 && fgTaskQue[index].url === url) {
         const itemsToBlock: IWebsiteRule[] = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
 
+        let item2Resolve: IWebsiteRule | undefined = undefined;
         itemsToBlock.forEach((item) => {
           if (tab.url && tab.url.includes(item.url)) {
             chrome.tabs.update(tabId, { url: '/options.html#/focus-message/'+item.id });
             fgTaskQue.splice(index, 1);
+            item2Resolve = item;
           }
         });
-        resolve();
+        resolve(item2Resolve);
       }
     });
   });
