@@ -97,7 +97,6 @@ const closeDelete = () => {
   </v-sheet>
   <edit-website-rules-list-dialog :p-dialog="dialogEdit" :p-item="editingWebsiteList" :p-save-item="saveItem"
                                   :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog"></edit-website-rules-list-dialog>
-
   <delete-website-list-rule-dialog :p-dialog="dialogDelete" :p-item="editingWebsiteList"
                                    :p-delete-item-confirm="deleteItemConfirm" :p-close-dialog="closeDelete"
                                    :p-is-empty="isEmpty"></delete-website-list-rule-dialog>

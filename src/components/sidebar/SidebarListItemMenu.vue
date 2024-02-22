@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 defineProps({
   listId: String,
   editItem: { type: Function, required: true },
@@ -6,6 +7,7 @@ defineProps({
   moveUp: { type: Function, required: true },
   moveDown: { type: Function, required: true }
 });
+
 </script>
 
 <template>
