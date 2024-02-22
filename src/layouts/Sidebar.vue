@@ -3,13 +3,17 @@ import { SidebarLists, SidebarToolbar } from '@/components/sidebar';
 import SidebarLanguage from '@/components/sidebar/SidebarLanguage.vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+const route = useRoute();
 
 const path = computed(() => {
-  const route = useRoute();
   return route.path.split('/')[1];
 });
-</script>
 
+const pathId = computed(() => {
+  return route.params.id;
+});
+
+</script>
 
 <template>
     <v-container class="flexContainer">

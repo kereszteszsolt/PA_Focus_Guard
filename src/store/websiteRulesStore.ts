@@ -124,7 +124,11 @@ export const useWebsiteRulesStore = defineStore({
       await this.saveWebsiteRules();
     },
     async deleteWebsiteRuleList(websiteListId: string): Promise<void> {
+      console.log('websiteListId', websiteListId);
+      console.log('this.websiteRuleLists', this.websiteRuleLists);
       await this.deleteWebsiteRulesByListId(websiteListId);
+      console.log('websiteListId', websiteListId);
+      console.log('this.websiteRuleLists', this.websiteRuleLists);
       this.websiteRuleLists = this.websiteRuleLists.filter(websiteList => websiteList.id !== websiteListId);
 
       this.websiteRuleLists.sort((a, b) => a.order - b.order);
@@ -134,16 +138,14 @@ export const useWebsiteRulesStore = defineStore({
       });
 
       await this.saveWebsiteRuleLists();
+      console.log('saved');
     },
     async updateWebsiteRule(id: string, website: IWebsiteRule): Promise<void> {
-      this.isLoading = true;
       this.allWebsiteRules = this.allWebsiteRules.map((w) => w.id === id ? website : w);
       await this.saveWebsiteRules();
-      this.isLoading = false;
     },
-    async updateWebsiteRuleList(id: string, websiteList: IWebsiteRuleList): Promise<void> {
-      this.isLoading = true;
-      this.websiteRuleLists = this.websiteRuleLists.map((w) => w.id === id ? websiteList : w);
+    async updateWebsiteRuleList(websiteList: IWebsiteRuleList): Promise<void> {
+      this.websiteRuleLists = this.websiteRuleLists.map((w) => w.id === websiteList.id ? websiteList : w);
       await this.saveWebsiteRuleLists();
     },
     _moveItem(list: any[], id: string, direction: 'up' | 'down', field: string): any[] {
@@ -165,11 +167,11 @@ export const useWebsiteRulesStore = defineStore({
     },
     async moveUpWebsiteRuleList(id: string): Promise<void> {
       this.websiteRuleLists = this._moveItem(this.websiteRuleLists, id, 'up', 'order');
-      await this.saveWebsiteRules();
+      await this.saveWebsiteRuleLists();
     },
     async moveDownWebsiteRuleList(id: string): Promise<void> {
       this.websiteRuleLists = this._moveItem(this.websiteRuleLists, id, 'down', 'order');
-      await this.saveWebsiteRules();
+      await this.saveWebsiteRuleLists();
     },
     _moveWebsiteRule(id: string, direction: 'up' | 'down'): void {
       const item = this.allWebsiteRules.find((item) => item.id === id);

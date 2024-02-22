@@ -1,19 +1,11 @@
-<script lang="ts">
-export default {
-  name: 'SidebarListItemMenu',
-  props: {
-    listId: String,
-    editItem: { type: Function, required: true },
-    deleteItem: { type: Function, required: true },
-    moveUp: { type: Function, required: true },
-    moveDown: { type: Function, required: true }
-  },
-  setup() {
-    return {
-      //
-    };
-  }
-};
+<script setup lang="ts">
+defineProps({
+  listId: String,
+  editItem: { type: Function, required: true },
+  deleteItem: { type: Function, required: true },
+  moveUp: { type: Function, required: true },
+  moveDown: { type: Function, required: true }
+});
 </script>
 
 <template>

@@ -1,89 +1,72 @@
-<script lang="ts">
-import { useWebsiteRulesStore } from '@/store/websiteRulesStore';
+<script setup lang="ts">
+import { useWebsiteRulesStore } from '@/store';
 import { IWebsiteRuleList } from '@/interfaces';
 import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import EditWebsiteRulesListDialog from '@/components/websites/EditWebsiteRulesListDialog.vue';
 import DeleteWebsiteListRuleDialog from '@/components/websites/DeleteWebsiteListRuleDialog.vue';
+import { ref } from 'vue';
 
-export default {
-  name: 'SidebarLists',
-  components: { DeleteWebsiteListRuleDialog, EditWebsiteRulesListDialog, SidebarListItem },
-  data: () => {
-    const websiteRulesStore = useWebsiteRulesStore();
-    let dialog = false;
-    let dialogDelete = false;
-    let editingWebsiteList: IWebsiteRuleList = websiteRulesStore.getDummyWebsiteRuleList;
-    let isNewItem = true;
-    let isEmpty = false;
-    return {
-      websiteRulesStore: websiteRulesStore,
-      dialog,
-      dialogDelete,
-      editingWebsiteList: editingWebsiteList,
-      isNewItem,
-      isEmpty
-    };
-  },
-  mounted() {
-    this.websiteRulesStore.fetchData();
-  },
-  computed: {
-    pathId() {
-      return this.$route.params.id;
-    }
-  },
-  methods: {
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editingWebsiteList = this.websiteRulesStore.getDummyWebsiteRuleList;
-        this.isNewItem = true;
-      });
-    },
-    save(editedItem: IWebsiteRuleList) {
-      if (this.isNewItem) {
-        this.websiteRulesStore.addWebsiteRuleList(editedItem);
-      } else {
-        this.websiteRulesStore.updateWebsiteRuleList(this.editingWebsiteList.id, editedItem);
-        this.isNewItem = true;
-      }
-      this.close();
-    },
-    editItem(id: string) {
-      const found = this.websiteRulesStore.getWebsiteRuleListById(id);
-      if (found) {
-        this.editingWebsiteList = found;
-        this.dialog = true;
-        this.isNewItem = false;
-      } else {
-        console.error('Website List not found');
-        //todo show error message
-      }
-    },
-    deleteItem(id: string) {
-      const found = this.websiteRulesStore.getWebsiteRuleListById(id);
-      if (found) {
-        this.editingWebsiteList = found;
-        const foundItems = this.websiteRulesStore.getWebsiteRulesByListId(id);
-        this.isEmpty = foundItems.length === 0;
-        this.dialogDelete = true;
-      } else {
-        console.error('Website List not found');
-        //todo show error message
-      }
-    },
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editingWebsiteList = this.websiteRulesStore.getDummyWebsiteRuleList;
-      });
-    },
-    deleteItemConfirm() {
-      this.websiteRulesStore.deleteWebsiteRuleList(this.editingWebsiteList.id);
-      this.closeDelete();
-    }
+const websiteRulesStore = useWebsiteRulesStore();
+const dialogEdit = ref(false);
+const dialogDelete = ref(false);
+const editingWebsiteList = ref<IWebsiteRuleList>(websiteRulesStore.getDummyWebsiteRuleList);
+const isNewItem = ref(false);
+const isEmpty = ref(false);
+
+websiteRulesStore.fetchData();
+
+const closeEditDialog = () => {
+  dialogEdit.value = false;
+  editingWebsiteList.value = websiteRulesStore.getDummyWebsiteRuleList;
+  isNewItem.value = true;
+};
+
+const saveItem = (item: IWebsiteRuleList) => {
+  if (isNewItem.value) {
+    websiteRulesStore.addWebsiteRuleList(item);
+  } else {
+    websiteRulesStore.updateWebsiteRuleList(item);
+  }
+  closeEditDialog();
+};
+
+const newItem = () => {
+  editingWebsiteList.value = websiteRulesStore.getDummyWebsiteRuleList;
+  isNewItem.value = true;
+  dialogEdit.value = true;
+};
+const editItem = (id: string) => {
+  let list = websiteRulesStore.getWebsiteRuleListById(id);
+  if (list) {
+    editingWebsiteList.value = list;
+    isNewItem.value = false;
+    dialogEdit.value = true;
+  } else {
+    //TODO show error message
   }
 };
+
+const deleteItem = (id: string) => {
+  let list = websiteRulesStore.getWebsiteRuleListById(id);
+  if (list) {
+    editingWebsiteList.value = list;
+    isEmpty.value = websiteRulesStore.getWebsiteRulesByListId(id).length === 0;
+    dialogDelete.value = true;
+  } else {
+    //TODO show error message
+  }
+};
+
+const deleteItemConfirm = () => {
+  websiteRulesStore.deleteWebsiteRuleList(editingWebsiteList.value.id);
+  closeDelete();
+};
+
+const closeDelete = () => {
+  dialogDelete.value = false;
+  editingWebsiteList.value = websiteRulesStore.getDummyWebsiteRuleList;
+};
+
 </script>
 
 <template>
@@ -102,7 +85,7 @@ export default {
         <v-divider></v-divider>
         <v-list-item>
           <template v-slot:prepend>
-            <v-btn density="compact" icon="mdi-plus" @click="dialog = true"></v-btn>
+            <v-btn density="compact" icon="mdi-plus" @click="newItem"></v-btn>
           </template>
         </v-list-item>
         <v-divider></v-divider>
@@ -112,8 +95,8 @@ export default {
       </v-list>
     </div>
   </v-sheet>
-  <edit-website-rules-list-dialog :p-dialog="dialog" :p-item="editingWebsiteList" :p-save-item="save"
-                                  :p-is-new-item="isNewItem" :p-close-dialog="close"></edit-website-rules-list-dialog>
+  <edit-website-rules-list-dialog :p-dialog="dialogEdit" :p-item="editingWebsiteList" :p-save-item="saveItem"
+                                  :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog"></edit-website-rules-list-dialog>
 
   <delete-website-list-rule-dialog :p-dialog="dialogDelete" :p-item="editingWebsiteList"
                                    :p-delete-item-confirm="deleteItemConfirm" :p-close-dialog="closeDelete"
