@@ -1,48 +1,42 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { IWebsiteRule } from '@/interfaces';
+import { ref, watch } from 'vue';
 
-export default defineComponent({
-  name: 'DeleteWebsiteRuleDialog',
-  props: {
-    pDialog: {
-      type: Boolean,
-      required: true
-    },
-    pItem: {
-      type: Object as () => IWebsiteRule,
-      required: true
-    },
-    pCloseDialog: {
-      type: Function,
-      required: true
-    },
-    pDeleteItemConfirm: {
-      type: Function,
-      required: true
-    },
-    pIsEmpty: {
-      type: Boolean,
-      required: true
-    }
+const props = defineProps({
+  pDialog: {
+    type: Boolean,
+    required: true
   },
-  data: () => {
-    return {
-      item: {} as IWebsiteRule,
-      isEmpty: false,
-      dialog: false
-    };
+  pItem: {
+    type: Object as () => IWebsiteRule,
+    required: true
   },
-  watch: {
-    pDialog(val: boolean) {
-      this.dialog = val;
-      if (val) {
-        this.isEmpty = this.pIsEmpty;
-        this.item = this.pItem;
-      }
-    }
+  pCloseDialog: {
+    type: Function,
+    required: true
+  },
+  pDeleteItemConfirm: {
+    type: Function,
+    required: true
+  },
+  pIsEmpty: {
+    type: Boolean,
+    required: true
   }
 });
+
+let item = ref({} as IWebsiteRule);
+let dialog = ref(false);
+let isEmpty = ref(false);
+
+watch(() => props.pDialog, (value) => {
+  dialog.value = value;
+  if (value) {
+    item.value = props.pItem;
+    isEmpty.value = props.pIsEmpty;
+  }
+});
+
 </script>
 
 <template>
