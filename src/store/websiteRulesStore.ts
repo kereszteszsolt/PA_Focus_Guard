@@ -63,8 +63,6 @@ export const useWebsiteRulesStore = defineStore({
     async fetchData(): Promise<void> {
       await this.fetchWebsiteRules();
       await this.fetchWebsiteRuleLists();
-      console.log(this.allWebsiteRules);
-      console.log(this.websiteRuleLists);
     },
     async saveWebsiteRules(): Promise<void> {
       this.isLoading = true;
@@ -124,11 +122,7 @@ export const useWebsiteRulesStore = defineStore({
       await this.saveWebsiteRules();
     },
     async deleteWebsiteRuleList(websiteListId: string): Promise<void> {
-      console.log('websiteListId', websiteListId);
-      console.log('this.websiteRuleLists', this.websiteRuleLists);
       await this.deleteWebsiteRulesByListId(websiteListId);
-      console.log('websiteListId', websiteListId);
-      console.log('this.websiteRuleLists', this.websiteRuleLists);
       this.websiteRuleLists = this.websiteRuleLists.filter(websiteList => websiteList.id !== websiteListId);
 
       this.websiteRuleLists.sort((a, b) => a.order - b.order);
@@ -138,7 +132,6 @@ export const useWebsiteRulesStore = defineStore({
       });
 
       await this.saveWebsiteRuleLists();
-      console.log('saved');
     },
     async updateWebsiteRule(id: string, website: IWebsiteRule): Promise<void> {
       this.allWebsiteRules = this.allWebsiteRules.map((w) => w.id === id ? website : w);
@@ -149,7 +142,6 @@ export const useWebsiteRulesStore = defineStore({
       await this.saveWebsiteRuleLists();
     },
     _moveItem(list: any[], id: string, direction: 'up' | 'down', field: string): any[] {
-      console.log('list', list);
       const item = list.find((item) => item.id === id);
       if (!item) return list;
 
