@@ -1,23 +1,21 @@
-<script lang="ts">
+<script setup lang="ts">
 import { SidebarLists, SidebarToolbar } from '@/components/sidebar';
+import SidebarLanguage from '@/components/sidebar/SidebarLanguage.vue';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-export default {
-  name: 'Sidebar',
-  components: {
-    SidebarToolbar, SidebarLists
-  },
-  setup() {
-    return {
-      //
-    };
-  }
-};
+const path = computed(() => {
+  const route = useRoute();
+  return route.path.split('/')[1];
+});
 </script>
+
 
 <template>
     <v-container class="flexContainer">
-          <SidebarLists />
-          <SidebarToolbar />
+          <sidebar-lists v-if="path === 'websites'"/>
+          <sidebar-language v-if="path === 'languages'"/>
+          <sidebar-toolbar :path="path" />
     </v-container>
 </template>
 

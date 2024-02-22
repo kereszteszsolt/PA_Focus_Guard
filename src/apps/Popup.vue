@@ -64,15 +64,15 @@ export default {
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12" class="text-center">
+    <v-row class="my-0">
+      <v-col cols="12" class="text-center pa-0">
         <v-btn @click="options">Settings</v-btn>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" class="text-center">
-        <h6>Distraction Attempts:</h6>
-        <h2>{{ statisticsStore.getNrOfDistractionAttempts }}</h2>
+        <div class="text-h7">Distraction Attempts:</div>
+        <v-btn icon variant="outlined">{{ statisticsStore.getNrOfDistractionAttempts }}</v-btn>
       </v-col>
     </v-row>
   </v-card>

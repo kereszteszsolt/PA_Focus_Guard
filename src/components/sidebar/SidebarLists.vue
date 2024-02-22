@@ -125,11 +125,6 @@ export default {
   height: 100%;
 }
 
-.v-list-item-title {
-  font-size: 1.2rem;
-  font-weight: 1200;
-}
-
 .router-link {
   text-decoration: none;
   color: inherit;
