@@ -1,18 +1,14 @@
-<script lang="ts">
-import SidebarListItemMenu from '@/components/sidebar/SidebarListItemMenu.vue';
+<script setup lang="ts">
 
-export default {
-  name: 'SidebarListItem',
-  components: { SidebarListItemMenu },
-  props: {
-    listId: String,
-    listName: String,
-    deleteItem: { type: Function, required: true},
-    editItem: { type: Function, required: true},
-    moveUp: { type: Function, required: true},
-    moveDown: { type: Function, required: true}
-  }
-};
+defineProps({
+  listId: String,
+  listName: String,
+  deleteItem: { type: Function, required: true },
+  editItem: { type: Function, required: true },
+  moveUp: { type: Function, required: true },
+  moveDown: { type: Function, required: true }
+});
+
 </script>
 
 <template>
