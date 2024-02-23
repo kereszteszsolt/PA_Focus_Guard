@@ -1,36 +1,25 @@
-<script lang="ts">
-import { useAppDataStore } from '@/store/appDataStore';
-import { useStatisticsStore } from '@/store/statisticsStore';
+<script setup lang="ts">
+import { useAppDataStore, useStatisticsStore } from '@/store';
 import { useTheme } from 'vuetify';
 import { watchEffect } from 'vue';
 
-export default {
-  name: 'Popup',
-  setup() {
-    const appDataStore = useAppDataStore();
-    const statisticsStore = useStatisticsStore();
-    appDataStore.fetchAppData();
-    statisticsStore.fetchDistractionAttempts();
-    const theme = useTheme();
+const appDataStore = useAppDataStore();
+const statisticsStore = useStatisticsStore();
+appDataStore.fetchAppData();
+statisticsStore.fetchDistractionAttempts();
+const theme = useTheme();
+theme.global.name.value = appDataStore.getAppData.fgTheme;
+
+watchEffect(() => {
+  if (!appDataStore.isLoading) {
     theme.global.name.value = appDataStore.getAppData.fgTheme;
-
-    watchEffect(() => {
-      if (!appDataStore.isLoading) {
-        theme.global.name.value = appDataStore.getAppData.fgTheme;
-      }
-    });
-
-    return {
-      appDataStore,
-      statisticsStore
-    };
-  },
-  methods: {
-    options() {
-        window.open(chrome.runtime.getURL('options.html#/websites'));
-    }
   }
+});
+
+const options = () => {
+  window.open(chrome.runtime.getURL('options.html#/websites'));
 };
+
 </script>
 
 <template>
