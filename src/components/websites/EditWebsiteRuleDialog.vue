@@ -1,85 +1,75 @@
-<script lang="ts">
+<script setup lang="ts">
 import { IWebsiteRule } from '@/interfaces';
+import { computed, ref, watch } from 'vue';
 
-export default {
-  name: 'EditWebsiteRuleDialog',
-  props: {
-    pDialog: {
-      type: Boolean,
-      required: true
-    },
-    pItem: {
-      type: Object as () => IWebsiteRule,
-      required: true
-    },
-    pCloseDialog: {
-      type: Function,
-      required: true
-    },
-    pSaveItem: {
-      type: Function,
-      required: true
-    },
-    pIsNewItem: {
-      type: Boolean,
-      required: true
-    }
+const props = defineProps({
+  pDialog: {
+    type: Boolean,
+    required: true
   },
-  data: () => {
-    return {
-      dialog: false,
-      valid: true,
-      url: '',
-      permanentlyActive: false,
-      temporarilyInactive: false
-    };
+  pItem: {
+    type: Object as () => IWebsiteRule,
+    required: true
   },
-  computed: {
-    urlRules() {
-      return [
-        (v: string) => !!v || 'URL is required'
-      ];
-    }
+  pCloseDialog: {
+    type: Function,
+    required: true
   },
-  mounted() {
-
+  pSaveItem: {
+    type: Function,
+    required: true
   },
-  watch: {
-    pDialog(val: boolean) {
-      this.dialog = val;
-      if (val) {
-        this.url = this.pItem.url;
-        this.permanentlyActive = this.pItem.permanentlyActive;
-        this.temporarilyInactive = this.pItem.temporarilyInactive;
-      }
-    }
-  },
-  methods: {
-    validateUrl(url: string): boolean {
-      const regexPattern = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-      return regexPattern.test(url);
-    },
-    permanentlyActiveChanged() {
-      this.temporarilyInactive = this.permanentlyActive ? false : this.temporarilyInactive;
-    },
-    temporarilyInactiveChanged() {
-      this.permanentlyActive = this.temporarilyInactive ? false : this.permanentlyActive;
-    },
-    close() {
-      this.pCloseDialog();
-    },
-    save() {
-      let editedItem: IWebsiteRule = {
-        ...this.pItem,
-        url: this.url,
-        permanentlyActive: this.permanentlyActive,
-        temporarilyInactive: this.temporarilyInactive
-      };
-      console.log('editedItem', editedItem);
-      this.pSaveItem(editedItem);
-    }
+  pIsNewItem: {
+    type: Boolean,
+    required: true
   }
+});
+
+let dialog = ref(false);
+let valid = ref(true);
+let url = ref('');
+let permanentlyActive = ref(false);
+let temporarilyInactive = ref(false);
+
+const urlRules = computed(() => {
+  return [
+    (v: string) => !!v || 'URL is required'
+  ];
+});
+
+watch(() => props.pDialog, (value) => {
+  dialog.value = value;
+  if (value) {
+    url.value = props.pItem.url;
+    permanentlyActive.value = props.pItem.permanentlyActive;
+    temporarilyInactive.value = props.pItem.temporarilyInactive;
+  }
+});
+
+const validateUrl = (url: string): boolean => {
+  const regexPattern = /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+  return regexPattern.test(url);
 };
+const temporarilyInactiveChanged = () => {
+  permanentlyActive.value = temporarilyInactive.value ? false : permanentlyActive.value;
+};
+const permanentlyActiveChanged = () => {
+  temporarilyInactive.value = permanentlyActive.value ? false : temporarilyInactive.value;
+};
+const close = () => {
+  props.pCloseDialog();
+};
+const save = () => {
+  let editedItem: IWebsiteRule = {
+    ...props.pItem,
+    url: url.value,
+    permanentlyActive: permanentlyActive.value,
+    temporarilyInactive: temporarilyInactive.value
+  };
+  console.log('editedItem', editedItem);
+  props.pSaveItem(editedItem);
+};
+
 </script>
 
 <template>
