@@ -1,63 +1,59 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { IWebsiteRuleList } from '@/interfaces';
+import { computed, ref, watch } from 'vue';
 
-export default defineComponent({
-  name: 'EditWebsiteRulesListDialog',
-  props: {
-    pDialog: {
-      type: Boolean,
-      required: true
-    },
-    pItem: {
-      type: Object as () => IWebsiteRuleList,
-      required: true
-    },
-    pCloseDialog: {
-      type: Function,
-      required: true
-    },
-    pSaveItem: {
-      type: Function,
-      required: true
-    },
-    pIsNewItem: {
-      type: Boolean,
-      required: true
-    }
+const props = defineProps({
+  pDialog: {
+    type: Boolean,
+    required: true
   },
-  data: () => {
-    return {
-      dialog: false,
-      valid: true,
-      name: '',
-      nameRules: [
-        (v: string) => !!v || 'Name is required',
-        (v: string) => (v && v.length <= 50) || 'Name must be less than 50 characters'
-      ]
-    };
+  pItem: {
+    type: Object as () => IWebsiteRuleList,
+    required: true
   },
-  watch: {
-    pDialog(val: boolean) {
-      this.dialog = val;
-      if (val) {
-        this.name = this.pItem.name;
-      }
-    }
+  pCloseDialog: {
+    type: Function,
+    required: true
   },
-  methods: {
-    save() {
-      let editedItem = {
-        ...this.pItem,
-        name: this.name
-      };
-      this.pSaveItem(editedItem);
-    },
-    close() {
-      this.pCloseDialog();
-    }
+  pSaveItem: {
+    type: Function,
+    required: true
+  },
+  pIsNewItem: {
+    type: Boolean,
+    required: true
   }
 });
+
+let dialog = ref(false);
+let valid = ref(true);
+let name = ref('');
+
+const nameRules = computed(() => {
+  return [
+    (v: string) => !!v || 'Name is required',
+    (v: string) => (v && v.length <= 50) || 'Name must be less than 50 characters'
+  ];
+});
+
+watch(() => props.pDialog, (value) => {
+  dialog.value = value;
+  if (value) {
+    name.value = props.pItem.name;
+  }
+});
+
+const save = () => {
+  let editedItem = {
+    ...props.pItem,
+    name: name.value
+  };
+  props.pSaveItem(editedItem);
+};
+
+const close = () => {
+  props.pCloseDialog();
+};
 </script>
 
 <template>
