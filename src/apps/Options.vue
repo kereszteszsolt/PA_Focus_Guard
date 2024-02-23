@@ -1,22 +1,11 @@
-<script lang="ts">
+<script setup lang="ts">
 import { AppBar, Sidebar } from '@/layouts';
 import { useTheme } from 'vuetify';
 import { computed } from 'vue';
 
-export default {
-  components: {
-    Sidebar,
-    AppBar
-  },
-  setup() {
-    const theme = useTheme();
-    const isDark = computed(() => theme.global.current.value.dark);
-    return {
-      theme,
-      isDark
-    };
-  }
-};
+const theme = useTheme();
+const isDark = computed(() => theme.global.current.value.dark);
+
 </script>
 
 <template>
