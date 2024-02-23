@@ -1,146 +1,132 @@
-<script lang="ts">
+<script setup lang="ts">
 import { useWebsiteRulesStore } from '@/store/websiteRulesStore';
 import { IWebsiteRule } from '@/interfaces';
 import EditWebsiteRuleDialog from '@/components/websites/EditWebsiteRuleDialog.vue';
 import DeleteWebsiteRuleDialog from '@/components/websites/DeleteWebsiteRuleDialog.vue';
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-export default {
-  name: 'Websites',
-  components: { DeleteWebsiteRuleDialog, EditWebsiteRuleDialog },
-  data: () => {
-    const websiteRulesStore = useWebsiteRulesStore();
-    let dialog: boolean = false;
-    let dialogDelete = false;
-    let editingId = '';
-    let editingItem: IWebsiteRule = websiteRulesStore.getDummyWebsiteRule;
-    let isNewItem = false;
-    let isValid = true;
+const websiteRulesStore = useWebsiteRulesStore();
+websiteRulesStore.fetchData();
+const route = useRoute();
+let dialog = ref(false);
+let dialogDelete = ref(false);
+let editingId = ref('');
+let editingItem = ref(websiteRulesStore.getDummyWebsiteRule);
+let isNewItem = ref(false);
+let isValid = ref(false);
 
-    return {
-      dialog,
-      dialogDelete,
-      editingId,
-      editingItem,
-      websiteRulesStore: websiteRulesStore,
-      isNewItem,
-      isValid,
-      headers: [
-        { title: 'URL', value: 'url' },
-        { title: 'Permanently Active', value: 'permanentlyActive' },
-        { title: 'Temporarily Inactive', value: 'temporarilyInactive' },
-        { title: 'Actions', value: 'actions' },
-        { title: 'Order', value: 'order' },
-        { title: 'Global Order', value: 'globalOrder' }
-      ]
-    };
-  },
-  mounted() {
-    this.websiteRulesStore.fetchData();
-  },
-  computed: {
-    formTitle() {
-      return this.editingId === '' ? 'New Item' : 'Edit Item';
-    },
-    pathId() {
-      return this.$route.params.id as string;
-    },
-    showAll(): boolean {
-      return this.pathId === 'all' || !this.pathId;
-    },
-    moveUp(): Function {
-      return this.pathId === 'all' ? this.websiteRulesStore.moveUpWebsiteRulesGlobalOrder : this.websiteRulesStore.moveUpWebsiteRule;
-    },
-    moveDown(): Function {
-      return this.pathId === 'all' ? this.websiteRulesStore.moveDownWebsiteRulesGlobalOrder : this.websiteRulesStore.moveDownWebsiteRule;
-    },
-    sortByFieldName(): { key: string, order?: boolean |  'asc' | 'desc' }[] {
-      return this.pathId === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'order', order: 'asc' }];
-    },
-    websiteRuleList() {
-      return this.websiteRulesStore.getWebsiteRuleListById(this.pathId);
-    },
-    websiteRuleListName() {
-      return (this.pathId === 'all' || !this.pathId) ?
-        'All Websites' : this.websiteRuleList?.name;
-    },
-    websiteRules(): IWebsiteRule[] {
-      return (this.pathId === 'all' || !this.pathId) ?
-        this.websiteRulesStore.getAllWebsiteRules :
-        this.websiteRulesStore.getWebsiteRulesByListId(this.pathId);
-    },
-  },
-  methods: {
-    setPermanentlyActive(item: IWebsiteRule) {
-      item.temporarilyInactive = item.permanentlyActive ? false : item.temporarilyInactive;
-      this.websiteRulesStore.saveWebsiteRules();
-    },
-    setTemporarilyInactive(item: IWebsiteRule) {
-      item.permanentlyActive = item.temporarilyInactive ? false : item.permanentlyActive;
-      this.websiteRulesStore.saveWebsiteRules();
-    },
-    newItem() {
-      this.editingItem = {
-        ...this.editingItem,
-        listId: this.pathId
-      };
-      this.isNewItem = true;
-      this.dialog = true;
-    },
-    editItem(id: string) {
-      const found = this.websiteRulesStore.getWebsiteRuleById(id);
-      if (found) {
-        this.editingItem = found;
-        this.dialog = true;
-      } else {
-        console.error('Website not found');
-        // throw new Error('Website not found');  TODO - handle error
-      }
-    },
-    deleteItem(item: IWebsiteRule) {
-      const found = this.websiteRulesStore.getWebsiteRuleById(item.id);
-      if (found) {
-        this.editingId = found.id;
-        this.editingItem = found;
-        this.dialogDelete = true;
-      } else {
-        console.error('Website not found');
-        // throw new Error('Website not found');  TODO - handle error
-      }
-    },
-    deleteItemConfirm() {
-      this.websiteRulesStore.deleteWebsiteRule(this.editingId);
-      this.closeDelete();
-    },
-    closeEdit() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editingId = '';
-        this.editingItem = this.editingItem = this.websiteRulesStore.getDummyWebsiteRule;
-      });
-    },
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editingId = '';
-        this.editingItem = this.websiteRulesStore.getDummyWebsiteRule;
-      });
-    },
-    save(editedItem: IWebsiteRule) {
-      if (this.isNewItem) {
-        this.websiteRulesStore.addWebsiteRule(editedItem);
-        this.isNewItem = false;
-      } else {
-        this.websiteRulesStore.updateWebsiteRule(this.editingItem.id, editedItem);
-      }
-      this.closeEdit();
-      console.log('save', editedItem);
-    },
-  },
-  watch: {
-    dialog(val) {
-      val || this.closeEdit();
-    }
-  },
+const headers = [
+  { title: 'URL', value: 'url' },
+  { title: 'Permanently Active', value: 'permanentlyActive' },
+  { title: 'Temporarily Inactive', value: 'temporarilyInactive' },
+  { title: 'Actions', value: 'actions' },
+  { title: 'Order', value: 'order' },
+  { title: 'Global Order', value: 'globalOrder' }
+];
+
+const formTitle = computed(() => {
+  return editingId.value === '' ? 'New Item' : 'Edit Item';
+});
+
+const pathId = computed(() => {
+  return route.params.id as string;
+});
+
+const showAll = computed(() => {
+  return pathId.value === 'all' || !pathId.value;
+});
+
+const moveUp = computed(() => {
+  return pathId.value === 'all' ? websiteRulesStore.moveUpWebsiteRulesGlobalOrder : websiteRulesStore.moveUpWebsiteRule;
+});
+
+const moveDown = computed(() => {
+  return pathId.value === 'all' ? websiteRulesStore.moveDownWebsiteRulesGlobalOrder : websiteRulesStore.moveDownWebsiteRule;
+});
+
+type SortItem = { key: string, order?: boolean | 'asc' | 'desc' }
+const sortByFieldName = computed<readonly SortItem[]>(() => {
+  return pathId.value === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'order', order: 'asc' }];
+});
+
+const websiteRuleList = computed(() => {
+  return websiteRulesStore.getWebsiteRuleListById(pathId.value);
+});
+
+const websiteRuleListName = computed(() => {
+  return (pathId.value === 'all' || !pathId.value) ?
+    'All Websites' : websiteRuleList.value?.name;
+});
+
+const websiteRules = computed(() => {
+  return (pathId.value === 'all' || !pathId.value) ?
+    websiteRulesStore.getAllWebsiteRules :
+    websiteRulesStore.getWebsiteRulesByListId(pathId.value);
+});
+
+const setPermanentlyActive = (item: IWebsiteRule) => {
+  item.temporarilyInactive = item.permanentlyActive ? false : item.temporarilyInactive;
+  websiteRulesStore.saveWebsiteRules();
+};
+const setTemporarilyInactive = (item: IWebsiteRule) => {
+  item.permanentlyActive = item.temporarilyInactive ? false : item.permanentlyActive;
+  websiteRulesStore.saveWebsiteRules();
+};
+
+const newItem = () => {
+  editingItem.value = {
+    ...editingItem.value,
+    listId: pathId.value
+  };
+  isNewItem.value = true;
+  dialog.value = true;
+};
+const editItem = (id: string) => {
+  const found = websiteRulesStore.getWebsiteRuleById(id);
+  if (found) {
+    editingItem.value = found;
+    dialog.value = true;
+  } else {
+    console.error('Website not found');
+    // throw new Error('Website not found');  TODO - handle error
+  }
+};
+const deleteItem = (item: IWebsiteRule) => {
+  const found = websiteRulesStore.getWebsiteRuleById(item.id);
+  if (found) {
+    editingId.value = found.id;
+    editingItem.value = found;
+    dialogDelete.value = true;
+  } else {
+    console.error('Website not found');
+    // throw new Error('Website not found');  TODO - handle error
+  }
+};
+const deleteItemConfirm = () => {
+  websiteRulesStore.deleteWebsiteRule(editingId.value);
+  closeDelete();
+};
+const closeEdit = () => {
+  dialog.value = false;
+  editingId.value = '';
+  editingItem.value = websiteRulesStore.getDummyWebsiteRule;
+};
+const closeDelete = () => {
+  dialogDelete.value = false;
+  editingId.value = '';
+  editingItem.value = websiteRulesStore.getDummyWebsiteRule;
+};
+const save = (editedItem: IWebsiteRule) => {
+
+  if (isNewItem.value) {
+    websiteRulesStore.addWebsiteRule(editedItem);
+    isNewItem.value = false;
+  } else {
+    websiteRulesStore.updateWebsiteRule(editingItem.value.id, editedItem);
+  }
+  closeEdit();
+  console.log('save', editedItem);
 };
 </script>
 
