@@ -1,21 +1,9 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import focus from '@/assets/focus.jpg';
 
-export default defineComponent({
-  name: 'FocusMessage',
-  data() {
-    return {
-      message: 'This is a focus message',
-      dialog: true,
-      focus
-    };
-  },
-  computed: {
-  },
-  mounted() {
-  },
-});
+let dialog = ref(true);
+
 </script>
 
 <template>
