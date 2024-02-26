@@ -22,10 +22,11 @@ const options = () => {
   window.open(chrome.runtime.getURL('options.html#/websites'));
 };
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoading || i18n.isLoading);
 </script>
 
 <template>
-  <v-card color="background" class="card">
+  <v-card color="background" class="card" v-if="!isLoading">
     <v-card-item class="pa-0">
       <v-card-title color="primary">
         <v-sheet color="primary" class="justify-space-around">
@@ -67,6 +68,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
       </v-col>
     </v-row>
   </v-card>
+  <v-progress-linear v-else indeterminate color="primary"></v-progress-linear>
 </template>
 
 <style scoped lang="scss">

@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { useWebsiteRulesStore } from '@/store';
+import { useI18nStore, useWebsiteRulesStore } from '@/store';
 import { IWebsiteRuleList } from '@/interfaces';
 import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import EditWebsiteRulesListDialog from '@/components/websites/EditWebsiteRulesListDialog.vue';
 import DeleteWebsiteListRuleDialog from '@/components/websites/DeleteWebsiteListRuleDialog.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const websiteRulesStore = useWebsiteRulesStore();
+const i18n = useI18nStore();
 const dialogEdit = ref(false);
 const dialogDelete = ref(false);
 const editingWebsiteList = ref<IWebsiteRuleList>(websiteRulesStore.getDummyWebsiteRuleList);
 const isNewItem = ref(false);
 const isEmpty = ref(false);
 
+i18n.fetchLocaleSettingsAndMessages();
 websiteRulesStore.fetchData();
 
 const closeEditDialog = () => {
@@ -66,6 +68,7 @@ const closeDelete = () => {
   dialogDelete.value = false;
   editingWebsiteList.value = websiteRulesStore.getDummyWebsiteRuleList;
 };
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 
 </script>
 
@@ -80,6 +83,7 @@ const closeDelete = () => {
                              :edit-item="() => editItem(list.id)"
                              :move-up="websiteRulesStore.moveUpWebsiteRuleList"
                              :move-down="websiteRulesStore.moveDownWebsiteRuleList"
+                             :t="t"
           ></sidebar-list-item>
         </router-link>
         <v-divider></v-divider>
@@ -96,10 +100,10 @@ const closeDelete = () => {
     </div>
   </v-sheet>
   <edit-website-rules-list-dialog :p-dialog="dialogEdit" :p-item="editingWebsiteList" :p-save-item="saveItem"
-                                  :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog"></edit-website-rules-list-dialog>
+                                  :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog" :t="t"></edit-website-rules-list-dialog>
   <delete-website-list-rule-dialog :p-dialog="dialogDelete" :p-item="editingWebsiteList"
                                    :p-delete-item-confirm="deleteItemConfirm" :p-close-dialog="closeDelete"
-                                   :p-is-empty="isEmpty"></delete-website-list-rule-dialog>
+                                   :p-is-empty="isEmpty" :t="t"></delete-website-list-rule-dialog>
 </template>
 
 <style scoped lang="scss">

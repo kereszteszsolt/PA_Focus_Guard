@@ -14,6 +14,8 @@
     "new_item": "Element nou",
     "on": "Pornit",
     "off": "Oprit",
-    "distraction_attempts": "Încercări de distracție"
+    "distraction_attempts": "Încercări de distracție",
+    "are_you_sure_you_want_to_delete_this_website_rule": "Sigur dorești să ștergi această regulă pentru site-ul web?",
+    "also_delete_all_items_in_this_list": "De asemenea, șterge toate elementele din această listă"
   }
 }

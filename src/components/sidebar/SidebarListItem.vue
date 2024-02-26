@@ -7,7 +7,8 @@ defineProps({
   deleteItem: { type: Function, required: true },
   editItem: { type: Function, required: true },
   moveUp: { type: Function, required: true },
-  moveDown: { type: Function, required: true }
+  moveDown: { type: Function, required: true },
+  t: { type: Function, required: true }
 });
 
 </script>
@@ -22,6 +23,7 @@ defineProps({
         :delete-item="deleteItem"
         :move-up="moveUp"
         :move-down="moveDown"
+        :t="t"
       />
     </template>
   </v-list-item>

@@ -15,6 +15,8 @@
     "on": "Be",
     "off": "Ki",
     "settings": "Beállítások",
-    "distraction_attempts": "Zavaró kísérletek"
+    "distraction_attempts": "Zavaró kísérletek",
+    "are_you_sure_you_want_to_delete_this_website_rule": "Biztosan törölni szeretné ezt a webhelyszabályt?",
+    "also_delete_all_items_in_this_list": "Törölje az összes elemet is ezen a listán?"
   }
 }

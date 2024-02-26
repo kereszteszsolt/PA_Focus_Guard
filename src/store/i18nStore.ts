@@ -49,6 +49,7 @@ export const useI18nStore = defineStore('i18n', {
       this.messages = allMessages.find((m) => m.locale.id === this.localeSettings.currentLocale.id) || undefined;
       this.defaultMessages = allMessages.find((m) => m.locale.id === this.localeSettings.defaultLocale.id) || undefined;
       this.userDefaultMessages = allMessages.find((m) => m.locale.id === this.localeSettings?.userDefaultLocale?.id) || undefined;
+      this.isLoading = false;
     },
     async addNewLocale(iLocaleMessages: ILocaleMessages): Promise<void> {
       this.isLoading = true;

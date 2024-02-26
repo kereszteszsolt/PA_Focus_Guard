@@ -22,6 +22,10 @@ const props = defineProps({
   pIsNewItem: {
     type: Boolean,
     required: true
+  },
+  t: {
+    type: Function,
+    required: true
   }
 });
 
@@ -76,8 +80,8 @@ const close = () => {
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="close" color="danger">Cancel</v-btn>
-          <v-btn @click="save" :disabled="!valid" color="primary">Save</v-btn>
+          <v-btn @click="close" color="danger">{{ t('cancel') }}</v-btn>
+          <v-btn @click="save" :disabled="!valid" color="primary">{{ t('save') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>

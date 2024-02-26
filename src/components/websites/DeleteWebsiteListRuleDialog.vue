@@ -22,6 +22,10 @@ const props = defineProps({
   pIsEmpty: {
     type: Boolean,
     required: true
+  },
+  t: {
+    type: Function,
+    required: true
   }
 });
 
@@ -49,16 +53,16 @@ watch(() => props.pDialog, (value) => {
         <v-card-title class="headline">Delete Website Rule</v-card-title>
       </v-card-item>
       <v-card-text class="text-body-1 mb-4">
-        Are you sure you want to delete this website rule?
+        {{t('are_you_sure_you_want_to_delete_this_website_rule')}}
       </v-card-text>
       <v-divider v-if="!isEmpty"></v-divider>
       <v-checkbox
-        color="danger" v-if="!isEmpty" v-model="confirmDeleteListItems" label="Also delete all items in this list"></v-checkbox>
+        color="danger" v-if="!isEmpty" v-model="confirmDeleteListItems" :label="t('also_delete_all_items_in_this_list')"></v-checkbox>
       <v-divider v-if="!isEmpty"></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="pCloseDialog" color="primary">Cancel</v-btn>
-        <v-btn @click="pDeleteItemConfirm" color="danger" :disabled="!eligibleForDeletion">Delete</v-btn>
+        <v-btn @click="pCloseDialog" color="primary">{{ t('cancel') }}</v-btn>
+        <v-btn @click="pDeleteItemConfirm" color="danger" :disabled="!eligibleForDeletion">{{ t('delete') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

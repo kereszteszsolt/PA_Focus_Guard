@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { useI18nStore } from '@/store';
-
-const i18n = useI18nStore();
-i18n.fetchLocaleSettingsAndMessages();
 
 defineProps({
   listId: String,
   editItem: { type: Function, required: true },
   deleteItem: { type: Function, required: true },
   moveUp: { type: Function, required: true },
-  moveDown: { type: Function, required: true }
+  moveDown: { type: Function, required: true },
+  t: { type: Function, required: true }
 });
 
 </script>
@@ -25,7 +22,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-arrow-up</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("move_up") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t("move_up") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -35,7 +32,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-arrow-down</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("move_down") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t("move_down") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -45,7 +42,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-pencil</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("edit") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t("edit") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -55,7 +52,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-delete</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("delete") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t("delete") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
