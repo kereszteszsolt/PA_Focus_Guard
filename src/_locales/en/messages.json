@@ -2,6 +2,15 @@
   "localeId": "en",
   "localeName": "English",
   "messages": {
-    "text": "Hello, world!"
+    "text": "Hello, world!",
+    "move_up": "Move up",
+    "move_down": "Move down",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "new_item": "New item"
   }
 }

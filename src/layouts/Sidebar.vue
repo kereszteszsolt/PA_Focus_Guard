@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SidebarLists, SidebarToolbar } from '@/components/sidebar';
-import SidebarLanguage from '@/components/sidebar/SidebarLanguage.vue';
+import SidebarLanguage from '@/components/sidebar/SidebarLanguageList.vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 const route = useRoute();

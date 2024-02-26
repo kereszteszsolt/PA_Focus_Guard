@@ -1,12 +1,8 @@
-export interface ILocaleSettings{
-  currentLocale: string;
-  currentLocaleName: string;
-  defaultLocale: string;
-  defaultLocaleName: string;
-  userDefaultLocale: string | null;
-  userDefaultLocaleName: string | null;
-  builtInLocales: string[];
-  userLocales: string[];
+import { ILocale } from '@/interfaces';
+export interface ILocaleSettings {
+  currentLocale: ILocale;
+  defaultLocale: ILocale;
+  userDefaultLocale: ILocale | null;
+  builtInLocales: ILocale[];
+  userLocales: ILocale[];
 }
-
-export type LocaleSettingsType = ILocaleSettings | {};

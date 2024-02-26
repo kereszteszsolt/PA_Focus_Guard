@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import { useI18nStore } from '@/store';
+
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
 
 </script>
 
 <template>
   <v-sheet class="sidebar-language" color="background">
     <v-list>
-      <v-list-item title="English"></v-list-item>
-      <v-list-item title="Hungarian"></v-list-item>
-      <v-list-item title="Romanian"></v-list-item>
-      <v-list-item title="German"></v-list-item>
+      <router-link v-for="locale in i18n.getAllLocales" :key="locale.id"
+                   :to="{ name: 'LanguagesByLanguageId', params: { id: locale.id } }" class="router-link">
+        <v-list-item :title="locale.name" :value="locale.id"></v-list-item>
+      </router-link>
       <v-divider></v-divider>
       <v-list-item>
         <template v-slot:prepend>

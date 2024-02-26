@@ -1,8 +1,6 @@
+import { ILocale } from '@/interfaces/ILocale';
+
 export interface ILocaleMessages {
-  id: string;
-  localeId: string;
-  localeName: string;
+  locale: ILocale;
   messages: {[key: string]: string;}
 };
-
-export type LocaleMessagesType = ILocaleMessages | {};

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useI18nStore } from '@/store';
+
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
 
 defineProps({
   listId: String,
@@ -21,7 +25,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-arrow-up</v-icon>
-                  <v-tooltip activator="parent" location="top">Move Up</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("move_up") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -31,7 +35,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-arrow-down</v-icon>
-                  <v-tooltip activator="parent" location="top">Move Down</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("move_down") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -41,7 +45,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-pencil</v-icon>
-                  <v-tooltip activator="parent" location="top">Edit</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("edit") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -51,7 +55,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-delete</v-icon>
-                  <v-tooltip activator="parent" location="top">Delete</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ i18n.getTranslation("delete") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>

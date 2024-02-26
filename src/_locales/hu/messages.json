@@ -2,6 +2,15 @@
   "localeId": "hu",
   "localeName": "Magyar",
   "messages": {
-    "text": "Hello, világ!"
+    "text": "Hello, világ!",
+    "move_up": "Felfelé mozgatás",
+    "move_down": "Lefelé mozgatás",
+    "edit": "Szerkesztés",
+    "delete": "Törlés",
+    "add": "Hozzáadás",
+    "save": "Mentés",
+    "cancel": "Mégse",
+    "close": "Bezárás",
+    "new_item": "Új elem"
   }
 }
