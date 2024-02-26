@@ -7,7 +7,7 @@ export const useI18nStore = defineStore('i18n', {
   state: () => ({
     isLoading: true,
     localeSettings: {
-      currentLocale: { id: 'en', name: 'English', text_direction: 'ltr' } as ILocale,
+      currentLocale: { id: 'en', name: 'Hungarian', text_direction: 'ltr' } as ILocale,
       userDefaultLocale: { id: 'en', name: 'English', text_direction: 'ltr' } as ILocale,
       defaultLocale: { id: 'en', name: 'English', text_direction: 'ltr' } as ILocale,
       builtInLocales: [{ id: 'en', name: 'English', text_direction: 'ltr' }, {
@@ -36,7 +36,10 @@ export const useI18nStore = defineStore('i18n', {
     },
     getAllLocales: (state) => {
       return state.localeSettings.builtInLocales;
-    }
+    },
+    getCurrentLocale: (state) => {
+      return state.localeSettings.currentLocale;
+    },
   },
   actions: {
     async fetchLocaleSettingsAndMessages(): Promise<void> {
@@ -58,6 +61,17 @@ export const useI18nStore = defineStore('i18n', {
       await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, allMessages);
       this.localeSettings.userLocales.push(iLocaleMessages.locale);
       await utils.data.saveEntry(constants.storage.FG_LOCALES_SETTINGS, this.localeSettings);
+      this.isLoading = false;
+    },
+    async switchLocale(newLocaleId: string): Promise<void> {
+      this.isLoading = true;
+      this.localeSettings.currentLocale =
+        this.localeSettings.builtInLocales.find((l) => l.id === newLocaleId) ||
+        this.localeSettings.userLocales.find((l) => l.id === newLocaleId) ||
+        this.localeSettings.defaultLocale;
+      await utils.data.saveEntry(constants.storage.FG_LOCALES_SETTINGS, this.localeSettings);
+      const allMessages: ILocaleMessages[] = await utils.data.fetchList(constants.storage.FG_LOCALES_MESSAGES);
+      this.messages = allMessages.find((m) => m.locale.id === this.localeSettings.currentLocale.id) || undefined;
       this.isLoading = false;
     }
   }

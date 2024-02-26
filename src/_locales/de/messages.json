@@ -1,0 +1,20 @@
+{
+  "localeId": "de",
+  "localeName": "German",
+  "messages": {
+    "text": "Hallo, Welt!",
+    "move_up": "Nach oben bewegen",
+    "move_down": "Nach unten bewegen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "add": "Hinzufügen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "new_item": "Neues Element",
+    "on": "An",
+    "off": "Aus",
+    "settings": "Einstellungen",
+    "distraction_attempts": "Ablenkungsversuche"
+  }
+}

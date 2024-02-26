@@ -1,0 +1,19 @@
+{
+  "localeId": "ro",
+  "localeName": "Romanian",
+  "messages": {
+    "text": "Salut, lume!",
+    "move_up": "Mutare în sus",
+    "move_down": "Mutare în jos",
+    "edit": "Editare",
+    "delete": "Ștergere",
+    "add": "Adăugare",
+    "save": "Salvare",
+    "cancel": "Anulare",
+    "close": "Închidere",
+    "new_item": "Element nou",
+    "on": "Pornit",
+    "off": "Oprit",
+    "distraction_attempts": "Încercări de distracție"
+  }
+}

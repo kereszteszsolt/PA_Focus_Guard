@@ -11,6 +11,10 @@
     "save": "Save",
     "cancel": "Cancel",
     "close": "Close",
-    "new_item": "New item"
+    "new_item": "New item",
+    "on": "On",
+    "off": "Off",
+    "settings": "Settings",
+    "distraction_attempts": "Distraction attempts"
   }
 }

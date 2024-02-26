@@ -1,7 +1,7 @@
 import { ILocale, ILocaleMessages, ILocaleSettings } from '@/interfaces';
 import * as utils from '@/utils';
 import * as constants from '@/constants';
-import { en, hu } from '@/_locales';
+import { en, hu, de, ro} from '@/_locales';
 
 export const initLocaleSettingsAndMessages = async (): Promise<void> => {
   let localeSettings = {
@@ -10,7 +10,9 @@ export const initLocaleSettingsAndMessages = async (): Promise<void> => {
     userDefaultLocale: null,
     builtInLocales: [
       { id: 'en', name: 'English', text_direction: 'ltr' },
-      { id: 'hu', name: 'Hungarian', text_direction: 'ltr' }
+      { id: 'hu', name: 'Hungarian', text_direction: 'ltr' },
+      { id: 'de', name: 'German', text_direction: 'ltr' },
+      { id: 'ro', name: 'Romanian', text_direction: 'ltr' }
     ] as ILocale[],
     userLocales: [] as ILocale[]
   } as ILocaleSettings;
@@ -22,14 +24,20 @@ export const initLocaleSettingsAndMessages = async (): Promise<void> => {
     messages: en.messages
   };
 
-  await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, [messages_en]);
-  //await utils.data.saveEntry(constants.storage.FG_LOCALES_SETTINGS, localeSettings);
-
   const messages_hu: ILocaleMessages = {
     locale: { id: 'hu', name: 'Hungarian', text_direction: 'ltr' },
     messages: hu.messages
   };
 
-  await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, [messages_en, messages_hu]);
-  //await utils.data.saveEntry(constants.storage.FG_LOCALES_SETTINGS, localeSettings);
+  const messages_de: ILocaleMessages = {
+    locale: { id: 'de', name: 'German', text_direction: 'ltr' },
+    messages: de.messages
+  };
+
+  const messages_ro: ILocaleMessages = {
+    locale: { id: 'ro', name: 'Romanian', text_direction: 'ltr' },
+    messages: ro.messages
+  }
+
+  await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, [messages_en, messages_hu, messages_de, messages_ro]);
 };

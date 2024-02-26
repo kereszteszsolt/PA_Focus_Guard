@@ -11,6 +11,10 @@
     "save": "Mentés",
     "cancel": "Mégse",
     "close": "Bezárás",
-    "new_item": "Új elem"
+    "new_item": "Új elem",
+    "on": "Be",
+    "off": "Ki",
+    "settings": "Beállítások",
+    "distraction_attempts": "Zavaró kísérletek"
   }
 }

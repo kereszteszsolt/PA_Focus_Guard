@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { useAppDataStore, useStatisticsStore } from '@/store';
+import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { useTheme } from 'vuetify';
-import { watchEffect } from 'vue';
+import { computed, watchEffect } from 'vue';
 
 const appDataStore = useAppDataStore();
 const statisticsStore = useStatisticsStore();
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
 appDataStore.fetchAppData();
 statisticsStore.fetchDistractionAttempts();
 const theme = useTheme();
@@ -19,7 +21,7 @@ watchEffect(() => {
 const options = () => {
   window.open(chrome.runtime.getURL('options.html#/websites'));
 };
-
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 </script>
 
 <template>
@@ -39,7 +41,7 @@ const options = () => {
           :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
           :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
           @click="appDataStore.updateFocusModeActive(false)">
-          Off
+          {{ t('off') }}
         </v-btn>
       </v-col>
       <v-col cols="6">
@@ -49,18 +51,18 @@ const options = () => {
           :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
           :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
           @click="appDataStore.updateFocusModeActive(true)">
-          On
+          {{ t('on') }}
         </v-btn>
       </v-col>
     </v-row>
     <v-row class="my-0">
       <v-col cols="12" class="text-center pa-0">
-        <v-btn @click="options">Settings</v-btn>
+        <v-btn @click="options">{{ t('settings') }}</v-btn>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" class="text-center">
-        <div class="text-h7">Distraction Attempts:</div>
+        <div class="text-h7">{{ t('distraction_attempts') }}</div>
         <v-btn icon variant="outlined">{{ statisticsStore.getNrOfDistractionAttempts }}</v-btn>
       </v-col>
     </v-row>

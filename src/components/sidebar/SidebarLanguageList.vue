@@ -1,18 +1,34 @@
 <script setup lang="ts">
 import { useI18nStore } from '@/store';
+import { computed } from 'vue';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
+
+const isCurrentLocale = (id: string) => {
+    return computed(() => i18n.getCurrentLocale.id === id).value;
+};
 
 </script>
 
 <template>
   <v-sheet class="sidebar-language" color="background">
     <v-list>
-      <router-link v-for="locale in i18n.getAllLocales" :key="locale.id"
-                   :to="{ name: 'LanguagesByLanguageId', params: { id: locale.id } }" class="router-link">
-        <v-list-item :title="locale.name" :value="locale.id"></v-list-item>
-      </router-link>
+        <v-list-item :title="locale.name"
+                     v-for="locale in i18n.getAllLocales"
+                     :key="locale.id"
+                     :value="locale.id"
+                     :active="isCurrentLocale(locale.id)"
+                     @click="i18n.switchLocale(locale.id)">
+          <template v-slot:append>
+            <v-btn icon
+                   :color="isCurrentLocale(locale.id) ? 'success' : 'danger'"
+                   :variant="isCurrentLocale(locale.id) ? 'elevated' : 'outlined'"
+                   size="small">
+              <v-icon>{{ isCurrentLocale(locale.id) ? 'mdi-check-circle' : 'mdi-circle-off-outline' }}</v-icon>
+            </v-btn>
+          </template>
+        </v-list-item>
       <v-divider></v-divider>
       <v-list-item>
         <template v-slot:prepend>
@@ -35,5 +51,11 @@ i18n.fetchLocaleSettingsAndMessages();
 .router-link {
   text-decoration: none;
   color: inherit;
+}
+.fgl-active {
+  background-color: #15440a;
+}
+.fgl-inactive {
+  background-color: #bb1414;
 }
 </style>
