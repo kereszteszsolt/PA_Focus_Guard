@@ -15,12 +15,12 @@ defineProps({
   <v-btn icon size="small" variant="text">
     <v-icon>mdi-dots-vertical</v-icon>
     <v-menu location="end" activator="parent" open-on-hover>
-      <v-list density="compact" class="list">
+      <v-list density="compact" class="list fg-background">
         <v-row>
           <v-col>
             <v-list-item @click="moveUp(listId)">
               <template v-slot:append>
-                <v-btn icon size="small" variant="text">
+                <v-btn icon size="small" variant="text" color="primary">
                   <v-icon>mdi-arrow-up</v-icon>
                   <v-tooltip activator="parent" location="top">{{ t("moveUp") }}</v-tooltip>
                 </v-btn>
@@ -30,7 +30,7 @@ defineProps({
           <v-col>
             <v-list-item @click="moveDown(listId)">
               <template v-slot:append>
-                <v-btn icon size="small" variant="text">
+                <v-btn icon size="small" variant="text" color="primary">
                   <v-icon>mdi-arrow-down</v-icon>
                   <v-tooltip activator="parent" location="top">{{ t("moveDown") }}</v-tooltip>
                 </v-btn>
@@ -40,7 +40,7 @@ defineProps({
           <v-col>
             <v-list-item @click="editItem(listId)">
               <template v-slot:append>
-                <v-btn icon size="small" variant="text">
+                <v-btn icon size="small" variant="text" color="warning">
                   <v-icon>mdi-pencil</v-icon>
                   <v-tooltip activator="parent" location="top">{{ t("edit") }}</v-tooltip>
                 </v-btn>
@@ -50,7 +50,7 @@ defineProps({
           <v-col>
             <v-list-item @click="deleteItem(listId)">
               <template v-slot:append>
-                <v-btn icon size="small" variant="text">
+                <v-btn icon size="small" variant="text" color="danger">
                   <v-icon>mdi-delete</v-icon>
                   <v-tooltip activator="parent" location="top">{{ t("delete") }}</v-tooltip>
                 </v-btn>

@@ -75,7 +75,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 <template>
   <v-sheet class="sidebar-lists" color="background">
     <div v-if="!websiteRulesStore.isLoading">
-      <v-list>
+      <v-list class="bg-background">
         <router-link v-for="list in websiteRulesStore.getWebsiteRuleLists" :key="list.id"
                      :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
           <sidebar-list-item :list-id="list.id" :list-name="list.name"
@@ -89,7 +89,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
         <v-divider></v-divider>
         <v-list-item>
           <template v-slot:prepend>
-            <v-btn density="compact" icon="mdi-plus" @click="newItem"></v-btn>
+            <v-btn density="compact" icon="mdi-plus" @click="newItem" color="accent" variant="elevated"></v-btn>
           </template>
         </v-list-item>
         <v-divider></v-divider>

@@ -13,7 +13,7 @@ const isCurrentLocale = (id: string) => {
 
 <template>
   <v-sheet class="sidebar-language" color="background">
-    <v-list>
+    <v-list class="bg-background">
         <v-list-item :title="locale.name"
                      v-for="locale in i18n.getAllLocales"
                      :key="locale.id"
@@ -22,8 +22,8 @@ const isCurrentLocale = (id: string) => {
                      @click="i18n.switchLocale(locale.id)">
           <template v-slot:append>
             <v-btn icon
-                   :color="isCurrentLocale(locale.id) ? 'success' : 'danger'"
-                   :variant="isCurrentLocale(locale.id) ? 'elevated' : 'outlined'"
+                   :color="isCurrentLocale(locale.id) ? 'success' : 'secondary'"
+                     variant="elevated"
                    size="small">
               <v-icon>{{ isCurrentLocale(locale.id) ? 'mdi-check-circle' : 'mdi-circle-off-outline' }}</v-icon>
             </v-btn>
@@ -32,7 +32,7 @@ const isCurrentLocale = (id: string) => {
       <v-divider></v-divider>
       <v-list-item>
         <template v-slot:prepend>
-          <v-btn density="compact" icon="mdi-plus"></v-btn>
+          <v-btn density="compact" icon="mdi-plus" color="accent" variant="elevated"></v-btn>
         </template>
       </v-list-item>
       <v-divider></v-divider>

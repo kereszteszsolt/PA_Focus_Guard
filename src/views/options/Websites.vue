@@ -30,7 +30,7 @@ const headers = computed(() => [
   { title: 'URL', value: 'url' },
   { title: t(msg.PERMANENTLY_ACTIVE), value: 'permanentlyActive' },
   { title: t(msg.TEMPORARILY_INACTIVE), value: 'temporarilyInactive' },
-  { title: t(msg.ACTIONS), value: 'actions', headerClass: 'csoka' }
+  { title: t(msg.ACTIONS), value: 'actions' }
   // ,
   // { title: t(msg.ORDER), value: 'order' },
   // { title: t(msg.GLOBAL_ORDER), value: 'globalOrder' }
@@ -155,7 +155,8 @@ const save = (editedItem: IWebsiteRule) => {
       :headers="headers"
       :items="websiteRules"
       :sort-by="sortByFieldName"
-      class="elevation-1">
+      color="deep-purple-lighten-3"
+      class="bg-background">
       <!--      :items-per-page-text="t(msg.ITEMS_PER_PAGE)"-->
       <!--      v-model:page="page"-->
       <!--      v-model:items-per-page="itemsPerPage"-->
@@ -204,7 +205,7 @@ const save = (editedItem: IWebsiteRule) => {
           <v-toolbar-title>Website List: {{ websiteRuleListName }}</v-toolbar-title>
 
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="newItem" v-if="!showAll">
+          <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated">
             {{ t(msg.NEW_ITEM) }}
           </v-btn>
           <edit-website-rule-dialog

@@ -122,8 +122,8 @@ const save = () => {
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="close" color="danger">{{ t(msg.CANCEL) }}</v-btn>
-          <v-btn @click="save" :disabled="!valid" color="primary">{{ t(msg.SAVE) }}</v-btn>
+          <v-btn @click="close" color="danger" variant="elevated">{{ t(msg.CANCEL) }}</v-btn>
+          <v-btn @click="save" :disabled="!valid" color="success" variant="elevated">{{ t(msg.SAVE) }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>

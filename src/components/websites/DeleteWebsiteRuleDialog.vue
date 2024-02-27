@@ -53,8 +53,8 @@ watch(() => props.pDialog, (value) => {
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="pCloseDialog">{{ t(msg.CANCEL) }}</v-btn>
-        <v-btn @click="pDeleteItemConfirm">{{ t(msg.DELETE) }}</v-btn>
+        <v-btn @click="pCloseDialog" color="success" variant="elevated">{{ t(msg.CANCEL) }}</v-btn>
+        <v-btn @click="pDeleteItemConfirm" color="danger" variant="elevated">{{ t(msg.DELETE) }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -80,8 +80,8 @@ const close = () => {
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="close" color="danger">{{ t('cancel') }}</v-btn>
-          <v-btn @click="save" :disabled="!valid" color="primary">{{ t('save') }}</v-btn>
+          <v-btn @click="close" color="danger" variant="elevated">{{ t('cancel') }}</v-btn>
+          <v-btn @click="save" :disabled="!valid" color="success" variant="elevated">{{ t('save') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
