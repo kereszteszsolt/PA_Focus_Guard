@@ -22,7 +22,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-arrow-up</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ t("move_up") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t("moveUp") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -32,7 +32,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text">
                   <v-icon>mdi-arrow-down</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ t("move_down") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t("moveDown") }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>

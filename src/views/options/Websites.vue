@@ -5,9 +5,13 @@ import EditWebsiteRuleDialog from '@/components/websites/EditWebsiteRuleDialog.v
 import DeleteWebsiteRuleDialog from '@/components/websites/DeleteWebsiteRuleDialog.vue';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useI18nStore } from '@/store';
+import { msg } from '@/constants';
 
 const websiteRulesStore = useWebsiteRulesStore();
+const i18n = useI18nStore();
 websiteRulesStore.fetchData();
+i18n.fetchLocaleSettingsAndMessages();
 const route = useRoute();
 let dialog = ref(false);
 let dialogDelete = ref(false);
@@ -16,14 +20,17 @@ let editingItem = ref(websiteRulesStore.getDummyWebsiteRule);
 let isNewItem = ref(false);
 let isValid = ref(false);
 
-const headers = [
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+const isLoading = computed(() => websiteRulesStore.isLoading || i18n.isLoading);
+
+const headers = computed(() => [
   { title: 'URL', value: 'url' },
-  { title: 'Permanently Active', value: 'permanentlyActive' },
-  { title: 'Temporarily Inactive', value: 'temporarilyInactive' },
-  { title: 'Actions', value: 'actions' },
-  { title: 'Order', value: 'order' },
-  { title: 'Global Order', value: 'globalOrder' }
-];
+  { title: t(msg.PERMANENTLY_ACTIVE), value: 'permanentlyActive' },
+  { title: t(msg.TEMPORARILY_INACTIVE), value: 'temporarilyInactive' },
+  { title: t(msg.ACTIONS), value: 'actions' },
+  { title: t(msg.ORDER), value: 'order' },
+  { title: t(msg.GLOBAL_ORDER), value: 'globalOrder' }
+]);
 
 const formTitle = computed(() => {
   return editingId.value === '' ? 'New Item' : 'Edit Item';
@@ -131,17 +138,38 @@ const save = (editedItem: IWebsiteRule) => {
 </script>
 
 <template>
-  <div v-if="!websiteRulesStore.isLoading">
+  <div v-if="!isLoading">
     <v-data-table
       :headers="headers"
       :items="websiteRules"
       :sort-by="sortByFieldName"
       class="elevation-1">
+      <template v-slot:item.url="{ item }">
+        <div :style="{ minWidth: '250px', maxWidth: '450px', wordBreak: 'break-all' }">
+          <a :href="item.url" target="_blank">{{ item.url }}</a>
+        </div>
+      </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
-        <v-icon small @click="editItem(item.id)">mdi-pencil</v-icon>
-        <v-icon small @click="moveUp(item.id)">mdi-arrow-up</v-icon>
-        <v-icon small @click="moveDown(item.id)">mdi-arrow-down</v-icon>
+        <div class="partialActions" >
+          <v-btn icon size="small" variant="text" @click="editItem(item.id)">
+            <v-icon>mdi-pencil</v-icon>
+            <v-tooltip activator="parent" location="top right"  >{{ t('edit') }}</v-tooltip>
+          </v-btn>
+          <v-btn icon size="small" variant="text" @click="deleteItem(item)">
+            <v-icon>mdi-delete</v-icon>
+            <v-tooltip activator="parent" location="top left" >{{ t('delete') }}</v-tooltip>
+          </v-btn>
+        </div>
+        <div class="partialActions">
+          <v-btn icon size="small" variant="text" @click="moveUp(item.id)">
+            <v-icon>mdi-arrow-up</v-icon>
+            <v-tooltip activator="parent" location="bottom right">{{ t('moveUp') }}</v-tooltip>
+          </v-btn>
+          <v-btn icon size="small" variant="text" @click="moveDown(item.id)">
+            <v-icon>mdi-arrow-down</v-icon>
+            <v-tooltip activator="parent" location="bottom left">{{ t('moveDown') }}</v-tooltip>
+          </v-btn>
+        </div>
       </template>
       <template v-slot:item.permanentlyActive="{ item }">
         <v-checkbox
@@ -165,7 +193,7 @@ const save = (editedItem: IWebsiteRule) => {
 
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="newItem" v-if="!showAll">
-            New Item
+            {{ t(msg.NEW_ITEM) }}
           </v-btn>
           <edit-website-rule-dialog
             :p-item="editingItem"
@@ -193,4 +221,10 @@ const save = (editedItem: IWebsiteRule) => {
 </template>
 
 <style scoped lang="scss">
+.partialActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>

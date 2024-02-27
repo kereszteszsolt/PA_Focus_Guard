@@ -22,6 +22,12 @@
     "alsoDeleteAllAssociatedWebsiteRules" : "Ștergeți și toate regulile asociate ale site-ului",
     "areYouSureDeleteThisWebsiteRule" : "Sunteți sigur că doriți să ștergeți această regulă pentru site?",
     "websiteRuleList" : "Listă de reguli pentru site",
-    "websiteRule" : "Regulă pentru site"
+    "websiteRule" : "Regulă pentru site",
+    "permanentlyActive" : "Activ permanent",
+    "temporarilyInactive" : "Inactiv temporar",
+    "actions" : "Acțiuni",
+    "order" : "Ordine",
+    "globalOrder" : "Ordine globală",
+    "itemsPerPage" : "Elemente pe pagină:"
   }
 }

@@ -22,6 +22,12 @@
     "alsoDeleteAllAssociatedWebsiteRules" : "Also delete all associated website rules",
     "areYouSureDeleteThisWebsiteRule" : "Are you sure you want to delete this website rule?",
     "websiteRuleList" : "Website Rule List",
-    "websiteRule" : "Website Rule"
+    "websiteRule" : "Website Rule",
+    "permanentlyActive" : "Permanently Active",
+    "temporarilyInactive" : "Termporarily Inactive",
+    "actions" : "Actions",
+    "order" : "Order",
+    "globalOrder" : "Global Order",
+    "itemsPerPage" : "Items per page:"
   }
 }

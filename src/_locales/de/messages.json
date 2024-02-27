@@ -22,6 +22,12 @@
     "alsoDeleteAllAssociatedWebsiteRules" : "Auch alle zugehörigen Website-Regeln löschen",
     "areYouSureDeleteThisWebsiteRule" : "Möchten Sie diese Website-Regel wirklich löschen?",
     "websiteRuleList" : "Website-Regelliste",
-    "websiteRule" : "Website-Regel"
+    "websiteRule" : "Website-Regel",
+    "permanentlyActive": "Dauerhaft aktiv",
+    "temporarilyInactive": "Vorübergehend inaktiv",
+    "actions": "Aktionen",
+    "order": "Bestellung",
+    "globalOrder": "Globale Reihenfolge",
+    "itemsPerPage": "Elemente pro Seite:"
   }
 }

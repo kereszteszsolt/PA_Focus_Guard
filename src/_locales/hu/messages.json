@@ -22,6 +22,12 @@
     "alsoDeleteAllAssociatedWebsiteRules": "Törölje az összes kapcsolódó weboldal szabályt is",
     "areYouSureDeleteThisWebsiteRule": "Biztosan törölni szeretné ezt a weboldal szabályt?",
     "websiteRuleList": "Weboldal szabálylista",
-    "websiteRule": "Weboldal szabály"
+    "websiteRule": "Weboldal szabály",
+    "permanentlyActive": "Állandóan aktív",
+    "temporarilyInactive": "Ideiglenesen inaktív",
+    "actions" : "Műveletek",
+    "order": "Sorrend",
+    "globalOrder": "Globális sorrend",
+    "itemsPerPage": "Elemek oldalanként:"
   }
 }
