@@ -7,6 +7,7 @@ import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18nStore } from '@/store';
 import { msg } from '@/constants';
+import { SidebarListItemMenu } from '@/components/common';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
@@ -19,6 +20,8 @@ let editingId = ref('');
 let editingItem = ref(websiteRulesStore.getDummyWebsiteRule);
 let isNewItem = ref(false);
 let isValid = ref(false);
+let page = ref(1);
+let itemsPerPage = ref(5);
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const isLoading = computed(() => websiteRulesStore.isLoading || i18n.isLoading);
@@ -27,10 +30,19 @@ const headers = computed(() => [
   { title: 'URL', value: 'url' },
   { title: t(msg.PERMANENTLY_ACTIVE), value: 'permanentlyActive' },
   { title: t(msg.TEMPORARILY_INACTIVE), value: 'temporarilyInactive' },
-  { title: t(msg.ACTIONS), value: 'actions' },
-  { title: t(msg.ORDER), value: 'order' },
-  { title: t(msg.GLOBAL_ORDER), value: 'globalOrder' }
+  { title: t(msg.ACTIONS), value: 'actions', headerClass: 'csoka' }
+  // ,
+  // { title: t(msg.ORDER), value: 'order' },
+  // { title: t(msg.GLOBAL_ORDER), value: 'globalOrder' }
 ]);
+
+const pageText = computed(() => {
+  const total = websiteRulesStore.getAllWebsiteRules.length;
+  const pageStart = (page.value - 1) * itemsPerPage.value + 1;
+  const pageStop = page.value * itemsPerPage.value > total ? total : page.value * itemsPerPage.value;
+  const totalPages = Math.ceil(total / itemsPerPage.value);
+  return `Page: ${page.value} of ${totalPages} , ${pageStart}-${pageStop} of ${total}`;
+});
 
 const formTitle = computed(() => {
   return editingId.value === '' ? 'New Item' : 'Edit Item';
@@ -99,8 +111,8 @@ const editItem = (id: string) => {
     // throw new Error('Website not found');  TODO - handle error
   }
 };
-const deleteItem = (item: IWebsiteRule) => {
-  const found = websiteRulesStore.getWebsiteRuleById(item.id);
+const deleteItem = (id: string) => {
+  const found = websiteRulesStore.getWebsiteRuleById(id);
   if (found) {
     editingId.value = found.id;
     editingItem.value = found;
@@ -144,48 +156,48 @@ const save = (editedItem: IWebsiteRule) => {
       :items="websiteRules"
       :sort-by="sortByFieldName"
       class="elevation-1">
+      <!--      :items-per-page-text="t(msg.ITEMS_PER_PAGE)"-->
+      <!--      v-model:page="page"-->
+      <!--      v-model:items-per-page="itemsPerPage"-->
+      <!--      :items-per-page-options="[5, 7, 8]"-->
+      <!--      :page-text="pageText"-->
+
       <template v-slot:item.url="{ item }">
-        <div :style="{ minWidth: '250px', maxWidth: '450px', wordBreak: 'break-all' }">
-          <a :href="item.url" target="_blank">{{ item.url }}</a>
+        <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">
+<!--          <a :href="item.url" target="_blank" :style="{fontWeight: 700}">-->
+            {{ item.url }}
+<!--          </a>-->
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
-        <div class="partialActions" >
-          <v-btn icon size="small" variant="text" @click="editItem(item.id)">
-            <v-icon>mdi-pencil</v-icon>
-            <v-tooltip activator="parent" location="top right"  >{{ t('edit') }}</v-tooltip>
-          </v-btn>
-          <v-btn icon size="small" variant="text" @click="deleteItem(item)">
-            <v-icon>mdi-delete</v-icon>
-            <v-tooltip activator="parent" location="top left" >{{ t('delete') }}</v-tooltip>
-          </v-btn>
-        </div>
-        <div class="partialActions">
-          <v-btn icon size="small" variant="text" @click="moveUp(item.id)">
-            <v-icon>mdi-arrow-up</v-icon>
-            <v-tooltip activator="parent" location="bottom right">{{ t('moveUp') }}</v-tooltip>
-          </v-btn>
-          <v-btn icon size="small" variant="text" @click="moveDown(item.id)">
-            <v-icon>mdi-arrow-down</v-icon>
-            <v-tooltip activator="parent" location="bottom left">{{ t('moveDown') }}</v-tooltip>
-          </v-btn>
-        </div>
+        <sidebar-list-item-menu
+          :list-id="item.id"
+          :edit-item="editItem"
+          :delete-item="deleteItem"
+          :move-up="moveUp"
+          :move-down="moveDown"
+          :t="t"
+        />
       </template>
       <template v-slot:item.permanentlyActive="{ item }">
-        <v-checkbox
-          v-model="item.permanentlyActive"
-          color="primary"
-          @change="setPermanentlyActive(item)"
-          hide-details>
-        </v-checkbox>
+        <div class="fgCheckBoxCenter">
+          <v-checkbox
+            v-model="item.permanentlyActive"
+            color="primary"
+            @change="setPermanentlyActive(item)"
+            hide-details>
+          </v-checkbox>
+        </div>
       </template>
       <template v-slot:item.temporarilyInactive="{ item }">
-        <v-checkbox
-          v-model="item.temporarilyInactive"
-          color="primary"
-          @change="setTemporarilyInactive(item)"
-          hide-details>
-        </v-checkbox>
+        <div class="fgCheckBoxCenter">
+          <v-checkbox
+            v-model="item.temporarilyInactive"
+            color="primary"
+            @change="setTemporarilyInactive(item)"
+            hide-details>
+          </v-checkbox>
+        </div>
       </template>
       <template v-slot:top>
         <v-toolbar flat>
@@ -201,6 +213,7 @@ const save = (editedItem: IWebsiteRule) => {
             :p-close-dialog="closeEdit"
             :p-save-item="save"
             :p-is-new-item="isNewItem"
+            :t="t"
           ></edit-website-rule-dialog>
 
           <delete-website-rule-dialog
@@ -208,7 +221,8 @@ const save = (editedItem: IWebsiteRule) => {
             :p-item="editingItem"
             :p-delete-item-confirm="deleteItemConfirm"
             :p-close-dialog="closeDelete"
-            :p-dialog="dialogDelete">
+            :p-dialog="dialogDelete"
+            :t="t">
           </delete-website-rule-dialog>
 
         </v-toolbar>
@@ -220,11 +234,25 @@ const save = (editedItem: IWebsiteRule) => {
   </div>
 </template>
 
-<style scoped lang="scss">
-.partialActions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+<style lang="scss">
+.v-table > .v-table__wrapper > table > tbody > tr > th, .v-table > .v-table__wrapper > table > thead > tr > th, .v-table > .v-table__wrapper > table > tfoot > tr > th {
+  text-align: center;
+
+  > .v-data-table-header__content {
+    justify-content: space-around;
+  }
+}
+
+.fgCheckBoxCenter {
+  > .v-input {
+      > .v-input__control {
+        > .v-selection-control {
+          display: flex;
+          justify-content: space-around;
+            > .v-selection-control__wrapper {
+          }
+        }
+      }
+  }
 }
 </style>

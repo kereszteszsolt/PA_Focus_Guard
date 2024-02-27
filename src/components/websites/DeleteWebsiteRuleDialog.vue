@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IWebsiteRule } from '@/interfaces';
 import { ref, watch } from 'vue';
+import { msg } from '@/constants';
 
 const props = defineProps({
   pDialog: {
@@ -22,6 +23,10 @@ const props = defineProps({
   pIsEmpty: {
     type: Boolean,
     required: true
+  },
+  t: {
+    type: Function,
+    required: true
   }
 });
 
@@ -42,14 +47,14 @@ watch(() => props.pDialog, (value) => {
 <template>
   <v-dialog v-model="dialog" max-width="290" persistent>
     <v-card>
-      <v-card-title class="headline">Delete Website Rule</v-card-title>
+      <v-card-title class="headline">{{t(msg.DELETE_WEBSITE_RULE)}}</v-card-title>
       <v-card-text>
-        Are you sure you want to delete this website rule?
+        {{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE) }}
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="pCloseDialog">Cancel</v-btn>
-        <v-btn @click="pDeleteItemConfirm">Delete</v-btn>
+        <v-btn @click="pCloseDialog">{{ t(msg.CANCEL) }}</v-btn>
+        <v-btn @click="pDeleteItemConfirm">{{ t(msg.DELETE) }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

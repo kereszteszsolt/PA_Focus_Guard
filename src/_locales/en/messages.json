@@ -20,6 +20,8 @@
     "distractionAttempts" : "Distraction Attempts",
     "areYouSureDeleteThisWebsiteRuleList" : "Are you sure you want to delete this website rule list?",
     "alsoDeleteAllAssociatedWebsiteRules" : "Also delete all associated website rules",
+    "deleteWebsiteRuleList": "Delete Website Rule List",
+    "deleteWebsiteRule" : "Delete Website Rule",
     "areYouSureDeleteThisWebsiteRule" : "Are you sure you want to delete this website rule?",
     "websiteRuleList" : "Website Rule List",
     "websiteRule" : "Website Rule",
@@ -28,6 +30,10 @@
     "actions" : "Actions",
     "order" : "Order",
     "globalOrder" : "Global Order",
-    "itemsPerPage" : "Items per page:"
+    "itemsPerPage" : "Items per page:",
+    "newWebsiteRuleList" : "New Website Rule List",
+    "newWebsiteRule" : "New Website Rule",
+    "editWebsiteRuleList" : "Edit Website Rule List",
+    "editWebsiteRule" : "Edit Website Rule"
   }
 }

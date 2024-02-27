@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IWebsiteRule } from '@/interfaces';
 import { computed, ref, watch } from 'vue';
+import { msg } from '@/constants';
 
 const props = defineProps({
   pDialog: {
@@ -21,6 +22,10 @@ const props = defineProps({
   },
   pIsNewItem: {
     type: Boolean,
+    required: true
+  },
+  t: {
+    type: Function,
     required: true
   }
 });
@@ -78,7 +83,7 @@ const save = () => {
       <v-card>
         <v-card-item>
           <v-card-title>
-            <span class="headline">{{ pIsNewItem ? 'Add New Item' : 'Edit Item' }}</span>
+            <span class="headline">{{ pIsNewItem ? t(msg.NEW_WEBSITE_RULE) : t(msg.EDIT_WEBSITE_RULE) }}</span>
           </v-card-title>
         </v-card-item>
 
@@ -97,7 +102,7 @@ const save = () => {
             <v-row>
               <v-col cols="12" sm="12" md="6">
                 <v-checkbox
-                  label="Permanently Active"
+                  :label="t(msg.PERMANENTLY_ACTIVE)"
                   v-model="permanentlyActive"
                   @change="permanentlyActiveChanged"
                 >
@@ -105,7 +110,7 @@ const save = () => {
               </v-col>
               <v-col cols="12" sm="12" md="6">
                 <v-checkbox
-                  label="Temporarily Inactive"
+                  :label="t(msg.TEMPORARILY_INACTIVE)"
                   v-model="temporarilyInactive"
                   @change="temporarilyInactiveChanged"
                 >
@@ -117,8 +122,8 @@ const save = () => {
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="close" color="danger">Cancel</v-btn>
-          <v-btn @click="save" :disabled="!valid" color="primary">Save</v-btn>
+          <v-btn @click="close" color="danger">{{ t(msg.CANCEL) }}</v-btn>
+          <v-btn @click="save" :disabled="!valid" color="primary">{{ t(msg.SAVE) }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>

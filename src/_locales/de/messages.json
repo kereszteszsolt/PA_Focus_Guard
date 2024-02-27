@@ -21,6 +21,8 @@
     "areYouSureDeleteThisWebsiteRuleList" : "Möchten Sie diese Website-Regelliste wirklich löschen?",
     "alsoDeleteAllAssociatedWebsiteRules" : "Auch alle zugehörigen Website-Regeln löschen",
     "areYouSureDeleteThisWebsiteRule" : "Möchten Sie diese Website-Regel wirklich löschen?",
+    "deleteWebsiteRuleList": "Website-Regelliste löschen",
+    "deleteWebsiteRule": "Website-Regel löschen",
     "websiteRuleList" : "Website-Regelliste",
     "websiteRule" : "Website-Regel",
     "permanentlyActive": "Dauerhaft aktiv",
@@ -28,6 +30,10 @@
     "actions": "Aktionen",
     "order": "Bestellung",
     "globalOrder": "Globale Reihenfolge",
-    "itemsPerPage": "Elemente pro Seite:"
+    "itemsPerPage": "Elemente pro Seite:",
+    "newWebsiteRuleList": "Neue Website-Regelliste",
+    "newWebsiteRule": "Neue Website-Regel",
+    "editWebsiteRuleList": "Website-Regelliste bearbeiten",
+    "editWebsiteRule": "Website-Regel bearbeiten"
   }
 }

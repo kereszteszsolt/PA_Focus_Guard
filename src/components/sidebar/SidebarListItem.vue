@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SidebarListItemMenu from '@/components/sidebar/SidebarListItemMenu.vue';
+import { SidebarListItemMenu } from '@/components/common';
 
 defineProps({
   listId: String,

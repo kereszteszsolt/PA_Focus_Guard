@@ -20,6 +20,8 @@
     "distractionAttempts": "Figyelemelterelő kísérletek",
     "areYouSureDeleteThisWebsiteRuleList": "Biztosan törölni szeretné ezt a weboldal szabálylistát?",
     "alsoDeleteAllAssociatedWebsiteRules": "Törölje az összes kapcsolódó weboldal szabályt is",
+    "deleteWebsiteRuleList": "Weboldal szabálylista törlése",
+    "deleteWebsiteRule": "Weboldal szabály törlése",
     "areYouSureDeleteThisWebsiteRule": "Biztosan törölni szeretné ezt a weboldal szabályt?",
     "websiteRuleList": "Weboldal szabálylista",
     "websiteRule": "Weboldal szabály",
@@ -28,6 +30,10 @@
     "actions" : "Műveletek",
     "order": "Sorrend",
     "globalOrder": "Globális sorrend",
-    "itemsPerPage": "Elemek oldalanként:"
+    "itemsPerPage": "Elemek oldalanként:",
+    "newWebsiteRuleList": "Új weboldal szabálylista",
+    "newWebsiteRule": "Új weboldal szabály",
+    "editWebsiteRuleList": "Weboldal szabálylista szerkesztése",
+    "editWebsiteRule": "Weboldal szabály szerkesztése"
   }
 }
