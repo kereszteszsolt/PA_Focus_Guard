@@ -2,6 +2,7 @@
 import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { useTheme } from 'vuetify';
 import { computed, watchEffect } from 'vue';
+import { msg } from '@/constants';
 
 const appDataStore = useAppDataStore();
 const statisticsStore = useStatisticsStore();
@@ -42,7 +43,7 @@ const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoa
           :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
           :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
           @click="appDataStore.updateFocusModeActive(false)">
-          {{ t('off') }}
+          {{ t(msg.OFF) }}
         </v-btn>
       </v-col>
       <v-col cols="6">
@@ -52,18 +53,18 @@ const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoa
           :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
           :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
           @click="appDataStore.updateFocusModeActive(true)">
-          {{ t('on') }}
+          {{ t(msg.ON) }}
         </v-btn>
       </v-col>
     </v-row>
     <v-row class="my-0">
       <v-col cols="12" class="text-center pa-0">
-        <v-btn @click="options">{{ t('settings') }}</v-btn>
+        <v-btn @click="options">{{ t(msg.SETTINGS) }}</v-btn>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" class="text-center">
-        <div class="text-h7">{{ t('distraction_attempts') }}</div>
+        <div class="text-h7">{{ t(msg.DISTRACTION_ATTEMPTS) }}</div>
         <v-btn icon variant="outlined">{{ statisticsStore.getNrOfDistractionAttempts }}</v-btn>
       </v-col>
     </v-row>

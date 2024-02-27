@@ -1,22 +1,27 @@
 {
-  "localeId": "hu",
-  "localeName": "Magyar",
+  "locale": {
+    "id": "hu",
+    "name": "Magyar",
+    "text_direction": "ltr"
+  },
   "messages": {
-    "text": "Hello, világ!",
-    "move_up": "Felfelé mozgatás",
-    "move_down": "Lefelé mozgatás",
+    "moveUp": "Felfelé mozgatás",
+    "moveDown": "Lefelé mozgatás",
     "edit": "Szerkesztés",
     "delete": "Törlés",
     "add": "Hozzáadás",
     "save": "Mentés",
     "cancel": "Mégse",
     "close": "Bezárás",
-    "new_item": "Új elem",
+    "newItem": "Új elem",
     "on": "Be",
     "off": "Ki",
     "settings": "Beállítások",
-    "distraction_attempts": "Zavaró kísérletek",
-    "are_you_sure_you_want_to_delete_this_website_rule": "Biztosan törölni szeretné ezt a webhelyszabályt?",
-    "also_delete_all_items_in_this_list": "Törölje az összes elemet is ezen a listán?"
+    "distractionAttempts": "Figyelemelterelő kísérletek",
+    "areYouSureDeleteThisWebsiteRuleList": "Biztosan törölni szeretné ezt a weboldal szabálylistát?",
+    "alsoDeleteAllAssociatedWebsiteRules": "Törölje az összes kapcsolódó weboldal szabályt is",
+    "areYouSureDeleteThisWebsiteRule": "Biztosan törölni szeretné ezt a weboldal szabályt?",
+    "websiteRuleList": "Weboldal szabálylista",
+    "websiteRule": "Weboldal szabály"
   }
 }

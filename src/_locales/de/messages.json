@@ -1,22 +1,27 @@
 {
-  "localeId": "de",
-  "localeName": "German",
-  "messages": {
-    "text": "Hallo, Welt!",
-    "move_up": "Nach oben bewegen",
-    "move_down": "Nach unten bewegen",
-    "edit": "Bearbeiten",
-    "delete": "Löschen",
-    "add": "Hinzufügen",
-    "save": "Speichern",
-    "cancel": "Abbrechen",
-    "close": "Schließen",
-    "new_item": "Neues Element",
-    "on": "An",
-    "off": "Aus",
-    "settings": "Einstellungen",
-    "distraction_attempts": "Ablenkungsversuche",
-    "are_you_sure_you_want_to_delete_this_website_rule": "Sind Sie sicher, dass Sie diese Website-Regel löschen möchten?",
-    "also_delete_all_items_in_this_list": "Auch alle Elemente in dieser Liste löschen"
+  "locale": {
+    "id": "de",
+    "name": "Deutsch",
+    "text_direction": "ltr"
+  },
+  "messages" : {
+    "moveUp" : "Nach oben verschieben",
+    "moveDown" : "Nach unten verschieben",
+    "edit" : "Bearbeiten",
+    "delete" : "Löschen",
+    "add" : "Hinzufügen",
+    "save" : "Speichern",
+    "cancel" : "Abbrechen",
+    "close" : "Schließen",
+    "newItem" : "Neues Element",
+    "on" : "An",
+    "off" : "Aus",
+    "settings" : "Einstellungen",
+    "distractionAttempts" : "Ablenkungsversuche",
+    "areYouSureDeleteThisWebsiteRuleList" : "Möchten Sie diese Website-Regelliste wirklich löschen?",
+    "alsoDeleteAllAssociatedWebsiteRules" : "Auch alle zugehörigen Website-Regeln löschen",
+    "areYouSureDeleteThisWebsiteRule" : "Möchten Sie diese Website-Regel wirklich löschen?",
+    "websiteRuleList" : "Website-Regelliste",
+    "websiteRule" : "Website-Regel"
   }
 }

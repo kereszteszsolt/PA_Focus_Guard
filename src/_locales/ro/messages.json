@@ -1,21 +1,27 @@
 {
-  "localeId": "ro",
-  "localeName": "Romanian",
-  "messages": {
-    "text": "Salut, lume!",
-    "move_up": "Mutare în sus",
-    "move_down": "Mutare în jos",
-    "edit": "Editare",
-    "delete": "Ștergere",
-    "add": "Adăugare",
-    "save": "Salvare",
-    "cancel": "Anulare",
-    "close": "Închidere",
-    "new_item": "Element nou",
-    "on": "Pornit",
-    "off": "Oprit",
-    "distraction_attempts": "Încercări de distracție",
-    "are_you_sure_you_want_to_delete_this_website_rule": "Sigur dorești să ștergi această regulă pentru site-ul web?",
-    "also_delete_all_items_in_this_list": "De asemenea, șterge toate elementele din această listă"
+  "locale": {
+    "id": "ro",
+    "name": "Română",
+    "text_direction": "ltr"
+  },
+  "messages" : {
+    "moveUp" : "Deplasare în sus",
+    "moveDown" : "Deplasare în jos",
+    "edit" : "Editare",
+    "delete" : "Ștergere",
+    "add" : "Adăugare",
+    "save" : "Salvare",
+    "cancel" : "Anulare",
+    "close" : "Închidere",
+    "newItem" : "Element nou",
+    "on" : "Pornit",
+    "off" : "Oprit",
+    "settings" : "Setări",
+    "distractionAttempts" : "Încercări de distracție",
+    "areYouSureDeleteThisWebsiteRuleList" : "Sunteți sigur că doriți să ștergeți această listă de reguli pentru site?",
+    "alsoDeleteAllAssociatedWebsiteRules" : "Ștergeți și toate regulile asociate ale site-ului",
+    "areYouSureDeleteThisWebsiteRule" : "Sunteți sigur că doriți să ștergeți această regulă pentru site?",
+    "websiteRuleList" : "Listă de reguli pentru site",
+    "websiteRule" : "Regulă pentru site"
   }
 }
