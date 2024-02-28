@@ -31,7 +31,7 @@ const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoa
     <v-card-item class="pa-0">
       <v-card-title color="primary">
         <v-sheet color="primary" class="justify-space-around">
-          <div class="font-weight-bold text-h5 text-center">Focus Guard</div>
+          <div class="font-weight-bold text-h4 text-center">Focus Guard</div>
         </v-sheet>
       </v-card-title>
     </v-card-item>

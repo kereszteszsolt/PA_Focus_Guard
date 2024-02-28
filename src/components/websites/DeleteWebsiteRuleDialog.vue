@@ -45,10 +45,10 @@ watch(() => props.pDialog, (value) => {
 </script>
 
 <template>
-  <v-dialog v-model="dialog" max-width="290" persistent>
-    <v-card>
+  <v-dialog v-model="dialog" max-width="900px" persistent >
+    <v-card color="background">
       <v-card-title class="headline">{{t(msg.DELETE_WEBSITE_RULE)}}</v-card-title>
-      <v-card-text>
+      <v-card-text class="text-body-1 mb-4">
         {{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE) }}
       </v-card-text>
       <v-card-actions>

@@ -80,7 +80,7 @@ const save = () => {
 <template>
   <v-dialog v-model="dialog" max-width="900px" persistent>
     <v-form v-model="valid" @keydown.enter.prevent>
-      <v-card>
+      <v-card color="background">
         <v-card-item>
           <v-card-title>
             <span class="headline">{{ pIsNewItem ? t(msg.NEW_WEBSITE_RULE) : t(msg.EDIT_WEBSITE_RULE) }}</span>

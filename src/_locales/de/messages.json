@@ -34,6 +34,12 @@
     "newWebsiteRuleList": "Neue Website-Regelliste",
     "newWebsiteRule": "Neue Website-Regel",
     "editWebsiteRuleList": "Website-Regelliste bearbeiten",
-    "editWebsiteRule": "Website-Regel bearbeiten"
+    "editWebsiteRule": "Website-Regel bearbeiten",
+    "allWebsiteRuleLists": "Alle Website-Regellisten",
+    "theWebsiteRuleListIsNotEmpty": "Die Website-Regelliste ist nicht leer!",
+    "nameIsRequired": "Name ist erforderlich!",
+    "nameMustBeLessThan50Characters": "Der Name muss weniger als 50 Zeichen lang sein!",
+    "nameMustBeUnique" : "Der Name muss eindeutig sein!",
+    "nameOfWebsiteRuleList" : "Name der Website-Regelliste"
   }
 }

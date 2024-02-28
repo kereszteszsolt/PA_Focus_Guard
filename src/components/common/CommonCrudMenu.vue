@@ -15,7 +15,7 @@ defineProps({
   <v-btn icon size="small" variant="text">
     <v-icon>mdi-dots-vertical</v-icon>
     <v-menu location="end" activator="parent" open-on-hover>
-      <v-list density="compact" class="list fg-background">
+      <v-list density="compact" class="list bg-background">
         <v-row>
           <v-col>
             <v-list-item @click="moveUp(listId)">

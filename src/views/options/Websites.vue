@@ -202,7 +202,7 @@ const save = (editedItem: IWebsiteRule) => {
       </template>
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Website List: {{ websiteRuleListName }}</v-toolbar-title>
+          <v-toolbar-title>{{ websiteRuleListName }}</v-toolbar-title>
 
           <v-spacer></v-spacer>
           <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated">

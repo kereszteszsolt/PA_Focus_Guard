@@ -34,6 +34,12 @@
     "newWebsiteRuleList" : "New Website Rule List",
     "newWebsiteRule" : "New Website Rule",
     "editWebsiteRuleList" : "Edit Website Rule List",
-    "editWebsiteRule" : "Edit Website Rule"
+    "editWebsiteRule" : "Edit Website Rule",
+    "allWebsiteRuleLists" : "All Website Rule Lists",
+    "theWebsiteRuleListIsNotEmpty" : "The website rule list is not empty!",
+    "nameIsRequired" : "Name is required!",
+    "nameMustBeLessThan50Characters" : "Name must be less than 50 characters!",
+    "nameMustBeUnique" : "Name must be unique!",
+    "nameOfWebsiteRuleList" : "Name of Website Rule List"
   }
 }

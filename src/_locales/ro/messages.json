@@ -34,6 +34,12 @@
     "newWebsiteRuleList": "Listă de reguli pentru site nouă",
     "newWebsiteRule": "Regulă pentru site nouă",
     "editWebsiteRuleList": "Editare listă de reguli pentru site",
-    "editWebsiteRule": "Editare regulă pentru site"
+    "editWebsiteRule": "Editare regulă pentru site",
+    "allWebsiteRuleLists": "Toate listele de reguli pentru site",
+    "theWebsiteRuleListIsNotEmpty": "Lista de reguli pentru site nu este goală!",
+    "nameIsRequired" : "Numele este obligatoriu!",
+    "nameMustBeLessThan50Characters" : "Numele trebuie să aibă mai puțin de 50 de caractere!",
+    "nameMustBeUnique" : "Numele trebuie să fie unic!",
+    "nameOfWebsiteRuleList" : "Numele listei de reguli pentru site"
   }
 }

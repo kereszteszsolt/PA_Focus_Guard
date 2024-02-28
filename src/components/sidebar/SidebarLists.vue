@@ -5,6 +5,7 @@ import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import EditWebsiteRulesListDialog from '@/components/websites/EditWebsiteRulesListDialog.vue';
 import DeleteWebsiteListRuleDialog from '@/components/websites/DeleteWebsiteListRuleDialog.vue';
 import { computed, ref } from 'vue';
+import { msg } from '@/constants';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
@@ -94,7 +95,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
         </v-list-item>
         <v-divider></v-divider>
         <router-link :to="{ name: 'WebsitesByListId', params: { id: 'all' } }" class="router-link">
-          <v-list-item title="All Websites" value="all"></v-list-item>
+          <v-list-item :title="t(msg.ALL_WEBSITE_RULE_LISTS)" value="all"></v-list-item>
         </router-link>
       </v-list>
     </div>

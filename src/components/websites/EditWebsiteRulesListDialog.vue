@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IWebsiteRuleList } from '@/interfaces';
 import { computed, ref, watch } from 'vue';
+import { msg } from '@/constants';
 
 const props = defineProps({
   pDialog: {
@@ -35,8 +36,8 @@ let name = ref('');
 
 const nameRules = computed(() => {
   return [
-    (v: string) => !!v || 'Name is required',
-    (v: string) => (v && v.length <= 50) || 'Name must be less than 50 characters'
+    (v: string) => !!v || props.t(msg.NAME_IS_REQUIRED),
+    (v: string) => (v && v.length <= 50) || props.t(msg.NAME_MUST_BE_LESS_THAN_50_CHARACTERS)
   ];
 });
 
@@ -63,25 +64,25 @@ const close = () => {
 <template>
   <v-dialog v-model="dialog" max-width="900px" persistent>
     <v-form @keydown.enter.prevent>
-      <v-card>
+      <v-card color="background">
         <v-card-item>
           <v-card-title>
-            <span class="headline">{{ pIsNewItem ? 'Add Website List' : 'Edit Website List' }}</span>
+            <span class="headline">{{ pIsNewItem ? t(msg.NEW_WEBSITE_RULE_LIST) : t(msg.EDIT_WEBSITE_RULE_LIST) }}</span>
           </v-card-title>
         </v-card-item>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="name" :rules="nameRules" label="Name" required></v-text-field>
+                <v-text-field v-model="name" :rules="nameRules" :label="t(msg.NAME_OF_WEBSITE_RULE_LIST)" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="close" color="danger" variant="elevated">{{ t('cancel') }}</v-btn>
-          <v-btn @click="save" :disabled="!valid" color="success" variant="elevated">{{ t('save') }}</v-btn>
+          <v-btn @click="close" color="danger" variant="elevated">{{ t(msg.CANCEL) }}</v-btn>
+          <v-btn @click="save" :disabled="!valid" color="success" variant="elevated">{{ t(msg.SAVE) }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
