@@ -12,7 +12,7 @@ const isCurrentLocale = (id: string) => {
 </script>
 
 <template>
-  <v-sheet class="sidebar-language border-radius-8" color="background">
+  <v-sheet class="border-radius-8 flex-1-0" color="background">
     <v-list class="bg-background border-radius-8">
         <v-list-item :title="locale.name"
                      v-for="locale in i18n.getAllLocales"
@@ -36,26 +36,10 @@ const isCurrentLocale = (id: string) => {
         </template>
       </v-list-item>
       <v-divider></v-divider>
-      <router-link :to="{ name: 'LanguagesByLanguageId', params: { id: 'all' } }" class="router-link">
-        <v-list-item title="All Languages" value="all"></v-list-item>
-      </router-link>
     </v-list>
   </v-sheet>
 </template>
 
 <style scoped lang="scss">
-.sidebar-language {
-  height: 100%;
-}
 
-.router-link {
-  text-decoration: none;
-  color: inherit;
-}
-.fgl-active {
-  background-color: #15440a;
-}
-.fgl-inactive {
-  background-color: #bb1414;
-}
 </style>

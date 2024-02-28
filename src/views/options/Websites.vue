@@ -148,7 +148,7 @@ const save = (editedItem: IWebsiteRule) => {
 </script>
 
 <template>
-  <div v-if="!isLoading" class="long border-radius-8">
+  <div v-if="!isLoading" class="flex-1-0 border-radius-8">
     <v-data-table
       :headers="headers"
       :items="websiteRules"
@@ -230,6 +230,7 @@ const save = (editedItem: IWebsiteRule) => {
                 v-model="page"
                 :length="totalPages"
                 :total-visible="totalVisiblePages"
+                rounded="circle"
               ></v-pagination>
 
               <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }} {{ websiteRules.length }}</v-label>
@@ -265,8 +266,5 @@ const save = (editedItem: IWebsiteRule) => {
       }
     }
   }
-}
-.long {
-  min-height: 80vh;
 }
 </style>

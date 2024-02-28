@@ -16,19 +16,14 @@ const pathId = computed(() => {
 </script>
 
 <template>
-    <v-container class="flexContainer border-radius-8">
+    <v-container class="d-flex flex-column h-100 pa-0 border-radius-8">
           <sidebar-lists v-if="path === 'websites'"/>
           <sidebar-language v-if="path === 'languages'"/>
+          <v-divider></v-divider>
           <sidebar-toolbar :path="path" />
     </v-container>
 </template>
 
 <style scoped lang="scss">
-.flexContainer {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 0;
-}
+
 </style>

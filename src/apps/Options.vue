@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppBar, Sidebar } from '@/layouts';
+import { AppBar, Sidebar, FgFooter } from '@/layouts';
 import { useTheme } from 'vuetify';
 import { computed } from 'vue';
 
@@ -21,18 +21,11 @@ const isDark = computed(() => theme.global.current.value.dark);
               </v-sheet>
             </v-col>
             <v-col lg="9">
-              <v-sheet elevation="12" height="88vh" color="background" class="border-radius-8">
+              <v-sheet elevation="12" height="88vh" color="background" class="border-radius-8 content-footer-container">
                 <router-view/>
                 <v-divider></v-divider>
-                <v-sheet color="background" class="border-bottom-radius-8"><p>Focus Guard © 2024 - Keresztes Zsolt</p><p>Version: 2.0.0</p><p>Free Software.</p>
-                  <v-icon>mdi-facebook</v-icon>
-                  <v-icon>mdi-linkedin</v-icon>
-                  <v-icon>mdi-twitter</v-icon>
-                  <v-icon>mdi-instagram</v-icon>
-                  <v-icon>mdi-youtube</v-icon>
-                  <v-icon>mdi-github</v-icon>
-                  <v-icon>mdi-tiktok</v-icon>
-                  <v-icon>mdi-paypal</v-icon>
+                <v-sheet color="background" class="border-bottom-radius-8">
+                  <fg-footer/>
                 </v-sheet>
               </v-sheet>
             </v-col>
@@ -86,5 +79,9 @@ const isDark = computed(() => theme.global.current.value.dark);
   @media (min-width: 1200px) {
     max-width: 1140px;
   }
+}
+.content-footer-container {
+  display: flex;
+  flex-direction: column;
 }
 </style>

@@ -28,7 +28,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <v-container class="d-flex justify-space-between">
+  <v-container class="d-flex justify-space-between fg-footer-h ">
     <v-btn to="/websites" size="x-large" icon='mdi-home' v-if="path !== 'websites'" color="accent" variant="elevated"></v-btn>
     <v-btn @click="toggleTheme" size="x-large"  color="accent" variant="elevated"
            :icon="theme.global.current.value.dark ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"></v-btn>
