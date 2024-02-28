@@ -16,13 +16,24 @@ const isDark = computed(() => theme.global.current.value.dark);
         <v-container class="container">
           <v-row>
             <v-col lg="3">
-              <v-sheet :rounded="true" height="80vh" color="background">
+              <v-sheet :rounded="true" elevation="1" height="88vh" color="background">
                 <sidebar/>
               </v-sheet>
             </v-col>
             <v-col lg="9">
-              <v-sheet :rounded="true" height="80vh" color="background">
+              <v-sheet :rounded="true" elevation="1" height="88vh" color="background">
                 <router-view/>
+                <v-divider></v-divider>
+                <v-sheet color="background"><p>Focus Guard © 2024 - Keresztes Zsolt</p><p>Version: 2.0.0</p><p>Free Software.</p>
+                  <v-icon>mdi-facebook</v-icon>
+                  <v-icon>mdi-linkedin</v-icon>
+                  <v-icon>mdi-twitter</v-icon>
+                  <v-icon>mdi-instagram</v-icon>
+                  <v-icon>mdi-youtube</v-icon>
+                  <v-icon>mdi-github</v-icon>
+                  <v-icon>mdi-tiktok</v-icon>
+                  <v-icon>mdi-paypal</v-icon>
+                </v-sheet>
               </v-sheet>
             </v-col>
           </v-row>

@@ -148,12 +148,11 @@ const save = (editedItem: IWebsiteRule) => {
 </script>
 
 <template>
-  <div v-if="!isLoading">
+  <div v-if="!isLoading" class="long">
     <v-data-table
       :headers="headers"
       :items="websiteRules"
       :sort-by="sortByFieldName"
-      color="deep-purple-lighten-3"
       class="bg-background"
       v-model:page="page"
       v-model:items-per-page="itemsPerPage"
@@ -266,5 +265,8 @@ const save = (editedItem: IWebsiteRule) => {
       }
     }
   }
+}
+.long {
+  min-height: 80vh;
 }
 </style>
