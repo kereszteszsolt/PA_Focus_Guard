@@ -12,8 +12,8 @@ const isCurrentLocale = (id: string) => {
 </script>
 
 <template>
-  <v-sheet class="sidebar-language" color="background">
-    <v-list class="bg-background">
+  <v-sheet class="sidebar-language border-radius-8" color="background">
+    <v-list class="bg-background border-radius-8">
         <v-list-item :title="locale.name"
                      v-for="locale in i18n.getAllLocales"
                      :key="locale.id"

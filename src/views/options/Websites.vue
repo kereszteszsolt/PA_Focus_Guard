@@ -148,7 +148,7 @@ const save = (editedItem: IWebsiteRule) => {
 </script>
 
 <template>
-  <div v-if="!isLoading" class="long">
+  <div v-if="!isLoading" class="long border-radius-8">
     <v-data-table
       :headers="headers"
       :items="websiteRules"
@@ -196,7 +196,7 @@ const save = (editedItem: IWebsiteRule) => {
         </div>
       </template>
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat class="border-top-radius-8">
           <v-toolbar-title>{{ websiteRuleListName }}</v-toolbar-title>
 
           <v-spacer></v-spacer>

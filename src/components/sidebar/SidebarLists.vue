@@ -74,9 +74,9 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 </script>
 
 <template>
-  <v-sheet class="sidebar-lists" color="background">
+  <v-sheet class="sidebar-lists border-radius-8" color="background">
     <div v-if="!websiteRulesStore.isLoading">
-      <v-list class="bg-background">
+      <v-list class="bg-background border-radius-8">
         <router-link v-for="list in websiteRulesStore.getWebsiteRuleLists" :key="list.id"
                      :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
           <sidebar-list-item :list-id="list.id" :list-name="list.name"

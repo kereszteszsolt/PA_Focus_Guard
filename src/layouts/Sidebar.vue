@@ -16,7 +16,7 @@ const pathId = computed(() => {
 </script>
 
 <template>
-    <v-container class="flexContainer">
+    <v-container class="flexContainer border-radius-8">
           <sidebar-lists v-if="path === 'websites'"/>
           <sidebar-language v-if="path === 'languages'"/>
           <sidebar-toolbar :path="path" />
