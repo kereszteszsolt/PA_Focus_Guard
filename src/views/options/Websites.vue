@@ -21,7 +21,7 @@ let editingItem = ref(websiteRulesStore.getDummyWebsiteRule);
 let isNewItem = ref(false);
 let isValid = ref(false);
 let page = ref(1);
-let itemsPerPage = ref(5);
+let itemsPerPage = ref(10);
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const isLoading = computed(() => websiteRulesStore.isLoading || i18n.isLoading);
@@ -36,16 +36,16 @@ const headers = computed(() => [
   // { title: t(msg.GLOBAL_ORDER), value: 'globalOrder' }
 ]);
 
-const pageText = computed(() => {
-  const total = websiteRulesStore.getAllWebsiteRules.length;
-  const pageStart = (page.value - 1) * itemsPerPage.value + 1;
-  const pageStop = page.value * itemsPerPage.value > total ? total : page.value * itemsPerPage.value;
-  const totalPages = Math.ceil(total / itemsPerPage.value);
-  return `Page: ${page.value} of ${totalPages} , ${pageStart}-${pageStop} of ${total}`;
-});
+// const pageText = computed(() => {
+//   const total = websiteRulesStore.getAllWebsiteRules.length;
+//   const pageStart = (page.value - 1) * itemsPerPage.value + 1;
+//   const pageStop = page.value * itemsPerPage.value > total ? total : page.value * itemsPerPage.value;
+//   const totalPages = Math.ceil(total / itemsPerPage.value);
+//   return `Page: ${page.value} of ${totalPages} , ${pageStart}-${pageStop} of ${total}`;
+// });
 
-const formTitle = computed(() => {
-  return editingId.value === '' ? 'New Item' : 'Edit Item';
+const totalPages = computed(() => {
+  return Math.ceil(websiteRulesStore.getAllWebsiteRules.length / itemsPerPage.value);
 });
 
 const pathId = computed(() => {
@@ -156,18 +156,20 @@ const save = (editedItem: IWebsiteRule) => {
       :items="websiteRules"
       :sort-by="sortByFieldName"
       color="deep-purple-lighten-3"
-      class="bg-background">
+      class="bg-background"
+      v-model:page="page"
+      v-model:items-per-page="itemsPerPage"
+    >
       <!--      :items-per-page-text="t(msg.ITEMS_PER_PAGE)"-->
-      <!--      v-model:page="page"-->
-      <!--      v-model:items-per-page="itemsPerPage"-->
+
       <!--      :items-per-page-options="[5, 7, 8]"-->
       <!--      :page-text="pageText"-->
 
       <template v-slot:item.url="{ item }">
         <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">
-<!--          <a :href="item.url" target="_blank" :style="{fontWeight: 700}">-->
-            {{ item.url }}
-<!--          </a>-->
+          <!--          <a :href="item.url" target="_blank" :style="{fontWeight: 700}">-->
+          {{ item.url }}
+          <!--          </a>-->
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
@@ -228,6 +230,29 @@ const save = (editedItem: IWebsiteRule) => {
 
         </v-toolbar>
       </template>
+      <template v-slot:bottom>
+        <v-sheet>
+          <v-row>
+            <v-col></v-col>
+            <v-col>
+              <v-btn icon @click="page = 1" :disabled="page === 1" variant="text">
+                <v-icon>mdi-page-first</v-icon>
+              </v-btn>
+              <v-btn icon @click="page = page - 1" :disabled="page === 1" variant="text">
+                <v-icon>mdi-chevron-left</v-icon>
+              </v-btn>
+              {{ page }} / {{ totalPages }}
+              <v-btn icon @click="page = page + 1" :disabled="page === totalPages" variant="text">
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-btn>
+              <v-btn icon @click="page = totalPages" :disabled="page === totalPages" variant="text">
+                <v-icon>mdi-page-last</v-icon>
+              </v-btn>
+            </v-col>
+            <v-col></v-col>
+          </v-row>
+        </v-sheet>
+      </template>
     </v-data-table>
   </div>
   <div v-else class="d-flex justify-center align-center fill-height">
@@ -246,14 +271,15 @@ const save = (editedItem: IWebsiteRule) => {
 
 .fgCheckBoxCenter {
   > .v-input {
-      > .v-input__control {
-        > .v-selection-control {
-          display: flex;
-          justify-content: space-around;
-            > .v-selection-control__wrapper {
-          }
+    > .v-input__control {
+      > .v-selection-control {
+        display: flex;
+        justify-content: space-around;
+
+        > .v-selection-control__wrapper {
         }
       }
+    }
   }
 }
 </style>
