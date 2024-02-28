@@ -40,6 +40,7 @@
     "nameIsRequired" : "A név kötelező!",
     "nameMustBeLessThan50Characters" : "A névnek kevesebb, mint 50 karakternek kell lennie!",
     "nameMustBeUnique" : "A névnek egyedinek kell lennie!",
-    "nameOfWebsiteRuleList" : "Weboldal szabálylista neve"
+    "nameOfWebsiteRuleList" : "Weboldal szabálylista neve",
+    "totalNrOfItems" : "Összes elem száma: "
   }
 }

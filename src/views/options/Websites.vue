@@ -36,16 +36,14 @@ const headers = computed(() => [
   // { title: t(msg.GLOBAL_ORDER), value: 'globalOrder' }
 ]);
 
-// const pageText = computed(() => {
-//   const total = websiteRulesStore.getAllWebsiteRules.length;
-//   const pageStart = (page.value - 1) * itemsPerPage.value + 1;
-//   const pageStop = page.value * itemsPerPage.value > total ? total : page.value * itemsPerPage.value;
-//   const totalPages = Math.ceil(total / itemsPerPage.value);
-//   return `Page: ${page.value} of ${totalPages} , ${pageStart}-${pageStop} of ${total}`;
-// });
-
 const totalPages = computed(() => {
-  return Math.ceil(websiteRulesStore.getAllWebsiteRules.length / itemsPerPage.value);
+  return Math.ceil(((pathId.value === 'all' || !pathId.value) ?
+    websiteRulesStore.getAllWebsiteRules :
+    websiteRulesStore.getWebsiteRulesByListId(pathId.value)).length / itemsPerPage.value);
+});
+
+const totalVisiblePages = computed(() => {
+  return totalPages.value > 5 ? 5 : totalPages.value;
 });
 
 const pathId = computed(() => {
@@ -160,13 +158,9 @@ const save = (editedItem: IWebsiteRule) => {
       v-model:page="page"
       v-model:items-per-page="itemsPerPage"
     >
-      <!--      :items-per-page-text="t(msg.ITEMS_PER_PAGE)"-->
-
-      <!--      :items-per-page-options="[5, 7, 8]"-->
-      <!--      :page-text="pageText"-->
-
       <template v-slot:item.url="{ item }">
-        <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">
+        <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word', textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
+<!--        <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">-->
           <!--          <a :href="item.url" target="_blank" :style="{fontWeight: 700}">-->
           {{ item.url }}
           <!--          </a>-->
@@ -231,26 +225,17 @@ const save = (editedItem: IWebsiteRule) => {
         </v-toolbar>
       </template>
       <template v-slot:bottom>
-        <v-sheet>
-          <v-row>
-            <v-col></v-col>
-            <v-col>
-              <v-btn icon @click="page = 1" :disabled="page === 1" variant="text">
-                <v-icon>mdi-page-first</v-icon>
-              </v-btn>
-              <v-btn icon @click="page = page - 1" :disabled="page === 1" variant="text">
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              {{ page }} / {{ totalPages }}
-              <v-btn icon @click="page = page + 1" :disabled="page === totalPages" variant="text">
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-              <v-btn icon @click="page = totalPages" :disabled="page === totalPages" variant="text">
-                <v-icon>mdi-page-last</v-icon>
-              </v-btn>
-            </v-col>
-            <v-col></v-col>
-          </v-row>
+        <v-sheet color="background" class="d-flex justify-space-between">
+
+              <v-pagination
+                v-model="page"
+                :length="totalPages"
+                :total-visible="totalVisiblePages"
+              ></v-pagination>
+
+              <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }} {{ websiteRules.length }}</v-label>
+
+
         </v-sheet>
       </template>
     </v-data-table>

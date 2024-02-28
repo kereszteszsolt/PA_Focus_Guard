@@ -36,3 +36,4 @@ export const NAME_MUST_BE_LESS_THAN_50_CHARACTERS = 'nameMustBeLessThan50Charact
 export const NAME_MUST_BE_UNIQUE = 'nameMustBeUnique';
 export const NAME_OF_WEBSITE_RULE_LIST = 'nameOfWebsiteRuleList';
 export const DELETE_WEBSITE_RULE_LIST = 'deleteWebsiteRuleList';
+export const TOTAL_NR_OF_ITEMS = 'totalNrOfItems';
