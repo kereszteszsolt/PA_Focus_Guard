@@ -16,17 +16,15 @@ const isDark = computed(() => theme.global.current.value.dark);
         <v-container class="container">
           <v-row>
             <v-col lg="3">
-              <v-sheet elevation="12" height="88vh" color="background" class="border-radius-8">
+              <v-sheet elevation="12" height="88.5vh" color="background" class="border-radius-8">
                 <sidebar/>
               </v-sheet>
             </v-col>
             <v-col lg="9">
-              <v-sheet elevation="12" height="88vh" color="background" class="border-radius-8 content-footer-container">
+              <v-sheet elevation="12" height="88.5vh" color="background" class="d-flex flex-column border-radius-8">
                 <router-view/>
                 <v-divider></v-divider>
-                <v-sheet color="background" class="border-bottom-radius-8">
-                  <fg-footer/>
-                </v-sheet>
+                <fg-footer/>
               </v-sheet>
             </v-col>
           </v-row>
@@ -79,9 +77,5 @@ const isDark = computed(() => theme.global.current.value.dark);
   @media (min-width: 1200px) {
     max-width: 1140px;
   }
-}
-.content-footer-container {
-  display: flex;
-  flex-direction: column;
 }
 </style>
