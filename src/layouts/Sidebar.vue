@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { SidebarLists, SidebarToolbar } from '@/components/sidebar';
-import SidebarLanguage from '@/components/sidebar/SidebarLanguageList.vue';
+import { SidebarLists, SidebarToolbar, SidebarLanguageList, SidebarNotFound } from '@/components/sidebar';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 const route = useRoute();
@@ -13,12 +12,22 @@ const pathId = computed(() => {
   return route.params.id;
 });
 
+const dynamicComponent = computed(() => {
+  switch (path.value) {
+    case 'websites':
+      return SidebarLists;
+    case 'languages':
+      return SidebarLanguageList;
+    default:
+      return SidebarNotFound;
+  }
+});
+
 </script>
 
 <template>
     <v-container class="d-flex flex-column h-100 pa-0 border-radius-8">
-          <sidebar-lists v-if="path === 'websites'"/>
-          <sidebar-language v-if="path === 'languages'"/>
+          <component :is="dynamicComponent" />
           <v-divider></v-divider>
           <sidebar-toolbar :path="path" />
     </v-container>
