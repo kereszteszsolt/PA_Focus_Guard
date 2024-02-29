@@ -1,3 +1,3 @@
-import SidebarListItemMenu from './CommonCrudMenu.vue';
+import CommonCrudMenu from './CommonCrudMenu.vue';
 
-export { SidebarListItemMenu };
+export { CommonCrudMenu };

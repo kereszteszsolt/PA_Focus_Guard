@@ -2,8 +2,7 @@
 import { useI18nStore, useWebsiteRulesStore } from '@/store';
 import { IWebsiteRuleList } from '@/interfaces';
 import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
-import EditWebsiteRulesListDialog from '@/components/websites/EditWebsiteRulesListDialog.vue';
-import DeleteWebsiteListRuleDialog from '@/components/websites/DeleteWebsiteListRuleDialog.vue';
+import { EditWebsiteRuleListDialog, DeleteWebsiteRuleListDialog } from '@/components/websites';
 import { computed, ref } from 'vue';
 import { msg } from '@/constants';
 
@@ -100,11 +99,11 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
       </v-list>
     </div>
   </v-sheet>
-  <edit-website-rules-list-dialog :p-dialog="dialogEdit" :p-item="editingWebsiteList" :p-save-item="saveItem"
-                                  :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog" :t="t"></edit-website-rules-list-dialog>
-  <delete-website-list-rule-dialog :p-dialog="dialogDelete" :p-item="editingWebsiteList"
+  <edit-website-rule-list-dialog :p-dialog="dialogEdit" :p-item="editingWebsiteList" :p-save-item="saveItem"
+                                  :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog" :t="t"></edit-website-rule-list-dialog>
+  <delete-website-rule-list-dialog :p-dialog="dialogDelete" :p-item="editingWebsiteList"
                                    :p-delete-item-confirm="deleteItemConfirm" :p-close-dialog="closeDelete"
-                                   :p-is-empty="isEmpty" :t="t"></delete-website-list-rule-dialog>
+                                   :p-is-empty="isEmpty" :t="t"></delete-website-rule-list-dialog>
 </template>
 
 <style scoped lang="scss">

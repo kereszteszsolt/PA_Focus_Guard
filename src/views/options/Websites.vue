@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { useWebsiteRulesStore } from '@/store/websiteRulesStore';
 import { IWebsiteRule } from '@/interfaces';
-import EditWebsiteRuleDialog from '@/components/websites/EditWebsiteRuleDialog.vue';
-import DeleteWebsiteRuleDialog from '@/components/websites/DeleteWebsiteRuleDialog.vue';
+import { EditWebsiteRuleDialog, DeleteWebsiteRuleDialog } from '@/components/websites';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18nStore } from '@/store';
 import { msg } from '@/constants';
-import { SidebarListItemMenu } from '@/components/common';
+import { CommonCrudMenu } from '@/components/common';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
@@ -158,15 +157,16 @@ const save = (editedItem: IWebsiteRule) => {
       v-model:items-per-page="itemsPerPage"
     >
       <template v-slot:item.url="{ item }">
-        <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word', textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
-<!--        <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">-->
+        <div
+          :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word', textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
+          <!--        <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">-->
           <!--          <a :href="item.url" target="_blank" :style="{fontWeight: 700}">-->
           {{ item.url }}
           <!--          </a>-->
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
-        <sidebar-list-item-menu
+        <common-crud-menu
           :list-id="item.id"
           :edit-item="editItem"
           :delete-item="deleteItem"
@@ -226,15 +226,16 @@ const save = (editedItem: IWebsiteRule) => {
       <template v-slot:bottom>
         <v-sheet color="background" class="d-flex justify-space-between">
 
-              <v-pagination
-                v-model="page"
-                :length="totalPages"
-                :total-visible="totalVisiblePages"
-                rounded="circle"
-              ></v-pagination>
+          <v-pagination
+            v-model="page"
+            :length="totalPages"
+            :total-visible="totalVisiblePages"
+            rounded="circle"
+          ></v-pagination>
 
-              <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }} {{ websiteRules.length }}</v-label>
-
+          <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
+            {{ websiteRules.length }}
+          </v-label>
 
         </v-sheet>
       </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SidebarListItemMenu } from '@/components/common';
+import { CommonCrudMenu } from '@/components/common';
 
 defineProps({
   listId: String,
@@ -17,7 +17,7 @@ defineProps({
   <v-list-item color="primary" :value="listId">
     <v-list-item-title>{{ listName }}</v-list-item-title>
     <template v-slot:append>
-      <sidebar-list-item-menu
+      <common-crud-menu
         :list-id="listId"
         :edit-item="editItem"
         :delete-item="deleteItem"
