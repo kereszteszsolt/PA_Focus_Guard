@@ -55,8 +55,7 @@ const isDark = computed(() => theme.global.current.value.dark);
 
 .container {
   max-width: 100%;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding: 16px 16px 0 16px;
   margin-top: 0;
   margin-right: auto;
   margin-left: auto;

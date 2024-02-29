@@ -3,13 +3,19 @@
 </script>
 
 <template>
-  <v-app-bar color="primary">
+  <v-sheet class="fgAppBar d-flex justify-space-around" color="primary" elevation="12">
     <v-spacer></v-spacer>
-    <div class="font-weight-bold text-h4 text-center">Focus Guard</div>
+    <span class="fgAppBar__title">Focus Guard</span>
     <v-spacer></v-spacer>
-  </v-app-bar>
+  </v-sheet>
 </template>
 
 <style scoped lang="scss">
-
+.fgAppBar {
+  height: 72px;
+}
+.fgAppBar__title {
+  font-size: 3rem;
+  font-weight: 700;
+}
 </style>
