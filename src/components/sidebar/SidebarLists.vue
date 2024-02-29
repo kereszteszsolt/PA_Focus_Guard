@@ -90,7 +90,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
         <v-divider></v-divider>
         <v-list-item>
           <template v-slot:prepend>
-            <v-btn density="compact" icon="mdi-plus" @click="newItem" color="accent" variant="elevated"></v-btn>
+            <v-btn density="compact" icon="mdi-plus" @click="newItem" color="accent" variant="elevated" elevation="4"></v-btn>
           </template>
         </v-list-item>
         <v-divider></v-divider>

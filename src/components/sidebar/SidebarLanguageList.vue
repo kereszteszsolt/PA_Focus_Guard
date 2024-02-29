@@ -24,6 +24,7 @@ const isCurrentLocale = (id: string) => {
             <v-btn icon
                    :color="isCurrentLocale(locale.id) ? 'success' : 'secondary'"
                      variant="elevated"
+                   elevation="12"
                    size="small">
               <v-icon>{{ isCurrentLocale(locale.id) ? 'mdi-check-circle' : 'mdi-circle-off-outline' }}</v-icon>
             </v-btn>
@@ -32,7 +33,7 @@ const isCurrentLocale = (id: string) => {
       <v-divider></v-divider>
       <v-list-item>
         <template v-slot:prepend>
-          <v-btn density="compact" icon="mdi-plus" color="accent" variant="elevated"></v-btn>
+          <v-btn density="compact" icon="mdi-plus" color="accent" variant="elevated" elevation="4"></v-btn>
         </template>
       </v-list-item>
       <v-divider></v-divider>

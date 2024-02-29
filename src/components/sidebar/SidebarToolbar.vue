@@ -29,11 +29,11 @@ watchEffect(() => {
 
 <template>
   <v-container class="d-flex justify-space-between fg-footer-h ">
-    <v-btn to="/websites" size="x-large" icon='mdi-home' v-if="path !== 'websites'" color="accent" variant="elevated"></v-btn>
-    <v-btn @click="toggleTheme" size="x-large"  color="accent" variant="elevated"
+    <v-btn to="/websites" size="x-large" icon='mdi-home' v-if="path !== 'websites'" color="accent" variant="elevated" elevation="12"></v-btn>
+    <v-btn @click="toggleTheme" size="x-large"  color="accent" variant="elevated" elevation="12"
            :icon="theme.global.current.value.dark ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"></v-btn>
-    <v-btn to="/languages" size="x-large" icon='mdi-translate' v-if="path !== 'languages'" color="accent" variant="elevated"></v-btn>
-    <v-btn to="/settings" size="x-large" icon='mdi-wrench' v-if="path !== 'settings'" color="accent" variant="elevated"></v-btn>
+    <v-btn to="/languages" size="x-large" icon='mdi-translate' v-if="path !== 'languages'" color="accent" variant="elevated" elevation="12"></v-btn>
+    <v-btn to="/settings" size="x-large" icon='mdi-wrench' v-if="path !== 'settings'" color="accent" variant="elevated" elevation="12"></v-btn>
   </v-container>
 </template>
 

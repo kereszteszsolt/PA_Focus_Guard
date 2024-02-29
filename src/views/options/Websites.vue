@@ -200,7 +200,7 @@ const save = (editedItem: IWebsiteRule) => {
           <v-toolbar-title>{{ websiteRuleListName }}</v-toolbar-title>
 
           <v-spacer></v-spacer>
-          <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated">
+          <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated" elevation="12">
             {{ t(msg.NEW_ITEM) }}
           </v-btn>
           <edit-website-rule-dialog
