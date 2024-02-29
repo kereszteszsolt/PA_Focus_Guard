@@ -6,24 +6,40 @@
   <v-sheet color="background"
            class="border-bottom-radius-8 fg-h-104px d-flex flex-column justify-space-between px-5 py-2">
     <div class="d-flex flex-row justify-space-around">
-      <div class="d-flex flex-column justify-space-around">
+      <v-btn variant="text" class="flex-1-0">
         <v-icon>mdi-facebook</v-icon>
-        <v-icon>mdi-linkedin</v-icon>
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
         <v-icon>mdi-twitter</v-icon>
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
         <v-icon>mdi-instagram</v-icon>
-      </div>
-      <div class="d-flex flex-column justify-space-around">
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
+        <v-icon>mdi-linkedin</v-icon>
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
         <v-icon>mdi-youtube</v-icon>
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
         <v-icon>mdi-youtube</v-icon>
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
         <v-icon>mdi-github</v-icon>
-        <v-icon>mdi-information</v-icon>
-      </div>
-      <div class="d-flex flex-column justify-space-around">
-        <router-link to="/about">About</router-link>
-        <router-link to="/gtc">GTC</router-link>
-        <router-link to="/acknowledgments">Acknowledgments</router-link>
-        <router-link to="/how-to-use">How to use</router-link>
-      </div>
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
+        <v-icon>mdi-coffee</v-icon>
+      </v-btn>
+      <v-btn variant="text" class="flex-1-0">
+        <v-icon>mdi-tree</v-icon>
+      </v-btn>
+    </div>
+    <div class="d-flex flex-row justify-space-around text-none text-center">
+      <rounter-link to="/about" class="flex-1-0"><span>About</span></rounter-link>
+      <rounter-link to="/Gtc" class="flex-1-0"><span>Gtc</span></rounter-link>
+      <rounter-link to="/donation" class="flex-1-0"><span>Donation</span></rounter-link>
+      <rounter-link to="/acknowledgments" class="flex-1-0"><span>Acknowledgments</span></rounter-link>
+      <rounter-link to="/how-to-use" class="flex-1-0"><span>How to use</span></rounter-link>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">
       <p>Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
