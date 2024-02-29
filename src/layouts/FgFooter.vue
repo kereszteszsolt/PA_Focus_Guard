@@ -19,10 +19,10 @@
         <v-icon>mdi-information</v-icon>
       </div>
       <div class="d-flex flex-column justify-space-around">
-        <p>About</p>
-        <p>GTC</p>
-        <p>Acknowledgments</p>
-        <p>How to use?</p>
+        <router-link to="/about">About</router-link>
+        <router-link to="/gtc">GTC</router-link>
+        <router-link to="/acknowledgments">Acknowledgments</router-link>
+        <router-link to="/how-to-use">How to use</router-link>
       </div>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">

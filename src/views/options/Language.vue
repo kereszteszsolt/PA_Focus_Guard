@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="fgLanguage flex-1-0">
+  <div class="flex-1-0">
     <h1>Language</h1>
   </div>
 </template>

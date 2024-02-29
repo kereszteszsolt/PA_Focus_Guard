@@ -3,7 +3,9 @@
 </script>
 
 <template>
-<h1>About</h1>
+  <div class="flex-1-0">
+    <h1>About</h1>
+  </div>
 </template>
 
 <style scoped lang="scss">
