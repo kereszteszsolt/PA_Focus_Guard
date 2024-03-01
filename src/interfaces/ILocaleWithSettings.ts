@@ -6,5 +6,5 @@ export interface ILocaleWithSettings {
   isCurrent: boolean;
   isFallback1: boolean;
   isFallback2: boolean;
-  isDefault: boolean;
+  isFactoryDefault: boolean;
 }

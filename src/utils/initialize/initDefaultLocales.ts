@@ -5,10 +5,10 @@ import { en, hu, de, ro } from '@/_locales';
 
 export const initLocaleSettingsAndMessages = async (): Promise<void> => {
   let localesWithSettings: ILocaleWithSettings[] = [
-    { ...en.locale, isBuiltIn: true, isCurrent: true, isDefault: true, isFallback1: true, isFallback2: true },
-    { ...hu.locale, isBuiltIn: true, isCurrent: false, isDefault: false, isFallback1: false, isFallback2: false },
-    { ...de.locale, isBuiltIn: true, isCurrent: false, isDefault: false, isFallback1: false, isFallback2: false },
-    { ...ro.locale, isBuiltIn: true, isCurrent: false, isDefault: false, isFallback1: false, isFallback2: false }
+    { ...en.locale, isBuiltIn: true, isCurrent: true, isFactoryDefault: true, isFallback1: true, isFallback2: true },
+    { ...hu.locale, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false },
+    { ...de.locale, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false },
+    { ...ro.locale, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false }
   ] as ILocaleWithSettings[];
 
   await utils.data.saveList(constants.storage.FG_LOCALES_SETTINGS, localesWithSettings);

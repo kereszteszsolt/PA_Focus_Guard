@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useI18nStore } from '@/store';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { msg } from '@/constants';
 
 const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
 
 const isLoading = computed(() => i18n.isLoading);
 
@@ -13,12 +14,15 @@ const headers = computed(() => [
   { title: 'Direction', value: 'text_direction' },
   { title: 'Actions', value: 'actions' },
   { title: 'Current', value: 'is_current' },
-  { title: 'CustomFallback', value: 'custom_fallback' },
-  { title: 'BuiltInFallback', value: 'built_in_fallback' },
-  { title: 'LanguageType', value: 'language_type' }
+  { title: 'Fallback-1', value: 'isFallback1' },
+  { title: 'Fallback-2', value: 'isFallback2' },
+  { title: 'Factory Default', value: 'isFactoryDefault' },
+  { title: 'Language Type', value: 'language_type' }
 ]);
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+const allLocales = computed(() => i18n.getAllLocales);
+
 
 </script>
 
@@ -26,7 +30,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
   <div class="flex-1-0" v-if="!isLoading">
     <v-data-table
       :headers="headers"
-      :items="i18n.getAllLocales"
+      :items="allLocales"
       class="bg-background"
     >
       <template v-slot:item.id="{ item }">
@@ -45,36 +49,47 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
         </v-icon>
       </template>
       <template v-slot:item.is_current="{ item }">
-        <v-icon
-          class="cursor-pointer"
-          color="accent"
-        >
-          mdi-check
-        </v-icon>
+        <div class="text-center">
+          <v-checkbox
+            v-model="item.isCurrent"
+            color="warning"
+            @change="i18n.switchLocale(item.id)"
+            hide-details>
+          </v-checkbox>
+        </div>
       </template>
-      <template v-slot:item.custom_fallback="{ item }">
-        <v-icon
-          class="cursor-pointer"
-          color="accent"
-        >
-          mdi-check
-        </v-icon>
+      <template v-slot:item.isFallback1="{ item }">
+        <div class="text-center">
+          <v-checkbox
+            v-model="item.isFallback1"
+            color="warning"
+            @change="i18n.setFallback1(item.id)"
+            hide-details>
+          </v-checkbox>
+        </div>
       </template>
-      <template v-slot:item.built_in_fallback="{ item }">
-        <v-icon
-          class="cursor-pointer"
-          color="accent"
-        >
-          mdi-check
-        </v-icon>
+      <template v-slot:item.isFallback2="{ item }">
+        <div class="text-center">
+          <v-checkbox
+            v-model="item.isFallback2"
+            color="warning"
+            @change="i18n.setFallback2(item.id)"
+            hide-details>
+          </v-checkbox>
+        </div>
+      </template>
+      <template v-slot:item.isFactoryDefault="{ item }">
+        <div class="text-center">
+          <v-checkbox
+            v-model="item.isFactoryDefault"
+            color="primary"
+            :disabled="true"
+            hide-details>
+          </v-checkbox>
+        </div>
       </template>
       <template v-slot:item.language_type="{ item }">
-        <v-icon
-          class="cursor-pointer"
-          color="accent"
-        >
-          mdi-check
-        </v-icon>
+        <span class="text-center">{{item.isBuiltIn ? 'Build-In' : 'Custom'}}</span>
       </template>
       <template v-slot:top class="border-top-radius-8">
         <v-toolbar flat>
@@ -86,6 +101,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
               variant="elevated"
               elevation="12"
               class="ml-4"
+              @click="i18n.resetBackToFactoryDefault"
             >
               {{ t(msg.RESET) }}
             </v-btn>
