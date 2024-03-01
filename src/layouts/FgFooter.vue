@@ -1,36 +1,57 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue';
+import { useI18nStore } from '@/store';
+import { EditCustomLanguageDialog } from '@/components/languages';
+import { FooterSocialModal } from '@/components/footer';
 
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
+
+let socialDialog = ref(false);
+let contextSocialPage = ref('');
+
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+
+
+const openSocialDialog = (page: string) => {
+  contextSocialPage.value = page;
+  socialDialog.value = true;
+};
+const closeSocialDialog = () => {
+  contextSocialPage.value = '';
+  socialDialog.value = false;
+};
 </script>
 
 <template>
   <v-sheet color="background"
            class="border-bottom-radius-8 fg-h-104px d-flex flex-column justify-space-between px-5 py-2">
     <div class="d-flex flex-row justify-space-around">
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('facebook')" color="info">
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('twitter')" color="info">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('instagram')" color="info">
         <v-icon>mdi-instagram</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('linkedin')" color="info">
         <v-icon>mdi-linkedin</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('youtube-hu')" color="info">
         <v-icon>mdi-youtube</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('youtube-en')" color="info">
         <v-icon>mdi-youtube</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('github')" color="info">
         <v-icon>mdi-github</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('coffee')" color="info">
         <v-icon>mdi-coffee</v-icon>
       </v-btn>
-      <v-btn variant="text" class="flex-1-0">
+      <v-btn variant="text" class="flex-1-0" @click="openSocialDialog('tree')" color="info">
         <v-icon>mdi-tree</v-icon>
       </v-btn>
     </div>
@@ -44,6 +65,7 @@
     <div class="d-flex flex-row justify-space-around text-center">
       <p>Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
     </div>
+    <footer-social-modal :t="t" :p-dialog="socialDialog" :p-text="contextSocialPage" :p-close-dialog="closeSocialDialog"/>
   </v-sheet>
 </template>
 

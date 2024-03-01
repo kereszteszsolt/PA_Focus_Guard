@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useI18nStore } from '@/store';
-import { computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { msg } from '@/constants';
+import { EditCustomLanguageDialog } from '@/components/languages';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
@@ -22,7 +23,10 @@ const headers = computed(() => [
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const allLocales = computed(() => i18n.getAllLocales);
-
+let editDialog = ref(false);
+const closeEditDialog = () => {
+  editDialog.value = false;
+};
 
 </script>
 
@@ -110,6 +114,7 @@ const allLocales = computed(() => i18n.getAllLocales);
               variant="elevated"
               elevation="12"
               class="ml-4"
+              @click="editDialog = true"
             >
               {{ t(msg.ADD) }}
             </v-btn>
@@ -121,6 +126,7 @@ const allLocales = computed(() => i18n.getAllLocales);
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </div>
+  <edit-custom-language-dialog :t="t" :p-close-dialog="closeEditDialog" :p-dialog="editDialog" />
 </template>
 
 <style scoped lang="scss">
