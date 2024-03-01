@@ -13,6 +13,7 @@
     "save": "Mentés",
     "cancel": "Mégse",
     "close": "Bezárás",
+    "reset": "Visszaállítás",
     "newItem": "Új elem",
     "on": "Be",
     "off": "Ki",
@@ -41,6 +42,7 @@
     "nameMustBeLessThan50Characters" : "A névnek kevesebb, mint 50 karakternek kell lennie!",
     "nameMustBeUnique" : "A névnek egyedinek kell lennie!",
     "nameOfWebsiteRuleList" : "Weboldal szabálylista neve",
-    "totalNrOfItems" : "Összes elem száma: "
+    "totalNrOfItems" : "Összes elem száma: ",
+    "languages" : "Nyelvek"
   }
 }

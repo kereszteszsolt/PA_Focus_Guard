@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { msg } from '@/constants';
 
 defineProps({
   listId: String,
@@ -22,7 +23,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text" color="primary">
                   <v-icon>mdi-arrow-up</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ t("moveUp") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t(msg.MOVE_UP) }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -32,7 +33,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text" color="primary">
                   <v-icon>mdi-arrow-down</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ t("moveDown") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t(msg.MOVE_DOWN) }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -42,7 +43,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text" color="warning">
                   <v-icon>mdi-pencil</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ t("edit") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t(msg.EDIT) }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>
@@ -52,7 +53,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text" color="danger">
                   <v-icon>mdi-delete</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ t("delete") }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t(msg.CANCEL) }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>

@@ -7,13 +7,13 @@ export const useI18nStore = defineStore('i18n', {
   state: () => ({
     isLoading: true,
     localeSettings: {
-      currentLocale: { id: 'en', name: 'English', text_direction: 'ltr' } as ILocale,
-      userDefaultLocale: { id: 'en', name: 'English', text_direction: 'ltr' } as ILocale,
-      defaultLocale: { id: 'en', name: 'English', text_direction: 'ltr' } as ILocale,
+      currentLocale: { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true } as ILocale,
+      userDefaultLocale: { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true } as ILocale,
+      defaultLocale: { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true } as ILocale,
       builtInLocales: [
-        { id: 'en', name: 'English', text_direction: 'ltr' },
-        { id: 'hu', name: 'Hungarian', text_direction: 'ltr' }] as ILocale[],
-      userLocales: [{ id: 'hu-runes', name: 'Old-Hungarian', text_direction: 'rtl' }] as ILocale[]
+        { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true },
+        { id: 'hu', name: 'Hungarian', text_direction: 'ltr', isBuiltIn: true }] as ILocale[],
+      userLocales: [{ id: 'hu-runes', name: 'Old-Hungarian', text_direction: 'rtl', isBuiltIn: true }] as ILocale[]
     } as ILocaleSettings,
     messages: {} as ILocaleMessages | undefined,
     userDefaultMessages: {} as ILocaleMessages | undefined,

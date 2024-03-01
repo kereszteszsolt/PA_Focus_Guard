@@ -13,6 +13,7 @@
     "save": "Salvare",
     "cancel": "Anulare",
     "close": "Închidere",
+    "reset" : "Resetare",
     "newItem": "Element nou",
     "on": "Pornit",
     "off": "Oprit",
@@ -41,6 +42,7 @@
     "nameMustBeLessThan50Characters" : "Numele trebuie să aibă mai puțin de 50 de caractere!",
     "nameMustBeUnique" : "Numele trebuie să fie unic!",
     "nameOfWebsiteRuleList" : "Numele listei de reguli pentru site",
-    "totalNrOfItems" : "Număr total de elemente: "
+    "totalNrOfItems" : "Număr total de elemente: ",
+    "languages" : "Limbi"
   }
 }

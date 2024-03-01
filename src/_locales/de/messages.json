@@ -13,6 +13,7 @@
     "save" : "Speichern",
     "cancel" : "Abbrechen",
     "close" : "Schließen",
+    "reset" : "Zurücksetzen",
     "newItem" : "Neues Element",
     "on" : "An",
     "off" : "Aus",
@@ -41,6 +42,7 @@
     "nameMustBeLessThan50Characters": "Der Name muss weniger als 50 Zeichen lang sein!",
     "nameMustBeUnique" : "Der Name muss eindeutig sein!",
     "nameOfWebsiteRuleList" : "Name der Website-Regelliste",
-    "totalNrOfItems" : "Gesamtzahl der Elemente: "
+    "totalNrOfItems" : "Gesamtzahl der Elemente: ",
+    "languages" : "Sprachen"
   }
 }
