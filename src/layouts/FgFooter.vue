@@ -63,23 +63,59 @@ const closeSocialDialog = () => {
     <!--          <router-link to="/how-to-use" class="text-none text-center flex-1-0">How to use</router-link>-->
     <!--    </div>-->
     <div class="d-flex flex-row justify-space-around">
-      <v-btn to="/about" variant="text" class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
-             density="compact" size="small"
-             color="info">About
+      <v-btn
+        to="/about"
+        variant="text"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        density="compact"
+        size="small"
+        color="info"
+      >
+        About
       </v-btn>
-      <v-btn to="/gtc" variant="text" class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
-             density="compact" size="small"
-             color="info">Gtc
+
+      <v-btn
+        to="/gtc"
+        variant="text"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        density="compact"
+        size="small"
+        color="info"
+      >
+        Gtc
       </v-btn>
-      <v-btn to="/donation" variant="text"
-             density="compact" size="small"
-             class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">Donation
+
+      <v-btn
+        to="/donation"
+        variant="text"
+        density="compact"
+        size="small"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        color="info"
+      >
+        Donation
       </v-btn>
-      <v-btn to="/acknowledgment" variant="text" density="compact" size="small"
-             class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">Acknowledgment
+
+      <v-btn
+        to="/acknowledgment"
+        variant="text"
+        density="compact"
+        size="small"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        color="info"
+      >
+        Acknowledgment
       </v-btn>
-      <v-btn to="/how-to-use" variant="text" density="compact" size="small"
-             class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">How to use
+
+      <v-btn
+        to="/how-to-use"
+        variant="text"
+        density="compact"
+        size="small"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        color="info"
+      >
+        How to use
       </v-btn>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">
