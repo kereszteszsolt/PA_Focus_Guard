@@ -27,6 +27,15 @@ let editDialog = ref(false);
 const closeEditDialog = () => {
   editDialog.value = false;
 };
+const itemForEdit = computed(() => i18n.getLocaleMessagesByLocaleId('en'));
+
+const saveLocaleMessages = (localeMessages: any) => {
+  i18n.addNewLocale(localeMessages);
+};
+
+const deleteLocale = (id: string) => {
+  i18n.deleteLocale(id);
+};
 
 </script>
 
@@ -48,6 +57,7 @@ const closeEditDialog = () => {
           class="cursor-pointer"
           color="danger"
           v-if="item.isBuiltIn === false"
+          @click="deleteLocale(item.id)"
         >
           mdi-delete
         </v-icon>
@@ -93,7 +103,7 @@ const closeEditDialog = () => {
         </div>
       </template>
       <template v-slot:item.language_type="{ item }">
-        <span class="text-center">{{item.isBuiltIn ? 'Build-In' : 'Custom'}}</span>
+        <span class="text-center">{{ item.isBuiltIn ? 'Build-In' : 'Custom' }}</span>
       </template>
       <template v-slot:top class="border-top-radius-8">
         <v-toolbar flat>
@@ -122,11 +132,13 @@ const closeEditDialog = () => {
         </v-toolbar>
       </template>
     </v-data-table>
+    <edit-custom-language-dialog :t="t" :p-close-dialog="closeEditDialog" :p-dialog="editDialog"
+                                 :p-locale-massages="itemForEdit"
+                                 :p-save-locale-messages="saveLocaleMessages"></edit-custom-language-dialog>
   </div>
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </div>
-  <edit-custom-language-dialog :t="t" :p-close-dialog="closeEditDialog" :p-dialog="editDialog" />
 </template>
 
 <style scoped lang="scss">

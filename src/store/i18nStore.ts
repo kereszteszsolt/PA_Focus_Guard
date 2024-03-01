@@ -51,6 +51,12 @@ export const useI18nStore = defineStore('i18n', {
     },
     getFallBackLocaleIds: (state) => {
       return [state.fastSettings.fallBackLocale1, state.fastSettings.fallBackLocale2];
+    },
+    getMessagesByLocaleId: (state) => (localeId: string): {[key: string]: string;} => {
+      return state.allLocaleMessages.find((id) => id.locale.id === localeId)?.messages || {};
+    },
+    getLocaleMessagesByLocaleId: (state) => (localeId: string): ILocaleMessages => {
+      return state.allLocaleMessages.find((id) => id.locale.id === localeId) || { locale: { id: '', name: '', text_direction: '' }, messages: {} };
     }
   },
   actions: {
@@ -69,6 +75,14 @@ export const useI18nStore = defineStore('i18n', {
     },
     async addNewLocale(iLocaleMessages: ILocaleMessages): Promise<void> {
       this.isLoading = true;
+      if (this.localesWithSettings.some((l) => l.id === iLocaleMessages.locale.id)) {
+        this.isLoading = false;
+        return;
+      }
+      this.localesWithSettings.push({ id: iLocaleMessages.locale.id, name: iLocaleMessages.locale.name, text_direction: iLocaleMessages.locale.text_direction, isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
+      await this.saveLocaleSettings();
+      this.allLocaleMessages.push(iLocaleMessages);
+      await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
       this.isLoading = false;
     },
     async switchLocale(newLocaleId: string): Promise<void> {
@@ -135,6 +149,18 @@ export const useI18nStore = defineStore('i18n', {
     async saveLocaleSettings(): Promise<void> {
       this.isLoading = true;
       await utils.data.saveList(constants.storage.FG_LOCALES_SETTINGS, this.localesWithSettings);
+      this.isLoading = false;
+    },
+    async deleteLocale(localeId: string): Promise<void> {
+      this.isLoading = true;
+      if (this.localesWithSettings.some((l) => l.id === localeId)) {
+        this.localesWithSettings = this.localesWithSettings.filter((l) => l.id !== localeId);
+        await this.saveLocaleSettings();
+      }
+      if (this.allLocaleMessages.some((l) => l.locale.id === localeId)) {
+        this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.locale.id !== localeId);
+        await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
+      }
       this.isLoading = false;
     }
   }
