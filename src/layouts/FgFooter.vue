@@ -55,20 +55,43 @@ const closeSocialDialog = () => {
         <v-icon>mdi-tree</v-icon>
       </v-btn>
     </div>
+    <!--    <div class="d-flex flex-row justify-space-around">-->
+    <!--          <router-link to="/about" class="text-none text-center flex-1-0">About</router-link>-->
+    <!--          <router-link to="/gtc" class="text-none text-center flex-1-0">Gtc</router-link>-->
+    <!--          <router-link to="/donation" class="text-none text-center flex-1-0">Donation</router-link>-->
+    <!--          <router-link to="/acknowledgment" class="text-none text-center flex-1-0">Acknowledgment</router-link>-->
+    <!--          <router-link to="/how-to-use" class="text-none text-center flex-1-0">How to use</router-link>-->
+    <!--    </div>-->
     <div class="d-flex flex-row justify-space-around">
-          <router-link to="/about" class="text-none text-center flex-1-0">About</router-link>
-          <router-link to="/gtc" class="text-none text-center flex-1-0">Gtc</router-link>
-          <router-link to="/donation" class="text-none text-center flex-1-0">Donation</router-link>
-          <router-link to="/acknowledgment" class="text-none text-center flex-1-0">Acknowledgment</router-link>
-          <router-link to="/how-to-use" class="text-none text-center flex-1-0">How to use</router-link>
+      <v-btn to="/about" variant="text" class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+             density="compact" size="small"
+             color="info">About
+      </v-btn>
+      <v-btn to="/gtc" variant="text" class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+             density="compact" size="small"
+             color="info">Gtc
+      </v-btn>
+      <v-btn to="/donation" variant="text"
+             density="compact" size="small"
+             class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">Donation
+      </v-btn>
+      <v-btn to="/acknowledgment" variant="text" density="compact" size="small"
+             class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">Acknowledgment
+      </v-btn>
+      <v-btn to="/how-to-use" variant="text" density="compact" size="small"
+             class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">How to use
+      </v-btn>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">
-      <p>Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
+      <p class="info">Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
     </div>
-    <footer-social-modal :t="t" :p-dialog="socialDialog" :p-text="contextSocialPage" :p-close-dialog="closeSocialDialog"/>
+    <footer-social-modal :t="t" :p-dialog="socialDialog" :p-text="contextSocialPage"
+                         :p-close-dialog="closeSocialDialog"/>
   </v-sheet>
 </template>
 
 <style scoped lang="scss">
-
+.info {
+  color: rgb(var(--v-theme-info));
+}
 </style>
