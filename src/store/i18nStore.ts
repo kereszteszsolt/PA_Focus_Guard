@@ -1,76 +1,94 @@
 import { defineStore } from 'pinia';
 import * as utils from '@/utils';
-import { ILocaleSettings, ILocaleMessages, ILocale } from '@/interfaces';
+import { ILocaleMessages, ILocaleWithSettings } from '@/interfaces';
 import * as constants from '@/constants';
 
 export const useI18nStore = defineStore('i18n', {
   state: () => ({
     isLoading: true,
-    localeSettings: {
-      currentLocale: { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true } as ILocale,
-      userDefaultLocale: { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true } as ILocale,
-      defaultLocale: { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true } as ILocale,
-      builtInLocales: [
-        { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true },
-        { id: 'hu', name: 'Hungarian', text_direction: 'ltr', isBuiltIn: true }] as ILocale[],
-      userLocales: [{ id: 'hu-runes', name: 'Old-Hungarian', text_direction: 'rtl', isBuiltIn: true }] as ILocale[]
-    } as ILocaleSettings,
-    messages: {} as ILocaleMessages | undefined,
-    userDefaultMessages: {} as ILocaleMessages | undefined,
-    defaultMessages: {} as ILocaleMessages | undefined
+    fastSettings: {
+      currentLocaleId: 'en',
+      buildInLocaleIds: ['en', 'hu', 'de', 'ro'],
+      defaultLocale: 'en',
+      fallBackLocale1: 'en',
+      fallBackLocale2: 'en'
+    },
+    localesWithSettings: [
+      { id: 'en', name: 'English', text_direction: 'ltr', isBuiltIn: true, isCurrent: true, isDefault: true },
+      { id: 'hu', name: 'Magyar', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isDefault: false },
+      { id: 'de', name: 'Deutsch', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isDefault: false },
+      { id: 'ro', name: 'Română', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isDefault: false }
+    ] as ILocaleWithSettings[],
+    allLocaleMessages: [] as ILocaleMessages[]
   }),
   getters: {
     getTranslation: (state) => (key: string): string => {
       switch (true) {
-        case state.messages && state.messages.messages.hasOwnProperty(key):
-          return state.messages.messages[key];
-        case state.userDefaultMessages && state.userDefaultMessages.messages.hasOwnProperty(key):
-          return state.userDefaultMessages.messages[key];
-        case state.defaultMessages && state.defaultMessages.messages.hasOwnProperty(key):
-          return state.defaultMessages.messages[key];
+        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.currentLocaleId) &&
+        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.currentLocaleId)?.messages.hasOwnProperty(key):
+          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.currentLocaleId)?.messages[key] || key;
+        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.fallBackLocale1) &&
+        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale1)?.messages.hasOwnProperty(key):
+          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale1)?.messages[key] || key;
+        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.fallBackLocale2) &&
+        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale2)?.messages.hasOwnProperty(key):
+          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale2)?.messages[key] || key;
+        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.defaultLocale) &&
+        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.defaultLocale)?.messages.hasOwnProperty(key):
+          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.defaultLocale)?.messages[key] || key;
         default:
           return key;
       }
     },
     getAllLocales: (state) => {
-      return state.localeSettings.builtInLocales;
+      return state.localesWithSettings;
     },
-    getCurrentLocale: (state) => {
-      return state.localeSettings.currentLocale;
+    getCurrentLocaleId: (state) => {
+      return state.fastSettings.currentLocaleId;
     },
+    getDefaultLocaleId: (state) => {
+      return state.fastSettings.defaultLocale;
+    },
+    getFallBackLocaleIds: (state) => {
+      return [state.fastSettings.fallBackLocale1, state.fastSettings.fallBackLocale2];
+    }
   },
   actions: {
     async fetchLocaleSettingsAndMessages(): Promise<void> {
       this.isLoading = true;
-      this.localeSettings = await utils.data.fetchEntry(constants.storage.FG_LOCALES_SETTINGS) as ILocaleSettings;
-      const allMessages: ILocaleMessages[] = await utils.data.fetchList(constants.storage.FG_LOCALES_MESSAGES);
-      this.messages = allMessages.find((m) => m.locale.id === this.localeSettings.currentLocale.id) || undefined;
-      this.defaultMessages = allMessages.find((m) => m.locale.id === this.localeSettings.defaultLocale.id) || undefined;
-      this.userDefaultMessages = allMessages.find((m) => m.locale.id === this.localeSettings?.userDefaultLocale?.id) || undefined;
+      this.localesWithSettings = await utils.data.fetchEntry(constants.storage.FG_LOCALES_SETTINGS) as ILocaleWithSettings[];
+      this.fastSettings = {
+        currentLocaleId: this.localesWithSettings.some((l) => l.isCurrent) ? this.localesWithSettings.find((l) => l.isCurrent)?.id || this.fastSettings.currentLocaleId : this.fastSettings.currentLocaleId,
+        buildInLocaleIds: this.localesWithSettings.filter((l) => l.isBuiltIn).map((l) => l.id) || this.fastSettings.buildInLocaleIds,
+        defaultLocale: this.localesWithSettings.some((l) => l.isDefault) ? this.localesWithSettings.find((l) => l.isDefault)?.id || this.fastSettings.defaultLocale : this.fastSettings.defaultLocale,
+        fallBackLocale1: this.localesWithSettings.some((l) => l.isFallback1) ? this.localesWithSettings.find((l) => l.isFallback1)?.id || this.fastSettings.fallBackLocale1 : this.fastSettings.fallBackLocale1,
+        fallBackLocale2: this.localesWithSettings.some((l) => l.isFallback2) ? this.localesWithSettings.find((l) => l.isFallback2)?.id || this.fastSettings.fallBackLocale2 : this.fastSettings.fallBackLocale2
+      };
+      this.allLocaleMessages = await utils.data.fetchList(constants.storage.FG_LOCALES_MESSAGES);
       this.isLoading = false;
     },
     async addNewLocale(iLocaleMessages: ILocaleMessages): Promise<void> {
       this.isLoading = true;
-      const allMessages: ILocaleMessages[] = await utils.data.fetchList(constants.storage.FG_LOCALES_MESSAGES);
-      if (allMessages.some((m) => m.locale.id === iLocaleMessages.locale.id && m.locale.name === iLocaleMessages.locale.name)) {
-        this.isLoading = false;
-        return;
-      }
-      allMessages.push(iLocaleMessages);
-      await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, allMessages);
-      this.localeSettings.userLocales.push(iLocaleMessages.locale);
-      await utils.data.saveEntry(constants.storage.FG_LOCALES_SETTINGS, this.localeSettings);
       this.isLoading = false;
     },
     async switchLocale(newLocaleId: string): Promise<void> {
+      if (newLocaleId === this.fastSettings.currentLocaleId || !this.localesWithSettings.some((l) => l.id === newLocaleId)){
+        return;
+      }
+      this.fastSettings.currentLocaleId = newLocaleId;
+      let currentLocale = this.localesWithSettings.find((l) => l.isCurrent);
+      if (currentLocale) {
+        currentLocale.isCurrent = false;
+      }
+      let newLocale = this.localesWithSettings.find((l) => l.id === newLocaleId);
+      if (newLocale) {
+        newLocale.isCurrent = true;
+      }
+      await this.saveLocaleSettings();
+    },
+    async saveLocaleSettings(): Promise<void> {
       this.isLoading = true;
-      this.localeSettings.currentLocale =
-        this.localeSettings.builtInLocales.find((l) => l.id === newLocaleId) ||
-        this.localeSettings.userLocales.find((l) => l.id === newLocaleId) ||
-        this.localeSettings.defaultLocale;
-      await utils.data.saveEntry(constants.storage.FG_LOCALES_SETTINGS, this.localeSettings);
-      const allMessages: ILocaleMessages[] = await utils.data.fetchList(constants.storage.FG_LOCALES_MESSAGES);
-      this.messages = allMessages.find((m) => m.locale.id === this.localeSettings.currentLocale.id) || undefined;
+      await utils.data.saveList(constants.storage.FG_LOCALES_SETTINGS, this.localesWithSettings);
       this.isLoading = false;
     }
   }

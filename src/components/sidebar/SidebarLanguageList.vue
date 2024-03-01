@@ -6,7 +6,7 @@ const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
 
 const isCurrentLocale = (id: string) => {
-    return computed(() => i18n.getCurrentLocale.id === id).value;
+    return computed(() => i18n.getCurrentLocaleId === id).value;
 };
 
 </script>
