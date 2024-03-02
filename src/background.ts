@@ -88,7 +88,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 });
 
 const taskManager = async (tabId: number) => {
-  const interval = 300;
+  const interval = 333;
 
   const intervalId = setInterval(async () => {
 
