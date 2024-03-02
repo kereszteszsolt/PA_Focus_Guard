@@ -12,7 +12,6 @@ let fgAppData: IAppData = {
 let fgWebsiteRules: IWebsiteRule[] = [];
 let taskQueue: ITaskQueue[] = [];
 let distractionAttempts: IDistractionAttempt[] = [];
-let activeWebsiteRules: IWebsiteRule[] = [];
 
 chrome.runtime.onInstalled.addListener(async (details) => {
   console.log('Runtime installed');
@@ -45,15 +44,13 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
   if (namespace === 'local') {
     if (constants.storage.FG_APP_DATA in changes) {
       fgAppData = JSON.parse(changes[constants.storage.FG_APP_DATA].newValue);
-      activeWebsiteRules = calculateActiveWebsiteRules();
-      await scripts.background.applyRulesOnOpenTabs(fgAppData, activeWebsiteRules);
-      console.log('App data: ', fgAppData);
-      console.log('Active website rules: ', activeWebsiteRules);
+      await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
+      console.log('Active rules', calculateActiveWebsiteRules());
     }
     if (constants.storage.FG_WEBSITE_RULES in changes) {
       fgWebsiteRules = JSON.parse(changes[constants.storage.FG_WEBSITE_RULES].newValue);
-      activeWebsiteRules = calculateActiveWebsiteRules();
-      await scripts.background.applyRulesOnOpenTabs(fgAppData, activeWebsiteRules);
+      await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
+      console.log('Active rules', calculateActiveWebsiteRules());
     }
     if (constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS in changes) {
       distractionAttempts = JSON.parse(changes[constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS].newValue);
@@ -63,13 +60,10 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   console.log('Tab updated');
-  if (tab.url &&
-    !tab.url.includes('chrome-extension://') &&
-    !tab.url.includes('chrome://newtab/') &&
-    !tab.url.includes('chrome://extensions/')) {
+  if (tab.url) {
 
-    let activeRule: IWebsiteRule | undefined = activeWebsiteRules.find((wr) => tab.url && tab.url.includes(wr.url));
-    if (activeRule) {
+    let activeRules: IWebsiteRule[] = calculateActiveWebsiteRules().filter((wr) => tab.url && tab.url.includes(wr.url)) || [];
+    if (activeRules.length > 0) {
       let taskId = utils.unique.generateUniqueListId(taskQueue);
         taskQueue.push({
           id: taskId,
@@ -152,9 +146,9 @@ const saveDistractionAttempt = async (item: IWebsiteRule | undefined, appData: I
 const calculateActiveWebsiteRules = (): IWebsiteRule[]  => {
   return  fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode)) || [];
 }
+
 const readData = async () => {
   fgAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
   fgWebsiteRules = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
   distractionAttempts = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS);
-  activeWebsiteRules = calculateActiveWebsiteRules();
 };

@@ -49,7 +49,7 @@ export const initDefaultWebsites = async() => {
     listId: websiteList.id,
     permanentlyActive: false,
     temporarilyInactive: false,
-    url: 'https://www.facebook.com',
+    url: 'https://www.notion.com',
     order: 1,
     globalOrder: 2,
   }
