@@ -14,24 +14,28 @@ let taskQueue: ITaskQueue[] = [];
 let distractionAttempts: IDistractionAttempt[] = [];
 
 chrome.runtime.onInstalled.addListener(async (details) => {
+  console.log('Runtime installed');
   switch (details.reason) {
     case 'install':
+      console.log('Extension installed');
       await utils.initialize.locales.initLocaleSettingsAndMessages();
       await utils.initialize.appData.initDefaultAppData();
       await utils.initialize.websiteRules.initDefaultWebsites();
       await utils.initialize.statistics.initDefaultStatistics();
       break;
     case 'update':
-      await utils.initialize.locales.initLocaleSettingsAndMessages();
-      await utils.initialize.appData.initDefaultAppData();
-      await utils.initialize.websiteRules.initDefaultWebsites();
-      await utils.initialize.statistics.initDefaultStatistics();
+      console.log('Extension updated');
+      // await utils.initialize.locales.initLocaleSettingsAndMessages();
+      // await utils.initialize.appData.initDefaultAppData();
+      // await utils.initialize.websiteRules.initDefaultWebsites();
+      // await utils.initialize.statistics.initDefaultStatistics();
       break;
     case 'chrome_update':
-      await utils.initialize.locales.initLocaleSettingsAndMessages();
-      await utils.initialize.appData.initDefaultAppData();
-      await utils.initialize.websiteRules.initDefaultWebsites();
-      await utils.initialize.statistics.initDefaultStatistics();
+      console.log('Chrome updated');
+      // await utils.initialize.locales.initLocaleSettingsAndMessages();
+      // await utils.initialize.appData.initDefaultAppData();
+      // await utils.initialize.websiteRules.initDefaultWebsites();
+      // await utils.initialize.statistics.initDefaultStatistics();
       break;
   }
 });
@@ -59,24 +63,20 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 });
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+  console.log('Tab updated');
   if (tab.url &&
     !tab.url.includes('chrome-extension://') &&
     !tab.url.includes('chrome://newtab/') &&
     !tab.url.includes('chrome://extensions/')) {
 
     taskQueue.push({ tabId: tabId, url: tab.url, tabUpdatedTime: Date.now() });
-    console.log('Task queue');
-    console.log(taskQueue);
 
     let tasksWithSameTabId = taskQueue.filter((tq) => tq.tabId === tabId);
 
     if (tasksWithSameTabId.length > 1) {
-      console.log('Switching tab urls...');
       taskQueue = taskQueue.filter((tq) => tq.tabId !== tabId);
       taskQueue.push({ tabId: tabId, url: tab.url, tabUpdatedTime: Date.now() });
     }
-    console.log('Task queue');
-    console.log(taskQueue);
 
     await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQueue)
       .then((item) => saveDistractionAttempt(item, fgAppData));
@@ -84,6 +84,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 });
 
 chrome.runtime.onStartup.addListener(async () => {
+  console.log('Runtime started');
   await readData();
 });
 const saveDistractionAttempt = async (item: IWebsiteRule | undefined, appData: IAppData): Promise<void> => {

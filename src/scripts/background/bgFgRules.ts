@@ -79,15 +79,9 @@ import * as constants from '@/constants';
 export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: IWebsiteRule[]): Promise<void> => {
   chrome.tabs.query({}, (tabs) => {
     tabs.forEach((tab: chrome.tabs.Tab) => {
-      console.log('applyRulesOnOpenTabs.....', tab?.id);
-      console.log('applyRulesOnOpenTabs.....', tab?.url);
-
-      console.log('applyRulesOnOpenTabs.....', fgWebsiteRules);
       const itemsToBlock = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
-      console.log('itemsToBlock.....', itemsToBlock);
       itemsToBlock.forEach((item) => {
         if (tab.url && tab.url.includes(item.url) && tab.id) {
-          console.log('knock! knock! blocking is here');
           chrome.tabs.update(tab.id, { url: '/options.html#/focus-message' });
         }
       });
