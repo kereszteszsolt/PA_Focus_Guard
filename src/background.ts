@@ -68,72 +68,33 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
     let focusPage = fgAppData.focusMode && tab.url.includes('chrome-extension://') && tab.url.includes('options.html#/focus-message');
     if (focusPage) {
-      console.log('Focus page');
-      //remove any older task for this tab
       taskQueue = taskQueue.filter((tq) => tq.tabId !== tabId);
-      console.log('Focuspage taskQueue:');
-      for (let task of taskQueue) {
-        console.log(task);
-      }
     }
 
     console.log('alreadyInAndTime', alreadyInAndTime);
     if (relevant && !alreadyInAndTime && !focusPage) {
       console.log('Relevant tab');
-      let taskId = utils.unique.generateUniqueListId(taskQueue);
+
       taskQueue.push({
-        id: taskId,
+        id: utils.unique.generateUniqueListId(taskQueue),
         tabId: tabId,
         url: tab.url,
-        tabUpdatedTime: Date.now(),
-        status: constants.tSKMQueue.QUEUED
+        tabUpdatedTime: Date.now()
       });
 
       console.log('chrome.tabs.onUpdated.addListener taskQueue:');
       for (let task of taskQueue) {
         console.log(task);
       }
-      await taskManager(tabId, taskId);
+
+      await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQueue)
+        .then((item) => {
+            saveDistractionAttempt(item, fgAppData);
+          }
+        );
     }
   }
 });
-
-const taskManager = async (tabId: number, taskId: string) => {
-  const interval = 333;
-  let contextTask = taskQueue.find((tq) => tq.id === taskId);
-
-  const intervalId = setInterval(async () => {
-    if (taskQueue.length === 0 || !contextTask) {
-      clearInterval(intervalId);
-      return;
-    }
-
-    const onHoldCondition = taskQueue.some((tq) => tq.tabId === tabId &&
-      (tq.status === constants.tSKMQueue.OBSOLETE ||
-        tq.status === constants.tSKMQueue.EXTENSION ||
-        tq.status === constants.tSKMQueue.COMPLETED));
-    if (onHoldCondition) {
-      contextTask.status = constants.tSKMQueue.OBSOLETE;
-      clearInterval(intervalId);
-      return;
-    }
-    contextTask.status = constants.tSKMQueue.ON_HOLD;
-
-    await scripts.background.applyRuleOnSpecificTab(tabId, contextTask.url, fgAppData, fgWebsiteRules, taskQueue)
-      .then((item) => {
-          if (contextTask) {
-            contextTask.status = constants.tSKMQueue.COMPLETED;
-          }
-          saveDistractionAttempt(item, fgAppData);
-        }
-      );
-
-    console.log('chrome.tabs.onUpdated.addListener taskManager taskQueue:');
-    for (let task of taskQueue) {
-      console.log(task);
-    }
-  }, interval);
-};
 
 chrome.runtime.onStartup.addListener(async () => {
   console.log('Runtime started');
