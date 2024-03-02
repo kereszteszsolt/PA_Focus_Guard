@@ -61,20 +61,26 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   console.log('Tab updated');
   if (tab.url) {
-
-    let activeRules: IWebsiteRule[] = calculateActiveWebsiteRules().filter((wr) => tab.url && tab.url.includes(wr.url)) || [];
-    if (activeRules.length > 0) {
+    let focusPage = fgAppData.focusMode && tab.url.includes('chrome-extension://') && tab.url.includes('options.html#/focus-message');
+    let active = calculateActiveWebsiteRules();
+    let relevant = active.some((wr) => tab.url && tab.url.includes(wr.url));
+    let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === tabId && tq.url === tab.url && (Date.now() - tq.tabUpdatedTime) < 1500);
+    console.log('alreadyInAndTime', alreadyInAndTime);
+    if (relevant && !alreadyInAndTime) {
+      console.log('Relevant tab');
       let taskId = utils.unique.generateUniqueListId(taskQueue);
-        taskQueue.push({
-          id: taskId,
-          tabId: tabId,
-          url: tab.url,
-          tabUpdatedTime: Date.now(),
-          status: constants.tSKMQueue.QUEUED
-        });
+      taskQueue.push({
+        id: taskId,
+        tabId: tabId,
+        url: tab.url,
+        tabUpdatedTime: Date.now(),
+        status: constants.tSKMQueue.QUEUED
+      });
 
-      console.log('Task queue');
-      console.log(taskQueue);
+      console.log('chrome.tabs.onUpdated.addListener taskQueue:');
+      for (let task of taskQueue) {
+        console.log(task);
+      }
       await taskManager(tabId, taskId);
     }
   }
@@ -82,46 +88,38 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
 const taskManager = async (tabId: number, taskId: string) => {
   const interval = 333;
+  let contextTask = taskQueue.find((tq) => tq.id === taskId);
 
   const intervalId = setInterval(async () => {
-    if (taskQueue.length === 0) {
+    if (taskQueue.length === 0 || !contextTask) {
       clearInterval(intervalId);
       return;
     }
 
-    const taskForTab = taskQueue.find((tq) => tq.tabId === tabId &&
+    const onHoldCondition = taskQueue.some((tq) => tq.tabId === tabId &&
       (tq.status === constants.tSKMQueue.OBSOLETE ||
         tq.status === constants.tSKMQueue.EXTENSION ||
-        tq.status === constants.tSKMQueue.COMPLETED ||
-        tq.status === constants.tSKMQueue.ON_HOLD));
-
-    if (taskForTab) {
+        tq.status === constants.tSKMQueue.COMPLETED));
+    if (onHoldCondition) {
+      contextTask.status = constants.tSKMQueue.OBSOLETE;
       clearInterval(intervalId);
       return;
     }
+    contextTask.status = constants.tSKMQueue.ON_HOLD;
 
-    const taskForTabQ: ITaskQueue[] = taskQueue.filter((tq) => tq.tabId === tabId && tq.status === constants.tSKMQueue.QUEUED);
-    if (taskForTabQ.length === 0) {
-      clearInterval(intervalId);
-      return;
-    }
-    const oldestTaskForTab = taskForTabQ.reduce((prev, current) => (prev.tabUpdatedTime < current.tabUpdatedTime) ? prev : current);
-    oldestTaskForTab.status = constants.tSKMQueue.ON_HOLD;
-
-    await scripts.background.applyRuleOnSpecificTab(tabId, oldestTaskForTab.url, fgAppData, fgWebsiteRules, taskQueue)
+    await scripts.background.applyRuleOnSpecificTab(tabId, contextTask.url, fgAppData, fgWebsiteRules, taskQueue)
       .then((item) => {
-          oldestTaskForTab.status = constants.tSKMQueue.COMPLETED;
-          taskQueue.forEach((tq) => {
-            if (tq.tabId === tabId && tq.status === constants.tSKMQueue.QUEUED) {
-              tq.status = constants.tSKMQueue.OBSOLETE;
-            }
-          });
+          if (contextTask) {
+            contextTask.status = constants.tSKMQueue.COMPLETED;
+          }
           saveDistractionAttempt(item, fgAppData);
         }
       );
 
-    console.log('Task queue');
-    console.log(taskQueue);
+    console.log('chrome.tabs.onUpdated.addListener taskManager taskQueue:');
+    for (let task of taskQueue) {
+      console.log(task);
+    }
   }, interval);
 };
 
@@ -143,9 +141,9 @@ const saveDistractionAttempt = async (item: IWebsiteRule | undefined, appData: I
   await utils.data.saveList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, distractionAttempts);
 };
 
-const calculateActiveWebsiteRules = (): IWebsiteRule[]  => {
-  return  fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode)) || [];
-}
+const calculateActiveWebsiteRules = (): IWebsiteRule[] => {
+  return fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode)) || [];
+};
 
 const readData = async () => {
   fgAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
