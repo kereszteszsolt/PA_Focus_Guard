@@ -61,14 +61,33 @@ import * as constants from '@/constants';
 //   console.log('Rules applied');
 // };
 
+// export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: IWebsiteRule[]): Promise<void> => {
+//   chrome.tabs.query({}, (tabs) => {
+//     console.log('applyRulesOnOpenTabs.....');
+//     tabs.forEach((tab: chrome.tabs.Tab) => {
+//       const itemsToBlock = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
+//
+//       itemsToBlock.forEach((item) => {
+//         if (tab.url && tab.url.includes(item.url) && tab.id) {
+//           chrome.tabs.update(tab.id, { url: '/options.html#/focus-message' });
+//         }
+//       });
+//     });
+//   });
+// };
+
 export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: IWebsiteRule[]): Promise<void> => {
   chrome.tabs.query({}, (tabs) => {
-    console.log('Tabs query');
     tabs.forEach((tab: chrome.tabs.Tab) => {
-      const itemsToBlock = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
+      console.log('applyRulesOnOpenTabs.....', tab?.id);
+      console.log('applyRulesOnOpenTabs.....', tab?.url);
 
+      console.log('applyRulesOnOpenTabs.....', fgWebsiteRules);
+      const itemsToBlock = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
+      console.log('itemsToBlock.....', itemsToBlock);
       itemsToBlock.forEach((item) => {
         if (tab.url && tab.url.includes(item.url) && tab.id) {
+          console.log('knock! knock! blocking is here');
           chrome.tabs.update(tab.id, { url: '/options.html#/focus-message' });
         }
       });
@@ -86,7 +105,7 @@ export const applyRuleOnSpecificTab = async (tabId: number, url: string, fgAppDa
         let item2Resolve: IWebsiteRule | undefined = undefined;
         itemsToBlock.forEach((item) => {
           if (tab.url && tab.url.includes(item.url)) {
-            chrome.tabs.update(tabId, { url: '/options.html#/focus-message/'});
+            chrome.tabs.update(tabId, { url: '/options.html#/focus-message/' });
             fgTaskQue.splice(index, 1);
             item2Resolve = item;
           }
