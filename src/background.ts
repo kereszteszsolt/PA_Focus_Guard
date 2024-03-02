@@ -61,12 +61,24 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   console.log('Tab updated');
   if (tab.url) {
-    let focusPage = fgAppData.focusMode && tab.url.includes('chrome-extension://') && tab.url.includes('options.html#/focus-message');
+
     let active = calculateActiveWebsiteRules();
     let relevant = active.some((wr) => tab.url && tab.url.includes(wr.url));
     let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === tabId && tq.url === tab.url && (Date.now() - tq.tabUpdatedTime) < 1500);
+
+    let focusPage = fgAppData.focusMode && tab.url.includes('chrome-extension://') && tab.url.includes('options.html#/focus-message');
+    if (focusPage) {
+      console.log('Focus page');
+      //remove any older task for this tab
+      taskQueue = taskQueue.filter((tq) => tq.tabId !== tabId);
+      console.log('Focuspage taskQueue:');
+      for (let task of taskQueue) {
+        console.log(task);
+      }
+    }
+
     console.log('alreadyInAndTime', alreadyInAndTime);
-    if (relevant && !alreadyInAndTime) {
+    if (relevant && !alreadyInAndTime && !focusPage) {
       console.log('Relevant tab');
       let taskId = utils.unique.generateUniqueListId(taskQueue);
       taskQueue.push({
