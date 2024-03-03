@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { ISocialMediaLink } from '@/interfaces';
 
 const props = defineProps({
   pDialog: {
     type: Boolean,
     required: true
   },
-  pText: {
-    type: String,
+  socialMediaLink: {
+    type: Object as () => ISocialMediaLink,
     required: true
   },
   pCloseDialog: {
@@ -29,14 +30,34 @@ watch(() => props.pDialog, (value) => {
 </script>
 
 <template>
-  <v-dialog v-model="dialog" max-width="900px" persistent>
-    <v-card color="background">
-       <v-card-item>
-        <v-card-title class="headline">{{props.pText}}</v-card-title>
-       </v-card-item>
+  <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-card>
+      <v-card-title class="text-h5"><v-icon>{{socialMediaLink.icon}}</v-icon>{{ socialMediaLink.platform }}</v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-img :src="socialMediaLink.url" aspect-ratio="1"></v-img>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-row>
+              <v-col cols="12">
+                <v-text-field v-model="socialMediaLink.name" label="Name"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field v-model="socialMediaLink.identifier" label="Identifier"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field v-model="socialMediaLink.description" label="Description"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field v-model="socialMediaLink.instruction" label="Instruction"></v-text-field>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn @click="pCloseDialog" variant="elevated" elevated="12" color="danger">Close</v-btn>
+        <v-btn color="blue darken-1" @click="pCloseDialog">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

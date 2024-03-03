@@ -3,6 +3,7 @@ import { computed, ref } from 'vue';
 import { useI18nStore } from '@/store';
 import { EditCustomLanguageDialog } from '@/components/languages';
 import { FooterSocialModal } from '@/components/footer';
+import { ISocialMediaLink } from '@/interfaces';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
@@ -21,7 +22,86 @@ const closeSocialDialog = () => {
   contextSocialPage.value = '';
   socialDialog.value = false;
 };
+
+const socialMediaLinks: ISocialMediaLink[] = [
+  {
+    id: 'facebook',
+    platform: 'Facebook',
+    icon: 'mdi-facebook',
+    name: 'Keresztes Zsolt',
+    identifier: '@KeresztesZsolt.kzs',
+    description: 'Facebook oldalam',
+    instruction: 'Kattints s kövess be!',
+    url: 'https://www.facebook.com/KeresztesZsolt.kzs'
+  },
+  {
+    id: 'twitter',
+    platform: 'Twitter',
+    icon: 'mdi-twitter',
+    name: 'Keresztes Zsolt',
+    identifier: '@KeresztesZsolti',
+    description: 'Twitter oldalam',
+    instruction: 'Kattints s kövess be!',
+    url: 'https://twitter.com/KeresztesZsolti'
+  },
+  {
+    id: 'instagram',
+    platform: 'Instagram',
+    icon: 'mdi-instagram',
+    name: 'Keresztes Zsolt',
+    identifier: '@kereszteszsol_kzs',
+    description: 'Instagram oldalam',
+    instruction: 'Kattints s kövess be!',
+    url: 'https://www.instagram.com/kereszteszsolt_kzs'
+  },
+  {
+    id: 'linkedin',
+    platform: 'LinkedIn',
+    icon: 'mdi-linkedin',
+    name: 'Keresztes Zsolt',
+    identifier: '@kereszteszsolt',
+    description: 'LinkedIn oldalam',
+    instruction: 'Kattints s kövess be!',
+    url: 'https://www.linkedin.com/in/kereszteszsolt/'
+  },
+  {
+    id: 'youtube-hu',
+    platform: 'YouTube',
+    icon: 'mdi-youtube',
+    name: 'Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech',
+    identifier: '@KeresztesZsolt',
+    description: 'YouTube csatornám',
+    instruction: 'Kattints s kövess be!',
+    url: 'https://www.youtube.com/@KeresztesZsolt'
+  },
+  {
+    id: 'youtube-en',
+    platform: 'YouTube',
+    icon: 'mdi-youtube',
+    name: 'Keresztes Zsolt - Vlog, Self-Dev, Science&Tech',
+    identifier: '@KeresztesZsolti',
+    description: 'YouTube channel',
+    instruction: 'Click and follow!',
+    url: 'https://www.youtube.com/@KeresztesZsolti'
+  },
+  {
+    id: 'github',
+    platform: 'GitHub',
+    icon: 'mdi-github',
+    name: 'Keresztes Zsolt',
+    identifier: '@kereszteszsolt',
+    description: 'GitHub oldalam',
+    instruction: 'Kattints s kövess be!',
+    url: 'https://github.com/kereszteszsolt'
+  },
+];
+
+const getSocialMediaLinkByPlatformName = (platformName: string) => {
+  return socialMediaLinks.find((link) => link.id === platformName) || {} as ISocialMediaLink;
+};
+
 </script>
+
 
 <template>
   <v-sheet color="background"
@@ -121,7 +201,8 @@ const closeSocialDialog = () => {
     <div class="d-flex flex-row justify-space-around text-center">
       <p class="info">Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
     </div>
-    <footer-social-modal :t="t" :p-dialog="socialDialog" :p-text="contextSocialPage"
+    <footer-social-modal :t="t" :p-dialog="socialDialog"
+                         :social-media-link="getSocialMediaLinkByPlatformName(contextSocialPage)"
                          :p-close-dialog="closeSocialDialog"/>
   </v-sheet>
 </template>
