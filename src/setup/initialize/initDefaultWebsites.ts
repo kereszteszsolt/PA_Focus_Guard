@@ -1,4 +1,4 @@
-import * as unique from '../unique';
+import * as unique from '../../utils/unique';
 import * as utils from '@/utils';
 import * as constants from '@/constants';
 import { IWebsiteRule, IWebsiteRuleList } from '@/interfaces';

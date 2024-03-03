@@ -1,4 +1,5 @@
 import * as utils from '@/utils';
+import * as setup from '@/setup';
 import * as constants from '@/constants';
 import { IAppData } from '@/interfaces/IAppData';
 import { IWebsiteRule, ITaskQueue, IDistractionAttempt } from '@/interfaces';
@@ -18,10 +19,10 @@ chrome.runtime.onInstalled.addListener(async (details) => {
   switch (details.reason) {
     case 'install':
       console.log('Extension installed');
-      await utils.initialize.locales.initLocaleSettingsAndMessages();
-      await utils.initialize.appData.initDefaultAppData();
-      await utils.initialize.websiteRules.initDefaultWebsites();
-      await utils.initialize.statistics.initDefaultStatistics();
+      await setup.initialize.locales.initLocaleSettingsAndMessages();
+      await setup.initialize.appData.initDefaultAppData();
+      await setup.initialize.websiteRules.initDefaultWebsites();
+      await setup.initialize.statistics.initDefaultStatistics();
       break;
     case 'update':
       console.log('Extension updated');
