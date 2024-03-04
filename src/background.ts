@@ -48,6 +48,7 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       fgAppData = JSON.parse(changes[constants.storage.FG_APP_DATA].newValue);
       await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
       console.log('Active rules', calculateActiveWebsiteRules());
+      await setTheBadge();
     }
     if (constants.storage.FG_WEBSITE_RULES in changes) {
       fgWebsiteRules = JSON.parse(changes[constants.storage.FG_WEBSITE_RULES].newValue);
@@ -56,6 +57,7 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
     }
     if (constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS in changes) {
       distractionAttempts = JSON.parse(changes[constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS].newValue);
+      await setTheBadge();
     }
   }
 });
@@ -72,7 +74,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
 
 const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   if (url && tabId) {
-  console.log('url', url);
+    console.log('url', url);
     let activeRules = calculateActiveWebsiteRules();
     let contextRules = activeRules.filter((wr) => url && url.includes(wr.url));
 
@@ -90,7 +92,7 @@ const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
       await chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
     }
   }
-}
+};
 
 chrome.runtime.onStartup.addListener(async () => {
   console.log('Runtime started');
@@ -125,4 +127,22 @@ const readData = async () => {
   fgAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
   fgWebsiteRules = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
   distractionAttempts = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS);
+};
+
+const setTheBadge = async () => {
+  let badgeText = '';
+  let badgeBackgroundColor = fgAppData.fgTheme === 'fgLightTheme' ? '#574513' : '#9c7e31';
+
+  if (fgAppData.focusMode && fgAppData.focusModeSessionId !== constants.common.NOT_APPLICABLE) {
+    let nrDistractionCrrSession = distractionAttempts.filter((da) =>
+      da.focusModeSessionId === fgAppData.focusModeSessionId).length;
+    badgeText = nrDistractionCrrSession === 0 ? '✓' : nrDistractionCrrSession.toString();
+    badgeBackgroundColor = (nrDistractionCrrSession === 0) ?
+      (fgAppData.fgTheme === 'fgLightTheme' ? '#4caf50' : '#66bb6a') :
+      (fgAppData.fgTheme === 'fgLightTheme' ? '#f44336' : '#ef5350');
+
+  }
+  await chrome.action.setBadgeText({ text: badgeText });
+  await chrome.action.setBadgeBackgroundColor({ color: badgeBackgroundColor });
+  await chrome.action.setBadgeTextColor({ color: '#f5f5f5' });
 };
