@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { IDistractionAttempt } from '@/interfaces';
 import * as constants from '@/constants';
 import * as utils from '@/utils';
-import { fetchEntry } from '@/utils/data';
 
 export const useStatisticsStore = defineStore({
   id: 'statistics',
@@ -19,6 +18,9 @@ export const useStatisticsStore = defineStore({
     },
     getNrOfDistractionAttempts: (state): number => {
       return state.distractionAttempts.length;
+    },
+    getNewUniqueFocusSessionId: (state): string => {
+      return utils.unique.generateUniqueUUIDByField(state.distractionAttempts, 'focusModeSessionId');
     }
   },
   actions: {

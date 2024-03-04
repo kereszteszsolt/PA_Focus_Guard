@@ -3,6 +3,7 @@ import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { useTheme } from 'vuetify';
 import { computed, watchEffect } from 'vue';
 import { msg } from '@/constants';
+import * as constants from '@/constants';
 
 const appDataStore = useAppDataStore();
 const statisticsStore = useStatisticsStore();
@@ -24,6 +25,10 @@ const options = () => {
 };
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoading || i18n.isLoading);
+const switchFocusMode = (active: boolean) => {
+  let focusSessionId: string = active ? statisticsStore.getNewUniqueFocusSessionId :  constants.common.NOT_APPLICABLE;
+  appDataStore.switchFocusMode(active, focusSessionId);
+};
 </script>
 
 <template>
@@ -42,7 +47,7 @@ const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoa
           class="button-off"
           :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
           :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-          @click="appDataStore.updateFocusModeActive(false)">
+          @click="switchFocusMode(false)">
           {{ t(msg.OFF) }}
         </v-btn>
       </v-col>
@@ -52,7 +57,7 @@ const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoa
           class="button-on"
           :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
           :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-          @click="appDataStore.updateFocusModeActive(true)">
+          @click="switchFocusMode(true)">
           {{ t(msg.ON) }}
         </v-btn>
       </v-col>

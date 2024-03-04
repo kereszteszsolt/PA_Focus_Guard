@@ -8,7 +8,8 @@ import * as scripts from '@/scripts';
 let fgAppData: IAppData = {
   focusMode: false,
   version: chrome.runtime.getManifest().version,
-  fgTheme: 'fgLightTheme'
+  fgTheme: 'fgLightTheme',
+  focusModeSessionId: constants.common.NOT_APPLICABLE
 };
 let fgWebsiteRules: IWebsiteRule[] = [];
 let taskQueue: ITaskQueue[] = [];
@@ -64,7 +65,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (tab.url) {
 
     let active = calculateActiveWebsiteRules();
-    let relevant = active.some((wr) => tab.url && tab.url.includes(wr.url));
+    let relevant = active.filter((wr) => tab.url && tab.url.includes(wr.url));
     let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === tabId && tq.url === tab.url && (Date.now() - tq.tabUpdatedTime) < 1500);
 
     let focusPage = fgAppData.focusMode && tab.url.includes('chrome-extension://') && tab.url.includes('options.html#/focus-message');
@@ -73,7 +74,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     }
 
     console.log('alreadyInAndTime', alreadyInAndTime);
-    if (relevant && !alreadyInAndTime && !focusPage) {
+    if (relevant.length > 0 && !alreadyInAndTime && !focusPage) {
       console.log('Relevant tab');
 
       taskQueue.push({
@@ -88,11 +89,8 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         console.log(task);
       }
 
-      await scripts.background.applyRuleOnSpecificTab(tabId, tab.url, fgAppData, fgWebsiteRules, taskQueue)
-        .then((item) => {
-            saveDistractionAttempt(item, fgAppData);
-          }
-        );
+      await saveDistractionAttempt(relevant, fgAppData);
+      await chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
     }
   }
 });
@@ -101,18 +99,25 @@ chrome.runtime.onStartup.addListener(async () => {
   console.log('Runtime started');
   await readData();
 });
-const saveDistractionAttempt = async (item: IWebsiteRule | undefined, appData: IAppData): Promise<void> => {
-  if (!item) {
+const saveDistractionAttempt = async (items: IWebsiteRule[], appData: IAppData): Promise<void> => {
+  if (items.length === 0) {
     return;
   }
   let distractionAttempt: IDistractionAttempt = {
     id: utils.unique.generateUniqueListId(distractionAttempts),
-    url: item.url,
+    dateTime: Date.now(),
     focusMode: appData.focusMode,
-    permanentlyActive: item.permanentlyActive
+    focusModeSessionId: appData.focusModeSessionId,
+    simpleRules: items.map((item) => {
+      return {
+        urlFilter: item.url,
+        permanentlyActive: item.permanentlyActive
+      };
+    })
   };
   distractionAttempts.push(distractionAttempt);
   await utils.data.saveList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, distractionAttempts);
+  console.log('Distraction attempt saved', distractionAttempt);
 };
 
 const calculateActiveWebsiteRules = (): IWebsiteRule[] => {

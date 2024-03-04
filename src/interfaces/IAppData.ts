@@ -2,6 +2,5 @@ export interface IAppData {
   focusMode: boolean;
   version: string;
   fgTheme: string;
+  focusModeSessionId: string;
 }
-
-export type AppDataType = IAppData;

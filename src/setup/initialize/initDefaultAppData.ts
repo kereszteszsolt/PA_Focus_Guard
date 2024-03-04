@@ -7,6 +7,7 @@ export const initDefaultAppData = async () => {
     focusMode: false,
     version: '0.0.0',
     fgTheme: 'fgLightTheme',
+    focusModeSessionId: constants.common.NOT_APPLICABLE
   };
   await utils.data.saveEntry(constants.storage.FG_APP_DATA, data);
 }

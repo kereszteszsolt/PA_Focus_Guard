@@ -1,6 +1,11 @@
+export interface ISimpleRule {
+  urlFilter: string;
+  permanentlyActive: boolean;
+}
 export interface IDistractionAttempt {
   id: string;
-  url: string;
   focusMode: boolean;
-  permanentlyActive: boolean;
+  focusModeSessionId: string;
+  simpleRules: ISimpleRule[];
+  dateTime: number;
 }

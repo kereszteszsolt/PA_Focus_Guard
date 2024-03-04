@@ -13,6 +13,7 @@ export const useAppDataStore = defineStore('appData', {
       focusMode: false,
       version: '0.0.0',
       fgTheme: 'fgLightTheme',
+      focusModeSessionId: constants.common.NOT_APPLICABLE,
     },
   }),
   getters: {
@@ -31,8 +32,9 @@ export const useAppDataStore = defineStore('appData', {
       await utils.data.saveEntry(constants.storage.FG_APP_DATA, this.appData);
       this.isLoading = false;
     },
-    async updateFocusModeActive(value: boolean): Promise<void> {
+    async switchFocusMode(value: boolean, focusSessionId: string): Promise<void> {
       this.appData.focusMode = value;
+      this.appData.focusModeSessionId = focusSessionId;
       await this.saveAppData();
     },
     async updateFgTheme(theme: string): Promise<void> {
