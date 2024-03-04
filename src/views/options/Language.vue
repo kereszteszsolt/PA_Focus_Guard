@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18nStore } from '@/store';
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
 
@@ -109,7 +109,7 @@ const deleteLocale = (id: string) => {
         <v-toolbar flat class="border-top-radius-8">
           <v-toolbar-title>{{ t(msg.LANGUAGES) }}</v-toolbar-title>
           <v-spacer></v-spacer>
-          <divc class="d-flex justify-space-between px-4">
+          <div class="d-flex justify-space-between px-4">
             <v-btn
               color="warning"
               variant="elevated"
@@ -128,7 +128,7 @@ const deleteLocale = (id: string) => {
             >
               {{ t(msg.ADD) }}
             </v-btn>
-          </divc>
+          </div>
         </v-toolbar>
       </template>
     </v-data-table>
