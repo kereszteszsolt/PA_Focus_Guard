@@ -60,17 +60,17 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
   }
 });
 
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   console.log('Tab updated');
-  if (tab.url) {
+  if (details.url) {
 
     let active = calculateActiveWebsiteRules();
-    let relevant = active.filter((wr) => tab.url && tab.url.includes(wr.url));
-    let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === tabId && tq.url === tab.url && (Date.now() - tq.tabUpdatedTime) < 1500);
+    let relevant = active.filter((wr) => details.url && details.url.includes(wr.url));
+    let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === details.tabId && tq.url === details.url && (Date.now() - tq.tabUpdatedTime) < 1500);
 
-    let focusPage = fgAppData.focusMode && tab.url.includes('chrome-extension://') && tab.url.includes('options.html#/focus-message');
+    let focusPage = fgAppData.focusMode && details.url.includes('chrome-extension://') && details.url.includes('options.html#/focus-message');
     if (focusPage) {
-      taskQueue = taskQueue.filter((tq) => tq.tabId !== tabId);
+      taskQueue = taskQueue.filter((tq) => tq.tabId !== details.tabId);
     }
 
     console.log('alreadyInAndTime', alreadyInAndTime);
@@ -79,8 +79,8 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
       taskQueue.push({
         id: utils.unique.generateUniqueListId(taskQueue),
-        tabId: tabId,
-        url: tab.url,
+        tabId: details.tabId,
+        url: details.url,
         tabUpdatedTime: Date.now()
       });
 
@@ -90,9 +90,64 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
       }
 
       await saveDistractionAttempt(relevant, fgAppData);
-      await chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
+      await chrome.tabs.update(details.tabId, { url: '/options.html#/focus-message' });
     }
   }
+});
+chrome.webNavigation.onCreatedNavigationTarget.addListener(async (details) => {
+  console.log('onCreatedNavigationTarget');
+});
+chrome.webNavigation.onCommitted.addListener(async (details) => {
+  console.log('onCommitted');
+});
+chrome.webNavigation.onDOMContentLoaded.addListener(async (details) => {
+  console.log('onDOMContentLoaded');
+});
+chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
+  console.log('onHistoryStateUpdated');
+  if (details.url) {
+
+    let active = calculateActiveWebsiteRules();
+    let relevant = active.filter((wr) => details.url && details.url.includes(wr.url));
+    let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === details.tabId && tq.url === details.url && (Date.now() - tq.tabUpdatedTime) < 1500);
+
+    let focusPage = fgAppData.focusMode && details.url.includes('chrome-extension://') && details.url.includes('options.html#/focus-message');
+    if (focusPage) {
+      taskQueue = taskQueue.filter((tq) => tq.tabId !== details.tabId);
+    }
+
+    console.log('alreadyInAndTime', alreadyInAndTime);
+    if (relevant.length > 0 && !alreadyInAndTime && !focusPage) {
+      console.log('Relevant tab');
+
+      taskQueue.push({
+        id: utils.unique.generateUniqueListId(taskQueue),
+        tabId: details.tabId,
+        url: details.url,
+        tabUpdatedTime: Date.now()
+      });
+
+      console.log('chrome.tabs.onUpdated.addListener taskQueue:');
+      for (let task of taskQueue) {
+        console.log(task);
+      }
+
+      await saveDistractionAttempt(relevant, fgAppData);
+      await chrome.tabs.update(details.tabId, { url: '/options.html#/focus-message' });
+    }
+  }
+});
+chrome.webNavigation.onReferenceFragmentUpdated.addListener(async (details) => {
+  console.log('onReferenceFragmentUpdated');
+});
+chrome.webNavigation.onTabReplaced.addListener(async (details) => {
+  console.log('onTabReplaced');
+});
+chrome.webNavigation.onCompleted.addListener(async (details) => {
+  console.log('onCompleted');
+});
+chrome.webNavigation.onErrorOccurred.addListener(async (details) => {
+  console.log('onErrorOccurred');
 });
 
 chrome.runtime.onStartup.addListener(async () => {
