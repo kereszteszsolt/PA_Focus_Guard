@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { useTheme } from 'vuetify';
-import { computed, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import { msg } from '@/constants';
 import * as constants from '@/constants';
 
@@ -21,12 +21,72 @@ watchEffect(() => {
 });
 
 const options = () => {
-  window.open(chrome.runtime.getURL('options.html#/websites'));
+  let extensionPath = chrome.runtime.getURL('');
+  let focusMessageFullPath = extensionPath + 'options.html#/focus-message';
+  let optionsBasePath = extensionPath + 'options.html';
+
+  chrome.tabs.query({}, (tabs) => {
+    let optionsTab = tabs.find(tab => tab.url && tab.url.startsWith(optionsBasePath) && !tab.url.startsWith(focusMessageFullPath));
+    if (optionsTab) {
+      optionsTab.id && chrome.tabs.update(optionsTab.id, { active: true });
+    } else {
+      chrome.tabs.create({ url: optionsBasePath });
+    }
+  });
 };
+
+const closeAllFocusMessageTab = () => {
+  let extensionPath = chrome.runtime.getURL('');
+  let focusMessageFullPath = extensionPath + 'options.html#/focus-message';
+
+  chrome.tabs.query({}, (tabs) => {
+    let focusTabs = tabs.filter(tab => tab.url && tab.url.startsWith(focusMessageFullPath));
+    focusTabs.forEach(focusTab => {
+      focusTab.id && chrome.tabs.remove(focusTab.id);
+    });
+  });
+};
+
+const closeAllOptionsTabs = () => {
+  let extensionPath = chrome.runtime.getURL('');
+  let optionsBasePath = extensionPath + 'options.html';
+
+  chrome.tabs.query({}, (tabs) => {
+    let optionsTabs = tabs.filter(tab => tab.url && tab.url.startsWith(optionsBasePath));
+    optionsTabs.forEach(optionsTab => {
+      optionsTab.id && chrome.tabs.remove(optionsTab.id);
+    });
+  });
+};
+
+const nrOfOpenFocusMessageTabs = computed(() => {
+  let extensionPath = chrome.runtime.getURL('');
+  let focusMessageFullPath = extensionPath + 'options.html#/focus-message';
+
+  return new Promise<number>((resolve) => {
+    chrome.tabs.query({}, (tabs) => {
+      let focusTabs = tabs.filter(tab => tab.url && tab.url.startsWith(focusMessageFullPath));
+      resolve(focusTabs.length);
+    });
+  });
+});
+
+const nrOfOpenOptionsTabs = computed(() => {
+  let extensionPath = chrome.runtime.getURL('');
+  let optionsBasePath = extensionPath + 'options.html';
+
+  return new Promise<number>((resolve) => {
+    chrome.tabs.query({}, (tabs) => {
+      let optionsTabs = tabs.filter(tab => tab.url && tab.url.startsWith(optionsBasePath));
+      resolve(optionsTabs.length);
+    });
+  });
+});
+
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoading || i18n.isLoading);
 const switchFocusMode = (active: boolean) => {
-  let focusSessionId: string = active ? statisticsStore.getNewUniqueFocusSessionId :  constants.common.NOT_APPLICABLE;
+  let focusSessionId: string = active ? statisticsStore.getNewUniqueFocusSessionId : constants.common.NOT_APPLICABLE;
   appDataStore.switchFocusMode(active, focusSessionId);
 };
 </script>
@@ -64,13 +124,23 @@ const switchFocusMode = (active: boolean) => {
     </v-row>
     <v-row class="my-0">
       <v-col cols="12" class="text-center pa-0">
-        <v-btn @click="options">{{ t(msg.SETTINGS) }}</v-btn>
+        <v-btn @click="options"><i class="mdi mdi-tune"></i> Options</v-btn>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" class="text-center">
         <div class="text-h7">{{ t(msg.DISTRACTION_ATTEMPTS) }}</div>
         <v-btn icon variant="outlined">{{ statisticsStore.getNrOfDistractionAttempts }}</v-btn>
+      </v-col>
+    </v-row>
+    <v-row class="pt-4">
+      <v-col cols="12" class="text-center pa-0">
+        <v-btn @click="closeAllFocusMessageTab">Close All (Focus Tab)</v-btn>
+      </v-col>
+    </v-row>
+    <v-row class="pt-4 pb-4">
+      <v-col cols="12" class="text-center pa-0">
+        <v-btn @click="closeAllOptionsTabs">Close All (Options Tab)</v-btn>
       </v-col>
     </v-row>
   </v-card>
