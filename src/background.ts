@@ -63,20 +63,20 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   console.log('Tab updated');
   await redirectOrAllow(details.tabId, details.url);
-});
+}, { url: [{ schemes: ['http', 'https'] }] });
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
   console.log('onHistoryStateUpdated');
   await redirectOrAllow(details.tabId, details.url);
-});
+}, { url: [{ schemes: ['http', 'https'] }] });
 
 const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
-  if (url) {
+  if (url && tabId) {
   console.log('url', url);
-    let active = calculateActiveWebsiteRules();
-    let relevant = active.filter((wr) => url && url.includes(wr.url));
+    let activeRules = calculateActiveWebsiteRules();
+    let contextRules = activeRules.filter((wr) => url && url.includes(wr.url));
 
-    if (relevant.length > 0) {
+    if (contextRules.length > 0) {
       console.log('Relevant tab');
 
       taskQueue.push({
@@ -86,7 +86,7 @@ const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
         tabUpdatedTime: Date.now()
       });
 
-      await saveDistractionAttempt(relevant, fgAppData);
+      await saveDistractionAttempt(contextRules, fgAppData);
       await chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
     }
   }
