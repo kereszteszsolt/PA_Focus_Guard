@@ -27,6 +27,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
       break;
     case 'update':
       console.log('Extension updated');
+      await readData();
       // await utils.initialize.locales.initLocaleSettingsAndMessages();
       // await utils.initialize.appData.initDefaultAppData();
       // await utils.initialize.websiteRules.initDefaultWebsites();

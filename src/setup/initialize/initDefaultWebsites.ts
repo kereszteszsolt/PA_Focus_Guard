@@ -27,7 +27,7 @@ let wsRule_01: IWebsiteRule = {
   url: 'facebook.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   order: 0,
   globalOrder: 0,
 };
@@ -187,7 +187,7 @@ let wsRule_17: IWebsiteRule = {
   url: 'https://www.facebook.com/watch',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   order: 16,
   globalOrder: 16,
 };
@@ -217,7 +217,7 @@ let wsRule_20: IWebsiteRule = {
   url: 'https://www.facebook.com/stories',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   order: 19,
   globalOrder: 19,
 };
