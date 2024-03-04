@@ -40,7 +40,7 @@ const deleteLocale = (id: string) => {
 </script>
 
 <template>
-  <div class="flex-1-0" v-if="!isLoading">
+  <div class="flex-1-0 border-top-radius-8" v-if="!isLoading">
     <v-data-table
       :headers="headers"
       :items="allLocales"
@@ -105,8 +105,8 @@ const deleteLocale = (id: string) => {
       <template v-slot:item.language_type="{ item }">
         <span class="text-center">{{ item.isBuiltIn ? 'Build-In' : 'Custom' }}</span>
       </template>
-      <template v-slot:top class="border-top-radius-8">
-        <v-toolbar flat>
+      <template v-slot:top>
+        <v-toolbar flat class="border-top-radius-8">
           <v-toolbar-title>{{ t(msg.LANGUAGES) }}</v-toolbar-title>
           <v-spacer></v-spacer>
           <divc class="d-flex justify-space-between px-4">

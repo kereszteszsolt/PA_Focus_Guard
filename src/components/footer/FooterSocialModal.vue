@@ -31,8 +31,8 @@ watch(() => props.pDialog, (value) => {
 
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
-    <v-card>
-      <v-card-title class="text-h5"><v-icon>{{socialMediaLink.icon}}</v-icon>{{ socialMediaLink.platform }}</v-card-title>
+    <v-card color="background">
+      <v-card-title class="text-h5">{{ socialMediaLink.platform }}</v-card-title>
       <v-card-text>
         <v-row>
           <v-col cols="12" md="6">
@@ -57,7 +57,7 @@ watch(() => props.pDialog, (value) => {
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="blue darken-1" @click="pCloseDialog">Close</v-btn>
+        <v-btn color="danger" variant="elevated" elevation="12" @click="pCloseDialog">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
