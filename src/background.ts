@@ -62,37 +62,7 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   console.log('Tab updated');
-  if (details.url) {
-
-    let active = calculateActiveWebsiteRules();
-    let relevant = active.filter((wr) => details.url && details.url.includes(wr.url));
-    let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === details.tabId && tq.url === details.url && (Date.now() - tq.tabUpdatedTime) < 1500);
-
-    let focusPage = fgAppData.focusMode && details.url.includes('chrome-extension://') && details.url.includes('options.html#/focus-message');
-    if (focusPage) {
-      taskQueue = taskQueue.filter((tq) => tq.tabId !== details.tabId);
-    }
-
-    console.log('alreadyInAndTime', alreadyInAndTime);
-    if (relevant.length > 0 && !alreadyInAndTime && !focusPage) {
-      console.log('Relevant tab');
-
-      taskQueue.push({
-        id: utils.unique.generateUniqueListId(taskQueue),
-        tabId: details.tabId,
-        url: details.url,
-        tabUpdatedTime: Date.now()
-      });
-
-      console.log('chrome.tabs.onUpdated.addListener taskQueue:');
-      for (let task of taskQueue) {
-        console.log(task);
-      }
-
-      await saveDistractionAttempt(relevant, fgAppData);
-      await chrome.tabs.update(details.tabId, { url: '/options.html#/focus-message' });
-    }
-  }
+  await redirectOrAllow(details.tabId, details.url);
 });
 chrome.webNavigation.onCreatedNavigationTarget.addListener(async (details) => {
   console.log('onCreatedNavigationTarget');
@@ -105,37 +75,7 @@ chrome.webNavigation.onDOMContentLoaded.addListener(async (details) => {
 });
 chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
   console.log('onHistoryStateUpdated');
-  if (details.url) {
-
-    let active = calculateActiveWebsiteRules();
-    let relevant = active.filter((wr) => details.url && details.url.includes(wr.url));
-    let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === details.tabId && tq.url === details.url && (Date.now() - tq.tabUpdatedTime) < 1500);
-
-    let focusPage = fgAppData.focusMode && details.url.includes('chrome-extension://') && details.url.includes('options.html#/focus-message');
-    if (focusPage) {
-      taskQueue = taskQueue.filter((tq) => tq.tabId !== details.tabId);
-    }
-
-    console.log('alreadyInAndTime', alreadyInAndTime);
-    if (relevant.length > 0 && !alreadyInAndTime && !focusPage) {
-      console.log('Relevant tab');
-
-      taskQueue.push({
-        id: utils.unique.generateUniqueListId(taskQueue),
-        tabId: details.tabId,
-        url: details.url,
-        tabUpdatedTime: Date.now()
-      });
-
-      console.log('chrome.tabs.onUpdated.addListener taskQueue:');
-      for (let task of taskQueue) {
-        console.log(task);
-      }
-
-      await saveDistractionAttempt(relevant, fgAppData);
-      await chrome.tabs.update(details.tabId, { url: '/options.html#/focus-message' });
-    }
-  }
+  await redirectOrAllow(details.tabId, details.url);
 });
 chrome.webNavigation.onReferenceFragmentUpdated.addListener(async (details) => {
   console.log('onReferenceFragmentUpdated');
@@ -149,6 +89,41 @@ chrome.webNavigation.onCompleted.addListener(async (details) => {
 chrome.webNavigation.onErrorOccurred.addListener(async (details) => {
   console.log('onErrorOccurred');
 });
+
+const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
+  if (url) {
+
+    let active = calculateActiveWebsiteRules();
+    let relevant = active.filter((wr) => url && url.includes(wr.url));
+    let alreadyInAndTime = taskQueue.some((tq) => tq.tabId === tabId && tq.url === url && (Date.now() - tq.tabUpdatedTime) < 1500);
+
+    let focusPage = fgAppData.focusMode && url.includes('chrome-extension://') && url.includes('options.html#/focus-message');
+    if (focusPage) {
+      taskQueue = taskQueue.filter((tq) => tq.tabId !== tabId);
+    }
+
+    console.log('alreadyInAndTime', alreadyInAndTime);
+    if (relevant.length > 0 && !alreadyInAndTime && !focusPage) {
+      console.log('Relevant tab');
+
+      taskQueue.push({
+        id: utils.unique.generateUniqueListId(taskQueue),
+        tabId: tabId,
+        url: url,
+        tabUpdatedTime: Date.now()
+      });
+
+      console.log('chrome.tabs.onUpdated.addListener taskQueue:');
+      for (let task of taskQueue) {
+        console.log(task);
+      }
+
+      await saveDistractionAttempt(relevant, fgAppData);
+      await chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
+    }
+  }
+}
+
 
 chrome.runtime.onStartup.addListener(async () => {
   console.log('Runtime started');
