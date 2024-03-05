@@ -101,7 +101,7 @@ const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   if (url && tabId) {
     console.log('url', url);
     let activeRules = calculateActiveWebsiteRules();
-    let contextRules = activeRules.filter((wr) => url && url.includes(wr.url));
+    let contextRules = activeRules.filter((wr) => url && url.includes(wr.urlFilter));
 
     if (contextRules.length > 0) {
       console.log('Relevant tab');
@@ -134,7 +134,7 @@ const saveDistractionAttempt = async (items: IWebsiteRule[], appData: IAppData):
     focusModeSessionId: appData.focusModeSessionId,
     simpleRules: items.map((item) => {
       return {
-        urlFilter: item.url,
+        urlFilter: item.urlFilter,
         permanentlyActive: item.permanentlyActive
       };
     })

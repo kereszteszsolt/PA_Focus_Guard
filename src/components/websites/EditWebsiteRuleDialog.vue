@@ -45,7 +45,7 @@ const urlRules = computed(() => {
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
   if (value) {
-    url.value = props.pItem.url;
+    url.value = props.pItem?.urlFilter;
     permanentlyActive.value = props.pItem.permanentlyActive;
     temporarilyInactive.value = props.pItem.temporarilyInactive;
   }
@@ -67,7 +67,7 @@ const close = () => {
 const save = () => {
   let editedItem: IWebsiteRule = {
     ...props.pItem,
-    url: url.value,
+    urlFilter: url.value,
     permanentlyActive: permanentlyActive.value,
     temporarilyInactive: temporarilyInactive.value
   };

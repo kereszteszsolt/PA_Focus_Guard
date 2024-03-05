@@ -24,212 +24,233 @@ console.log('websiteList', wsRuleList_01);
 let allWebsites: IWebsiteRule[] = [];
 let wsRule_01: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'facebook.com',
+  urlFilter: 'facebook.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: true,
-  order: 0,
+  localOrder: 0,
   globalOrder: 0,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_01);
 let wsRule_02: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'twitter.com',
+  urlFilter: 'twitter.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 1,
+  localOrder: 1,
   globalOrder: 1,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_02);
 let wsRule_03: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'youtube.com',
+  urlFilter: 'youtube.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 2,
+  localOrder: 2,
   globalOrder: 2,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_03);
 let wsRule_04: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'reddit.com',
+  urlFilter: 'reddit.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 3,
+  localOrder: 3,
   globalOrder: 3,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_04);
 let wsRule_05: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'instagram.com',
+  urlFilter: 'instagram.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 4,
+  localOrder: 4,
   globalOrder: 4,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_05);
 let wsRule_06: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'linkedin.com',
+  urlFilter: 'linkedin.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 5,
+  localOrder: 5,
   globalOrder: 5,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_06);
 let wsRule_07: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'tiktok.com',
+  urlFilter: 'tiktok.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 6,
+  localOrder: 6,
   globalOrder: 6,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_07);
 let wsRule_08: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'pinterest.com',
+  urlFilter: 'pinterest.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 7,
+  localOrder: 7,
   globalOrder: 7,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_08);
 let wsRule_09: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'snapchat.com',
+  urlFilter: 'snapchat.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 8,
+  localOrder: 8,
   globalOrder: 8,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_09);
 let wsRule_10: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'whatsapp.com',
+  urlFilter: 'whatsapp.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 9,
+  localOrder: 9,
   globalOrder: 9,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_10);
 let wsRule_11: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'telegram.com',
+  urlFilter: 'telegram.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 10,
+  localOrder: 10,
   globalOrder: 10,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_11);
 let wsRule_12: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'discord.com',
+  urlFilter: 'discord.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 11,
+  localOrder: 11,
   globalOrder: 11,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_12);
 let wsRule_13: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'tumblr.com',
+  urlFilter: 'tumblr.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 12,
+  localOrder: 12,
   globalOrder: 12,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_13);
 let wsRule_14: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'flickr.com',
+  urlFilter: 'flickr.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 13,
+  localOrder: 13,
   globalOrder: 13,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_14);
 let wsRule_15: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'vimeo.com',
+  urlFilter: 'vimeo.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 14,
+  localOrder: 14,
   globalOrder: 14,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_15);
 let wsRule_16: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'twitch.com',
+  urlFilter: 'twitch.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 15,
+  localOrder: 15,
   globalOrder: 15,
+  urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_16);
 let wsRule_17: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'https://www.facebook.com/watch',
+  urlFilter: 'https://www.facebook.com/watch',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
   temporarilyInactive: true,
-  order: 16,
+  localOrder: 16,
   globalOrder: 16,
+  urlFilterType: constants.wsrFilter.URL
 };
 allWebsites.push(wsRule_17);
 let wsRule_18: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'https://www.instagram.com/stories',
+  urlFilter: 'https://www.instagram.com/stories',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 17,
+  localOrder: 17,
   globalOrder: 17,
+  urlFilterType: constants.wsrFilter.URL
 };
 allWebsites.push(wsRule_18);
 let wsRule_19: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'https://www.instagram.com/reel',
+  urlFilter: 'https://www.instagram.com/reel',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 18,
+  localOrder: 18,
   globalOrder: 18,
+  urlFilterType: constants.wsrFilter.URL
 };
 allWebsites.push(wsRule_19);
 let wsRule_20: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'https://www.facebook.com/stories',
+  urlFilter: 'https://www.facebook.com/stories',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
   temporarilyInactive: true,
-  order: 19,
+  localOrder: 19,
   globalOrder: 19,
+  urlFilterType: constants.wsrFilter.URL
 };
 allWebsites.push(wsRule_20);
 let wsRule_21: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
-  url: 'https://www.youtube.com/shorts',
+  urlFilter: 'https://www.youtube.com/shorts',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
   temporarilyInactive: false,
-  order: 20,
+  localOrder: 20,
   globalOrder: 20,
+  urlFilterType: constants.wsrFilter.URL
 };
 allWebsites.push(wsRule_21);
 

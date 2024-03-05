@@ -34,11 +34,12 @@ export const useWebsiteRulesStore = defineStore({
       return {
         id: '',
         listId: '',
-        url: '',
+        urlFilter: '',
         permanentlyActive: false,
         temporarilyInactive: false,
-        order: -1,
-        globalOrder: -1
+        localOrder: -1,
+        globalOrder: -1,
+        urlFilterType: constants.wsrFilter.URL
       };
     },
     getDummyWebsiteRuleList: (): IWebsiteRuleList => {
@@ -76,7 +77,7 @@ export const useWebsiteRulesStore = defineStore({
     },
     async addWebsiteRule(website: IWebsiteRule): Promise<void> {
       website.id = utils.unique.generateUniqueListId(this.allWebsiteRules);
-      website.order = utils.unique.generateUniqueNumberByField(this.allWebsiteRules.filter((w) => w.listId === website.listId), 'order');
+      website.localOrder = utils.unique.generateUniqueNumberByField(this.allWebsiteRules.filter((w) => w.listId === website.listId), 'order');
       website.globalOrder = utils.unique.generateUniqueNumberByField(this.allWebsiteRules, 'globalOrder');
       this.allWebsiteRules.push(website);
       await this.saveWebsiteRules();
@@ -93,9 +94,9 @@ export const useWebsiteRulesStore = defineStore({
         this.allWebsiteRules = this.allWebsiteRules.filter((w) => w.id !== websiteId);
 
         let websiteListCrrContext: IWebsiteRule[] = this.allWebsiteRules.filter((w) => w.listId === website.listId);
-        websiteListCrrContext.sort((a, b) => a.order - b.order);
+        websiteListCrrContext.sort((a, b) => a.localOrder - b.localOrder);
         websiteListCrrContext = websiteListCrrContext.map((w, index) => {
-          w.order = index;
+          w.localOrder = index;
           return w;
         });
         this.allWebsiteRules = this.allWebsiteRules.filter((w) => w.listId !== website.listId);

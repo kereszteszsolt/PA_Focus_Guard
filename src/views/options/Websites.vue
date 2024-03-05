@@ -171,7 +171,7 @@ const save = (editedItem: IWebsiteRule) => {
           :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word', textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
           <!--        <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">-->
           <!--          <a :href="item.url" target="_blank" :style="{fontWeight: 700}">-->
-          {{ item.url }}
+          {{ item.urlFilter }}
           <!--          </a>-->
         </div>
       </template>

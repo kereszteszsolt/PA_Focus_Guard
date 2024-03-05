@@ -81,7 +81,7 @@ export const applyRulesOnOpenTabs = async (fgAppData: IAppData, fgWebsiteRules: 
     tabs.forEach((tab: chrome.tabs.Tab) => {
       const itemsToBlock = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
       itemsToBlock.forEach((item) => {
-        if (tab.url && tab.url.includes(item.url) && tab.id) {
+        if (tab.url && tab.url.includes(item.urlFilter) && tab.id) {
           chrome.tabs.update(tab.id, { url: '/options.html#/focus-message' });
         }
       });
