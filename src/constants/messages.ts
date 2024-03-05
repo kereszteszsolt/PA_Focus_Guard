@@ -50,4 +50,14 @@ export const CLICK_AND_FALLOW_ME_ON_YOUTUBE = 'clickAndFallowMeOnYouTube';
 export const CLICK_AND_FALLOW_ME_ON_INSTAGRAM = 'clickAndFallowMeOnInstagram';
 export const CLICK_AND_FALLOW_ME_ON_TIKTOK = 'clickAndFallowMeOnTikTok';
 export const CLICK_AND_CHECK_MY_LIST_TREE_PAGE = 'clickAndCheckMyListTreePage';
+export const URL_FILTER_REQUIRED = 'urlFilterRequired';
+export const INVALID_DOMAIN = 'invalidDomain';
+export const INVALID_END_DOMAIN = 'invalidEndDomain';
+export const INVALID_URL = 'invalidUrl';
+export const INVALID_KEYWORD = 'invalidKeyword';
+export const DOMAIN = 'domain';
+export const END_DOMAIN = 'endDomain';
+export const URL = 'url';
+export const KEYWORD = 'keyword';
+export const PLEASE_SELECT_FILTERING_TYPE = 'pleaseSelectFilteringType';
 

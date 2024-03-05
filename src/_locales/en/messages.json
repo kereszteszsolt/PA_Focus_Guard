@@ -54,6 +54,16 @@
     "clickAndFallowMeOnYouTube": "Click and follow me on YouTube",
     "clickAndFallowMeOnInstagram": "Click and follow me on Instagram",
     "clickAndFallowMeOnTikTok": "Click and follow me on TikTok",
-    "clickAndCheckMyListTreePage": "Click and check my list tree page"
+    "clickAndCheckMyListTreePage": "Click and check my list tree page",
+    "urlFilterRequired": "URL filter is required.",
+    "invalidDomain": "The domain is invalid.",
+    "invalidEndDomain": "The ending domain is invalid.",
+    "invalidUrl": "The URL is invalid.",
+    "invalidKeyword": "The keyword is invalid.",
+    "domain": "Domain",
+    "endDomain": "End domain",
+    "url": "URL",
+    "keyword": "Keyword",
+    "pleaseSelectFilteringType": "Please select a filtering type."
   }
 }

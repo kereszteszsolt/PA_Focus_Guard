@@ -43,11 +43,11 @@ let urlFilterType = ref('');
 
 const  urlFilterRules = computed(() => {
   return [
-    (v: string) => !!v || 'URL is required',
-    (v: string) => urlFilterType.value === constants.wsrFilter.URL ? utils.urlFilter.validateUrl(v) || 'Invalid URL' : true,
-    (v: string) => urlFilterType.value === constants.wsrFilter.DOMAIN ? utils.urlFilter.validateDomain(v) || 'Invalid Domain' : true,
-    (v: string) => urlFilterType.value === constants.wsrFilter.END_DOMAIN ? utils.urlFilter.validateEndDomain(v) || 'Invalid End Domain' : true,
-    (v: string) => urlFilterType.value === constants.wsrFilter.KEYWORD ? utils.urlFilter.validateKeyWord(v) || 'Invalid Keyword' : true
+    (v: string) => !!v || props.t(msg.URL_FILTER_REQUIRED),
+    (v: string) => urlFilterType.value === constants.wsrFilter.URL ? utils.urlFilter.validateUrl(v) || props.t(msg.INVALID_URL) : true,
+    (v: string) => urlFilterType.value === constants.wsrFilter.DOMAIN ? utils.urlFilter.validateDomain(v) || props.t(msg.INVALID_DOMAIN) : true,
+    (v: string) => urlFilterType.value === constants.wsrFilter.END_DOMAIN ? utils.urlFilter.validateEndDomain(v) || props.t(msg.INVALID_END_DOMAIN) : true,
+    (v: string) => urlFilterType.value === constants.wsrFilter.KEYWORD ? utils.urlFilter.validateKeyWord(v) || props.t(msg.INVALID_KEYWORD) : true
   ];
 });
 
@@ -172,7 +172,7 @@ const save = () => {
               </v-col>
             </v-row>
             <v-row class="d-flex flex-column justify-space-around">
-              <v-label>Please select a filtering type:</v-label>
+              <v-label>{{t(msg.PLEASE_SELECT_FILTERING_TYPE)}}</v-label>
               <v-btn-toggle
                 v-model="urlFilterType"
                 variant="outlined"
@@ -180,10 +180,10 @@ const save = () => {
                 mandatory
                 rounded
               >
-                <v-btn :value="constants.wsrFilter.DOMAIN">{{ constants.wsrFilter.DOMAIN }}</v-btn>
-                <v-btn :value="constants.wsrFilter.URL">{{ constants.wsrFilter.URL }}</v-btn>
-                <v-btn :value="constants.wsrFilter.END_DOMAIN">{{ constants.wsrFilter.END_DOMAIN }}</v-btn>
-                <v-btn :value="constants.wsrFilter.KEYWORD">{{ constants.wsrFilter.KEYWORD }}</v-btn>
+                <v-btn :value="constants.wsrFilter.DOMAIN">{{ t(msg.DOMAIN) }}</v-btn>
+                <v-btn :value="constants.wsrFilter.URL">{{ t(msg.URL) }}</v-btn>
+                <v-btn :value="constants.wsrFilter.END_DOMAIN">{{ t(msg.END_DOMAIN) }}</v-btn>
+                <v-btn :value="constants.wsrFilter.KEYWORD">{{ t(msg.KEYWORD) }}</v-btn>
               </v-btn-toggle>
             </v-row>
           </v-container>

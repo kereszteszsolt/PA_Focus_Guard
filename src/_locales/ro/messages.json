@@ -54,6 +54,16 @@
     "clickAndFallowMeOnYouTube": "Click și urmărește-mă pe YouTube",
     "clickAndFallowMeOnInstagram": "Click și urmărește-mă pe Instagram",
     "clickAndFallowMeOnTikTok": "Click și urmărește-mă pe TikTok",
-    "clickAndCheckMyListTreePage": "Click și verifică pagina mea de listă arbore"
+    "clickAndCheckMyListTreePage": "Click și verifică pagina mea de listă arbore",
+    "urlFilterRequired": "Filtrul URL este necesar.",
+    "invalidDomain": "Domeniul este invalid.",
+    "invalidEndDomain": "Domeniul final este invalid.",
+    "invalidUrl": "URL-ul este invalid.",
+    "invalidKeyword": "Cuvântul cheie este invalid.",
+    "domain": "Domeniu",
+    "endDomain": "Domeniu final",
+    "url": "URL",
+    "keyword": "Cuvânt cheie",
+    "pleaseSelectFilteringType": "Vă rugăm să selectați un tip de filtrare."
   }
 }

@@ -54,6 +54,16 @@
     "clickAndFallowMeOnYouTube": "Kattints és kövess engem a YouTube-on",
     "clickAndFallowMeOnInstagram": "Kattints és kövess engem az Instagramon",
     "clickAndFallowMeOnTikTok": "Kattints és kövess engem a TikTokon",
-    "clickAndCheckMyListTreePage": "Kattints és ellenőrizd a lista fa oldalam"
+    "clickAndCheckMyListTreePage": "Kattints és ellenőrizd a lista fa oldalam",
+    "urlFilterRequired": "URL-szűrő szükséges.",
+    "invalidDomain": "Érvénytelen domain.",
+    "invalidEndDomain": "Érvénytelen végződésű domain.",
+    "invalidUrl": "Érvénytelen URL.",
+    "invalidKeyword": "Érvénytelen kulcsszó.",
+    "domain": "Domain",
+    "endDomain": "Végződésű domain",
+    "url": "URL",
+    "keyword": "Kulcsszó",
+    "pleaseSelectFilteringType": "Kérjük, válassza ki a szűrés típusát."
   }
 }

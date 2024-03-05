@@ -54,6 +54,16 @@
     "clickAndFallowMeOnYouTube": "Klicken Sie und folgen Sie mir auf YouTube",
     "clickAndFallowMeOnInstagram": "Klicken Sie und folgen Sie mir auf Instagram",
     "clickAndFallowMeOnTikTok": "Klicken Sie und folgen Sie mir auf TikTok",
-    "clickAndCheckMyListTreePage": "Klicken Sie und überprüfen Sie meine Listenbaumseite"
+    "clickAndCheckMyListTreePage": "Klicken Sie und überprüfen Sie meine Listenbaumseite",
+    "urlFilterRequired": "URL-Filter erforderlich.",
+    "invalidDomain": "Die Domain ist ungültig.",
+    "invalidEndDomain": "Die End-Domain ist ungültig.",
+    "invalidUrl": "Die URL ist ungültig.",
+    "invalidKeyword": "Das Schlüsselwort ist ungültig.",
+    "domain": "Domain",
+    "endDomain": "End-Domain",
+    "url": "URL",
+    "keyword": "Schlüsselwort",
+    "pleaseSelectFilteringType": "Bitte wählen Sie einen Filtertyp aus."
   }
 }
