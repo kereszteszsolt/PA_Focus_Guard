@@ -81,7 +81,20 @@ watch([urlFilter, urlFilterType], () => {
   }
 },{ immediate: true }); // The immediate option ensures this runs on initial setup too
 
-
+const urlFilterPlaceholder = computed(() => {
+  switch (urlFilterType.value) {
+    case constants.wsrFilter.URL:
+      return 'https://example.com, https://example.com/video, https://app.example.com/, ...';
+    case constants.wsrFilter.DOMAIN:
+      return 'example.com, video.example.com, app.example.com ...';
+    case constants.wsrFilter.END_DOMAIN:
+      return '.com, .hu, .de, .ro, .info, ...';
+    case constants.wsrFilter.KEYWORD:
+      return 'keyword, video, games, news, ...';
+    default:
+      return '';
+  }
+});
 
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
@@ -135,6 +148,7 @@ const save = () => {
                   v-model="urlFilter"
                   :error-messages="errorMessage"
                   required
+                  :placeholder="urlFilterPlaceholder"
                   @blur="touched"
                 ></v-text-field>
               </v-col>
