@@ -46,6 +46,14 @@
     "languages" : "Limbi",
     "thankY4YInterest": "Mulțumim pentru interesul acordat!",
     "notPartOfExtension": "Pagina dorită nu face parte din extensie!",
-    "clickOpenNewTab": "Puteți deschide linkul într-o filă nouă dând clic pe el."
+    "clickOpenNewTab": "Puteți deschide linkul într-o filă nouă dând clic pe el.",
+    "clickAndFallowMeOnFacebook": "Click și urmărește-mă pe Facebook",
+    "clickAndFallowMeOnTwitter": "Click și urmărește-mă pe Twitter",
+    "clickAndFallowMeOnLinkedIn": "Click și urmărește-mă pe LinkedIn",
+    "clickAndFallowMeOnGitHub": "Click și urmărește-mă pe GitHub",
+    "clickAndFallowMeOnYouTube": "Click și urmărește-mă pe YouTube",
+    "clickAndFallowMeOnInstagram": "Click și urmărește-mă pe Instagram",
+    "clickAndFallowMeOnTikTok": "Click și urmărește-mă pe TikTok",
+    "clickAndCheckMyListTreePage": "Click și verifică pagina mea de listă arbore"
   }
 }

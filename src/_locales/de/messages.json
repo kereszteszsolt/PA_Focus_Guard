@@ -46,6 +46,14 @@
     "languages" : "Sprachen",
     "thankY4YInterest": "Vielen Dank für Ihr Interesse!",
     "notPartOfExtension": "Die gewünschte Seite ist kein Teil der Erweiterung!",
-    "clickOpenNewTab": "Sie können den Link in einem neuen Tab öffnen, indem Sie darauf klicken."
+    "clickOpenNewTab": "Sie können den Link in einem neuen Tab öffnen, indem Sie darauf klicken.",
+    "clickAndFallowMeOnFacebook": "Klicken Sie und folgen Sie mir auf Facebook",
+    "clickAndFallowMeOnTwitter": "Klicken Sie und folgen Sie mir auf Twitter",
+    "clickAndFallowMeOnLinkedIn": "Klicken Sie und folgen Sie mir auf LinkedIn",
+    "clickAndFallowMeOnGitHub": "Klicken Sie und folgen Sie mir auf GitHub",
+    "clickAndFallowMeOnYouTube": "Klicken Sie und folgen Sie mir auf YouTube",
+    "clickAndFallowMeOnInstagram": "Klicken Sie und folgen Sie mir auf Instagram",
+    "clickAndFallowMeOnTikTok": "Klicken Sie und folgen Sie mir auf TikTok",
+    "clickAndCheckMyListTreePage": "Klicken Sie und überprüfen Sie meine Listenbaumseite"
   }
 }

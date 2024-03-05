@@ -4,6 +4,7 @@ import { useI18nStore } from '@/store';
 import { EditCustomLanguageDialog } from '@/components/languages';
 import { FooterSocialModal } from '@/components/footer';
 import { ISocialMediaLink } from '@/interfaces';
+import { msg } from '@/constants';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
@@ -31,7 +32,7 @@ const socialMediaLinks: ISocialMediaLink[] = [
     name: 'Keresztes Zsolt',
     identifier: '@KeresztesZsolt.kzs',
     description: 'Facebook oldalam',
-    instruction: 'Kattints s kövess be!',
+    instruction: msg.CLICK_AND_FALLOW_ME_ON_FACEBOOK,
     url: 'https://www.facebook.com/KeresztesZsolt.kzs'
   },
   {
@@ -41,7 +42,7 @@ const socialMediaLinks: ISocialMediaLink[] = [
     name: 'Keresztes Zsolt',
     identifier: '@KeresztesZsolti',
     description: 'Twitter oldalam',
-    instruction: 'Kattints s kövess be!',
+    instruction: msg.CLICK_AND_FALLOW_ME_ON_TWITTER,
     url: 'https://twitter.com/KeresztesZsolti'
   },
   {
@@ -51,7 +52,7 @@ const socialMediaLinks: ISocialMediaLink[] = [
     name: 'Keresztes Zsolt',
     identifier: '@kereszteszsol_kzs',
     description: 'Instagram oldalam',
-    instruction: 'Kattints s kövess be!',
+    instruction: msg.CLICK_AND_FALLOW_ME_ON_INSTAGRAM,
     url: 'https://www.instagram.com/kereszteszsolt_kzs'
   },
   {
@@ -61,7 +62,7 @@ const socialMediaLinks: ISocialMediaLink[] = [
     name: 'Keresztes Zsolt',
     identifier: '@kereszteszsolt',
     description: 'LinkedIn oldalam',
-    instruction: 'Kattints s kövess be!',
+    instruction: msg.CLICK_AND_FALLOW_ME_ON_LINKEDIN,
     url: 'https://www.linkedin.com/in/kereszteszsolt/'
   },
   {
@@ -71,7 +72,7 @@ const socialMediaLinks: ISocialMediaLink[] = [
     name: 'Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech',
     identifier: '@KeresztesZsolt',
     description: 'YouTube csatornám',
-    instruction: 'Kattints s kövess be!',
+    instruction: msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
     url: 'https://www.youtube.com/@KeresztesZsolt'
   },
   {
@@ -81,7 +82,7 @@ const socialMediaLinks: ISocialMediaLink[] = [
     name: 'Keresztes Zsolt - Vlog, Self-Dev, Science&Tech',
     identifier: '@KeresztesZsolti',
     description: 'YouTube channel',
-    instruction: 'Click and follow!',
+    instruction: msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
     url: 'https://www.youtube.com/@KeresztesZsolti'
   },
   {
@@ -91,7 +92,7 @@ const socialMediaLinks: ISocialMediaLink[] = [
     name: 'Keresztes Zsolt',
     identifier: '@kereszteszsolt',
     description: 'GitHub oldalam',
-    instruction: 'Kattints s kövess be!',
+    instruction: msg.CLICK_AND_FALLOW_ME_ON_GITHUB,
     url: 'https://github.com/kereszteszsolt'
   },
 ];

@@ -46,6 +46,14 @@
     "languages" : "Languages",
     "thankY4YInterest" : "Thank you for your interest!",
     "notPartOfExtension" : "The desired page is not part of the extension!",
-    "clickOpenNewTab" : "You can open the link in a new tab by clicking on it."
+    "clickOpenNewTab" : "You can open the link in a new tab by clicking on it.",
+    "clickAndFallowMeOnFacebook": "Click and follow me on Facebook",
+    "clickAndFallowMeOnTwitter": "Click and follow me on Twitter",
+    "clickAndFallowMeOnLinkedIn": "Click and follow me on LinkedIn",
+    "clickAndFallowMeOnGitHub": "Click and follow me on GitHub",
+    "clickAndFallowMeOnYouTube": "Click and follow me on YouTube",
+    "clickAndFallowMeOnInstagram": "Click and follow me on Instagram",
+    "clickAndFallowMeOnTikTok": "Click and follow me on TikTok",
+    "clickAndCheckMyListTreePage": "Click and check my list tree page"
   }
 }

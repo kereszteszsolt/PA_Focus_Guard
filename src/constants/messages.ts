@@ -42,4 +42,12 @@ export const LANGUAGES = 'languages';
 export const THANK_Y4Y_INTEREST = 'thankY4YInterest';
 export const NOT_PART_OF_EXTENSION = 'notPartOfExtension';
 export const CLICK_OPEN_NEW_TAB = 'clickOpenNewTab';
+export const CLICK_AND_FALLOW_ME_ON_FACEBOOK = 'clickAndFallowMeOnFacebook';
+export const CLICK_AND_FALLOW_ME_ON_TWITTER = 'clickAndFallowMeOnTwitter';
+export const CLICK_AND_FALLOW_ME_ON_LINKEDIN = 'clickAndFallowMeOnLinkedIn';
+export const CLICK_AND_FALLOW_ME_ON_GITHUB = 'clickAndFallowMeOnGitHub';
+export const CLICK_AND_FALLOW_ME_ON_YOUTUBE = 'clickAndFallowMeOnYouTube';
+export const CLICK_AND_FALLOW_ME_ON_INSTAGRAM = 'clickAndFallowMeOnInstagram';
+export const CLICK_AND_FALLOW_ME_ON_TIKTOK = 'clickAndFallowMeOnTikTok';
+export const CLICK_AND_CHECK_MY_LIST_TREE_PAGE = 'clickAndCheckMyListTreePage';
 

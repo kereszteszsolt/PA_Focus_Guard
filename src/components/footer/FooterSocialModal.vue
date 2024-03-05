@@ -14,7 +14,7 @@
             <a :href="socialMediaLink.url" target="_blank">{{socialMediaLink.url}}</a>
           </p>
           <p>{{socialMediaLink.description}}</p>
-          <p>{{socialMediaLink.instruction}}</p>
+          <p>{{t(socialMediaLink.instruction)}}</p>
         </div>
       </v-card-text>
       <v-divider></v-divider>

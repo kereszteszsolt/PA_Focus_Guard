@@ -46,6 +46,14 @@
     "languages" : "Nyelvek",
     "thankY4YInterest": "Köszönjük az érdeklődést!",
     "notPartOfExtension": "A kívánt oldal nem a bővítmény része!",
-    "clickOpenNewTab": "A linkre kattintva új fülön nyithatod meg."
+    "clickOpenNewTab": "A linkre kattintva új fülön nyithatod meg.",
+    "clickAndFallowMeOnFacebook": "Kattints és kövess engem a Facebookon",
+    "clickAndFallowMeOnTwitter": "Kattints és kövess engem a Twitteren",
+    "clickAndFallowMeOnLinkedIn": "Kattints és kövess engem a LinkedInen",
+    "clickAndFallowMeOnGitHub": "Kattints és kövess engem a GitHubon",
+    "clickAndFallowMeOnYouTube": "Kattints és kövess engem a YouTube-on",
+    "clickAndFallowMeOnInstagram": "Kattints és kövess engem az Instagramon",
+    "clickAndFallowMeOnTikTok": "Kattints és kövess engem a TikTokon",
+    "clickAndCheckMyListTreePage": "Kattints és ellenőrizd a lista fa oldalam"
   }
 }
