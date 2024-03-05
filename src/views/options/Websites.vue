@@ -7,11 +7,21 @@ import { useRoute } from 'vue-router';
 import { useI18nStore } from '@/store';
 import { msg } from '@/constants';
 import { CommonCrudMenu } from '@/components/common';
+import * as utils from '@/utils';
+import { createBatchMessageListenerM2O } from '@/utils/runtime-messages';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
 websiteRulesStore.fetchData();
 i18n.fetchLocaleSettingsAndMessages();
+
+utils.runtimeMessages.createBatchMessageListenerM2O(['websiteRulesUpdated', 'websiteRuleListsUpdated'], () => {
+  websiteRulesStore.fetchData();
+});
+utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'localeMessagesUpdated'], () => {
+  i18n.fetchLocaleSettingsAndMessages();
+});
+
 const route = useRoute();
 let dialog = ref(false);
 let dialogDelete = ref(false);

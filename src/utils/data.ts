@@ -30,3 +30,13 @@ export const saveEntry = <T>(storageName: string, data: T): Promise<void> => {
         });
     });
 }
+
+export const readSize = (storageName: string): Promise<number> => {
+  return new Promise<number>((resolve) => {
+    chrome.storage.local.get([storageName], (result: {[key: string]: any}) => {
+      const dataString = result[storageName];
+      const size = new Blob([dataString]).size;
+      resolve(size);
+    });
+  });
+}

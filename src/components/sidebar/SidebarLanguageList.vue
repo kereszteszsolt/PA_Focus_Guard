@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { useI18nStore } from '@/store';
 import { computed } from 'vue';
+import * as utils from '@/utils';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
+utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'localeMessagesUpdated'], () => {
+  i18n.fetchLocaleSettingsAndMessages();
+});
 
 const isCurrentLocale = (id: string) => {
     return computed(() => i18n.getCurrentLocaleId === id).value;

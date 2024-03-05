@@ -2,6 +2,7 @@
 import { useTheme } from 'vuetify';
 import { useAppDataStore } from '@/store';
 import { watchEffect } from 'vue';
+import * as utils from '@/utils';
 
 defineProps({
   path: {
@@ -23,6 +24,17 @@ const toggleTheme = () => {
 watchEffect(() => {
   if (!appDataStore.isLoading)
     theme.global.name.value = appDataStore.appData.fgTheme;
+});
+
+// const messageListener = chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//   if (request.message === 'appDataUpdated') {
+//     appDataStore.fetchAppData();
+//     sendResponse({status: 'App data fetched'});
+//   }
+//   return true; // will respond asynchronously
+// });
+utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
+  appDataStore.fetchAppData();
 });
 
 </script>

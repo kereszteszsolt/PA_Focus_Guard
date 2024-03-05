@@ -50,16 +50,40 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
       console.log('Active rules', calculateActiveWebsiteRules());
       await setTheBadge();
+      utils.runtimeMessages.sendMessage('appDataUpdated', (response: string) => {
+        console.log(response);
+      });
     }
     if (constants.storage.FG_WEBSITE_RULES in changes) {
       fgWebsiteRules = JSON.parse(changes[constants.storage.FG_WEBSITE_RULES].newValue);
       await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
       console.log('Active rules', calculateActiveWebsiteRules());
+      utils.runtimeMessages.sendMessage('websiteRulesUpdated', (response: string) => {
+        console.log(response);
+      });
+    }
+    if (constants.storage.FG_WEBSITE_RULE_LISTS in changes) {
+      utils.runtimeMessages.sendMessage('websiteRuleListsUpdated', (response: string) => {
+        console.log(response);
+      });
     }
     if (constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS in changes) {
       distractionAttempts = JSON.parse(changes[constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS].newValue);
       await setTheBadge();
     }
+    if (constants.storage.FG_LOCALES_SETTINGS in changes) {
+      utils.runtimeMessages.sendMessage('localeSettingsUpdated', (response: string) => {
+        console.log(response);
+      });
+    }
+    if (constants.storage.FG_LOCALES_MESSAGES in changes) {
+      utils.runtimeMessages.sendMessage('localeMessagesUpdated', (response: string) => {
+        console.log(response);
+      });
+    }
+    utils.runtimeMessages.sendMessage('storageUpdated', (response: string) => {
+      console.log(response);
+    });
   }
 });
 

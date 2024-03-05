@@ -5,6 +5,7 @@ import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import { EditWebsiteRuleListDialog, DeleteWebsiteRuleListDialog } from '@/components/websites';
 import { computed, ref } from 'vue';
 import { msg } from '@/constants';
+import * as utils from '@/utils';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
@@ -16,6 +17,12 @@ const isEmpty = ref(false);
 
 i18n.fetchLocaleSettingsAndMessages();
 websiteRulesStore.fetchData();
+utils.runtimeMessages.createBatchMessageListenerM2O(['websiteRulesUpdated', 'websiteRuleListsUpdated'], () => {
+  websiteRulesStore.fetchData();
+});
+utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'localeMessagesUpdated'], () => {
+  i18n.fetchLocaleSettingsAndMessages();
+});
 
 const closeEditDialog = () => {
   dialogEdit.value = false;

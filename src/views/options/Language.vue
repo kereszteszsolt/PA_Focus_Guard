@@ -3,9 +3,13 @@ import { useI18nStore } from '@/store';
 import { computed, ref } from 'vue';
 import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
+import * as utils from '@/utils';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
+utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'localeMessagesUpdated'], () => {
+  i18n.fetchLocaleSettingsAndMessages();
+});
 
 const isLoading = computed(() => i18n.isLoading);
 
