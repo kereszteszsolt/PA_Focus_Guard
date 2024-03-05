@@ -4,6 +4,8 @@ import * as constants from '@/constants';
 import { IAppData } from '@/interfaces/IAppData';
 import { IWebsiteRule, ITaskQueue, IDistractionAttempt } from '@/interfaces';
 import * as scripts from '@/scripts';
+import * as util from 'util';
+import { cutTheProtocol } from '@/utils/url-filter';
 
 let fgAppData: IAppData = {
   focusMode: false,
@@ -100,8 +102,8 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
 const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   if (url && tabId) {
     console.log('url', url);
-    let activeRules = calculateActiveWebsiteRules();
-    let contextRules = activeRules.filter((wr) => url && url.includes(wr.urlFilter));
+
+    let contextRules = getContextRules(url);
 
     if (contextRules.length > 0) {
       console.log('Relevant tab');
@@ -171,3 +173,15 @@ const setTheBadge = async () => {
   await chrome.action.setBadgeBackgroundColor({ color: badgeBackgroundColor });
   await chrome.action.setBadgeTextColor({ color: '#f5f5f5' });
 };
+
+const getContextRules = (crrUrl: string): IWebsiteRule[] => {
+  let activeRules = calculateActiveWebsiteRules();
+  return activeRules.filter((wr) => crrUrl &&
+    (
+      (wr.urlFilterType === constants.wsrFilter.URL && utils.urlFilter.filterByUrl(crrUrl, wr.urlFilter)) ||
+      (wr.urlFilterType === constants.wsrFilter.DOMAIN && utils.urlFilter.filterByDomain(crrUrl, wr.urlFilter)) ||
+      (wr.urlFilterType === constants.wsrFilter.END_DOMAIN && utils.urlFilter.filterByEndDomain(crrUrl, wr.urlFilter)) ||
+      (wr.urlFilterType === constants.wsrFilter.KEYWORD && utils.urlFilter.filterByKeyWord(crrUrl, wr.urlFilter))
+    )
+  );
+}
