@@ -43,3 +43,15 @@ html {
 .fg-h-104px {
   height: 104px;
 }
+
+.fgc-primary {
+  color: rgb(var(--v-theme-primary)) !important;
+}
+
+.fgc-info {
+  color: rgb(var(--v-theme-info)) !important;
+}
+
+.fgc-accent {
+  color: rgb(var(--v-theme-accent)) !important;
+}

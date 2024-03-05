@@ -9,8 +9,8 @@
           <p>A kívánt oldal nem a bővítmény része!</p>
           <p>A linkre való kattintással megnyithatod egy új fülön.</p>
           <p>
-            <span class="font-weight-bold">{{socialMediaLink.name}}</span>
-            (<span class="font-weight-bold">{{socialMediaLink.identifier}}</span>) :
+            <span class="font-weight-bold fgc-primary">{{socialMediaLink.name}}</span>&nbsp;
+            <span class="font-weight-bold fgc-accent">{{socialMediaLink.identifier}}</span>&nbsp;
             <a :href="socialMediaLink.url" target="_blank">{{socialMediaLink.url}}</a>
           </p>
           <p>{{socialMediaLink.description}}</p>
