@@ -45,7 +45,7 @@ export const validateDomain = (domain: string) => {
 }
 
 export const validateEndDomain = (domain: string) => {
-  const reg = /^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/;
+  const reg = /^\.[a-z]{2,}$/;
   return reg.test(domain);
 }
 

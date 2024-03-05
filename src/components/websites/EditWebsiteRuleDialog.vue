@@ -51,16 +51,15 @@ const  urlFilterRules = computed(() => {
   ];
 });
 
-// Assuming other imports and setup code remains unchanged
-
+const fieldTouched = ref(false); // Reactive reference for the touched state
 let errorMessage = ref(''); // Reactive reference for the error message
+const touched = () => {
+  fieldTouched.value = true;
+  validateField();
+};
 
-// Initial watch to handle changes in urlFilter or urlFilterType
-watch([urlFilter, urlFilterType], () => {
-  // Reset error message each time the input or filter type changes
+const validateField = () => {
   errorMessage.value = '';
-
-  // Validate the input based on the current filter type
   const rules = urlFilterRules.value; // Assume urlFilterRules is a computed ref as previously defined
   for (let rule of rules) {
     const validationResult = rule(urlFilter.value);
@@ -73,7 +72,14 @@ watch([urlFilter, urlFilterType], () => {
       valid.value = true; // Ensure valid is true if all validations pass
     }
   }
-}, { immediate: true }); // The immediate option ensures this runs on initial setup too
+};
+
+// Initial watch to handle changes in urlFilter or urlFilterType
+watch([urlFilter, urlFilterType], () => {
+  if (fieldTouched.value) {
+    validateField();
+  }
+},{ immediate: true }); // The immediate option ensures this runs on initial setup too
 
 
 
@@ -129,6 +135,7 @@ const save = () => {
                   v-model="urlFilter"
                   :error-messages="errorMessage"
                   required
+                  @blur="touched"
                 ></v-text-field>
               </v-col>
             </v-row>
