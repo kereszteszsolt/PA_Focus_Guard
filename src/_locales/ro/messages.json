@@ -43,6 +43,9 @@
     "nameMustBeUnique" : "Numele trebuie să fie unic!",
     "nameOfWebsiteRuleList" : "Numele listei de reguli pentru site",
     "totalNrOfItems" : "Număr total de elemente: ",
-    "languages" : "Limbi"
+    "languages" : "Limbi",
+    "thankY4YInterest": "Mulțumim pentru interesul acordat!",
+    "notPartOfExtension": "Pagina dorită nu face parte din extensie!",
+    "clickOpenNewTab": "Puteți deschide linkul într-o filă nouă dând clic pe el."
   }
 }

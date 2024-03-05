@@ -43,6 +43,9 @@
     "nameMustBeUnique" : "Der Name muss eindeutig sein!",
     "nameOfWebsiteRuleList" : "Name der Website-Regelliste",
     "totalNrOfItems" : "Gesamtzahl der Elemente: ",
-    "languages" : "Sprachen"
+    "languages" : "Sprachen",
+    "thankY4YInterest": "Vielen Dank für Ihr Interesse!",
+    "notPartOfExtension": "Die gewünschte Seite ist kein Teil der Erweiterung!",
+    "clickOpenNewTab": "Sie können den Link in einem neuen Tab öffnen, indem Sie darauf klicken."
   }
 }

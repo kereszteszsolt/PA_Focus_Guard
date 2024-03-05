@@ -5,9 +5,9 @@
       <v-divider></v-divider>
       <v-card-text>
         <div>
-          <p class="font-weight-bold">Köszönöm az érdeklődést!</p>
-          <p>A kívánt oldal nem a bővítmény része!</p>
-          <p>A linkre való kattintással megnyithatod egy új fülön.</p>
+          <p class="font-weight-bold">{{ t(msg.THANK_Y4Y_INTEREST) }}</p>
+          <p>{{t(msg.NOT_PART_OF_EXTENSION)}}</p>
+          <p>{{ t(msg.CLICK_OPEN_NEW_TAB)}}</p>
           <p>
             <span class="font-weight-bold fgc-primary">{{socialMediaLink.name}}</span>&nbsp;
             <span class="font-weight-bold fgc-accent">{{socialMediaLink.identifier}}</span>&nbsp;
@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import { ref, watch, defineProps } from 'vue';
 import { ISocialMediaLink } from '@/interfaces';
+import { msg } from '@/constants';
 
 const props = defineProps({
   pDialog: {

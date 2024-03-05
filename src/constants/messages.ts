@@ -39,3 +39,7 @@ export const NAME_OF_WEBSITE_RULE_LIST = 'nameOfWebsiteRuleList';
 export const DELETE_WEBSITE_RULE_LIST = 'deleteWebsiteRuleList';
 export const TOTAL_NR_OF_ITEMS = 'totalNrOfItems';
 export const LANGUAGES = 'languages';
+export const THANK_Y4Y_INTEREST = 'thankY4YInterest';
+export const NOT_PART_OF_EXTENSION = 'notPartOfExtension';
+export const CLICK_OPEN_NEW_TAB = 'clickOpenNewTab';
+
