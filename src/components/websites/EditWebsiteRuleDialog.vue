@@ -2,6 +2,7 @@
 import { IWebsiteRule } from '@/interfaces';
 import { computed, ref, watch } from 'vue';
 import { msg } from '@/constants';
+import * as constants from '@/constants';
 
 const props = defineProps({
   pDialog: {
@@ -32,11 +33,12 @@ const props = defineProps({
 
 let dialog = ref(false);
 let valid = ref(true);
-let url = ref('');
+let urlFilter = ref('');
 let permanentlyActive = ref(false);
 let temporarilyInactive = ref(false);
+let urlFilterType = ref('');
 
-const urlRules = computed(() => {
+const urlFilterRules = computed(() => {
   return [
     (v: string) => !!v || 'URL is required'
   ];
@@ -45,9 +47,10 @@ const urlRules = computed(() => {
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
   if (value) {
-    url.value = props.pItem?.urlFilter;
+    urlFilter.value = props.pItem?.urlFilter;
     permanentlyActive.value = props.pItem.permanentlyActive;
     temporarilyInactive.value = props.pItem.temporarilyInactive;
+    urlFilterType.value = props.pItem.urlFilterType;
   }
 });
 
@@ -67,9 +70,10 @@ const close = () => {
 const save = () => {
   let editedItem: IWebsiteRule = {
     ...props.pItem,
-    urlFilter: url.value,
+    urlFilter: urlFilter.value,
     permanentlyActive: permanentlyActive.value,
-    temporarilyInactive: temporarilyInactive.value
+    temporarilyInactive: temporarilyInactive.value,
+    urlFilterType: urlFilterType.value
   };
   console.log('editedItem', editedItem);
   props.pSaveItem(editedItem);
@@ -93,8 +97,8 @@ const save = () => {
               <v-col cols="12">
                 <v-text-field
                   label="URL"
-                  v-model="url"
-                  :rules="urlRules"
+                  v-model="urlFilter"
+                  :rules="urlFilterRules"
                   required
                 ></v-text-field>
               </v-col>
@@ -116,6 +120,19 @@ const save = () => {
                 >
                 </v-checkbox>
               </v-col>
+            </v-row>
+            <v-row>
+              <v-btn-toggle
+                v-model="urlFilterType"
+                variant="outlined"
+                divided
+                mandatory
+              >
+                <v-btn :value="constants.wsrFilter.DOMAIN">{{constants.wsrFilter.DOMAIN}}</v-btn>
+                <v-btn :value="constants.wsrFilter.URL">{{constants.wsrFilter.URL}}</v-btn>
+                <v-btn :value="constants.wsrFilter.END_DOMAIN">{{constants.wsrFilter.END_DOMAIN}}</v-btn>
+                <v-btn :value="constants.wsrFilter.KEYWORD">{{constants.wsrFilter.KEYWORD}}</v-btn>
+              </v-btn-toggle>
             </v-row>
           </v-container>
         </v-card-text>
