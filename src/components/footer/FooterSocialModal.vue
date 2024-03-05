@@ -1,5 +1,33 @@
+<template>
+  <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-card color="background">
+      <v-card-title class="text-h5">{{ socialMediaLink.platform }}</v-card-title>
+      <v-divider></v-divider>
+      <v-card-text>
+        <div>
+          <p class="font-weight-bold">Köszönöm az érdeklődést!</p>
+          <p>A kívánt oldal nem a bővítmény része!</p>
+          <p>A linkre való kattintással megnyithatod egy új fülön.</p>
+          <p>
+            <span class="font-weight-bold">{{socialMediaLink.name}}</span>
+            (<span class="font-weight-bold">{{socialMediaLink.identifier}}</span>) :
+            <a :href="socialMediaLink.url" target="_blank">{{socialMediaLink.url}}</a>
+          </p>
+          <p>{{socialMediaLink.description}}</p>
+          <p>{{socialMediaLink.instruction}}</p>
+        </div>
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-actions class="justify-end">
+        <v-btn color="danger" variant="elevated" elevation="12" @click="pCloseDialog">Close</v-btn>
+      </v-card-actions>
+    </v-card>
+
+  </v-dialog>
+</template>
+
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, defineProps } from 'vue';
 import { ISocialMediaLink } from '@/interfaces';
 
 const props = defineProps({
@@ -26,43 +54,8 @@ let dialog = ref(false);
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
 });
-
 </script>
 
-<template>
-  <v-dialog v-model="dialog" persistent max-width="600px">
-    <v-card color="background">
-      <v-card-title class="text-h5">{{ socialMediaLink.platform }}</v-card-title>
-      <v-card-text>
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-img :src="socialMediaLink.url" aspect-ratio="1"></v-img>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-row>
-              <v-col cols="12">
-                <v-text-field v-model="socialMediaLink.name" label="Name"></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="socialMediaLink.identifier" label="Identifier"></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="socialMediaLink.description" label="Description"></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="socialMediaLink.instruction" label="Instruction"></v-text-field>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn color="danger" variant="elevated" elevation="12" @click="pCloseDialog">Close</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
-</template>
-
 <style scoped lang="scss">
-
+/* Add your scoped styles here */
 </style>
