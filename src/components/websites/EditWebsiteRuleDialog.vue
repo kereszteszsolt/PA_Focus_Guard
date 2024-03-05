@@ -121,12 +121,14 @@ const save = () => {
                 </v-checkbox>
               </v-col>
             </v-row>
-            <v-row>
+            <v-row class="d-flex flex-column justify-space-around">
+              <v-label>Please select a filtering type:</v-label>
               <v-btn-toggle
                 v-model="urlFilterType"
                 variant="outlined"
                 divided
                 mandatory
+                rounded
               >
                 <v-btn :value="constants.wsrFilter.DOMAIN">{{constants.wsrFilter.DOMAIN}}</v-btn>
                 <v-btn :value="constants.wsrFilter.URL">{{constants.wsrFilter.URL}}</v-btn>
