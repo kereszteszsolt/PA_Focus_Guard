@@ -33,3 +33,22 @@ export const filterByUrl = (crrUrl: string, filterUrl: string) => {
 export const filterByKeyWord = (crrUrl: string, filterUrl: string) => {
   return crrUrl.includes(filterUrl);
 }
+
+export const validateUrl = (url: string) => {
+  const reg = /^(http|https):\/\/[^ "]+$/;
+  return reg.test(url);
+}
+
+export const validateDomain = (domain: string) => {
+  const reg = /^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/;
+  return reg.test(domain);
+}
+
+export const validateEndDomain = (domain: string) => {
+  const reg = /^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/;
+  return reg.test(domain);
+}
+
+export const validateKeyWord = (keyWord: string) => {
+  return keyWord.length > 0;
+}
