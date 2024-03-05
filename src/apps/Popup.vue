@@ -130,7 +130,7 @@ const switchFocusMode = (active: boolean) => {
     <v-row>
       <v-col cols="12" class="text-center">
         <div class="text-h7">{{ t(msg.DISTRACTION_ATTEMPTS) }}</div>
-        <v-btn icon variant="outlined">{{ statisticsStore.getNrOfDistractionAttempts }}</v-btn>
+        <v-btn icon variant="outlined">{{ statisticsStore.getNumberOfDistractionAttemptsByFocusSessionId(appDataStore.getAppData.focusModeSessionId) }}</v-btn>
       </v-col>
     </v-row>
     <v-row class="pt-4">
