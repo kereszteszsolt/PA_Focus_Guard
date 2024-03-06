@@ -41,7 +41,7 @@ let permanentlyActive = ref(false);
 let temporarilyInactive = ref(false);
 let urlFilterType = ref('');
 
-const  urlFilterRules = computed(() => {
+const urlFilterRules = computed(() => {
   return [
     (v: string) => !!v || props.t(msg.URL_FILTER_REQUIRED),
     (v: string) => urlFilterType.value === constants.wsrFilter.URL ? utils.urlFilter.validateUrl(v) || props.t(msg.INVALID_URL) : true,
@@ -79,7 +79,7 @@ watch([urlFilter, urlFilterType], () => {
   if (fieldTouched.value) {
     validateField();
   }
-},{ immediate: true }); // The immediate option ensures this runs on initial setup too
+}, { immediate: true }); // The immediate option ensures this runs on initial setup too
 
 const urlFilterPlaceholder = computed(() => {
   switch (urlFilterType.value) {
@@ -119,15 +119,18 @@ const close = () => {
   props.pCloseDialog();
 };
 const save = () => {
-  let editedItem: IWebsiteRule = {
-    ...props.pItem,
-    urlFilter: urlFilter.value,
-    permanentlyActive: permanentlyActive.value,
-    temporarilyInactive: temporarilyInactive.value,
-    urlFilterType: urlFilterType.value
-  };
-  console.log('editedItem', editedItem);
-  props.pSaveItem(editedItem);
+  validateField();
+  if (valid.value) {
+    let editedItem: IWebsiteRule = {
+      ...props.pItem,
+      urlFilter: urlFilter.value,
+      permanentlyActive: permanentlyActive.value,
+      temporarilyInactive: temporarilyInactive.value,
+      urlFilterType: urlFilterType.value
+    };
+    console.log('editedItem', editedItem);
+    props.pSaveItem(editedItem);
+  }
 };
 
 </script>
@@ -175,7 +178,7 @@ const save = () => {
               </v-col>
             </v-row>
             <v-row class="d-flex flex-column justify-space-around">
-              <v-label>{{t(msg.PLEASE_SELECT_FILTERING_TYPE)}}</v-label>
+              <v-label>{{ t(msg.PLEASE_SELECT_FILTERING_TYPE) }}</v-label>
               <v-btn-toggle
                 v-model="urlFilterType"
                 variant="outlined"
