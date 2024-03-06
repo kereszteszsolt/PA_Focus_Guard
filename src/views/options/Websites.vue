@@ -213,23 +213,6 @@ const save = (editedItem: IWebsiteRule) => {
           <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated" elevation="12">
             {{ t(msg.NEW_ITEM) }}
           </v-btn>
-          <edit-website-rule-dialog
-            :p-item="editingItem"
-            :p-dialog="dialog"
-            :p-close-dialog="closeEdit"
-            :p-save-item="save"
-            :p-is-new-item="isNewItem"
-            :t="t"
-          ></edit-website-rule-dialog>
-
-          <delete-website-rule-dialog
-            :p-is-empty=true
-            :p-item="editingItem"
-            :p-delete-item-confirm="deleteItemConfirm"
-            :p-close-dialog="closeDelete"
-            :p-dialog="dialogDelete"
-            :t="t">
-          </delete-website-rule-dialog>
 
         </v-toolbar>
       </template>
@@ -254,6 +237,23 @@ const save = (editedItem: IWebsiteRule) => {
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </div>
+  <edit-website-rule-dialog
+    :p-item="editingItem"
+    :p-dialog="dialog"
+    :p-close-dialog="closeEdit"
+    :p-save-item="save"
+    :p-is-new-item="isNewItem"
+    :t="t"
+  ></edit-website-rule-dialog>
+
+  <delete-website-rule-dialog
+    :p-is-empty=true
+    :p-item="editingItem"
+    :p-delete-item-confirm="deleteItemConfirm"
+    :p-close-dialog="closeDelete"
+    :p-dialog="dialogDelete"
+    :t="t">
+  </delete-website-rule-dialog>
 </template>
 
 <style lang="scss">
