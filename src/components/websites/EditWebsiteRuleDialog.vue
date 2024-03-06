@@ -103,6 +103,9 @@ watch(() => props.pDialog, (value) => {
     permanentlyActive.value = props.pItem.permanentlyActive;
     temporarilyInactive.value = props.pItem.temporarilyInactive;
     urlFilterType.value = props.pItem.urlFilterType;
+    valid.value = true;
+    errorMessage.value = '';
+    fieldTouched.value = false;
   }
 });
 
