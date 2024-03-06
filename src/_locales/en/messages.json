@@ -39,7 +39,7 @@
     "allWebsiteRuleLists" : "All Website Rule Lists",
     "theWebsiteRuleListIsNotEmpty" : "The website rule list is not empty!",
     "nameIsRequired" : "Name is required!",
-    "nameMustBeLessThan50Characters" : "Name must be less than 50 characters!",
+    "nameMustBeLessThan26Characters" : "Name must be less than 26 characters!",
     "nameMustBeUnique" : "Name must be unique!",
     "nameOfWebsiteRuleList" : "Name of Website Rule List",
     "totalNrOfItems" : "Total number of items: ",

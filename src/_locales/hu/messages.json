@@ -39,7 +39,7 @@
     "allWebsiteRuleLists": "Minden weboldal szabálylista",
     "theWebsiteRuleListIsNotEmpty": "A weboldal szabálylista nem üres!",
     "nameIsRequired" : "A név kötelező!",
-    "nameMustBeLessThan50Characters" : "A névnek kevesebb, mint 50 karakternek kell lennie!",
+    "nameMustBeLessThan26Characters" : "A névnek kevesebb, mint 26 karakternek kell lennie!",
     "nameMustBeUnique" : "A névnek egyedinek kell lennie!",
     "nameOfWebsiteRuleList" : "Weboldal szabálylista neve",
     "totalNrOfItems" : "Összes elem száma: ",

@@ -39,7 +39,7 @@
     "allWebsiteRuleLists": "Toate listele de reguli pentru site",
     "theWebsiteRuleListIsNotEmpty": "Lista de reguli pentru site nu este goală!",
     "nameIsRequired" : "Numele este obligatoriu!",
-    "nameMustBeLessThan50Characters" : "Numele trebuie să aibă mai puțin de 50 de caractere!",
+    "nameMustBeLessThan26Characters" : "Numele trebuie să aibă mai puțin de 26 de caractere!",
     "nameMustBeUnique" : "Numele trebuie să fie unic!",
     "nameOfWebsiteRuleList" : "Numele listei de reguli pentru site",
     "totalNrOfItems" : "Număr total de elemente: ",

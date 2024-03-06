@@ -39,7 +39,7 @@
     "allWebsiteRuleLists": "Alle Website-Regellisten",
     "theWebsiteRuleListIsNotEmpty": "Die Website-Regelliste ist nicht leer!",
     "nameIsRequired": "Name ist erforderlich!",
-    "nameMustBeLessThan50Characters": "Der Name muss weniger als 50 Zeichen lang sein!",
+    "nameMustBeLessThan26Characters": "Der Name muss weniger als 26 Zeichen lang sein!",
     "nameMustBeUnique" : "Der Name muss eindeutig sein!",
     "nameOfWebsiteRuleList" : "Name der Website-Regelliste",
     "totalNrOfItems" : "Gesamtzahl der Elemente: ",
