@@ -176,34 +176,36 @@ const save = (editedItem: IWebsiteRule) => {
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
-        <common-crud-menu
-          :list-id="item.id"
-          :edit-item="editItem"
-          :delete-item="deleteItem"
-          :move-up="moveUp"
-          :move-down="moveDown"
-          :t="t"
-        />
+        <div class="d-flex justify-space-around">
+          <common-crud-menu
+            :list-id="item.id"
+            :edit-item="editItem"
+            :delete-item="deleteItem"
+            :move-up="moveUp"
+            :move-down="moveDown"
+            :t="t"
+          />
+        </div>
       </template>
       <template v-slot:item.permanentlyActive="{ item }">
-        <div class="fgCheckBoxCenter">
           <v-checkbox
             v-model="item.permanentlyActive"
             color="primary"
             @change="setPermanentlyActive(item)"
-            hide-details>
+            hide-details
+            class="d-flex justify-center"
+          >
           </v-checkbox>
-        </div>
       </template>
       <template v-slot:item.temporarilyInactive="{ item }">
-        <div class="fgCheckBoxCenter">
           <v-checkbox
             v-model="item.temporarilyInactive"
             color="primary"
             @change="setTemporarilyInactive(item)"
-            hide-details>
+            hide-details
+            class="d-flex justify-center"
+          >
           </v-checkbox>
-        </div>
       </template>
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">
@@ -265,17 +267,5 @@ const save = (editedItem: IWebsiteRule) => {
   }
 }
 
-.fgCheckBoxCenter {
-  > .v-input {
-    > .v-input__control {
-      > .v-selection-control {
-        display: flex;
-        justify-content: space-around;
 
-        > .v-selection-control__wrapper {
-        }
-      }
-    }
-  }
-}
 </style>

@@ -55,6 +55,16 @@ const deleteLocale = (id: string) => {
           {{ item.id }}
         </div>
       </template>
+      <template v-slot:item.name="{ item }">
+        <div class="text-center">
+          {{ item.name }}
+        </div>
+      </template>
+      <template v-slot:item.text_direction="{ item }">
+        <div class="text-center">
+          {{ item.text_direction }}
+        </div>
+      </template>
       <template v-slot:item.actions="{ item }">
         <v-icon
 
@@ -67,47 +77,47 @@ const deleteLocale = (id: string) => {
         </v-icon>
       </template>
       <template v-slot:item.is_current="{ item }">
-        <div class="text-center">
           <v-checkbox
             v-model="item.isCurrent"
             color="warning"
             @change="i18n.switchLocale(item.id)"
-            hide-details>
+            hide-details
+            class="d-flex justify-center"
+          >
           </v-checkbox>
-        </div>
       </template>
       <template v-slot:item.isFallback1="{ item }">
-        <div class="text-center">
           <v-checkbox
             v-model="item.isFallback1"
             color="warning"
             @change="i18n.setFallback1(item.id)"
-            hide-details>
+            hide-details
+            class="d-flex justify-center"
+          >
           </v-checkbox>
-        </div>
       </template>
       <template v-slot:item.isFallback2="{ item }">
-        <div class="text-center">
           <v-checkbox
             v-model="item.isFallback2"
             color="warning"
             @change="i18n.setFallback2(item.id)"
-            hide-details>
+            hide-details
+            class="d-flex justify-center"
+          >
           </v-checkbox>
-        </div>
       </template>
       <template v-slot:item.isFactoryDefault="{ item }">
-        <div class="text-center">
           <v-checkbox
             v-model="item.isFactoryDefault"
             color="primary"
             :disabled="true"
-            hide-details>
+            hide-details
+            class="d-flex justify-center"
+          >
           </v-checkbox>
-        </div>
       </template>
       <template v-slot:item.language_type="{ item }">
-        <span class="text-center">{{ item.isBuiltIn ? 'Build-In' : 'Custom' }}</span>
+        <div class="text-center">{{ item.isBuiltIn ? 'Build-In' : 'Custom' }}</div>
       </template>
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">
