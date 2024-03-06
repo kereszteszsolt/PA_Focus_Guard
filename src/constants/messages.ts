@@ -49,7 +49,7 @@ export const CLICK_AND_FALLOW_ME_ON_GITHUB = 'clickAndFallowMeOnGitHub';
 export const CLICK_AND_FALLOW_ME_ON_YOUTUBE = 'clickAndFallowMeOnYouTube';
 export const CLICK_AND_FALLOW_ME_ON_INSTAGRAM = 'clickAndFallowMeOnInstagram';
 export const CLICK_AND_FALLOW_ME_ON_TIKTOK = 'clickAndFallowMeOnTikTok';
-export const CLICK_AND_CHECK_MY_LIST_TREE_PAGE = 'clickAndCheckMyListTreePage';
+export const CLICK_AND_CHECK_MY_LINKTREE_PAGE = 'clickAndCheckMyLinktreePage';
 export const URL_FILTER_REQUIRED = 'urlFilterRequired';
 export const INVALID_DOMAIN = 'invalidDomain';
 export const INVALID_END_DOMAIN = 'invalidEndDomain';
@@ -60,4 +60,6 @@ export const END_DOMAIN = 'endDomain';
 export const URL = 'url';
 export const KEYWORD = 'keyword';
 export const PLEASE_SELECT_FILTERING_TYPE = 'pleaseSelectFilteringType';
+
+export const MAXIMUM_NR_OF_WS_RULES_LISTS_10 = 'maximumNrOfWsRulesLists10';
 

@@ -96,7 +96,13 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
         <v-divider></v-divider>
         <v-list-item>
           <template v-slot:prepend>
-            <v-btn density="compact" icon="mdi-plus" @click="newItem" color="accent" variant="elevated" elevation="4"></v-btn>
+            <div>
+              <v-btn density="compact" icon="mdi-plus" @click="newItem" color="accent" variant="elevated"
+                     elevation="4" :disabled="websiteRulesStore.getWebsiteRuleLists.length > 9"></v-btn>
+              <v-tooltip activator="parent" location="bottom" :disabled="websiteRulesStore.getWebsiteRuleLists.length < 10">
+                {{t(msg.MAXIMUM_NR_OF_WS_RULES_LISTS_10)}}
+              </v-tooltip>
+            </div>
           </template>
         </v-list-item>
         <v-divider></v-divider>
@@ -107,7 +113,8 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
     </div>
   </v-sheet>
   <edit-website-rule-list-dialog :p-dialog="dialogEdit" :p-item="editingWebsiteList" :p-save-item="saveItem"
-                                  :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog" :t="t"></edit-website-rule-list-dialog>
+                                 :p-is-new-item="isNewItem" :p-close-dialog="closeEditDialog"
+                                 :t="t"></edit-website-rule-list-dialog>
   <delete-website-rule-list-dialog :p-dialog="dialogDelete" :p-item="editingWebsiteList"
                                    :p-delete-item-confirm="deleteItemConfirm" :p-close-dialog="closeDelete"
                                    :p-is-empty="isEmpty" :t="t"></delete-website-rule-list-dialog>

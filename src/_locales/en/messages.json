@@ -47,14 +47,14 @@
     "thankY4YInterest" : "Thank you for your interest!",
     "notPartOfExtension" : "The desired page is not part of the extension!",
     "clickOpenNewTab" : "You can open the link in a new tab by clicking on it.",
-    "clickAndFallowMeOnFacebook": "Click and follow me on Facebook",
-    "clickAndFallowMeOnTwitter": "Click and follow me on Twitter",
-    "clickAndFallowMeOnLinkedIn": "Click and follow me on LinkedIn",
-    "clickAndFallowMeOnGitHub": "Click and follow me on GitHub",
-    "clickAndFallowMeOnYouTube": "Click and follow me on YouTube",
-    "clickAndFallowMeOnInstagram": "Click and follow me on Instagram",
-    "clickAndFallowMeOnTikTok": "Click and follow me on TikTok",
-    "clickAndCheckMyListTreePage": "Click and check my list tree page",
+    "clickAndFallowMeOnFacebook": "Click and follow me on Facebook!",
+    "clickAndFallowMeOnTwitter": "Click and follow me on Twitter!",
+    "clickAndFallowMeOnLinkedIn": "Click and follow me on LinkedIn!",
+    "clickAndFallowMeOnGitHub": "Click and follow me on GitHub!",
+    "clickAndFallowMeOnYouTube": "Click and follow me on YouTube!",
+    "clickAndFallowMeOnInstagram": "Click and follow me on Instagram!",
+    "clickAndFallowMeOnTikTok": "Click and follow me on TikTok!",
+    "clickAndCheckMyLinkreePage": "Click and check my Linktr.ee  page!",
     "urlFilterRequired": "URL filter is required.",
     "invalidDomain": "The domain is invalid.",
     "invalidEndDomain": "The ending domain is invalid.",
@@ -64,6 +64,7 @@
     "endDomain": "End domain",
     "url": "URL",
     "keyword": "Keyword",
-    "pleaseSelectFilteringType": "Please select a filtering type."
+    "pleaseSelectFilteringType": "Please select a filtering type.",
+    "maximumNrOfWsRulesLists10": "Maximum number of website rule lists is 10."
   }
 }
