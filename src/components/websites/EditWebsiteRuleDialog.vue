@@ -59,6 +59,7 @@ const touched = () => {
 };
 
 const validateField = () => {
+  urlFilter.value = urlFilter.value.trim(); // Trim the value before validation
   errorMessage.value = '';
   const rules = urlFilterRules.value; // Assume urlFilterRules is a computed ref as previously defined
   for (let rule of rules) {

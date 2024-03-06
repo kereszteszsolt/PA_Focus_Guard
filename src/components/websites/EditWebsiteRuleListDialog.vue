@@ -38,6 +38,7 @@ const errorMessage = ref('');
 const length = ref(0);
 
 const validateField = () => {
+  name.value = name.value.trim();
   errorMessage.value = '';
   const rules = nameRules.value;
     for (const rule of rules) {
