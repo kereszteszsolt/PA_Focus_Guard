@@ -1,10 +1,10 @@
 export interface ISocialMediaLink {
-  id: string;
-  platform: string;
-  icon: string;
-  name: string;
-  identifier: string;
-  description: string;
-  instruction: string;
+  id: number;
+  platformName: string;
+  mdiIcon: string;
   url: string;
+  profileName: string;
+  profileIdentifier: string;
+  shortDescription: string;
+  callToAction: string;
 }

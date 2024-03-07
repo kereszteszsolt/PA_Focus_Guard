@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <v-card color="background">
-      <v-card-title class="text-h5">{{ socialMediaLink.platform }}</v-card-title>
+      <v-card-title class="text-h5">{{ socialMediaLink.platformName }}</v-card-title>
       <v-divider></v-divider>
       <v-card-text>
         <div>
@@ -9,12 +9,12 @@
           <p>{{t(msg.NOT_PART_OF_EXTENSION)}}</p>
           <p>{{ t(msg.CLICK_OPEN_NEW_TAB)}}</p>
           <p>
-            <span class="font-weight-bold fgc-primary">{{socialMediaLink.name}}</span>&nbsp;
-            <span class="font-weight-bold fgc-accent">{{socialMediaLink.identifier}}</span>&nbsp;
+            <span class="font-weight-bold fgc-primary">{{socialMediaLink.profileName}}</span>&nbsp;
+            <span class="font-weight-bold fgc-accent">{{socialMediaLink.profileIdentifier}}</span>&nbsp;
             <a :href="socialMediaLink.url" target="_blank">{{socialMediaLink.url}}</a>
           </p>
-          <p>{{socialMediaLink.description}}</p>
-          <p>{{t(socialMediaLink.instruction)}}</p>
+          <p>{{socialMediaLink.shortDescription}}</p>
+          <p>{{t(socialMediaLink.callToAction)}}</p>
         </div>
       </v-card-text>
       <v-divider></v-divider>
