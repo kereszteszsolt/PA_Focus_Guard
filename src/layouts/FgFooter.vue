@@ -145,14 +145,14 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
     <!--    </div>-->
     <div class="d-flex flex-row justify-space-around">
       <v-btn
-        to="/footer-pages/about"
+        to="/footer-pages/privacy"
         variant="text"
-        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
         density="compact"
         size="small"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
         color="info"
       >
-        About
+        Privacy
       </v-btn>
 
       <v-btn
@@ -167,17 +167,6 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
       </v-btn>
 
       <v-btn
-        to="/footer-pages/donations"
-        variant="text"
-        density="compact"
-        size="small"
-        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
-        color="info"
-      >
-        Donation
-      </v-btn>
-
-      <v-btn
         to="/footer-pages/acknowledgments"
         variant="text"
         density="compact"
@@ -189,6 +178,17 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
       </v-btn>
 
       <v-btn
+        to="/footer-pages/donations"
+        variant="text"
+        density="compact"
+        size="small"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        color="info"
+      >
+        Donations
+      </v-btn>
+
+      <v-btn
         to="/footer-pages/how-to-use"
         variant="text"
         density="compact"
@@ -197,6 +197,28 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
         color="info"
       >
         How to use
+      </v-btn>
+
+      <v-btn
+        to="/footer-pages/contact"
+        variant="text"
+        density="compact"
+        size="small"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        color="info"
+      >
+        Contact
+      </v-btn>
+
+      <v-btn
+        to="/footer-pages/about"
+        variant="text"
+        class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
+        density="compact"
+        size="small"
+        color="info"
+      >
+        About
       </v-btn>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">

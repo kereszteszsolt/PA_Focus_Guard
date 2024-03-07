@@ -14,6 +14,8 @@ import {
 import StatisticsDistractionAttempts from '@/views/options/statistics-views/StatisticsDistractionAttempts.vue';
 import StatisticsDataUsage from '@/views/options/statistics-views/StatisticsDataUsage.vue';
 import Donations from '@/views/options/footer-views/Donations.vue';
+import Privacy from '@/views/options/footer-views/Privacy.vue';
+import Contact from '@/views/options/footer-views/Contact.vue';
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -47,6 +49,16 @@ export default createRouter({
       path: '/footer-pages/donations',
       name: 'Donations',
       component: Donations
+    },
+    {
+      path: '/footer-pages/privacy',
+      name: 'Privacy',
+      component: Privacy
+    },
+    {
+      path: '/footer-pages/contact',
+      name: 'Contact',
+      component: Contact
     },
     {
       path: '/languages',
