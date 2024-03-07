@@ -5,7 +5,8 @@
   "permissions": [
     "storage",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "unlimitedStorage"
   ],
   "icons": {
     "128": "src/assets/icons/kzs-focus.png"

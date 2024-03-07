@@ -9,70 +9,88 @@ import {
   NotFound,
   Settings,
   Test,
-  Websites,
+  Websites
 } from '@/views/options';
+import StatisticsDistractionAttempts from '@/views/options/StatisticsDistractionAttempts.vue';
+import StatisticsDataUsage from '@/views/options/StatisticsDataUsage.vue';
+import Donations from '@/views/options/Donations.vue';
 
 export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: '/about',
+      path: '/footer-pages/about',
       name: 'About',
-      component: About,
+      component: About
     },
     {
-      path: '/acknowledgments',
+      path: '/footer-pages/acknowledgments',
       name: 'Acknowledgments',
-      component: Acknowledgments,
+      component: Acknowledgments
     },
     {
       path: '/focus-message',
       name: 'FocusMessage',
-      component: FocusMessage,
+      component: FocusMessage
     },
     {
-      path: '/gtc',
+      path: '/footer-pages/gtc',
       name: 'Gtc',
-      component: Gtc,
+      component: Gtc
     },
     {
-      path: '/how-to-use',
+      path: '/footer-pages/how-to-use',
       name: 'HowToUse',
-      component: HowToUse,
+      component: HowToUse
+    },
+    {
+      path: '/footer-pages/donations',
+      name: 'Donations',
+      component: Donations
     },
     {
       path: '/languages',
       name: 'Languages',
-      component: Language,
+      component: Language
     },
     {
       path: '/settings',
       name: 'Settings',
-      component: Settings,
+      component: Settings
     },
     {
       path: '/websites',
       name: 'WebsitesDefaultList',
-      component: Websites,
+      component: Websites
     },
     {
       path: '/websites/:id',
       name: 'WebsitesByListId',
-      component: Websites,
+      component: Websites
+    },
+    {
+      path: '/statistics/distraction-attempts',
+      name: 'StatisticsDistractionAttempts',
+      component: StatisticsDistractionAttempts
+    },
+    {
+      path: '/statistics/data-usage',
+      name: 'StatisticsDataUsage',
+      component: StatisticsDataUsage
     },
     {
       path: '/test',
       name: 'Test',
-      component: Test,
+      component: Test
     },
     {
       path: '/',
-      redirect: '/websites',
+      redirect: '/websites'
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
-      component: NotFound,
-    },
-  ],
+      component: NotFound
+    }
+  ]
 });

@@ -145,7 +145,7 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
     <!--    </div>-->
     <div class="d-flex flex-row justify-space-around">
       <v-btn
-        to="/about"
+        to="/footer-pages/about"
         variant="text"
         class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
         density="compact"
@@ -156,7 +156,7 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
       </v-btn>
 
       <v-btn
-        to="/gtc"
+        to="/footer-pages/gtc"
         variant="text"
         class="text-none text-center flex-1-0 text-decoration-none font-weight-regular"
         density="compact"
@@ -167,7 +167,7 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
       </v-btn>
 
       <v-btn
-        to="/donation"
+        to="/footer-pages/donations"
         variant="text"
         density="compact"
         size="small"
@@ -178,7 +178,7 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
       </v-btn>
 
       <v-btn
-        to="/acknowledgment"
+        to="/footer-pages/acknowledgments"
         variant="text"
         density="compact"
         size="small"
@@ -189,7 +189,7 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
       </v-btn>
 
       <v-btn
-        to="/how-to-use"
+        to="/footer-pages/how-to-use"
         variant="text"
         density="compact"
         size="small"

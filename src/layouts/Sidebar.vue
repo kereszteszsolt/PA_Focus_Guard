@@ -2,6 +2,9 @@
 import { SidebarLists, SidebarToolbar, SidebarLanguageList, SidebarNotFound } from '@/components/sidebar';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+import SidebarSettings from '@/components/sidebar/SidebarSettings.vue';
+import SidebarStatistics from '@/components/sidebar/SidebarStatistics.vue';
+import SidebarFooterPages from '@/components/sidebar/SidebarFooterPages.vue';
 const route = useRoute();
 
 const path = computed(() => {
@@ -18,6 +21,12 @@ const dynamicComponent = computed(() => {
       return SidebarLists;
     case 'languages':
       return SidebarLanguageList;
+    case 'settings':
+      return SidebarSettings;
+    case 'statistics':
+      return SidebarStatistics;
+    case 'footer-pages':
+      return SidebarFooterPages;
     default:
       return SidebarNotFound;
   }
