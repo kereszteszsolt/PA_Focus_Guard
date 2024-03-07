@@ -11,9 +11,9 @@ import {
   Test,
   Websites
 } from '@/views/options';
-import StatisticsDistractionAttempts from '@/views/options/StatisticsDistractionAttempts.vue';
-import StatisticsDataUsage from '@/views/options/StatisticsDataUsage.vue';
-import Donations from '@/views/options/Donations.vue';
+import StatisticsDistractionAttempts from '@/views/options/statistics-views/StatisticsDistractionAttempts.vue';
+import StatisticsDataUsage from '@/views/options/statistics-views/StatisticsDataUsage.vue';
+import Donations from '@/views/options/footer-views/Donations.vue';
 
 export default createRouter({
   history: createWebHashHistory(),

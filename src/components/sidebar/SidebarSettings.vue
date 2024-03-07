@@ -37,7 +37,7 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
       <v-btn to="/websites" size="x-large" color="accent" variant="elevated" elevation="12" class="w-100 mb-1">
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      <v-btn to="/settings/languages" size="x-large" color="accent"
+      <v-btn to="/languages" size="x-large" color="accent"
              variant="elevated" elevation="12" class="w-100 mb-1">
         <v-icon>mdi-translate</v-icon>
       </v-btn>
