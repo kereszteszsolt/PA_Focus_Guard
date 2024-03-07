@@ -1,21 +1,13 @@
 <script setup lang="ts">
-const footerItems = [
-  { title: 'About', componentName: 'About', key: 'about' },
-  { title: 'Gtc', componentName: 'Gtc', key: 'gtc' },
-  // { title: 'Privacy', componentName: 'Privacy', key: 'privacy' },
-  // { title: 'Contact', componentName: 'Contact', key: 'contact' },
-  { title: 'Acknowledgments', componentName: 'Acknowledgments', key: 'acknowledgments' },
-  { title: 'HowToUse', componentName: 'HowToUse', key: 'how-to-use' },
-  { title: 'Donations', componentName: 'Donations', key: 'donations' }
-];
+import * as links from '@/links'
 </script>
 
 <template>
   <v-sheet class="border-radius-8 flex-1-0" color="background">
     <v-list class="bg-background border-radius-8">
       <router-link
-        v-for="item in footerItems" :key="item.key" :to="{name: item.componentName}" class="router-link text">
-        <v-list-item color="primary" :value="item.key">
+        v-for="item in links.footerViewLinks" :key="item.id" :to="{name: item.routeName}" class="router-link text">
+        <v-list-item color="primary" :value="item.id">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </router-link>

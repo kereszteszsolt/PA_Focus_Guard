@@ -16,18 +16,19 @@ import StatisticsDataUsage from '@/views/options/statistics-views/StatisticsData
 import Donations from '@/views/options/footer-views/Donations.vue';
 import Privacy from '@/views/options/footer-views/Privacy.vue';
 import Contact from '@/views/options/footer-views/Contact.vue';
+import * as constants from '@/constants';
 
 export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
       path: '/footer-pages/about',
-      name: 'About',
+      name: constants.routeName.ABOUT,
       component: About
     },
     {
       path: '/footer-pages/acknowledgments',
-      name: 'Acknowledgments',
+      name: constants.routeName.ACKNOWLEDGMENTS,
       component: Acknowledgments
     },
     {
@@ -37,27 +38,27 @@ export default createRouter({
     },
     {
       path: '/footer-pages/gtc',
-      name: 'Gtc',
+      name: constants.routeName.GTC,
       component: Gtc
     },
     {
       path: '/footer-pages/how-to-use',
-      name: 'HowToUse',
+      name: constants.routeName.HOW_TO_USE,
       component: HowToUse
     },
     {
       path: '/footer-pages/donations',
-      name: 'Donations',
+      name: constants.routeName.DONATIONS,
       component: Donations
     },
     {
       path: '/footer-pages/privacy',
-      name: 'Privacy',
+      name: constants.routeName.PRIVACY,
       component: Privacy
     },
     {
       path: '/footer-pages/contact',
-      name: 'Contact',
+      name: constants.routeName.CONTACT,
       component: Contact
     },
     {
