@@ -67,7 +67,7 @@ export default createRouter({
       component: Language
     },
     {
-      path: '/settings',
+      path: '/settings/settings',
       name: 'Settings',
       component: Settings
     },

@@ -3,10 +3,17 @@ import { useTheme } from 'vuetify';
 import { useAppDataStore } from '@/store';
 import { watchEffect } from 'vue';
 import * as utils from '@/utils';
+import { Language } from '@/views/options';
 
 const theme = useTheme();
 const appDataStore = useAppDataStore();
 appDataStore.fetchAppData();
+
+defineProps(
+  {
+    path: String
+  }
+);
 
 const toggleTheme = () => {
   const chosenTheme = theme.global.current.value.dark ? 'fgLightTheme' : 'fgDarkTheme';
@@ -19,29 +26,33 @@ watchEffect(() => {
     theme.global.name.value = appDataStore.appData.fgTheme;
 });
 
-// const messageListener = chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//   if (request.message === 'appDataUpdated') {
-//     appDataStore.fetchAppData();
-//     sendResponse({status: 'App data fetched'});
-//   }
-//   return true; // will respond asynchronously
-// });
 utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
   appDataStore.fetchAppData();
 });
 </script>
 
 <template>
-  <v-sheet class="border-radius-8 flex-1-0 pa-4" color="background">
-    <div class="d-flex flex-column justify-space-around">
-      <v-btn to="/websites" size="x-large" color="accent" variant="elevated" elevation="12" class="w-100 mb-1">
-        <v-icon>mdi-home</v-icon>
-      </v-btn>
-      <v-btn to="/languages" size="x-large" color="accent"
-             variant="elevated" elevation="12" class="w-100 mb-1">
-        <v-icon>mdi-translate</v-icon>
-      </v-btn>
-      <v-btn @click="toggleTheme" size="x-large" color="accent" variant="elevated" elevation="12" class="w-100 mb-1">
+  <v-sheet class="border-radius-8 flex-1-0 d-flex flex-column" color="background">
+    <v-list class="bg-background border-radius-8 flex-1-0">
+      <router-link to="/languages" class="router-link">
+        <v-list-item color="primary" :value="'languages'">
+          <template v-slot:prepend>
+            <v-icon icon="mdi-translate"></v-icon>
+          </template>
+          <v-list-item-title v-text="'Languages'"></v-list-item-title>
+        </v-list-item>
+      </router-link>
+      <router-link to="/settings/settings" class="router-link">
+        <v-list-item color="primary" :value="'settings'" :active="path === 'settings'">
+          <template v-slot:prepend>
+            <v-icon icon="mdi-cog-outline"></v-icon>
+          </template>
+          <v-list-item-title v-text="'General Settings'"></v-list-item-title>
+        </v-list-item>
+      </router-link>
+    </v-list>
+    <div class="pa-4">
+      <v-btn @click="toggleTheme" size="x-large" color="accent" variant="elevated" elevation="12" class="w-100">
         <v-icon>{{ theme.global.current.value.dark ? 'mdi-white-balance-sunny' : 'mdi-weather-night' }}</v-icon>
       </v-btn>
     </div>
@@ -49,5 +60,8 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 </template>
 
 <style scoped lang="scss">
-
+.router-link {
+  text-decoration: none;
+  color: inherit;
+}
 </style>

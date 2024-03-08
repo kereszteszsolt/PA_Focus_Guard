@@ -7,7 +7,7 @@
     <v-btn to="/websites/all" size="x-large" icon='mdi-home'
            color="accent" variant="elevated"
            elevation="12"></v-btn>
-    <v-btn to="/settings" size="x-large" icon='mdi-wrench' color="accent" variant="elevated"
+    <v-btn to="/settings/settings" size="x-large" icon='mdi-wrench' color="accent" variant="elevated"
            elevation="12"></v-btn>
     <v-btn to="/statistics/distraction-attempts" size="x-large" icon='mdi-chart-bar' color="accent" variant="elevated"
            elevation="12"></v-btn>
