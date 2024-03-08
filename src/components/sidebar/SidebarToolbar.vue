@@ -1,13 +1,5 @@
 <script setup lang="ts">
 
-defineProps({
-  path: {
-    type: String,
-    required: true
-  }
-});
-
-
 </script>
 
 <template>

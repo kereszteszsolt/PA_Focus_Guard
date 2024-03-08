@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import * as links from '@/links'
+
+defineProps<{
+  path: string
+}>();
+
 </script>
 
 <template>
@@ -7,7 +12,7 @@ import * as links from '@/links'
     <v-list class="bg-background border-radius-8">
       <router-link
         v-for="item in links.footerViewLinks" :key="item.id" :to="{name: item.routeName}" class="router-link text">
-        <v-list-item color="primary" :value="item.id">
+        <v-list-item color="primary" :value="item.id" :active="item.routeName.includes(path)">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </router-link>

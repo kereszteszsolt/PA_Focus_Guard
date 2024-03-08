@@ -7,8 +7,8 @@ import SidebarStatistics from '@/components/sidebar/SidebarStatistics.vue';
 import SidebarFooterPages from '@/components/sidebar/SidebarFooterPages.vue';
 const route = useRoute();
 
-const path = computed(() => {
-  return route.path.split('/')[1];
+const pathX = (index: number) => computed(() => {
+  return route.path.split('/')[index];
 });
 
 const pathId = computed(() => {
@@ -16,7 +16,7 @@ const pathId = computed(() => {
 });
 
 const dynamicComponent = computed(() => {
-  switch (path.value) {
+  switch (pathX(1).value) {
     case 'websites':
       return SidebarLists;
     case 'languages':
@@ -36,9 +36,9 @@ const dynamicComponent = computed(() => {
 
 <template>
     <v-container class="d-flex flex-column h-100 pa-0 border-radius-8">
-          <component :is="dynamicComponent" />
+          <component :is="dynamicComponent"  :path="pathX(2).value"/>
           <v-divider></v-divider>
-          <sidebar-toolbar :path="path" />
+          <sidebar-toolbar />
     </v-container>
 </template>
 
