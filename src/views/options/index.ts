@@ -8,5 +8,24 @@ import NotFound from './NotFound.vue';
 import Settings from './Settings.vue';
 import Test from './Test.vue';
 import Websites from './Websites.vue';
+import Contact from './footer-views/Contact.vue';
+import Donations from './footer-views/Donations.vue';
+import FooterViewWrapper from './footer-views/FooterViewWrapper.vue';
+import Privacy from './footer-views/Privacy.vue';
 
-export { About, Acknowledgments, FocusMessage, Gtc, HowToUse, Language, NotFound, Settings, Test, Websites };
+export {
+  About,
+  Acknowledgments,
+  FocusMessage,
+  Gtc,
+  HowToUse,
+  Language,
+  NotFound,
+  Settings,
+  Test,
+  Websites,
+  Contact,
+  Donations,
+  FooterViewWrapper,
+  Privacy
+};

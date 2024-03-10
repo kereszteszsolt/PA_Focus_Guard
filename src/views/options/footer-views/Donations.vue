@@ -1,6 +1,5 @@
 <script setup lang="ts">
-
-import FooterViewWrapper from '@/views/options/footer-views/FooterViewWrapper.vue';
+import { FooterViewWrapper } from '@/views/options';
 </script>
 
 <template>
