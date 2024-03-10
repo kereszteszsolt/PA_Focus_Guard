@@ -26,18 +26,27 @@ html {
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
 
+.border-radius-0 {
+  border-radius: 0;
+}
+
 .border-radius-8 {
   border-radius: 8px;
 }
 
 .border-top-radius-8 {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.border-bottom-radius-0 {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .border-bottom-radius-8 {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .fg-h-104px {
@@ -59,6 +68,7 @@ html {
 .fw-card {
   max-height: 745px;
 }
+
 .fw-card-text {
   max-height: 667px;
 }
@@ -73,7 +83,7 @@ html {
   }
 
   ::-webkit-scrollbar-track {
-     background: rgb(var(--v-theme-scrollbar-track-color)) !important;
+    background: rgb(var(--v-theme-scrollbar-track-color)) !important;
   }
 
   ::-webkit-scrollbar-thumb {

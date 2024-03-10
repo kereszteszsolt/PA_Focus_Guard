@@ -1,20 +1,12 @@
 <script setup lang="ts">
 
+import FooterViewWrapper from '@/views/options/footer-views/FooterViewWrapper.vue';
 </script>
 
 <template>
-  <v-card class="flex-1-0 fgScroll border-top-radius-8 fw-card" color="background" elevation="0">
-    <v-card-item class="border-top-radius-8">
-      <v-card-title class="text-h6 border-top-radius-8">
-        <div class="font-weight-bold border-top-radius-8">
-          Privacy
-        </div>
-      </v-card-title>
-    </v-card-item>
-    <v-card-text class="fgScroll fw-card-text">
-      <h1>Privacy</h1>
-    </v-card-text>
-  </v-card>
+  <footer-view-wrapper title="Privacy">
+    <h1>Privacy</h1>
+  </footer-view-wrapper>
 </template>
 
 <style scoped lang="scss">
