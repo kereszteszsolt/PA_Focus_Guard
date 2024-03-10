@@ -34,14 +34,6 @@ watch(() => props.pDialog, (value) => {
   jsonData.value = JSON.stringify(props.pLocaleMassages);
 });
 
-const jsonData2 = {
-  "locale": {
-    "id": "en",
-    "name": "English",
-    "text_direction": "ltr"
-  },
-  // További adatok...
-};
 const downloadJson = () => {
   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonData.value);
   const downloadAnchorNode = document.createElement('a');
@@ -52,16 +44,20 @@ const downloadJson = () => {
   downloadAnchorNode.remove();
 };
 
-// Fájl feltöltésének indítása
 const triggerFileUpload = () => {
   document.getElementById('fileUpload')?.click();
 };
 
-const jsonCode = ref('');
-
-watch(() => uploadedJsonData.value, (value) => {
-  if (value) {
-    jsonCode.value = JSON.stringify(value);
+const jsonCode = computed({
+  get: () => {
+    return JSON.stringify(uploadedJsonData.value, null, 2);
+  },
+  set: (newValue) => {
+    try {
+      uploadedJsonData.value = JSON.parse(newValue);
+    } catch (error) {
+      console.error('Invalid JSON format');
+    }
   }
 });
 
@@ -85,32 +81,39 @@ const uploadFile = (event: Event) => {
     alert('Kérlek, JSON fájlt tölts fel!');
   }
 };
+
+const dialogHeight = computed(() => {
+  return uploadedJsonData.value ? '800px' : 'auto';
+});
+
 </script>
 
 <template>
-  <v-dialog v-model="dialog" max-width="900px" persistent color="background">
+  <v-dialog v-model="dialog" max-width="900px"  persistent color="background">
     <v-card>
       <v-card-item>
         <v-card-title class="headline">Edit/Add Language</v-card-title>
       </v-card-item>
 
       <v-card-text>
-        <v-textarea v-model="jsonCode"></v-textarea>
+        <v-textarea v-model="jsonCode" class="tHeight"></v-textarea>
       </v-card-text>
       <v-card-text>
-        <v-btn color="blue darken-1" @click="triggerFileUpload">Feltöltés</v-btn>
         <input type="file" id="fileUpload" @change="uploadFile" style="display: none" />
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" @click="downloadJson">Letöltés</v-btn>
-        <v-btn color="success" @click="pSaveLocaleMessages(uploadedJsonData)">Save</v-btn>
-        <v-btn @click="pCloseDialog" color="danger">Close</v-btn>
+        <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload">Feltöltés</v-btn>
+        <v-btn color="accent" variant="elevated" elevation="12"  @click="downloadJson">Letöltés</v-btn>
+        <v-btn color="success" variant="elevated" elevation="12" @click="pSaveLocaleMessages(uploadedJsonData)">Save</v-btn>
+        <v-btn @click="pCloseDialog" color="danger" variant="elevated" elevation="12" >Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <style scoped lang="scss">
-
+.tHeight {
+  height: 500px
+}
 </style>
