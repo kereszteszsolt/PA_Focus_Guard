@@ -96,7 +96,7 @@ const dialogHeight = computed(() => {
       </v-card-item>
 
       <v-card-text>
-        <v-textarea v-model="jsonCode" rows="25"></v-textarea>
+        <v-textarea v-model="jsonCode" max-rows="25"  rows="25" class="fgScroll"></v-textarea>
       </v-card-text>
       <v-card-text>
         <input type="file" id="fileUpload" @change="uploadFile" style="display: none" />
@@ -113,7 +113,5 @@ const dialogHeight = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.tHeight {
-  height: 500px
-}
+
 </style>

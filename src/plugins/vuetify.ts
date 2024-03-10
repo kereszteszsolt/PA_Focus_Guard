@@ -10,6 +10,7 @@ import 'vuetify/styles'
 
 // Composables
 import { createVuetify, ThemeDefinition } from 'vuetify';
+import chroma from 'chroma-js';
 
 const fgLightTheme: ThemeDefinition = {
   dark: false,
@@ -22,8 +23,11 @@ const fgLightTheme: ThemeDefinition = {
     info: '#00bcd4',
     success: '#4caf50',
     danger: '#f44336',
-    background: '#FFFAF0FF',
-  },
+    background: '#fffaf0ff',
+    'scrollbar-track-color': chroma('#fffaf0ff').darken(1).hex(),
+    'scrollbar-thumb-color': chroma('#fffaf0ff').darken(2).hex(),
+    'scrollbar-thumb-color-hover': chroma('#fffaf0ff').darken(3).hex(),
+  }
 }
 
 const fgDarkTheme: ThemeDefinition = {
@@ -38,7 +42,10 @@ const fgDarkTheme: ThemeDefinition = {
     success: '#66bb6a',
     danger: '#ef5350',
     background: '#424242',
-  },
+    'scrollbar-track-color': chroma('#424242').brighten(1).hex(),
+    'scrollbar-thumb-color': chroma('#424242').brighten(2).hex(),
+    'scrollbar-thumb-color-hover': chroma('#424242').brighten(3).hex(),
+  }
 }
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
