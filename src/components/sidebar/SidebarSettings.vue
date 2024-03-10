@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { useTheme } from 'vuetify';
 import { useAppDataStore } from '@/store';
-import { watchEffect } from 'vue';
-import * as utils from '@/utils';
-import { Language } from '@/views/options';
+import * as constants from '@/constants';
+import { computed, ComputedRef } from 'vue';
 
-const theme = useTheme();
 const appDataStore = useAppDataStore();
 appDataStore.fetchAppData();
 
@@ -15,20 +12,11 @@ defineProps(
   }
 );
 
+const fgTheme: ComputedRef<string> = computed(() => appDataStore.getAppData.fgTheme);
 const toggleTheme = () => {
-  const chosenTheme = theme.global.current.value.dark ? 'fgLightTheme' : 'fgDarkTheme';
-  theme.global.name.value = chosenTheme;
+  const chosenTheme = (fgTheme.value === constants.common.FG_DARK_THEME) ? constants.common.FG_LIGHT_THEME : constants.common.FG_DARK_THEME;
   appDataStore.updateFgTheme(chosenTheme);
 };
-
-watchEffect(() => {
-  if (!appDataStore.isLoading)
-    theme.global.name.value = appDataStore.appData.fgTheme;
-});
-
-utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
-  appDataStore.fetchAppData();
-});
 </script>
 
 <template>
@@ -53,7 +41,7 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
     </v-list>
     <div class="pa-4">
       <v-btn @click="toggleTheme" size="x-large" color="accent" variant="elevated" elevation="12" class="w-100">
-        <v-icon>{{ theme.global.current.value.dark ? 'mdi-white-balance-sunny' : 'mdi-weather-night' }}</v-icon>
+        <v-icon>{{ (fgTheme === constants.common.FG_DARK_THEME) ? 'mdi-white-balance-sunny' : 'mdi-weather-night' }}</v-icon>
       </v-btn>
     </div>
   </v-sheet>

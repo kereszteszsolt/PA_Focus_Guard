@@ -1,11 +1,23 @@
 <script setup lang="ts">
 import { AppBar, Sidebar, FgFooter } from '@/layouts';
 import { useTheme } from 'vuetify';
-import { computed } from 'vue';
+import { computed, watchEffect } from 'vue';
+import * as utils from '@/utils';
+import { useAppDataStore } from '@/store';
 
+const appDataStore = useAppDataStore();
+appDataStore.fetchAppData();
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 
+watchEffect(() => {
+  if (!appDataStore.isLoading)
+    theme.global.name.value = appDataStore.appData.fgTheme;
+});
+
+utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
+  appDataStore.fetchAppData();
+});
 </script>
 
 <template>
