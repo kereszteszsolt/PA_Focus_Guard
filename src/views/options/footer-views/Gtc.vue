@@ -1,11 +1,11 @@
 <template>
-  <v-card class="flex-1-0 fgScroll border-top-radius-8 hCard" color="background" elevation="0">
+  <v-card class="flex-1-0 fgScroll border-top-radius-8 fw-card" color="background" elevation="0">
     <v-card-item class="border-top-radius-8">
       <v-card-title class="text-h6 border-top-radius-8">
         <div class="font-weight-bold border-top-radius-8">General Terms and Conditions (GTC)</div>
       </v-card-title>
     </v-card-item>
-    <v-card-text class="fgScroll hText">
+    <v-card-text class="fgScroll fw-card-text">
       <p class="pt-4">Below you can find the General Terms and Conditions (hereinafter referred to as GTC)
         applicable
         to the use of the software. By installing and using the software, you agree to the following terms.</p>
@@ -78,10 +78,5 @@
 </script>
 
 <style scoped lang="scss">
-.hCard {
-  max-height: 745px;
-}
-.hText {
-  max-height: 667px;
-}
+
 </style>

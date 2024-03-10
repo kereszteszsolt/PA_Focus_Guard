@@ -56,6 +56,13 @@ html {
   color: rgb(var(--v-theme-accent)) !important;
 }
 
+.fw-card {
+  max-height: 745px;
+}
+.fw-card-text {
+  max-height: 667px;
+}
+
 .fgScroll {
   overflow-y: auto;
   -ms-overflow-style: scrollbar;

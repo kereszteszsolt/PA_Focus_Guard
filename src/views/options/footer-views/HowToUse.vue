@@ -1,6 +1,13 @@
 <template>
-  <div class="flex-1-0 pa-4">
-    <div>
+  <v-card class="flex-1-0 fgScroll border-top-radius-8 fw-card" color="background" elevation="0">
+    <v-card-item class="border-top-radius-8">
+      <v-card-title class="text-h6 border-top-radius-8">
+        <div class="font-weight-bold border-top-radius-8">
+          How to Use
+        </div>
+      </v-card-title>
+    </v-card-item>
+    <v-card-text class="fgScroll fw-card-text">
       <div class="font-weight-bold">How to Use Focus Guard?</div>
       <p class="pt-4">How to Start a 'Focus Session'?</p>
       <ul class="list-disc pl-8">
@@ -22,7 +29,9 @@
       <ul class="list-disc pl-8">
         <li>Right-Click the extension icon in the browser toolbar.</li>
         <li>Click the 'Manage Extension' option.</li>
-        <li>Scroll down to the 'Allow in Incognito' option and check the checkbox. To undo, simply switch it off at the same place.</li>
+        <li>Scroll down to the 'Allow in Incognito' option and check the checkbox. To undo, simply switch it off at the
+          same place.
+        </li>
       </ul>
 
       <p class="pt-4 font-weight-bold">How to Remove 'Focus Guard' from the Browser?</p>
@@ -32,12 +41,14 @@
       </ul>
 
       <p class="pt-4 font-weight-bold">How to Use Focus Guard? (Video) English</p>
-      <a href="https://www.youtube.com/watch?v=EsUjbbI75Io" target="_blank">https://www.youtube.com/watch?v=EsUjbbI75Io</a>
+      <a href="https://www.youtube.com/watch?v=EsUjbbI75Io"
+         target="_blank">https://www.youtube.com/watch?v=EsUjbbI75Io</a>
 
       <p class="pt-4 font-weight-bold">How to Use Focus Guard? (Video) Hungarian</p>
-      <a href="https://www.youtube.com/watch?v=7LSU5hTgSmc" target="_blank">https://www.youtube.com/watch?v=7LSU5hTgSmc</a>
-    </div>
-  </div>
+      <a href="https://www.youtube.com/watch?v=7LSU5hTgSmc"
+         target="_blank">https://www.youtube.com/watch?v=7LSU5hTgSmc</a>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script setup lang="ts">
