@@ -75,6 +75,13 @@ const deleteLocale = (id: string) => {
         >
           mdi-delete
         </v-icon>
+        <v-icon
+          class="cursor-pointer"
+          color="primary"
+          @click="utils.file.downloadAsJsonFile(JSON.stringify(i18n.getLocaleMessagesByLocaleId(item.id), null, 2), item.id + '.json')"
+        >
+          mdi-download
+        </v-icon>
       </template>
       <template v-slot:item.is_current="{ item }">
           <v-checkbox
