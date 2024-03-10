@@ -1,11 +1,11 @@
 <template>
-  <v-card class="flex-1-0 pa-4 fgScroll border-top-radius-8" color="background" elevation="0">
+  <v-card class="flex-1-0 fgScroll border-top-radius-8 hCard" color="background" elevation="0">
     <v-card-item class="border-top-radius-8">
       <v-card-title class="text-h6 border-top-radius-8">
         <div class="font-weight-bold border-top-radius-8">General Terms and Conditions (GTC)</div>
       </v-card-title>
     </v-card-item>
-    <v-card-text class="fgScroll hhh2">
+    <v-card-text class="fgScroll hText">
       <p class="pt-4">Below you can find the General Terms and Conditions (hereinafter referred to as GTC)
         applicable
         to the use of the software. By installing and using the software, you agree to the following terms.</p>
@@ -74,44 +74,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 
-let scrollInvoked = ref(0);
-
-const onScroll = () => {
-  scrollInvoked.value++;
-  console.log('scrollInvoked', scrollInvoked.value);
-};
 </script>
 
 <style scoped lang="scss">
-.hhh {
+.hCard {
   max-height: 745px;
 }
-.hhh2 {
-  max-height: 645px;
-}
-
-.card {
-  max-height: 745px;
-  overflow-y: auto;
-  -ms-overflow-style: scrollbar;
-
-  ::-webkit-scrollbar {
-    width: 10px;
-    display: block;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+.hText {
+  max-height: 667px;
 }
 </style>
