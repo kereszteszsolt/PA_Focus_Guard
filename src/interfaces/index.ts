@@ -7,3 +7,4 @@ export * from './IDistractionAttempt';
 export * from './ILocale';
 export * from './ILocaleWithSettings';
 export * from './ISocialMediaLink';
+export * from './IAction';

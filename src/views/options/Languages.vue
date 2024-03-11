@@ -4,6 +4,8 @@ import { computed, ref } from 'vue';
 import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
 import * as utils from '@/utils';
+import { CommonActionTreeDotsMenu } from '@/components/common';
+import { IAction } from '@/interfaces';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
@@ -24,6 +26,46 @@ const headers = computed(() => [
   { title: 'Factory Default', value: 'isFactoryDefault' },
   { title: 'Language Type', value: 'language_type' }
 ]);
+
+const langActions: IAction[] = [
+  {
+    actionId: 'edit',
+    f: (id: string) => {
+      console.log('edit', id);
+    },
+    mdiIcon: 'mdi-pencil',
+    color: 'warning',
+    tooltip: msg.EDIT,
+    vif: {
+      func: (isBuiltIn: boolean) => !isBuiltIn,
+      fieldName: 'isBuiltIn',
+      value: false
+    }
+  },
+  {
+    actionId: 'delete',
+    f: (id: string) => {
+      console.log('delete', id);
+    },
+    mdiIcon: 'mdi-delete',
+    tooltip: msg.DELETE,
+    color: 'danger',
+    vif: {
+      func: (isBuiltIn: boolean) => !isBuiltIn,
+      fieldName: 'isBuiltIn',
+      value: false
+    }
+  },
+  {
+    actionId: 'download',
+    f: (id: string) => {
+      utils.file.downloadAsJsonFile(JSON.stringify(i18n.getLocaleMessagesByLocaleId(id), null, 2), id + '.json');
+    },
+    mdiIcon: 'mdi-download',
+    tooltip: 'Download',
+    color: 'primary'
+  }
+];
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const allLocales = computed(() => i18n.getAllLocales);
@@ -66,62 +108,71 @@ const deleteLocale = (id: string) => {
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon
+        <!--        <v-icon-->
+        <!--          class="cursor-pointer"-->
+        <!--          color="primary"-->
+        <!--          @click="utils.file.downloadAsJsonFile(JSON.stringify(i18n.getLocaleMessagesByLocaleId(item.id), null, 2), item.id + '.json')"-->
+        <!--        >-->
+        <!--          mdi-download-->
+        <!--        </v-icon>-->
+        <!--        <v-icon-->
 
-          class="cursor-pointer"
-          color="danger"
-          v-if="item.isBuiltIn === false"
-          @click="deleteLocale(item.id)"
-        >
-          mdi-delete
-        </v-icon>
-        <v-icon
-          class="cursor-pointer"
-          color="primary"
-          @click="utils.file.downloadAsJsonFile(JSON.stringify(i18n.getLocaleMessagesByLocaleId(item.id), null, 2), item.id + '.json')"
-        >
-          mdi-download
-        </v-icon>
+        <!--          class="cursor-pointer"-->
+        <!--          color="warning"-->
+        <!--          v-if="item.isBuiltIn === false"-->
+        <!--        >-->
+        <!--          mdi-pencil-->
+        <!--        </v-icon>-->
+        <!--        <v-icon-->
+
+        <!--          class="cursor-pointer"-->
+        <!--          color="danger"-->
+        <!--          v-if="item.isBuiltIn === false"-->
+        <!--          @click="deleteLocale(item.id)"-->
+        <!--        >-->
+        <!--          mdi-delete-->
+        <!--        </v-icon>-->
+        <common-action-tree-dots-menu :actions="langActions" :t="t" :item="item"></common-action-tree-dots-menu>
       </template>
       <template v-slot:item.is_current="{ item }">
-          <v-checkbox
-            v-model="item.isCurrent"
-            color="warning"
-            @change="i18n.switchLocale(item.id)"
-            hide-details
-            class="d-flex justify-center"
-          >
-          </v-checkbox>
+        <v-checkbox
+          v-model="item.isCurrent"
+          color="warning"
+          @change="i18n.switchLocale(item.id)"
+          hide-details
+          class="d-flex justify-center"
+        >
+        </v-checkbox>
       </template>
       <template v-slot:item.isFallback1="{ item }">
-          <v-checkbox
-            v-model="item.isFallback1"
-            color="warning"
-            @change="i18n.setFallback1(item.id)"
-            hide-details
-            class="d-flex justify-center"
-          >
-          </v-checkbox>
+        <v-checkbox
+          v-model="item.isFallback1"
+          color="warning"
+          @change="i18n.setFallback1(item.id)"
+          hide-details
+          class="d-flex justify-center"
+        >
+        </v-checkbox>
       </template>
       <template v-slot:item.isFallback2="{ item }">
-          <v-checkbox
-            v-model="item.isFallback2"
-            color="warning"
-            @change="i18n.setFallback2(item.id)"
-            hide-details
-            class="d-flex justify-center"
-          >
-          </v-checkbox>
+        <v-checkbox
+          v-model="item.isFallback2"
+          color="warning"
+          @change="i18n.setFallback2(item.id)"
+          hide-details
+          class="d-flex justify-center"
+        >
+        </v-checkbox>
       </template>
       <template v-slot:item.isFactoryDefault="{ item }">
-          <v-checkbox
-            v-model="item.isFactoryDefault"
-            color="primary"
-            :disabled="true"
-            hide-details
-            class="d-flex justify-center"
-          >
-          </v-checkbox>
+        <v-checkbox
+          v-model="item.isFactoryDefault"
+          color="primary"
+          :disabled="true"
+          hide-details
+          class="d-flex justify-center"
+        >
+        </v-checkbox>
       </template>
       <template v-slot:item.language_type="{ item }">
         <div class="text-center">{{ item.isBuiltIn ? 'Build-In' : 'Custom' }}</div>

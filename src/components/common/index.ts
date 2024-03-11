@@ -1,3 +1,4 @@
 import CommonCrudMenu from './CommonCrudMenu.vue';
+import CommonActionTreeDotsMenu from './CommonActionTreeDotsMenu.vue';
 
-export { CommonCrudMenu };
+export { CommonCrudMenu, CommonActionTreeDotsMenu };
