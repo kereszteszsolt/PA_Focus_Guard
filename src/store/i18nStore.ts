@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import * as utils from '@/utils';
 import { ILocaleMessages, ILocaleWithSettings } from '@/interfaces';
 import * as constants from '@/constants';
+import { generateNumberForDuplicatesByField } from '@/utils/unique';
 
 export const useI18nStore = defineStore('i18n', {
   state: () => ({
@@ -160,6 +161,27 @@ export const useI18nStore = defineStore('i18n', {
       if (this.allLocaleMessages.some((l) => l.locale.id === localeId)) {
         this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.locale.id !== localeId);
         await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
+      }
+      this.isLoading = false;
+    },
+    //duplicate and rename the id and name of the locale and assing new ids and also by renaming add a number to the end of the name name (number) use the uniname lis utilities and to the id just add idnumer ex en1 en2
+    async duplicateLocale(localeId: string): Promise<void> {
+      this.isLoading = true;
+      if (this.localesWithSettings.some((l) => l.id === localeId)) {
+        const localeToDuplicate = this.localesWithSettings.find((l) => l.id === localeId);
+        if (!localeToDuplicate) {
+          this.isLoading = false;
+          return;
+        }
+        const newLocaleId = `${localeToDuplicate.id}_${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'id', localeToDuplicate.id)}`;
+        const newLocaleName = `${localeToDuplicate.name} (${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'name', localeToDuplicate.name)})`;
+        this.localesWithSettings.push({ id: newLocaleId, name: newLocaleName, text_direction: localeToDuplicate?.text_direction || 'ltr', isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
+        await this.saveLocaleSettings();
+        const newMessages = this.allLocaleMessages.find((l) => l.locale.id === localeId);
+        if (newMessages) {
+          this.allLocaleMessages.push({ locale: { id: newLocaleId, name: newLocaleName, text_direction: localeToDuplicate?.text_direction || 'ltr' }, messages: newMessages.messages });
+          await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
+        }
       }
       this.isLoading = false;
     }

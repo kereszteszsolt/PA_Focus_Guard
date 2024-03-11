@@ -45,7 +45,7 @@ const langActions: IAction[] = [
   {
     actionId: 'delete',
     f: (id: string) => {
-      console.log('delete', id);
+      deleteLocale(id);
     },
     mdiIcon: 'mdi-delete',
     tooltip: msg.DELETE,
@@ -63,6 +63,15 @@ const langActions: IAction[] = [
     },
     mdiIcon: 'mdi-download',
     tooltip: 'Download',
+    color: 'primary'
+  },
+  {
+    actionId: 'duplicate',
+    f: (id: string) => {
+      i18n.duplicateLocale(id);
+    },
+    mdiIcon: 'mdi-content-duplicate',
+    tooltip: 'Duplicate',
     color: 'primary'
   }
 ];
@@ -108,30 +117,6 @@ const deleteLocale = (id: string) => {
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
-        <!--        <v-icon-->
-        <!--          class="cursor-pointer"-->
-        <!--          color="primary"-->
-        <!--          @click="utils.file.downloadAsJsonFile(JSON.stringify(i18n.getLocaleMessagesByLocaleId(item.id), null, 2), item.id + '.json')"-->
-        <!--        >-->
-        <!--          mdi-download-->
-        <!--        </v-icon>-->
-        <!--        <v-icon-->
-
-        <!--          class="cursor-pointer"-->
-        <!--          color="warning"-->
-        <!--          v-if="item.isBuiltIn === false"-->
-        <!--        >-->
-        <!--          mdi-pencil-->
-        <!--        </v-icon>-->
-        <!--        <v-icon-->
-
-        <!--          class="cursor-pointer"-->
-        <!--          color="danger"-->
-        <!--          v-if="item.isBuiltIn === false"-->
-        <!--          @click="deleteLocale(item.id)"-->
-        <!--        >-->
-        <!--          mdi-delete-->
-        <!--        </v-icon>-->
         <common-action-tree-dots-menu :actions="langActions" :t="t" :item="item"></common-action-tree-dots-menu>
       </template>
       <template v-slot:item.is_current="{ item }">
