@@ -16,10 +16,10 @@ export const useI18nStore = defineStore('i18n', {
       fallBackLocale2: 'en'
     },
     localesWithSettings: [
-      { id: '', localeId: 'en', localeName: 'English', text_direction: 'ltr', isBuiltIn: true, isCurrent: true, isFactoryDefault: true },
-      { id: '', localeId: 'hu', localeName: 'Magyar', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
-      { id: '', localeId: 'de', localeName: 'Deutsch', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
-      { id: '', localeId: 'ro', localeName: 'Română', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false }
+      { id: '00000000-0000-000-0000-000000000001', localeId: 'en', localeName: 'English', text_direction: 'ltr', isBuiltIn: true, isCurrent: true, isFactoryDefault: true },
+      { id: '00000000-0000-000-0000-000000000002', localeId: 'hu', localeName: 'Magyar', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
+      { id: '00000000-0000-000-0000-000000000003', localeId: 'de', localeName: 'Deutsch', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
+      { id: '00000000-0000-000-0000-000000000004', localeId: 'ro', localeName: 'Română', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false }
     ] as ILocaleSettings[],
     allLocaleMessages: [] as ILocaleMessages[]
   }),
