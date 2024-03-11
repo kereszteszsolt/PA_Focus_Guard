@@ -58,6 +58,16 @@ export const useI18nStore = defineStore('i18n', {
     },
     getLocaleMessagesByLocaleId: (state) => (localeId: string): ILocaleMessages => {
       return state.allLocaleMessages.find((id) => id.locale.id === localeId) || { locale: { id: '', name: '', text_direction: '' }, messages: {} };
+    },
+    checkIfLocaleExists: (state) => (localeWithMessages: ILocaleMessages):
+    ILocaleWithSettings[] => {
+      return state.localesWithSettings.filter((l) => l.id === localeWithMessages.locale.id || l.name === localeWithMessages.locale.name);
+    },
+    getDefaultLocaleMessages: (state) :ILocaleMessages => {
+      return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.factoryDefault) || { locale: { id: '', name: '', text_direction: '' }, messages: {} };
+    },
+    getDummyLocaleMessages: (state) => {
+      return { locale: { id: '', name: '', text_direction: '' }, messages: {} };
     }
   },
   actions: {

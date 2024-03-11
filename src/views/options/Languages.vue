@@ -5,7 +5,7 @@ import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
 import * as utils from '@/utils';
 import { CommonActionTreeDotsMenu } from '@/components/common';
-import { IAction } from '@/interfaces';
+import { IAction, ILocaleMessages } from '@/interfaces';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
@@ -31,7 +31,7 @@ const langActions: IAction[] = [
   {
     actionId: 'edit',
     f: (id: string) => {
-      console.log('edit', id);
+      editLocale(id);
     },
     mdiIcon: 'mdi-pencil',
     color: 'warning',
@@ -82,7 +82,9 @@ let editDialog = ref(false);
 const closeEditDialog = () => {
   editDialog.value = false;
 };
-const itemForEdit = computed(() => i18n.getLocaleMessagesByLocaleId('en'));
+const itemForEdit = ref<ILocaleMessages>(i18n.getDummyLocaleMessages);
+
+const defaultLocaleMassages : ILocaleMessages = computed(() => i18n.getDefaultLocaleMessages).value;
 
 const saveLocaleMessages = (localeMessages: any) => {
   i18n.addNewLocale(localeMessages);
@@ -90,6 +92,11 @@ const saveLocaleMessages = (localeMessages: any) => {
 
 const deleteLocale = (id: string) => {
   i18n.deleteLocale(id);
+};
+
+const editLocale = (id: string) => {
+  itemForEdit.value = i18n.getLocaleMessagesByLocaleId(id);
+  editDialog.value = true;
 };
 
 </script>
@@ -191,7 +198,10 @@ const deleteLocale = (id: string) => {
     </v-data-table>
     <edit-custom-language-dialog :t="t" :p-close-dialog="closeEditDialog" :p-dialog="editDialog"
                                  :p-locale-massages="itemForEdit"
-                                 :p-save-locale-messages="saveLocaleMessages"></edit-custom-language-dialog>
+                                 :p-save-locale-messages="saveLocaleMessages"
+                                 :p-default-locale-massages="defaultLocaleMassages"
+                                 :p-check-if-locale-exists="i18n.checkIfLocaleExists"
+    ></edit-custom-language-dialog>
   </div>
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
