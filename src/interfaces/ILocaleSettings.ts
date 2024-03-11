@@ -1,4 +1,5 @@
 export interface ILocaleSettings {
+  id: string;
   localeId: string;
   localeName: string;
   text_direction: string;

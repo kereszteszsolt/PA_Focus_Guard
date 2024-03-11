@@ -3,6 +3,7 @@ import * as utils from '@/utils';
 import { ILocaleMessages, ILocaleSettings } from '@/interfaces';
 import * as constants from '@/constants';
 import { generateNumberForDuplicatesByField } from '@/utils/unique';
+import { allFilesReady } from '@crxjs/vite-plugin';
 
 export const useI18nStore = defineStore('i18n', {
   state: () => ({
@@ -15,10 +16,10 @@ export const useI18nStore = defineStore('i18n', {
       fallBackLocale2: 'en'
     },
     localesWithSettings: [
-      { localeId: 'en', localeName: 'English', text_direction: 'ltr', isBuiltIn: true, isCurrent: true, isFactoryDefault: true },
-      { localeId: 'hu', localeName: 'Magyar', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
-      { localeId: 'de', localeName: 'Deutsch', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
-      { localeId: 'ro', localeName: 'Română', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false }
+      { id: '', localeId: 'en', localeName: 'English', text_direction: 'ltr', isBuiltIn: true, isCurrent: true, isFactoryDefault: true },
+      { id: '', localeId: 'hu', localeName: 'Magyar', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
+      { id: '', localeId: 'de', localeName: 'Deutsch', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false },
+      { id: '', localeId: 'ro', localeName: 'Română', text_direction: 'ltr', isBuiltIn: true, isCurrent: false, isFactoryDefault: false }
     ] as ILocaleSettings[],
     allLocaleMessages: [] as ILocaleMessages[]
   }),
@@ -44,6 +45,9 @@ export const useI18nStore = defineStore('i18n', {
     getAllLocales: (state) => {
       return state.localesWithSettings;
     },
+    getAllLocaleMessages: (state) => {
+      return state.allLocaleMessages;
+    },
     getCurrentLocaleId: (state) => {
       return state.fastSettings.currentLocaleId;
     },
@@ -57,17 +61,21 @@ export const useI18nStore = defineStore('i18n', {
       return state.allLocaleMessages.find((id) => id.locale.id === localeId)?.messages || {};
     },
     getLocaleMessagesByLocaleId: (state) => (localeId: string): ILocaleMessages => {
-      return state.allLocaleMessages.find((id) => id.locale.id === localeId) || { locale: { id: '', name: '', text_direction: '' }, messages: {} };
+      return state.allLocaleMessages.find((id) => id.locale.id === localeId) || { id: '', lsId: '', locale: { id: '', name: '', text_direction: '' }, messages: {} };
+    },
+    getLocaleMessagesById: (state) => (id: string): ILocaleMessages | undefined => {
+      return state.allLocaleMessages.find((l) => l.lsId === id) || undefined;
     },
     checkIfLocaleExists: (state) => (localeWithMessages: ILocaleMessages):
     ILocaleSettings[] => {
-      return state.localesWithSettings.filter((l) => l.localeId === localeWithMessages.locale.id || l.localeName === localeWithMessages.locale.name);
+      return state.localesWithSettings.filter((l) => l.id !== localeWithMessages.lsId && l.localeId === localeWithMessages.locale.id && l.localeName === localeWithMessages.locale.name);
     },
-    getDefaultLocaleMessages: (state) :ILocaleMessages => {
-      return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.factoryDefault) || { locale: { id: '', name: '', text_direction: '' }, messages: {} };
+    getDefaultLocaleMessages: (state) :ILocaleMessages | undefined => {
+      let result =  state.allLocaleMessages.find((lm) => lm.locale.id === state.fastSettings.factoryDefault);
+      return result || state.allLocaleMessages.length > 0 ? state.allLocaleMessages[0] : undefined;
     },
     getDummyLocaleMessages: (state) => {
-      return { locale: { id: '', name: '', text_direction: '' }, messages: {} };
+      return { id: '', lsId: '', locale: { id: '', name: '', text_direction: '' }, messages: {} };
     }
   },
   actions: {
@@ -90,7 +98,8 @@ export const useI18nStore = defineStore('i18n', {
         this.isLoading = false;
         return;
       }
-      this.localesWithSettings.push({ localeId: iLocaleMessages.locale.id, localeName: iLocaleMessages.locale.name, text_direction: iLocaleMessages.locale.text_direction, isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
+      let newUUID = utils.unique.generateUniqueListId(this.localesWithSettings);
+      this.localesWithSettings.push({id: newUUID, localeId: iLocaleMessages.locale.id, localeName: iLocaleMessages.locale.name, text_direction: iLocaleMessages.locale.text_direction, isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
       await this.saveLocaleSettings();
       this.allLocaleMessages.push(iLocaleMessages);
       await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
@@ -162,46 +171,55 @@ export const useI18nStore = defineStore('i18n', {
       await utils.data.saveList(constants.storage.FG_LOCALES_SETTINGS, this.localesWithSettings);
       this.isLoading = false;
     },
-    async deleteLocale(localeId: string): Promise<void> {
+    async deleteLocale(id: string): Promise<void> {
       this.isLoading = true;
-      if (this.localesWithSettings.some((l) => l.localeId === localeId)) {
-        this.localesWithSettings = this.localesWithSettings.filter((l) => l.localeId !== localeId);
+      if (this.localesWithSettings.some((l) => l.id === id)) {
+        this.localesWithSettings = this.localesWithSettings.filter((l) => l.id !== id);
         await this.saveLocaleSettings();
       }
-      if (this.allLocaleMessages.some((l) => l.locale.id === localeId)) {
-        this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.locale.id !== localeId);
+      if (this.allLocaleMessages.some((l) => l.id === id)) {
+        this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.id !== id);
         await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
       }
       this.isLoading = false;
     },
     //duplicate and rename the id and name of the locale and assing new ids and also by renaming add a number to the end of the name name (number) use the uniname lis utilities and to the id just add idnumer ex en1 en2
-    async duplicateLocale(localeId: string): Promise<void> {
+    async duplicateLocale(id: string): Promise<void> {
       this.isLoading = true;
-      if (this.localesWithSettings.some((l) => l.localeId === localeId)) {
-        const localeToDuplicate = this.localesWithSettings.find((l) => l.localeId === localeId);
+      if (this.localesWithSettings.some((l) => l.id === id)) {
+        const localeToDuplicate = this.localesWithSettings.find((l) => l.id === id);
         if (!localeToDuplicate) {
           this.isLoading = false;
           return;
         }
-        const newLocaleId = `${localeToDuplicate.localeId}_${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'id', localeToDuplicate.localeId)}`;
-        const newLocaleName = `${localeToDuplicate.localeName} (${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'name', localeToDuplicate.localeName)})`;
-        this.localesWithSettings.push({ localeId: newLocaleId, localeName: newLocaleName, text_direction: localeToDuplicate?.text_direction || 'ltr', isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
+        const newLocaleId = `${localeToDuplicate.localeId}_${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeId', localeToDuplicate.localeId)}`;
+        const newLocaleName = `${localeToDuplicate.localeName} (${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeName', localeToDuplicate.localeName)})`;
+        let newLSUUID = utils.unique.generateUniqueListId(this.localesWithSettings);
+        this.localesWithSettings.push({id: newLSUUID, localeId: newLocaleId, localeName: newLocaleName, text_direction: localeToDuplicate?.text_direction || 'ltr', isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
         await this.saveLocaleSettings();
-        const newMessages = this.allLocaleMessages.find((l) => l.locale.id === localeId);
+        const newMessages = this.allLocaleMessages.find((l) => l.lsId === id);
         if (newMessages) {
-          this.allLocaleMessages.push({ locale: { id: newLocaleId, name: newLocaleName, text_direction: localeToDuplicate?.text_direction || 'ltr' }, messages: newMessages.messages });
+          let newLMUUID = utils.unique.generateUniqueListId(this.allLocaleMessages);
+          this.allLocaleMessages.push({id: newLMUUID, lsId: newLSUUID, locale: { id: newLocaleId, name: newLocaleName, text_direction: localeToDuplicate?.text_direction || 'ltr' }, messages: newMessages.messages });
           await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
         }
       }
       this.isLoading = false;
     },
-    async updateLocaleMessages(localeId: string, localeName: string, localeMessages: ILocaleMessages): Promise<void> {
+    async updateLocaleMessages(localeMessages: ILocaleMessages): Promise<void> {
       this.isLoading = true;
-      if (this.localesWithSettings.some((l) => l.localeId === localeId && l.localeName === localeName)) {
+      if (this.localesWithSettings.some((l) => l.id === localeMessages.lsId)) {
+        this.localesWithSettings.map((l) => {
+          if (l.id === localeMessages.lsId) {
+            l.localeId = localeMessages.locale.id;
+            l.localeName = localeMessages.locale.name;
+          }
+          return l;
+        });
+        await this.saveLocaleSettings();
         this.allLocaleMessages = this.allLocaleMessages.map((l) => {
-          if (l.locale.id === localeId && l.locale.name === localeName) {
-            l.locale = localeMessages.locale;
-            l.messages = localeMessages.messages;
+          if (l.id === localeMessages.id) {
+            l = localeMessages;
           }
           return l;
         });

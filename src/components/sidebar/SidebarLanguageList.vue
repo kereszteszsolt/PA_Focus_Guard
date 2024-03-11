@@ -2,6 +2,7 @@
 import { useI18nStore } from '@/store';
 import { computed } from 'vue';
 import * as utils from '@/utils';
+import { ILocaleSettings } from '@/interfaces';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
@@ -13,13 +14,15 @@ const isCurrentLocale = (id: string) => {
     return computed(() => i18n.getCurrentLocaleId === id).value;
 };
 
+const allLocales: ILocaleSettings[] = computed(() => i18n.getAllLocales).value;
+
 </script>
 
 <template>
   <v-sheet class="border-radius-8 flex-1-0" color="background">
     <v-list class="bg-background border-radius-8">
         <v-list-item :title="locale.localeName"
-                     v-for="locale in i18n.getAllLocales"
+                     v-for="locale in allLocales"
                      :key="locale.localeId"
                      :value="locale.localeId"
                      :active="isCurrentLocale(locale.localeId)"

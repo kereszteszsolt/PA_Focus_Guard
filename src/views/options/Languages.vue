@@ -86,21 +86,17 @@ const closeEditDialog = () => {
   newItem.value = true;
 };
 const itemForEdit = ref<ILocaleMessages>(i18n.getDummyLocaleMessages);
-const defaultLocaleMassages = ref<ILocaleMessages>(i18n.getDefaultLocaleMessages);
+const defaultLocaleMassages = ref<ILocaleMessages>(i18n.getDefaultLocaleMessages || i18n.getDummyLocaleMessages);
 
 const saveLocaleMessages = (localeMessages: any) => {
   if (newItem.value) {
     i18n.addNewLocale(localeMessages);
   } else {
-    i18n.updateLocaleMessages(
-      itemForEdit.value.locale.id,
-      itemForEdit.value.locale.name,
-      localeMessages);
+    i18n.updateLocaleMessages(localeMessages);
   }
   editDialog.value = false;
   nextTick(() => {
     itemForEdit.value = i18n.getDummyLocaleMessages;
-    defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
     newItem.value = true;
   });
 };
@@ -110,17 +106,52 @@ const deleteLocale = (id: string) => {
 };
 
 const editLocale = (id: string) => {
-  itemForEdit.value = i18n.getLocaleMessagesByLocaleId(id);
-  defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
-  editDialog.value = true;
-  newItem.value = false;
+  let allLocaleSettings = i18n.getAllLocales;
+  let allLocaleMessages = i18n.getAllLocaleMessages;
+  console.log('-----');
+  console.log('allLocaleSettings:');
+  allLocaleSettings.forEach((item) => {
+    console.log(item);
+  });
+  console.log('allLocaleMessages:');
+  allLocaleMessages.forEach((item) => {
+    console.log(item);
+  });
+  console.log('-----');
+  let edit = i18n.getLocaleMessagesById(id);
+  let defaultLocale = i18n.getDefaultLocaleMessages;
+  console.log('-----');
+  console.log(id);
+  console.log('edit:');
+  console.log(edit);
+  console.log('defaultLocale:');
+  console.log(defaultLocale);
+  if (edit !== undefined && defaultLocale !== undefined) {
+    itemForEdit.value = edit;
+    defaultLocaleMassages.value = defaultLocale;
+    editDialog.value = true;
+    newItem.value = false;
+    console.log('-----');
+    console.log(itemForEdit.value);
+    console.log(defaultLocaleMassages.value);
+    console.log(editDialog.value);
+    console.log(newItem.value);
+    console.log('-----');
+  } else {
+    alert('Error');  //TODO: Add error message
+  }
 };
 const newLocale = () => {
-  itemForEdit.value = i18n.getDummyLocaleMessages;
-  defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
-  editDialog.value = true;
-  newItem.value = true;
-  alert(editDialog.value);
+  let edit = i18n.getDummyLocaleMessages;
+  let defaultLocale = i18n.getDefaultLocaleMessages;
+  if (edit && defaultLocale) {
+    itemForEdit.value = edit;
+    defaultLocaleMassages.value = defaultLocale;
+    editDialog.value = true;
+    newItem.value = true;
+  } else {
+    alert('Error');  //TODO: Add error message
+  }
 };
 
 </script>
