@@ -1,15 +1,15 @@
-import { ILocale, ILocaleMessages, ILocaleWithSettings } from '@/interfaces';
+import { ILocale, ILocaleMessages, ILocaleSettings } from '@/interfaces';
 import * as utils from '@/utils';
 import * as constants from '@/constants';
 import { en, hu, de, ro } from '@/_locales';
 
 export const initLocaleSettingsAndMessages = async (): Promise<void> => {
-  let localesWithSettings: ILocaleWithSettings[] = [
-    { ...en.locale, isBuiltIn: true, isCurrent: true, isFactoryDefault: true, isFallback1: true, isFallback2: true },
-    { ...hu.locale, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false },
-    { ...de.locale, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false },
-    { ...ro.locale, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false }
-  ] as ILocaleWithSettings[];
+  let localesWithSettings: ILocaleSettings[] = [
+    { localeId: hu.locale.id, localeName: hu.locale.name, isBuiltIn: true, isCurrent: true, isFactoryDefault: true, isFallback1: true, isFallback2: true },
+    { localeId: en.locale.id, localeName: en.locale.name, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false },
+    { localeId: de.locale.id, localeName: de.locale.name, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false },
+    { localeId: ro.locale.id, localeName: ro.locale.name, isBuiltIn: true, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false }
+  ] as ILocaleSettings[];
 
   await utils.data.saveList(constants.storage.FG_LOCALES_SETTINGS, localesWithSettings);
 

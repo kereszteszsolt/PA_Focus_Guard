@@ -5,6 +5,6 @@ export * from './IAppData';
 export * from './ITaskQueue';
 export * from './IDistractionAttempt';
 export * from './ILocale';
-export * from './ILocaleWithSettings';
+export * from './ILocaleSettings';
 export * from './ISocialMediaLink';
 export * from './IAction';

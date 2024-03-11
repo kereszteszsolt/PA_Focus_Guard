@@ -1,6 +1,6 @@
-export interface ILocaleWithSettings {
-  id: string;
-  name: string;
+export interface ILocaleSettings {
+  localeId: string;
+  localeName: string;
   text_direction: string;
   isBuiltIn: boolean;
   isCurrent: boolean;

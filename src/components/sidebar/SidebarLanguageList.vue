@@ -18,19 +18,19 @@ const isCurrentLocale = (id: string) => {
 <template>
   <v-sheet class="border-radius-8 flex-1-0" color="background">
     <v-list class="bg-background border-radius-8">
-        <v-list-item :title="locale.name"
+        <v-list-item :title="locale.localeName"
                      v-for="locale in i18n.getAllLocales"
-                     :key="locale.id"
-                     :value="locale.id"
-                     :active="isCurrentLocale(locale.id)"
-                     @click="i18n.switchLocale(locale.id)">
+                     :key="locale.localeId"
+                     :value="locale.localeId"
+                     :active="isCurrentLocale(locale.localeId)"
+                     @click="i18n.switchLocale(locale.localeId)">
           <template v-slot:append>
             <v-btn icon
-                   :color="isCurrentLocale(locale.id) ? 'success' : 'secondary'"
+                   :color="isCurrentLocale(locale.localeId) ? 'success' : 'secondary'"
                      variant="elevated"
                    elevation="12"
                    size="small">
-              <v-icon>{{ isCurrentLocale(locale.id) ? 'mdi-check-circle' : 'mdi-circle-off-outline' }}</v-icon>
+              <v-icon>{{ isCurrentLocale(locale.localeId) ? 'mdi-check-circle' : 'mdi-circle-off-outline' }}</v-icon>
             </v-btn>
           </template>
         </v-list-item>

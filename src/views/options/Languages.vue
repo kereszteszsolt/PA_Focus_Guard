@@ -16,8 +16,8 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'l
 const isLoading = computed(() => i18n.isLoading);
 
 const headers = computed(() => [
-  { title: 'Code', value: 'id' },
-  { title: 'Name', value: 'name' },
+  { title: 'Code', value: 'localeId' },
+  { title: 'Name', value: 'localeName' },
   { title: 'Direction', value: 'text_direction' },
   { title: 'Actions', value: 'actions' },
   { title: 'Current', value: 'is_current' },
@@ -132,14 +132,14 @@ const newLocale = () => {
       :items="allLocales"
       class="bg-background"
     >
-      <template v-slot:item.id="{ item }">
+      <template v-slot:item.localeId="{ item }">
         <div class="text-center">
-          {{ item.id }}
+          {{ item.localeId }}
         </div>
       </template>
-      <template v-slot:item.name="{ item }">
+      <template v-slot:item.localeName="{ item }">
         <div class="text-center">
-          {{ item.name }}
+          {{ item.localeName }}
         </div>
       </template>
       <template v-slot:item.text_direction="{ item }">
@@ -154,7 +154,7 @@ const newLocale = () => {
         <v-checkbox
           v-model="item.isCurrent"
           color="warning"
-          @change="i18n.switchLocale(item.id)"
+          @change="i18n.switchLocale(item.localeId)"
           hide-details
           class="d-flex justify-center"
         >
@@ -164,7 +164,7 @@ const newLocale = () => {
         <v-checkbox
           v-model="item.isFallback1"
           color="warning"
-          @change="i18n.setFallback1(item.id)"
+          @change="i18n.setFallback1(item.localeId)"
           hide-details
           class="d-flex justify-center"
         >
@@ -174,7 +174,7 @@ const newLocale = () => {
         <v-checkbox
           v-model="item.isFallback2"
           color="warning"
-          @change="i18n.setFallback2(item.id)"
+          @change="i18n.setFallback2(item.localeId)"
           hide-details
           class="d-flex justify-center"
         >
