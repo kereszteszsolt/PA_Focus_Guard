@@ -103,12 +103,11 @@ const checkValidJson = (jsonToTest: ILocaleMessages, expectedJson: ILocaleMessag
     errorMessage.value = 'A fájl nem tartalmazza az összes kulcsot.' + differentKeys;
     return false;
   }
-  if (!props.pNewItem) {
-    let result: ILocaleMessages[] = props.pCheckIfLocaleExists(jsonToTest);
-    if (result && result.length > 0) {
-      errorMessage.value = 'Az nyelv-id vagy név már létezik: ' + result.map((r) => r.locale.id + ' - ' + r.locale.name).join(', ');
-      return false;
-    }
+  console.log('jsonToTest:', jsonToTest);
+  let result: ILocaleMessages[] = props.pCheckIfLocaleExists(jsonToTest);
+  if (result && result.length > 0) {
+    errorMessage.value = 'Az nyelv-id vagy név már létezik: ' + result.map((r) => r.locale.id + ' - ' + r.locale.name).join(', ');
+    return false;
   }
   return true;
 };
