@@ -84,8 +84,7 @@ const closeEditDialog = () => {
   editDialog.value = false;
 };
 const itemForEdit = ref<ILocaleMessages>(i18n.getDummyLocaleMessages);
-
-const defaultLocaleMassages : ILocaleMessages = computed(() => i18n.getDefaultLocaleMessages).value;
+const defaultLocaleMassages = ref<ILocaleMessages>(i18n.getDefaultLocaleMessages);
 
 const saveLocaleMessages = (localeMessages: any) => {
   i18n.addNewLocale(localeMessages);
@@ -97,10 +96,12 @@ const deleteLocale = (id: string) => {
 
 const editLocale = (id: string) => {
   itemForEdit.value = i18n.getLocaleMessagesByLocaleId(id);
+  defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
   editDialog.value = true;
 };
 const newLocale = () => {
   itemForEdit.value = i18n.getDummyLocaleMessages;
+  defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
   editDialog.value = true;
   alert(editDialog.value);
 };
