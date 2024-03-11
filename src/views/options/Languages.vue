@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18nStore } from '@/store';
-import { computed, ref } from 'vue';
+import { computed, nextTick, Ref, ref, UnwrapRef } from 'vue';
 import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
 import * as utils from '@/utils';
@@ -79,15 +79,30 @@ const langActions: IAction[] = [
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const allLocales = computed(() => i18n.getAllLocales);
 let editDialog = ref(false);
+let newItem = ref(false);
 const closeEditDialog = () => {
   itemForEdit.value = i18n.getDummyLocaleMessages;
   editDialog.value = false;
+  newItem.value = true;
 };
 const itemForEdit = ref<ILocaleMessages>(i18n.getDummyLocaleMessages);
 const defaultLocaleMassages = ref<ILocaleMessages>(i18n.getDefaultLocaleMessages);
 
 const saveLocaleMessages = (localeMessages: any) => {
-  i18n.addNewLocale(localeMessages);
+  if (newItem.value) {
+    i18n.addNewLocale(localeMessages);
+  } else {
+    i18n.updateLocaleMessages(
+      itemForEdit.value.locale.id,
+      itemForEdit.value.locale.name,
+      localeMessages);
+  }
+  editDialog.value = false;
+  nextTick(() => {
+    itemForEdit.value = i18n.getDummyLocaleMessages;
+    defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
+    newItem.value = true;
+  });
 };
 
 const deleteLocale = (id: string) => {
@@ -98,11 +113,13 @@ const editLocale = (id: string) => {
   itemForEdit.value = i18n.getLocaleMessagesByLocaleId(id);
   defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
   editDialog.value = true;
+  newItem.value = false;
 };
 const newLocale = () => {
   itemForEdit.value = i18n.getDummyLocaleMessages;
   defaultLocaleMassages.value = i18n.getDefaultLocaleMessages;
   editDialog.value = true;
+  newItem.value = true;
   alert(editDialog.value);
 };
 
@@ -208,6 +225,7 @@ const newLocale = () => {
                                  :p-save-locale-messages="saveLocaleMessages"
                                  :p-default-locale-massages="defaultLocaleMassages"
                                  :p-check-if-locale-exists="i18n.checkIfLocaleExists"
+                                 :p-new-item="newItem"
     ></edit-custom-language-dialog>
   </div>
   <div v-else class="d-flex justify-center align-center fill-height">

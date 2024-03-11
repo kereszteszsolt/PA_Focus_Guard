@@ -194,6 +194,20 @@ export const useI18nStore = defineStore('i18n', {
         }
       }
       this.isLoading = false;
+    },
+    async updateLocaleMessages(localeId: string, localeName: string, localeMessages: ILocaleMessages): Promise<void> {
+      this.isLoading = true;
+      if (this.localesWithSettings.some((l) => l.id === localeId && l.name === localeName)) {
+        this.allLocaleMessages = this.allLocaleMessages.map((l) => {
+          if (l.locale.id === localeId && l.locale.name === localeName) {
+            l.locale = localeMessages.locale;
+            l.messages = localeMessages.messages;
+          }
+          return l;
+        });
+        await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
+      }
+      this.isLoading = false;
     }
   }
 });

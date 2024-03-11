@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, nextTick } from 'vue';
 import { ILocaleMessages } from '@/interfaces';
 import * as utils from '@/utils';
 
@@ -31,6 +31,10 @@ const props = defineProps({
   pSaveLocaleMessages: {
     type: Function,
     required: true
+  },
+  pNewItem: {
+    type: Boolean,
+    required: true
   }
 });
 
@@ -50,35 +54,45 @@ const triggerFileUpload = () => {
   document.getElementById('fileUpload')?.click();
 };
 
-const compareJsonKeys = (jsonToTest: ILocaleMessages | null, expectedJson: ILocaleMessages): string => {
+
+const compareJsonKeys = (jsonToTest: ILocaleMessages, expectedJson: ILocaleMessages): string => {
   if (!jsonToTest) return 'The file is empty';
+
+
   let messages = '';
-  let expectedKeys: string [] = Object.keys(expectedJson);
-  let testKeys: string [] = Object.keys(jsonToTest);
-  let missingKeys: string [] = expectedKeys.filter((key) => !testKeys.includes(key));
+  let missingKeys = findMissingKeys(jsonToTest, expectedJson);
+
   if (missingKeys.length > 0) {
     messages += 'Missing keys: ' + missingKeys.join(', ') + '\n';
   }
+
+  // Speciális kezelés a 'locale' és 'messages' objektumokra
   if (jsonToTest.locale && expectedJson.locale) {
-    let expectedLocaleKeys: string [] = Object.keys(expectedJson.locale);
-    let testLocaleKeys: string [] = Object.keys(jsonToTest.locale);
-    let missingLocaleKeys: string [] = expectedLocaleKeys.filter((key) => !testLocaleKeys.includes(key));
-    if (missingLocaleKeys.length > 0) { // Corrected here
-      messages += 'Missing locale keys: ' + missingLocaleKeys.join(', ') + '\n'; // Corrected here
+    let missingLocaleKeys = findMissingKeys(jsonToTest.locale, expectedJson.locale);
+    if (missingLocaleKeys.length > 0) {
+      messages += 'Missing locale keys: ' + missingLocaleKeys.join(', ') + '\n';
     }
   }
+
   if (jsonToTest.messages && expectedJson.messages) {
-    let expectedMessagesKeys: string [] = Object.keys(expectedJson.messages);
-    let testMessagesKeys: string [] = Object.keys(jsonToTest.messages);
-    let missingMessagesKeys: string [] = expectedMessagesKeys.filter((key) => !testMessagesKeys.includes(key));
+    let missingMessagesKeys = findMissingKeys(jsonToTest.messages, expectedJson.messages);
     if (missingMessagesKeys.length > 0) {
       messages += 'Missing messages keys: ' + missingMessagesKeys.join(', ') + '\n';
     }
   }
+
   return messages;
 };
 
-const checkValidJson = (jsonToTest: any | null, expectedJson: any | null): boolean => {
+// Segédfüggvény a hiányzó kulcsok megtalálására
+function findMissingKeys(testObj: { [key: string]: any }, expectedObj: { [key: string]: any }): string[] {
+  let testKeys: string[] = Object.keys(testObj);
+  let expectedKeys: string[] = Object.keys(expectedObj);
+  return expectedKeys.filter(key => !testKeys.includes(key));
+}
+
+
+const checkValidJson = (jsonToTest: ILocaleMessages, expectedJson: ILocaleMessages): boolean => {
   errorMessage.value = '';
   if (!jsonToTest) {
     errorMessage.value = 'Nem sikerült a fájl feldolgozása.';
@@ -89,29 +103,36 @@ const checkValidJson = (jsonToTest: any | null, expectedJson: any | null): boole
     errorMessage.value = 'A fájl nem tartalmazza az összes kulcsot.' + differentKeys;
     return false;
   }
-  let result: ILocaleMessages[] = props.pCheckIfLocaleExists(jsonToTest);
-  if (result && result.length > 0) {
-    errorMessage.value = 'Az nyelv-id vagy név már létezik: ' + result.map((r) => r.locale.id + ' - ' + r.locale.name).join(', ');
-    return false;
+  if (!props.pNewItem) {
+    let result: ILocaleMessages[] = props.pCheckIfLocaleExists(jsonToTest);
+    if (result && result.length > 0) {
+      errorMessage.value = 'Az nyelv-id vagy név már létezik: ' + result.map((r) => r.locale.id + ' - ' + r.locale.name).join(', ');
+      return false;
+    }
   }
   return true;
 };
 
 const save = () => {
-  if (checkValidJson(jsonData.value, expectedJson.value)) {
-    props.pSaveLocaleMessages(jsonData.value);
-    jsonData.value = '';
-    errorMessage.value = '';
+  if (checkValidJson(JSON.parse(jsonData.value), JSON.parse(expectedJson.value))) {
+    props.pSaveLocaleMessages(JSON.parse(jsonData.value));
     dialog.value = false;
+    nextTick(() => {
+      jsonData.value = '';
+      errorMessage.value = '';
+      valid.value = true;
+    });
   }
 };
 
 const closeDialog = () => {
-  jsonData.value = '';
-  errorMessage.value = '';
-  valid.value = true;
-  dialog.value = false;
   props.pCloseDialog();
+  dialog.value = false;
+  nextTick(() => {
+    jsonData.value = '';
+    errorMessage.value = '';
+    valid.value = true;
+  });
 };
 
 
