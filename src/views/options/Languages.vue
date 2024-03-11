@@ -80,6 +80,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const allLocales = computed(() => i18n.getAllLocales);
 let editDialog = ref(false);
 const closeEditDialog = () => {
+  itemForEdit.value = i18n.getDummyLocaleMessages;
   editDialog.value = false;
 };
 const itemForEdit = ref<ILocaleMessages>(i18n.getDummyLocaleMessages);
@@ -97,6 +98,11 @@ const deleteLocale = (id: string) => {
 const editLocale = (id: string) => {
   itemForEdit.value = i18n.getLocaleMessagesByLocaleId(id);
   editDialog.value = true;
+};
+const newLocale = () => {
+  itemForEdit.value = i18n.getDummyLocaleMessages;
+  editDialog.value = true;
+  alert(editDialog.value);
 };
 
 </script>
@@ -188,7 +194,7 @@ const editLocale = (id: string) => {
               variant="elevated"
               elevation="12"
               class="ml-4"
-              @click="editDialog = true"
+              @click="newLocale"
             >
               {{ t(msg.ADD) }}
             </v-btn>
