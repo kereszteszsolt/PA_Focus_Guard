@@ -37,7 +37,7 @@ const dialog = ref(props.pDialog);
 const jsonData = ref('');
 const uploadedJsonData = ref<ILocaleMessages | null>(null);
 const valid = ref(true);
-const errorMessage = ref('valid');
+const errorMessage = ref('');
 
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
@@ -134,12 +134,10 @@ const save = () => {
         </v-card-item>
 
         <v-card-text>
-          <v-textarea v-model="jsonCode" max-rows="25" rows="25" class="fgScroll"></v-textarea>
+          <v-textarea v-model="jsonCode" max-rows="25" rows="25" class="fgScroll" :error-messages="errorMessage"></v-textarea>
         </v-card-text>
         <v-card-text>
-          <p >{{ errorMessage }}</p>
           <input type="file" id="fileUpload" @change="uploadFile" style="display: none"/>
-          <p >{{ errorMessage }}</p>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
