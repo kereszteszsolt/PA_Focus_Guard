@@ -77,6 +77,16 @@
     "fileIsEmpty": "The file is Empty!",
     "missingKeys": "Missing keys: ",
     "missingLocaleKeys": "Missing locale keys: ",
-    "missingMessageKeys": "Missing message keys: "
+    "missingMessageKeys": "Missing message keys: ",
+    "code": "Code",
+    "name": "Name",
+    "direction": "Direction",
+    "current": "Current",
+    "fallback1": "Fallback 1",
+    "fallback2": "Fallback 2",
+    "factoryDefault": "Factory Default",
+    "languageType": "Language Type",
+    "builtIn": "Built-In",
+    "custom": "Custom"
   }
 }

@@ -176,7 +176,7 @@ const uploadFile = (event: Event) => {
     <v-form v-model="valid" @keydown.enter.prevent>
       <v-card color="background">
         <v-card-item>
-          <v-card-title class="headline">Edit/Add Language</v-card-title>
+          <v-card-title class="headline">{{`${newItem ? t(msg.NEW_LANGUAGE) : t(msg.EDIT_LANGUAGE)}`}}</v-card-title>
         </v-card-item>
 
         <v-card-text>

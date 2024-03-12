@@ -77,6 +77,16 @@
     "fileIsEmpty": "A fájl üres!",
     "missingKeys": "Hiányzó kulcsok: ",
     "missingLocaleKeys": "Hiányzó helyi kulcsok: ",
-    "missingMessageKeys": "Hiányzó üzenetkulcsok: "
+    "missingMessageKeys": "Hiányzó üzenetkulcsok: ",
+    "code": "Kód",
+    "name": "Név",
+    "direction": "Irány",
+    "current": "Jelenlegi",
+    "fallback1": "Helyettesítő 1",
+    "fallback2": "Helyettesítő 2",
+    "factoryDefault": "Gyári Alapértelmezés",
+    "languageType": "Nyelv Típus",
+    "builtIn": "Beépített",
+    "custom": "Egyedi"
   }
 }

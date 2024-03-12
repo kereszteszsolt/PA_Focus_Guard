@@ -77,6 +77,16 @@
     "fileIsEmpty": "Die Datei ist leer!",
     "missingKeys": "Fehlende Schlüssel: ",
     "missingLocaleKeys": "Fehlende Locale-Schlüssel: ",
-    "missingMessageKeys": "Fehlende Nachrichtenschlüssel: "
+    "missingMessageKeys": "Fehlende Nachrichtenschlüssel: ",
+    "code": "Code",
+    "name": "Name",
+    "direction": "Richtung",
+    "current": "Aktuell",
+    "fallback1": "Fallback 1",
+    "fallback2": "Fallback 2",
+    "factoryDefault": "Werkseinstellung",
+    "languageType": "Sprachtyp",
+    "builtIn": "Eingebaut",
+    "custom": "Benutzerdefiniert"
   }
 }

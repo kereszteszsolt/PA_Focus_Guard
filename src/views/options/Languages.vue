@@ -16,15 +16,15 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'l
 const isLoading = computed(() => i18n.isLoading);
 
 const headers = computed(() => [
-  { title: 'Code', value: 'localeId' },
-  { title: 'Name', value: 'localeName' },
-  { title: 'Direction', value: 'text_direction' },
-  { title: 'Actions', value: 'actions' },
-  { title: 'Current', value: 'is_current' },
-  { title: 'Fallback-1', value: 'isFallback1' },
-  { title: 'Fallback-2', value: 'isFallback2' },
-  { title: 'Factory Default', value: 'isFactoryDefault' },
-  { title: 'Language Type', value: 'language_type' }
+  { title: t(msg.CODE), value: 'localeId' },
+  { title: t(msg.NAME), value: 'localeName' },
+  { title: t(msg.DIRECTION), value: 'text_direction' },
+  { title: t(msg.ACTIONS), value: 'actions' },
+  { title: t(msg.CURRENT), value: 'is_current' },
+  { title: t(msg.FALLBACK_1), value: 'isFallback1' },
+  { title: t(msg.FALLBACK_2), value: 'isFallback2' },
+  { title: t(msg.FACTORY_DEFAULT), value: 'isFactoryDefault' },
+  { title: t(msg.LANGUAGE_TYPE), value: 'language_type' }
 ]);
 
 const langActions: IAction[] = [
@@ -59,7 +59,9 @@ const langActions: IAction[] = [
   {
     actionId: 'download',
     f: (id: string) => {
-      utils.file.downloadAsJsonFile(JSON.stringify(i18n.getLocaleMessagesByLocaleId(id), null, 2), id + '.json');
+      utils.file.downloadAsJsonFile(JSON.stringify({
+        locale: i18n.getLocaleMessagesByLocaleId(id).locale,
+        messages: i18n.getLocaleMessagesByLocaleId(id).messages}, null, 2), id + '.json');
     },
     mdiIcon: 'mdi-download',
     tooltip: 'Download',
@@ -108,37 +110,19 @@ const deleteLocale = (id: string) => {
 const editLocale = (id: string) => {
   let allLocaleSettings = i18n.getAllLocales;
   let allLocaleMessages = i18n.getAllLocaleMessages;
-  console.log('-----');
-  console.log('allLocaleSettings:');
   allLocaleSettings.forEach((item) => {
-    console.log(item);
   });
-  console.log('allLocaleMessages:');
   allLocaleMessages.forEach((item) => {
-    console.log(item);
   });
-  console.log('-----');
   let edit = i18n.getLocaleMessagesById(id);
   let defaultLocale = i18n.getDefaultLocaleMessages;
-  console.log('-----');
-  console.log(id);
-  console.log('edit:');
-  console.log(edit);
-  console.log('defaultLocale:');
-  console.log(defaultLocale);
   if (edit !== undefined && defaultLocale !== undefined) {
     itemForEdit.value = edit;
     defaultLocaleMassages.value = defaultLocale;
     editDialog.value = true;
     newItem.value = false;
-    console.log('-----');
-    console.log(itemForEdit.value);
-    console.log(defaultLocaleMassages.value);
-    console.log(editDialog.value);
-    console.log(newItem.value);
-    console.log('-----');
   } else {
-    alert('Error');  //TODO: Add error message
+    //TODO: Add error message
   }
 };
 const newLocale = () => {
@@ -150,7 +134,7 @@ const newLocale = () => {
     editDialog.value = true;
     newItem.value = true;
   } else {
-    alert('Error');  //TODO: Add error message
+    //TODO: Add error message
   }
 };
 

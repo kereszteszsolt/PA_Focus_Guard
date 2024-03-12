@@ -77,6 +77,16 @@
     "fileIsEmpty": "Fișierul este gol!",
     "missingKeys": "Chei lipsă: ",
     "missingLocaleKeys": "Chei locale lipsă: ",
-    "missingMessageKeys": "Chei de mesaj lipsă: "
+    "missingMessageKeys": "Chei de mesaj lipsă: ",
+    "code": "Cod",
+    "name": "Nume",
+    "direction": "Direcție",
+    "current": "Curent",
+    "fallback1": "Rezervă 1",
+    "fallback2": "Rezervă 2",
+    "factoryDefault": "Implicit de Fabrică",
+    "languageType": "Tipul Limbii",
+    "builtIn": "Încorporat",
+    "custom": "Personalizat"
   }
 }

@@ -72,4 +72,17 @@ export const FILE_IS_EMPTY = 'fileIsEmpty';
 export const MISSING_KEYS = 'missingKeys';
 export const MISSING_LOCALE_KEYS = 'missingLocaleKeys';
 export const MISSING_MESSAGE_KEYS = 'missingMessageKeys';
+export const NEW_LANGUAGE = 'newLanguage';
+export const EDIT_LANGUAGE = 'editLanguage';
+
+export const CODE = 'code';
+export const NAME = 'name';
+export const DIRECTION = 'direction';
+export const CURRENT = 'current';
+export const FALLBACK_1 = 'fallback1';
+export const FALLBACK_2 = 'fallback2';
+export const FACTORY_DEFAULT = 'factoryDefault';
+export const LANGUAGE_TYPE = 'languageType';
+export const BUILT_IN = 'builtIn';
+export const CUSTOM = 'custom';
 
