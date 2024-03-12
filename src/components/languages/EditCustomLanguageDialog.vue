@@ -39,23 +39,41 @@ const props = defineProps({
 });
 
 const dialog = ref(false);
-const jsonData = ref('');
-const expectedJson = ref('');
+const contextItem = ref<ILocaleMessages | null>(null);
+const expectedItem = ref<ILocaleMessages | null>(null);
 const valid = ref(true);
 const errorMessage = ref('');
 
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
-  jsonData.value = JSON.stringify(props.pLocaleMassages, null, 2);
-  expectedJson.value = JSON.stringify(props.pDefaultLocaleMassages, null, 2);
+  contextItem.value = props.pNewItem ? null : props.pLocaleMassages;
+  expectedItem.value = props.pDefaultLocaleMassages;
 }, { immediate: true });
+
+const contextDataString = computed({
+  get: () => {
+    return contextItem.value ? JSON.stringify({ locales: contextItem.value.locale, messages: contextItem.value.messages }, null, 2) : '';
+  },
+  set: (value: string) => {
+    try {
+      contextItem.value = {
+        id: contextItem.value?.id || '',
+        lsId: contextItem.value?.lsId || '',
+        locale: JSON.parse(value).locales,
+        messages: JSON.parse(value).messages
+      };
+    } catch (e) {
+      errorMessage.value = 'Nem sikerült a fájl feldolgozása.';
+    }
+  }
+});
 
 const triggerFileUpload = () => {
   document.getElementById('fileUpload')?.click();
 };
 
 
-const compareJsonKeys = (jsonToTest: ILocaleMessages, expectedJson: ILocaleMessages): string => {
+const compareJsonKeys = (jsonToTest: any, expectedJson: any): string => {
   if (!jsonToTest) return 'The file is empty';
 
 
@@ -92,19 +110,23 @@ function findMissingKeys(testObj: { [key: string]: any }, expectedObj: { [key: s
 }
 
 
-const checkValidJson = (jsonToTest: ILocaleMessages, expectedJson: ILocaleMessages): boolean => {
+const checkValidJson = (itemToValidate: ILocaleMessages | null, expected: ILocaleMessages | null): boolean => {
   errorMessage.value = '';
-  if (!jsonToTest) {
+  if (!itemToValidate) {
     errorMessage.value = 'Nem sikerült a fájl feldolgozása.';
     return false;
   }
-  let differentKeys = compareJsonKeys(jsonToTest, expectedJson);
+  if (!expected) {
+    errorMessage.value = 'Hiva az alapértelmezett nyelvekben, allítsa be a nyelvi fájlt.';
+    return false;
+  }
+  let differentKeys = compareJsonKeys({locale: itemToValidate.locale, messages: itemToValidate.messages}, { locale: expected.locale, messages: expected.messages });
   if (differentKeys !== '') {
     errorMessage.value = 'A fájl nem tartalmazza az összes kulcsot.' + differentKeys;
     return false;
   }
-  console.log('jsonToTest:', jsonToTest);
-  let result: ILocaleMessages[] = props.pCheckIfLocaleExists(jsonToTest);
+  console.log('jsonToTest:', itemToValidate);
+  let result: ILocaleMessages[] = props.pCheckIfLocaleExists(itemToValidate);
   if (result && result.length > 0) {
     errorMessage.value = 'Az nyelv-id vagy név már létezik: ' + result.map((r) => r.locale.id + ' - ' + r.locale.name).join(', ');
     return false;
@@ -113,11 +135,11 @@ const checkValidJson = (jsonToTest: ILocaleMessages, expectedJson: ILocaleMessag
 };
 
 const save = () => {
-  if (checkValidJson(JSON.parse(jsonData.value), JSON.parse(expectedJson.value))) {
-    props.pSaveLocaleMessages(JSON.parse(jsonData.value));
+  if (checkValidJson(contextItem.value, expectedItem.value)) {
+    props.pSaveLocaleMessages(contextItem.value);
     dialog.value = false;
     nextTick(() => {
-      jsonData.value = '';
+      contextItem.value = null;
       errorMessage.value = '';
       valid.value = true;
     });
@@ -128,16 +150,15 @@ const closeDialog = () => {
   props.pCloseDialog();
   dialog.value = false;
   nextTick(() => {
-    jsonData.value = '';
+    contextItem.value = null;
     errorMessage.value = '';
     valid.value = true;
   });
 };
 
-
 const uploadFile = (event: Event) => {
   utils.file.uploadFile(event, (fileContent: string) => {
-      jsonData.value = fileContent;
+      contextItem.value = JSON.parse(fileContent);
     },
     (error: string) => {
       errorMessage.value = error;
@@ -157,7 +178,7 @@ const uploadFile = (event: Event) => {
         </v-card-item>
 
         <v-card-text>
-          <v-textarea v-model="jsonData" max-rows="25" rows="25" class="fgScroll"
+          <v-textarea v-model="contextDataString" max-rows="25" rows="25" class="fgScroll"
                       :error-messages="errorMessage"></v-textarea>
         </v-card-text>
         <v-card-text>
@@ -167,7 +188,7 @@ const uploadFile = (event: Event) => {
           <v-spacer></v-spacer>
           <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload">Feltöltés</v-btn>
           <v-btn color="accent" variant="elevated" elevation="12"
-                 @click="utils.file.downloadAsJsonFile(jsonData, `current-file.json`)">Letöltés
+                 @click="utils.file.downloadAsJsonFile(contextDataString, `current-file.json`)">Letöltés
           </v-btn>
           <v-btn color="success" variant="elevated" elevation="12" @click="save">Save</v-btn>
           <v-btn @click="closeDialog" color="danger" variant="elevated" elevation="12">Close</v-btn>

@@ -213,6 +213,7 @@ export const useI18nStore = defineStore('i18n', {
           if (l.id === localeMessages.lsId) {
             l.localeId = localeMessages.locale.id;
             l.localeName = localeMessages.locale.name;
+            l.text_direction = localeMessages.locale.text_direction;
           }
           return l;
         });

@@ -8,3 +8,4 @@ export * from './ILocale';
 export * from './ILocaleSettings';
 export * from './ISocialMediaLink';
 export * from './IAction';
+export * from './IMessages';
