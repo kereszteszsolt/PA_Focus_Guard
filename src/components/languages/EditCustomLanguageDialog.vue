@@ -42,13 +42,14 @@ const dialog = ref(false);
 const contextItem = ref<ILocaleMessages | null>(null);
 const expectedItem = ref<ILocaleMessages | null>(null);
 const valid = ref(true);
-const touched = ref(false);
+const newItem = ref(false);
 const errorMessage = ref('');
 
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
   contextItem.value = props.pNewItem ? null : props.pLocaleMassages;
   expectedItem.value = props.pDefaultLocaleMassages;
+  newItem.value = props.pNewItem;
 }, { immediate: true });
 
 const contextDataString = computed({
@@ -187,7 +188,7 @@ const uploadFile = (event: Event) => {
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload">Feltöltés</v-btn>
+          <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload" v-if="newItem">Feltöltés</v-btn>
           <v-btn color="accent" variant="elevated" elevation="12" v-if:="contextItem"
                  @click="utils.file.downloadAsJsonFile(contextDataString, `current-file.json`)">Letöltés
           </v-btn>
