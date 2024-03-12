@@ -69,7 +69,7 @@
     "languageKeyOrNameAlreadyExists": "A nyelv kulcsa vagy neve már létezik! Létező azonosítók és nevek: ",
     "fileDoesNotContainAllKeys": "A fájl nem tartalmazza az összes kulcsot! ",
     "errorFileNotProcessed": "Hiba: a fájlt nem dolgozták fel!",
-    "errorFallbackLanguageNotFound": "Hiba: az alapértelmezett visszaesési nyelv nem található meg! Kérlek, nézd meg a súgó/hogyan használjuk szekciót!",
+    "errorFallbackLanguageNotFound": "Hiba: az alapértelmezett alternatív nyelv nem található meg! Kérlek, nézd meg a súgó/hogyan használjuk szekciót!",
     "maximumWebsiteRuleListsReached": "Elérte a maximális weboldal szabálylisták számát, ami 10!",
     "download": "Letöltés",
     "upload": "Feltöltés",
