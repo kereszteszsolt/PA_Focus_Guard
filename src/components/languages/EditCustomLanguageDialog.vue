@@ -66,7 +66,7 @@ const contextDataString = computed({
         messages: JSON.parse(value).messages
       };
     } catch (e) {
-      errorMessage.value = 'Nem sikerült a fájl feldolgozása.';
+      errorMessage.value = props.t(msg.PROCESSING_UNSUCCESSFUL);
     }
   }
 });
