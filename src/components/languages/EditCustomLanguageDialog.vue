@@ -42,6 +42,7 @@ const dialog = ref(false);
 const contextItem = ref<ILocaleMessages | null>(null);
 const expectedItem = ref<ILocaleMessages | null>(null);
 const valid = ref(true);
+const touched = ref(false);
 const errorMessage = ref('');
 
 watch(() => props.pDialog, (value) => {
@@ -187,7 +188,7 @@ const uploadFile = (event: Event) => {
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload">Feltöltés</v-btn>
-          <v-btn color="accent" variant="elevated" elevation="12"
+          <v-btn color="accent" variant="elevated" elevation="12" v-if:="contextItem"
                  @click="utils.file.downloadAsJsonFile(contextDataString, `current-file.json`)">Letöltés
           </v-btn>
           <v-btn color="success" variant="elevated" elevation="12" @click="save">Save</v-btn>

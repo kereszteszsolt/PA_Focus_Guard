@@ -98,9 +98,12 @@ export const useI18nStore = defineStore('i18n', {
         this.isLoading = false;
         return;
       }
-      let newUUID = utils.unique.generateUniqueListId(this.localesWithSettings);
-      this.localesWithSettings.push({id: newUUID, localeId: iLocaleMessages.locale.id, localeName: iLocaleMessages.locale.name, text_direction: iLocaleMessages.locale.text_direction, isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
+      let newLSUUID = utils.unique.generateUniqueListId(this.localesWithSettings);
+      this.localesWithSettings.push({id: newLSUUID, localeId: iLocaleMessages.locale.id, localeName: iLocaleMessages.locale.name, text_direction: iLocaleMessages.locale.text_direction, isBuiltIn: false, isCurrent: false, isFactoryDefault: false, isFallback1: false, isFallback2: false });
       await this.saveLocaleSettings();
+      let newLMUUID = utils.unique.generateUniqueListId(this.allLocaleMessages);
+      iLocaleMessages.id = newLMUUID;
+      iLocaleMessages.lsId = newLSUUID;
       this.allLocaleMessages.push(iLocaleMessages);
       await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
       this.isLoading = false;
