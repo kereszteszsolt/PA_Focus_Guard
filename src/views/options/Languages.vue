@@ -86,6 +86,15 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const allLocales = computed(() => i18n.getAllLocales);
 let editDialog = ref(false);
 let newItem = ref(false);
+let page = ref(1);
+let itemsPerPage = ref(10);
+const totalPages = computed(() => {
+  return Math.ceil(i18n.getAllLocales.length / itemsPerPage.value);
+});
+const totalVisiblePages = computed(() => {
+  return totalPages.value > 5 ? 5 : totalPages.value;
+});
+
 const closeEditDialog = () => {
   itemForEdit.value = i18n.getDummyLocaleMessages;
   editDialog.value = false;
@@ -149,6 +158,8 @@ const newLocale = () => {
     <v-data-table
       :headers="headers"
       :items="allLocales"
+      v-model:page="page"
+      v-model:items-per-page="itemsPerPage"
       class="bg-background"
     >
       <template v-slot:item.localeId="{ item }">
@@ -237,6 +248,22 @@ const newLocale = () => {
             </v-btn>
           </div>
         </v-toolbar>
+      </template>
+      <template v-slot:bottom>
+        <v-sheet color="background" class="d-flex justify-space-between">
+
+          <v-pagination
+            v-model="page"
+            :length="totalPages"
+            :total-visible="totalVisiblePages"
+            rounded="circle"
+          ></v-pagination>
+
+          <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
+            {{ allLocales.length }}
+          </v-label>
+
+        </v-sheet>
       </template>
     </v-data-table>
     <edit-custom-language-dialog :t="t" :p-close-dialog="closeEditDialog" :p-dialog="editDialog"
