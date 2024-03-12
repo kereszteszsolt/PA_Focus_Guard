@@ -59,7 +59,17 @@ export const DOMAIN = 'domain';
 export const END_DOMAIN = 'endDomain';
 export const URL = 'url';
 export const KEYWORD = 'keyword';
+export const LANGUAGE_KEY_OR_NAME_ALREADY_EXISTS = 'languageKeyOrNameAlreadyExists';
+export const FILE_DOES_NOT_CONTAIN_ALL_KEYS = 'fileDoesNotContainAllKeys';
+export const ERROR_FILE_NOT_PROCESSED = 'errorFileNotProcessed';
+export const ERROR_FALLBACK_LANGUAGE_NOT_FOUND = 'errorFallbackLanguageNotFound';
+export const MAXIMUM_WEBSITE_RULE_LISTS_REACHED = 'maximumWebsiteRuleListsReached';
 export const PLEASE_SELECT_FILTERING_TYPE = 'pleaseSelectFilteringType';
-
-export const MAXIMUM_NR_OF_WS_RULES_LISTS_10 = 'maximumNrOfWsRulesLists10';
+export const DOWNLOAD = 'download';
+export const UPLOAD = 'upload';
+export const PROCESSING_UNSUCCESSFUL = 'processingUnsuccessful';
+export const FILE_IS_EMPTY = 'fileIsEmpty';
+export const MISSING_KEYS = 'missingKeys';
+export const MISSING_LOCALE_KEYS = 'missingLocaleKeys';
+export const MISSING_MESSAGE_KEYS = 'missingMessageKeys';
 

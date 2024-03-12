@@ -65,6 +65,18 @@
     "url": "URL",
     "keyword": "Keyword",
     "pleaseSelectFilteringType": "Please select a filtering type.",
-    "maximumNrOfWsRulesLists10": "Maximum number of website rule lists is 10."
+    "maximumNrOfWsRulesLists10": "Maximum number of website rule lists is 10.",
+    "languageKeyOrNameAlreadyExists": "The language key or name already exists! Existing IDs and Names: ",
+    "fileDoesNotContainAllKeys": "The file does not contain all the keys! ",
+    "errorFileNotProcessed": "Error: the file was not processed!",
+    "errorFallbackLanguageNotFound": "Error default fallback language was not found! Please consult the help/how-to-use section!",
+    "maximumWebsiteRuleListsReached": "The maximum number of WebsiteRuleLists is 10!",
+    "download": "Download",
+    "upload": "Upload",
+    "processingUnsuccessful": "Processing the file was unsuccessful!",
+    "fileIsEmpty": "The file is Empty!",
+    "missingKeys": "Missing keys: ",
+    "missingLocaleKeys": "Missing locale keys: ",
+    "missingMessageKeys": "Missing message keys: "
   }
 }

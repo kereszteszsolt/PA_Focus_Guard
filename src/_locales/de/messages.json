@@ -65,6 +65,18 @@
     "url": "URL",
     "keyword": "Schlüsselwort",
     "pleaseSelectFilteringType": "Bitte wählen Sie einen Filtertyp aus.",
-    "maximumNrOfWsRulesLists10": "Maximale Anzahl von Website-Regellisten: 10"
+    "maximumNrOfWsRulesLists10": "Die maximale Anzahl der Website-Regellisten beträgt 10.",
+    "languageKeyOrNameAlreadyExists": "Der Sprachschlüssel oder -name existiert bereits! Vorhandene IDs und Namen: ",
+    "fileDoesNotContainAllKeys": "Die Datei enthält nicht alle Schlüssel! ",
+    "errorFileNotProcessed": "Fehler: Die Datei wurde nicht verarbeitet!",
+    "errorFallbackLanguageNotFound": "Fehler: Die Standardersatzsprache wurde nicht gefunden! Bitte konsultieren Sie den Hilfe-/Wie-verwendet-man-Bereich!",
+    "maximumWebsiteRuleListsReached": "Die maximale Anzahl der Website-Regellisten beträgt 10!",
+    "download": "Herunterladen",
+    "upload": "Hochladen",
+    "processingUnsuccessful": "Die Verarbeitung der Datei war nicht erfolgreich!",
+    "fileIsEmpty": "Die Datei ist leer!",
+    "missingKeys": "Fehlende Schlüssel: ",
+    "missingLocaleKeys": "Fehlende Locale-Schlüssel: ",
+    "missingMessageKeys": "Fehlende Nachrichtenschlüssel: "
   }
 }

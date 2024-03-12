@@ -100,7 +100,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
               <v-btn density="compact" icon="mdi-plus" @click="newItem" color="accent" variant="elevated"
                      elevation="4" :disabled="websiteRulesStore.getWebsiteRuleLists.length > 9"></v-btn>
               <v-tooltip activator="parent" location="bottom" :disabled="websiteRulesStore.getWebsiteRuleLists.length < 10">
-                {{t(msg.MAXIMUM_NR_OF_WS_RULES_LISTS_10)}}
+                {{t(msg.MAXIMUM_WEBSITE_RULE_LISTS_REACHED)}}
               </v-tooltip>
             </div>
           </template>

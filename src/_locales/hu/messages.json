@@ -64,7 +64,19 @@
     "endDomain": "Végződésű domain",
     "url": "URL",
     "keyword": "Kulcsszó",
-    "pleaseSelectFilteringType": "Kérjük, válassza ki a szűrés típusát.",
-    "maximumNrOfWsRulesLists10": "A weboldal szabálylisták maximális száma 10."
+    "pleaseSelectFilteringType": "Kérlek válassz szűrési típust.",
+    "maximumNrOfWsRulesLists10": "A weboldal szabálylista maximális száma 10.",
+    "languageKeyOrNameAlreadyExists": "A nyelv kulcsa vagy neve már létezik! Létező azonosítók és nevek: ",
+    "fileDoesNotContainAllKeys": "A fájl nem tartalmazza az összes kulcsot! ",
+    "errorFileNotProcessed": "Hiba: a fájlt nem dolgozták fel!",
+    "errorFallbackLanguageNotFound": "Hiba: az alapértelmezett visszaesési nyelv nem található meg! Kérlek, nézd meg a súgó/hogyan használjuk szekciót!",
+    "maximumWebsiteRuleListsReached": "Elérte a maximális weboldal szabálylisták számát, ami 10!",
+    "download": "Letöltés",
+    "upload": "Feltöltés",
+    "processingUnsuccessful": "A fájl feldolgozása sikertelen volt!",
+    "fileIsEmpty": "A fájl üres!",
+    "missingKeys": "Hiányzó kulcsok: ",
+    "missingLocaleKeys": "Hiányzó helyi kulcsok: ",
+    "missingMessageKeys": "Hiányzó üzenetkulcsok: "
   }
 }

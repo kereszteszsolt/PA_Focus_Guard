@@ -2,6 +2,7 @@
 import { ref, watch, computed, nextTick } from 'vue';
 import { ILocaleMessages } from '@/interfaces';
 import * as utils from '@/utils';
+import { msg } from '@/constants';
 
 const props = defineProps({
   pDialog: {
@@ -76,28 +77,28 @@ const triggerFileUpload = () => {
 
 
 const compareJsonKeys = (jsonToTest: any, expectedJson: any): string => {
-  if (!jsonToTest) return 'The file is empty';
+  if (!jsonToTest) return props.t(msg.FILE_IS_EMPTY);
 
 
   let messages = '';
   let missingKeys = findMissingKeys(jsonToTest, expectedJson);
 
   if (missingKeys.length > 0) {
-    messages += 'Missing keys: ' + missingKeys.join(', ') + '\n';
+    messages += props.t(msg.MISSING_KEYS) + missingKeys.join(', ') + '\n';
   }
 
   // Speciális kezelés a 'locale' és 'messages' objektumokra
   if (jsonToTest.locale && expectedJson.locale) {
     let missingLocaleKeys = findMissingKeys(jsonToTest.locale, expectedJson.locale);
     if (missingLocaleKeys.length > 0) {
-      messages += 'Missing locale keys: ' + missingLocaleKeys.join(', ') + '\n';
+      messages += props.t(msg.MISSING_LOCALE_KEYS) + missingLocaleKeys.join(', ') + '\n';
     }
   }
 
   if (jsonToTest.messages && expectedJson.messages) {
     let missingMessagesKeys = findMissingKeys(jsonToTest.messages, expectedJson.messages);
     if (missingMessagesKeys.length > 0) {
-      messages += 'Missing messages keys: ' + missingMessagesKeys.join(', ') + '\n';
+      messages += props.t(msg.MISSING_MESSAGE_KEYS) + missingMessagesKeys.join(', ') + '\n';
     }
   }
 
@@ -115,21 +116,21 @@ function findMissingKeys(testObj: { [key: string]: any }, expectedObj: { [key: s
 const checkValidJson = (itemToValidate: ILocaleMessages | null, expected: ILocaleMessages | null): boolean => {
   errorMessage.value = '';
   if (!itemToValidate) {
-    errorMessage.value = 'Nem sikerült a fájl feldolgozása.';
+    errorMessage.value = props.t(msg.ERROR_FILE_NOT_PROCESSED);
     return false;
   }
   if (!expected) {
-    errorMessage.value = 'Hiva az alapértelmezett nyelvekben, allítsa be a nyelvi fájlt.';
+    errorMessage.value = props.t(msg.ERROR_FALLBACK_LANGUAGE_NOT_FOUND);
     return false;
   }
   let differentKeys = compareJsonKeys({locale: itemToValidate.locale, messages: itemToValidate.messages}, { locale: expected.locale, messages: expected.messages });
   if (differentKeys !== '') {
-    errorMessage.value = 'A fájl nem tartalmazza az összes kulcsot.' + differentKeys;
+    errorMessage.value = props.t(msg.FILE_DOES_NOT_CONTAIN_ALL_KEYS) + differentKeys;
     return false;
   }
   let results: string = props.pCheckIfLocaleExists(itemToValidate);
   if (results) {
-    errorMessage.value = 'Az nyelv-id vagy név már létezik: ' + results;
+    errorMessage.value = props.t(msg.LANGUAGE_KEY_OR_NAME_ALREADY_EXISTS) + results;
     return false;
   }
   return true;
@@ -187,12 +188,11 @@ const uploadFile = (event: Event) => {
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload" v-if="newItem">Feltöltés</v-btn>
+          <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload" v-if="newItem">{{t(msg.UPLOAD)}}</v-btn>
           <v-btn color="accent" variant="elevated" elevation="12" v-if:="contextItem"
-                 @click="utils.file.downloadAsJsonFile(contextDataString, `current-file.json`)">Letöltés
-          </v-btn>
-          <v-btn color="success" variant="elevated" elevation="12" @click="save">Save</v-btn>
-          <v-btn @click="closeDialog" color="danger" variant="elevated" elevation="12">Close</v-btn>
+                 @click="utils.file.downloadAsJsonFile(contextDataString, `current-file.json`)">{{t(msg.DOWNLOAD)}}</v-btn>
+          <v-btn color="success" variant="elevated" elevation="12" @click="save">{{t(msg.SAVE)}}</v-btn>
+          <v-btn @click="closeDialog" color="danger" variant="elevated" elevation="12">{{t(msg.CLOSE)}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>

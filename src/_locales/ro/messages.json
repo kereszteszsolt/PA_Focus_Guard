@@ -64,7 +64,19 @@
     "endDomain": "Domeniu final",
     "url": "URL",
     "keyword": "Cuvânt cheie",
-    "pleaseSelectFilteringType": "Vă rugăm să selectați un tip de filtrare.",
-    "maximumNrOfWsRulesLists10": "Numărul maxim de liste de reguli pentru site este 10!"
+    "pleaseSelectFilteringType": "Te rog selectează un tip de filtrare.",
+    "maximumNrOfWsRulesLists10": "Numărul maxim de liste de reguli pentru site-uri web este 10.",
+    "languageKeyOrNameAlreadyExists": "Cheia limbii sau numele există deja! ID-uri și nume existente: ",
+    "fileDoesNotContainAllKeys": "Fișierul nu conține toate cheile! ",
+    "errorFileNotProcessed": "Eroare: fișierul nu a fost procesat!",
+    "errorFallbackLanguageNotFound": "Eroare: limba implicită de rezervă nu a fost găsită! Te rog să consulți secțiunea de ajutor/cum să folosești!",
+    "maximumWebsiteRuleListsReached": "A fost atins numărul maxim de liste de reguli pentru site-uri web, care este de 10!",
+    "download": "Descărcare",
+    "upload": "Încărcare",
+    "processingUnsuccessful": "Procesarea fișierului a fost nereușită!",
+    "fileIsEmpty": "Fișierul este gol!",
+    "missingKeys": "Chei lipsă: ",
+    "missingLocaleKeys": "Chei locale lipsă: ",
+    "missingMessageKeys": "Chei de mesaj lipsă: "
   }
 }
