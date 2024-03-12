@@ -87,6 +87,8 @@
     "factoryDefault": "Gyári Alapértelmezés",
     "languageType": "Nyelv Típus",
     "builtIn": "Beépített",
-    "custom": "Egyedi"
+    "custom": "Egyedi",
+    "newLanguage": "Új Nyelv",
+    "editLanguage": "Nyelv Szerkesztése"
   }
 }

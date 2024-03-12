@@ -59,9 +59,13 @@ const langActions: IAction[] = [
   {
     actionId: 'download',
     f: (id: string) => {
-      utils.file.downloadAsJsonFile(JSON.stringify({
-        locale: i18n.getLocaleMessagesByLocaleId(id).locale,
-        messages: i18n.getLocaleMessagesByLocaleId(id).messages}, null, 2), id + '.json');
+      let lm = i18n.getLocaleMessagesById(id);
+      if (lm) {
+        utils.file.downloadAsJsonFile(JSON.stringify({
+          locale: lm.locale,
+          messages: lm.messages
+        }, null, 2), `${lm.locale.id}_${lm.locale.name.trim().replace(/ /g,"_")}.json`);
+      }
     },
     mdiIcon: 'mdi-download',
     tooltip: 'Download',
@@ -206,7 +210,7 @@ const newLocale = () => {
         </v-checkbox>
       </template>
       <template v-slot:item.language_type="{ item }">
-        <div class="text-center">{{ item.isBuiltIn ? 'Build-In' : 'Custom' }}</div>
+        <div class="text-center">{{ item.isBuiltIn ? t(msg.BUILT_IN) : t(msg.CUSTOM) }}</div>
       </template>
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">

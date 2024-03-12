@@ -87,6 +87,8 @@
     "factoryDefault": "Implicit de Fabrică",
     "languageType": "Tipul Limbii",
     "builtIn": "Încorporat",
-    "custom": "Personalizat"
+    "custom": "Personalizat",
+    "newLanguage": "Limba nouă",
+    "editLanguage": "Editare Limbă"
   }
 }

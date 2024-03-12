@@ -87,6 +87,8 @@
     "factoryDefault": "Factory Default",
     "languageType": "Language Type",
     "builtIn": "Built-In",
-    "custom": "Custom"
+    "custom": "Custom",
+    "newLanguage": "New Language",
+    "editLanguage": "Edit Language"
   }
 }

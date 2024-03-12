@@ -87,6 +87,8 @@
     "factoryDefault": "Werkseinstellung",
     "languageType": "Sprachtyp",
     "builtIn": "Eingebaut",
-    "custom": "Benutzerdefiniert"
+    "custom": "Benutzerdefiniert",
+    "newLanguage": "Neue Sprache",
+    "editLanguage": "Sprache bearbeiten"
   }
 }
