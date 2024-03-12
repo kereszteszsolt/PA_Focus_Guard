@@ -85,4 +85,6 @@ export const FACTORY_DEFAULT = 'factoryDefault';
 export const LANGUAGE_TYPE = 'languageType';
 export const BUILT_IN = 'builtIn';
 export const CUSTOM = 'custom';
+export  const DELETE_LANGUAGE = 'deleteLanguage';
+export const ARE_YOU_SURE_DELETE_THIS_LANGUAGE = 'areYouSureDeleteThisLanguage';
 

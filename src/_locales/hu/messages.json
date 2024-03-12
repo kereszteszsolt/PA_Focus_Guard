@@ -89,6 +89,8 @@
     "builtIn": "Beépített",
     "custom": "Egyedi",
     "newLanguage": "Új Nyelv",
-    "editLanguage": "Nyelv Szerkesztése"
+    "editLanguage": "Nyelv Szerkesztése",
+    "deleteLanguage": "Nyelv Törlése",
+    "areYouSureDeleteThisLanguage": "Biztosan törölni szeretné ezt a nyelvet?"
   }
 }

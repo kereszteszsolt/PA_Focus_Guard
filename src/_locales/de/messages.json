@@ -89,6 +89,8 @@
     "builtIn": "Eingebaut",
     "custom": "Benutzerdefiniert",
     "newLanguage": "Neue Sprache",
-    "editLanguage": "Sprache bearbeiten"
+    "editLanguage": "Sprache bearbeiten",
+    "deleteLanguage": "Sprache löschen",
+    "areYouSureDeleteThisLanguage": "Sind Sie sicher, dass Sie diese Sprache löschen möchten?"
   }
 }

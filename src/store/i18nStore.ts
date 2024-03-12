@@ -239,8 +239,8 @@ export const useI18nStore = defineStore('i18n', {
         this.localesWithSettings = this.localesWithSettings.filter((l) => l.id !== id);
         await this.saveLocaleSettings();
       }
-      if (this.allLocaleMessages.some((l) => l.id === id)) {
-        this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.id !== id);
+      if (this.allLocaleMessages.some((l) => l.lsId === id)) {
+        this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.lsId !== id);
         await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
       }
       this.isLoading = false;

@@ -89,6 +89,8 @@
     "builtIn": "Încorporat",
     "custom": "Personalizat",
     "newLanguage": "Limba nouă",
-    "editLanguage": "Editare Limbă"
+    "editLanguage": "Editare Limbă",
+    "deleteLanguage": "Ștergere Limbă",
+    "areYouSureDeleteThisLanguage": "Sunteți sigur că doriți să ștergeți această limbă?"
   }
 }
