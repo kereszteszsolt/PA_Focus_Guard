@@ -14,7 +14,7 @@ const isCurrentLocale = (id: string) => {
     return computed(() => i18n.getCurrentLocaleId === id).value;
 };
 
-const allLocales: ILocaleSettings[] = computed(() => i18n.getAllLocales).value;
+const allLocales = computed(() => i18n.getAllLocales);
 
 </script>
 
