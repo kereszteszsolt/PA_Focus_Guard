@@ -16,8 +16,8 @@ const props = defineProps({
     type: Function,
     required: true
   },
-  pItem: {
-    type: Object as () => ILocaleMessages,
+  pItemId: {
+    type: String,
     required: true
   },
   t: {
@@ -27,13 +27,15 @@ const props = defineProps({
 });
 
 let dialog = ref(false);
+let itemId = ref('');
 
 watch(() => props.pDialog, (value) => {
   dialog.value = value;
+  itemId.value = props.pItemId;
 });
 
 const confirmDelete = () => {
-  props.pConfirmDelete();
+  props.pConfirmDelete(itemId.value);
   props.pCloseDialog();
   dialog.value = false;
 };

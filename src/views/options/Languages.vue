@@ -6,6 +6,8 @@ import { EditCustomLanguageDialog } from '@/components/languages';
 import * as utils from '@/utils';
 import { CommonActionTreeDotsMenu } from '@/components/common';
 import { IAction, ILocaleMessages } from '@/interfaces';
+import { DeleteWebsiteRuleDialog } from '@/components/websites';
+import DeleteLanguageDialog from '@/components/languages/DeleteLanguageDialog.vue';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
@@ -45,7 +47,7 @@ const langActions: IAction[] = [
   {
     actionId: 'delete',
     f: (id: string) => {
-      deleteLocale(id);
+      openDeleteDialog(id);
     },
     mdiIcon: 'mdi-delete',
     tooltip: msg.DELETE,
@@ -64,7 +66,7 @@ const langActions: IAction[] = [
         utils.file.downloadAsJsonFile(JSON.stringify({
           locale: lm.locale,
           messages: lm.messages
-        }, null, 2), `${lm.locale.id}_${lm.locale.name.trim().replace(/ /g,"_")}.json`);
+        }, null, 2), `${lm.locale.id}_${lm.locale.name.trim().replace(/ /g, '_')}.json`);
       }
     },
     mdiIcon: 'mdi-download',
@@ -85,6 +87,8 @@ const langActions: IAction[] = [
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const allLocales = computed(() => i18n.getAllLocales);
 let editDialog = ref(false);
+const deleteDialog = ref(false);
+const deletingItemId = ref('');
 let newItem = ref(false);
 let page = ref(1);
 let itemsPerPage = ref(10);
@@ -118,6 +122,21 @@ const saveLocaleMessages = (localeMessages: any) => {
 
 const deleteLocale = (id: string) => {
   i18n.deleteLocale(id);
+  closeDeleteDialog();
+};
+
+const openDeleteDialog = (id: string) => {
+  deletingItemId.value = id;
+  if (deletingItemId) {
+    deleteDialog.value = true;
+  }
+};
+
+const closeDeleteDialog = () => {
+  deleteDialog.value = false;
+  nextTick(() => {
+    deletingItemId.value = '';
+  });
 };
 
 const editLocale = (id: string) => {
@@ -273,6 +292,9 @@ const newLocale = () => {
                                  :p-check-if-locale-exists="i18n.checkIfLocaleExists"
                                  :p-new-item="newItem"
     ></edit-custom-language-dialog>
+    <delete-language-dialog :p-dialog="deleteDialog" :p-close-dialog="closeDeleteDialog"
+                                :p-confirm-delete="deleteLocale" :p-item-id="deletingItemId" :t="t">
+    </delete-language-dialog>
   </div>
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
