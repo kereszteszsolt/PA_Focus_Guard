@@ -4,6 +4,7 @@ import { ILocaleMessages, ILocaleSettings } from '@/interfaces';
 import * as constants from '@/constants';
 import { generateNumberForDuplicatesByField } from '@/utils/unique';
 import { allFilesReady } from '@crxjs/vite-plugin';
+import * as util from 'util';
 
 export const useI18nStore = defineStore('i18n', {
   state: () => ({
@@ -186,6 +187,24 @@ export const useI18nStore = defineStore('i18n', {
       });
       await this.saveLocaleSettings();
     },
+    async setCurrentAndFallbacks(newCurrentLocaleId: string, newFallback1Id: string, newFallback2Id: string): Promise<void> {
+      this.isLoading = true;
+      let currentLocale = this.localesWithSettings.find((l) => l.localeId === newCurrentLocaleId);
+      let fallback1 = this.localesWithSettings.find((l) => l.localeId === newFallback1Id);
+      let fallback2 = this.localesWithSettings.find((l) => l.localeId === newFallback2Id);
+
+      if (!currentLocale || !fallback1 || !fallback2) {
+        this.isLoading = false;
+        return;
+      }
+      this.fastSettings.currentLocaleId = currentLocale.localeId;
+      currentLocale.isCurrent = true;
+      this.fastSettings.fallBackLocale1 = fallback1.localeId;
+      fallback1.isFallback1 = true;
+      this.fastSettings.fallBackLocale2 = fallback2.localeId;
+      fallback2.isFallback2 = true;
+      await this.saveLocaleSettings();
+    },
     async setFallback1(newFallback1Id: string): Promise<void> {
       this.isLoading = true;
       if (!this.localesWithSettings.some((l) => l.localeId === newFallback1Id)) {
@@ -235,14 +254,57 @@ export const useI18nStore = defineStore('i18n', {
     },
     async deleteLocale(id: string): Promise<void> {
       this.isLoading = true;
-      if (this.localesWithSettings.some((l) => l.id === id)) {
-        this.localesWithSettings = this.localesWithSettings.filter((l) => l.id !== id);
-        await this.saveLocaleSettings();
+
+      const localeToDelete = this.localesWithSettings.find((l) => l.id === id);
+      if (!localeToDelete) {
+        this.isLoading = false;
+        return;
       }
-      if (this.allLocaleMessages.some((l) => l.lsId === id)) {
-        this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.lsId !== id);
-        await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
+
+      switch (true) {
+        case (localeToDelete.localeId === this.fastSettings.currentLocaleId) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale1) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale2):
+          await this.setCurrentAndFallbacks(this.fastSettings.factoryDefault, this.fastSettings.factoryDefault, this.fastSettings.factoryDefault);
+          break;
+        case (localeToDelete.localeId === this.fastSettings.currentLocaleId) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale1) &&
+        (localeToDelete.localeId !== this.fastSettings.fallBackLocale2):
+          await this.setCurrentAndFallbacks(this.fastSettings.fallBackLocale2, this.fastSettings.fallBackLocale2, this.fastSettings.fallBackLocale2);
+          break;
+        case (localeToDelete.localeId === this.fastSettings.currentLocaleId) &&
+        (localeToDelete.localeId !== this.fastSettings.fallBackLocale1) &&
+        (localeToDelete.localeId !== this.fastSettings.fallBackLocale2):
+          await this.setCurrentAndFallbacks(this.fastSettings.fallBackLocale1, this.fastSettings.fallBackLocale1, this.fastSettings.fallBackLocale2);
+          break;
+        case (localeToDelete.localeId !== this.fastSettings.currentLocaleId) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale1) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale2):
+          await this.setCurrentAndFallbacks(this.fastSettings.currentLocaleId, this.fastSettings.currentLocaleId, this.fastSettings.currentLocaleId);
+          break;
+        case (localeToDelete.localeId !== this.fastSettings.currentLocaleId) &&
+        (localeToDelete.localeId !== this.fastSettings.fallBackLocale1) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale2):
+          await this.setCurrentAndFallbacks(this.fastSettings.currentLocaleId, this.fastSettings.fallBackLocale1, this.fastSettings.fallBackLocale1);
+          break;
+        case (localeToDelete.localeId !== this.fastSettings.currentLocaleId) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale1) &&
+        (localeToDelete.localeId !== this.fastSettings.fallBackLocale2):
+          await this.setCurrentAndFallbacks(this.fastSettings.currentLocaleId, this.fastSettings.currentLocaleId, this.fastSettings.fallBackLocale2);
+          break;
+        case (localeToDelete.localeId === this.fastSettings.currentLocaleId) &&
+        (localeToDelete.localeId !== this.fastSettings.fallBackLocale1) &&
+        (localeToDelete.localeId === this.fastSettings.fallBackLocale2):
+          await this.setCurrentAndFallbacks(this.fastSettings.fallBackLocale1, this.fastSettings.currentLocaleId, this.fastSettings.fallBackLocale1);
+          break;
       }
+
+      //delete
+      this.localesWithSettings = this.localesWithSettings.filter((l) => l.id !== id);
+      this.allLocaleMessages = this.allLocaleMessages.filter((l) => l.lsId !== id);
+      await utils.data.saveList(constants.storage.FG_LOCALES_SETTINGS, this.localesWithSettings);
+      await utils.data.saveList(constants.storage.FG_LOCALES_MESSAGES, this.allLocaleMessages);
+
       this.isLoading = false;
     },
     //duplicate and rename the id and name of the locale and assing new ids and also by renaming add a number to the end of the name name (number) use the uniname lis utilities and to the id just add idnumer ex en1 en2
