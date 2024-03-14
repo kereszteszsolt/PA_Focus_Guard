@@ -8,48 +8,105 @@ utils.runtimeMessages.createMessageListener('storageUpdated', () => {
   useSize.fetchAllSizes();
 });
 
+const downloadAllData = () => {
+  // Implement your data download logic here
+};
 </script>
 
 <template>
-  <div class="flex-1-0" v-if="!useSize.isLoading">
-    <h1>Settings</h1>
-    <table>
-      <th>
-        <td>Variable Name</td>
-        <td>Value</td>
-      </th>
+  <div class="flex-1-0 pa-4" v-if="!useSize.isLoading">
+    <h1>Data usage</h1>
+    <table class="styled-table">
+      <thead>
+      <tr>
+        <th>Variable Name</th>
+        <th>Value (Bytes)</th>
+        <th>Value (KB)</th>
+        <th>Value (MB)</th>
+      </tr>
+      </thead>
+      <tbody>
       <tr>
         <td>App Data Size</td>
         <td>{{ useSize.getAppDataSize }}</td>
+        <td>{{ (useSize.getAppDataSize / 1024).toFixed(2)}}</td>
+        <td>{{ (useSize.getAppDataSize / 1024 / 1024).toFixed(2)}}</td>
       </tr>
       <tr>
         <td>Website Rules Size</td>
         <td>{{ useSize.getWebsiteRulesSize }}</td>
+        <td>{{ (useSize.getWebsiteRulesSize / 1024).toFixed(2)}}</td>
+        <td>{{ (useSize.getWebsiteRulesSize / 1024 / 1024).toFixed(2)}}</td>
       </tr>
       <tr>
         <td>Website Rule Lists Size</td>
         <td>{{ useSize.getWebsiteRuleListsSize }}</td>
+        <td>{{ (useSize.getWebsiteRuleListsSize / 1024).toFixed(2)}}</td>
+        <td>{{ (useSize.getWebsiteRuleListsSize / 1024 / 1024).toFixed(2)}}</td>
       </tr>
       <tr>
         <td>Statistics Size</td>
         <td>{{ useSize.getStatisticsSize }}</td>
+        <td>{{ (useSize.getStatisticsSize / 1024).toFixed(2)}}</td>
+        <td>{{ (useSize.getStatisticsSize / 1024 / 1024).toFixed(2)}}</td>
       </tr>
       <tr>
         <td>Locale Settings Size</td>
         <td>{{ useSize.getLocaleSettingsSize }}</td>
+        <td>{{ (useSize.getLocaleSettingsSize / 1024).toFixed(2)}}</td>
+        <td>{{ (useSize.getLocaleSettingsSize / 1024 / 1024).toFixed(2)}}</td>
       </tr>
       <tr>
         <td>Settings Messages Size</td>
         <td>{{ useSize.getLocaleMessagesSize }}</td>
+        <td>{{ (useSize.getLocaleMessagesSize / 1024).toFixed(2)}}</td>
+        <td>{{ (useSize.getLocaleMessagesSize / 1024 / 1024).toFixed(2)}}</td>
       </tr>
       <tr>
         <td>Total Size</td>
         <td>{{ useSize.getTotalSize }}</td>
+        <td>{{ (useSize.getTotalSize / 1024).toFixed(2)}}</td>
+        <td>{{ (useSize.getTotalSize / 1024 / 1024).toFixed(2)}}</td>
       </tr>
+      </tbody>
     </table>
+    <button @click="downloadAllData">Download All Data</button>
   </div>
 </template>
 
 <style scoped lang="scss">
+.styled-table {
+  width: 100%;
+  margin: 1em 0;
+  border-collapse: collapse;
+}
 
+.styled-table th,
+.styled-table td {
+  padding: 0.75em;
+  border: 1px solid #ddd;
+}
+
+.styled-table th {
+  background-color: #f5f5f5;
+  text-align: left;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+button {
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
 </style>
