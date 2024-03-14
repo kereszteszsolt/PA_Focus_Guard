@@ -138,7 +138,8 @@ const getColorForUrlFilter = (urlFilter: string) => {
       </template>
       <template v-slot:item.simpleRules="{ item }">
         <div class="d-flex flex-wrap justify-space-around" :style="{maxWidth: '420px'}">
-          <v-chip v-for="rule in item.simpleRules" :key="rule.urlFilter" class="mr-2 font-weight-bold"
+          <v-chip v-for="rule in item.simpleRules.sort((a,b) => a.urlFilter.length - b.urlFilter.length)"
+                  :key="rule.urlFilter" class="mr-2 font-weight-bold"
                   :color="getColorForUrlFilter(rule.urlFilter)">
             <v-icon v-if="rule.permanentlyActive" color="success" start>mdi-lock-alert</v-icon>
             <div :style="{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '350px'}">
