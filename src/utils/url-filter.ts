@@ -1,5 +1,5 @@
 export const getDomain = (url: string) => {
-  const domain = url.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)/im);
+  const domain = url.match(/^(?:https?:\/\/)?(?:www\.)?([^:/\n]+)/im);
   return domain ? domain[1] : '';
 }
 
