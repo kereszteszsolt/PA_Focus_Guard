@@ -124,18 +124,24 @@ const getColorForUrlFilter = (urlFilter: string) => {
       </template>
       <template v-slot:item.focusModeSessionId="{ item }">
         <v-chip class="mr-2" :color="getColorForUrlFilter(item.focusModeSessionId)">
-          {{ item.focusModeSessionId }}
+          <v-tooltip activator="parent" location="top right">{{ item.focusModeSessionId }}</v-tooltip>
+          <div :style="{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '123px'}">
+            {{ item.focusModeSessionId }}
+          </div>
         </v-chip>
       </template>
       <template v-slot:item.focusMode="{ item }">
-        <v-icon size="x-large" :color="item.focusMode ? 'success' : 'danger'">{{ item.focusMode ? 'mdi-shield-lock-outline' : 'mdi-shield-lock-open-outline' }}</v-icon>
+        <div class="text-center" :style="{width: '52px'}">
+          <v-tooltip activator="parent" location="top">{{ item.focusMode ? 'ON' : 'OFF' }}</v-tooltip>
+          <v-icon size="x-large" :color="item.focusMode ? 'success' : 'danger'">{{ item.focusMode ? 'mdi-shield-lock-outline' : 'mdi-shield-lock-open-outline' }}</v-icon>
+        </div>
       </template>
       <template v-slot:item.simpleRules="{ item }">
         <v-chip v-for="rule in item.simpleRules" :key="rule.urlFilter" class="mr-2 font-weight-bold"
-                :color="getColorForUrlFilter(rule.urlFilter)"
-                :prepend-icon="rule.permanentlyActive ?  'mdi-lock-alert' : '' ">
+                :color="getColorForUrlFilter(rule.urlFilter)">
+          <v-icon v-if="rule.permanentlyActive" color="success" start>mdi-lock-alert</v-icon>
           {{ rule.urlFilter }}
-          <v-tooltip activator="parent" location="top">{{rule.permanentlyActive && 'Permanently active!' }}</v-tooltip>
+          <v-tooltip activator="parent" location="top" v-if="rule.permanentlyActive">{{'Permanently active!' }}</v-tooltip>
         </v-chip>
       </template>
       <template v-slot:bottom>
