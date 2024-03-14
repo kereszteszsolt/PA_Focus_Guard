@@ -176,12 +176,19 @@ const setTheBadge = async () => {
 
 const getContextRules = (crrUrl: string): IWebsiteRule[] => {
   let activeRules = calculateActiveWebsiteRules();
-  return activeRules.filter((wr) => crrUrl &&
-    (
-      (wr.urlFilterType === constants.wsrFilter.URL && utils.urlFilter.filterByUrl(crrUrl, wr.urlFilter)) ||
-      (wr.urlFilterType === constants.wsrFilter.DOMAIN && utils.urlFilter.filterByDomain(crrUrl, wr.urlFilter)) ||
-      (wr.urlFilterType === constants.wsrFilter.END_DOMAIN && utils.urlFilter.filterByEndDomain(crrUrl, wr.urlFilter)) ||
-      (wr.urlFilterType === constants.wsrFilter.KEYWORD && utils.urlFilter.filterByKeyWord(crrUrl, wr.urlFilter))
-    )
-  );
+  return activeRules.filter((wr) => {
+    if (!crrUrl) return false;
+    switch (wr.urlFilterType) {
+      case constants.wsrFilter.URL:
+        return utils.urlFilter.filterByUrl(crrUrl, wr.urlFilter);
+      case constants.wsrFilter.DOMAIN:
+        return utils.urlFilter.filterByDomain(crrUrl, wr.urlFilter);
+      case constants.wsrFilter.END_DOMAIN:
+        return utils.urlFilter.filterByEndDomain(crrUrl, wr.urlFilter);
+      case constants.wsrFilter.KEYWORD:
+        return utils.urlFilter.filterByKeyWord(crrUrl, wr.urlFilter);
+      default:
+        return false;
+    }
+  });
 }

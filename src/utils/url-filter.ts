@@ -8,7 +8,7 @@ export const cutTheProtocol = (url: string) => {
 }
 export const getEndDomain = (url: string) => {
   const domain = getDomain(url);
-  return domain.split('.').slice(-2).join('.');
+  return domain.split('.').pop();
 }
 
 
