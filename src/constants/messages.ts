@@ -85,6 +85,10 @@ export const FACTORY_DEFAULT = 'factoryDefault';
 export const LANGUAGE_TYPE = 'languageType';
 export const BUILT_IN = 'builtIn';
 export const CUSTOM = 'custom';
-export  const DELETE_LANGUAGE = 'deleteLanguage';
+export const DELETE_LANGUAGE = 'deleteLanguage';
 export const ARE_YOU_SURE_DELETE_THIS_LANGUAGE = 'areYouSureDeleteThisLanguage';
+export const DELETE_DISTRACTION_ATTEMPT = 'deleteDistractionAttempt';
+export const ARE_YOU_SURE_DELETE_THIS_DISTRACTION_ATTEMPT = 'areYouSureDeleteThisDistractionAttempt';
+export const DELETE_THE_ATTEMPT_WHIT_THIS_URL_FILTER = 'deleteTheAttemptWhitThisUrlFilter';
+export const THIS_DISTRACTION_ATTEMPT_CONTAINS_ONLY_ONE_URL_FILTER = 'thisDistractionAttemptContainsOnlyOneUrlFilter';
 

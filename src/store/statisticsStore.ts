@@ -32,6 +32,30 @@ export const useStatisticsStore = defineStore({
       this.distractionAttempts = await utils.data.fetchEntry(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS) as IDistractionAttempt[];
       this.isLoading = false;
     },
+    async deleteDistractionAttempt(distractionAttemptId: string): Promise<void> {
+      this.isLoading = true;
+      this.distractionAttempts = this.distractionAttempts.filter((distractionAttempt: IDistractionAttempt) => distractionAttempt.id !== distractionAttemptId);
+      await utils.data.saveEntry(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, this.distractionAttempts);
+      this.isLoading = false;
+    },
+    async deleteAllDistractionAttempts(): Promise<void> {
+      this.isLoading = true;
+      this.distractionAttempts = [];
+      await utils.data.saveEntry(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, this.distractionAttempts);
+      this.isLoading = false;
+    },
+    async deleteUrlFilterFromDistractionAttempt(distractionAttemptId: string, urlFilter: string): Promise<void> {
+      this.isLoading = true;
+      const distractionAttempt = this.distractionAttempts.find((distractionAttempt: IDistractionAttempt) => distractionAttempt.id === distractionAttemptId);
+      if (distractionAttempt) {
+        distractionAttempt.simpleRules = distractionAttempt.simpleRules.filter((simpleRule) => simpleRule.urlFilter !== urlFilter);
+        if (distractionAttempt.simpleRules.length === 0) {
+          this.distractionAttempts = this.distractionAttempts.filter((distractionAttempt: IDistractionAttempt) => distractionAttempt.id !== distractionAttemptId);
+        }
+        await utils.data.saveEntry(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, this.distractionAttempts);
+      }
+      this.isLoading = false;
+    }
     // async addNewDistractionAttempt(distractionAttempt: IDistractionAttempt): Promise<void> {
     //   console.log('Adding new distraction attempt');
     //   this.isLoading = true;

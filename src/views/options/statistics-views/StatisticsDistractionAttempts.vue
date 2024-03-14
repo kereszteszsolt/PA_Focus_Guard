@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, nextTick } from 'vue';
 import { useI18nStore, useStatisticsStore } from '@/store';
 import { msg } from '@/constants';
+import DeleteFilterRuleDialog from '@/components/distraction-attempts/DeleteFilterRuleDialog.vue';
+import DeleteDistractionAttemptDialog from '@/components/distraction-attempts/DeleteDistractionAttemptDialog.vue';
 
 const statisticStore = useStatisticsStore();
 const i18n = useI18nStore();
@@ -15,6 +17,12 @@ const selectedDay = ref(null);
 const maximumItemsPerPage = ref(7);
 const page = ref(1);
 const totalVisiblePages = ref(5);
+
+const deleteDistractionAttemptDialog = ref(false);
+const deleteFilterRuleDialog = ref(false);
+const dContextDistractionAttemptId = ref('');
+const dContextUrlFilter = ref('');
+const dContextLastItem = ref(false);
 
 
 const totalPages = computed(() => {
@@ -106,6 +114,52 @@ const getColorForUrlFilter = (urlFilter: string) => {
 //   return urlFilterColorMap.value.get(urlFilter);
 // };
 
+const pCloseDeleteDistractionAttemptDialog = () => {
+  deleteDistractionAttemptDialog.value = false;
+  nextTick(() => {
+    dContextDistractionAttemptId.value = '';
+  });
+};
+
+const pConfirmDeleteDistractionAttempt = () => {
+  statisticStore.deleteDistractionAttempt(dContextDistractionAttemptId.value);
+  deleteDistractionAttemptDialog.value = false;
+  nextTick(() => {
+    dContextDistractionAttemptId.value = '';
+  });
+};
+
+const pCloseDeleteFilterRuleDialog = () => {
+  deleteFilterRuleDialog.value = false;
+  nextTick(() => {
+    dContextUrlFilter.value = '';
+    dContextDistractionAttemptId.value = '';
+    dContextLastItem.value = false;
+  });
+};
+
+const pConfirmDeleteFilterRule = () => {
+  statisticStore.deleteUrlFilterFromDistractionAttempt(dContextDistractionAttemptId.value, dContextUrlFilter.value);
+  deleteFilterRuleDialog.value = false;
+  nextTick(() => {
+    dContextUrlFilter.value = '';
+    dContextDistractionAttemptId.value = '';
+    dContextLastItem.value = false;
+  });
+};
+
+const openDeleteDistractionAttemptDialog = (distractionAttemptId: string) => {
+  dContextDistractionAttemptId.value = distractionAttemptId;
+  deleteDistractionAttemptDialog.value = true;
+  console.log('deleteDistractionAttemptDialog.value', deleteDistractionAttemptDialog.value);
+};
+
+const openDeleteFilterRuleDialog = (distractionAttemptId: string, filterRuleId: string, lastItem: boolean) => {
+  dContextUrlFilter.value = filterRuleId;
+  dContextDistractionAttemptId.value = distractionAttemptId;
+  dContextLastItem.value = lastItem;
+  deleteFilterRuleDialog.value = true;
+};
 
 </script>
 
@@ -128,7 +182,7 @@ const getColorForUrlFilter = (urlFilter: string) => {
           <div :style="{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '123px'}">
             {{ item.focusModeSessionId }}
           </div>
-          <v-icon icon="mdi-close-circle" end></v-icon>
+          <v-icon @click="openDeleteDistractionAttemptDialog(item.id)" icon="mdi-close-circle"  end></v-icon>
         </v-chip>
       </template>
       <template v-slot:item.focusMode="{ item }">
@@ -152,13 +206,14 @@ const getColorForUrlFilter = (urlFilter: string) => {
               {{ `Permanently active! ${rule.urlFilter}` }}
             </v-tooltip>
             <v-tooltip activator="parent" location="top" v-else>{{ rule.urlFilter }}</v-tooltip>
-            <v-icon end>mdi-close-circle</v-icon>
+            <v-icon @click="openDeleteFilterRuleDialog(item.id, rule.urlFilter, item.simpleRules.length === 1)" end>
+              mdi-close-circle
+            </v-icon>
           </v-chip>
         </div>
       </template>
       <template v-slot:bottom>
         <v-sheet color="background" class="d-flex justify-space-between">
-
           <v-pagination
             v-model="page"
             :length="totalPages"
@@ -169,10 +224,20 @@ const getColorForUrlFilter = (urlFilter: string) => {
           <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
             {{ filteredData.length }}
           </v-label>
-
         </v-sheet>
       </template>
     </v-data-table>
+    <delete-distraction-attempt-dialog
+      :pDialog="deleteDistractionAttemptDialog"
+      :pCloseDialog="pCloseDeleteDistractionAttemptDialog"
+      :pConfirmDelete="pConfirmDeleteDistractionAttempt"
+      :t="t"/>
+    <delete-filter-rule-dialog
+      :p-dialog="deleteFilterRuleDialog"
+      :p-close-dialog="pCloseDeleteFilterRuleDialog"
+      :p-confirm-delete="pConfirmDeleteFilterRule"
+      :p-last-item="dContextLastItem"
+      :t="t"/>
   </div>
 </template>
 
