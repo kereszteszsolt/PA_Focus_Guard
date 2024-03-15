@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps({
+import { defineProps, defineModel } from 'vue';
+
+const props = defineProps({
   activator: {
     type: String,
     required: true
@@ -11,36 +13,27 @@ defineProps({
   color: {
     type: String,
     default: 'background'
-  },
-  closeBtnColor: {
-    type: String,
-    default: 'danger'
-  },
-  closeBtnText: {
-    type: String,
-    default: 'Close'
   }
 });
 
 const dialog = defineModel('dialog', { type: Boolean });
-
 </script>
 
 <template>
-  <v-dialog v-model="dialog" :max-width="maxWidth" persistent>
-      <v-card :color="color">
-        <v-card-item>
-          <v-card-title class="text-h5">
-            <slot name="title"></slot>
-          </v-card-title>
-        </v-card-item>
-        <v-card-text>
-          <slot></slot>
-        </v-card-text>
-        <v-card-actions class="justify-end">
-          <slot name="actions"></slot>
-        </v-card-actions>
-      </v-card>
+  <v-dialog v-model="dialog" :activator="props.activator" :max-width="props.maxWidth" persistent>
+    <v-card :color="props.color">
+      <v-card-item>
+        <v-card-title class="text-h5">
+          <slot name="title"></slot>
+        </v-card-title>
+      </v-card-item>
+      <v-card-text>
+        <slot></slot>
+      </v-card-text>
+      <v-card-actions class="justify-end">
+        <slot name="actions"></slot>
+      </v-card-actions>
+    </v-card>
   </v-dialog>
 </template>
 
