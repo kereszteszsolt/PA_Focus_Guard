@@ -24,9 +24,9 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'l
 
 const route = useRoute();
 let dialog = ref(false);
-let dialogDelete = ref(false);
+const dialogDelete = ref(false);
 let editingId = ref('');
-let editingItem = ref(websiteRulesStore.getDummyWebsiteRule);
+const contextItem = ref(websiteRulesStore.getDummyWebsiteRule);
 let isNewItem = ref(false);
 let isValid = ref(false);
 let page = ref(1);
@@ -101,8 +101,8 @@ const setTemporarilyInactive = (item: IWebsiteRule) => {
 };
 
 const newItem = () => {
-  editingItem.value = {
-    ...editingItem.value,
+  contextItem.value = {
+    ...contextItem.value,
     listId: pathId.value
   };
   isNewItem.value = true;
@@ -111,7 +111,7 @@ const newItem = () => {
 const editItem = (id: string) => {
   const found = websiteRulesStore.getWebsiteRuleById(id);
   if (found) {
-    editingItem.value = found;
+    contextItem.value = found;
     dialog.value = true;
   } else {
     console.error('Website not found');
@@ -122,7 +122,7 @@ const deleteItem = (id: string) => {
   const found = websiteRulesStore.getWebsiteRuleById(id);
   if (found) {
     editingId.value = found.id;
-    editingItem.value = found;
+    contextItem.value = found;
     dialogDelete.value = true;
   } else {
     console.error('Website not found');
@@ -136,12 +136,12 @@ const deleteItemConfirm = () => {
 const closeEdit = () => {
   dialog.value = false;
   editingId.value = '';
-  editingItem.value = websiteRulesStore.getDummyWebsiteRule;
+  contextItem.value = websiteRulesStore.getDummyWebsiteRule;
 };
 const closeDelete = () => {
   dialogDelete.value = false;
   editingId.value = '';
-  editingItem.value = websiteRulesStore.getDummyWebsiteRule;
+  contextItem.value = websiteRulesStore.getDummyWebsiteRule;
 };
 const save = (editedItem: IWebsiteRule) => {
 
@@ -149,7 +149,7 @@ const save = (editedItem: IWebsiteRule) => {
     websiteRulesStore.addWebsiteRule(editedItem);
     isNewItem.value = false;
   } else {
-    websiteRulesStore.updateWebsiteRule(editingItem.value.id, editedItem);
+    websiteRulesStore.updateWebsiteRule(contextItem.value.id, editedItem);
   }
   closeEdit();
   console.log('save', editedItem);
@@ -239,14 +239,14 @@ const save = (editedItem: IWebsiteRule) => {
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </div>
-  <edit-website-rule-dialog
-    :p-item="editingItem"
-    :p-dialog="dialog"
-    :p-close-dialog="closeEdit"
-    :p-save-item="save"
-    :p-is-new-item="isNewItem"
-    :t="t"
-  ></edit-website-rule-dialog>
+    <edit-website-rule-dialog
+      :p-item="contextItem"
+      :p-dialog="dialog"
+      :p-close-dialog="closeEdit"
+      :p-save-item="save"
+      :p-is-new-item="isNewItem"
+      :t="t"
+    ></edit-website-rule-dialog>
 
   <fg-modal v-model:dialog="dialogDelete" activator="#deleteWsRule">
     <template v-slot:title>
@@ -254,7 +254,7 @@ const save = (editedItem: IWebsiteRule) => {
     </template>
     <div class="d-flex flex-column ga-2">
       <span>{{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE) }}</span>
-      <span>{{ editingItem.urlFilter }}</span>
+      <span>{{ contextItem.urlFilter }}</span>
     </div>
     <template v-slot:actions>
       <v-btn @click="deleteItemConfirm" variant="elevated" elevation="12" color="danger">{{ t(msg.DELETE) }}</v-btn>
