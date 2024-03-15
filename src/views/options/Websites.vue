@@ -40,9 +40,6 @@ const headers = computed(() => [
   { title: t(msg.PERMANENTLY_ACTIVE), value: 'permanentlyActive' },
   { title: t(msg.TEMPORARILY_INACTIVE), value: 'temporarilyInactive' },
   { title: t(msg.ACTIONS), value: 'actions' }
-  // ,
-  // { title: t(msg.ORDER), value: 'order' },
-  // { title: t(msg.GLOBAL_ORDER), value: 'globalOrder' }
 ]);
 
 const totalPages = computed(() => {
@@ -152,7 +149,6 @@ const save = (editedItem: IWebsiteRule) => {
     websiteRulesStore.updateWebsiteRule(contextItem.value.id, editedItem);
   }
   closeEdit();
-  console.log('save', editedItem);
 };
 </script>
 
@@ -167,12 +163,9 @@ const save = (editedItem: IWebsiteRule) => {
       v-model:items-per-page="itemsPerPage"
     >
       <template v-slot:item.url="{ item }">
-        <div
-          :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word', textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
-          <!--        <div :style="{ minWidth: '350px', maxWidth: '480px', wordBreak: 'break-all', fontWeight: 700 }">-->
-          <!--          <a :href="item.url" target="_blank" :style="{fontWeight: 700}">-->
+        <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word',
+        textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
           {{ item.urlFilter }}
-          <!--          </a>-->
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
@@ -239,14 +232,14 @@ const save = (editedItem: IWebsiteRule) => {
   <div v-else class="d-flex justify-center align-center fill-height">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </div>
-    <edit-website-rule-dialog
-      :p-item="contextItem"
-      :p-dialog="dialog"
-      :p-close-dialog="closeEdit"
-      :p-save-item="save"
-      :p-is-new-item="isNewItem"
-      :t="t"
-    ></edit-website-rule-dialog>
+  <edit-website-rule-dialog
+    :p-item="contextItem"
+    :p-dialog="dialog"
+    :p-close-dialog="closeEdit"
+    :p-save-item="save"
+    :p-is-new-item="isNewItem"
+    :t="t"
+  ></edit-website-rule-dialog>
 
   <fg-modal v-model:dialog="dialogDelete" activator="#deleteWsRule">
     <template v-slot:title>
@@ -271,6 +264,4 @@ const save = (editedItem: IWebsiteRule) => {
     justify-content: space-around;
   }
 }
-
-
 </style>
