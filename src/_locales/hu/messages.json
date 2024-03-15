@@ -91,6 +91,11 @@
     "newLanguage": "Új Nyelv",
     "editLanguage": "Nyelv Szerkesztése",
     "deleteLanguage": "Nyelv Törlése",
-    "areYouSureDeleteThisLanguage": "Biztosan törölni szeretné ezt a nyelvet?"
+    "areYouSureDeleteThisLanguage": "Biztosan törölni szeretné ezt a nyelvet?",
+    "areYouSureDeleteThisLanguage": "Biztosan törölni szeretné ezt a nyelvet?",
+    "deleteDistractionAttempt": "Zavarás Kísérlet Törlése",
+    "areYouSureDeleteThisDistractionAttempt": "Biztosan törölni szeretné ezt a zavarás kísérletet?",
+    "deleteTheAttemptWhitThisUrlFilter": "Töröljük a kísérletet ezzel az URL szűrővel?",
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Ez a zavarás kísérlet csak egy URL szűrőt tartalmaz!"
   }
 }

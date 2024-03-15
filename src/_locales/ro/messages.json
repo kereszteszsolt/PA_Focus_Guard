@@ -91,6 +91,11 @@
     "newLanguage": "Limba nouă",
     "editLanguage": "Editare Limbă",
     "deleteLanguage": "Ștergere Limbă",
-    "areYouSureDeleteThisLanguage": "Sunteți sigur că doriți să ștergeți această limbă?"
+    "areYouSureDeleteThisLanguage": "Sunteți sigur că doriți să ștergeți această limbă?",
+    "areYouSureDeleteThisLanguage": "Sunteți sigur că doriți să ștergeți această limbă?",
+    "deleteDistractionAttempt": "Ștergeți Tentativa de Distragere",
+    "areYouSureDeleteThisDistractionAttempt": "Sunteți sigur că doriți să ștergeți această tentativă de distragere?",
+    "deleteTheAttemptWhitThisUrlFilter": "Ștergeți tentativa cu acest filtru URL?",
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Această tentativă de distragere conține doar un filtru URL!"
   }
 }

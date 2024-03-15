@@ -91,6 +91,11 @@
     "newLanguage": "Neue Sprache",
     "editLanguage": "Sprache bearbeiten",
     "deleteLanguage": "Sprache löschen",
-    "areYouSureDeleteThisLanguage": "Sind Sie sicher, dass Sie diese Sprache löschen möchten?"
+    "areYouSureDeleteThisLanguage": "Sind Sie sicher, dass Sie diese Sprache löschen möchten?",
+    "areYouSureDeleteThisLanguage": "Sind Sie sicher, dass Sie diese Sprache löschen möchten?",
+    "deleteDistractionAttempt": "Ablenkungsversuch löschen",
+    "areYouSureDeleteThisDistractionAttempt": "Sind Sie sicher, dass Sie diesen Ablenkungsversuch löschen möchten?",
+    "deleteTheAttemptWhitThisUrlFilter": "Den Versuch mit diesem URL-Filter löschen?",
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Dieser Ablenkungsversuch enthält nur einen URL-Filter!"
   }
 }

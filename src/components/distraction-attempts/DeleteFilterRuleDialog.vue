@@ -64,7 +64,7 @@ watch(() => props.pDialog, (value) => {
       </v-card-text>
       <v-card-text v-if="lastItem">
         {{ t(msg.THIS_DISTRACTION_ATTEMPT_CONTAINS_ONLY_ONE_URL_FILTER) }}
-        <v-checkbox v-model="wholeDeleteConfirmation" label="{{ t(msg.DELETE_THE_ATTEMPT_WHIT_THIS_URL_FILTER) }}"></v-checkbox>
+        <v-checkbox v-model="wholeDeleteConfirmation" :label="t(msg.DELETE_THE_ATTEMPT_WHIT_THIS_URL_FILTER)"></v-checkbox>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>

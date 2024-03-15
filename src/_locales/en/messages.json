@@ -91,6 +91,10 @@
     "newLanguage": "New Language",
     "editLanguage": "Edit Language",
     "deleteLanguage": "Delete Language",
-    "areYouSureDeleteThisLanguage": "Are you sure you want to delete this language?"
+    "areYouSureDeleteThisLanguage": "Are you sure you want to delete this language?",
+    "deleteDistractionAttempt": "Delete Distraction Attempt",
+    "areYouSureDeleteThisDistractionAttempt": "Are you sure you want to delete this distraction attempt?",
+    "deleteTheAttemptWhitThisUrlFilter": "Delete the attempt with this URL filter?",
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "This distraction attempt contains only one URL filter!"
   }
 }
