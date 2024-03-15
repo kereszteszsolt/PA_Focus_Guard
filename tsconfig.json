@@ -6,7 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler", //workaround for vite https://github.com/rollup/rollup/issues/5199
     "strict": true,
     "jsx": "preserve",
     "sourceMap": false,

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-dialog v-model="dialog" persistent max-width="600px" transition="dialog-bottom-transition">
     <v-card color="background">
       <v-card-title class="text-h5">{{ socialMediaLink.platformName }}</v-card-title>
       <v-divider></v-divider>

@@ -1,29 +1,23 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, Ref, ref, UnwrapRef } from 'vue';
 import { useI18nStore } from '@/store';
-import { FooterSocialModal } from '@/components/footer';
-import { ISocialMediaLink } from '@/interfaces';
 import * as links from '@/links';
 import { socialMediaLinks } from '@/links';
+import FgModal from '@/components/common/FgModal.vue';
+import { msg } from '@/constants';
+import { ISocialMediaLink } from '@/interfaces';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
 
-let socialDialog = ref(false);
-let contextSocialPage = ref('');
+const socialDialog = ref(false);
+const contextLink: Ref<UnwrapRef<ISocialMediaLink>> = ref({} as ISocialMediaLink);
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 
-const openSocialDialog = (page: string) => {
-  contextSocialPage.value = page;
+const openSocialDialog = (link : ISocialMediaLink) => {
   socialDialog.value = true;
-};
-const closeSocialDialog = () => {
-  contextSocialPage.value = '';
-  socialDialog.value = false;
-};
-const getSocialMediaLinkByPlatformName = (platformName: string) => {
-  return socialMediaLinks.find((link) => link.platformName === platformName) || {} as ISocialMediaLink;
+  contextLink.value = link;
 };
 </script>
 
@@ -32,7 +26,7 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
            class="border-bottom-radius-8 fg-h-104px d-flex flex-column justify-space-between px-4 py-2">
     <div class="d-flex flex-row justify-space-between">
       <v-btn v-for="link in socialMediaLinks" variant="text" class="flex-1-0"
-             @click="openSocialDialog(link.platformName)" color="info" density="compact">
+             id="#fgModal" color="info" density="compact" @click="openSocialDialog(link)">
         <v-icon>{{ link.mdiIcon }}</v-icon>
       </v-btn>
     </div>
@@ -46,10 +40,27 @@ const getSocialMediaLinkByPlatformName = (platformName: string) => {
     <div class="d-flex flex-row justify-space-around text-center">
       <p class="fgc-info">Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
     </div>
-    <footer-social-modal :t="t" :p-dialog="socialDialog"
-                         :social-media-link="getSocialMediaLinkByPlatformName(contextSocialPage)"
-                         :p-close-dialog="closeSocialDialog"/>
   </v-sheet>
+  <fg-modal v-model:dialog="socialDialog" activator="#fgModal" max-width="600px">
+    <template v-slot:title>
+      {{ contextLink.platformName }}
+    </template>
+    <div>
+      <p class="font-weight-bold">{{ t(msg.THANK_Y4Y_INTEREST) }}</p>
+      <p>{{t(msg.NOT_PART_OF_EXTENSION)}}</p>
+      <p>{{ t(msg.CLICK_OPEN_NEW_TAB)}}</p>
+      <p>
+        <span class="font-weight-bold fgc-primary">{{contextLink.profileName}}</span>&nbsp;
+        <span class="font-weight-bold fgc-accent">{{contextLink.profileIdentifier}}</span>&nbsp;
+        <a :href="contextLink.url" target="_blank">{{contextLink.url}}</a>
+      </p>
+      <p>{{contextLink.shortDescription}}</p>
+      <p>{{t(contextLink.callToAction)}}</p>
+    </div>
+    <template v-slot:actions>
+      <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{t(msg.CLOSE)}}</v-btn>
+    </template>
+  </fg-modal>
 </template>
 
 <style scoped lang="scss">
