@@ -6,7 +6,7 @@ import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18nStore } from '@/store';
 import { msg } from '@/constants';
-import { CommonCrudMenu } from '@/components/common';
+import { CommonCrudMenu, FgModal } from '@/components/common';
 import * as utils from '@/utils';
 import { createBatchMessageListenerM2O } from '@/utils/runtime-messages';
 
@@ -188,24 +188,24 @@ const save = (editedItem: IWebsiteRule) => {
         </div>
       </template>
       <template v-slot:item.permanentlyActive="{ item }">
-          <v-checkbox
-            v-model="item.permanentlyActive"
-            color="primary"
-            @change="setPermanentlyActive(item)"
-            hide-details
-            class="d-flex justify-center"
-          >
-          </v-checkbox>
+        <v-checkbox
+          v-model="item.permanentlyActive"
+          color="primary"
+          @change="setPermanentlyActive(item)"
+          hide-details
+          class="d-flex justify-center"
+        >
+        </v-checkbox>
       </template>
       <template v-slot:item.temporarilyInactive="{ item }">
-          <v-checkbox
-            v-model="item.temporarilyInactive"
-            color="primary"
-            @change="setTemporarilyInactive(item)"
-            hide-details
-            class="d-flex justify-center"
-          >
-          </v-checkbox>
+        <v-checkbox
+          v-model="item.temporarilyInactive"
+          color="primary"
+          @change="setTemporarilyInactive(item)"
+          hide-details
+          class="d-flex justify-center"
+        >
+        </v-checkbox>
       </template>
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">
@@ -248,14 +248,19 @@ const save = (editedItem: IWebsiteRule) => {
     :t="t"
   ></edit-website-rule-dialog>
 
-  <delete-website-rule-dialog
-    :p-is-empty=true
-    :p-item="editingItem"
-    :p-delete-item-confirm="deleteItemConfirm"
-    :p-close-dialog="closeDelete"
-    :p-dialog="dialogDelete"
-    :t="t">
-  </delete-website-rule-dialog>
+  <fg-modal v-model:dialog="dialogDelete" activator="#deleteWsRule">
+    <template v-slot:title>
+      {{ t(msg.DELETE) }}
+    </template>
+    <div class="d-flex flex-column ga-2">
+      <span>{{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE) }}</span>
+      <span>{{ editingItem.urlFilter }}</span>
+    </div>
+    <template v-slot:actions>
+      <v-btn @click="deleteItemConfirm" variant="elevated" elevation="12" color="danger">{{ t(msg.DELETE) }}</v-btn>
+      <v-btn @click="closeDelete" variant="elevated" elevation="12" color="success">{{ t(msg.CANCEL) }}</v-btn>
+    </template>
+  </fg-modal>
 </template>
 
 <style lang="scss">
