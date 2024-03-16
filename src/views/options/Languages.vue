@@ -139,8 +139,6 @@ const closeDeleteDialog = () => {
 };
 
 const editLocale = (id: string) => {
-  let allLocaleSettings = i18n.getAllLocales;
-  let allLocaleMessages = i18n.getAllLocaleMessages;
   let edit = i18n.getLocaleMessagesById(id);
   let defaultLocale = i18n.getDefaultLocaleMessages;
   if (edit !== undefined && defaultLocale !== undefined) {
