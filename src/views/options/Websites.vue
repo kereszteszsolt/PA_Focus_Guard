@@ -242,11 +242,15 @@ const save = (editedItem: IWebsiteRule) => {
 
   <fg-modal v-model:dialog="dialogDelete" activator="#deleteWsRule">
     <template v-slot:title>
-      {{ t(msg.DELETE) }}
+      {{ t(msg.DELETE_WEBSITE_RULE) }}
     </template>
-    <div class="d-flex flex-column ga-2">
-      <span>{{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE) }}</span>
-      <span>{{ contextItem.urlFilter }}</span>
+    <div class="d-flex flex-column text-body-1">
+      {{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE) }}
+      <div>
+        <v-icon>mdi-chevron-double-right</v-icon>
+        {{ contextItem.urlFilter }}
+        <v-icon>mdi-chevron-double-left</v-icon>
+      </div>
     </div>
     <template v-slot:actions>
       <v-btn @click="deleteItemConfirm" variant="elevated" elevation="12" color="danger">{{ t(msg.DELETE) }}</v-btn>
