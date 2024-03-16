@@ -6,7 +6,6 @@ import { EditCustomLanguageDialog } from '@/components/languages';
 import * as utils from '@/utils';
 import { CommonActionTreeDotsMenu } from '@/components/common';
 import { IAction, ILocaleMessages } from '@/interfaces';
-import { DeleteWebsiteRuleDialog } from '@/components/websites';
 import DeleteLanguageDialog from '@/components/languages/DeleteLanguageDialog.vue';
 
 const i18n = useI18nStore();

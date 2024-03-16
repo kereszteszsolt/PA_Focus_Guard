@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useWebsiteRulesStore } from '@/store/websiteRulesStore';
 import { IWebsiteRule } from '@/interfaces';
-import { EditWebsiteRuleDialog, DeleteWebsiteRuleDialog } from '@/components/websites';
+import { EditWebsiteRuleDialog } from '@/components/websites';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18nStore } from '@/store';
