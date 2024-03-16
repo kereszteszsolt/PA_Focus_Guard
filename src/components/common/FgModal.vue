@@ -4,7 +4,7 @@ import { defineProps, defineModel } from 'vue';
 const props = defineProps({
   activator: {
     type: String,
-    required: true
+    default: ''
   },
   maxWidth: {
     type: String,
