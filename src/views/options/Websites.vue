@@ -8,7 +8,6 @@ import { useI18nStore } from '@/store';
 import { msg } from '@/constants';
 import { CommonCrudMenu, FgModal } from '@/components/common';
 import * as utils from '@/utils';
-import { createBatchMessageListenerM2O } from '@/utils/runtime-messages';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();

@@ -2,7 +2,6 @@
 import { useI18nStore, useWebsiteRulesStore } from '@/store';
 import { IWebsiteRuleList } from '@/interfaces';
 import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
-import { EditWebsiteRuleListDialog } from '@/components/websites';
 import { computed, nextTick, ref, watch } from 'vue';
 import { msg } from '@/constants';
 import * as utils from '@/utils';

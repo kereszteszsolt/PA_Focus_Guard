@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18nStore } from '@/store';
-import { computed, nextTick, Ref, ref, UnwrapRef } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
 import * as utils from '@/utils';
