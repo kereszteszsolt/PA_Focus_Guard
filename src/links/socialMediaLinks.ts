@@ -8,7 +8,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.facebook.com/@KeresztesZsolt.kzs',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@KeresztesZsolt.kzs',
-    shortDescription: 'Follow us on Facebook',
+    shortDescription: msg.SOC_MED_DESC_FACEBOOK,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_FACEBOOK,
   },
   {
@@ -18,7 +18,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.linkedin.com/in/keresztes.zsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@keresztes.zsolt',
-    shortDescription: 'Connect with me on LinkedIn',
+    shortDescription: msg.SOC_MED_DESC_LINKEDIN,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_LINKEDIN,
   },
   {
@@ -28,7 +28,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.github.com/kereszteszsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt',
-    shortDescription: 'Follow me on GitHub',
+    shortDescription: msg.SOC_MED_DESC_GITHUB,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_GITHUB,
   },
   {
@@ -38,7 +38,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.twitter.com/kereszteszsolti',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@KeresztesZsolti',
-    shortDescription: 'Follow me on Twitter',
+    shortDescription: msg.SOC_MED_DESC_GITHUB,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_TWITTER,
   },
   {
@@ -48,7 +48,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.instagram.com/kereszteszsolt_zsk',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt_zsk',
-    shortDescription: 'Follow me on Instagram',
+    shortDescription: msg.SOC_MED_DESC_INSTAGRAM,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_INSTAGRAM,
   },
   {
@@ -58,7 +58,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.youtube.com/channel/@kereszteszsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt',
-    shortDescription: 'Subscribe to my YouTube channel',
+    shortDescription: msg.SOC_MED_DESC_YOUTUBE_HU,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
   },
   {
@@ -68,7 +68,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.youtube.com/channel/@kereszteszsolti',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolti',
-    shortDescription: 'Subscribe to my YouTube channel',
+    shortDescription: msg.SOC_MED_DESC_YOUTUBE_EN,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
   },
   {

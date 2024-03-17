@@ -54,7 +54,7 @@ const openSocialDialog = (link: ISocialMediaLink) => {
         <span class="font-weight-bold fgc-accent">{{ contextLink.profileIdentifier }}</span>&nbsp;
         <a :href="contextLink.url" target="_blank">{{ contextLink.url }}</a>
       </p>
-      <p>{{ contextLink.shortDescription }}</p>
+      <p>{{ t(contextLink.shortDescription) }}</p>
       <p>{{ t(contextLink.callToAction) }}</p>
     </div>
     <template v-slot:actions>

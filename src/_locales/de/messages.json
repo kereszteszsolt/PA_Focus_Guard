@@ -91,11 +91,12 @@
     "newLanguage": "Neue Sprache",
     "editLanguage": "Sprache bearbeiten",
     "deleteLanguage": "Sprache löschen",
-    "areYouSureDeleteThisLanguage": "Sind Sie sicher, dass Sie diese Sprache löschen möchten?",
-    "areYouSureDeleteThisLanguage": "Sind Sie sicher, dass Sie diese Sprache löschen möchten?",
-    "deleteDistractionAttempt": "Ablenkungsversuch löschen",
-    "areYouSureDeleteThisDistractionAttempt": "Sind Sie sicher, dass Sie diesen Ablenkungsversuch löschen möchten?",
-    "deleteTheAttemptWhitThisUrlFilter": "Den Versuch mit diesem URL-Filter löschen?",
-    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Dieser Ablenkungsversuch enthält nur einen URL-Filter!"
+    "socMedDescFacebook": "Inhalt: zweisprachige Beiträge auf Ungarisch und Englisch in verschiedenen Kategorien, wie Blogs, Selbstentwicklung, Wissenschaft und Technologie usw.",
+    "socMedDescTwitter": "Inhalt: zweisprachige Tweets auf Ungarisch und Englisch in verschiedenen Kategorien, wie Blogs, Selbstentwicklung, Wissenschaft und Technologie usw.",
+    "socMedDescLinkedIn": "Inhalt: zweisprachige Beiträge auf Ungarisch und Englisch in verschiedenen Kategorien, wie Blogs, Selbstentwicklung, Wissenschaft und Technologie usw.",
+    "socMedDescYouTubeHu": "Inhalt: Videos auf Ungarisch in verschiedenen Kategorien, wie Vlogs, Selbstentwicklung, Wissenschaft und Technologie usw.",
+    "socMedDescYouTubeEn": "Inhalt: Videos auf Englisch in verschiedenen Kategorien, wie Vlogs, Selbstentwicklung, Wissenschaft und Technologie usw.",
+    "socMedDescInstagram": "Inhalt: Fotos hauptsächlich von Essen, Natur, Blumen, Vögeln und Insekten.",
+    "socMedDescTikTok": "Inhalt: Videos auf Ungarisch in verschiedenen Kategorien, wie Vlogs, Selbstentwicklung, Wissenschaft und Technologie usw."
   }
 }

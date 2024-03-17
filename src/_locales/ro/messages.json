@@ -96,6 +96,13 @@
     "deleteDistractionAttempt": "Ștergeți Tentativa de Distragere",
     "areYouSureDeleteThisDistractionAttempt": "Sunteți sigur că doriți să ștergeți această tentativă de distragere?",
     "deleteTheAttemptWhitThisUrlFilter": "Ștergeți tentativa cu acest filtru URL?",
-    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Această tentativă de distragere conține doar un filtru URL!"
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Această tentativă de distragere conține doar un filtru URL!",
+    "socMedDescFacebook": "Conținut: postări bilingve în maghiară și engleză în diverse categorii, precum bloguri, dezvoltare personală, știință și tehnologie, etc.",
+    "socMedDescTwitter": "Conținut: tweet-uri bilingve în maghiară și engleză în diverse categorii, precum bloguri, dezvoltare personală, știință și tehnologie, etc.",
+    "socMedDescLinkedIn": "Conținut: postări bilingve în maghiară și engleză în diverse categorii, precum bloguri, dezvoltare personală, știință și tehnologie, etc.",
+    "socMedDescYouTubeHu": "Conținut: videoclipuri în maghiară în diverse categorii, precum vloguri, dezvoltare personală, știință și tehnologie, etc.",
+    "socMedDescYouTubeEn": "Conținut: videoclipuri în engleză în diverse categorii, precum vloguri, dezvoltare personală, știință și tehnologie, etc.",
+    "socMedDescInstagram": "Conținut: fotografii cu preponderență de mâncare, natură, flori, păsări și insecte.",
+    "socMedDescTikTok": "Conținut: videoclipuri în maghiară în diverse categorii, precum vloguri, dezvoltare personală, știință și tehnologie, etc."
   }
 }

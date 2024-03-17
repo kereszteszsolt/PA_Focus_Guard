@@ -95,6 +95,13 @@
     "deleteDistractionAttempt": "Delete Distraction Attempt",
     "areYouSureDeleteThisDistractionAttempt": "Are you sure you want to delete this distraction attempt?",
     "deleteTheAttemptWhitThisUrlFilter": "Delete the attempt with this URL filter?",
-    "thisDistractionAttemptContainsOnlyOneUrlFilter": "This distraction attempt contains only one URL filter!"
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "This distraction attempt contains only one URL filter!",
+    "socMedDescFacebook": "Content: bilingual posts in Hungarian and English in various categories, such as blogs, self-development, science and technology, etc.",
+    "socMedDescTwitter": "Content: bilingual tweets in Hungarian and English in various categories, such as blogs, self-development, science and technology, etc.",
+    "socMedDescLinkedIn": "Content: bilingual posts in Hungarian and English in various categories, such as blogs, self-development, science and technology, etc.",
+    "socMedDescYouTubeHu": "Content: videos in Hungarian in various categories, such as vlogs, self-development, science and technology, etc.",
+    "socMedDescYouTubeEn": "Content: videos in English in various categories, such as vlogs, self-development, science and technology, etc.",
+    "socMedDescInstagram": "Content: photos mainly of food, nature, flowers, birds and bugs.",
+    "socMedDescTikTok": "Content: videos in Hungarian in various categories, such as vlogs, self-development, science and technology, etc."
   }
 }

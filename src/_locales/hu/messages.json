@@ -96,6 +96,13 @@
     "deleteDistractionAttempt": "Zavarás Kísérlet Törlése",
     "areYouSureDeleteThisDistractionAttempt": "Biztosan törölni szeretné ezt a zavarás kísérletet?",
     "deleteTheAttemptWhitThisUrlFilter": "Töröljük a kísérletet ezzel az URL szűrővel?",
-    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Ez a zavarás kísérlet csak egy URL szűrőt tartalmaz!"
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Ez a zavarás kísérlet csak egy URL szűrőt tartalmaz!",
+    "socMedDescFacebook": "Tartalom: kétnyelvű bejegyzések magyarul és angolul, különböző kategóriákban, mint például blogok, önképzés, tudomány és technológia, stb.",
+    "socMedDescTwitter": "Tartalom: kétnyelvű tweetek magyarul és angolul, különböző kategóriákban, mint például blogok, önképzés, tudomány és technológia, stb.",
+    "socMedDescLinkedIn": "Tartalom: kétnyelvű bejegyzések magyarul és angolul, különböző kategóriákban, mint például blogok, önképzés, tudomány és technológia, stb.",
+    "socMedDescYouTubeHu": "Tartalom: videók magyarul, különböző kategóriákban, mint például vlogok, önképzés, tudomány és technológia, stb.",
+    "socMedDescYouTubeEn": "Tartalom: videók angolul, különböző kategóriákban, mint például vlogok, önképzés, tudomány és technológia, stb.",
+    "socMedDescInstagram": "Tartalom: főleg ételről, természetről, virágokról, madarakról és bogarakról készült fényképek.",
+    "socMedDescTikTok": "Tartalom: videók magyarul, különböző kategóriákban, mint például vlogok, önképzés, tudomány és technológia, stb."
   }
 }

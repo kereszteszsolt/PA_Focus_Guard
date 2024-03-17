@@ -91,4 +91,11 @@ export const DELETE_DISTRACTION_ATTEMPT = 'deleteDistractionAttempt';
 export const ARE_YOU_SURE_DELETE_THIS_DISTRACTION_ATTEMPT = 'areYouSureDeleteThisDistractionAttempt';
 export const DELETE_THE_ATTEMPT_WHIT_THIS_URL_FILTER = 'deleteTheAttemptWhitThisUrlFilter';
 export const THIS_DISTRACTION_ATTEMPT_CONTAINS_ONLY_ONE_URL_FILTER = 'thisDistractionAttemptContainsOnlyOneUrlFilter';
-
+export const SOC_MED_DESC_FACEBOOK = 'socMedDescFacebook';
+export const SOC_MED_DESC_TWITTER = 'socMedDescTwitter';
+export const SOC_MED_DESC_LINKEDIN = 'socMedDescLinkedIn';
+export const SOC_MED_DESC_GITHUB = 'socMedDescGitHub';
+export const SOC_MED_DESC_YOUTUBE_HU = 'socMedDescYouTubeHu';
+export const SOC_MED_DESC_YOUTUBE_EN = 'socMedDescYouTubeEn';
+export const SOC_MED_DESC_INSTAGRAM = 'socMedDescInstagram';
+export const SOC_MED_DESC_TIKTOK = 'socMedDescTikTok';
