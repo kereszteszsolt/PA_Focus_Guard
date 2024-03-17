@@ -6,13 +6,14 @@ import { ISocialMediaLink } from '@/interfaces';
 import { msg } from '@/constants';
 import * as links from '@/links';
 
-const { fetchLocaleSettingsAndMessages, getTranslation } = useI18nStore();
+const { fetchLocaleSettingsAndMessages, getTranslation, getRestrictedTranslationBuiltInOnly } = useI18nStore();
 fetchLocaleSettingsAndMessages();
 
 const socialDialog = ref(false);
 const contextLink = ref({} as ISocialMediaLink);
 
 const t = (key: string) => computed(() => getTranslation(key)).value;
+const tbi = (key: string) => computed(() => getRestrictedTranslationBuiltInOnly(key)).value;
 
 const openSocialDialog = (link: ISocialMediaLink) => {
   socialDialog.value = true;
@@ -34,7 +35,7 @@ const openSocialDialog = (link: ISocialMediaLink) => {
       <v-btn
         v-for="link in links.footerViewLinks" :to="link.url" variant="text" density="compact" size="small"
         class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">
-        {{ t(link.title) }}
+        {{ tbi(link.title) }}
       </v-btn>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">
@@ -46,16 +47,16 @@ const openSocialDialog = (link: ISocialMediaLink) => {
       {{ contextLink.platformName }}
     </template>
     <div>
-      <p class="font-weight-bold">{{ t(msg.THANK_Y4Y_INTEREST) }}</p>
-      <p>{{ t(msg.NOT_PART_OF_EXTENSION) }}</p>
-      <p>{{ t(msg.CLICK_OPEN_NEW_TAB) }}</p>
+      <p class="font-weight-bold">{{ tbi(msg.THANK_Y4Y_INTEREST) }}</p>
+      <p>{{ tbi(msg.NOT_PART_OF_EXTENSION) }}</p>
+      <p>{{ tbi(msg.CLICK_OPEN_NEW_TAB) }}</p>
       <p>
         <span class="font-weight-bold fgc-primary">{{ contextLink.profileName }}</span>&nbsp;
         <span class="font-weight-bold fgc-accent">{{ contextLink.profileIdentifier }}</span>&nbsp;
         <a :href="contextLink.url" target="_blank">{{ contextLink.url }}</a>
       </p>
-      <p>{{ t(contextLink.shortDescription) }}</p>
-      <p>{{ t(contextLink.callToAction) }}</p>
+      <p>{{ tbi(contextLink.shortDescription) }}</p>
+      <p>{{ tbi(contextLink.callToAction) }}</p>
     </div>
     <template v-slot:actions>
       <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>

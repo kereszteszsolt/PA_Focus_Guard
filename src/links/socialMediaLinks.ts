@@ -1,5 +1,6 @@
 import { msg } from '@/constants';
 import { ISocialMediaLink } from '@/interfaces';
+import { SOC_MED_DESC_TWITTER } from '@/constants/messages';
 export const socialMediaLinks: ISocialMediaLink[] = [
   {
     id: 1,
@@ -38,7 +39,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.twitter.com/kereszteszsolti',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@KeresztesZsolti',
-    shortDescription: msg.SOC_MED_DESC_GITHUB,
+    shortDescription: msg.SOC_MED_DESC_TWITTER,
     callToAction: msg.CLICK_AND_FALLOW_ME_ON_TWITTER,
   },
   {
