@@ -189,19 +189,11 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
   <fg-dialog
     v-model:dialog="dialogDelete"
     :max-width="'900px'"
+    :title="t(msg.DELETE_WEBSITE_RULE_LIST)"
+    :main-text="t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE_LIST)"
+    :main-text-item="editingRuleWebsiteList.name"
+    :secondary-text="isEmpty ? '' : t(msg.THE_WEBSITE_RULE_LIST_IS_NOT_EMPTY)"
   >
-    <template v-slot:title>
-      <span>{{ t(msg.DELETE_WEBSITE_RULE_LIST) }}</span>
-    </template>
-    <template v-slot:main_text>
-      {{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE_LIST) }}
-    </template>
-    <template v-slot:main_text_item>
-      {{ editingRuleWebsiteList.name }}
-    </template>
-    <template v-slot:secondary_text v-if="!isEmpty">
-      {{ t(msg.THE_WEBSITE_RULE_LIST_IS_NOT_EMPTY) }}
-    </template>
     <template v-slot:secondary_text_item v-if="!isEmpty">
       <v-checkbox
         color="danger" v-model="confirmDeleteListItems"

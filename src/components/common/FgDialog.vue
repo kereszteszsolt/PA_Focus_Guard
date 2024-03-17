@@ -13,6 +13,30 @@ const props = defineProps({
   color: {
     type: String,
     default: 'background'
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  mainText: {
+    type: String,
+    default: ''
+  },
+  mainTextItem: {
+    type: String,
+    default: ''
+  },
+  secondaryText: {
+    type: String,
+    default: ''
+  },
+  secondaryTextItem: {
+    type: String,
+    default: ''
+  },
+  textDivider: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -24,21 +48,26 @@ const dialog = defineModel('dialog', { type: Boolean });
     <v-card :color="props.color">
       <v-card-item>
         <v-card-title class="text-h5">
+          <div v-if="props.title">{{ props.title }}</div>
           <slot name="title"></slot>
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <div class="d-flex flex-column text-body-1" v-if="$slots['main_text']">
+        <div class="d-flex flex-column text-body-1" v-if="$slots['main_text'] || props.mainText">
+          <div v-if="props.mainText">{{ props.mainText }}</div>
           <slot name="main_text"></slot>
-          <div v-if="$slots['main_text_item']">
+          <div v-if="$slots['main_text_item'] || props.mainTextItem" class="d-flex flex-row">
             <v-icon>mdi-chevron-double-right</v-icon>
+            <div v-if="props.mainTextItem">{{ props.mainTextItem }}</div>
             <slot name="main_text_item"></slot>
             <v-icon>mdi-chevron-double-left</v-icon>
           </div>
         </div>
-        <div class="d-flex flex-column text-body-1" v-if="$slots['secondary_text']">
-          <v-divider class="mx-1 my-2"></v-divider>
+        <v-divider class="mx-1 my-2" v-if="($slots['secondary_text'] || props.secondaryText) && props.textDivider"></v-divider>
+        <div class="d-flex flex-column text-body-1" v-if="$slots['secondary_text'] || props.secondaryText">
+          <div v-if="props.secondaryText">{{ props.secondaryText }}</div>
           <slot name="secondary_text"></slot>
+          <div v-if="props.secondaryTextItem">{{ props.secondaryTextItem }}</div>
           <slot name="secondary_text_item"></slot>
         </div>
         <slot></slot>
