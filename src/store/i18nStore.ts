@@ -76,9 +76,6 @@ export const useI18nStore = defineStore('i18n', {
           return key;
       }
     },
-    getChooseTranslation: (state) => (t1: string, t2:string, localeId: string): string => {
-      return state.fastSettings.currentLocaleId === localeId ? t1 : t2;
-    },
     getRestrictedTranslation: (state) => (key: string): string => {
       return restricted.t.getTranslation(key, state.fastSettings.currentLocaleId === 'hu' ? 'hu' : 'en');
     },

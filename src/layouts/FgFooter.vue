@@ -15,7 +15,6 @@ const socialDialog = ref(false);
 const contextLink = ref({} as ISocialMediaLink);
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
-const tc = (t1: string, t2:string) => computed(() => i18n.getChooseTranslation(t1, t2, 'hu')).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
 
 const openSocialDialog = (link: ISocialMediaLink) => {
@@ -41,7 +40,7 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'l
       <v-btn
         v-for="link in links.footerViewLinks" :to="link.url" variant="text" density="compact" size="small"
         class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">
-        {{ tc(link.title_hu, link.title_en) }}
+        {{ tr(link.title) }}
       </v-btn>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">

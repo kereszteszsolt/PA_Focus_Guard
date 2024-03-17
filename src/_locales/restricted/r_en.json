@@ -14,7 +14,14 @@
   "clickAndFallowMeOnInstagram": "Click and follow me on Instagram!",
   "clickAndFallowMeOnTikTok": "Click and follow me on TikTok!",
   "clickAndCheckMyLinkreePage": "Click and check my Linktr.ee  page!",
-  "thankY4YInterest" : "Thank you for your interest!",
-  "notPartOfExtension" : "The desired page is not part of the extension!",
-  "clickOpenNewTab" : "You can open the link in a new tab by clicking on it."
+  "thankY4YInterest": "Thank you for your interest!",
+  "notPartOfExtension": "The desired page is not part of the extension!",
+  "clickOpenNewTab": "You can open the link in a new tab by clicking on it.",
+  "privacyPolicy": "Privacy Policy",
+  "gtc": "G.T.C.",
+  "acknowledgments": "Acknowledgments",
+  "donations": "Donations",
+  "qna": "Q&A",
+  "contact": "Contact",
+  "about": "About"
 }
