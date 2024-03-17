@@ -5,8 +5,7 @@ import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import { computed, nextTick, ref, watch } from 'vue';
 import { msg } from '@/constants';
 import * as utils from '@/utils';
-import { FgDialog } from '@/components/common';
-import FgFormModal from '@/components/common/FgFormModal.vue';
+import { FgDialog, FgFormDialog } from '@/components/common';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
@@ -69,15 +68,20 @@ const nameRules = computed(() => {
 const closeEditDialog = () => {
   dialogEdit.value = false;
   nextTick(() => {
-    editingRuleWebsiteList.value = websiteRulesStore.getDummyWebsiteRuleList;
+    editingRuleWebsiteList.value = {...websiteRulesStore.getDummyWebsiteRuleList};
     isNewItem.value = true;
     isValid.value = true;
     errorMessage.value = '';
     fieldTouched.value = false;
+    name.value = '';
   });
 };
 
 const saveItem = () => {
+  validateField();
+  if (!isValid.value) {
+    return;
+  }
   editingRuleWebsiteList.value.name = name.value;
   if (isNewItem.value) {
     websiteRulesStore.addWebsiteRuleList(editingRuleWebsiteList.value);
@@ -93,7 +97,7 @@ const openEditDialog = (_id: string | null) => {
     //TODO show error message
     return;
   }
-  editingRuleWebsiteList.value = list ? list : websiteRulesStore.getDummyWebsiteRuleList;
+  editingRuleWebsiteList.value = list ? {...list} : {...websiteRulesStore.getDummyWebsiteRuleList};
   isNewItem.value = !_id;
   isValid.value = true;
   errorMessage.value = '';
@@ -105,7 +109,7 @@ const openEditDialog = (_id: string | null) => {
 const openDeleteDialog = (id: string) => {
   let list = websiteRulesStore.getWebsiteRuleListById(id);
   if (list) {
-    editingRuleWebsiteList.value = list;
+    editingRuleWebsiteList.value = {...list};
     isEmpty.value = websiteRulesStore.getWebsiteRulesByListId(id).length === 0;
     confirmDeleteListItems.value = false;
     dialogDelete.value = true;
@@ -166,25 +170,23 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
     </div>
   </v-sheet>
 
-  <fg-form-modal
+  <fg-form-dialog
     v-model:dialog="dialogEdit"
     v-model:valid="isValid"
     :max-width="'900px'"
+    :title="isNewItem ? t(msg.NEW_WEBSITE_RULE_LIST) : t(msg.EDIT_WEBSITE_RULE_LIST)"
+    :actions="[
+      { key: msg.CANCEL, name: t(msg.CANCEL), clickHandler: closeEditDialog, color: 'success' },
+      { key: msg.SAVE, name: t(msg.SAVE), clickHandler: saveItem, color: 'danger', disabled: !isValid }
+    ]"
   >
-    <template v-slot:title>
-      <span>{{ isNewItem ? t(msg.NEW_WEBSITE_RULE_LIST) : t(msg.EDIT_WEBSITE_RULE_LIST) }}</span>
-    </template>
     <div>
       <v-text-field v-model="name" :error-messages="errorMessage"
                     :label="t(msg.NAME_OF_WEBSITE_RULE_LIST)"
                     @blur="touched" required :suffix="name.length + '/25'">
       </v-text-field>
     </div>
-    <template v-slot:actions>
-      <v-btn @click="closeEditDialog" color="success" variant="elevated" elevation="8">{{ t(msg.CANCEL) }}</v-btn>
-      <v-btn @click="saveItem" color="danger" variant="elevated" elevation="8">{{ t(msg.SAVE) }}</v-btn>
-    </template>
-  </fg-form-modal>
+  </fg-form-dialog>
 
   <fg-dialog
     v-model:dialog="dialogDelete"

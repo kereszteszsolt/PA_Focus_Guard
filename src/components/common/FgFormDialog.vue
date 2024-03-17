@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps, defineModel } from 'vue';
+import { IDialogAction } from '@/interfaces';
 
 const props = defineProps({
   activator: {
@@ -13,6 +14,14 @@ const props = defineProps({
   color: {
     type: String,
     default: 'background'
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  actions: {
+    type: Array as () => IDialogAction[],
+    default: []
   }
 });
 
@@ -27,6 +36,7 @@ const isValid = defineModel('valid', { type: Boolean });
       <v-card :color="props.color">
         <v-card-item>
           <v-card-title class="text-h5">
+            <div v-if="props.title">{{ props.title }}</div>
             <slot name="title"></slot>
           </v-card-title>
         </v-card-item>
@@ -34,6 +44,17 @@ const isValid = defineModel('valid', { type: Boolean });
           <slot></slot>
         </v-card-text>
         <v-card-actions class="justify-end">
+          <v-btn
+            v-for="action in props.actions"
+            :key="action.key"
+            @click="action.clickHandler"
+            :color="action?.color || 'primary'"
+            :variant="action?.variant ||'elevated'"
+            :elevation="action?.elevation || 8"
+            :disabled="action?.disabled || false"
+          >
+            {{ action.name }}
+          </v-btn>
           <slot name="actions"></slot>
         </v-card-actions>
       </v-card>
