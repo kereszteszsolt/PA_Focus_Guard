@@ -9,3 +9,4 @@ export * from './ILocaleSettings';
 export * from './ISocialMediaLink';
 export * from './IAction';
 export * from './IMessages';
+export * from './IDialogAction';

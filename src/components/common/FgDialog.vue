@@ -1,5 +1,6 @@
 <script setup lang="ts" xmlns="http://www.w3.org/1999/html">
 import { defineProps, defineModel } from 'vue';
+import { IDialogAction } from '@/interfaces';
 
 const props = defineProps({
   activator: {
@@ -37,6 +38,10 @@ const props = defineProps({
   textDivider: {
     type: Boolean,
     default: true
+  },
+  actions: {
+    type: Array as () => IDialogAction[],
+    default: []
   }
 });
 
@@ -73,6 +78,16 @@ const dialog = defineModel('dialog', { type: Boolean });
         <slot></slot>
       </v-card-text>
       <v-card-actions class="justify-end">
+        <v-btn
+          v-for="action in props.actions"
+          :key="action.key"
+          @click="action.clickHandler"
+          :color="action?.color || 'primary'"
+          :variant="action?.variant ||'elevated'"
+          :elevation="action?.elevation || 12"
+        >
+          {{ action.name }}
+        </v-btn>
         <slot name="actions"></slot>
       </v-card-actions>
     </v-card>

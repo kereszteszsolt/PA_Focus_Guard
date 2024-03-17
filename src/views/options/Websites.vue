@@ -246,11 +246,11 @@ const save = (editedItem: IWebsiteRule) => {
     :title="t(msg.DELETE_WEBSITE_RULE)"
     :main-text="t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE)"
     :main-text-item="contextItem.urlFilter"
+    :actions="[
+      { key: msg.DELETE, name: t(msg.DELETE), clickHandler: deleteItemConfirm, color: 'danger' },
+      { key: msg.CANCEL, name: t(msg.CANCEL), clickHandler: closeDelete, color: 'success' }
+    ]"
   >
-    <template v-slot:actions>
-      <v-btn @click="deleteItemConfirm" variant="elevated" elevation="12" color="danger">{{ t(msg.DELETE) }}</v-btn>
-      <v-btn @click="closeDelete" variant="elevated" elevation="12" color="success">{{ t(msg.CANCEL) }}</v-btn>
-    </template>
   </fg-dialog>
 </template>
 
