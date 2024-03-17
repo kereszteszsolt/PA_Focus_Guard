@@ -193,19 +193,16 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
     :main-text="t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE_LIST)"
     :main-text-item="editingRuleWebsiteList.name"
     :secondary-text="isEmpty ? '' : t(msg.THE_WEBSITE_RULE_LIST_IS_NOT_EMPTY)"
+    :actions="[
+      { key: msg.DELETE, name: t(msg.DELETE), clickHandler: deleteItemConfirm, color: 'danger', disabled: !isEmpty && !confirmDeleteListItems},
+      { key: msg.CANCEL, name: t(msg.CANCEL), clickHandler: closeDelete, color: 'success'}
+    ]"
   >
     <template v-slot:secondary_text_item v-if="!isEmpty">
       <v-checkbox
         color="danger" v-model="confirmDeleteListItems"
         :label="t(msg.ALSO_DELETE_ALL_ASSOCIATED_WEBSITE_RULES)">
       </v-checkbox>
-    </template>
-    <template v-slot:actions>
-      <v-btn @click="closeDelete" color="success" variant="elevated" elevation="8">{{ t(msg.CANCEL) }}</v-btn>
-      <v-btn @click="deleteItemConfirm" color="danger" variant="elevated" elevation="8"
-             :disabled="!isEmpty && !confirmDeleteListItems">
-        {{ t(msg.DELETE) }}
-      </v-btn>
     </template>
   </fg-dialog>
 </template>

@@ -84,7 +84,8 @@ const dialog = defineModel('dialog', { type: Boolean });
           @click="action.clickHandler"
           :color="action?.color || 'primary'"
           :variant="action?.variant ||'elevated'"
-          :elevation="action?.elevation || 12"
+          :elevation="action?.elevation || 8"
+          :disabled="action?.disabled || false"
         >
           {{ action.name }}
         </v-btn>
