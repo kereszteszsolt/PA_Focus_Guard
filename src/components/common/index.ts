@@ -1,5 +1,5 @@
 import CommonCrudMenu from './CommonCrudMenu.vue';
 import CommonActionTreeDotsMenu from './CommonActionTreeDotsMenu.vue';
-import FgModal from './FgModal.vue';
+import FgDialog from './FgDialog.vue';
 
-export { CommonCrudMenu, CommonActionTreeDotsMenu, FgModal };
+export { CommonCrudMenu, CommonActionTreeDotsMenu, FgDialog };

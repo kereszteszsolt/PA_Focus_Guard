@@ -6,7 +6,7 @@ import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18nStore } from '@/store';
 import { msg } from '@/constants';
-import { CommonCrudMenu, FgModal } from '@/components/common';
+import { CommonCrudMenu, FgDialog } from '@/components/common';
 import * as utils from '@/utils';
 
 const websiteRulesStore = useWebsiteRulesStore();
@@ -240,7 +240,7 @@ const save = (editedItem: IWebsiteRule) => {
     :t="t"
   ></edit-website-rule-dialog>
 
-  <fg-modal v-model:dialog="dialogDelete" activator="#deleteWsRule">
+  <fg-dialog v-model:dialog="dialogDelete" activator="#deleteWsRule">
     <template v-slot:title>
       {{ t(msg.DELETE_WEBSITE_RULE) }}
     </template>
@@ -256,7 +256,7 @@ const save = (editedItem: IWebsiteRule) => {
       <v-btn @click="deleteItemConfirm" variant="elevated" elevation="12" color="danger">{{ t(msg.DELETE) }}</v-btn>
       <v-btn @click="closeDelete" variant="elevated" elevation="12" color="success">{{ t(msg.CANCEL) }}</v-btn>
     </template>
-  </fg-modal>
+  </fg-dialog>
 </template>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { FgModal } from '@/components/common';
+import { FgDialog } from '@/components/common';
 import { useI18nStore } from '@/store';
 import { ISocialMediaLink } from '@/interfaces';
 import { msg } from '@/constants';
@@ -41,7 +41,7 @@ const openSocialDialog = (link: ISocialMediaLink) => {
       <p class="fgc-info">Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
     </div>
   </v-sheet>
-  <fg-modal v-model:dialog="socialDialog" activator="#fgModal" max-width="600px">
+  <fg-dialog v-model:dialog="socialDialog" activator="#fgModal" max-width="600px">
     <template v-slot:title>
       {{ contextLink.platformName }}
     </template>
@@ -60,7 +60,7 @@ const openSocialDialog = (link: ISocialMediaLink) => {
     <template v-slot:actions>
       <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>
     </template>
-  </fg-modal>
+  </fg-dialog>
 </template>
 
 <style scoped lang="scss">

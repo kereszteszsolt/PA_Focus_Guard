@@ -5,7 +5,7 @@ import SidebarListItem from '@/components/sidebar/SidebarListItem.vue';
 import { computed, nextTick, ref, watch } from 'vue';
 import { msg } from '@/constants';
 import * as utils from '@/utils';
-import { FgModal } from '@/components/common';
+import { FgDialog } from '@/components/common';
 import FgFormModal from '@/components/common/FgFormModal.vue';
 
 const websiteRulesStore = useWebsiteRulesStore();
@@ -186,29 +186,28 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
     </template>
   </fg-form-modal>
 
-  <fg-modal
+  <fg-dialog
     v-model:dialog="dialogDelete"
     :max-width="'900px'"
   >
     <template v-slot:title>
       <span>{{ t(msg.DELETE_WEBSITE_RULE_LIST) }}</span>
     </template>
-    <div class="d-flex flex-column text-body-1">
+    <template v-slot:main_text>
       {{ t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE_LIST) }}
-      <div>
-        <v-icon>mdi-chevron-double-right</v-icon>
-        {{ editingRuleWebsiteList.name }}
-        <v-icon>mdi-chevron-double-left</v-icon>
-      </div>
-    </div>
-    <v-divider v-if="!isEmpty" class="mx-1 my-2"></v-divider>
-    <div class="d-flex flex-column text-body-2" v-if="!isEmpty">
-      <span>{{ t(msg.THE_WEBSITE_RULE_LIST_IS_NOT_EMPTY) }}</span>
+    </template>
+    <template v-slot:main_text_item>
+      {{ editingRuleWebsiteList.name }}
+    </template>
+    <template v-slot:secondary_text v-if="!isEmpty">
+      {{ t(msg.THE_WEBSITE_RULE_LIST_IS_NOT_EMPTY) }}
+    </template>
+    <template v-slot:secondary_text_item v-if="!isEmpty">
       <v-checkbox
-        color="danger" v-if="!isEmpty" v-model="confirmDeleteListItems"
+        color="danger" v-model="confirmDeleteListItems"
         :label="t(msg.ALSO_DELETE_ALL_ASSOCIATED_WEBSITE_RULES)">
       </v-checkbox>
-    </div>
+    </template>
     <template v-slot:actions>
       <v-btn @click="closeDelete" color="success" variant="elevated" elevation="8">{{ t(msg.CANCEL) }}</v-btn>
       <v-btn @click="deleteItemConfirm" color="danger" variant="elevated" elevation="8"
@@ -216,7 +215,7 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
         {{ t(msg.DELETE) }}
       </v-btn>
     </template>
-  </fg-modal>
+  </fg-dialog>
 </template>
 
 <style scoped lang="scss">
