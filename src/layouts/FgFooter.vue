@@ -44,19 +44,21 @@ const openSocialDialog = (link: ISocialMediaLink) => {
   </v-sheet>
   <fg-dialog v-model:dialog="socialDialog" activator="#fgModal" max-width="600px">
     <template v-slot:title>
-      {{ contextLink.platformName }}
+      <h2 class="mb-2 fg-font-s-24">{{ contextLink.platformName }}</h2>
     </template>
-    <div>
-      <p class="font-weight-bold">{{ tbi(msg.THANK_Y4Y_INTEREST) }}</p>
-      <p>{{ tbi(msg.NOT_PART_OF_EXTENSION) }}</p>
-      <p>{{ tbi(msg.CLICK_OPEN_NEW_TAB) }}</p>
-      <p>
-        <span class="font-weight-bold fgc-primary">{{ contextLink.profileName }}</span>&nbsp;
-        <span class="font-weight-bold fgc-accent">{{ contextLink.profileIdentifier }}</span>&nbsp;
-        <a :href="contextLink.url" target="_blank">{{ contextLink.url }}</a>
-      </p>
-      <p>{{ tbi(contextLink.shortDescription) }}</p>
-      <p>{{ tbi(contextLink.callToAction) }}</p>
+    <div class="fg-font-s-16 d-flex flex-column px-3">
+      <div class="mb-1 font-weight-bold">{{ tbi(msg.THANK_Y4Y_INTEREST) }}</div>
+      <div> {{ tbi(msg.NOT_PART_OF_EXTENSION) }}</div>
+      <div>{{ tbi(msg.CLICK_OPEN_NEW_TAB) }}</div>
+      <div class="my-2 fg-font-s-16 d-flex flex-column">
+        <div class="d-flex flex-row">
+          <div class="font-weight-bold fgc-primary mr-1">{{ contextLink.profileName }}</div>
+          <div class="font-weight-bold fgc-accent">{{ contextLink.profileIdentifier }}</div>
+        </div>
+        <a class="fgc-info" :href="contextLink.url" target="_blank">{{ contextLink.url }}</a>
+      </div>
+      <div class="mb-2">{{ tbi(contextLink.shortDescription) }}</div>
+      <div class="mb-2">{{ tbi(contextLink.callToAction) }}</div>
     </div>
     <template v-slot:actions>
       <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>
@@ -65,5 +67,12 @@ const openSocialDialog = (link: ISocialMediaLink) => {
 </template>
 
 <style scoped lang="scss">
+.dialog-title {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
 
+.dialog-content {
+  padding: 20px;
+}
 </style>

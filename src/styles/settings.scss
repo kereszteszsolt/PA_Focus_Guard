@@ -64,6 +64,9 @@ html {
 .fgc-accent {
   color: rgb(var(--v-theme-accent)) !important;
 }
+.fgc-secondary {
+  color: rgb(var(--v-theme-secondary)) !important;
+}
 
 .fw-card {
   max-height: 745px;
@@ -93,4 +96,13 @@ html {
   ::-webkit-scrollbar-thumb:hover {
     background: rgb(var(--v-theme-scrollbar-thumb-color-hover)) !important;
   }
+}
+
+
+.fg-font-s-16{
+  font-size: 16px;
+}
+
+.fg-font-s-24 {
+  font-size: 24px;
 }
