@@ -1,6 +1,6 @@
-import { msg } from '@/constants';
+import { c as r_msg } from '@/_locales/restricted';
 import { ISocialMediaLink } from '@/interfaces';
-import { SOC_MED_DESC_TWITTER } from '@/constants/messages';
+
 export const socialMediaLinks: ISocialMediaLink[] = [
   {
     id: 1,
@@ -9,8 +9,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.facebook.com/@KeresztesZsolt.kzs',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@KeresztesZsolt.kzs',
-    shortDescription: msg.SOC_MED_DESC_FACEBOOK,
-    callToAction: msg.CLICK_AND_FALLOW_ME_ON_FACEBOOK,
+    shortDescription: r_msg.SOC_MED_DESC_FACEBOOK,
+    callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_FACEBOOK,
   },
   {
     id: 2,
@@ -19,8 +19,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.linkedin.com/in/keresztes.zsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@keresztes.zsolt',
-    shortDescription: msg.SOC_MED_DESC_LINKEDIN,
-    callToAction: msg.CLICK_AND_FALLOW_ME_ON_LINKEDIN,
+    shortDescription: r_msg.SOC_MED_DESC_LINKEDIN,
+    callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_LINKEDIN,
   },
   {
     id: 3,
@@ -29,8 +29,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.github.com/kereszteszsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt',
-    shortDescription: msg.SOC_MED_DESC_GITHUB,
-    callToAction: msg.CLICK_AND_FALLOW_ME_ON_GITHUB,
+    shortDescription: r_msg.SOC_MED_DESC_GITHUB,
+    callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_GITHUB,
   },
   {
     id: 4,
@@ -39,8 +39,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.twitter.com/kereszteszsolti',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@KeresztesZsolti',
-    shortDescription: msg.SOC_MED_DESC_TWITTER,
-    callToAction: msg.CLICK_AND_FALLOW_ME_ON_TWITTER,
+    shortDescription: r_msg.SOC_MED_DESC_TWITTER,
+    callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_TWITTER,
   },
   {
     id: 5,
@@ -49,8 +49,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.instagram.com/kereszteszsolt_zsk',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt_zsk',
-    shortDescription: msg.SOC_MED_DESC_INSTAGRAM,
-    callToAction: msg.CLICK_AND_FALLOW_ME_ON_INSTAGRAM,
+    shortDescription: r_msg.SOC_MED_DESC_INSTAGRAM,
+    callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_INSTAGRAM,
   },
   {
     id: 6,
@@ -59,8 +59,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.youtube.com/channel/@kereszteszsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt',
-    shortDescription: msg.SOC_MED_DESC_YOUTUBE_HU,
-    callToAction: msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
+    shortDescription: r_msg.SOC_MED_DESC_YOUTUBE_HU,
+    callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
   },
   {
     id: 7,
@@ -69,8 +69,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.youtube.com/channel/@kereszteszsolti',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolti',
-    shortDescription: msg.SOC_MED_DESC_YOUTUBE_EN,
-    callToAction: msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
+    shortDescription: r_msg.SOC_MED_DESC_YOUTUBE_EN,
+    callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
   },
   {
     id: 8,

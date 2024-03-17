@@ -44,17 +44,6 @@
     "nameOfWebsiteRuleList": "Weboldalszabály-lista neve",
     "totalNrOfItems": "Összes elem száma: ",
     "languages": "Nyelvek",
-    "thankY4YInterest": "Köszönöm az érdeklődését!",
-    "notPartOfExtension": "A kívánt oldal nem része a kiegészítésnek!",
-    "clickOpenNewTab": "Az új fülben megnyithatja a linket rákattintva.",
-    "clickAndFallowMeOnFacebook": "Kattintson és kövessen Facebookon!",
-    "clickAndFallowMeOnTwitter": "Kattintson és kövessen Twitteren!",
-    "clickAndFallowMeOnLinkedIn": "Kattintson és kövessen LinkedInen!",
-    "clickAndFallowMeOnGitHub": "Kattintson és kövessen GitHubon!",
-    "clickAndFallowMeOnYouTube": "Kattintson és kövessen YouTube-on!",
-    "clickAndFallowMeOnInstagram": "Kattintson és kövessen Instagramon!",
-    "clickAndFallowMeOnTikTok": "Kattintson és kövessen TikTokon!",
-    "clickAndCheckMyLinkreePage": "Kattintson és ellenőrizze Linktr.ee oldalam!",
     "urlFilterRequired": "A URL-szűrő kötelező.",
     "invalidDomain": "Érvénytelen tartomány.",
     "invalidEndDomain": "Az aldomain érvénytelen",
@@ -96,13 +85,6 @@
     "deleteDistractionAttempt": "Zavarás Kísérlet Törlése",
     "areYouSureDeleteThisDistractionAttempt": "Biztosan törölni szeretné ezt a zavarás kísérletet?",
     "deleteTheAttemptWhitThisUrlFilter": "Töröljük a kísérletet ezzel az URL szűrővel?",
-    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Ez a zavarás kísérlet csak egy URL szűrőt tartalmaz!",
-    "socMedDescFacebook": "Tartalom: kétnyelvű bejegyzések magyarul és angolul, különböző kategóriákban, mint például blogok, önképzés, tudomány és technológia, stb.",
-    "socMedDescTwitter": "Tartalom: kétnyelvű tweetek magyarul és angolul, különböző kategóriákban, mint például blogok, önképzés, tudomány és technológia, stb.",
-    "socMedDescLinkedIn": "Tartalom: kétnyelvű bejegyzések magyarul és angolul, különböző kategóriákban, mint például blogok, önképzés, tudomány és technológia, stb.",
-    "socMedDescYouTubeHu": "Tartalom: videók magyarul, különböző kategóriákban, mint például vlogok, önképzés, tudomány és technológia, stb.",
-    "socMedDescYouTubeEn": "Tartalom: videók angolul, különböző kategóriákban, mint például vlogok, önképzés, tudomány és technológia, stb.",
-    "socMedDescInstagram": "Tartalom: főleg ételről, természetről, virágokról, madarakról és bogarakról készült fényképek.",
-    "socMedDescTikTok": "Tartalom: videók magyarul, különböző kategóriákban, mint például vlogok, önképzés, tudomány és technológia, stb."
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Ez a zavarás kísérlet csak egy URL szűrőt tartalmaz!"
   }
 }

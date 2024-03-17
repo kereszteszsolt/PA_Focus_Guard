@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import * as utils from '@/utils';
 import { ILocaleMessages, ILocaleSettings } from '@/interfaces';
 import * as constants from '@/constants';
+import * as restricted from '@/_locales/restricted';
 import { generateNumberForDuplicatesByField } from '@/utils/unique';
 import { allFilesReady } from '@crxjs/vite-plugin';
 import * as util from 'util';
@@ -77,6 +78,9 @@ export const useI18nStore = defineStore('i18n', {
     },
     getChooseTranslation: (state) => (t1: string, t2:string, localeId: string): string => {
       return state.fastSettings.currentLocaleId === localeId ? t1 : t2;
+    },
+    getRestrictedTranslation: (state) => (key: string): string => {
+      return restricted.t.getTranslation(key, state.fastSettings.currentLocaleId === 'hu' ? 'hu' : 'en');
     },
     getAllLocales: (state) => {
       return state.localesWithSettings;
