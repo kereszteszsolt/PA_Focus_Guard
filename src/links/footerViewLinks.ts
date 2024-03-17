@@ -2,50 +2,50 @@ import * as constants  from '@/constants';
 export const footerViewLinks = [
   {
     id: 1,
-    title: 'Privacy',
-    name_hu: 'Adatvédelem',
+    title_en: 'Privacy',
+    title_hu: 'Adatvédelem',
     url: '/footer-pages/privacy',
     routeName: constants.routeName.PRIVACY
   },
   {
     id: 2,
-    title: 'Gtc',
-    name_hu: 'Ászf',
+    title_hu: 'G.T.C',
+    title_en: 'Á.Sz.F',
     url: '/footer-pages/gtc',
     routeName: constants.routeName.GTC
   },
   {
     id: 3,
-    title: 'Acknowledgments',
-    name_hu: 'Köszönetnyilvánítás',
+    title_en: 'Acknowledgments',
+    title_hu: 'Köszönetnyilvánítás',
     url: '/footer-pages/acknowledgments',
     routeName: constants.routeName.ACKNOWLEDGMENTS
   },
   {
     id: 4,
-    title: 'Donations',
-    name_hu: 'Adományok',
+    title_en: 'Donations',
+    title_hu: 'Adományok',
     url: '/footer-pages/donations',
     routeName: constants.routeName.DONATIONS
   },
   {
     id: 5,
-    title: 'How To Use',
-    name_hu: 'Használati útmutató',
+    title_en: 'How To Use',
+    title_hu: 'Használati útmutató',
     url: '/footer-pages/how-to-use',
     routeName: constants.routeName.HOW_TO_USE
   },
   {
     id: 6,
-    title: 'Contact',
-    name_hu: 'Kapcsolat',
+    title_en: 'Contact',
+    title_hu: 'Kapcsolat',
     url: '/footer-pages/contact',
     routeName: constants.routeName.CONTACT
   },
   {
     id: 7,
-    title: 'About',
-    name_hu: 'Rólam',
+    title_en: 'About',
+    title_hu: 'Rólam',
     url: '/footer-pages/about',
     routeName: constants.routeName.ABOUT
   }

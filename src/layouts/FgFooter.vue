@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { FgDialog } from '@/components/common';
 import { useI18nStore } from '@/store';
 import { ISocialMediaLink } from '@/interfaces';
 import { msg } from '@/constants';
 import * as links from '@/links';
+import * as utils from '@/utils';
 
-const { fetchLocaleSettingsAndMessages, getTranslation, getRestrictedTranslationBuiltInOnly } = useI18nStore();
-fetchLocaleSettingsAndMessages();
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
 
 const socialDialog = ref(false);
 const contextLink = ref({} as ISocialMediaLink);
 
-const t = (key: string) => computed(() => getTranslation(key)).value;
-const tbi = (key: string) => computed(() => getRestrictedTranslationBuiltInOnly(key)).value;
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+const tr = (t1: string, t2:string) => computed(() => i18n.getChooseTranslation(t1, t2, 'hu')).value;
 
 const openSocialDialog = (link: ISocialMediaLink) => {
   socialDialog.value = true;
   contextLink.value = link;
 };
+utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'localeMessagesUpdated'], () => {
+  i18n.fetchLocaleSettingsAndMessages();
+});
 
 </script>
 
@@ -35,7 +39,7 @@ const openSocialDialog = (link: ISocialMediaLink) => {
       <v-btn
         v-for="link in links.footerViewLinks" :to="link.url" variant="text" density="compact" size="small"
         class="text-none text-center flex-1-0 text-decoration-none font-weight-regular" color="info">
-        {{ tbi(link.title) }}
+        {{ tr(link.title_hu, link.title_en)}}
       </v-btn>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">
@@ -47,9 +51,9 @@ const openSocialDialog = (link: ISocialMediaLink) => {
       <h2 class="mb-2 fg-font-s-24">{{ contextLink.platformName }}</h2>
     </template>
     <div class="fg-font-s-16 d-flex flex-column px-3">
-      <div class="mb-1 font-weight-bold">{{ tbi(msg.THANK_Y4Y_INTEREST) }}</div>
-      <div> {{ tbi(msg.NOT_PART_OF_EXTENSION) }}</div>
-      <div>{{ tbi(msg.CLICK_OPEN_NEW_TAB) }}</div>
+      <div class="mb-1 font-weight-bold">{{ t(msg.THANK_Y4Y_INTEREST) }}</div>
+      <div> {{ t(msg.NOT_PART_OF_EXTENSION) }}</div>
+      <div>{{ t(msg.CLICK_OPEN_NEW_TAB) }}</div>
       <div class="my-2 fg-font-s-16 d-flex flex-column">
         <div class="d-flex flex-row">
           <div class="font-weight-bold fgc-primary mr-1">{{ contextLink.profileName }}</div>
@@ -57,8 +61,8 @@ const openSocialDialog = (link: ISocialMediaLink) => {
         </div>
         <a class="fgc-info" :href="contextLink.url" target="_blank">{{ contextLink.url }}</a>
       </div>
-      <div class="mb-2">{{ tbi(contextLink.shortDescription) }}</div>
-      <div class="mb-2">{{ tbi(contextLink.callToAction) }}</div>
+      <div class="mb-2">{{ t(contextLink.shortDescription) }}</div>
+      <div class="mb-2">{{ t(contextLink.callToAction) }}</div>
     </div>
     <template v-slot:actions>
       <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>

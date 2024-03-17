@@ -75,49 +75,8 @@ export const useI18nStore = defineStore('i18n', {
           return key;
       }
     },
-    getRestrictedTranslation: (state) => (key: string, allowed: string[]): string => {
-      switch (true) {
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.currentLocaleId) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.currentLocaleId)?.messages.hasOwnProperty(key) &&
-        allowed.includes(state.fastSettings.currentLocaleId):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.currentLocaleId)?.messages[key] || key;
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.fallBackLocale1) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale1)?.messages.hasOwnProperty(key) &&
-        allowed.includes(state.fastSettings.fallBackLocale1):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale1)?.messages[key] || key;
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.fallBackLocale2) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale2)?.messages.hasOwnProperty(key) &&
-        allowed.includes(state.fastSettings.fallBackLocale2):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale2)?.messages[key] || key;
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.factoryDefault) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.factoryDefault)?.messages.hasOwnProperty(key) &&
-        allowed.includes(state.fastSettings.factoryDefault):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.factoryDefault)?.messages[key] || key;
-        default:
-          return key;
-      }
-    },
-    getRestrictedTranslationBuiltInOnly: (state) => (key: string): string => {
-      switch (true) {
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.currentLocaleId) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.currentLocaleId)?.messages.hasOwnProperty(key) &&
-        state.fastSettings.buildInLocaleIds.includes(state.fastSettings.currentLocaleId):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.currentLocaleId)?.messages[key] || key;
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.fallBackLocale1) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale1)?.messages.hasOwnProperty(key) &&
-        state.fastSettings.buildInLocaleIds.includes(state.fastSettings.fallBackLocale1):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale1)?.messages[key] || key;
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.fallBackLocale2) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale2)?.messages.hasOwnProperty(key) &&
-        state.fastSettings.buildInLocaleIds.includes(state.fastSettings.fallBackLocale2):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.fallBackLocale2)?.messages[key] || key;
-        case state.allLocaleMessages && state.allLocaleMessages.some((id) => id.locale.id === state.fastSettings.factoryDefault) &&
-        state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.factoryDefault)?.messages.hasOwnProperty(key) &&
-        state.fastSettings.buildInLocaleIds.includes(state.fastSettings.factoryDefault):
-          return state.allLocaleMessages.find((id) => id.locale.id === state.fastSettings.factoryDefault)?.messages[key] || key;
-        default:
-          return key;
-      }
+    getChooseTranslation: (state) => (t1: string, t2:string, localeId: string): string => {
+      return state.fastSettings.currentLocaleId === localeId ? t1 : t2;
     },
     getAllLocales: (state) => {
       return state.localesWithSettings;
