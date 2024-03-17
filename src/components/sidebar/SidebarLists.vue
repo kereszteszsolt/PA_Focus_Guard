@@ -68,7 +68,7 @@ const nameRules = computed(() => {
 const closeEditDialog = () => {
   dialogEdit.value = false;
   nextTick(() => {
-    editingRuleWebsiteList.value = {...websiteRulesStore.getDummyWebsiteRuleList};
+    editingRuleWebsiteList.value = { ...websiteRulesStore.getDummyWebsiteRuleList };
     isNewItem.value = true;
     isValid.value = true;
     errorMessage.value = '';
@@ -97,7 +97,7 @@ const openEditDialog = (_id: string | null) => {
     //TODO show error message
     return;
   }
-  editingRuleWebsiteList.value = list ? {...list} : {...websiteRulesStore.getDummyWebsiteRuleList};
+  editingRuleWebsiteList.value = list ? { ...list } : { ...websiteRulesStore.getDummyWebsiteRuleList };
   isNewItem.value = !_id;
   isValid.value = true;
   errorMessage.value = '';
@@ -109,7 +109,7 @@ const openEditDialog = (_id: string | null) => {
 const openDeleteDialog = (id: string) => {
   let list = websiteRulesStore.getWebsiteRuleListById(id);
   if (list) {
-    editingRuleWebsiteList.value = {...list};
+    editingRuleWebsiteList.value = { ...list };
     isEmpty.value = websiteRulesStore.getWebsiteRulesByListId(id).length === 0;
     confirmDeleteListItems.value = false;
     dialogDelete.value = true;
@@ -180,12 +180,10 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
       { key: msg.SAVE, name: t(msg.SAVE), clickHandler: saveItem, color: 'danger', disabled: !isValid }
     ]"
   >
-    <div>
-      <v-text-field v-model="name" :error-messages="errorMessage"
-                    :label="t(msg.NAME_OF_WEBSITE_RULE_LIST)"
-                    @blur="touched" required :suffix="name.length + '/25'">
-      </v-text-field>
-    </div>
+    <v-text-field v-model="name" :error-messages="errorMessage"
+                  :label="t(msg.NAME_OF_WEBSITE_RULE_LIST)"
+                  @blur="touched" @change="touched" required :suffix="name.length + '/25'">
+    </v-text-field>
   </fg-form-dialog>
 
   <fg-dialog
