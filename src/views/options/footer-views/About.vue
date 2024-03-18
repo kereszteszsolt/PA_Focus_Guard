@@ -1,73 +1,33 @@
 <template>
   <footer-view-wrapper title="About">
-    <div class="font-weight-bold">About</div>
-    <p class="pt-4">
-      &nbsp;&nbsp;&nbsp;This add-on will help you maintain your focus and save you from the lure of entertainment
-      sites.
-      For best effect, keep it active at all times and only turn it off when you have entertainment scheduled. As
-      long
-      as it's active, the extension will display an image instead of the forbidden page to remind you to focus on
-      your
-      work.
+    <p class="mb-2">
+      This extension helps you stay focused when you want to learn or work on something important by blocking
+      distractive desires and showing a focused message instead of the desired page based on rules defined in the
+      website rules section.
     </p>
-
-    <p class="pt-4">
-      &nbsp;&nbsp;&nbsp;The extension runs offline only locally in the browser and does not transfer any data. The
-      settings and lists are saved locally in the browser to "Local Storage". The source code can be viewed by
-      clicking on the following GitHub link.
-    </p>
-
-    <p class="pt-4">
-      If you want to follow me on social media, you can find me on the following sites:
-    </p>
-
-    <ul class="list-disc pl-8">
-      <li>youtube - Youtube Hu</li>
-      <li>youtube - Youtube En</li>
-      <li>instagram - Instagram</li>
-      <li>facebook - Facebook</li>
-      <li>linkedin - LinkedIn</li>
-      <li>twitter - Twitter / X</li>
-      <li>github - GitHub</li>
-      <li>tiktok - TikTok</li>
-      <li>tiktok - Linktr.ee</li>
+    <ul class="pa-4">
+      <li class="mb-1"><p>
+        The following link allows you to check an extension on the Chrome store and find the latest information and the
+        most actual contact email.
+        Link: <a href="https://chromewebstore.google.com/detail/focus-guard/bdfnblnbjckkhknignkpmckeelfplill"
+                 target="_blank">Focus Guard</a>
+      </p></li>
+      <li class="mb-1"><p>
+        You can see or lay with the source code on the following GitHub Link:
+        Link: <a href="https://github.com/kereszteszsolt/PA_Focus_Guard" target="_blank">GitHub</a>
+      </p></li>
+      <li class="mb-1">
+        <p>
+          For contacts or follow-up, please consult the contacts page. Got to contact:
+          <v-router-link to="/contact">Contact</v-router-link>
+        </p>
+        <p>Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software. Open Source.</p></li>
     </ul>
 
-    <p class="pt-4">
-      If you appreciate my efforts and want to support me, here are some ideas on how you can do so:
-    </p>
 
-    <ul class="list-disc pl-8">
-      <li>Subscribe to my YouTube channels.</li>
-      <li>Follow me on Instagram, Facebook, X (Twitter), Linkedin, Tiktok, GitHub.</li>
-      <li>Like, comment, share my content.</li>
-      <li>Talk to other followers in the comment section.</li>
-      <li>Give some stars to my GitHub repos.</li>
-      <li>Rate my apps and extensions on different platforms: Chrome Web Store, Google Play Store, Apple App
-        Store,
-        Microsoft Store, etc.
-      </li>
-    </ul>
+    <p>Keresztes Zsolt,
+      Cluj-Napoca 2024</p>
 
-    <p class="pt-4">
-      If you'd like to contribute financially, you can choose from the following options:
-    </p>
-
-    <ul class="list-disc pl-8">
-      <li>coffee - Buy me a coffee</li>
-    </ul>
-
-    <p class="pt-4">
-      Your support, in any form, is immensely appreciated, and I want to express my heartfelt gratitude for your
-      involvement.
-    </p>
-
-    <p class="pt-4">
-      Thank you for being a part of my journey and supporting my endeavors!
-    </p>
-
-    <p class="pt-4 font-weight-bold">Warmest regards,</p>
-    <p class="font-weight-bold">Keresztes Zsolt</p>
   </footer-view-wrapper>
 </template>
 
