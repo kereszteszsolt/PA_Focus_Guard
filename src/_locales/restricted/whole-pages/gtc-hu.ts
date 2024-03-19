@@ -76,5 +76,42 @@ export const gtc: IGtc[] = [
     content: [
       `A szoftver használata során minden felhasználónak be kell tartania a vonatkozó helyi és nemzetközi törvényeket és előírásokat.`
     ]
+  },
+  {
+    id: `userModifications`,
+    title: `Felhasználói módosítások:`,
+    content: [
+      `Ha egy felhasználó úgy dönt, hogy módosítja a szoftver kódját, fontos, hogy a kapcsolatfelvételi oldalakat, profilokat és a közösségi média hivatkozásokat is frissítse, hogy azok tükrözzék a szoftver saját verzióját.
+       Míg a köszönetnyilvánítás szakaszban az eredeti szerzőnek való elismerést nagyra értékeljük, jogi okokból szükséges, hogy a módosított változatot annak a személynek a neve alatt terjesszék, aki a forráskódon a változtatásokat elvégezte.`
+    ]
+  },
+  {
+    id: `gtc-final-1`,
+    title: ``,
+    content: [
+      `Felhívom figyelmét, hogy a szoftver használatával kapcsolatos döntések meghozatala az Ön felelőssége.
+       Ha nem ért egyet az Általános Szerződési Feltételekben (ÁSZF) foglaltakkal, akkor javasoljuk, hogy ne telepítse és ne használja ezt a szoftvert. `
+    ]
+  },
+  {
+    id: `gtc-final-2`,
+    title: ``,
+    content: [
+      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérjük, forduljon hozzám bizalommal. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
+    ]
+  },
+  {
+    id: `gtc-final-3`,
+    title: ``,
+    content: [
+      `Az Általános Szerződési Feltételek 2024. március 19-én lépnek hatályba, és a későbbiekben történő módosítás vagy visszavonás hiányában hatályban maradnak.`
+    ]
+  },
+  {
+    id: `gtc-final-3`,
+    title: ``,
+    content: [
+      `Köszönöm a szoftver iránti érdeklődését. Remélem, hasznosnak és élvezetesnek találja a használatát!`
+    ]
   }
 ];

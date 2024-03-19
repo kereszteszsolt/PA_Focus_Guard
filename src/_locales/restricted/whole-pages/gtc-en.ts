@@ -74,7 +74,43 @@ export const gtc: IGtc[] = [
     id: `legalCompliance`,
     title: `Legal Compliance:`,
     content: [
-      `The software complies with the General Data Protection Regulation (GDPR) and other relevant data protection laws.`
+      `All users must adhere to applicable laws and regulations, both locally and internationally, while using the software.`
+    ]
+  },
+  {
+    id: `userModifications`,
+    title: `User Modifications:`,
+    content: [
+      `If a user decides to modify the software's code, it is important that they also update the contact pages, profiles, and social media references to reflect their version of the software.
+       While it is appreciated to give credit to the original author in the acknowledgements section, it is necessary for legal reasons that the modified version is distributed under the name of the person who made the changes to the source code.`
+    ]
+  },
+  {
+    id: `gtc-final-1`,
+    title: ``,
+    content: [
+      `Please note that you are responsible for making decisions about the use of this software.
+       If you do not agree with the terms outlined in the General Terms and Conditions (GTC), then it is recommended that you do not install or use this software. `
+    ]
+  },
+  {
+    id: `gtc-final-2`,
+    title: ``,
+    content: [
+      `If you have any questions or feedback about the software, please do not hesitate to contact me. You can find my contact information on the Contact page.`
+    ]
+  },
+  {
+    id: `gtc-final-3`,
+    title: ``,
+    content: [
+      `The General Terms and Conditions will take effect on March 19, 2024, and will remain in effect unless later amended or revoked.`
+    ]
+  },{
+    id: `gtc-final-4`,
+    title: ``,
+    content: [
+      `Thank you for your interest in this software. I hope you find it useful and enjoyable to use!`
     ]
   }
 ];
