@@ -43,9 +43,15 @@ export const faq: IFaq[] = [
   {
     question: `How do you uninstall "Focus Guard"?`,
     answers: [
-      `Right-click on the "Focus Guard" icon and click to Remove from Chrome/Edge.`,
-      `Click on the extension icon in Chrome/Edge, look after the "Focus Guard" line, and, with the TreeDots menu, choose to remove the extension.`,
-      `The third mode opens the extensions dropdown with the extension's icon and opens the manage extension from the bottom of that dropdown. `
+      `If the extension is pinned, right-click to the extension's icon and choose remove from chrome/edge.`,
+      `In other cases, go to the chrome/edge extension list icon (like a piece of the puzzle) and choose from the list manage extension; in that list, you can find that extension and remove it by pushing the remove button.`
+    ]
+  },
+  {
+    question: `How do you enable/disable  "Focus Guard" in an incognito window?`,
+    answers: [
+      `Right-click on the "Focus Guard" icon, and choose manage extension.`,
+      `You can find the incognito mode switch button in the management section. Here, you can turn on and off the incognito mod.`
     ]
   },
   {
@@ -57,19 +63,11 @@ export const faq: IFaq[] = [
     ]
   },
   {
-    question: ``,
+    id: 'faq-8',
+    question: `What is a "website rule"?`,
     answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
+      `A "website rule" is a line of a table with a URL filter, with two flags: permanently active or temporally inactive and filter type`,
+      `The filter type is visible only when the "website rule" is opened for editing.`
     ]
   },
   {

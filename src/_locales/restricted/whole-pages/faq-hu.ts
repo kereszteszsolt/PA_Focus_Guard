@@ -2,7 +2,7 @@ import { IFaq } from './IFaq';
 
 export const faq: IFaq[] = [
   {
-    question:  `Hogyan lehet egy „Focus Session”-t (Munkamenetet) elindítani?`,
+    question: `Hogyan lehet egy „Focus Session”-t (Munkamenetet) elindítani?`,
     answers: [
       `Kattints a böngésző bővítmény eszköztárában található „Focus Guard” bővítmény ikonjára.`,
       `Kattintson a felugró ablakban a  „Be” gombra.`,
@@ -44,9 +44,15 @@ export const faq: IFaq[] = [
   {
     question: `Hogyan lehet eltávolítani a „Focus Guard” programot?`,
     answers: [
-      `Kattintson a jobb gombbal a „Focus Guard” ikonra, és kattintson az Eltávolítás a Chrome/Edge-ről gombra.`,
-      `Kattintson a Chrome/Edge bővítmény ikonjára, keresse meg a „Focus Guard” sort, és a Három-pont menü segítségével válassza a bővítmény eltávolítását.`,
-      `A harmadik mód megnyílik a bővítmények legördülő menüpontja a bővítmény ikonjával, és a legördülő menü aljáról megnyílik a bővítmény kezelése. `
+      `Ha a bővítmény van kitűzve, kattintson a jobb gombbal a bővítmény ikonjára, és válassza az Eltávolítás a Chrome/edge-ről lehetőséget.`,
+      `Más esetben menjen a chrome/edge bővítménylista ikonjára (mint egy puzzle-darab), és válassza ki a listából a bővítmény kezelése lehetőséget; ebben a listában megkeresheti az adott bővítményt, és az eltávolítás gomb megnyomásával eltávolíthatja.`
+    ]
+  },
+  {
+    question: `Hogyan lehet engedélyezni/letiltani a „Focus Guard” funkciót egy inkognitó ablakban?`,
+    answers: [
+      `Kattintson a jobb gombbal a "Focus Guard" ikonra, és válassza a Bővítmény kezelése / Manage Extension lehetőséget.`,
+      `Az inkognitó mód kapcsoló gombját a kezelési részben találja. Itt be- és kikapcsolhatja az inkognitó módot.`
     ]
   },
   {
@@ -58,19 +64,11 @@ export const faq: IFaq[] = [
     ]
   },
   {
-    question: ``,
+    id: 'faq-8',
+    question: `Mi az a „weboldal szabály”?`,
     answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
+      `A „webhelyszabály” egy URL-szűrővel rendelkező táblázat sora, két zászlóval: állandóan aktív vagy időlegesen inaktív és a szűrő típusa.`,
+      `A szűrő típusa csak akkor látható, ha a "webhelyszabály" szerkesztésre van megnyitva.`
     ]
   },
   {
