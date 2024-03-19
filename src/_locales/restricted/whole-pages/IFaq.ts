@@ -5,7 +5,8 @@ export interface IFaq {
   links?: {
     text: string;
     url: string;
-    additionalText?: string;
+    additionalText1?: string;
+    additionalText2?: string;
   }[];
   madiIcon?: string;
 }

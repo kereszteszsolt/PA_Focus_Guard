@@ -7,9 +7,10 @@
             <li v-for="answer in faqSection.answers" :key="answer">{{ answer }}</li>
             <li v-for="link in faqSection?.links" :key="link.url" class="d-flex flex-column">
               <div class="d-flex flex-row font-weight-bold">
-                <div class="fgc-accent">{{ link.text }}</div> &nbsp;
-                <div class="fgc-secondary">{{ link?.additionalText }}</div>
+                <div class="fgc-primary">{{ link.text }}</div> &nbsp;
+                <div class="fgc-accent">{{ link?.additionalText1 }}</div>
               </div>
+              <div class="fgc-secondary">{{ link?.additionalText2 }}</div>
               <a :href="link.url" target="_blank" rel="noopener noreferrer" class="fgc-info">{{ link.url }}</a>
             </li>
           </ul>

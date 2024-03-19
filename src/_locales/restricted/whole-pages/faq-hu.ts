@@ -10,13 +10,43 @@ export const faq: IFaq[] = [
     links: [
       {
         text: `Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech`,
-        additionalText: `(Magyar)`,
+        additionalText1: `@kereszteszsolt`,
+        additionalText2: `(Magyar)`,
         url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`
       },
       {
         text: `Keresztes Zsolt - Vlog, Self-Dev, Science&Tech`,
-        additionalText: `(Angol)`,
+        additionalText1: `@kereszteszsolti`,
+        additionalText2: `(Angol)`,
         url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`
+      }
+    ]
+  },
+  {
+    id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
+    question: `A YouTube-on kívül hogyan kaphatok információt a legújabb funkciókról?`,
+    answers: [
+      `Amikor egy újdonság megjelenik, a következő platformokon teszem közzé: LinkedIn, Twitter és Facebook.`,
+      `Kövess engem, és figyeld a legújabb funkciókat a bejegyzéseimben.`
+    ],
+    links: [
+      {
+        text: `LinkedIn`,
+        url: `https://www.linkedin.com/in/kereszteszsolt`,
+        additionalText1: `@kereszteszsolt`,
+        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`
+      },
+      {
+        text: `Twitter/X`,
+        url: `https://twitter.com/KeresztesZsolti`,
+        additionalText1: `@KeresztesZsolti`,
+        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`
+      },
+      {
+        text: `Facebook`,
+        url: `https://www.facebook.com/KeresztesZsolt.kzs`,
+        additionalText1: `@KeresztesZsolt.kzs`,
+        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`
       }
     ]
   },
@@ -67,31 +97,6 @@ export const faq: IFaq[] = [
       `Majdnem ugyanaz a dolog.`,
       `A „Fókusz mód” egy aktív kifejezés, amely arra utal, hogy a Fókusz gomb be van kapcsolva és az aktiválható szabályok aktívak.`,
       `A „Fókusz munkamenet” arra az időszakra utal, amikor a Fókusz mód aktív, vagy a múltban aktív volt.`
-    ]
-  },
-  {
-    id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
-    question: `A YouTube-on kívül hogyan kaphatok információt a legújabb funkciókról?`,
-    answers: [
-      `Amikor egy újdonság megjelenik, a következő platformokon teszem közzé: LinkedIn, Twitter és Facebook.`,
-      `Kövess engem, és figyeld a legújabb funkciókat a bejegyzéseimben.`
-    ],
-    links: [
-      {
-        text: `LinkedIn`,
-        url: `https://www.linkedin.com/in/kereszteszsolt`,
-        additionalText: `Kétnyelvű bejegyzések (Magyar/Angol)`
-      },
-      {
-        text: `Twitter/X`,
-        url: `https://twitter.com/KeresztesZsolti`,
-        additionalText: `Kétnyelvű bejegyzések (Magyar/Angol)`
-      },
-      {
-        text: `Facebook`,
-        url: `https://www.facebook.com/KeresztesZsolt.kzs`,
-        additionalText: `Kétnyelvű bejegyzések (Magyar/Angol)`
-      }
     ]
   }
 ];

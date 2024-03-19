@@ -10,13 +10,43 @@ export const faq: IFaq[] = [
     links: [
       {
         text: `Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech`,
-        additionalText: `(Hungarian)`,
+        additionalText1: `@kereszteszsolt`,
+        additionalText2: `(Hungarian)`,
         url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`
       },
       {
         text: `Keresztes Zsolt - Vlog, Self-Dev, Science&Tech`,
-        additionalText: `(English)`,
+        additionalText1: `@kereszteszsolti`,
+        additionalText2: `(English)`,
         url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`
+      }
+    ]
+  },
+  {
+    id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
+    question: `Besides YouTube, how can I get information about the latest features?`,
+    answers: [
+      `When a feature comes out,  I post it on the following platforms: LinkedIn, Twitter, and Facebook.`,
+      `Follow me, and stay tuned to the latest features on my posts.`
+    ],
+    links: [
+      {
+        text: `Keresztes Zsolt`,
+        url: `https://www.linkedin.com/in/kereszteszsolt`,
+        additionalText1: `@kereszteszsolt`,
+        additionalText2: `Bilingual Posts (Hungarian/English)`
+      },
+      {
+        text: `Keresztes Zsolt`,
+        url: `https://twitter.com/KeresztesZsolti`,
+        additionalText1: `@KeresztesZsolti`,
+        additionalText2: `Bilingual Posts (Hungarian/English)`
+      },
+      {
+        text: `Keresztes Zsolt`,
+        url: `https://www.facebook.com/KeresztesZsolt.kzs`,
+        additionalText1: `@KeresztesZsolt.kzs`,
+        additionalText2: `Bilingual Posts (Hungarian/English)`
       }
     ]
   },
@@ -74,31 +104,6 @@ export const faq: IFaq[] = [
       `There are almost the same thing.`,
       `"Focus Mode" is an active term that refers to the fact that the Focus Button is on and the activable rules are active.`,
       `"Focus Session" refers to the period when the Focus mode is active or was active in the past.`
-    ]
-  },
-  {
-    id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
-    question: `Besides YouTube, how can I get information about the latest features?`,
-    answers: [
-      `When a feature comes out,  I post it on the following platforms: LinkedIn, Twitter, and Facebook.`,
-      `Follow me, and stay tuned to the latest features on my posts.`
-    ],
-    links: [
-      {
-        text: `LinkedIn`,
-        url: `https://www.linkedin.com/in/kereszteszsolt`,
-        additionalText: `Bilingual Posts (Hungarian/English)`
-      },
-      {
-        text: `Twitter/X`,
-        url: `https://twitter.com/KeresztesZsolti`,
-        additionalText: `Bilingual Posts (Hungarian/English)`
-      },
-      {
-        text: `Facebook`,
-        url: `https://www.facebook.com/KeresztesZsolt.kzs`,
-        additionalText: `Bilingual Posts (Hungarian/English)`
-      }
     ]
   }
 ];
