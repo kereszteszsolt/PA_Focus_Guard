@@ -5,7 +5,7 @@ export const gtc: IGtc[] = [
     id: `gtcIntro`,
     title: ``,
     content: [
-      `Az alábbiakban a szoftver használatára vonatkozó Általános Szerződési Feltételeket (a továbbiakban ÁSZF) ismertetjük.
+      `Az alábbiakban a szoftver használatára vonatkozó Általános Szerződési Feltételeket (a továbbiakban ÁSZF) ismertetem.
        A szoftver telepítésével és használatával Ön elfogadja az alábbi feltételeket.`
     ]
   },
@@ -14,14 +14,14 @@ export const gtc: IGtc[] = [
     title: ``,
     content: [
       `Felhívom figyelmét, hogy a szoftver használatával kapcsolatos döntések meghozatala az Ön felelőssége.
-       Ha nem ért egyet az Általános Szerződési Feltételekben (ÁSZF) foglaltakkal, akkor javasoljuk, hogy ne telepítse és ne használja ezt a szoftvert. `
+       Ha nem ért egyet az Általános Szerződési Feltételekben (ÁSZF) foglaltakkal, akkor javasolom, hogy ne telepítse és ne használja ezt a szoftvert. `
     ]
   },
   {
     id: `gtc-2`,
     title: ``,
     content: [
-      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérjük, forduljon hozzám bizalommal. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
+      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérem, forduljon hozzám bizalommal. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
     ]
   },
   {
@@ -51,7 +51,7 @@ export const gtc: IGtc[] = [
     title: `Helyi adattárolás:`,
     content: [
       `A szoftver által gyűjtött URL-címek és domainlisták kizárólag a felhasználó böngészőjének helyi tárolójában kerülnek tárolásra.
-       Ezeket az adatokat nem továbbítjuk, és nem osztjuk meg harmadik féllel, és kizárólag a szoftver működéséhez szükségesek.`
+       Ezeket az adatok nem kerülnek továbbításra vagy harmadik féllel való megosztásra, és kizárólag a szoftver működéséhez szükségesek.`
     ]
   },
   {
@@ -87,9 +87,9 @@ export const gtc: IGtc[] = [
   },
   {
     id: `freeUseAndCustomization`,
-    title: `Free Use and Customization:`,
+    title: `Szabad használat és testreszabás:`,
     content: [
-      `Anyone can use, customize, and modify the software according to their preferences.`
+      `Bárki használhatja, testre szabhatja és módosíthatja a szoftvert saját preferenciái szerint.`
     ]
   },
   {
@@ -104,7 +104,7 @@ export const gtc: IGtc[] = [
     title: `Felhasználói módosítások:`,
     content: [
       `Ha egy felhasználó úgy dönt, hogy módosítja a szoftver kódját, fontos, hogy a kapcsolatfelvételi oldalakat, profilokat és a közösségi média hivatkozásokat is frissítse, hogy azok tükrözzék a szoftver saját verzióját.
-       Míg a köszönetnyilvánítás szakaszban az eredeti szerzőnek való elismerést nagyra értékeljük, jogi okokból szükséges, hogy a módosított változatot annak a személynek a neve alatt terjesszék, aki a forráskódon a változtatásokat elvégezte.`
+       Míg a köszönetnyilvánítás oldalon az eredeti szerzőnek való elismerést nagyra értékelem, jogi okokból szükséges, hogy a módosított változatot annak a személynek a neve alatt terjesszék, aki a forráskódon a változtatásokat elvégezte.`
     ]
   },
   {

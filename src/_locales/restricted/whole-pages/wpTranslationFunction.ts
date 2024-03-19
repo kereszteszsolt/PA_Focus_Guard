@@ -3,6 +3,8 @@ import * as faqEn from './faq-en';
 import * as faqHu from './faq-hu';
 import * as gtcHU from './gtc-hu';
 import * as gtcEN from './gtc-en';
+import * as privacyEn from './privacy-en';
+import * as privacyHu from './privacy-hu';
 
 export const getTranslatedFile = (lang: string, content: string) => {
   switch (content) {
@@ -11,6 +13,8 @@ export const getTranslatedFile = (lang: string, content: string) => {
       return lang === 'hu' ? faqHu.faq : faqEn.faq;
     case cst.GTC:
       return lang === 'hu' ? gtcHU.gtc : gtcEN.gtc;
+    case cst.PRIVACY:
+      return lang === 'hu' ? privacyHu.privacy : privacyEn.privacy;
     default:
       return undefined;
   }
