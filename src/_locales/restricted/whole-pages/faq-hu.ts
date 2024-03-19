@@ -12,13 +12,15 @@ export const faq: IFaq[] = [
         text: `Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech`,
         additionalText1: `@kereszteszsolt`,
         additionalText2: `(Magyar)`,
-        url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`
+        url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`,
+        mdiIcon: `mdi-youtube`
       },
       {
         text: `Keresztes Zsolt - Vlog, Self-Dev, Science&Tech`,
         additionalText1: `@kereszteszsolti`,
         additionalText2: `(Angol)`,
-        url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`
+        url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`,
+        mdiIcon: `mdi-youtube`
       }
     ]
   },
@@ -31,22 +33,25 @@ export const faq: IFaq[] = [
     ],
     links: [
       {
-        text: `LinkedIn`,
+        text: `Keresztes Zsolt`,
         url: `https://www.linkedin.com/in/kereszteszsolt`,
         additionalText1: `@kereszteszsolt`,
-        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`
+        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`,
+        mdiIcon: `mdi-linkedin`
       },
       {
-        text: `Twitter/X`,
+        text: `Keresztes Zsolt`,
         url: `https://twitter.com/KeresztesZsolti`,
         additionalText1: `@KeresztesZsolti`,
-        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`
+        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`,
+        mdiIcon: `mdi-twitter`
       },
       {
-        text: `Facebook`,
+        text: `Keresztes Zsolt`,
         url: `https://www.facebook.com/KeresztesZsolt.kzs`,
         additionalText1: `@KeresztesZsolt.kzs`,
-        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`
+        additionalText2: `Kétnyelvű bejegyzések (Magyar/Angol)`,
+        mdiIcon: `mdi-facebook`
       }
     ]
   },
@@ -92,7 +97,7 @@ export const faq: IFaq[] = [
   },
   {
     id: `whatIsTheDifferenceBetweenFocusModeAndFocusSession`,
-    question: `Mi a különbség a „Fókusz” mód és a „Fókusz munkamenet” (session) között?`,
+    question: `Mi a különbség a „Fókusz mód” és a „Fókusz munkamenet” (session) között?`,
     answers: [
       `Majdnem ugyanaz a dolog.`,
       `A „Fókusz mód” egy aktív kifejezés, amely arra utal, hogy a Fókusz gomb be van kapcsolva és az aktiválható szabályok aktívak.`,

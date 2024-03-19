@@ -12,13 +12,15 @@ export const faq: IFaq[] = [
         text: `Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech`,
         additionalText1: `@kereszteszsolt`,
         additionalText2: `(Hungarian)`,
-        url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`
+        url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`,
+        mdiIcon: `mdi-youtube`
       },
       {
         text: `Keresztes Zsolt - Vlog, Self-Dev, Science&Tech`,
         additionalText1: `@kereszteszsolti`,
         additionalText2: `(English)`,
-        url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`
+        url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`,
+        mdiIcon: `mdi-youtube`
       }
     ]
   },
@@ -34,19 +36,22 @@ export const faq: IFaq[] = [
         text: `Keresztes Zsolt`,
         url: `https://www.linkedin.com/in/kereszteszsolt`,
         additionalText1: `@kereszteszsolt`,
-        additionalText2: `Bilingual Posts (Hungarian/English)`
+        additionalText2: `Bilingual Posts (Hungarian/English)`,
+        mdiIcon: `mdi-linkedin`
       },
       {
         text: `Keresztes Zsolt`,
         url: `https://twitter.com/KeresztesZsolti`,
         additionalText1: `@KeresztesZsolti`,
-        additionalText2: `Bilingual Posts (Hungarian/English)`
+        additionalText2: `Bilingual Posts (Hungarian/English)`,
+        mdiIcon: `mdi-twitter`
       },
       {
         text: `Keresztes Zsolt`,
         url: `https://www.facebook.com/KeresztesZsolt.kzs`,
         additionalText1: `@KeresztesZsolt.kzs`,
-        additionalText2: `Bilingual Posts (Hungarian/English)`
+        additionalText2: `Bilingual Posts (Hungarian/English)`,
+        mdiIcon: `mdi-facebook`
       }
     ]
   },

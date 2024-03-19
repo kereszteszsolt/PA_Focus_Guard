@@ -7,6 +7,6 @@ export interface IFaq {
     url: string;
     additionalText1?: string;
     additionalText2?: string;
+    mdiIcon?: string;
   }[];
-  madiIcon?: string;
 }
