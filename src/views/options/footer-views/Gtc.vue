@@ -1,12 +1,12 @@
 <template>
   <footer-view-wrapper :title="tr(r_msg.GTC)">
     <v-list lines="two" class="bg-background">
-      <v-list-item v-for="gtc in gtcArray" :key="gtc.id">
+      <v-list-item v-for="(gtc, index) in gtcArray" :key="gtc.id">
         <v-list-item-content>
           <v-list-item-title>
-            <div class="font-weight-bold fgc-primary pr-1">{{ gtc.title }}</div>
+            <div class="font-weight-bold fgc-primary pr-1" >{{ gtc.title }}</div>
           </v-list-item-title>
-          <p v-for="c in gtc.content">{{ c }}</p>
+          <p v-for="c in gtc.content" :class="{'finally fgc-accent': index === gtcArray.length - 1}" >{{ c }}</p>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -34,5 +34,13 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
 </script>
 
 <style scoped lang="scss">
-
+.finally{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 15px;
+  width: 100%;
+}
 </style>

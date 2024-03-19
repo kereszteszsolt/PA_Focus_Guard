@@ -10,6 +10,28 @@ export const gtc: IGtc[] = [
     ]
   },
   {
+    id: `gtc-1`,
+    title: ``,
+    content: [
+      `Please note that you are responsible for making decisions about the use of this software.
+       If you do not agree with the terms outlined in the General Terms and Conditions (GTC), then it is recommended that you do not install or use this software. `
+    ]
+  },
+  {
+    id: `gtc-2`,
+    title: ``,
+    content: [
+      `If you have any questions or feedback about the software, please do not hesitate to contact me. You can find my contact information on the Contact page.`
+    ]
+  },
+  {
+    id: `gtc-3`,
+    title: ``,
+    content: [
+      `The General Terms and Conditions will take effect on March 19, 2024, and will remain in effect unless later amended or revoked.`
+    ]
+  },
+  {
     id: `freeUsage`,
     title: `Free Usage:`,
     content: [
@@ -86,28 +108,7 @@ export const gtc: IGtc[] = [
     ]
   },
   {
-    id: `gtc-final-1`,
-    title: ``,
-    content: [
-      `Please note that you are responsible for making decisions about the use of this software.
-       If you do not agree with the terms outlined in the General Terms and Conditions (GTC), then it is recommended that you do not install or use this software. `
-    ]
-  },
-  {
-    id: `gtc-final-2`,
-    title: ``,
-    content: [
-      `If you have any questions or feedback about the software, please do not hesitate to contact me. You can find my contact information on the Contact page.`
-    ]
-  },
-  {
-    id: `gtc-final-3`,
-    title: ``,
-    content: [
-      `The General Terms and Conditions will take effect on March 19, 2024, and will remain in effect unless later amended or revoked.`
-    ]
-  },{
-    id: `gtc-final-4`,
+    id: `gtc-final`,
     title: ``,
     content: [
       `Thank you for your interest in this software. I hope you find it useful and enjoyable to use!`

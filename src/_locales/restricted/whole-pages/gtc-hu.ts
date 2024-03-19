@@ -10,6 +10,28 @@ export const gtc: IGtc[] = [
     ]
   },
   {
+    id: `gtc-1`,
+    title: ``,
+    content: [
+      `Felhívom figyelmét, hogy a szoftver használatával kapcsolatos döntések meghozatala az Ön felelőssége.
+       Ha nem ért egyet az Általános Szerződési Feltételekben (ÁSZF) foglaltakkal, akkor javasoljuk, hogy ne telepítse és ne használja ezt a szoftvert. `
+    ]
+  },
+  {
+    id: `gtc-2`,
+    title: ``,
+    content: [
+      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérjük, forduljon hozzám bizalommal. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
+    ]
+  },
+  {
+    id: `gtc-3`,
+    title: ``,
+    content: [
+      `Az Általános Szerződési Feltételek 2024. március 19-én lépnek hatályba, és a későbbiekben történő módosítás vagy visszavonás hiányában hatályban maradnak.`
+    ]
+  },
+  {
     id: `freeUsage`,
     title: `Ingyenes használat:`,
     content: [
@@ -86,29 +108,7 @@ export const gtc: IGtc[] = [
     ]
   },
   {
-    id: `gtc-final-1`,
-    title: ``,
-    content: [
-      `Felhívom figyelmét, hogy a szoftver használatával kapcsolatos döntések meghozatala az Ön felelőssége.
-       Ha nem ért egyet az Általános Szerződési Feltételekben (ÁSZF) foglaltakkal, akkor javasoljuk, hogy ne telepítse és ne használja ezt a szoftvert. `
-    ]
-  },
-  {
-    id: `gtc-final-2`,
-    title: ``,
-    content: [
-      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérjük, forduljon hozzám bizalommal. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
-    ]
-  },
-  {
-    id: `gtc-final-3`,
-    title: ``,
-    content: [
-      `Az Általános Szerződési Feltételek 2024. március 19-én lépnek hatályba, és a későbbiekben történő módosítás vagy visszavonás hiányában hatályban maradnak.`
-    ]
-  },
-  {
-    id: `gtc-final-3`,
+    id: `gtc-final`,
     title: ``,
     content: [
       `Köszönöm a szoftver iránti érdeklődését. Remélem, hasznosnak és élvezetesnek találja a használatát!`
