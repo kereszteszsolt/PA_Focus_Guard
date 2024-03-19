@@ -46,13 +46,14 @@ import { computed } from 'vue';
 import { useI18nStore } from '@/store';
 import * as utils from '@/utils';
 import { c as r_msg } from '@/_locales/restricted';
+import { IFaq } from '@/_locales/restricted/whole-pages/IFaq';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
 utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'localeMessagesUpdated'], () => {
   i18n.fetchLocaleSettingsAndMessages();
 });
-const faqArray = computed(() => wp.getTranslatedFile(i18n.getCurrentLocaleId, 'faq')).value;
+const faqArray = computed(() => { return wp.getTranslatedFile(i18n.getCurrentLocaleId, 'faq') as IFaq[]}).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
 </script>
 
