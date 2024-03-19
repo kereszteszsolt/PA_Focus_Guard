@@ -1,113 +1,104 @@
 import { IFaq } from './IFaq';
+
 export const faq: IFaq[] = [
   {
-    question: `How do you start a "Focus Session"?`,
+    id: `areThereYouTubeVideosAboutFocusGuard`,
+    question: `Are there YouTube videos about "Focus Guard"?`,
     answers: [
-      `Click on the extensions "Focus Guard" icon in the browser's extension toolbar.`,
-      `Click on the "On" button in the popup window.`,
-      `The "Focus Session" will start, and the "On" button will become active.`
+      `Of course, they are; subscribe and stay tuned to the latest features on my channel.`
+    ],
+    links: [
+      {
+        text: `Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech`,
+        additionalText: `(Hungarian)`,
+        url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`
+      },
+      {
+        text: `Keresztes Zsolt - Vlog, Self-Dev, Science&Tech`,
+        additionalText: `(English)`,
+        url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`
+      }
     ]
   },
   {
-    question: `How do you have a "Focus Session"?`,
+    id: `whatIsAWebsiteRule`,
+    question: `What is a website rule?`,
     answers: [
-      `Click on the extensions "Focus Guard" icon in the browser's extension toolbar.`,
-      `Click on the "Off" button in the popup window.`,
-      `The "Focus Session" will stop, and the "Off" button will become active.`
+      `It is actually a filter rule that you can add to one of the lists.`,
+      `Inside a filter rule, you can choose one of the following  mandatory types: "Domain", "Url", "Sub-Domain", and "Keyword", and optional statuses  from: "Temporarily inactive" or "Permanently active."`
     ]
   },
   {
-    question: `How do you open the "Options" window?`,
+    id: `whatDoesPermanentlyActiveMean`,
+    question: `What does "Permanently active" mean?`,
     answers: [
-      `Click on the extensions "Focus Guard" icon in the browser's extension toolbar.`,
-      `Click on the "Options" button in the popup window.`,
-      `The Options window will open in a new tab, or one of the old ones will be activated.`
+      `If a website rule is "Permanently active," that filter is active independently if a "Focus session" or "Focus mode" is on.`
     ]
   },
   {
-    question: `How do you pin the "Focus Guard" icon to the browser's extension toolbar?`,
+    id: `whatDoesTemporarilyInactiveMean`,
+    question: `What does "Temporarily inactive" mean?`,
     answers: [
-      `Click on the extension icon in Chrome/Edge. It looks like a little piece of a puzzle`,
-      `Look after the extension name in the lists (if installed) and click the pin icon on the right.`,
-      `After this, the pin will turn to active.`
+      `If a website rule is "temporarily inactive," it will not be active in "Focus session" or "Focus mode" when it is on.`
     ]
   },
   {
-    question: `How do you unpin the "Focus Guard" icon on the browser's extension toolbar?`,
+    id: `whatDoFilteringTypesMean`,
+    question: `What do filtering types mean?`,
     answers: [
-      `Click on the extension icon in Chrome/Edge. It looks like a little piece of a puzzle. `,
-      `Look after the extension name in the lists (if installed) and click the unpin icon on the right.`,
-      'After this, the pin will turn to inactive.'
+      `Filter by  "Domain": here will be considered filtering only the domain name with his domain end ex: "example.com",  "someting.example.com". From the second example, only the something part will be filtered out.`,
+      `Filter by "Url": here will be considered also the path ex: "https://example.com/somthing". Here, the "example.com" part will not be filtered; only the path that starts with "example.com/something" will be filtered.`,
+      `Filter by "end-domain": ex: ".com", ".org" In this case, all sites with ".com" or ".org" domain ends will be filtered out. `,
+      `Filter by "keyword": Be careful here; all sites will be filtered to which URL contains that specific word or fragment of the word. `
     ]
   },
   {
-    question: `How do you uninstall "Focus Guard"?`,
+    id: `whatDoDistractionAttemptsMean`,
+    question: `What do distraction attempts mean?`,
     answers: [
-      `If the extension is pinned, right-click to the extension's icon and choose remove from chrome/edge.`,
-      `In other cases, go to the chrome/edge extension list icon (like a piece of the puzzle) and choose from the list manage extension; in that list, you can find that extension and remove it by pushing the remove button.`
+      `A distraction attempt is trying to access a ruled-out website during a focus session or when rules were set to be permanently active.`
     ]
   },
   {
-    question: `How do you enable/disable  "Focus Guard" in an incognito window?`,
+    id: `How are distraction attempts counted?`,
+    question: `How are distraction attempts counted?`,
     answers: [
-      `Right-click on the "Focus Guard" icon, and choose manage extension.`,
-      `You can find the incognito mode switch button in the management section. Here, you can turn on and off the incognito mod.`
+      `During a "Focus Session" / "Focus Mode", the counter is on and reset when off.
+       All past distraction attempts are saved in the distraction attempt table and can be visualized and erased.`
     ]
   },
   {
-    question: ``,
+    id: `whatIsTheDifferenceBetweenFocusModeAndFocusSession`,
+    question: `What is the difference between "Focus Mode" and "Focus Session"?`,
     answers: [
-      ``,
-      ``,
-      ``
+      `There are almost the same thing.`,
+      `"Focus Mode" is an active term that refers to the fact that the Focus Button is on and the activable rules are active.`,
+      `"Focus Session" refers to the period when the Focus mode is active or was active in the past.`
     ]
   },
   {
-    id: 'faq-8',
-    question: `What is a "website rule"?`,
+    id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
+    question: `Besides YouTube, how can I get information about the latest features?`,
     answers: [
-      `A "website rule" is a line of a table with a URL filter, with two flags: permanently active or temporally inactive and filter type`,
-      `The filter type is visible only when the "website rule" is opened for editing.`
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
+      `When a feature comes out,  I post it on the following platforms: LinkedIn, Twitter, and Facebook.`,
+      `Follow me, and stay tuned to the latest features on my posts.`
+    ],
+    links: [
+      {
+        text: `LinkedIn`,
+        url: `https://www.linkedin.com/in/kereszteszsolt`,
+        additionalText: `Bilingual Posts (Hungarian/English)`
+      },
+      {
+        text: `Twitter/X`,
+        url: `https://twitter.com/KeresztesZsolti`,
+        additionalText: `Bilingual Posts (Hungarian/English)`
+      },
+      {
+        text: `Facebook`,
+        url: `https://www.facebook.com/KeresztesZsolt.kzs`,
+        additionalText: `Bilingual Posts (Hungarian/English)`
+      }
     ]
   }
 ];

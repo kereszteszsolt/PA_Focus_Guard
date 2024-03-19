@@ -1,10 +1,11 @@
 export interface IFaq {
-  id?: string;
+  id: string;
   question: string;
   answers: string[];
-  link?: {
-    href: string;
+  links?: {
     text: string;
-  },
+    url: string;
+    additionalText?: string;
+  }[];
   madiIcon?: string;
 }

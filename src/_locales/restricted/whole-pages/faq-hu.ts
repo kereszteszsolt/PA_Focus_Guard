@@ -2,113 +2,96 @@ import { IFaq } from './IFaq';
 
 export const faq: IFaq[] = [
   {
-    question: `Hogyan lehet egy „Focus Session”-t (Munkamenetet) elindítani?`,
+    id: `areThereYouTubeVideosAboutFocusGuard`,
+    question: `Vannak YouTube-videók a „Focus Guard”-ról?`,
     answers: [
-      `Kattints a böngésző bővítmény eszköztárában található „Focus Guard” bővítmény ikonjára.`,
-      `Kattintson a felugró ablakban a  „Be” gombra.`,
-      `A „Focus Session” (Munkamenetet) elindul, és a „Be” gomb aktívvá válik.`
+      `Természetesen vannak; iratkozz fel, és maradj képben a legújabb funkciókról a csatornámon.`
+    ],
+    links: [
+      {
+        text: `Keresztes Zsolt - Vlog,Önfejlesztés,Tudomány&Tech`,
+        additionalText: `(Magyar)`,
+        url: `https://www.youtube.com/@KeresztesZsolt?sub_confirmation=1`
+      },
+      {
+        text: `Keresztes Zsolt - Vlog, Self-Dev, Science&Tech`,
+        additionalText: `(Angol)`,
+        url: `https://www.youtube.com/@KeresztesZsolti?sub_confirmation=1`
+      }
     ]
   },
   {
-    question: `Hogyan lehet leállítani egy „Focus Session”-t (Munkamenetet)?`,
+    id: `whatIsAWebsiteRule`,
+    question: `Mi az a weboldal szabály?`,
     answers: [
-      `Kattints a böngésző bővítmény eszköztárában található „Focus Guard” bővítmény ikonjára.`,
-      `Kattintson az felugró ablakban a „Ki” gombra.`,
-      `A „Focus Session” (Munkamenetet) leáll, és a „Ki” gomb aktívvá válik.`
+      `Valójában egy szűrőszabály, amelyet hozzáadhat az egyik listához.`,
+      `Egy szűrőszabályon belül a következő kötelező típusok közül választhat: „Domain”, „Url”, „Sub-Domain” és „Keyword”, valamint választható státuszok közül: „Ideiglenesen inaktív” vagy „Állandóan aktív”.`
     ]
   },
   {
-    question: `Hogyan lehet megnyitni a „Beállítások” ablakot?`,
+    id: `whatDoesPermanentlyActiveMean`,
+    question: `Mit jelent a „Állandóan aktív” kifejezés?`,
     answers: [
-      `Kattints a böngésző bővítmény eszköztárában található „Focus Guard” bővítmény ikonjára.`,
-      `Kattintson az felugró ablakban az „Opciók” gombra.`,
-      `A Beállítások ablak egy új lapon fog megnyílni, vagy aktiválódik az egyik régi lap.`
+      `Ha egy webhelyszabály „Állandóan aktív”, akkor az adott szűrő attól függetlenül aktív, hogy a „Fókusz munkamenet” (session) vagy a „Fókusz mód” be van-e kapcsolva.`
     ]
   },
   {
-    question: `Hogyan lehet a „Focus Guard” ikont a böngésző bővítmény eszköztárához rögzíteni?`,
+    id: `whatDoesTemporarilyInactiveMean`,
+    question: `Mit jelent az „Ideiglenesen inaktív” kifejezés?`,
     answers: [
-      `Kattintson a Chrome/Edge bővítmény ikonjára. Úgy néz ki, mint egy kis kirakós (puzzle) darabja.`,
-      `Keresse meg a bővítmény nevét a listákban (ha telepítve van), és kattintson a jobb oldali kitűzőgombra.`,
-      `Ezt követően a kitűzőgomb aktívvá válik.`
+      `Ha egy webhelyszabály „Ideiglenesen inaktív”, akkor nem lesz aktív a „Fókusz munkamenetben” vagy a „Fókusz módban”, amikor be van kapcsolva.`
     ]
   },
   {
-    question: `Hogyan lehet eltávolítani a „Focus Guard” ikont a böngésző bővítmény eszköztárából?`,
+    id: `whatDoFilteringTypesMean`,
+    question: `Mit jelentenek a szűrési típusok?`,
     answers: [
-      `Kattintson a Chrome/Edge bővítmény ikonjára. Úgy néz ki, mint egy kis kirakós (puzzle) darabja.`,
-      `Keresse meg a bővítmény nevét a listákban (ha telepítve van), és kattintson a jobb oldali kitűzőgombra.`,
-      `Ezt követően a kitűzőgomb aktívvá válik.`
+      `Szűrés "Domain" szerint: itt csak a domain nevet kell szűrni a domain végével, pl.: "example.com", "someting.example.com". A második példából csak a valami rész lesz kiszűrve.`,
+      `Szűrés „Url” alapján: itt az elérési útvonal is figyelembe vehető pl.: "https://example.com/somthing". Itt a "example.com" rész nem kerül szűrésre; csak az "example.com/something" kezdetű útvonal kerül szűrésre.`,
+      `Szűrés a „domainvégződés” szerint: pl.: ".com", ".org". Ebben az esetben az összes olyan webhelyet kiszűri a rendszer, amelynek ".com" vagy ".org" domain vége van. `,
+      `Szűrés „kulcsszó” szerint: Az összes olyan oldal leszűrve lesz, amelyik URL tartalmazza az adott szót vagy szótöredéket. `
     ]
   },
   {
-    question: `Hogyan lehet eltávolítani a „Focus Guard” programot?`,
+    id: `whatDoDistractionAttemptsMean`,
+    question: `Hogyan számolják a figyelemelterelési kísérleteket?`,
     answers: [
-      `Ha a bővítmény van kitűzve, kattintson a jobb gombbal a bővítmény ikonjára, és válassza az Eltávolítás a Chrome/edge-ről lehetőséget.`,
-      `Más esetben menjen a chrome/edge bővítménylista ikonjára (mint egy puzzle-darab), és válassza ki a listából a bővítmény kezelése lehetőséget; ebben a listában megkeresheti az adott bővítményt, és az eltávolítás gomb megnyomásával eltávolíthatja.`
+      `A „Fókuszálási munkamenet” / „Fókusz mód” alatt a számláló be van kapcsolva, és amikor kikapcsol, visszaáll.
+       Az összes korábbi figyelemelterelési kísérletet elmenti a figyelemelterelési kísérlet táblázat, és megjeleníthető és törölhető.`
     ]
   },
   {
-    question: `Hogyan lehet engedélyezni/letiltani a „Focus Guard” funkciót egy inkognitó ablakban?`,
+    id: `whatIsTheDifferenceBetweenFocusModeAndFocusSession`,
+    question: `Mi a különbség a „Fókusz” mód és a „Fókusz munkamenet” (session) között?`,
     answers: [
-      `Kattintson a jobb gombbal a "Focus Guard" ikonra, és válassza a Bővítmény kezelése / Manage Extension lehetőséget.`,
-      `Az inkognitó mód kapcsoló gombját a kezelési részben találja. Itt be- és kikapcsolhatja az inkognitó módot.`
+      `Majdnem ugyanaz a dolog.`,
+      `A „Fókusz mód” egy aktív kifejezés, amely arra utal, hogy a Fókusz gomb be van kapcsolva és az aktiválható szabályok aktívak.`,
+      `A „Fókusz munkamenet” arra az időszakra utal, amikor a Fókusz mód aktív, vagy a múltban aktív volt.`
     ]
   },
   {
-    question: ``,
+    id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
+    question: `A YouTube-on kívül hogyan kaphatok információt a legújabb funkciókról?`,
     answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    id: 'faq-8',
-    question: `Mi az a „weboldal szabály”?`,
-    answers: [
-      `A „webhelyszabály” egy URL-szűrővel rendelkező táblázat sora, két zászlóval: állandóan aktív vagy időlegesen inaktív és a szűrő típusa.`,
-      `A szűrő típusa csak akkor látható, ha a "webhelyszabály" szerkesztésre van megnyitva.`
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
-    ]
-  },
-  {
-    question: ``,
-    answers: [
-      ``,
-      ``,
-      ``
+      `Amikor egy újdonság megjelenik, a következő platformokon teszem közzé: LinkedIn, Twitter és Facebook.`,
+      `Kövess engem, és figyeld a legújabb funkciókat a bejegyzéseimben.`
+    ],
+    links: [
+      {
+        text: `LinkedIn`,
+        url: `https://www.linkedin.com/in/kereszteszsolt`,
+        additionalText: `Kétnyelvű bejegyzések (Magyar/Angol)`
+      },
+      {
+        text: `Twitter/X`,
+        url: `https://twitter.com/KeresztesZsolti`,
+        additionalText: `Kétnyelvű bejegyzések (Magyar/Angol)`
+      },
+      {
+        text: `Facebook`,
+        url: `https://www.facebook.com/KeresztesZsolt.kzs`,
+        additionalText: `Kétnyelvű bejegyzések (Magyar/Angol)`
+      }
     ]
   }
 ];
