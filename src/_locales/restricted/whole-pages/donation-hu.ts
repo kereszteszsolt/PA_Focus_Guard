@@ -6,10 +6,10 @@ export const donations: IDonation[] = [
     title: `Hogyan tudsz támogatni engem?`,
     text: `Sokféleképpen lehet támogatni! Például:`,
     list: [
-      `Likok, Megosztás, Bővítményt értékelése`,
-      `Kövesd és csillagozd a projektet a GitHubon`,
-      `Kövess engem a Twitteren, LinkedIn-en, GitHub-on, Facebookon, YouTube-on (Hu), YouTube-on (En), stb....`,
-      `Lájkold, oszd meg és kommentáld a bejegyzéseimet/videóimat`
+      `Lájkold, oszd meg és értékeld a bővítmény.t`,
+      `Kövess és "csillagozd" a projektet a GitHub-on.`,
+      `Kövess engem a Twitteren, LinkedIn-en, Facebookon, YouTube-on, stb...`,
+      `Lájkold, oszd meg és kommentáld a bejegyzéseimet/videóimat.`
     ],
     mdiIcon: `heart`,
     image: ``,
@@ -23,7 +23,7 @@ export const donations: IDonation[] = [
       `Nincsenek hátrányok vagy előnyök, ha adományozol vagy sem!`,
       `Az adományozás elismerés, nem pedig szolgáltatás!`,
       `Nem nyújtok semmilyen szolgáltatást az adományért cserébe!`,
-      `Csak akkor adományozz, ha biztos vagy benne és megengedheted magadnak!`
+      `Csak akkor adományozz, ha biztos vagy benne, hogy megengedheted magadnak!`
     ],
     mdiIcon: `mdi-coffee`,
     name: `Keresztes Zsolt`,

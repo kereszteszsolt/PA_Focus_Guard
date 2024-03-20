@@ -7,10 +7,10 @@ export const donations: IDonation[] = [
       title: `How can you support me?`,
       text: `There are many ways to support! For example:`,
       list: [
-        `Like, Share, Rate the extension`,
-        `Follow and Star the project on GitHub`,
-        `Follow me on Twitter, LinkedIn, GitHub, Facebook, YouTube (Hu), YouTube (En), etc...`,
-        `Like, share and comment on my posts/videos`
+        `Like, Share and Rate the extension.`,
+        `Follow me and "Star" the project on GitHub.`,
+        `Follow me on Twitter, LinkedIn, Facebook, YouTube, etc...`,
+        `Like, share and comment on my posts/videos.`
       ],
       mdiIcon: `heart`,
       image: ``,
@@ -24,7 +24,7 @@ export const donations: IDonation[] = [
       `There are no disadvantages or advantages if you donate or not!`,
       `Donations are for appreciation, not for a service!`,
       `I will not provide any service for the donation!`,
-      `Only donate if you are confident and can afford it!`
+      `Only donate if you are sure you can afford it!`
     ],
     mdiIcon: `mdi-coffee`,
     name: `Keresztes Zsolt`,
