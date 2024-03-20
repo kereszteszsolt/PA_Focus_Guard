@@ -5,12 +5,14 @@ import { IGtc } from './IGtc';
 import { IFaq } from './IFaq';
 import { IPrivacy } from './IPrivacy';
 import { IAcknowledgement } from './IAcknowledgement';
+import { IAbout } from './IAbout';
 
 export  {
   IGtc,
   IFaq,
   IPrivacy,
   IAcknowledgement,
+  IAbout,
   wp,
   wpc
 }

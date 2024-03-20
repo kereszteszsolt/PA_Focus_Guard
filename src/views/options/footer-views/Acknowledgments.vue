@@ -39,11 +39,6 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
 </template>
 
 <style scoped lang="scss">
-.footer-view {
- // padding: 20px;
-  //background-color: #f5f5f5;
-}
-
 .list-item {
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;

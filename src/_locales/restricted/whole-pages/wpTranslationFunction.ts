@@ -7,6 +7,8 @@ import * as privacyEn from './privacy-en';
 import * as privacyHu from './privacy-hu';
 import * as acknowledgementEn from './acknowledgements-en';
 import * as acknowledgementHu from './acknowledgements-hu';
+import * as aboutEn from './about-en';
+import * as aboutHu from './about-hu';
 
 export const getTranslatedFile = (lang: string, content: string) => {
   switch (content) {
@@ -19,6 +21,8 @@ export const getTranslatedFile = (lang: string, content: string) => {
       return lang === 'hu' ? privacyHu.privacy : privacyEn.privacy;
     case cst.ACKNOWLEDGEMENT:
       return lang === 'hu' ? acknowledgementHu.acknowledgements : acknowledgementEn.acknowledgements;
+    case cst.ABOUT:
+      return lang === 'hu' ? aboutHu.about : aboutEn.about;
     default:
       return undefined;
   }
