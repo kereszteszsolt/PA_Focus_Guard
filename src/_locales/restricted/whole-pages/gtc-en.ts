@@ -13,8 +13,7 @@ export const gtc: IGtc[] = [
     id: `gtc-1`,
     title: ``,
     content: [
-      `Please note that you are responsible for making decisions about the use of this software.
-       If you do not agree with the terms outlined in the General Terms and Conditions (GTC), then it is recommended that you do not install or use this software. `
+      `Please note that you are responsible for making decisions about using this software. If you do not agree with the terms outlined in the General Terms and Conditions (GTC), it is recommended that you do not install or use this software. `
     ]
   },
   {
@@ -28,7 +27,7 @@ export const gtc: IGtc[] = [
     id: `gtc-3`,
     title: ``,
     content: [
-      `The General Terms and Conditions will take effect on March 19, 2024, and will remain in effect unless later amended or revoked.`
+      `The General Terms and Conditions will take effect <b>on March 19, 2024,</b> and will remain in effect unless later amended or revoked.`
     ]
   },
   {

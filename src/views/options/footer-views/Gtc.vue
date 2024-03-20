@@ -6,7 +6,7 @@
           <v-list-item-title>
             <div class="font-weight-bold fgc-primary pr-1" >{{ gtc.title }}</div>
           </v-list-item-title>
-          <p v-for="c in gtc.content" :class="{'finally fgc-accent': index === gtcArray.length - 1}" >{{ c }}</p>
+          <p v-for="c in gtc.content" :class="{'finally fgc-accent': index === gtcArray.length - 1}" v-html="c"></p>
         </v-list-item-content>
       </v-list-item>
     </v-list>

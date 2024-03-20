@@ -13,22 +13,21 @@ export const gtc: IGtc[] = [
     id: `gtc-1`,
     title: ``,
     content: [
-      `Felhívom figyelmét, hogy a szoftver használatával kapcsolatos döntések meghozatala az Ön felelőssége.
-       Ha nem ért egyet az Általános Szerződési Feltételekben (ÁSZF) foglaltakkal, akkor javasolom, hogy ne telepítse és ne használja ezt a szoftvert. `
+      `Kérem, vegye figyelembe, hogy a szoftver használatával kapcsolatos döntések meghozatala az Ön felelőssége. Ha nem ért egyet az Általános Szerződési Feltételekben (ÁSZF) foglaltakkal, akkor azt javaslom, hogy ne telepítse és ne használja ezt a szoftvert. `
     ]
   },
   {
     id: `gtc-2`,
     title: ``,
     content: [
-      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérem, forduljon hozzám bizalommal. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
+      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérjük, ne habozzon kapcsolatba lépni velem. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
     ]
   },
   {
     id: `gtc-3`,
     title: ``,
     content: [
-      `Az Általános Szerződési Feltételek 2024. március 19-én lépnek hatályba, és a későbbiekben történő módosítás vagy visszavonás hiányában hatályban maradnak.`
+      `Az Általános Szerződési Feltételek <b>2024. március 19-én</b> lépnek érvénybe, és a későbbi módosítások vagy visszavonás esetéig érvényben maradnak. `
     ]
   },
   {
