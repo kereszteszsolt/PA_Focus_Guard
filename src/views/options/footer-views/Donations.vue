@@ -1,13 +1,69 @@
 <script setup lang="ts">
 import { FooterViewWrapper } from '@/views/options';
+import { useI18nStore } from '@/store';
+import { computed, ref } from 'vue';
+import { c as r_msg } from '@/_locales/restricted';
+import { wp, wpc, IDonation } from '@/_locales/restricted/whole-pages';
+
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
+
+const donationArray = computed(() => { return wp.getTranslatedFile(i18n.getCurrentLocaleId, wpc.DONATION) as IDonation[]}).value;
+const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
 </script>
 
 <template>
-  <footer-view-wrapper title="Donations">
-    <h1>Donations</h1>
+  <footer-view-wrapper :title="tr(r_msg.DONATIONS)" class="footer-view">
+    <v-list lines="two" class="bg-background">
+      <v-list-item v-for="donation in donationArray" :key="donation.id" class="list-item">
+        <v-list-item-content>
+          <v-list-item-title class="font-weight-bold fgc-primary mb-2 title">{{donation.title}}</v-list-item-title>
+          <p class="text">{{donation.text}}</p>
+          <div v-if="donation.image" class="image-container">
+            <v-img :src="donation.image" :alt="donation.title" width="300"></v-img>
+          </div>
+          <div v-if="donation.link" class="link-container">
+            <v-list-item-subtitle class="link-item">
+              <p class="fgc-secondary fg-font-s-16">{{donation.link.text}}</p>
+              <a :href="donation.link.url" target="_blank" class="fgc-info">{{donation.link.url}}</a>
+            </v-list-item-subtitle>
+          </div>
+          <p v-if="donation.signature" class="signature">{{donation.signature}}</p>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </footer-view-wrapper>
 </template>
 
 <style scoped lang="scss">
+.list-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
 
+.title {
+  font-size: 1.5em;
+}
+
+.text {
+  margin-bottom: 10px;
+}
+
+.image-container {
+  margin-top: 10px;
+}
+
+.link-container {
+  margin-top: 10px;
+}
+
+.link-item {
+  margin-bottom: 10px;
+}
+
+.signature {
+  font-style: italic;
+  margin-top: 20px;
+}
 </style>

@@ -6,13 +6,15 @@ import { IFaq } from './IFaq';
 import { IPrivacy } from './IPrivacy';
 import { IAcknowledgement } from './IAcknowledgement';
 import { IAbout } from './IAbout';
+import { IDonation } from './IDonation';
 
-export  {
+export {
   IGtc,
   IFaq,
   IPrivacy,
   IAcknowledgement,
   IAbout,
+  IDonation,
   wp,
   wpc
-}
+};
