@@ -81,7 +81,7 @@ export const faq: IFaq[] = [
     id: `whatDoFilteringTypesMean`,
     question: `What do filtering types mean?`,
     answers: [
-      `Filter by  "Domain": here will be considered filtering only the domain name with his domain end ex: "example.com",  "someting.example.com". From the second example, only the something part will be filtered out.`,
+      `Filter by "Domain": Here, the filtering works by domain names like "example.com" and "someting.example.com."  In "example.com," the whole "example.com" website will be filtered out, but not other similar sites. In the case of "something.example.com," only the website module, which contains the something "sub-domain", will be filtered out, but not the whole "example.com" website.`,
       `Filter by "Url": here will be considered also the path ex: "https://example.com/somthing". Here, the "example.com" part will not be filtered; only the path that starts with "example.com/something" will be filtered.`,
       `Filter by "end-domain": ex: ".com", ".org" In this case, all sites with ".com" or ".org" domain ends will be filtered out. `,
       `Filter by "keyword": Be careful here; all sites will be filtered to which URL contains that specific word or fragment of the word. `

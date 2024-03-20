@@ -81,10 +81,10 @@ export const faq: IFaq[] = [
     id: `whatDoFilteringTypesMean`,
     question: `Mit jelentenek a szűrési típusok?`,
     answers: [
-      `Szűrés "Domain" szerint: itt csak a domain nevet kell szűrni a domain végével, pl.: "example.com", "someting.example.com". A második példából csak a valami rész lesz kiszűrve.`,
+      `Szűrés "Domain" szerint: Itt a szűrés domain nevek szerint működik, mint például "example.com" és "someting.example.com".  A "example.com" esetén az egész "example.com" webhely szűrésre kerül, más hasonló webhelyek azonban nem. A "something.example.com" esetében csak az a webhelymodul kerül szűrésre, amely a something "sub-domain"-t tartalmazza, de az egész "example.com" webhely nem.`,
       `Szűrés „Url” alapján: itt az elérési útvonal is figyelembe vehető pl.: "https://example.com/somthing". Itt a "example.com" rész nem kerül szűrésre; csak az "example.com/something" kezdetű útvonal kerül szűrésre.`,
       `Szűrés a „domainvégződés” szerint: pl.: ".com", ".org". Ebben az esetben az összes olyan webhelyet kiszűri a rendszer, amelynek ".com" vagy ".org" domain vége van. `,
-      `Szűrés „kulcsszó” szerint: Az összes olyan oldal leszűrve lesz, amelyik URL tartalmazza az adott szót vagy szótöredéket. `
+      `Szűrés „kulcsszó” szerint: Az összes olyan oldal szűrve lesz, amely URL tartalmazza az adott szót vagy szótöredéket. `
     ]
   },
   {
