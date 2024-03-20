@@ -8,7 +8,9 @@ import { wp, wpc, IDonation } from '@/_locales/restricted/whole-pages';
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
 
-const donationArray = computed(() => { return wp.getTranslatedFile(i18n.getCurrentLocaleId, wpc.DONATION) as IDonation[]}).value;
+const donationArray = computed(() => {
+  return wp.getTranslatedFile(i18n.getCurrentLocaleId, wpc.DONATION) as IDonation[];
+}).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
 </script>
 
@@ -17,25 +19,37 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
     <v-list lines="two" class="bg-background">
       <v-list-item v-for="donation in donationArray" :key="donation.id" class="list-item">
         <v-list-item-content>
-          <v-list-item-title class="font-weight-bold fgc-primary mb-2 title">{{donation.title}}</v-list-item-title>
-          <p class="text">{{donation.text}}</p>
+          <v-list-item-title class="font-weight-bold fgc-primary mb-2 title">{{ donation.title }}</v-list-item-title>
+          <p class="text">{{ donation.text }}</p>
           <ul>
-            <li v-for="item in donation.list" :key="item"><v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>{{item}}</li>
+            <li v-for="item in donation.list" :key="item">
+              <v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>
+              {{ item }}
+            </li>
           </ul>
-          <div v-if="donation.image" class="image-container">
-            <v-img :src="donation.image" :alt="donation.title" width="300"></v-img>
+
+          <div class="d-flex flex-row justify-space-between align-center">
+            <div v-if="donation.link" class="link-container">
+              <v-list-item-subtitle class="link-item">
+                <div class="d-flex flex-column justify-space-around">
+                  <p class="fgc-secondary fg-font-s-16">{{ donation.link.text }}</p>
+                  <div class="d-flex flex-row">
+                    <div class="fgc-primary font-weight-bold mr-1 fg-font-s-16">{{ donation?.name }}</div>
+                    <div class="fgc-accent font-weight-bold fg-font-s-16">{{ donation?.identifier }}</div>
+                  </div>
+                  <a :href="donation.link.url" target="_blank"
+                     class="fgc-info font-weight-bold fg-font-s-16">{{ donation.link.url }}</a>
+                </div>
+              </v-list-item-subtitle>
+            </div>
+            <div v-if="donation.image" class="image-container">
+              <a :href="donation.link && donation.link.url">
+                <v-img :src="donation.image" :alt="donation.title" width="300"></v-img>
+              </a>
+            </div>
           </div>
-          <div v-if="donation.link" class="link-container">
-            <v-list-item-subtitle class="link-item">
-              <p class="fgc-secondary fg-font-s-16">{{donation.link.text}}</p>
-              <div class="d-flex flex-row">
-                <div class="fgc-primary font-weight-bold mr-1">{{donation?.name}}</div>
-                <div class="fgc-accent font-weight-bold">{{donation?.identifier}}</div>
-              </div>
-              <a :href="donation.link.url" target="_blank" class="fgc-info font-weight-bold">{{donation.link.url}}</a>
-            </v-list-item-subtitle>
-          </div>
-          <p v-if="donation.signature" class="signature fgc-accent">{{donation.signature}}</p>
+
+          <p v-if="donation.signature" class="signature fgc-accent">{{ donation.signature }}</p>
         </v-list-item-content>
       </v-list-item>
     </v-list>
