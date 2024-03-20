@@ -11,7 +11,7 @@ export const privacy: IPrivacy[] = [
   },
   {
     id: 3,
-    content: `Minden konfigurációs alkalmazásadatot, weboldalszabályt, weboldalszabály-listát és figyelemelterelési kísérletet a helyi tárolási technológia segítségével helyben tárol a webböngészőben.`
+    content: `Az összes konfigurációs alkalmazásadat, weboldalszabály, weboldalszabály-lista és szórakozási kísérlet a helyi tárolási technológia segítségével helyben, a webböngészőben kerül tárolásra.`
   },
   {
     id: 4,

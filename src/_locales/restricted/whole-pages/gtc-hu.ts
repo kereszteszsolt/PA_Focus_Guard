@@ -96,15 +96,14 @@ export const gtc: IGtc[] = [
     id: `legalCompliance`,
     title: `Jogi megfelelés:`,
     content: [
-      `A szoftver használata során minden felhasználónak be kell tartania a vonatkozó helyi és nemzetközi törvényeket és előírásokat.`
+      `A szoftver használata vagy módosítása során minden felhasználónak be kell tartania a vonatkozó helyi és nemzetközi törvényeket és előírásokat.`
     ]
   },
   {
     id: `userModifications`,
     title: `Felhasználói módosítások:`,
     content: [
-      `Ha egy felhasználó úgy dönt, hogy módosítja a szoftver kódját, fontos, hogy a kapcsolatfelvételi oldalakat, profilokat és a közösségi média hivatkozásokat is frissítse, hogy azok tükrözzék a szoftver saját verzióját.
-       Míg a köszönetnyilvánítás oldalon az eredeti szerzőnek való elismerést nagyra értékelem, jogi okokból szükséges, hogy a módosított változatot annak a személynek a neve alatt terjesszék, aki a forráskódon a változtatásokat elvégezte.`
+      `Tegyük fel, hogy egy felhasználó úgy dönt, hogy módosítja a szoftver kódját. Ebben az esetben elengedhetetlen, hogy a kapcsolatfelvételi oldalakat, profilokat és a közösségi média hivatkozásokat is frissítse, hogy azok tükrözzék a szoftver saját verzióját. Bár a köszönetnyilvánítás rovatban az eredeti szerzőnek való megemlítése nagyra értékelendő, jogi okokból szükséges, hogy a módosított változatot annak a személynek a neve alatt terjesszék, aki a forráskódon a változtatásokat elvégezte.`
     ]
   },
   {

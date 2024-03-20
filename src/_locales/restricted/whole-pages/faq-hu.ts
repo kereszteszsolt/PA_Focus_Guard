@@ -26,7 +26,7 @@ export const faq: IFaq[] = [
   },
   {
     id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
-    question: `A YouTube-on kívül hogyan kaphatok információt a legújabb funkciókról?`,
+    question: `A YouTube-on kívül honnan kaphatok információt a legújabb funkciókról?`,
     answers: [
       `Amikor egy újdonság megjelenik, a következő platformokon teszem közzé: LinkedIn, Twitter és Facebook.`,
       `Kövess engem, és figyeld a legújabb funkciókat a bejegyzéseimben.`
@@ -89,10 +89,10 @@ export const faq: IFaq[] = [
   },
   {
     id: `whatDoDistractionAttemptsMean`,
-    question: `Hogyan számolják a figyelemelterelési kísérleteket?`,
+    question: `Hogyan számolják a szórakozási kísérleteket?`,
     answers: [
       `A „Fókuszálási munkamenet” / „Fókusz mód” alatt a számláló be van kapcsolva, és amikor kikapcsol, visszaáll.
-       Az összes korábbi figyelemelterelési kísérletet elmenti a figyelemelterelési kísérlet táblázat, és megjeleníthető és törölhető.`
+       Az összes korábbi szórakozási kísérletet elmenti a szórakozási kísérlet táblázat, ami megjeleníthető és törölhető.`
     ]
   },
   {
@@ -100,7 +100,7 @@ export const faq: IFaq[] = [
     question: `Mi a különbség a „Fókusz mód” és a „Fókusz munkamenet” (session) között?`,
     answers: [
       `Majdnem ugyanaz a dolog.`,
-      `A „Fókusz mód” egy aktív kifejezés, amely arra utal, hogy a Fókusz gomb be van kapcsolva és az aktiválható szabályok aktívak.`,
+      `A „Fókusz mód aktív” kifejezés arra utal, hogy a Fókusz gomb be van kapcsolva és az aktiválható szabályok aktívak.`,
       `A „Fókusz munkamenet” arra az időszakra utal, amikor a Fókusz mód aktív, vagy a múltban aktív volt.`
     ]
   }

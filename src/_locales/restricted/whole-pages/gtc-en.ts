@@ -96,15 +96,14 @@ export const gtc: IGtc[] = [
     id: `legalCompliance`,
     title: `Legal Compliance:`,
     content: [
-      `All users must adhere to applicable laws and regulations, both locally and internationally, while using the software.`
+      `All users must adhere to applicable laws and regulations, both locally and internationally while using or modifying the software.`
     ]
   },
   {
     id: `userModifications`,
     title: `User Modifications:`,
     content: [
-      `If a user decides to modify the software's code, it is important that they also update the contact pages, profiles, and social media references to reflect their version of the software.
-       While it is appreciated to give credit to the original author in the acknowledgements section, it is necessary for legal reasons that the modified version is distributed under the name of the person who made the changes to the source code.`
+      `Suppose a user decides to modify the software's code. In that case, it is essential that they also update the contact pages, profiles, and social media references to reflect their version of the software. While it is appreciated to credit the original author in the acknowledgements section, it is necessary for legal reasons that the modified version be distributed under the name of the person who made the changes to the source code.`
     ]
   },
   {
