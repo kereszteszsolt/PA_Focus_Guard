@@ -4,16 +4,21 @@ import { socialMediaLinks } from '@/links';
 import { useI18nStore } from '@/store';
 import { computed, ref } from 'vue';
 import { c as r_msg } from '@/_locales/restricted';
+import * as links from '@/links';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
+
+const orderedLinks = computed(() => {
+  return links.socialMediaLinks.sort((a, b) => a.contactOrder - b.contactOrder).filter((link) => link.contactOrder > 0);
+});
 </script>
 
 <template>
   <footer-view-wrapper title="Contact">
     <v-list lines="two" class="bg-background">
-      <v-list-item v-for="link in socialMediaLinks" :key="link.profileIdentifier" >
+      <v-list-item v-for="link in orderedLinks" :key="link.profileIdentifier" >
         <template v-slot:prepend>
           <v-icon :icon="link.mdiIcon"></v-icon>
         </template>

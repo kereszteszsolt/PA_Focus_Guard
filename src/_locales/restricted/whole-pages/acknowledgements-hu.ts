@@ -3,6 +3,11 @@ import focus from '@/assets/focus.jpg';
 
 export const acknowledgements: IAcknowledgement[] = [
   {
+    id: `supportAndEncouragement`,
+    title: `Támogatás és bátorítás`,
+    text: `Szeretném továbbá köszönetemet kifejezni mindazoknak, akik támogattak és bátorítottak a „Focus Guard” bővítmény fejlesztési folyamata során.`,
+  },
+  {
     id: `stockPhotos`,
     title: `Stock Photos`,
     text: `Köszönet a @Homegroundsnak a Pixabay-ről a „Focus Guard” bővítményben használt stock fotóért.`,
@@ -27,10 +32,5 @@ export const acknowledgements: IAcknowledgement[] = [
         url: `https://pixabay.com/hu/photos/f%C3%B3kusz-inspir%C3%A1lja-ihlet-5519780/`
       }
     ]
-  },
-  {
-    id: `supportAndEncouragement`,
-    title: `Támogatás és bátorítás`,
-    text: `Szeretném továbbá köszönetemet kifejezni mindazoknak, akik támogattak és bátorítottak a „Focus Guard” bővítmény fejlesztési folyamata során.`,
   }
 ];

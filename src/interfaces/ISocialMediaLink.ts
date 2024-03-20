@@ -7,4 +7,8 @@ export interface ISocialMediaLink {
   profileIdentifier: string;
   shortDescription: string;
   callToAction: string;
+  contactOrder: number;
+  footerOrder: number;
+  customIcon1?: string;
+  customIcon2?: string;
 }

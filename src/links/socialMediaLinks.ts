@@ -11,6 +11,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@KeresztesZsolt.kzs',
     shortDescription: r_msg.SOC_MED_DESC_FACEBOOK,
     callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_FACEBOOK,
+    contactOrder: 1,
+    footerOrder: 1
   },
   {
     id: 2,
@@ -21,6 +23,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@keresztes.zsolt',
     shortDescription: r_msg.SOC_MED_DESC_LINKEDIN,
     callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_LINKEDIN,
+    contactOrder: 2,
+    footerOrder: 2
   },
   {
     id: 3,
@@ -31,6 +35,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@kereszteszsolt',
     shortDescription: r_msg.SOC_MED_DESC_GITHUB,
     callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_GITHUB,
+    contactOrder: 3,
+    footerOrder: 7
   },
   {
     id: 4,
@@ -41,6 +47,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@KeresztesZsolti',
     shortDescription: r_msg.SOC_MED_DESC_TWITTER,
     callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_TWITTER,
+    contactOrder: 4,
+    footerOrder: 3
   },
   {
     id: 5,
@@ -51,6 +59,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@kereszteszsolt_zsk',
     shortDescription: r_msg.SOC_MED_DESC_INSTAGRAM,
     callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_INSTAGRAM,
+    contactOrder: 5,
+    footerOrder: 9
   },
   {
     id: 6,
@@ -61,6 +71,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@kereszteszsolt',
     shortDescription: r_msg.SOC_MED_DESC_YOUTUBE_HU,
     callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
+    contactOrder: 6,
+    footerOrder: 6
   },
   {
     id: 7,
@@ -71,16 +83,20 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@kereszteszsolti',
     shortDescription: r_msg.SOC_MED_DESC_YOUTUBE_EN,
     callToAction: r_msg.CLICK_AND_FALLOW_ME_ON_YOUTUBE,
+    contactOrder: 7,
+    footerOrder: 4
   },
   {
     id: 8,
     platformName: 'Linktr.ee',
-    mdiIcon: 'mdi-link-variant',
+    mdiIcon: 'mdi-palm-tree',
     url: 'https://www.linktr.ee/kereszteszsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt',
     shortDescription: 'Linktr.ee',
     callToAction: 'Linktr.ee',
+    contactOrder: 8,
+    footerOrder: 8
   },
   {
     id: 9,
@@ -91,5 +107,19 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     profileIdentifier: '@kereszteszsolt',
     shortDescription: 'Support me on Buy Me A Coffee',
     callToAction: 'Support me on Buy Me A Coffee',
+    contactOrder: 9,
+    footerOrder: 5
+  },
+  {
+    id: 10,
+    platformName: 'email',
+    mdiIcon: 'mdi-at',
+    url: 'https://chromewebstore.google.com/detail/focus-guard/bdfnblnbjckkhknignkpmckeelfplill',
+    profileName: '',
+    profileIdentifier: '',
+    shortDescription: 'You can find the actualized contact e-mail on the Focus Guard extension page on the Chrome web store!',
+    callToAction: '',
+    contactOrder: 10,
+    footerOrder: -1,
   }
 ];

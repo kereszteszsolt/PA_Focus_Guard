@@ -25,13 +25,17 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'l
   i18n.fetchLocaleSettingsAndMessages();
 });
 
+const orderedLinks = computed(() => {
+  return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
+});
+
 </script>
 
 <template>
   <v-sheet color="background"
            class="border-bottom-radius-8 fg-h-104px d-flex flex-column justify-space-between px-4 py-2">
     <div class="d-flex flex-row justify-space-between">
-      <v-btn v-for="link in links.socialMediaLinks" variant="text" class="flex-1-0"
+      <v-btn v-for="link in orderedLinks" variant="text" class="flex-1-0"
              id="#fgModal" color="info" density="compact" @click="openSocialDialog(link)">
         <v-icon>{{ link.mdiIcon }}</v-icon>
       </v-btn>
