@@ -1,5 +1,6 @@
 import { c as r_msg } from '@/_locales/restricted';
 import { ISocialMediaLink } from '@/interfaces';
+import buyMeACoffee from '@/assets/buy-me-a-coffee.png';
 
 export const socialMediaLinks: ISocialMediaLink[] = [
   {
@@ -113,6 +114,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
       r_msg.CTA_BUY_ME_A_COFFEE_L3,
       r_msg.CTA_BUY_ME_A_COFFEE_L4
     ],
+    image: buyMeACoffee,
     contactOrder: 9,
     footerOrder: 5
   },

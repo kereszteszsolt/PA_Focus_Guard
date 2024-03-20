@@ -68,14 +68,27 @@ const orderedLinks = computed(() => {
       </div>
       <div class="mb-2">{{ tr(contextLink.shortDescription) }}</div>
       <div class="mb-2">{{ tr(contextLink.callToAction) }}</div>
+      <ul class="mb-2 d-flex flex-column no-bullets" v-if="contextLink.list">
+          <li v-for="item in contextLink.list || []" :key="item">
+            <v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>
+            {{ tr(item) }}
+          </li>
+      </ul>
     </div>
     <template v-slot:actions>
+      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button" color="accent"></v-btn>
       <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>
     </template>
   </fg-dialog>
 </template>
 
 <style scoped lang="scss">
+.custom-button {
+  background-size: auto 100%; /* This will make the image fit the height of the button */
+  background-repeat: no-repeat;
+  background-position: center;
+  min-width: 130px;
+}
 .dialog-title {
   font-size: 24px;
   margin-bottom: 12px;
@@ -83,5 +96,9 @@ const orderedLinks = computed(() => {
 
 .dialog-content {
   padding: 20px;
+}
+
+.no-bullets {
+  list-style-type: none;
 }
 </style>
