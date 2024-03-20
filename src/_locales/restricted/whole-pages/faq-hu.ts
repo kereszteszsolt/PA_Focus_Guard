@@ -5,7 +5,7 @@ export const faq: IFaq[] = [
     id: `areThereYouTubeVideosAboutFocusGuard`,
     question: `Vannak YouTube-videók a „Focus Guard”-ról?`,
     answers: [
-      `Természetesen vannak; iratkozz fel, és maradj képben a legújabb funkciókról a csatornámon.`
+      `Természetesen vannak; iratkozzon fel a csatornámra, és maradjon naprakész a „Focus Guard” legújabb fejlesztéseivel.`
     ],
     links: [
       {
@@ -26,10 +26,10 @@ export const faq: IFaq[] = [
   },
   {
     id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
-    question: `A YouTube-on kívül honnan kaphatok információt a legújabb funkciókról?`,
+    question: `A YouTube-on kívül hogyan tájékozódhatok a „Focus Guard” legújabb fejlesztéseiről?`,
     answers: [
-      `Amikor egy újdonság megjelenik, a következő platformokon teszem közzé: LinkedIn, Twitter és Facebook.`,
-      `Kövess engem, és figyeld a legújabb funkciókat a bejegyzéseimben.`
+      `Amikor a „Focus Guard”-dal kapcsolatban újdonságok jelennek meg, azt a LinkedIn, Twitter és Facebook oldalaimon is közzéteszem.`,
+      `Kövessen és maradjon naprakész a „Focus Guard” legújabb fejlesztéseivel.`
     ],
     links: [
       {
@@ -60,7 +60,7 @@ export const faq: IFaq[] = [
     question: `Mi az a weboldal szabály?`,
     answers: [
       `Valójában egy szűrőszabály, amelyet hozzáadhat az egyik listához.`,
-      `Egy szűrőszabályon belül a következő kötelező típusok közül választhat: „Domain”, „Url”, „Sub-Domain” és „Keyword”, valamint választható státuszok közül: „Ideiglenesen inaktív” vagy „Állandóan aktív”.`
+      `Egy szűrőszabályon belül a következő kötelező típusok közül választhat: „Domain”, „Url”, „Domain-végződés” és „Kulcsszó”, valamint választható státuszok közül: „Ideiglenesen inaktív” vagy „Állandóan aktív”.`
     ]
   },
   {

@@ -5,7 +5,7 @@ export const faq: IFaq[] = [
     id: `areThereYouTubeVideosAboutFocusGuard`,
     question: `Are there YouTube videos about "Focus Guard"?`,
     answers: [
-      `Of course, they are; subscribe and stay tuned to the latest features on my channel.`
+      `Of course, they are; subscribe to my channel and stay up-to-date with the latest features of "Focus Guard".`
     ],
     links: [
       {
@@ -26,10 +26,10 @@ export const faq: IFaq[] = [
   },
   {
     id: `besidesYouTubeHowCanIGetInformationAboutTheLatestFeatures`,
-    question: `Besides YouTube, how can I get information about the latest features?`,
+    question: `Besides YouTube, how can I get information about the latest features of "Focus Guard"?`,
     answers: [
-      `When a feature comes out,  I post it on the following platforms: LinkedIn, Twitter, and Facebook.`,
-      `Follow me, and stay tuned to the latest features on my posts.`
+      `When a feature related to "Focus Guard" comes out, I also post it on LinkedIn, Twitter, and Facebook.`,
+      `Follow me and stay up-to-date with the latest features of "Focus Guard".`
     ],
     links: [
       {
