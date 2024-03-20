@@ -9,6 +9,6 @@ export interface ISocialMediaLink {
   callToAction: string;
   contactOrder: number;
   footerOrder: number;
-  customIcon1?: string;
-  customIcon2?: string;
+  list?: string[];
+  image?:string;
 }

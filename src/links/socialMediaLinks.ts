@@ -105,8 +105,14 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.buymeacoffee.com/kereszteszsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt',
-    shortDescription: 'Support me on Buy Me A Coffee',
-    callToAction: 'Support me on Buy Me A Coffee',
+    shortDescription: r_msg.SOC_MED_DESC_BUY_ME_A_COFFEE,
+    callToAction: r_msg.CTA_BUY_ME_A_COFFEE,
+    list: [
+      r_msg.CTA_BUY_ME_A_COFFEE_L1,
+      r_msg.CTA_BUY_ME_A_COFFEE_L2,
+      r_msg.CTA_BUY_ME_A_COFFEE_L3,
+      r_msg.CTA_BUY_ME_A_COFFEE_L4
+    ],
     contactOrder: 9,
     footerOrder: 5
   },

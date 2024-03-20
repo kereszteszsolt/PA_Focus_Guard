@@ -6,6 +6,7 @@
   "socMedDescYouTubeEn": "Content: videos in English in various categories, such as vlogs, self-development, science and technology, etc.",
   "socMedDescInstagram": "Content: photos mainly of food, nature, flowers, birds and bugs.",
   "socMedDescLinkTree": "Content: actualized links to my social pages and software.",
+  "socMedDescBuyMeACoffee": "Content: Donation Platform: \"Buy Me A Coffee!\"",
   "clickAndFallowMeOnFacebook": "Click and follow me on Facebook!",
   "clickAndFallowMeOnTwitter": "Click and follow me on Twitter!",
   "clickAndFallowMeOnLinkedIn": "Click and follow me on LinkedIn!",
@@ -24,5 +25,10 @@
   "donations": "Donations",
   "qna": "Q&A",
   "contact": "Contact",
-  "about": "About"
+  "about": "About",
+  "ctaBuyMeACoffee": "You can motivate me with the price of a coffee! Before donating, please consider the following:",
+  "ctaBuyMeACoffeeL1": "There are no disadvantages or advantages if you donate or not!",
+  "ctaBuyMeACoffeeL2": "Donations are for appreciation, not for a service!",
+  "ctaBuyMeACoffeeL3": "I will not provide any service for the donation!",
+  "ctaBuyMeACoffeeL4": "Only donate if you are sure you can afford it!"
 }

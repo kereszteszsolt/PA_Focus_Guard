@@ -20,7 +20,7 @@ const orderedLinks = computed(() => {
     <v-list lines="two" class="bg-background">
       <v-list-item v-for="link in orderedLinks" :key="link.profileIdentifier" >
         <template v-slot:prepend>
-          <v-icon :icon="link.mdiIcon"></v-icon>
+          <v-icon :icon="link.mdiIcon" color="info"></v-icon>
         </template>
         <v-list-item-content>
           <v-list-item-title>

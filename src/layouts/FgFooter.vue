@@ -51,7 +51,7 @@ const orderedLinks = computed(() => {
       <p class="fgc-info">Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
     </div>
   </v-sheet>
-  <fg-dialog v-model:dialog="socialDialog" activator="#fgModal" max-width="600px">
+  <fg-dialog v-model:dialog="socialDialog" activator="#fgModal" max-width="675px">
     <template v-slot:title>
       <h2 class="mb-2 fg-font-s-24">{{ contextLink.platformName }}</h2>
     </template>

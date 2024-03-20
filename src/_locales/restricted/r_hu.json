@@ -15,6 +15,7 @@
   "clickAndFallowMeOnTikTok": "Kattintson és kövessen TikTokon!",
   "clickAndCheckMyLinkTreePage": "Kattintson és nézze meg most!",
   "socMedDescGitHub": "Tartalom: Forráskód ehhez a projekthez és néhány más projekthez.",
+  "socMedDescBuyMeACoffee": "Tartalom: Adományozás Platform: \" Buy Me A Coffee!\" (\"Hívj meg egy kávéra!\")",
   "thankY4YInterest": "Köszönöm az érdeklődését!",
   "notPartOfExtension": "A kívánt oldal nem része a kiegészítésnek!",
   "clickOpenNewTab": "Az új fülben megnyithatja a linket rákattintva.",
@@ -24,5 +25,10 @@
   "donations": "Adományok",
   "qna": "GY.I.K.",
   "contact": "Kapcsolat",
-  "about": "Rólam"
+  "about": "Rólam",
+  "ctaBuyMeACoffee": "Egy kávé árával is motiválhatsz engem! Mielőtt adományozol, kérlek, vedd figyelembe a következőket:",
+  "ctaBuyMeACoffeeL1": "Nincsenek hátrányok vagy előnyök, ha adományozol vagy sem!",
+  "ctaBuyMeACoffeeL2": "Az adományozás elismerés, nem pedig szolgáltatás!",
+  "ctaBuyMeACoffeeL3": "Nem nyújtok semmilyen szolgáltatást az adományért cserébe!",
+  "ctaBuyMeACoffeeL4": "Csak akkor adományozz, ha biztos vagy benne, hogy megengedheted magadnak!"
 }
