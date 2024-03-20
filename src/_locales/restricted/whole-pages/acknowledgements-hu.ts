@@ -1,35 +1,36 @@
 import { IAcknowledgement } from './IAcknowledgement';
+import focus from '@/assets/focus.jpg';
 
 export const acknowledgements: IAcknowledgement[] = [
   {
     id: `stockPhotos`,
     title: `Stock Photos`,
-    text: `Tanks to @Homegrounds from Pixabay for the stock photos used in the Focus Guard extension.`,
-    textAllImg: `The following stock photos were used in the Focus Guard extension:`,
+    text: `Köszönet a @Homegroundsnak a Pixabay-ről a „Focus Guard” bővítményben használt stock fotóért.`,
+    textAllImg: `A fotó, amelyet a „Focus Guard” bővítményben használtam:`,
     images: [
       {
-        src: `https://cdn.pixabay.com/photo/2020/08/26/15/24/focus-5519780_1280.jpg`,
-        alt: `Focus, Inspire, Inspiration image`
+        src: focus,
+        alt: `Fókusz, Inspirálja, Ihlet kép.`
       },
     ],
     links: [
       {
         text: `Homegrounds`,
-        url: `https://pixabay.com/users/homegrounds-18055885/`
+        url: `https://pixabay.com/hu/users/homegrounds-18055885/`
       },
       {
         text: `Pixabay`,
-        url: `https://pixabay.com/`
+        url: `https://pixabay.com`
       },
       {
-        text: `Focus, Inspire, Inspiration`,
-        url: `https://pixabay.com/ro/photos/focalizare-a-inspira-inspira%C8%9Bie-5519780/`
+        text: `Fókusz, Inspirálja, Ihlet kép.`,
+        url: `https://pixabay.com/hu/photos/f%C3%B3kusz-inspir%C3%A1lja-ihlet-5519780/`
       }
     ]
   },
   {
     id: `supportAndEncouragement`,
-    title: `Support and Encouragement`,
-    text: `Thanks to all persons who supported and encouraged me during the development of the Focus Guard extension!`,
+    title: `Támogatás és bátorítás`,
+    text: `Szeretném továbbá köszönetemet kifejezni mindazoknak, akik támogattak és bátorítottak a „Focus Guard” bővítmény fejlesztési folyamata során.`,
   }
 ];

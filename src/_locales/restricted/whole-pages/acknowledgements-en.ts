@@ -1,14 +1,15 @@
 import { IAcknowledgement } from './IAcknowledgement';
+import focus from '@/assets/focus.jpg';
 
 export const acknowledgements: IAcknowledgement[] = [
   {
     id: `stockPhotos`,
     title: `Stock Photos`,
-    text: `Tanks to @Homegrounds from Pixabay for the stock photos used in the Focus Guard extension.`,
-    textAllImg: `The following stock photos were used in the Focus Guard extension:`,
+    text: `Thanks to @Homegrounds from Pixabay for providing the stock photo used in the Focus Guard extension.`,
+    textAllImg: `The photo that I used in the Focus Guard extension:`,
     images: [
       {
-        src: `https://cdn.pixabay.com/photo/2020/08/26/15/24/focus-5519780_1280.jpg`,
+        src:  focus,
         alt: `Focus, Inspire, Inspiration image`
       },
     ],
@@ -23,13 +24,13 @@ export const acknowledgements: IAcknowledgement[] = [
       },
       {
         text: `Focus, Inspire, Inspiration`,
-        url: `https://pixabay.com/ro/photos/focalizare-a-inspira-inspira%C8%9Bie-5519780/`
+        url: `https://pixabay.com/photos/focus-inspire-inspiration-5519780/`
       }
     ]
   },
   {
     id: `supportAndEncouragement`,
     title: `Support and Encouragement`,
-    text: `Thanks to all persons who supported and encouraged me during the development of the Focus Guard extension!`,
+    text: ` I would also like to express my gratitude to all the individuals who supported and encouraged me throughout the development process of the Focus Guard extension.`,
   }
 ];
