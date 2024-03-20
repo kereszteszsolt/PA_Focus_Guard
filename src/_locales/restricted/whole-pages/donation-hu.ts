@@ -26,6 +26,8 @@ export const donations: IDonation[] = [
       `Csak akkor adományozz, ha biztos vagy benne és megengedheted magadnak!`
     ],
     mdiIcon: `mdi-coffee`,
+    name: `Keresztes Zsolt`,
+    identifier: `@kereszteszsolt`,
     image: buyMeACoffee,
     link: {
       text: `Buy me a coffee`,

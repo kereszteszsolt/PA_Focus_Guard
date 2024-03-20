@@ -3,6 +3,8 @@ export interface IDonation {
   title?: string;
   text?: string;
   list?: string[];
+  name?: string;
+  identifier?: string;
   link?: {
     text: string;
     url: string;

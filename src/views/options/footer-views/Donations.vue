@@ -19,16 +19,23 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
         <v-list-item-content>
           <v-list-item-title class="font-weight-bold fgc-primary mb-2 title">{{donation.title}}</v-list-item-title>
           <p class="text">{{donation.text}}</p>
+          <ul>
+            <li v-for="item in donation.list" :key="item"><v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>{{item}}</li>
+          </ul>
           <div v-if="donation.image" class="image-container">
             <v-img :src="donation.image" :alt="donation.title" width="300"></v-img>
           </div>
           <div v-if="donation.link" class="link-container">
             <v-list-item-subtitle class="link-item">
               <p class="fgc-secondary fg-font-s-16">{{donation.link.text}}</p>
-              <a :href="donation.link.url" target="_blank" class="fgc-info">{{donation.link.url}}</a>
+              <div class="d-flex flex-row">
+                <div class="fgc-primary font-weight-bold mr-1">{{donation?.name}}</div>
+                <div class="fgc-accent font-weight-bold">{{donation?.identifier}}</div>
+              </div>
+              <a :href="donation.link.url" target="_blank" class="fgc-info font-weight-bold">{{donation.link.url}}</a>
             </v-list-item-subtitle>
           </div>
-          <p v-if="donation.signature" class="signature">{{donation.signature}}</p>
+          <p v-if="donation.signature" class="signature fgc-accent">{{donation.signature}}</p>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -40,6 +47,7 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 20px;
+  font-size: 16px;
 }
 
 .title {
@@ -63,6 +71,7 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
 }
 
 .signature {
+  font-weight: bold;
   font-style: italic;
   margin-top: 20px;
 }
