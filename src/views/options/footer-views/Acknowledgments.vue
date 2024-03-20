@@ -40,8 +40,8 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
 
 <style scoped lang="scss">
 .footer-view {
-  padding: 20px;
-  background-color: #f5f5f5;
+ // padding: 20px;
+  //background-color: #f5f5f5;
 }
 
 .list-item {
