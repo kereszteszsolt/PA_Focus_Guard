@@ -93,8 +93,8 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://www.linktr.ee/kereszteszsolt',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt',
-    shortDescription: 'Linktr.ee',
-    callToAction: 'Linktr.ee',
+    shortDescription: r_msg.SOC_MED_DESC_LINK_TREE,
+    callToAction: r_msg.CLICK_AND_CHECK_MY_LINK_TREE_PAGE,
     contactOrder: 8,
     footerOrder: 8
   },
