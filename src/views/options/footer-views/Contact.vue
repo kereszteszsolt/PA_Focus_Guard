@@ -33,6 +33,12 @@ const orderedLinks = computed(() => {
           <a :href="link.url" target="_blank">{{ link.url }}</a>
           <p>{{ tr(link.shortDescription) }}</p>
           <p>{{ tr(link.callToAction) }}</p>
+          <ul class="mb-2 d-flex flex-column no-bullets" v-if="link.list">
+            <li v-for="item in link.list || []" :key="item">
+              <v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>
+              {{ tr(item) }}
+            </li>
+          </ul>
         </v-list-item-content>
       </v-list-item>
     </v-list>
