@@ -170,7 +170,7 @@ const openDeleteFilterRuleDialog = (distractionAttemptId: string, filterRuleId: 
                   class="bg-background">
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">
-          <v-text-field v-model="search" label="Search by URL Filter" clearable></v-text-field>
+<!--          <v-text-field v-model="search" label="Search by URL Filter" clearable></v-text-field>-->
         </v-toolbar>
       </template>
       <template v-slot:item.dateTime="{ item }">

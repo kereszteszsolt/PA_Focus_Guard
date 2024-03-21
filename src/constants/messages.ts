@@ -11,6 +11,7 @@ export const NEW_ITEM = 'newItem';
 export const ON = 'on';
 export const OFF = 'off';
 export const SETTINGS = 'settings';
+export const BACK = 'back';
 export const DISTRACTION_ATTEMPTS = 'distractionAttempts';
 export const ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE_LIST = 'areYouSureDeleteThisWebsiteRuleList';
 export const ALSO_DELETE_ALL_ASSOCIATED_WEBSITE_RULES = 'alsoDeleteAllAssociatedWebsiteRules';

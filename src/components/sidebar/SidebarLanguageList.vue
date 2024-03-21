@@ -40,7 +40,7 @@ const allLocales = computed(() => i18n.getAllLocales);
       <v-divider></v-divider>
       <v-list-item>
         <template v-slot:prepend>
-          <v-btn density="compact" icon="mdi-plus" color="accent" variant="elevated" elevation="4"></v-btn>
+          <v-btn density="compact" icon="mdi-keyboard-backspace" color="accent" variant="elevated" elevation="4" to="/settings/settings"></v-btn>
         </template>
       </v-list-item>
       <v-divider></v-divider>

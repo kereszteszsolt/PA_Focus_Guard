@@ -30,7 +30,7 @@ const orderedLinks = computed(() => {
             </div>
           </v-list-item-title>
           <v-list-item-subtitle>{{ link.platformName}}</v-list-item-subtitle>
-          <a :href="link.url" target="_blank">{{ link.url }}</a>
+          <a :href="link.url" target="_blank" class="fgc-info">{{ link.url }}</a>
           <p>{{ tr(link.shortDescription) }}</p>
           <p>{{ tr(link.callToAction) }}</p>
           <ul class="mb-2 d-flex flex-column no-bullets" v-if="link.list">

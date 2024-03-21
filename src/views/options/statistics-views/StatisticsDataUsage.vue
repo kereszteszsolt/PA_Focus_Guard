@@ -18,7 +18,7 @@ const downloadAllData = () => {
     <h1>Data usage</h1>
     <table class="styled-table">
       <thead>
-      <tr>
+      <tr class="bg-accent">
         <th>Variable Name</th>
         <th>Value (Bytes)</th>
         <th>Value (KB)</th>
@@ -70,7 +70,7 @@ const downloadAllData = () => {
       </tr>
       </tbody>
     </table>
-    <button @click="downloadAllData">Download All Data</button>
+<!--    <button @click="downloadAllData">Download All Data</button>-->
   </div>
 </template>
 
@@ -88,12 +88,12 @@ const downloadAllData = () => {
 }
 
 .styled-table th {
-  background-color: #f5f5f5;
+  //background-color: #f5f5f5;
   text-align: left;
 }
 
 .styled-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: rgb(var(--v-theme-info)) !important;
 }
 
 button {
