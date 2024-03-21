@@ -152,106 +152,110 @@ const save = (editedItem: IWebsiteRule) => {
 </script>
 
 <template>
-  <div v-if="!isLoading" class="flex-1-0 border-radius-8 fgScroll">
-    <v-data-table
-      :headers="headers"
-      :items="websiteRules"
-      :sort-by="sortByFieldName"
-      class="bg-background"
-      v-model:page="page"
-      v-model:items-per-page="itemsPerPage"
-    >
-      <template v-slot:item.url="{ item }">
-        <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word',
+  <div class="flex-1-0">
+    <div v-if="!isLoading" class="border-radius-8 fgScroll fw-card">
+      <div class="fgScroll fw-card">
+        <v-data-table
+          :headers="headers"
+          :items="websiteRules"
+          :sort-by="sortByFieldName"
+          class="bg-background fgScroll"
+          v-model:page="page"
+          v-model:items-per-page="itemsPerPage"
+        >
+          <template v-slot:item.url="{ item }">
+            <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word',
         textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
-          {{ item.urlFilter }}
-        </div>
-      </template>
-      <template v-slot:item.actions="{ item }">
-        <div class="d-flex justify-space-around">
-          <common-crud-menu
-            :list-id="item.id"
-            :edit-item="editItem"
-            :delete-item="deleteItem"
-            :move-up="moveUp"
-            :move-down="moveDown"
-            :t="t"
-          />
-        </div>
-      </template>
-      <template v-slot:item.permanentlyActive="{ item }">
-        <v-checkbox
-          v-model="item.permanentlyActive"
-          color="primary"
-          @change="setPermanentlyActive(item)"
-          hide-details
-          class="d-flex justify-center"
-        >
-        </v-checkbox>
-      </template>
-      <template v-slot:item.temporarilyInactive="{ item }">
-        <v-checkbox
-          v-model="item.temporarilyInactive"
-          color="primary"
-          @change="setTemporarilyInactive(item)"
-          hide-details
-          class="d-flex justify-center"
-        >
-        </v-checkbox>
-      </template>
-      <template v-slot:top>
-        <v-toolbar flat class="border-top-radius-8">
-          <v-toolbar-title>{{ websiteRuleListName }}</v-toolbar-title>
+              {{ item.urlFilter }}
+            </div>
+          </template>
+          <template v-slot:item.actions="{ item }">
+            <div class="d-flex justify-space-around">
+              <common-crud-menu
+                :list-id="item.id"
+                :edit-item="editItem"
+                :delete-item="deleteItem"
+                :move-up="moveUp"
+                :move-down="moveDown"
+                :t="t"
+              />
+            </div>
+          </template>
+          <template v-slot:item.permanentlyActive="{ item }">
+            <v-checkbox
+              v-model="item.permanentlyActive"
+              color="primary"
+              @change="setPermanentlyActive(item)"
+              hide-details
+              class="d-flex justify-center"
+            >
+            </v-checkbox>
+          </template>
+          <template v-slot:item.temporarilyInactive="{ item }">
+            <v-checkbox
+              v-model="item.temporarilyInactive"
+              color="primary"
+              @change="setTemporarilyInactive(item)"
+              hide-details
+              class="d-flex justify-center"
+            >
+            </v-checkbox>
+          </template>
+          <template v-slot:top>
+            <v-toolbar flat class="border-top-radius-8">
+              <v-toolbar-title>{{ websiteRuleListName }}</v-toolbar-title>
 
-          <v-spacer></v-spacer>
-          <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated" elevation="12">
-            {{ t(msg.NEW_ITEM) }}
-          </v-btn>
+              <v-spacer></v-spacer>
+              <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated" elevation="12">
+                {{ t(msg.NEW_ITEM) }}
+              </v-btn>
 
-        </v-toolbar>
-      </template>
-      <template v-slot:bottom>
-        <v-sheet color="background" class="d-flex justify-space-between">
+            </v-toolbar>
+          </template>
+          <template v-slot:bottom>
+            <v-sheet color="background" class="d-flex justify-space-between">
 
-          <v-pagination
-            v-model="page"
-            :length="totalPages"
-            :total-visible="totalVisiblePages"
-            rounded="circle"
-          ></v-pagination>
+              <v-pagination
+                v-model="page"
+                :length="totalPages"
+                :total-visible="totalVisiblePages"
+                rounded="circle"
+              ></v-pagination>
 
-          <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
-            {{ websiteRules.length }}
-          </v-label>
+              <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
+                {{ websiteRules.length }}
+              </v-label>
 
-        </v-sheet>
-      </template>
-    </v-data-table>
-  </div>
-  <div v-else class="d-flex justify-center align-center fill-height">
-    <v-progress-circular indeterminate color="primary"></v-progress-circular>
-  </div>
-  <edit-website-rule-dialog
-    :p-item="contextItem"
-    :p-dialog="dialog"
-    :p-close-dialog="closeEdit"
-    :p-save-item="save"
-    :p-is-new-item="isNewItem"
-    :t="t"
-  ></edit-website-rule-dialog>
+            </v-sheet>
+          </template>
+        </v-data-table>
+      </div>
+    </div>
+    <div v-else class="d-flex justify-center align-center fill-height">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    </div>
+    <edit-website-rule-dialog
+      :p-item="contextItem"
+      :p-dialog="dialog"
+      :p-close-dialog="closeEdit"
+      :p-save-item="save"
+      :p-is-new-item="isNewItem"
+      :t="t"
+    ></edit-website-rule-dialog>
 
-  <fg-dialog
-    v-model:dialog="dialogDelete"
-    activator="#deleteWsRule"
-    :title="t(msg.DELETE_WEBSITE_RULE)"
-    :main-text="t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE)"
-    :main-text-item="contextItem.urlFilter"
-    :actions="[
+    <fg-dialog
+      v-model:dialog="dialogDelete"
+      activator="#deleteWsRule"
+      :title="t(msg.DELETE_WEBSITE_RULE)"
+      :main-text="t(msg.ARE_YOU_SURE_DELETE_THIS_WEBSITE_RULE)"
+      :main-text-item="contextItem.urlFilter"
+      :actions="[
       { key: msg.DELETE, name: t(msg.DELETE), clickHandler: deleteItemConfirm, color: 'danger' },
       { key: msg.CANCEL, name: t(msg.CANCEL), clickHandler: closeDelete, color: 'success' }
     ]"
-  >
-  </fg-dialog>
+    >
+    </fg-dialog>
+  </div>
 </template>
 
 <style lang="scss">
