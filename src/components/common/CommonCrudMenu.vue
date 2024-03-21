@@ -53,7 +53,7 @@ defineProps({
               <template v-slot:append>
                 <v-btn icon size="small" variant="text" color="danger">
                   <v-icon>mdi-delete</v-icon>
-                  <v-tooltip activator="parent" location="top">{{ t(msg.CANCEL) }}</v-tooltip>
+                  <v-tooltip activator="parent" location="top">{{ t(msg.DELETE) }}</v-tooltip>
                 </v-btn>
               </template>
             </v-list-item>

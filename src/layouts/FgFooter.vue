@@ -76,7 +76,7 @@ const orderedLinks = computed(() => {
       </ul>
     </div>
     <template v-slot:actions>
-      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button" color="accent"></v-btn>
+      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button"></v-btn>
       <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>
     </template>
   </fg-dialog>
@@ -87,7 +87,9 @@ const orderedLinks = computed(() => {
   background-size: auto 100%; /* This will make the image fit the height of the button */
   background-repeat: no-repeat;
   background-position: center;
-  min-width: 130px;
+  //border-radius: 8px;
+  background-color: #ff813f;
+  min-width: 128px;
 }
 .dialog-title {
   font-size: 24px;
