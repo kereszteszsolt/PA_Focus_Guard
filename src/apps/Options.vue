@@ -26,7 +26,7 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
       <app-bar/>
       <v-main>
         <v-container class="container">
-          <v-row>
+          <v-row class="d-flex flex-row r-container">
             <v-col lg="3">
               <v-sheet elevation="12" height="88.5vh" color="background" class="border-radius-8">
                 <sidebar/>
@@ -57,12 +57,16 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 }
 
 .mathPatternDark {
-  height: 100vh;
+  height: 110vh;
   width: 100vw;
   background-color: #2b2b2b;
   background-image: linear-gradient(rgba(102, 95, 71, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 95, 71, 0.3) 1px, transparent 1px);
   background-size: 20px 20px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.r-container {
+  min-width: 1000px;
 }
 
 .container {
@@ -73,13 +77,13 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
   margin-left: auto;
 
   // Define breakpoints for different screen sizes
-  @media (min-width: 576px) {
-    max-width: 540px;
-  }
-
-  @media (min-width: 768px) {
-    max-width: 720px;
-  }
+  //@media (min-width: 576px) {
+  //  max-width: 540px;
+  //}
+  //
+  //@media (min-width: 768px) {
+  //  max-width: 720px;
+  //}
 
   @media (min-width: 992px) {
     max-width: 960px;
