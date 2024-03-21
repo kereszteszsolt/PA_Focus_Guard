@@ -152,7 +152,7 @@ const save = (editedItem: IWebsiteRule) => {
 </script>
 
 <template>
-  <div v-if="!isLoading" class="flex-1-0 border-radius-8">
+  <div v-if="!isLoading" class="flex-1-0 border-radius-8 fgScroll">
     <v-data-table
       :headers="headers"
       :items="websiteRules"
