@@ -50,7 +50,8 @@ html {
 }
 
 .fg-h-104px {
-  height: 104px;
+  height: 104px !important;
+  min-height: 104px !important
 }
 
 .fgc-primary {
@@ -64,6 +65,7 @@ html {
 .fgc-accent {
   color: rgb(var(--v-theme-accent)) !important;
 }
+
 .fgc-secondary {
   color: rgb(var(--v-theme-secondary)) !important;
 }
@@ -100,7 +102,7 @@ html {
 }
 
 
-.fg-font-s-16{
+.fg-font-s-16 {
   font-size: 16px;
 }
 

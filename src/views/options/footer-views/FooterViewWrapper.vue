@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="flex-1-0">
-    <v-card class="border-top-radius-8 border-bottom-radius-0 fw-card" color="background" elevation="0">
+    <v-card class="border-top-radius-8 border-bottom-radius-0 fw-card min-width-700" color="background" elevation="0">
       <v-card-item class="border-top-radius-8">
         <v-card-title class="text-h6 border-top-radius-8">
           <div class="font-weight-bold border-top-radius-8">
@@ -27,5 +27,7 @@ defineProps({
 </template>
 
 <style scoped lang="scss">
-
+.min-width-700 {
+  min-width: 700px;
+}
 </style>
