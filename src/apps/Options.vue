@@ -4,6 +4,7 @@ import { useTheme } from 'vuetify';
 import { computed, watchEffect } from 'vue';
 import * as utils from '@/utils';
 import { useAppDataStore } from '@/store';
+import { SidebarToolbar } from '@/components/sidebar';
 
 const appDataStore = useAppDataStore();
 appDataStore.fetchAppData();
@@ -26,16 +27,33 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
       <app-bar/>
       <v-main>
         <v-container class="container">
-          <div class="d-flex flex-row">
-            <v-sheet elevation="12" height="88.5vh" color="background" class="border-radius-8 mr-4">
-              <sidebar/>
-            </v-sheet>
-            <v-sheet elevation="12" height="88.5vh" color="background" class="d-flex flex-column border-radius-8">
-              <router-view/>
-              <v-divider></v-divider>
-              <fg-footer/>
-            </v-sheet>
-          </div>
+          <table>
+            <tr>
+              <td>
+                <v-sheet elevation="12" height="77.5vh" color="background" class="border-top-radius-8 mr-4 fg-sidebar-w">
+                  <sidebar/>
+                </v-sheet>
+              </td>
+              <td>
+                <v-sheet elevation="12" height="77.5vh" color="background"
+                         class="d-flex flex-column border-top-radius-8 fg-content-w">
+                  <router-view/>
+                </v-sheet>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <v-sheet elevation="12" height="110px" color="background" class="border-bottom-radius-8 mr-4 fg-sidebar-w">
+                  <sidebar-toolbar/>
+                </v-sheet>
+              </td>
+              <td>
+                <v-sheet elevation="12" height="110px" color="background" class="border-bottom-radius-8 fg-content-w">
+                  <fg-footer/>
+                </v-sheet>
+              </td>
+            </tr>
+          </table>
         </v-container>
       </v-main>
     </v-sheet>

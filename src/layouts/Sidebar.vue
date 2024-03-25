@@ -37,8 +37,7 @@ const dynamicComponent = computed(() => {
 <template>
     <v-container class="d-flex flex-column h-100 pa-0 border-radius-8">
           <component :is="dynamicComponent"  :path="pathX(2).value"/>
-          <v-divider></v-divider>
-          <sidebar-toolbar />
+
     </v-container>
 </template>
 
