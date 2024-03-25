@@ -26,20 +26,16 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
       <app-bar/>
       <v-main>
         <v-container class="container">
-          <v-row class="d-flex flex-row r-container">
-            <v-col lg="3">
-              <v-sheet elevation="12" height="88.5vh" color="background" class="border-radius-8">
-                <sidebar/>
-              </v-sheet>
-            </v-col>
-            <v-col lg="9">
-              <v-sheet elevation="12" height="88.5vh" color="background" class="d-flex flex-column border-radius-8">
-                <router-view/>
-                <v-divider></v-divider>
-                <fg-footer/>
-              </v-sheet>
-            </v-col>
-          </v-row>
+          <div class="d-flex flex-row">
+            <v-sheet elevation="12" height="88.5vh" color="background" class="border-radius-8 mr-4">
+              <sidebar/>
+            </v-sheet>
+            <v-sheet elevation="12" height="88.5vh" color="background" class="d-flex flex-column border-radius-8">
+              <router-view/>
+              <v-divider></v-divider>
+              <fg-footer/>
+            </v-sheet>
+          </div>
         </v-container>
       </v-main>
     </v-sheet>
