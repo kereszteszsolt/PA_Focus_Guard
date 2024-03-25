@@ -43,12 +43,12 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
             </tr>
             <tr>
               <td>
-                <v-sheet elevation="12" height="110px" color="background" class="border-bottom-radius-8 mr-4 fg-sidebar-w">
+                <v-sheet elevation="12" height="104px" color="background" class="border-bottom-radius-8 mr-4 fg-sidebar-w">
                   <sidebar-toolbar/>
                 </v-sheet>
               </td>
               <td>
-                <v-sheet elevation="12" height="110px" color="background" class="border-bottom-radius-8 fg-content-w">
+                <v-sheet elevation="12" height="104px" color="background" class="border-bottom-radius-8 fg-content-w">
                   <fg-footer/>
                 </v-sheet>
               </td>
