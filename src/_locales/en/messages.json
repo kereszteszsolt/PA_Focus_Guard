@@ -86,6 +86,8 @@
     "deleteTheAttemptWhitThisUrlFilter": "Delete the attempt with this URL filter?",
     "thisDistractionAttemptContainsOnlyOneUrlFilter": "This distraction attempt contains only one URL filter!",
     "all": "All",
-    "noWebsiteRulesFound": "No website rules found!"
+    "noWebsiteRulesFound": "No website rules found!",
+    "noDistractionAttemptsFound": "No distraction attempts found!",
+    "noLanguagesFound": "No languages found!"
   }
 }

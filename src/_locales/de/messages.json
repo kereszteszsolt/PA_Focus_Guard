@@ -99,6 +99,8 @@
     "socMedDescInstagram": "Inhalt: Fotos hauptsächlich von Essen, Natur, Blumen, Vögeln und Insekten.",
     "socMedDescTikTok": "Inhalt: Videos auf Ungarisch in verschiedenen Kategorien, wie Vlogs, Selbstentwicklung, Wissenschaft und Technologie usw.",
     "all": "Alle",
-    "noWebsiteRulesFound": "Keine Website-Regeln gefunden!"
+    "noWebsiteRulesFound": "Keine Website-Regeln gefunden!",
+    "noDistractionAttemptsFound": "Keine Ablenkungsversuche gefunden!",
+    "noLanguagesFound": "Keine Sprachen gefunden!"
   }
 }

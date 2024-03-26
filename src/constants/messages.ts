@@ -83,3 +83,6 @@ export const ARE_YOU_SURE_DELETE_THIS_DISTRACTION_ATTEMPT = 'areYouSureDeleteThi
 export const DELETE_THE_ATTEMPT_WHIT_THIS_URL_FILTER = 'deleteTheAttemptWhitThisUrlFilter';
 export const THIS_DISTRACTION_ATTEMPT_CONTAINS_ONLY_ONE_URL_FILTER = 'thisDistractionAttemptContainsOnlyOneUrlFilter';
 export const NO_WEBSITE_RULES_FOUND = 'noWebsiteRulesFound';
+export const NO_DISTRACTION_ATTEMPTS_FOUND = 'noDistractionAttemptsFound';
+export const NO_LANGUAGES_FOUND = 'noLanguageFound';
+

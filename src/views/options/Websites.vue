@@ -33,7 +33,7 @@ const contextItem = ref(websiteRulesStore.getDummyWebsiteRule);
 let isNewItem = ref(false);
 let isValid = ref(false);
 let page = ref(1);
-let itemsPerPage = ref(appDataStore.appData.itemsPerPage);
+let itemsPerPage = ref(appDataStore.getAppData.itemsPerPage);
 let itemsPerPageOptions = computed(() => [
   { value: 3, title: '3' },
   { value: 5, title: '5' },
@@ -185,7 +185,6 @@ watch(itemsPerPage, updateItemsPerPage);
           v-model:items-per-page="itemsPerPage"
           :items-per-page-options="itemsPerPageOptions"
           :items-per-page-text="t(msg.ITEMS_PER_PAGE)"
-          :footer-props="{ showFirstLastPage: true }"
           :show-current-page="true"
           :page-text="`${page} / ${totalPages}`"
           :no-data-text="t(msg.NO_WEBSITE_RULES_FOUND)"
@@ -240,28 +239,6 @@ watch(itemsPerPage, updateItemsPerPage);
 
             </v-toolbar>
           </template>
-          <!--          <template v-slot:bottom>-->
-          <!--            <v-sheet color="background" class="d-flex justify-space-between">-->
-
-          <!--              <v-pagination-->
-          <!--                v-model="page"-->
-          <!--                :length="totalPages"-->
-          <!--                :total-visible="totalVisiblePages"-->
-          <!--                rounded="circle"-->
-          <!--              ></v-pagination>-->
-
-          <!--              <v-select-->
-          <!--                v-model="itemsPerPage"-->
-          <!--                :items="[3, 5, 7, websiteRules.length]"-->
-          <!--                label="Items per page"-->
-          <!--                density="compact"></v-select>-->
-
-          <!--              <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}-->
-          <!--                {{ websiteRules.length }}-->
-          <!--              </v-label>-->
-
-          <!--            </v-sheet>-->
-          <!--          </template>-->
         </v-data-table>
       </div>
     </div>

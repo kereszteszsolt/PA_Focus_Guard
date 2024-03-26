@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from 'vue';
-import { useI18nStore, useStatisticsStore } from '@/store';
+import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { msg } from '@/constants';
 import DeleteFilterRuleDialog from '@/components/distraction-attempts/DeleteFilterRuleDialog.vue';
 import DeleteDistractionAttemptDialog from '@/components/distraction-attempts/DeleteDistractionAttemptDialog.vue';
@@ -9,14 +9,25 @@ const statisticStore = useStatisticsStore();
 const i18n = useI18nStore();
 statisticStore.fetchDistractionAttempts();
 i18n.fetchLocaleSettingsAndMessages();
+const appDataStore = useAppDataStore();
+appDataStore.fetchAppData();
 
 const search = ref('');
 const selectedYear = ref(null);
 const selectedMonth = ref(null);
 const selectedDay = ref(null);
-const maximumItemsPerPage = ref(7);
 const page = ref(1);
 const totalVisiblePages = ref(5);
+let itemsPerPage = ref(appDataStore.getAppData.itemsPerPage);
+let itemsPerPageOptions = computed(() => [
+  { value: 3, title: '3' },
+  { value: 5, title: '5' },
+  { value: 8, title: '8' },
+  { value: 13, title: '13' },
+  { value: 21, title: '21' },
+  { value: 34, title: '34' },
+  { value: -1, title: t(msg.ALL) }
+]);
 
 const deleteDistractionAttemptDialog = ref(false);
 const deleteFilterRuleDialog = ref(false);
@@ -26,7 +37,7 @@ const dContextLastItem = ref(false);
 
 
 const totalPages = computed(() => {
-  return Math.ceil(statisticStore.distractionAttempts.length / maximumItemsPerPage.value);
+  return Math.ceil(statisticStore.distractionAttempts.length / itemsPerPage.value);
 });
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 // Example of a computed property that filters based on multiple criteria
@@ -160,13 +171,21 @@ const openDeleteFilterRuleDialog = (distractionAttemptId: string, filterRuleId: 
   dContextLastItem.value = lastItem;
   deleteFilterRuleDialog.value = true;
 };
-
+const isLoading = computed(() => appDataStore.isLoading || i18n.isLoading || statisticStore.isLoading);
 </script>
 
 <template>
   <div class="flex-1-0 pa-4">
-    <v-data-table :headers="headers" :items="filteredData" :search="search" :items-per-page="maximumItemsPerPage"
-                  :page="page" :total-items="filteredData.length"
+    <v-data-table :headers="headers" :items="filteredData" :search="search"
+                  :total-items="filteredData.length"
+                  v-model:page="page"
+                  v-model:items-per-page="itemsPerPage"
+                  :items-per-page-options="itemsPerPageOptions"
+                  :items-per-page-text="t(msg.ITEMS_PER_PAGE)"
+                  :show-current-page="true"
+                  :page-text="`${page} / ${totalPages}`"
+                  :no-data-text="t(msg.NO_DISTRACTION_ATTEMPTS_FOUND)"
+                  :loading="isLoading"
                   class="bg-background">
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">

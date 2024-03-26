@@ -105,6 +105,8 @@
     "socMedDescInstagram": "Conținut: fotografii cu preponderență de mâncare, natură, flori, păsări și insecte.",
     "socMedDescTikTok": "Conținut: videoclipuri în maghiară în diverse categorii, precum vloguri, dezvoltare personală, știință și tehnologie, etc.",
     "all": "Toate",
-    "noWebsiteRulesFound": "Nu s-au găsit reguli pentru site-uri web!"
+    "noWebsiteRulesFound": "Nu s-au găsit reguli pentru site-uri web!",
+    "noDistractionAttemptsFound": "Nu s-au găsit încercări de distragere!",
+    "noLanguagesFound": "Nu s-au găsit limbi!"
   }
 }

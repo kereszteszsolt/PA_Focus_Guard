@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useI18nStore } from '@/store';
+import { useAppDataStore, useI18nStore } from '@/store';
 import { computed, nextTick, ref } from 'vue';
 import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
@@ -9,10 +9,13 @@ import { IAction, ILocaleMessages } from '@/interfaces';
 import DeleteLanguageDialog from '@/components/languages/DeleteLanguageDialog.vue';
 
 const i18n = useI18nStore();
+const appDataStore = useAppDataStore();
 i18n.fetchLocaleSettingsAndMessages();
+appDataStore.fetchAppData();
 utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'localeMessagesUpdated'], () => {
   i18n.fetchLocaleSettingsAndMessages();
 });
+
 
 const isLoading = computed(() => i18n.isLoading);
 
@@ -90,7 +93,16 @@ const deleteDialog = ref(false);
 const deletingItemId = ref('');
 let newItem = ref(false);
 let page = ref(1);
-let itemsPerPage = ref(10);
+let itemsPerPage = ref(appDataStore.getAppData.itemsPerPage);
+let itemsPerPageOptions = computed(() => [
+  { value: 3, title: '3' },
+  { value: 5, title: '5' },
+  { value: 8, title: '8' },
+  { value: 13, title: '13' },
+  { value: 21, title: '21' },
+  { value: 34, title: '34' },
+  { value: -1, title: t(msg.ALL) }
+]);
 const totalPages = computed(() => {
   return Math.ceil(i18n.getAllLocales.length / itemsPerPage.value);
 });
@@ -166,12 +178,18 @@ const newLocale = () => {
 </script>
 
 <template>
-  <div class="flex-1-0 border-top-radius-8" v-if="!isLoading">
+  <div class="flex-1-0 border-top-radius-8">
     <v-data-table
       :headers="headers"
       :items="allLocales"
       v-model:page="page"
       v-model:items-per-page="itemsPerPage"
+      :items-per-page-options="itemsPerPageOptions"
+      :items-per-page-text="t(msg.ITEMS_PER_PAGE)"
+      :show-current-page="true"
+      :page-text="`${page} / ${totalPages}`"
+      :no-data-text="t(msg.NO_LANGUAGES_FOUND)"
+      :loading="isLoading"
       class="bg-background"
     >
       <template v-slot:item.localeId="{ item }">
@@ -261,22 +279,6 @@ const newLocale = () => {
           </div>
         </v-toolbar>
       </template>
-      <template v-slot:bottom>
-        <v-sheet color="background" class="d-flex justify-space-between">
-
-          <v-pagination
-            v-model="page"
-            :length="totalPages"
-            :total-visible="totalVisiblePages"
-            rounded="circle"
-          ></v-pagination>
-
-          <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
-            {{ allLocales.length }}
-          </v-label>
-
-        </v-sheet>
-      </template>
     </v-data-table>
     <edit-custom-language-dialog :t="t" :p-close-dialog="closeEditDialog" :p-dialog="editDialog"
                                  :p-locale-massages="itemForEdit"
@@ -288,9 +290,6 @@ const newLocale = () => {
     <delete-language-dialog :p-dialog="deleteDialog" :p-close-dialog="closeDeleteDialog"
                                 :p-confirm-delete="deleteLocale" :p-item-id="deletingItemId" :t="t">
     </delete-language-dialog>
-  </div>
-  <div v-else class="d-flex justify-center align-center fill-height">
-    <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </div>
 </template>
 
