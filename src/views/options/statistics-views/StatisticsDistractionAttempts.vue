@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue';
+import { ref, computed, nextTick, watch } from 'vue';
 import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { msg } from '@/constants';
 import DeleteFilterRuleDialog from '@/components/distraction-attempts/DeleteFilterRuleDialog.vue';
@@ -172,6 +172,11 @@ const openDeleteFilterRuleDialog = (distractionAttemptId: string, filterRuleId: 
   deleteFilterRuleDialog.value = true;
 };
 const isLoading = computed(() => appDataStore.isLoading || i18n.isLoading || statisticStore.isLoading);
+
+const updateItemsPerPage = () => {
+  appDataStore.updateItemsPerPage(itemsPerPage.value);
+};
+watch(itemsPerPage, updateItemsPerPage);
 </script>
 
 <template>

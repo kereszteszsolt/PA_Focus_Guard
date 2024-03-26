@@ -163,7 +163,6 @@ const save = (editedItem: IWebsiteRule) => {
 };
 
 const updateItemsPerPage = () => {
-  console.log('Items per page', itemsPerPage.value);
   appDataStore.updateItemsPerPage(itemsPerPage.value);
 };
 

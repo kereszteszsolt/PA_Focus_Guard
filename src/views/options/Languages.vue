@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAppDataStore, useI18nStore } from '@/store';
-import { computed, nextTick, ref } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { msg } from '@/constants';
 import { EditCustomLanguageDialog } from '@/components/languages';
 import * as utils from '@/utils';
@@ -174,7 +174,10 @@ const newLocale = () => {
     //TODO: Add error message
   }
 };
-
+const updateItemsPerPage = () => {
+  appDataStore.updateItemsPerPage(itemsPerPage.value);
+};
+watch(itemsPerPage, updateItemsPerPage);
 </script>
 
 <template>
