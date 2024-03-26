@@ -62,7 +62,7 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 
 <style scoped lang="scss">
 .mathPatternLight {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   background-color: #f4f1e8;
   background-image: linear-gradient(rgba(204, 187, 141, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 187, 141, 0.3) 1px, transparent 1px);
@@ -71,7 +71,7 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 }
 
 .mathPatternDark {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   background-color: #2b2b2b;
   background-image: linear-gradient(rgba(102, 95, 71, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 95, 71, 0.3) 1px, transparent 1px);
@@ -87,6 +87,7 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 .container {
   max-width: 100%;
   min-height: 850px;
+  height: 92.5vh;
   padding: 16px 16px 0 16px;
   margin-top: 0;
   margin-right: auto;
