@@ -13,6 +13,7 @@ const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
 websiteRulesStore.fetchData();
 i18n.fetchLocaleSettingsAndMessages();
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 
 utils.runtimeMessages.createBatchMessageListenerM2O(['websiteRulesUpdated', 'websiteRuleListsUpdated'], () => {
   websiteRulesStore.fetchData();
@@ -30,8 +31,16 @@ let isNewItem = ref(false);
 let isValid = ref(false);
 let page = ref(1);
 let itemsPerPage = ref(10);
+let itemsPerPageOptions = ref([
+  { value: 3, title: '3' },
+  { value: 5, title: '5' },
+  { value: 8, title: '8' },
+  { value: 13, title: '13' },
+  { value: 21, title: '21' },
+  { value: 34, title: '34' },
+  { value: -1, title: t(msg.ALL) }
+]);
 
-const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const isLoading = computed(() => websiteRulesStore.isLoading || i18n.isLoading);
 
 const headers = computed(() => [
@@ -162,6 +171,11 @@ const save = (editedItem: IWebsiteRule) => {
           class="bg-background fgScroll"
           v-model:page="page"
           v-model:items-per-page="itemsPerPage"
+          :items-per-page-options="itemsPerPageOptions"
+          :items-per-page-text="t(msg.ITEMS_PER_PAGE)"
+          :footer-props="{ showFirstLastPage: true }"
+          :show-current-page="true"
+          :page-text="`${page} / ${totalPages}`"
         >
           <template v-slot:item.url="{ item }">
             <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word',
@@ -212,22 +226,28 @@ const save = (editedItem: IWebsiteRule) => {
 
             </v-toolbar>
           </template>
-          <template v-slot:bottom>
-            <v-sheet color="background" class="d-flex justify-space-between">
+          <!--          <template v-slot:bottom>-->
+          <!--            <v-sheet color="background" class="d-flex justify-space-between">-->
 
-              <v-pagination
-                v-model="page"
-                :length="totalPages"
-                :total-visible="totalVisiblePages"
-                rounded="circle"
-              ></v-pagination>
+          <!--              <v-pagination-->
+          <!--                v-model="page"-->
+          <!--                :length="totalPages"-->
+          <!--                :total-visible="totalVisiblePages"-->
+          <!--                rounded="circle"-->
+          <!--              ></v-pagination>-->
 
-              <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
-                {{ websiteRules.length }}
-              </v-label>
+          <!--              <v-select-->
+          <!--                v-model="itemsPerPage"-->
+          <!--                :items="[3, 5, 7, websiteRules.length]"-->
+          <!--                label="Items per page"-->
+          <!--                density="compact"></v-select>-->
 
-            </v-sheet>
-          </template>
+          <!--              <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}-->
+          <!--                {{ websiteRules.length }}-->
+          <!--              </v-label>-->
+
+          <!--            </v-sheet>-->
+          <!--          </template>-->
         </v-data-table>
       </div>
     </div>

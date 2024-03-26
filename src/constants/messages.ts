@@ -1,3 +1,4 @@
+export let ALL = 'all';
 export const MOVE_UP = 'moveUp';
 export const MOVE_DOWN = 'moveDown';
 export const EDIT = 'edit';
