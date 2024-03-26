@@ -31,7 +31,7 @@ let isNewItem = ref(false);
 let isValid = ref(false);
 let page = ref(1);
 let itemsPerPage = ref(8);
-let itemsPerPageOptions = ref([
+let itemsPerPageOptions = computed(() => [
   { value: 3, title: '3' },
   { value: 5, title: '5' },
   { value: 8, title: '8' },
@@ -162,7 +162,7 @@ const save = (editedItem: IWebsiteRule) => {
 
 <template>
   <div class="flex-1-0">
-    <div v-if="!isLoading" class="border-radius-8 fgScroll fw-card">
+    <div class="border-radius-8 fgScroll fw-card">
       <div class="fgScroll fw-card">
         <v-data-table
           :headers="headers"
@@ -177,6 +177,8 @@ const save = (editedItem: IWebsiteRule) => {
           :footer-props="{ showFirstLastPage: true }"
           :show-current-page="true"
           :page-text="`${page} / ${totalPages}`"
+          :no-data-text="t(msg.NO_WEBSITE_RULES_FOUND)"
+          :loading="isLoading"
         >
           <template v-slot:item.url="{ item }">
             <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word',
@@ -252,9 +254,7 @@ const save = (editedItem: IWebsiteRule) => {
         </v-data-table>
       </div>
     </div>
-    <div v-else class="d-flex justify-center align-center fill-height">
-      <v-progress-circular indeterminate color="primary"></v-progress-circular>
-    </div>
+
     <edit-website-rule-dialog
       :p-item="contextItem"
       :p-dialog="dialog"

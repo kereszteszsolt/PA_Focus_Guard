@@ -85,6 +85,8 @@
     "deleteDistractionAttempt": "Zavarás Kísérlet Törlése",
     "areYouSureDeleteThisDistractionAttempt": "Biztosan törölni szeretné ezt a zavarás kísérletet?",
     "deleteTheAttemptWhitThisUrlFilter": "Töröljük a kísérletet ezzel az URL szűrővel?",
-    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Ez a zavarás kísérlet csak egy URL szűrőt tartalmaz!"
+    "thisDistractionAttemptContainsOnlyOneUrlFilter": "Ez a zavarás kísérlet csak egy URL szűrőt tartalmaz!",
+    "all": "Összes",
+    "noWebsiteRulesFound": "A weboldal szabályok nem találhatóak!"
   }
 }
