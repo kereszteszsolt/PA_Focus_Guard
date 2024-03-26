@@ -11,6 +11,7 @@ let fgAppData: IAppData = {
   focusMode: false,
   version: chrome.runtime.getManifest().version,
   fgTheme: 'fgLightTheme',
+  itemsPerPage: 5,
   focusModeSessionId: constants.common.NOT_APPLICABLE
 };
 let fgWebsiteRules: IWebsiteRule[] = [];

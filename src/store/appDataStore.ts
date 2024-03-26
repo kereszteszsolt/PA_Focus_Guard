@@ -13,6 +13,7 @@ export const useAppDataStore = defineStore('appData', {
       focusMode: false,
       version: '0.0.0',
       fgTheme: 'fgLightTheme',
+      itemsPerPage: 5,
       focusModeSessionId: constants.common.NOT_APPLICABLE,
     },
   }),
@@ -39,6 +40,10 @@ export const useAppDataStore = defineStore('appData', {
     },
     async updateFgTheme(theme: string): Promise<void> {
       this.appData.fgTheme = theme;
+      await this.saveAppData();
+    },
+    async updateItemsPerPage(value: number): Promise<void> {
+      this.appData.itemsPerPage = value;
       await this.saveAppData();
     },
   },

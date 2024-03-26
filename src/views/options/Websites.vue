@@ -2,17 +2,20 @@
 import { useWebsiteRulesStore } from '@/store/websiteRulesStore';
 import { IWebsiteRule } from '@/interfaces';
 import { EditWebsiteRuleDialog } from '@/components/websites';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useI18nStore } from '@/store';
+import { useAppDataStore, useI18nStore } from '@/store';
 import { msg } from '@/constants';
 import { CommonCrudMenu, FgDialog } from '@/components/common';
 import * as utils from '@/utils';
 
 const websiteRulesStore = useWebsiteRulesStore();
 const i18n = useI18nStore();
+const appDataStore = useAppDataStore();
 websiteRulesStore.fetchData();
 i18n.fetchLocaleSettingsAndMessages();
+appDataStore.fetchAppData();
+
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 
 utils.runtimeMessages.createBatchMessageListenerM2O(['websiteRulesUpdated', 'websiteRuleListsUpdated'], () => {
@@ -30,7 +33,7 @@ const contextItem = ref(websiteRulesStore.getDummyWebsiteRule);
 let isNewItem = ref(false);
 let isValid = ref(false);
 let page = ref(1);
-let itemsPerPage = ref(8);
+let itemsPerPage = ref(appDataStore.appData.itemsPerPage);
 let itemsPerPageOptions = computed(() => [
   { value: 3, title: '3' },
   { value: 5, title: '5' },
@@ -158,6 +161,14 @@ const save = (editedItem: IWebsiteRule) => {
   }
   closeEdit();
 };
+
+const updateItemsPerPage = () => {
+  console.log('Items per page', itemsPerPage.value);
+  appDataStore.updateItemsPerPage(itemsPerPage.value);
+};
+
+watch(itemsPerPage, updateItemsPerPage);
+
 </script>
 
 <template>
