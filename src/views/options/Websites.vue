@@ -30,7 +30,7 @@ const contextItem = ref(websiteRulesStore.getDummyWebsiteRule);
 let isNewItem = ref(false);
 let isValid = ref(false);
 let page = ref(1);
-let itemsPerPage = ref(10);
+let itemsPerPage = ref(8);
 let itemsPerPageOptions = ref([
   { value: 3, title: '3' },
   { value: 5, title: '5' },
@@ -167,6 +167,7 @@ const save = (editedItem: IWebsiteRule) => {
         <v-data-table
           :headers="headers"
           :items="websiteRules"
+          item-key="id"
           :sort-by="sortByFieldName"
           class="bg-background fgScroll"
           v-model:page="page"
