@@ -236,20 +236,6 @@ watch(itemsPerPage, updateItemsPerPage);
           </v-chip>
         </div>
       </template>
-      <template v-slot:bottom>
-        <v-sheet color="background" class="d-flex justify-space-between">
-          <v-pagination
-            v-model="page"
-            :length="totalPages"
-            :total-visible="totalVisiblePages"
-            rounded="circle"
-          ></v-pagination>
-
-          <v-label :style="{paddingRight: '24px', fontWeight: '500'}">{{ t(msg.TOTAL_NR_OF_ITEMS) }}
-            {{ filteredData.length }}
-          </v-label>
-        </v-sheet>
-      </template>
     </v-data-table>
     <delete-distraction-attempt-dialog
       :pDialog="deleteDistractionAttemptDialog"

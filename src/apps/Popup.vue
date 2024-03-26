@@ -4,6 +4,7 @@ import { useTheme } from 'vuetify';
 import { computed, ref, watchEffect } from 'vue';
 import { msg } from '@/constants';
 import * as constants from '@/constants';
+import * as links from '@/links';
 
 const appDataStore = useAppDataStore();
 const statisticsStore = useStatisticsStore();
@@ -83,6 +84,10 @@ const nrOfOpenOptionsTabs = computed(() => {
   });
 });
 
+const orderedLinks = computed(() => {
+  return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
+});
+
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoading || i18n.isLoading);
 const switchFocusMode = (active: boolean) => {
@@ -100,49 +105,62 @@ const switchFocusMode = (active: boolean) => {
         </v-sheet>
       </v-card-title>
     </v-card-item>
-    <v-row class="on-off-button-group">
-      <v-col cols="6">
-        <v-btn
-          color="danger"
-          class="button-off"
-          :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
-          :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-          @click="switchFocusMode(false)">
-          {{ t(msg.OFF) }}
+    <div class="d-flex flex-column">
+
+    <div class="flex-1-0">
+      <v-row class="on-off-button-group">
+        <v-col cols="6">
+          <v-btn
+            color="danger"
+            class="button-off"
+            :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
+            :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
+            @click="switchFocusMode(false)">
+            {{ t(msg.OFF) }}
+          </v-btn>
+        </v-col>
+        <v-col cols="6">
+          <v-btn
+            color="success"
+            class="button-on"
+            :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
+            :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
+            @click="switchFocusMode(true)">
+            {{ t(msg.ON) }}
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="my-0">
+        <v-col cols="12" class="text-center pa-0">
+          <v-btn @click="options" color="secondary"><i class="mdi mdi-tune"></i> Options</v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="mb-4">
+        <v-col cols="12" class="text-center">
+          <div class="text-h7 font-weight-bold mb-1 fgc-info">{{ t(msg.DISTRACTION_ATTEMPTS) }}:</div>
+          <v-btn icon variant="outlined" :color="appDataStore.getAppData.focusMode ?
+          statisticsStore.getNumberOfDistractionAttemptsByFocusSessionId(appDataStore.getAppData.focusModeSessionId) > 0 ? 'danger' : 'success'
+          : 'info'">{{
+              statisticsStore.getNumberOfDistractionAttemptsByFocusSessionId(appDataStore.getAppData.focusModeSessionId)
+            }}
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
+
+
+      <div class="d-flex flex-row flex-wrap justify-space-between mb-2">
+        <v-btn v-for="link in orderedLinks" variant="text" class="flex-1-0"
+               id="#fgModal" color="info" density="compact" size="regular">
+          <v-icon>{{ link.mdiIcon }}</v-icon>
         </v-btn>
-      </v-col>
-      <v-col cols="6">
-        <v-btn
-          color="success"
-          class="button-on"
-          :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
-          :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-          @click="switchFocusMode(true)">
-          {{ t(msg.ON) }}
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row class="my-0">
-      <v-col cols="12" class="text-center pa-0">
-        <v-btn @click="options"><i class="mdi mdi-tune"></i> Options</v-btn>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12" class="text-center">
-        <div class="text-h7">{{ t(msg.DISTRACTION_ATTEMPTS) }}</div>
-        <v-btn icon variant="outlined">{{ statisticsStore.getNumberOfDistractionAttemptsByFocusSessionId(appDataStore.getAppData.focusModeSessionId) }}</v-btn>
-      </v-col>
-    </v-row>
-    <v-row class="pt-4">
-      <v-col cols="12" class="text-center pa-0">
-        <v-btn @click="closeAllFocusMessageTab">Close All (Focus Tab)</v-btn>
-      </v-col>
-    </v-row>
-    <v-row class="pt-4 pb-4">
-      <v-col cols="12" class="text-center pa-0">
-        <v-btn @click="closeAllOptionsTabs">Close All (Options Tab)</v-btn>
-      </v-col>
-    </v-row>
+      </div>
+      <div class="d-flex flex-column justify-space-around text-center fgc-info">
+        <p>Focus Guard © 2024 - Keresztes Zsolt</p>
+        <p>Free Software. Open source.</p>
+        <p>Version: 2.0.0</p>
+      </div>
+    </div>
   </v-card>
   <v-progress-linear v-else indeterminate color="primary"></v-progress-linear>
 </template>
@@ -185,5 +203,9 @@ const switchFocusMode = (active: boolean) => {
   > * {
     padding: 1rem 0;
   }
+}
+
+.popup-footer{
+  height: 300px;
 }
 </style>
