@@ -3,9 +3,6 @@ import * as utils from '@/utils';
 import { ILocaleMessages, ILocaleSettings } from '@/interfaces';
 import * as constants from '@/constants';
 import * as restricted from '@/_locales/restricted';
-import { generateNumberForDuplicatesByField } from '@/utils/unique';
-import { allFilesReady } from '@crxjs/vite-plugin';
-import * as util from 'util';
 
 export const useI18nStore = defineStore('i18n', {
   state: () => ({
@@ -320,8 +317,10 @@ export const useI18nStore = defineStore('i18n', {
           this.isLoading = false;
           return;
         }
-        const newLocaleId = `${localeToDuplicate.localeId}_${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeId', localeToDuplicate.localeId)}`;
-        const newLocaleName = `${localeToDuplicate.localeName} (${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeName', localeToDuplicate.localeName)})`;
+        const cleanUp = (str: string): string => str.replace(/\s\(\d+\)/, '').replace(/_\d+$/, '');
+
+        const newLocaleId = `${cleanUp(localeToDuplicate.localeId)}_${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeId', cleanUp(localeToDuplicate.localeId))}`;
+        const newLocaleName = `${cleanUp(localeToDuplicate.localeName)} (${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeName', cleanUp(localeToDuplicate.localeName))})`;
         let newLSUUID = utils.unique.generateUniqueListId(this.localesWithSettings);
         this.localesWithSettings.push({
           id: newLSUUID,

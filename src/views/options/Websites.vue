@@ -233,7 +233,7 @@ watch(itemsPerPage, updateItemsPerPage);
 
               <v-spacer></v-spacer>
               <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated" elevation="12">
-                {{ t(msg.NEW_ITEM) }}
+                {{ t(msg.ADD) }}
               </v-btn>
 
             </v-toolbar>
