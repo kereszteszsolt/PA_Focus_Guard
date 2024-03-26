@@ -317,10 +317,11 @@ export const useI18nStore = defineStore('i18n', {
           this.isLoading = false;
           return;
         }
-        const cleanUp = (str: string): string => str.replace(/\s\(\d+\)/, '').replace(/_\d+$/, '');
 
-        const newLocaleId = `${cleanUp(localeToDuplicate.localeId)}_${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeId', cleanUp(localeToDuplicate.localeId))}`;
-        const newLocaleName = `${cleanUp(localeToDuplicate.localeName)} (${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeName', cleanUp(localeToDuplicate.localeName))})`;
+        const cleanUpId = (str: string): string => str.replace(/_\d+$/, '');
+        const cleanUpName = (str: string): string => str.replace(/\s\(\d+\)/, '');
+        const newLocaleId = `${cleanUpId(localeToDuplicate.localeId)}_${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeId', cleanUpId(localeToDuplicate.localeId))}`;
+        const newLocaleName = `${cleanUpName(localeToDuplicate.localeName)} (${utils.unique.generateNumberForDuplicatesByField(this.localesWithSettings, 'localeName', cleanUpName(localeToDuplicate.localeName))})`;
         let newLSUUID = utils.unique.generateUniqueListId(this.localesWithSettings);
         this.localesWithSettings.push({
           id: newLSUUID,
