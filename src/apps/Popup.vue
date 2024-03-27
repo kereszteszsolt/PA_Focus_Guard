@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { useTheme } from 'vuetify';
-import { computed, ref, watchEffect } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 import { msg } from '@/constants';
 import * as constants from '@/constants';
 import * as links from '@/links';
@@ -92,8 +92,16 @@ const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
 const bodyHeight = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? 500 : 400
+  contextLink.value.platformName === 'buy-me-a-coffee' ? 500 : 380
   : 350);
+// watch(() => socialMediaDetails.value, (newValue) => {
+//   if (newValue) {
+//     if
+//     document.body.style.width = '600px';
+//   } else {
+//     document.body.style.width = '300px';
+//   }
+// });
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
@@ -104,13 +112,12 @@ const switchFocusMode = (active: boolean) => {
 };
 
 const openSocialMediaDetails = (context: ISocialMediaLink) => {
-  //document.body.style.height = bodyHeight.value;
   contextLink.value = context;
   socialMediaDetails.value = true;
   chrome.windows.getCurrent((window) => {
     if (window) {
       if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value });
+        chrome.windows.update(window.id, { height: bodyHeight.value});
       }
     }
   });
@@ -122,7 +129,7 @@ const closeSocialMediaDetails = () => {
   chrome.windows.getCurrent((window) => {
     if (window) {
       if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value });
+        chrome.windows.update(window.id, { height: bodyHeight.value});
       }
     }
   });
