@@ -92,10 +92,10 @@ const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
 const bodyHeight = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? 500 : 380
-  : 350);
+  contextLink.value.platformName === 'buy-me-a-coffee' ? '500px' : '380px'
+  : '350px');
 const bodyWidth = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? 400 : 300 : 300);
+  contextLink.value.platformName === 'buy-me-a-coffee' ? '400px' : '300px' : '300px');
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
@@ -108,27 +108,29 @@ const switchFocusMode = (active: boolean) => {
 const openSocialMediaDetails = (context: ISocialMediaLink) => {
   contextLink.value = context;
   socialMediaDetails.value = true;
-  document.body.style.width = bodyWidth.value.toString() + 'px';
-  chrome.windows.getCurrent((window) => {
-    if (window) {
-      if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value });
-      }
-    }
-  });
+  document.body.style.width = bodyWidth.value;
+  document.body.style.height = bodyHeight.value;
+  // chrome.windows.getCurrent((window) => {
+  //   if (window) {
+  //     if (typeof window.id === 'number') {
+  //       chrome.windows.update(window.id, { height: bodyHeight.value });
+  //     }
+  //   }
+  // });
 };
 const closeSocialMediaDetails = () => {
   //document.body.style.height = bodyHeight.value;
   contextLink.value = {} as ISocialMediaLink;
   socialMediaDetails.value = false;
-  document.body.style.width = bodyWidth.value.toString() + 'px';
-  chrome.windows.getCurrent((window) => {
-    if (window) {
-      if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value });
-      }
-    }
-  });
+  document.body.style.width = bodyWidth.value;
+  document.body.style.height = bodyHeight.value;
+  // chrome.windows.getCurrent((window) => {
+  //   if (window) {
+  //     if (typeof window.id === 'number') {
+  //       chrome.windows.update(window.id, { height: bodyHeight.value });
+  //     }
+  //   }
+  // });
 };
 </script>
 
