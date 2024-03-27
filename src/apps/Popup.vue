@@ -92,7 +92,7 @@ const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
 const bodyHeight = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? '500px' : '380px' : '350px');
+  contextLink.value.platformName === 'buy-me-a-coffee' ? '405px' : '350px' : '350px');
 const bodyWidth = computed(() => {
   if (socialMediaDetails.value) {
     switch (contextLink.value.platformName) {
@@ -123,27 +123,12 @@ const openSocialMediaDetails = (context: ISocialMediaLink) => {
   socialMediaDetails.value = true;
   document.body.style.width = bodyWidth.value;
   document.body.style.height = bodyHeight.value;
-  // chrome.windows.getCurrent((window) => {
-  //   if (window) {
-  //     if (typeof window.id === 'number') {
-  //       chrome.windows.update(window.id, { height: bodyHeight.value });
-  //     }
-  //   }
-  // });
 };
 const closeSocialMediaDetails = () => {
-  //document.body.style.height = bodyHeight.value;
   contextLink.value = {} as ISocialMediaLink;
   socialMediaDetails.value = false;
   document.body.style.width = bodyWidth.value;
   document.body.style.height = bodyHeight.value;
-  // chrome.windows.getCurrent((window) => {
-  //   if (window) {
-  //     if (typeof window.id === 'number') {
-  //       chrome.windows.update(window.id, { height: bodyHeight.value });
-  //     }
-  //   }
-  // });
 };
 </script>
 
@@ -215,7 +200,7 @@ const closeSocialMediaDetails = () => {
     <!-- social media details -->
     <div class="d-flex flex-column" v-if="socialMediaDetails">
       <v-card-subtitle>
-        <div class="mb-2">{{ contextLink.platformName }}</div>
+        <div class="my-2 font-weight-bold fg-font-s-24">{{ contextLink.platformName }}</div>
       </v-card-subtitle>
       <div class="d-flex flex-column px-3">
         <div class="mb-1 font-weight-bold">{{ tr(r_msg.THANK_Y4Y_INTEREST) }}</div>
@@ -242,7 +227,7 @@ const closeSocialMediaDetails = () => {
       <v-btn @click="closeSocialMediaDetails" v-if="socialMediaDetails" variant="elevated" elevation="12"
              color="primary" class="text-none flex-grow-1">
         <v-icon start>mdi-arrow-left</v-icon>
-        Vissza
+        {{ tr(msg.BACK) }}
       </v-btn>
       <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none flex-grow-1">
         <v-icon color="info" start>{{ contextLink.mdiIcon }}</v-icon>
