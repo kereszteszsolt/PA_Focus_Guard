@@ -18,7 +18,7 @@
     "on": "Pornit",
     "off": "Oprit",
     "settings": "Setări",
-    "distractionAttempts": "Încercări de distragere",
+    "distractionAttempts": "Încercări de disracție",
     "areYouSureDeleteThisWebsiteRuleList": "Sunteți sigur că doriți să ștergeți această listă de reguli pentru site-ul web?",
     "alsoDeleteAllAssociatedWebsiteRules": "De asemenea, ștergeți toate regulile asociate pentru site-ul web!",
     "deleteWebsiteRuleList": "Ștergerea listei de reguli pentru site-uri de web",
@@ -107,6 +107,7 @@
     "all": "Toate",
     "noWebsiteRulesFound": "Nu s-au găsit reguli pentru site-uri web!",
     "noDistractionAttemptsFound": "Nu s-au găsit încercări de distragere!",
-    "noLanguagesFound": "Nu s-au găsit limbi!"
+    "noLanguagesFound": "Nu s-au găsit limbi!",
+    "options": "Opțiuni"
   }
 }

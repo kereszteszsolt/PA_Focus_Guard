@@ -18,7 +18,7 @@
     "on": "Be",
     "off": "Ki",
     "settings": "Beállítások",
-    "distractionAttempts": "Figyelemelterelési kísérletek",
+    "distractionAttempts": "Szórakozási kísérletek",
     "areYouSureDeleteThisWebsiteRuleList": "Biztosan törölni szeretné ezt a weboldalszabály-listát?",
     "alsoDeleteAllAssociatedWebsiteRules": "Törölje az összes kapcsolódó weboldalszabályt is!",
     "deleteWebsiteRuleList": "Weboldalszabály-lista törlése",
@@ -89,6 +89,7 @@
     "all": "Összes",
     "noWebsiteRulesFound": "A weboldal szabályok nem találhatóak!",
     "noDistractionAttemptsFound": "Nem találhatóak szórakozási kísérletek!",
-    "noLanguagesFound": "Nyelvek nem találhatóak!"
+    "noLanguagesFound": "Nyelvek nem találhatóak!",
+    "options": "Opciók"
   }
 }

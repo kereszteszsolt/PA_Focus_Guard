@@ -85,4 +85,5 @@ export const THIS_DISTRACTION_ATTEMPT_CONTAINS_ONLY_ONE_URL_FILTER = 'thisDistra
 export const NO_WEBSITE_RULES_FOUND = 'noWebsiteRulesFound';
 export const NO_DISTRACTION_ATTEMPTS_FOUND = 'noDistractionAttemptsFound';
 export const NO_LANGUAGES_FOUND = 'noLanguageFound';
+export const OPTIONS = 'options';
 

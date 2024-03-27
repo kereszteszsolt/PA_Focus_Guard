@@ -92,7 +92,7 @@ const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
 const bodyHeight = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? '405px' : '350px' : '350px');
+  contextLink.value.platformName === 'buy-me-a-coffee' ? '425px' : '350px' : '350px');
 const bodyWidth = computed(() => {
   if (socialMediaDetails.value) {
     switch (contextLink.value.platformName) {
@@ -168,7 +168,7 @@ const closeSocialMediaDetails = () => {
         </v-row>
         <v-row class="my-0">
           <v-col cols="12" class="text-center pa-0">
-            <v-btn @click="options" color="secondary"><i class="mdi mdi-tune"></i> Options</v-btn>
+            <v-btn @click="options" color="secondary" class="text-none"><v-icon start>mdi-tune</v-icon>{{t(msg.OPTIONS)}}</v-btn>
           </v-col>
         </v-row>
         <v-row class="mb-4">
@@ -205,7 +205,8 @@ const closeSocialMediaDetails = () => {
       <div class="d-flex flex-column px-3">
         <div class="mb-1 font-weight-bold">{{ tr(r_msg.THANK_Y4Y_INTEREST) }}</div>
         <div> {{ tr(r_msg.NOT_PART_OF_EXTENSION) }}</div>
-        <div>{{ tr(r_msg.CLICK_OPEN_NEW_TAB) }}</div>
+        <div v-if="contextLink.platformName !== 'buy-me-a-coffee'">{{ tr(r_msg.CLICK_OPEN_NEW_TAB) }}</div>
+        <div v-if="contextLink.platformName === 'buy-me-a-coffee'">{{ tr(r_msg.CLICK_OPEN_NEW_TAB_PL) }}</div>
         <div class="my-2 d-flex flex-column">
           <div class="d-flex flex-row">
             <div class="font-weight-bold fgc-primary mr-1">{{ contextLink.profileName }}</div>

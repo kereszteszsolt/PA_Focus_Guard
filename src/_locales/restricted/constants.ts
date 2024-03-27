@@ -17,6 +17,7 @@ export const CLICK_AND_CHECK_MY_LINK_TREE_PAGE = 'clickAndCheckMyLinkTreePage';
 export const THANK_Y4Y_INTEREST = 'thankY4YInterest';
 export const NOT_PART_OF_EXTENSION = 'notPartOfExtension';
 export const CLICK_OPEN_NEW_TAB = 'clickOpenNewTab';
+export const CLICK_OPEN_NEW_TAB_PL = 'clickOpenNewTabPL';
 export const PRIVACY_POLICY = 'privacyPolicy';
 export const ACKNOWLEDGMENTS = 'acknowledgments';
 export const GTC = 'gtc';

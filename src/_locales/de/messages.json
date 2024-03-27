@@ -18,7 +18,7 @@
     "on": "An",
     "off": "Aus",
     "settings": "Einstellungen",
-    "distractionAttempts": "Ablenkungsversuche",
+    "distractionAttempts": "Unterhaltungsversuche",
     "areYouSureDeleteThisWebsiteRuleList": "Sind Sie sicher, dass Sie diese Website-Regelliste löschen möchten?",
     "alsoDeleteAllAssociatedWebsiteRules": "Auch alle zugehörigen Website-Regeln löschen!",
     "deleteWebsiteRuleList": "Website-Regelliste löschen",
@@ -101,6 +101,7 @@
     "all": "Alle",
     "noWebsiteRulesFound": "Keine Website-Regeln gefunden!",
     "noDistractionAttemptsFound": "Keine Ablenkungsversuche gefunden!",
-    "noLanguagesFound": "Keine Sprachen gefunden!"
+    "noLanguagesFound": "Keine Sprachen gefunden!",
+    "options": "Optionen"
   }
 }

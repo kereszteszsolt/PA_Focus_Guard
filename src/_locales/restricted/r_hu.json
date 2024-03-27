@@ -15,10 +15,11 @@
   "clickAndFallowMeOnTikTok": "Kattintson és kövessen TikTokon!",
   "clickAndCheckMyLinkTreePage": "Kattintson és nézze meg most!",
   "socMedDescGitHub": "Tartalom: Forráskód ehhez a projekthez és néhány más projekthez.",
-  "socMedDescBuyMeACoffee": "Tartalom: Adományozás Platform: \" Buy Me A Coffee!\" (\"Hívj(on) meg egy kávéra!\")",
+  "socMedDescBuyMeACoffee": "Tartalom: Adományozási Platform: \"Buy Me A Coffee!\" (\"Hívjon meg egy kávéra!\")",
   "thankY4YInterest": "Köszönöm az érdeklődését!",
-  "notPartOfExtension": "A kívánt oldal nem része a kiegészítésnek!",
-  "clickOpenNewTab": "Az új fülben megnyithatja a linket rákattintva.",
+  "notPartOfExtension": "A kívánt oldal nem része a bővítménynek!",
+  "clickOpenNewTab": "A linkre vagy a lenti narancssárga gombra kattintva a kívánt oldal új lapon nyílik meg.",
+  "clickOpenNewTabPL": "A linkre vagy a lenti narancssárga gombok egyikére kattintva a kívánt oldal új lapon nyílik meg.",
   "privacyPolicy": "Adatvédelem",
   "gtc": "Á.SZ.F",
   "acknowledgments": "Köszönetnyilvánítások",
@@ -27,9 +28,9 @@
   "contact": "Kapcsolat",
   "about": "Rólam",
   "back": "Vissza",
-  "ctaBuyMeACoffee": "Egy kávé árával is motiválhat(sz) engem! Mielőtt adományozol, kérlek, vedd figyelembe a következőket:",
-  "ctaBuyMeACoffeeL1": "Nincsenek hátrányok vagy előnyök, ha adományozol vagy sem!",
-  "ctaBuyMeACoffeeL2": "Az adományozás elismerés, nem pedig szolgáltatás!",
+  "ctaBuyMeACoffee": "Ha tetszik a munkásságom, most akár egy kávé árával is kifejezheti az elismerését! Mielőtt adományozna, kérem, vegye figyelembe a következőket:",
+  "ctaBuyMeACoffeeL1": "Nincsenek hátrányok vagy előnyök, ha adományoz, vagy ha nem!",
+  "ctaBuyMeACoffeeL2": "Az adományozás az elismerésért van, nem pedig egy szolgáltatásért!",
   "ctaBuyMeACoffeeL3": "Nem nyújtok semmilyen szolgáltatást az adományért cserébe!",
-  "ctaBuyMeACoffeeL4": "Csak akkor adományozz, ha biztos vagy benne, hogy megengedheted magadnak!"
+  "ctaBuyMeACoffeeL4": "Csak akkor adományozzon, ha biztos benne, hogy megengedheti magának!"
 }
