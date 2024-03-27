@@ -94,14 +94,8 @@ const orderedLinks = computed(() => {
 const bodyHeight = computed(() => socialMediaDetails.value ?
   contextLink.value.platformName === 'buy-me-a-coffee' ? 500 : 380
   : 350);
-// watch(() => socialMediaDetails.value, (newValue) => {
-//   if (newValue) {
-//     if
-//     document.body.style.width = '600px';
-//   } else {
-//     document.body.style.width = '300px';
-//   }
-// });
+const bodyWidth = computed(() => socialMediaDetails.value ?
+  contextLink.value.platformName === 'buy-me-a-coffee' ? 400 : 300 : 300);
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
@@ -114,10 +108,11 @@ const switchFocusMode = (active: boolean) => {
 const openSocialMediaDetails = (context: ISocialMediaLink) => {
   contextLink.value = context;
   socialMediaDetails.value = true;
+  document.body.style.width = bodyWidth.value.toString() + 'px';
   chrome.windows.getCurrent((window) => {
     if (window) {
       if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value});
+        chrome.windows.update(window.id, { height: bodyHeight.value, width: bodyWidth.value});
       }
     }
   });
@@ -126,10 +121,11 @@ const closeSocialMediaDetails = () => {
   //document.body.style.height = bodyHeight.value;
   contextLink.value = {} as ISocialMediaLink;
   socialMediaDetails.value = false;
+  document.body.style.width = bodyWidth.value.toString() + 'px';
   chrome.windows.getCurrent((window) => {
     if (window) {
       if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value});
+        chrome.windows.update(window.id, { height: bodyHeight.value, width: bodyWidth.value});
       }
     }
   });
@@ -137,7 +133,7 @@ const closeSocialMediaDetails = () => {
 </script>
 
 <template>
-  <v-card color="background" class="card" v-if="!isLoading" :height="bodyHeight">
+  <v-card color="background" class="card" v-if="!isLoading" :height="bodyHeight" :width="bodyWidth">
     <v-card-item class="pa-0">
       <v-card-title color="primary">
         <v-sheet color="primary" class="justify-space-around">
@@ -147,7 +143,7 @@ const closeSocialMediaDetails = () => {
     </v-card-item>
     <!--      main content-->
     <div class="d-flex flex-column" v-if="!socialMediaDetails">
-      <div class="flex-1-0" >
+      <div class="flex-1-0">
         <v-row class="on-off-button-group">
           <v-col cols="6">
             <v-btn
@@ -228,10 +224,13 @@ const closeSocialMediaDetails = () => {
       </div>
     </div>
     <v-card-actions>
-      <v-btn @click="closeSocialMediaDetails" v-if="socialMediaDetails" variant="elevated" elevation="12" color="primary" class="text-none">
-        <v-icon start>mdi-arrow-left</v-icon>Vissza
+      <v-btn @click="closeSocialMediaDetails" v-if="socialMediaDetails" variant="elevated" elevation="12"
+             color="primary" class="text-none">
+        <v-icon start>mdi-arrow-left</v-icon>
+        Vissza
       </v-btn>
-      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button text-none"></v-btn>
+      <v-btn v-if="contextLink.image" variant="elevated" elevation="12"
+             :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button text-none"></v-btn>
       <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none">
         <v-icon color="info" start>{{ contextLink.mdiIcon }}</v-icon>
         {{ contextLink.profileIdentifier }}
