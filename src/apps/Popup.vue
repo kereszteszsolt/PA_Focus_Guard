@@ -238,18 +238,18 @@ const closeSocialMediaDetails = () => {
         </ul>
       </div>
     </div>
-    <v-card-actions>
+    <v-card-actions class="d-flex">
       <v-btn @click="closeSocialMediaDetails" v-if="socialMediaDetails" variant="elevated" elevation="12"
-             color="primary" class="text-none">
+             color="primary" class="text-none flex-grow-1">
         <v-icon start>mdi-arrow-left</v-icon>
         Vissza
       </v-btn>
-      <v-btn v-if="contextLink.image" variant="elevated" elevation="12"
-             :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button text-none"></v-btn>
-      <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none">
+      <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none flex-grow-1">
         <v-icon color="info" start>{{ contextLink.mdiIcon }}</v-icon>
         {{ contextLink.profileIdentifier }}
       </v-btn>
+      <v-btn v-if="contextLink.image" variant="elevated" elevation="12"
+             :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button text-none flex-grow-1"></v-btn>
     </v-card-actions>
   </v-card>
   <v-progress-linear v-else indeterminate color="primary"></v-progress-linear>
