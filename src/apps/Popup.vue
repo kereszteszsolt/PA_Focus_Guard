@@ -92,10 +92,23 @@ const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
 const bodyHeight = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? '500px' : '380px'
-  : '350px');
-const bodyWidth = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? '400px' : '300px' : '300px');
+  contextLink.value.platformName === 'buy-me-a-coffee' ? '500px' : '380px' : '350px');
+const bodyWidth = computed(() => {
+  if (socialMediaDetails.value) {
+    switch (contextLink.value.platformName) {
+      case 'buy-me-a-coffee':
+        return '500px';
+      case 'YouTube-Hu':
+        return '420px';
+      case 'YouTube-En':
+        return '400px';
+      default:
+        return '300px';
+    }
+  } else {
+    return '300px';
+  }
+});
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
