@@ -112,7 +112,7 @@ const openSocialMediaDetails = (context: ISocialMediaLink) => {
   chrome.windows.getCurrent((window) => {
     if (window) {
       if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value, width: bodyWidth.value});
+        chrome.windows.update(window.id, { height: bodyHeight.value });
       }
     }
   });
@@ -125,7 +125,7 @@ const closeSocialMediaDetails = () => {
   chrome.windows.getCurrent((window) => {
     if (window) {
       if (typeof window.id === 'number') {
-        chrome.windows.update(window.id, { height: bodyHeight.value, width: bodyWidth.value});
+        chrome.windows.update(window.id, { height: bodyHeight.value });
       }
     }
   });
