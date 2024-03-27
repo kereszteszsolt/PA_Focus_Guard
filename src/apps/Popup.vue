@@ -5,6 +5,8 @@ import { computed, ref, watchEffect } from 'vue';
 import { msg } from '@/constants';
 import * as constants from '@/constants';
 import * as links from '@/links';
+import { ISocialMediaLink } from '@/interfaces';
+import { c as r_msg } from '@/_locales/restricted';
 
 const appDataStore = useAppDataStore();
 const statisticsStore = useStatisticsStore();
@@ -14,6 +16,8 @@ appDataStore.fetchAppData();
 statisticsStore.fetchDistractionAttempts();
 const theme = useTheme();
 theme.global.name.value = appDataStore.getAppData.fgTheme;
+const socialMediaDetails = ref(false);
+const contextLink = ref({} as ISocialMediaLink);
 
 watchEffect(() => {
   if (!appDataStore.isLoading) {
@@ -87,17 +91,46 @@ const nrOfOpenOptionsTabs = computed(() => {
 const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
+const bodyHeight = computed(() => socialMediaDetails.value ?
+  contextLink.value.platformName === 'buy-me-a-coffee' ? 500 : 400
+  : 350);
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
 const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoading || i18n.isLoading);
 const switchFocusMode = (active: boolean) => {
   let focusSessionId: string = active ? statisticsStore.getNewUniqueFocusSessionId : constants.common.NOT_APPLICABLE;
   appDataStore.switchFocusMode(active, focusSessionId);
 };
+
+const openSocialMediaDetails = (context: ISocialMediaLink) => {
+  //document.body.style.height = bodyHeight.value;
+  contextLink.value = context;
+  socialMediaDetails.value = true;
+  chrome.windows.getCurrent((window) => {
+    if (window) {
+      if (typeof window.id === 'number') {
+        chrome.windows.update(window.id, { height: bodyHeight.value });
+      }
+    }
+  });
+};
+const closeSocialMediaDetails = () => {
+  //document.body.style.height = bodyHeight.value;
+  contextLink.value = {} as ISocialMediaLink;
+  socialMediaDetails.value = false;
+  chrome.windows.getCurrent((window) => {
+    if (window) {
+      if (typeof window.id === 'number') {
+        chrome.windows.update(window.id, { height: bodyHeight.value });
+      }
+    }
+  });
+};
 </script>
 
 <template>
-  <v-card color="background" class="card" v-if="!isLoading">
+  <v-card color="background" class="card" v-if="!isLoading" :height="bodyHeight">
     <v-card-item class="pa-0">
       <v-card-title color="primary">
         <v-sheet color="primary" class="justify-space-around">
@@ -105,52 +138,51 @@ const switchFocusMode = (active: boolean) => {
         </v-sheet>
       </v-card-title>
     </v-card-item>
-    <div class="d-flex flex-column">
-
-    <div class="flex-1-0">
-      <v-row class="on-off-button-group">
-        <v-col cols="6">
-          <v-btn
-            color="danger"
-            class="button-off"
-            :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
-            :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-            @click="switchFocusMode(false)">
-            {{ t(msg.OFF) }}
-          </v-btn>
-        </v-col>
-        <v-col cols="6">
-          <v-btn
-            color="success"
-            class="button-on"
-            :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
-            :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
-            @click="switchFocusMode(true)">
-            {{ t(msg.ON) }}
-          </v-btn>
-        </v-col>
-      </v-row>
-      <v-row class="my-0">
-        <v-col cols="12" class="text-center pa-0">
-          <v-btn @click="options" color="secondary"><i class="mdi mdi-tune"></i> Options</v-btn>
-        </v-col>
-      </v-row>
-      <v-row class="mb-4">
-        <v-col cols="12" class="text-center">
-          <div class="text-h7 font-weight-bold mb-1 fgc-info">{{ t(msg.DISTRACTION_ATTEMPTS) }}:</div>
-          <v-btn icon variant="outlined" :color="appDataStore.getAppData.focusMode ?
+    <!--      main content-->
+    <div class="d-flex flex-column" v-if="!socialMediaDetails">
+      <div class="flex-1-0" >
+        <v-row class="on-off-button-group">
+          <v-col cols="6">
+            <v-btn
+              color="danger"
+              class="button-off"
+              :class="{'button-off-outlined': appDataStore.getAppData.focusMode}"
+              :variant="appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
+              @click="switchFocusMode(false)">
+              {{ t(msg.OFF) }}
+            </v-btn>
+          </v-col>
+          <v-col cols="6">
+            <v-btn
+              color="success"
+              class="button-on"
+              :class="{'button-on-outlined': !appDataStore.getAppData.focusMode}"
+              :variant="!appDataStore.getAppData.focusMode ? 'outlined' : 'flat'"
+              @click="switchFocusMode(true)">
+              {{ t(msg.ON) }}
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-row class="my-0">
+          <v-col cols="12" class="text-center pa-0">
+            <v-btn @click="options" color="secondary"><i class="mdi mdi-tune"></i> Options</v-btn>
+          </v-col>
+        </v-row>
+        <v-row class="mb-4">
+          <v-col cols="12" class="text-center">
+            <div class="text-h7 font-weight-bold mb-1 fgc-info">{{ t(msg.DISTRACTION_ATTEMPTS) }}:</div>
+            <v-btn icon variant="outlined" :color="appDataStore.getAppData.focusMode ?
           statisticsStore.getNumberOfDistractionAttemptsByFocusSessionId(appDataStore.getAppData.focusModeSessionId) > 0 ? 'danger' : 'success'
           : 'info'">{{
-              statisticsStore.getNumberOfDistractionAttemptsByFocusSessionId(appDataStore.getAppData.focusModeSessionId)
-            }}
-          </v-btn>
-        </v-col>
-      </v-row>
-    </div>
-
+                statisticsStore.getNumberOfDistractionAttemptsByFocusSessionId(appDataStore.getAppData.focusModeSessionId)
+              }}
+            </v-btn>
+          </v-col>
+        </v-row>
+      </div>
 
       <div class="d-flex flex-row flex-wrap justify-space-between mb-2">
-        <v-btn v-for="link in orderedLinks" variant="text" class="flex-1-0"
+        <v-btn v-for="link in orderedLinks" variant="text" class="flex-1-0" @click="openSocialMediaDetails(link)"
                id="#fgModal" color="info" density="compact" size="regular">
           <v-icon>{{ link.mdiIcon }}</v-icon>
         </v-btn>
@@ -161,6 +193,43 @@ const switchFocusMode = (active: boolean) => {
         <p>Version: 2.0.0</p>
       </div>
     </div>
+
+    <!-- social media details -->
+    <div class="d-flex flex-column" v-if="socialMediaDetails">
+      <v-card-subtitle>
+        <div class="mb-2">{{ contextLink.platformName }}</div>
+      </v-card-subtitle>
+      <div class="d-flex flex-column px-3">
+        <div class="mb-1 font-weight-bold">{{ tr(r_msg.THANK_Y4Y_INTEREST) }}</div>
+        <div> {{ tr(r_msg.NOT_PART_OF_EXTENSION) }}</div>
+        <div>{{ tr(r_msg.CLICK_OPEN_NEW_TAB) }}</div>
+        <div class="my-2 d-flex flex-column">
+          <div class="d-flex flex-row">
+            <div class="font-weight-bold fgc-primary mr-1">{{ contextLink.profileName }}</div>
+            <div class="font-weight-bold fgc-accent">{{ contextLink.profileIdentifier }}</div>
+          </div>
+          <a class="fgc-info" :href="contextLink.url" target="_blank">{{ contextLink.url }}</a>
+        </div>
+        <div class="mb-2">{{ tr(contextLink.shortDescription) }}</div>
+        <div class="mb-2">{{ tr(contextLink.callToAction) }}</div>
+        <ul class="mb-2 d-flex flex-column no-bullets" v-if="contextLink.list">
+          <li v-for="item in contextLink.list || []" :key="item">
+            <v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>
+            {{ tr(item) }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <v-card-actions>
+      <v-btn @click="closeSocialMediaDetails" v-if="socialMediaDetails" variant="elevated" elevation="12" color="primary" class="text-none">
+        <v-icon start>mdi-arrow-left</v-icon>Vissza
+      </v-btn>
+      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button text-none"></v-btn>
+      <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none">
+        <v-icon color="info" start>{{ contextLink.mdiIcon }}</v-icon>
+        {{ contextLink.profileIdentifier }}
+      </v-btn>
+    </v-card-actions>
   </v-card>
   <v-progress-linear v-else indeterminate color="primary"></v-progress-linear>
 </template>
@@ -205,7 +274,16 @@ const switchFocusMode = (active: boolean) => {
   }
 }
 
-.popup-footer{
+.popup-footer {
   height: 300px;
+}
+
+.custom-button {
+  background-size: auto 100%; /* This will make the image fit the height of the button */
+  background-repeat: no-repeat;
+  background-position: center;
+  //border-radius: 8px;
+  background-color: #ff813f;
+  min-width: 128px;
 }
 </style>
