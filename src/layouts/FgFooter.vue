@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { FgDialog } from '@/components/common';
-import { useI18nStore } from '@/store';
+import { useAppDataStore, useI18nStore } from '@/store';
 import { ISocialMediaLink } from '@/interfaces';
 import { msg } from '@/constants';
 import * as links from '@/links';
@@ -11,6 +11,7 @@ import { c as r_msg } from '@/_locales/restricted';
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
 
+const currentYear = new Date().getFullYear();
 const socialDialog = ref(false);
 const contextLink = ref({} as ISocialMediaLink);
 
@@ -28,6 +29,8 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['localeSettingsUpdated', 'l
 const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
+const appDataStore = useAppDataStore();
+appDataStore.fetchAppData();
 
 </script>
 
@@ -48,7 +51,7 @@ const orderedLinks = computed(() => {
       </v-btn>
     </div>
     <div class="d-flex flex-row justify-space-around text-center">
-      <p class="fgc-info">Focus Guard © 2024 - Keresztes Zsolt - Version: 2.0.0 - Free Software.</p>
+      <p class="fgc-info">{{`Focus Guard © ${currentYear} - Keresztes Zsolt - Version: ${appDataStore.getAppData.version} - Free Software.`}}</p>
     </div>
   </v-sheet>
   <fg-dialog v-model:dialog="socialDialog" activator="#fgModal" max-width="675px">

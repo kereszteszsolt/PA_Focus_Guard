@@ -18,6 +18,7 @@ const theme = useTheme();
 theme.global.name.value = appDataStore.getAppData.fgTheme;
 const socialMediaDetails = ref(false);
 const contextLink = ref({} as ISocialMediaLink);
+const currentYear = new Date().getFullYear();
 
 watchEffect(() => {
   if (!appDataStore.isLoading) {
@@ -191,9 +192,9 @@ const closeSocialMediaDetails = () => {
         </v-btn>
       </div>
       <div class="d-flex flex-column justify-space-around text-center fgc-info">
-        <p>Focus Guard © 2024 - Keresztes Zsolt</p>
+        <p>{{`Focus Guard © ${currentYear} - Keresztes Zsolt`}}</p>
         <p>Free Software. Open source.</p>
-        <p>Version: 2.0.0</p>
+        <p>{{`Version: ${appDataStore.getAppData.version}`}}</p>
       </div>
     </div>
 
