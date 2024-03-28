@@ -11,8 +11,8 @@ export const about : IAbout[] = [
     id: `goodToKnow`,
     title: `Jó tudni:`,
     list: [
-      `Kapcsolattartásért vagy nyomon követésért látogasson el a bővítmény "Kapcsolat" oldalára.`,
-      `A forráskódot a mellékelt GitHub linken tekintheti meg és játszhat vele.`,
+      `Kapcsolattartásért vagy nyomon követésért látogass el a bővítmény "Kapcsolat" oldalára.`,
+      `A forráskódot a mellékelt GitHub linken tekintheted meg és játszhat vele.`,
       `A legfrissebb elérhetőségi e-mail a Chrome áruház Focus Guard bővítményének oldalán található.`]
   },
   {
