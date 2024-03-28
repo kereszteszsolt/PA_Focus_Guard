@@ -16,7 +16,7 @@
   "clickAndCheckMyLinkTreePage": "Kattints és nézd meg most!",
   "socMedDescGitHub": "Tartalom: Forráskód ehhez a projekthez és néhány más projekthez.",
   "socMedDescBuyMeACoffee": "Tartalom: Adományozási Platform: \"Buy Me A Coffee!\" (\"Hívj meg egy kávéra!\")",
-  "thankY4YInterest": "Köszönöm az érdeklődését!",
+  "thankY4YInterest": "Köszönöm az érdeklődést!",
   "notPartOfExtension": "A kívánt oldal nem része a bővítménynek!",
   "clickOpenNewTab": "A párbeszéd/felugró ablak alján található linkre vagy a narancssárga gombra kattintva a kívánt oldal új lapon nyílik meg.",
   "clickOpenNewTabPL": "A párbeszéd/felugró ablak alján található linkre vagy a narancssárga gombok egyikére kattintva a kívánt oldal új lapon nyílik meg.",
@@ -29,8 +29,8 @@
   "about": "Bővítményről",
   "back": "Vissza",
   "ctaBuyMeACoffee": "Ha tetszik a munkám, most egy kávé árával is kifejezheted az elismerésedet! Mielőtt adományoznál, kérlek, vedd figyelembe a következőket:",
-  "ctaBuyMeACoffeeL1": "Nincsenek hátrányok vagy előnyök, ha adományoz, vagy ha nem!",
-  "ctaBuyMeACoffeeL2": "Az adományozás az elismerésért van, nem pedig egy szolgáltatásért!",
+  "ctaBuyMeACoffeeL1": "Nincsenek hátrányok vagy előnyök, ha adományozol vagy sem!",
+  "ctaBuyMeACoffeeL2": "Az adományok az elismerés kifejezésére szolgálnak!",
   "ctaBuyMeACoffeeL3": "Nem nyújtok semmilyen szolgáltatást az adományért cserébe!",
   "ctaBuyMeACoffeeL4": "Csak akkor adományozz, ha biztos vagy benne, hogy megengedheted magadnak!"
 }

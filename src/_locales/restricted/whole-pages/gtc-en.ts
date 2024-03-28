@@ -81,7 +81,7 @@ export const gtc: IGtc[] = [
     title: `Optional Donations:`,
     content: [
       `Donations are entirely optional and come with no advantages or disadvantages.
-      Donors express their gratitude, and donations support the developer and their work.`
+      Donors express their appreciation, and donations support the developer and their work.`
     ]
   },
   {
@@ -102,14 +102,14 @@ export const gtc: IGtc[] = [
     id: `userModifications`,
     title: `User Modifications:`,
     content: [
-      `Suppose a user decides to modify the software's code. In that case, it is essential that they also update the contact pages, profiles, and social media references to reflect their version of the software. While it is appreciated to credit the original author in the acknowledgements section, it is necessary for legal reasons that the modified version be distributed under the name of the person who made the changes to the source code.`
+      `Suppose a user decides to modify the software's code. In that case, it is essential that they also update the contact pages, profiles, and social media references to reflect their  own modified version of the software. While it is appreciated to credit the original author in the acknowledgements section, it is necessary for legal reasons that the modified version be distributed under the name of the person who made the changes to the source code.`
     ]
   },
   {
     id: `gtc-final`,
     title: ``,
     content: [
-      `Thank you for your interest in this software. I hope you find it useful and enjoyable to use!`
+      `I appreciate your interest in this software. I hope you find it useful!`
     ]
   }
 ];

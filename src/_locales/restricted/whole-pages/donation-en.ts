@@ -22,7 +22,7 @@ export const donations: IDonation[] = [
     text: `If you like my work, you can now express your appreciation with the price of a coffee!  Before donating, please consider the following:`,
     list: [
       `There are no disadvantages or advantages if you donate or not!`,
-      `Donations are for appreciation, not for a service!`,
+      `Donations are to express appreciation!`,
       `I will not provide any service for the donation!`,
       `Only donate if you are sure you can afford it!`
     ],

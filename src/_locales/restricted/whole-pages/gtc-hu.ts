@@ -20,7 +20,7 @@ export const gtc: IGtc[] = [
     id: `gtc-2`,
     title: ``,
     content: [
-      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérjük, ne habozzon kapcsolatba lépni velem. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
+      `Ha bármilyen kérdése vagy visszajelzése van a szoftverrel kapcsolatban, kérem, ne habozzon kapcsolatba lépni velem. Elérhetőségi adataimat a Kapcsolat oldalon találja.`
     ]
   },
   {
@@ -81,7 +81,7 @@ export const gtc: IGtc[] = [
     title: `Opcionális adományok:`,
     content: [
       `Az adományok teljesen opcionálisak, és nem járnak előnyökkel vagy hátrányokkal.
-      Az adományozók hálájukat fejezik ki, az adományok pedig a fejlesztőt és annak munkáját támogatják.`
+      Az adományozók elismerésüket fejezik ki, az adományok pedig a fejlesztőt és annak munkáját támogatják.`
     ]
   },
   {
@@ -95,21 +95,21 @@ export const gtc: IGtc[] = [
     id: `legalCompliance`,
     title: `Jogi megfelelés:`,
     content: [
-      `A szoftver használata vagy módosítása során minden felhasználónak be kell tartania a vonatkozó helyi és nemzetközi törvényeket és előírásokat.`
+      `A szoftver használata vagy módosítása során minden felhasználónak be kell tartania az érvényben lévő helyi és nemzetközi törvényeket és előírásokat.`
     ]
   },
   {
     id: `userModifications`,
     title: `Felhasználói módosítások:`,
     content: [
-      `Tegyük fel, hogy egy felhasználó úgy dönt, hogy módosítja a szoftver kódját. Ebben az esetben elengedhetetlen, hogy a kapcsolatfelvételi oldalakat, profilokat és a közösségi média hivatkozásokat is frissítse, hogy azok tükrözzék a szoftver saját verzióját. Bár a köszönetnyilvánítás rovatban az eredeti szerzőnek való megemlítése nagyra értékelendő, jogi okokból szükséges, hogy a módosított változatot annak a személynek a neve alatt terjesszék, aki a forráskódon a változtatásokat elvégezte.`
+      `Tegyük fel, hogy egy felhasználó úgy dönt, hogy módosítja a szoftver kódját. Ebben az esetben elengedhetetlen, hogy a kapcsolatfelvételi oldalakat, profilokat és a közösségi média hivatkozásokat is frissítse, hogy azok tükrözzék a szoftver saját módosított változatát. Bár a köszönetnyilvánítás rovatban az eredeti szerzőnek való megemlítése nagyra értékelendő, jogi okokból szükséges, hogy a módosított változatot annak a személynek a neve alatt terjesszék, aki a forráskódon a változtatásokat elvégezte.`
     ]
   },
   {
     id: `gtc-final`,
     title: ``,
     content: [
-      `Köszönöm a szoftver iránti érdeklődését. Remélem, hasznosnak és élvezetesnek találja a használatát!`
+      `Nagyra értékelem a szoftver iránti érdeklődését. Remélem, hasznosnak találja!`
     ]
   }
 ];
