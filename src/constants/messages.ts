@@ -86,4 +86,8 @@ export const NO_WEBSITE_RULES_FOUND = 'noWebsiteRulesFound';
 export const NO_DISTRACTION_ATTEMPTS_FOUND = 'noDistractionAttemptsFound';
 export const NO_LANGUAGES_FOUND = 'noLanguageFound';
 export const OPTIONS = 'options';
-
+export const GENERAL_SETTINGS = 'generalSettings';
+export const DATA = 'data';
+export const USED_DISK_SPACE_FOR_DATA = 'usedDiskSpaceForData';
+export const EXTENSION_VERSION = 'extensionVersion';
+export const EXTENSION_SIZE = 'extensionSize';

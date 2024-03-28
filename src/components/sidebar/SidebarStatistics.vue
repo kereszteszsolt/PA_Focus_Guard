@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { useI18nStore } from '@/store';
+import { computed } from 'vue';
+import { msg } from '@/constants';
 
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
+
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 </script>
 
 <template>
@@ -11,7 +18,7 @@
           <template v-slot:prepend>
             <v-icon icon="mdi-chart-bar-stacked"></v-icon>
           </template>
-          <v-list-item-title v-text="'Distraction Attempts'"></v-list-item-title>
+          <v-list-item-title v-text="t(msg.DISTRACTION_ATTEMPTS)"></v-list-item-title>
         </v-list-item>
       </router-link>
       <router-link to="/statistics/data-usage" class="router-link">
@@ -19,7 +26,7 @@
           <template v-slot:prepend>
             <v-icon icon="mdi-chart-donut"></v-icon>
           </template>
-          <v-list-item-title v-text="'Data Usage'"></v-list-item-title>
+          <v-list-item-title v-text="t(msg.DATA)"></v-list-item-title>
         </v-list-item>
       </router-link>
     </v-list>

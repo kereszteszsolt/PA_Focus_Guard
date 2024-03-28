@@ -89,6 +89,11 @@
     "noWebsiteRulesFound": "No website rules found!",
     "noDistractionAttemptsFound": "No distraction attempts found!",
     "noLanguagesFound": "No languages found!",
-    "options": "Options"
+    "options": "Options",
+    "generalSettings": "General Settings",
+    "data": "Data",
+    "usedDiskSpaceForData": "Used disk space for data:",
+    "extensionVersion": "Extension version:",
+    "extensionSize": "The extensions(application) size is not included. You can see the extension size on the extension management page: "
   }
 }

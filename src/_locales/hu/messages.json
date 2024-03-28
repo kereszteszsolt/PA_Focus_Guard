@@ -90,6 +90,11 @@
     "noWebsiteRulesFound": "A weboldal szabályok nem találhatóak!",
     "noDistractionAttemptsFound": "Nem találhatóak szórakozási kísérletek!",
     "noLanguagesFound": "Nyelvek nem találhatóak!",
-    "options": "Opciók"
+    "options": "Opciók",
+    "generalSettings": "Általános Beállítások",
+    "data": "Adatok",
+    "usedDiskSpaceForData": "Az adatok számára használt lemezterület:",
+    "extensionVersion": "Bővítmény verzió:",
+    "extensionSize": "A bővítmény(alkalmazás) mérete nem szerepel. A bővítmény méretét a bővítménykezelő oldalon láthatja: "
   }
 }

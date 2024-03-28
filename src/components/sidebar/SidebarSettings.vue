@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useAppDataStore } from '@/store';
+import { useAppDataStore, useI18nStore } from '@/store';
 import * as constants from '@/constants';
 import { computed, ComputedRef } from 'vue';
+import { msg } from '@/constants';
 
 const appDataStore = useAppDataStore();
 appDataStore.fetchAppData();
@@ -17,6 +18,10 @@ const toggleTheme = () => {
   const chosenTheme = (fgTheme.value === constants.common.FG_DARK_THEME) ? constants.common.FG_LIGHT_THEME : constants.common.FG_DARK_THEME;
   appDataStore.updateFgTheme(chosenTheme);
 };
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
+
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 </script>
 
 <template>
@@ -27,7 +32,7 @@ const toggleTheme = () => {
           <template v-slot:prepend>
             <v-icon icon="mdi-translate"></v-icon>
           </template>
-          <v-list-item-title v-text="'Languages'"></v-list-item-title>
+          <v-list-item-title v-text="t(msg.LANGUAGES)"></v-list-item-title>
         </v-list-item>
       </router-link>
       <router-link to="/settings/settings" class="router-link">
@@ -35,7 +40,7 @@ const toggleTheme = () => {
           <template v-slot:prepend>
             <v-icon icon="mdi-cog-outline"></v-icon>
           </template>
-          <v-list-item-title v-text="'General Settings'"></v-list-item-title>
+          <v-list-item-title v-text="t(msg.GENERAL_SETTINGS)"></v-list-item-title>
         </v-list-item>
       </router-link>
     </v-list>

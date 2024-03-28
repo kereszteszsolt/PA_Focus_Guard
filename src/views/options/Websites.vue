@@ -90,7 +90,7 @@ const websiteRuleList = computed(() => {
 
 const websiteRuleListName = computed(() => {
   return (pathId.value === 'all' || !pathId.value) ?
-    'All Websites' : websiteRuleList.value?.name;
+    t(msg.ALL_WEBSITE_RULE_LISTS): websiteRuleList.value?.name;
 });
 
 const websiteRules = computed(() => {

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useSizeStore } from '@/store/sizeStore';
 import * as utils from '@/utils';
+import { useI18nStore } from '@/store';
+import { computed } from 'vue'
+import { msg } from '@/constants';
+import { USED_DISK_SPACE_FOR_DATA } from '@/constants/messages';
 
 const useSize = useSizeStore();
 useSize.fetchAllSizes();
@@ -8,14 +12,21 @@ utils.runtimeMessages.createMessageListener('storageUpdated', () => {
   useSize.fetchAllSizes();
 });
 
+const extensionId = chrome.runtime.id;
+const managementUrl = `chrome://extensions/?id=${extensionId}`;
+
 const downloadAllData = () => {
   // Implement your data download logic here
 };
+const i18n = useI18nStore();
+i18n.fetchLocaleSettingsAndMessages();
+
+const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 </script>
 
 <template>
   <div class="flex-1-0 pa-4" v-if="!useSize.isLoading">
-    <h1>Data usage</h1>
+    <h1>{{t(msg.USED_DISK_SPACE_FOR_DATA)}}</h1>
     <table class="styled-table">
       <thead>
       <tr class="bg-accent">
