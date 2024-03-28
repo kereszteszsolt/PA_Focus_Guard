@@ -125,7 +125,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     url: 'https://chromewebstore.google.com/detail/focus-guard/bdfnblnbjckkhknignkpmckeelfplill',
     profileName: '',
     profileIdentifier: '',
-    shortDescription: 'You can find the actualized contact e-mail on the Focus Guard extension page on the Chrome web store!',
+    shortDescription: r_msg.SOC_MED_DESC_EMAIL,
     callToAction: '',
     contactOrder: 10,
     footerOrder: -1,

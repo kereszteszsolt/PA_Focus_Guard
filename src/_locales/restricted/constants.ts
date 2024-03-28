@@ -30,3 +30,4 @@ export const CTA_BUY_ME_A_COFFEE_L1 = 'ctaBuyMeACoffeeL1';
 export const CTA_BUY_ME_A_COFFEE_L2 = 'ctaBuyMeACoffeeL2';
 export const CTA_BUY_ME_A_COFFEE_L3 = 'ctaBuyMeACoffeeL3';
 export const CTA_BUY_ME_A_COFFEE_L4 = 'ctaBuyMeACoffeeL4';
+export const SOC_MED_DESC_EMAIL = 'socMedDescEmail';
