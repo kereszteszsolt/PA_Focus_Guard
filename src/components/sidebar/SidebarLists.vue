@@ -136,9 +136,9 @@ const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
 </script>
 
 <template>
-  <v-sheet class="border-radius-8 flex-1-0" color="background">
+  <v-sheet class="border-radius-8 flex-1-0 fgScroll" color="background">
     <div v-if="!websiteRulesStore.isLoading">
-      <v-list class="bg-background border-radius-8">
+      <v-list class="bg-background border-radius-8 fgScroll fw-sidebar">
         <router-link v-for="list in websiteRulesStore.getWebsiteRuleLists" :key="list.id"
                      :to="{ name: 'WebsitesByListId', params: { id: list.id } }" class="router-link">
           <sidebar-list-item :list-id="list.id" :list-name="list.name"
