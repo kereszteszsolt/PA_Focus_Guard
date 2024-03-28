@@ -181,7 +181,7 @@ watch(itemsPerPage, updateItemsPerPage);
 </script>
 
 <template>
-  <div class="flex-1-0 border-top-radius-8">
+  <div class="flex-1-0 border-top-radius-8 fgScroll fw-card">
     <v-data-table
       :headers="headers"
       :items="allLocales"
@@ -193,7 +193,7 @@ watch(itemsPerPage, updateItemsPerPage);
       :page-text="`${page} / ${totalPages}`"
       :no-data-text="t(msg.NO_LANGUAGES_FOUND)"
       :loading="isLoading"
-      class="bg-background"
+      class="bg-background fgXYScroll"
     >
       <template v-slot:item.localeId="{ item }">
         <div class="text-center">
@@ -291,7 +291,7 @@ watch(itemsPerPage, updateItemsPerPage);
                                  :p-new-item="newItem"
     ></edit-custom-language-dialog>
     <delete-language-dialog :p-dialog="deleteDialog" :p-close-dialog="closeDeleteDialog"
-                                :p-confirm-delete="deleteLocale" :p-item-id="deletingItemId" :t="t">
+                            :p-confirm-delete="deleteLocale" :p-item-id="deletingItemId" :t="t">
     </delete-language-dialog>
   </div>
 </template>

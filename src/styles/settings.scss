@@ -79,8 +79,35 @@ html {
   max-height: 667px;
 }
 
+.fw-sidebar {
+  max-height: 64.2vh;
+}
+
 .fgScroll {
   overflow-y: auto;
+  -ms-overflow-style: scrollbar;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    display: block;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--v-theme-scrollbar-track-color)) !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--v-theme-scrollbar-thumb-color)) !important;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--v-theme-scrollbar-thumb-color-hover)) !important;
+  }
+}
+
+.fgXYScroll {
+  overflow-y: auto;
+  overflow-x: auto;
   -ms-overflow-style: scrollbar;
 
   ::-webkit-scrollbar {

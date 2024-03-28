@@ -19,8 +19,8 @@ const allLocales = computed(() => i18n.getAllLocales);
 </script>
 
 <template>
-  <v-sheet class="border-radius-8 flex-1-0" color="background">
-    <v-list class="bg-background border-radius-8">
+  <v-sheet class="border-radius-8 flex-1-0 fgScroll" color="background">
+    <v-list class="bg-background border-radius-8 fw-sidebar fgScroll">
         <v-list-item :title="locale.localeName"
                      v-for="locale in allLocales"
                      :key="locale.localeId"
