@@ -4,8 +4,8 @@ export const about : IAbout[] = [
   {
     id: `intro`,
     title: ``,
-    text: `Ez a bővítmény segít összpontosítani, amikor valami fontos dologra szeretne koncentrálni.
-           Kérjük, látogasson el a GYIK oldalra a működésével kapcsolatos további információkért. `
+    text: `Ez a bővítmény segít összpontosítani, amikor valami fontos dologra szeretnél koncentrálni.
+           Kérjük, látogass el a GY.I.K oldalra a működésével kapcsolatos további információkért. `
   },
   {
     id: `goodToKnow`,
