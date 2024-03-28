@@ -58,7 +58,8 @@ const orderedLinks = computed(() => {
     <div class="fg-font-s-16 d-flex flex-column px-3">
       <div class="mb-1 font-weight-bold">{{ tr(r_msg.THANK_Y4Y_INTEREST) }}</div>
       <div> {{ tr(r_msg.NOT_PART_OF_EXTENSION) }}</div>
-      <div>{{ tr(r_msg.CLICK_OPEN_NEW_TAB) }}</div>
+      <div v-if="contextLink.platformName !== 'buy-me-a-coffee'">{{ tr(r_msg.CLICK_OPEN_NEW_TAB) }}</div>
+      <div v-if="contextLink.platformName === 'buy-me-a-coffee'">{{ tr(r_msg.CLICK_OPEN_NEW_TAB_PL) }}</div>
       <div class="my-2 fg-font-s-16 d-flex flex-column">
         <div class="d-flex flex-row">
           <div class="font-weight-bold fgc-primary mr-1">{{ contextLink.profileName }}</div>
@@ -76,8 +77,14 @@ const orderedLinks = computed(() => {
       </ul>
     </div>
     <template v-slot:actions>
-      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button"></v-btn>
-      <v-btn color="danger" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>
+      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :href="contextLink.url" target="_blank"
+             :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button"></v-btn>
+      <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none"
+      :href="contextLink.url" target="_blank">
+        <v-icon color="info" start>{{ contextLink.mdiIcon }}</v-icon>
+        {{ contextLink.profileIdentifier }}
+      </v-btn>
+      <v-btn color="primary" variant="elevated" elevation="12" @click="socialDialog = false">{{ t(msg.CLOSE) }}</v-btn>
     </template>
   </fg-dialog>
 </template>
