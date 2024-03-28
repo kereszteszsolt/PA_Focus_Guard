@@ -18,10 +18,10 @@ export const donations: IDonation[] = [
   {
     id: `buyMeACoffee`,
     title: `Buy me a coffee`,
-    text: `Egy kávé árával is motiválhatsz engem! Mielőtt adományozol, kérlek, vedd figyelembe a következőket:`,
+    text: `Ha tetszik a munkám, most egy kávé árával is kifejezheted az elismerésedet! Mielőtt adományoznál, kérlek, vedd figyelembe a következőket:`,
     list: [
       `Nincsenek hátrányok vagy előnyök, ha adományozol vagy sem!`,
-      `Az adományozás elismerés, nem pedig szolgáltatás!`,
+      `Az adományozás az elismerésért van, nem pedig egy szolgáltatásért!`,
       `Nem nyújtok semmilyen szolgáltatást az adományért cserébe!`,
       `Csak akkor adományozz, ha biztos vagy benne, hogy megengedheted magadnak!`
     ],

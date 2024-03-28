@@ -19,7 +19,7 @@ export const donations: IDonation[] = [
   {
     id: `buyMeACoffee`,
     title: `Buy me a coffee`,
-    text: `You can motivate me with the price of a coffee! Before donating, please consider the following:`,
+    text: `If you like my work, you can now express your appreciation with the price of a coffee!  Before donating, please consider the following:`,
     list: [
       `There are no disadvantages or advantages if you donate or not!`,
       `Donations are for appreciation, not for a service!`,
