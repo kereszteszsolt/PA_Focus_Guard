@@ -3,7 +3,7 @@ import * as utils from '@/utils';
 import * as constants from '@/constants';
 import { en, hu, de, ro } from '@/_locales';
 
-export const initLocaleSettingsAndMessages = async (): Promise<void> => {
+export const initLocaleSettingsAndMessages = async (current?: string): Promise<void> => {
   let localeSettings: ILocaleSettings[] = [] as ILocaleSettings[];
   let lsHu: ILocaleSettings = {
     id: utils.unique.generateUniqueListId(localeSettings),
@@ -11,10 +11,10 @@ export const initLocaleSettingsAndMessages = async (): Promise<void> => {
     localeName: hu.locale.name,
     text_direction: hu.locale.text_direction,
     isBuiltIn: true,
-    isCurrent: true,
-    isFactoryDefault: true,
-    isFallback1: true,
-    isFallback2: true
+    isCurrent: current && current === 'hungarian',
+    isFactoryDefault: false,
+    isFallback1: false,
+    isFallback2: false
   } as ILocaleSettings;
   localeSettings.push(lsHu);
   let lsEn: ILocaleSettings = {
@@ -23,10 +23,10 @@ export const initLocaleSettingsAndMessages = async (): Promise<void> => {
     localeName: en.locale.name,
     text_direction: en.locale.text_direction,
     isBuiltIn: true,
-    isCurrent: false,
-    isFactoryDefault: false,
-    isFallback1: false,
-    isFallback2: false
+    isCurrent: current ? current === 'english': true,
+    isFactoryDefault: true,
+    isFallback1: true,
+    isFallback2: true
   } as ILocaleSettings;
   localeSettings.push(lsEn);
   let lsDe: ILocaleSettings = {
@@ -35,7 +35,7 @@ export const initLocaleSettingsAndMessages = async (): Promise<void> => {
     localeName: de.locale.name,
     text_direction: de.locale.text_direction,
     isBuiltIn: true,
-    isCurrent: false,
+    isCurrent: current && current === 'german',
     isFactoryDefault: false,
     isFallback1: false,
     isFallback2: false
@@ -47,7 +47,7 @@ export const initLocaleSettingsAndMessages = async (): Promise<void> => {
     localeName: ro.locale.name,
     text_direction: ro.locale.text_direction,
     isBuiltIn: true,
-    isCurrent: false,
+    isCurrent: current && current === 'romanian',
     isFactoryDefault: false,
     isFallback1: false,
     isFallback2: false

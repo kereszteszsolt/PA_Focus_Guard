@@ -4,8 +4,8 @@ import * as constants from '@/constants';
 import { IAppData } from '@/interfaces/IAppData';
 import { IWebsiteRule, ITaskQueue, IDistractionAttempt } from '@/interfaces';
 import * as scripts from '@/scripts';
-import * as util from 'util';
-import { cutTheProtocol } from '@/utils/url-filter';
+import { install } from '@/setup/install';
+import { update } from '@/setup/update';
 
 let fgAppData: IAppData = {
   focusMode: false,
@@ -23,25 +23,16 @@ chrome.runtime.onInstalled.addListener(async (details) => {
   switch (details.reason) {
     case 'install':
       console.log('Extension installed');
-      await setup.initialize.locales.initLocaleSettingsAndMessages();
-      await setup.initialize.appData.initDefaultAppData();
-      await setup.initialize.websiteRules.initDefaultWebsites();
-      await setup.initialize.statistics.initDefaultStatistics();
+      await install();
       break;
     case 'update':
       console.log('Extension updated');
-      await readData();
-      // await utils.initialize.locales.initLocaleSettingsAndMessages();
-      // await utils.initialize.appData.initDefaultAppData();
-      // await utils.initialize.websiteRules.initDefaultWebsites();
-      // await utils.initialize.statistics.initDefaultStatistics();
+      await readData().then(async () => {
+        await update(fgAppData.version);
+      });
       break;
     case 'chrome_update':
-      console.log('Chrome updated');
-      // await utils.initialize.locales.initLocaleSettingsAndMessages();
-      // await utils.initialize.appData.initDefaultAppData();
-      // await utils.initialize.websiteRules.initDefaultWebsites();
-      // await utils.initialize.statistics.initDefaultStatistics();
+      console.log('Chrome updated');  // Chrome updated, Do nothing
       break;
   }
 });

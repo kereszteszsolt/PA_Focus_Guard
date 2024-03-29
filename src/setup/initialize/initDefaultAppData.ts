@@ -5,7 +5,7 @@ import * as constants from '@/constants';
 export const initDefaultAppData = async () => {
   let data : IAppData = {
     focusMode: false,
-    version: '0.0.0',
+    version: chrome.runtime.getManifest().version,
     fgTheme: 'fgLightTheme',
     itemsPerPage: 7,
     focusModeSessionId: constants.common.NOT_APPLICABLE

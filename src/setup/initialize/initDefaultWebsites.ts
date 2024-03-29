@@ -19,7 +19,6 @@ export const initDefaultWebsites = async () => {
   listOfLists.push(wsRuleList_02);
 
 await utils.data.saveList<IWebsiteRuleList>(constants.storage.FG_WEBSITE_RULE_LISTS, listOfLists);
-console.log('websiteList', wsRuleList_01);
 
 let allWebsites: IWebsiteRule[] = [];
 let wsRule_01: IWebsiteRule = {
@@ -256,6 +255,5 @@ allWebsites.push(wsRule_21);
 
 
 await utils.data.saveList<IWebsiteRule>(constants.storage.FG_WEBSITE_RULES, allWebsites);
-console.log('allWebsites', allWebsites);
 };
 
