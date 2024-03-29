@@ -13,23 +13,20 @@ export const migrate = async () => {
 
   //migrate appData and locales from versions 1.0.4 - 2.0.0
   chrome.storage.sync.get(oldConstants.FG_APP_DATA, async (result) => {
-    if (!result[oldConstants.FG_APP_DATA]) {
-      await initialize.appData.initDefaultAppData();
-      await initialize.locales.initLocaleSettingsAndMessages('english');
-      return;
-    }
-    let oldData = JSON.parse(result[oldConstants.FG_APP_DATA]);
-    console.log('oldData', oldData);
-    if (oldData) {
-      let newData: IAppData = {
-        focusMode: oldData.focusMode || false,
-        version: chrome.runtime.getManifest().version,
-        fgTheme: 'fgLightTheme',
-        itemsPerPage: 7,
-        focusModeSessionId: constants.common.NOT_APPLICABLE
-      };
-      await utils.data.saveEntry(constants.storage.FG_APP_DATA, newData);
-      await initialize.locales.initLocaleSettingsAndMessages(oldData?.fgLanguage || 'english');
+    if (result[oldConstants.FG_APP_DATA]) {
+      let oldData = JSON.parse(result[oldConstants.FG_APP_DATA]);
+      console.log('oldData', oldData);
+      if (oldData) {
+        let newData: IAppData = {
+          focusMode: oldData.focusMode || false,
+          version: chrome.runtime.getManifest().version,
+          fgTheme: 'fgLightTheme',
+          itemsPerPage: 7,
+          focusModeSessionId: constants.common.NOT_APPLICABLE
+        };
+        await utils.data.saveEntry(constants.storage.FG_APP_DATA, newData);
+        await initialize.locales.initLocaleSettingsAndMessages(oldData.fgLanguage || 'english');
+      }
     } else {
       await initialize.appData.initDefaultAppData();
       await initialize.locales.initLocaleSettingsAndMessages('english');
@@ -84,23 +81,24 @@ export const migrate = async () => {
   //migrate blockedByUrl from versions 1.0.4 - 2.0.0
   chrome.storage.sync.get(oldConstants.FG_BLOCKED_WEBSITES_BY_URL, (result) => {
     if (result[oldConstants.FG_BLOCKED_WEBSITES_BY_URL]) {
-    let oldData = JSON.parse(result[oldConstants.FG_BLOCKED_WEBSITES_BY_URL]);
-    console.log('oldData', oldData);
-    if (oldData) {
-      for (let i = 0; i < oldData.length; i++) {
-        let wsRule: IWebsiteRule = {
-          id: unique.generateUniqueListId(allWebsites),
-          urlFilter: oldData[i].url,
-          listId: wsRuleList_02.id,
-          permanentlyActive: oldData[i].isPermanentlyBlocked || false,
-          temporarilyInactive: oldData[i].isDisabled || false,
-          localOrder: i,
-          globalOrder: globalOrder++,
-          urlFilterType: constants.wsrFilter.URL
-        };
-        allWebsites.push(wsRule);
+      let oldData = JSON.parse(result[oldConstants.FG_BLOCKED_WEBSITES_BY_URL]);
+      console.log('oldData', oldData);
+      if (oldData) {
+        for (let i = 0; i < oldData.length; i++) {
+          let wsRule: IWebsiteRule = {
+            id: unique.generateUniqueListId(allWebsites),
+            urlFilter: oldData[i].url,
+            listId: wsRuleList_02.id,
+            permanentlyActive: oldData[i].isPermanentlyBlocked || false,
+            temporarilyInactive: oldData[i].isDisabled || false,
+            localOrder: i,
+            globalOrder: globalOrder++,
+            urlFilterType: constants.wsrFilter.URL
+          };
+          allWebsites.push(wsRule);
+        }
       }
-    }}
+    }
   });
   //remove old blockedByUrl
   await chrome.storage.sync.remove(oldConstants.FG_BLOCKED_WEBSITES_BY_URL);

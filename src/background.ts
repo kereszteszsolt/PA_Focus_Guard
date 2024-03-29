@@ -23,14 +23,19 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     case 'install':
       console.log('Extension installed');
       await install();
+      await readData();
       break;
     case 'update':
       console.log('Extension updated');
       await update();
-      await readData();
+      // await readData();
+      // await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
+      // await setTheBadge();
       break;
     case 'chrome_update':
       console.log('Chrome updated');  // Chrome updated, Do nothing
+      // await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
+      // await setTheBadge();
       break;
   }
 });
@@ -114,6 +119,7 @@ const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
 chrome.runtime.onStartup.addListener(async () => {
   console.log('Runtime started');
   await readData();
+  await setTheBadge();
 });
 const saveDistractionAttempt = async (items: IWebsiteRule[], appData: IAppData): Promise<void> => {
   if (items.length === 0) {
