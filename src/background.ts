@@ -1,5 +1,4 @@
 import * as utils from '@/utils';
-import * as setup from '@/setup';
 import * as constants from '@/constants';
 import { IAppData } from '@/interfaces/IAppData';
 import { IWebsiteRule, ITaskQueue, IDistractionAttempt } from '@/interfaces';
