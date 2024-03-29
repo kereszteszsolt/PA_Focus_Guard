@@ -22,6 +22,10 @@ const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+
+utils.runtimeMessages.createBatchMessageListenerM2O(['storageUpdated'], () => {
+  useSize.fetchAllSizes();
+});
 </script>
 
 <template>

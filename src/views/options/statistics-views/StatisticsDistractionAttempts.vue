@@ -4,6 +4,7 @@ import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { msg } from '@/constants';
 import DeleteFilterRuleDialog from '@/components/distraction-attempts/DeleteFilterRuleDialog.vue';
 import DeleteDistractionAttemptDialog from '@/components/distraction-attempts/DeleteDistractionAttemptDialog.vue';
+import * as utils from '@/utils';
 
 const statisticStore = useStatisticsStore();
 const i18n = useI18nStore();
@@ -177,6 +178,10 @@ const updateItemsPerPage = () => {
   appDataStore.updateItemsPerPage(itemsPerPage.value);
 };
 watch(itemsPerPage, updateItemsPerPage);
+
+utils.runtimeMessages.createBatchMessageListenerM2O(['distractionAttemptsUpdated'], () => {
+  statisticStore.fetchDistractionAttempts();
+});
 </script>
 
 <template>

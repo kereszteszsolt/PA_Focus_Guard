@@ -61,6 +61,9 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
     if (constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS in changes) {
       distractionAttempts = JSON.parse(changes[constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS].newValue);
       await setTheBadge();
+      utils.runtimeMessages.sendMessage('distractionAttemptsUpdated', (response: string) => {
+        console.log(response);
+      });
     }
     if (constants.storage.FG_LOCALES_SETTINGS in changes) {
       utils.runtimeMessages.sendMessage('localeSettingsUpdated', (response: string) => {
