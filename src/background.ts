@@ -23,19 +23,13 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     case 'install':
       console.log('Extension installed');
       await install();
-      await readData();
       break;
     case 'update':
       console.log('Extension updated');
       await update();
-      // await readData();
-      // await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-      // await setTheBadge();
       break;
     case 'chrome_update':
       console.log('Chrome updated');  // Chrome updated, Do nothing
-      // await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-      // await setTheBadge();
       break;
   }
 });
