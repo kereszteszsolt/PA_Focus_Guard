@@ -22,7 +22,7 @@ export const migrate = async () => {
           version: chrome.runtime.getManifest().version,
           fgTheme: 'fgLightTheme',
           itemsPerPage: 7,
-          focusModeSessionId: constants.common.NOT_APPLICABLE
+          focusModeSessionId: oldData.focusMode ? utils.unique.generateUniqueUUIDByField([], 'focusModeSessionId') : constants.common.NOT_APPLICABLE
         };
         await utils.data.saveEntry(constants.storage.FG_APP_DATA, newData);
         await initialize.locales.initLocaleSettingsAndMessages(oldData.fgLanguage || 'english');

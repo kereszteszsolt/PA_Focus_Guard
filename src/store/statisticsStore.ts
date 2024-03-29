@@ -23,7 +23,9 @@ export const useStatisticsStore = defineStore({
       return utils.unique.generateUniqueUUIDByField(state.distractionAttempts, 'focusModeSessionId');
     },
     getNumberOfDistractionAttemptsByFocusSessionId: (state) => (focusSessionId: string): number => {
-      return state.distractionAttempts.filter((distractionAttempt: IDistractionAttempt) => distractionAttempt.focusModeSessionId === focusSessionId).length;
+      return state.distractionAttempts.filter((distractionAttempt: IDistractionAttempt) =>
+        distractionAttempt.focusModeSessionId === focusSessionId &&
+        focusSessionId !== constants.common.NOT_APPLICABLE).length;
     }
   },
   actions: {

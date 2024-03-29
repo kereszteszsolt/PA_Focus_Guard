@@ -38,9 +38,9 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
   if (namespace === 'local') {
     if (constants.storage.FG_APP_DATA in changes) {
       fgAppData = JSON.parse(changes[constants.storage.FG_APP_DATA].newValue);
+      await setTheBadge();
       await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
       console.log('Active rules', calculateActiveWebsiteRules());
-      await setTheBadge();
       utils.runtimeMessages.sendMessage('appDataUpdated', (response: string) => {
         console.log(response);
       });
