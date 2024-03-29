@@ -26,9 +26,8 @@ chrome.runtime.onInstalled.addListener(async (details) => {
       break;
     case 'update':
       console.log('Extension updated');
-      await readData().then(async () => {
-        await update(fgAppData.version);
-      });
+      await update();
+      await readData();
       break;
     case 'chrome_update':
       console.log('Chrome updated');  // Chrome updated, Do nothing
