@@ -144,6 +144,7 @@ const deleteItemConfirm = () => {
 const closeEdit = () => {
   dialog.value = false;
   editingId.value = '';
+  isNewItem.value = false;
   contextItem.value = websiteRulesStore.getDummyWebsiteRule;
 };
 const closeDelete = () => {
