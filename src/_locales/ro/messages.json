@@ -18,9 +18,9 @@
     "on": "Pornit",
     "off": "Oprit",
     "settings": "Setări",
-    "distractionAttempts": "Încercări de disracție",
+    "distractionAttempts": "Încercări de distracție",
     "areYouSureDeleteThisWebsiteRuleList": "Sunteți sigur că doriți să ștergeți această listă de reguli pentru site-ul web?",
-    "alsoDeleteAllAssociatedWebsiteRules": "De asemenea, ștergeți toate regulile asociate pentru site-ul web!",
+    "alsoDeleteAllAssociatedWebsiteRules": "Ștergeți și toate regulile asociate!",
     "deleteWebsiteRuleList": "Ștergerea listei de reguli pentru site-uri de web",
     "deleteWebsiteRule": "Ștergerea regulii pentru site-uri web",
     "areYouSureDeleteThisWebsiteRule": "Sunteți sigur că doriți să ștergeți această regulă pentru site-ul web?",
@@ -81,9 +81,9 @@
     "editLanguage": "Editare Limbă",
     "deleteLanguage": "Ștergerea limbii",
     "areYouSureDeleteThisLanguage": "Sunteți sigur că doriți să ștergeți această limbă?",
-    "deleteDistractionAttempt": "Ștergeți Tentativa de Distragere",
-    "areYouSureDeleteThisDistractionAttempt": "Sunteți sigur că doriți să ștergeți această tentativă de distragere?",
-    "deleteTheAttemptWhitThisUrlFilter": "Ștergeți tentativa cu acest filtru URL?",
+    "deleteDistractionAttempt": "Ștergeți tentativa de distracţie",
+    "areYouSureDeleteThisDistractionAttempt": "Sunteți sigur că doriți să ștergeți această tentativă de distracţie?",
+    "deleteTheAttemptWhitThisUrlFilter": "Ștergeți tentativa de distracţie cu acest filtru URL?",
     "thisDistractionAttemptContainsOnlyOneUrlFilter": "Această tentativă de distragere conține doar un filtru URL!",
     "all": "Toate",
     "noWebsiteRulesFound": "Nu s-au găsit reguli pentru site-uri web!",
@@ -94,6 +94,6 @@
     "data": "Date",
     "usedDiskSpaceForData": "Spațiul de disc utilizat pentru date:",
     "extensionVersion": "Versiunea de extensie:",
-    "extensionSize": "DiDimensiunea extensiilor (aplicației) nu este inclusă. Puteți vedea dimensiunea extensiilor pe pagina de gestionare a extensiilor: "
+    "extensionSize": "Dimensiunea extensiilor (aplicației) nu este inclusă. Puteți vedea dimensiunea extensiilor pe pagina de gestionare a extensiilor: "
   }
 }
