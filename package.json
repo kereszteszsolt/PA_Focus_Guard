@@ -1,27 +1,42 @@
 {
+  "name": "focus-guard",
+  "version": "2.0.0",
   "private": true,
-  "name": "PA_Focus_Guard",
-  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "local": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --env=local --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "staging": "cross-env NODE_ENV=staging node_modules/webpack/bin/webpack.js --progress --env=staging --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --env=production --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "dev": "npm run local",
-    "prod": "npm run production",
-    "watch": "npm run local -- --watch"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@mdi/font": "7.4.47",
+    "chroma-js": "^2.4.2",
+    "core-js": "^3.36.0",
+    "pinia": "^2.1.7",
+    "roboto-fontface": "*",
+    "uuid": "^9.0.1",
+    "vue": "^3.4.9",
+    "vue-router": "^4.3.0",
+    "vuetify": "^3.5.9",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "laravel-mix": "^6.0.49",
-    "postcss": "^8.2.13",
-    "sass": "^1.32.5",
-    "sass-loader": "^10.1.1",
-    "vue": "^3.3.4",
-    "vue-loader": "^17.2.2",
-    "vue-template-compiler": "^2.7.14",
-    "vuetify": "^3.3.6",
-    "prettier": "^3.0.0"
+    "@babel/types": "^7.24.0",
+    "@crxjs/vite-plugin": "^2.0.0-beta.23",
+    "@types/chroma-js": "^2.4.4",
+    "@types/chrome": "^0.0.263",
+    "@types/node": "^20.11.28",
+    "@types/uuid": "^9.0.8",
+    "@types/webfontloader": "^1.6.38",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "sass": "^1.72.0",
+    "typescript": "5.3.3",
+    "vite": "^5.1.6",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue-tsc": "^2.0.6"
   }
 }
