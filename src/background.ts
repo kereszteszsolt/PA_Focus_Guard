@@ -40,7 +40,7 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       fgAppData = JSON.parse(changes[constants.storage.FG_APP_DATA].newValue);
       await setTheBadge();
       await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-      console.log('Active rules', calculateActiveWebsiteRules());
+      //console.log('Active rules', calculateActiveWebsiteRules());
       utils.runtimeMessages.sendMessage('appDataUpdated', (response: string) => {
         console.log(response);
       });
@@ -48,7 +48,7 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
     if (constants.storage.FG_WEBSITE_RULES in changes) {
       fgWebsiteRules = JSON.parse(changes[constants.storage.FG_WEBSITE_RULES].newValue);
       await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-      console.log('Active rules', calculateActiveWebsiteRules());
+      //console.log('Active rules', calculateActiveWebsiteRules());
       utils.runtimeMessages.sendMessage('websiteRulesUpdated', (response: string) => {
         console.log(response);
       });
@@ -90,12 +90,12 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
 
 const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   if (url && tabId) {
-    console.log('url', url);
+    //console.log('url', url);
 
     let contextRules = getContextRules(url);
 
     if (contextRules.length > 0) {
-      console.log('Relevant tab');
+      //console.log('Relevant tab');
 
       taskQueue.push({
         id: utils.unique.generateUniqueListId(taskQueue),
