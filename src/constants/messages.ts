@@ -91,3 +91,4 @@ export const DATA = 'data';
 export const USED_DISK_SPACE_FOR_DATA = 'usedDiskSpaceForData';
 export const EXTENSION_VERSION = 'extensionVersion';
 export const EXTENSION_SIZE = 'extensionSize';
+export const ONLY_TEXT_LTR_DIRECTION_IMPLEMENTED = 'onlyTextLTRDirectionImplemented';

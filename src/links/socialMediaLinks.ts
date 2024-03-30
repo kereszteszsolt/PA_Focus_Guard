@@ -55,7 +55,7 @@ export const socialMediaLinks: ISocialMediaLink[] = [
     id: 5,
     platformName: 'Instagram',
     mdiIcon: 'mdi-instagram',
-    url: 'https://www.instagram.com/kereszteszsolt_kzs/',
+    url: 'https://www.instagram.com/kereszteszsolt_kzs',
     profileName: 'Keresztes Zsolt',
     profileIdentifier: '@kereszteszsolt_kzs',
     shortDescription: r_msg.SOC_MED_DESC_INSTAGRAM,

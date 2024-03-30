@@ -94,6 +94,7 @@
     "data": "Date",
     "usedDiskSpaceForData": "Spațiul de disc utilizat pentru date:",
     "extensionVersion": "Versiunea de extensie:",
-    "extensionSize": "Dimensiunea extensiilor (aplicației) nu este inclusă. Puteți vedea dimensiunea extensiilor pe pagina de gestionare a extensiilor: "
+    "extensionSize": "Dimensiunea extensiilor (aplicației) nu este inclusă. Puteți vedea dimensiunea extensiilor pe pagina de gestionare a extensiilor: ",
+    "onlyTextLTRDirectionImplemented": "În prezent, pentru limbile personalizate sunt disponibile doar indicații de text de la stânga la dreapta."
   }
 }

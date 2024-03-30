@@ -186,6 +186,7 @@ const uploadFile = (event: Event) => {
         <v-card-text>
           <input type="file" id="fileUpload" @change="uploadFile" style="display: none"/>
         </v-card-text>
+        <p class="fgc-accent font-weight-bold ma-4 text-right">{{t(msg.ONLY_TEXT_LTR_DIRECTION_IMPLEMENTED)}}</p>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="accent" variant="elevated" elevation="12" @click="triggerFileUpload" v-if="newItem">{{t(msg.UPLOAD)}}</v-btn>

@@ -94,6 +94,7 @@
     "data": "Data",
     "usedDiskSpaceForData": "Used disk space for data:",
     "extensionVersion": "Extension version:",
-    "extensionSize": "The extensions(application) size is not included. You can see the extension size on the extension management page: "
+    "extensionSize": "The extensions(application) size is not included. You can see the extension size on the extension management page: ",
+    "onlyTextLTRDirectionImplemented": "Please be aware that, at the moment, only left-to-right text directions are available for custom languages."
   }
 }
