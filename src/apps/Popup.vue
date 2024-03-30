@@ -92,8 +92,28 @@ const nrOfOpenOptionsTabs = computed(() => {
 const orderedLinks = computed(() => {
   return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
 });
-const bodyHeight = computed(() => socialMediaDetails.value ?
-  contextLink.value.platformName === 'buy-me-a-coffee' ? '425px' : '350px' : '350px');
+const bodyHeight = computed(() => {
+  if (socialMediaDetails.value) {
+    switch (contextLink.value.platformName) {
+      case 'buy-me-a-coffee':
+        return '425px';
+      case 'Facebook':
+        return '370px';
+      case 'LinkedIn':
+        return '370px';
+      case 'Twitter':
+        return '370px';
+      case 'YouTube-Hu':
+        return '340px';
+      case 'YouTube-En':
+        return '340px';
+      default:
+        return '350px';
+    }
+  } else {
+    return '350px';
+  }
+});
 const bodyWidth = computed(() => {
   if (socialMediaDetails.value) {
     switch (contextLink.value.platformName) {
@@ -231,11 +251,12 @@ const closeSocialMediaDetails = () => {
         <v-icon start>mdi-arrow-left</v-icon>
         {{ tr(msg.BACK) }}
       </v-btn>
-      <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none flex-grow-1">
+      <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none flex-grow-1"
+      :href="contextLink.url" target="_blank">
         <v-icon color="info" start>{{ contextLink.mdiIcon }}</v-icon>
         {{ contextLink.profileIdentifier }}
       </v-btn>
-      <v-btn v-if="contextLink.image" variant="elevated" elevation="12"
+      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :href="contextLink.url" target="_blank"
              :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button text-none flex-grow-1"></v-btn>
     </v-card-actions>
   </v-card>
