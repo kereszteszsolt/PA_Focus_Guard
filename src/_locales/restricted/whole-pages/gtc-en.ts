@@ -27,7 +27,7 @@ export const gtc: IGtc[] = [
     id: `gtc-3`,
     title: ``,
     content: [
-      `The General Terms and Conditions will take effect <b>on March 19, 2024,</b> and will remain in effect unless later amended or revoked.`
+      `The General Terms and Conditions will take effect <b>on March 31, 2024,</b> and will remain in effect unless later amended or revoked.`
     ]
   },
   {

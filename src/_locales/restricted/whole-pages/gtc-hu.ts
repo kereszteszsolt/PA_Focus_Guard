@@ -27,7 +27,7 @@ export const gtc: IGtc[] = [
     id: `gtc-3`,
     title: ``,
     content: [
-      `Az Általános Szerződési Feltételek <b>2024. március 19-én</b> lépnek érvénybe, és a későbbi módosítások vagy visszavonás esetéig érvényben maradnak. `
+      `Az Általános Szerződési Feltételek <b>2024. március 31-én</b> lépnek érvénybe, és a későbbi módosítások vagy visszavonás esetéig érvényben maradnak. `
     ]
   },
   {
