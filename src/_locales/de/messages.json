@@ -94,6 +94,7 @@
     "data": "Daten",
     "usedDiskSpaceForData": "Verwendeter Speicherplatz für Daten:",
     "extensionVersion": "Erweiterungsversion:",
-    "extensionSize": "Die Größe der Erweiterungen (Anwendungen) ist nicht enthalten. Sie können die Größe der Erweiterungen auf der Seite der Erweiterungsverwaltung sehen: "
+    "extensionSize": "Die Größe der Erweiterungen (Anwendungen) ist nicht enthalten. Sie können die Größe der Erweiterungen auf der Seite der Erweiterungsverwaltung sehen: ",
+    "onlyTextLTRDirectionImplemented": "Achtung: Zurzeit sind für benutzerdefinierte Sprachen nur Textanweisungen von links nach rechts verfügbar."
   }
 }

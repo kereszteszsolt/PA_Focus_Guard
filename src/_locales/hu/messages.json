@@ -94,6 +94,7 @@
     "data": "Adatok",
     "usedDiskSpaceForData": "Az adatok számára használt lemezterület:",
     "extensionVersion": "Bővítmény verzió:",
-    "extensionSize": "A bővítmény(alkalmazás) mérete nem szerepel. A bővítmény méretét a bővítménykezelő oldalon láthatja: "
+    "extensionSize": "A bővítmény(alkalmazás) mérete nem szerepel. A bővítmény méretét a bővítménykezelő oldalon láthatja: ",
+    "onlyTextLTRDirectionImplemented": "Kérlek, vedd figyelembe, hogy jelenleg az egyéni nyelvek esetében csak a balról jobbra haladó szöveges irányok állnak rendelkezésre."
   }
 }

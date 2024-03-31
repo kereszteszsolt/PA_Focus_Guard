@@ -7,13 +7,13 @@ export const initDefaultWebsites = async () => {
   let listOfLists: IWebsiteRuleList[] = [];
   let wsRuleList_01: IWebsiteRuleList = {
     id: unique.generateUniqueListId(listOfLists),
-    name: 'Whole Page',
+    name: 'Filter Whole Websites',
     order: 0
   };
   listOfLists.push(wsRuleList_01);
   let wsRuleList_02: IWebsiteRuleList = {
     id: unique.generateUniqueListId(listOfLists),
-    name: 'Partial Page',
+    name: 'Filter Specific Pages',
     order: 1
   };
   listOfLists.push(wsRuleList_02);
@@ -26,7 +26,7 @@ let wsRule_01: IWebsiteRule = {
   urlFilter: 'facebook.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
-  temporarilyInactive: true,
+  temporarilyInactive: false,
   localOrder: 0,
   globalOrder: 0,
   urlFilterType: constants.wsrFilter.DOMAIN
@@ -109,94 +109,6 @@ let wsRule_08: IWebsiteRule = {
   urlFilterType: constants.wsrFilter.DOMAIN
 };
 allWebsites.push(wsRule_08);
-let wsRule_09: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'snapchat.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 8,
-  globalOrder: 8,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_09);
-let wsRule_10: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'whatsapp.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 9,
-  globalOrder: 9,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_10);
-let wsRule_11: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'telegram.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 10,
-  globalOrder: 10,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_11);
-let wsRule_12: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'discord.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 11,
-  globalOrder: 11,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_12);
-let wsRule_13: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'tumblr.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 12,
-  globalOrder: 12,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_13);
-let wsRule_14: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'flickr.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 13,
-  globalOrder: 13,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_14);
-let wsRule_15: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'vimeo.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 14,
-  globalOrder: 14,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_15);
-let wsRule_16: IWebsiteRule = {
-  id: unique.generateUniqueListId(allWebsites),
-  urlFilter: 'twitch.com',
-  listId: wsRuleList_01.id,
-  permanentlyActive: false,
-  temporarilyInactive: false,
-  localOrder: 15,
-  globalOrder: 15,
-  urlFilterType: constants.wsrFilter.DOMAIN
-};
-allWebsites.push(wsRule_16);
 let wsRule_17: IWebsiteRule = {
   id: unique.generateUniqueListId(allWebsites),
   urlFilter: 'https://www.facebook.com/watch',
@@ -213,7 +125,7 @@ let wsRule_18: IWebsiteRule = {
   urlFilter: 'https://www.instagram.com/stories',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   localOrder: 17,
   globalOrder: 17,
   urlFilterType: constants.wsrFilter.URL
@@ -224,7 +136,7 @@ let wsRule_19: IWebsiteRule = {
   urlFilter: 'https://www.instagram.com/reel',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   localOrder: 18,
   globalOrder: 18,
   urlFilterType: constants.wsrFilter.URL
@@ -246,7 +158,7 @@ let wsRule_21: IWebsiteRule = {
   urlFilter: 'https://www.youtube.com/shorts',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   localOrder: 20,
   globalOrder: 20,
   urlFilterType: constants.wsrFilter.URL
