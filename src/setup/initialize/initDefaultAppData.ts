@@ -7,7 +7,7 @@ export const initDefaultAppData = async () => {
     focusMode: false,
     version: chrome.runtime.getManifest().version,
     fgTheme: 'fgLightTheme',
-    itemsPerPage: 7,
+    itemsPerPage: 8,
     focusModeSessionId: constants.common.NOT_APPLICABLE
   };
   await utils.data.saveEntry(constants.storage.FG_APP_DATA, data);

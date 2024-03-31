@@ -26,7 +26,7 @@ let wsRule_01: IWebsiteRule = {
   urlFilter: 'facebook.com',
   listId: wsRuleList_01.id,
   permanentlyActive: false,
-  temporarilyInactive: true,
+  temporarilyInactive: false,
   localOrder: 0,
   globalOrder: 0,
   urlFilterType: constants.wsrFilter.DOMAIN
@@ -213,7 +213,7 @@ let wsRule_18: IWebsiteRule = {
   urlFilter: 'https://www.instagram.com/stories',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   localOrder: 17,
   globalOrder: 17,
   urlFilterType: constants.wsrFilter.URL
@@ -224,7 +224,7 @@ let wsRule_19: IWebsiteRule = {
   urlFilter: 'https://www.instagram.com/reel',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   localOrder: 18,
   globalOrder: 18,
   urlFilterType: constants.wsrFilter.URL
@@ -246,7 +246,7 @@ let wsRule_21: IWebsiteRule = {
   urlFilter: 'https://www.youtube.com/shorts',
   listId: wsRuleList_02.id,
   permanentlyActive: false,
-  temporarilyInactive: false,
+  temporarilyInactive: true,
   localOrder: 20,
   globalOrder: 20,
   urlFilterType: constants.wsrFilter.URL
