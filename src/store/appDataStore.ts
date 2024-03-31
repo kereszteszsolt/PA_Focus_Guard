@@ -13,7 +13,7 @@ export const useAppDataStore = defineStore('appData', {
       focusMode: false,
       version: '0.0.0',
       fgTheme: 'fgLightTheme',
-      itemsPerPage: 5,
+      itemsPerPage: 8,
       focusModeSessionId: constants.common.NOT_APPLICABLE,
     },
   }),
