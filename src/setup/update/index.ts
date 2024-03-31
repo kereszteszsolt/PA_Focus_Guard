@@ -18,7 +18,7 @@ export const update = async () => {
         await migrate();
         console.log('Migration done');
       }
-      if (oldVersion === '2.0.0') {
+      if (oldVersion === '2.0.1') {
         console.log('No migration needed');
       }
     }

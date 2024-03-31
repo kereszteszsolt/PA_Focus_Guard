@@ -1,4 +1,4 @@
-//migration scripts from 1.0.4 to 2.0.0
+//migration scripts from 1.0.4 to 2.0.1
 import * as oldConstants from './oldContants';
 import { IAppData, IWebsiteRule, IWebsiteRuleList } from '@/interfaces';
 import * as constants from '@/constants';
@@ -11,7 +11,7 @@ export const migrate = async () => {
   await chrome.storage.sync.remove(oldConstants.FG_ACTIVE);
   await chrome.storage.sync.remove(oldConstants.FG_BLOCKED_ELEMENTS_ON_WEBSITES);
 
-  //migrate appData and locales from versions 1.0.4 - 2.0.0
+  //migrate appData and locales from versions 1.0.4 - 2.0.1
   chrome.storage.sync.get(oldConstants.FG_APP_DATA, async (result) => {
     if (result[oldConstants.FG_APP_DATA]) {
       let oldData = JSON.parse(result[oldConstants.FG_APP_DATA]);
@@ -35,7 +35,7 @@ export const migrate = async () => {
   //remove old appData
   await chrome.storage.sync.remove(oldConstants.FG_APP_DATA);
 
-  //migrateWebsiteRules from versions 1.0.4 - 2.0.0
+  //migrateWebsiteRules from versions 1.0.4 - 2.0.1
   let listOfLists: IWebsiteRuleList[] = [];
   let wsRuleList_01: IWebsiteRuleList = {
     id: unique.generateUniqueListId(listOfLists),
@@ -53,7 +53,7 @@ export const migrate = async () => {
 
   let allWebsites: IWebsiteRule[] = [];
   let globalOrder = 0;
-  //migrate blockedByDomain from versions 1.0.4 - 2.0.0
+  //migrate blockedByDomain from versions 1.0.4 - 2.0.1
   chrome.storage.sync.get(oldConstants.FG_BLOCKED_WEBSITES_BY_DOMAIN, (result) => {
       if (result[oldConstants.FG_BLOCKED_WEBSITES_BY_DOMAIN]) {
         let oldData = JSON.parse(result[oldConstants.FG_BLOCKED_WEBSITES_BY_DOMAIN]);
@@ -78,7 +78,7 @@ export const migrate = async () => {
   );
   //remove old blockedByDomain
   await chrome.storage.sync.remove(oldConstants.FG_BLOCKED_WEBSITES_BY_DOMAIN);
-  //migrate blockedByUrl from versions 1.0.4 - 2.0.0
+  //migrate blockedByUrl from versions 1.0.4 - 2.0.1
   chrome.storage.sync.get(oldConstants.FG_BLOCKED_WEBSITES_BY_URL, (result) => {
     if (result[oldConstants.FG_BLOCKED_WEBSITES_BY_URL]) {
       let oldData = JSON.parse(result[oldConstants.FG_BLOCKED_WEBSITES_BY_URL]);
