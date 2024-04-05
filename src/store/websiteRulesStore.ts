@@ -77,7 +77,7 @@ export const useWebsiteRulesStore = defineStore({
     },
     async addWebsiteRule(website: IWebsiteRule): Promise<void> {
       website.id = utils.unique.generateUniqueListId(this.allWebsiteRules);
-      website.localOrder = utils.unique.generateUniqueNumberByField(this.allWebsiteRules.filter((w) => w.listId === website.listId), 'order');
+      website.localOrder = utils.unique.generateUniqueNumberByField(this.allWebsiteRules.filter((w) => w.listId === website.listId), 'localOrder');
       website.globalOrder = utils.unique.generateUniqueNumberByField(this.allWebsiteRules, 'globalOrder');
       this.allWebsiteRules.push(website);
       await this.saveWebsiteRules();
@@ -170,7 +170,7 @@ export const useWebsiteRulesStore = defineStore({
       const item = this.allWebsiteRules.find((item) => item.id === id);
       if (!item) return;
       const list = this.allWebsiteRules.filter((w) => w.listId === item.listId);
-      const editedList = this._moveItem(list, id, direction, 'order');
+      const editedList = this._moveItem(list, id, direction, 'localOrder');
       this.allWebsiteRules = this.allWebsiteRules.filter((w) => w.listId !== item.listId);
       this.allWebsiteRules.push(...editedList);
     },
