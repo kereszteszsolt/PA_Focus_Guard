@@ -1,21 +1,11 @@
 import * as utils from '@/utils';
 import * as constants from '@/constants';
 import { IAppData } from '@/interfaces/IAppData';
-import { IWebsiteRule, ITaskQueue, IDistractionAttempt } from '@/interfaces';
-import * as scripts from '@/scripts';
+import { IWebsiteRule, ITaskQueue, IDistractionAttempt, IWebsiteRuleList } from '@/interfaces';
 import { install } from '@/setup/install';
 import { update } from '@/setup/update';
 
-let fgAppData: IAppData = {
-  focusMode: false,
-  version: chrome.runtime.getManifest().version,
-  fgTheme: 'fgLightTheme',
-  itemsPerPage: 5,
-  focusModeSessionId: constants.common.NOT_APPLICABLE
-};
-let fgWebsiteRules: IWebsiteRule[] = [];
 let taskQueue: ITaskQueue[] = [];
-let distractionAttempts: IDistractionAttempt[] = [];
 
 chrome.runtime.onInstalled.addListener(async (details) => {
   console.log('Runtime installed');
@@ -27,9 +17,11 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     case 'update':
       console.log('Extension updated');
       await update();
+      await setTheBadge();
       break;
     case 'chrome_update':
       console.log('Chrome updated');  // Chrome updated, Do nothing
+      await setTheBadge();
       break;
   }
 });
@@ -37,18 +29,14 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 chrome.storage.onChanged.addListener(async function (changes, namespace) {
   if (namespace === 'local') {
     if (constants.storage.FG_APP_DATA in changes) {
-      fgAppData = JSON.parse(changes[constants.storage.FG_APP_DATA].newValue);
       await setTheBadge();
-      await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-      //console.log('Active rules', calculateActiveWebsiteRules());
+      await applyRulesOnOpenTabs();
       utils.runtimeMessages.sendMessage('appDataUpdated', (response: string) => {
         console.log(response);
       });
     }
     if (constants.storage.FG_WEBSITE_RULES in changes) {
-      fgWebsiteRules = JSON.parse(changes[constants.storage.FG_WEBSITE_RULES].newValue);
-      await scripts.background.applyRulesOnOpenTabs(fgAppData, fgWebsiteRules);
-      //console.log('Active rules', calculateActiveWebsiteRules());
+      await applyRulesOnOpenTabs();
       utils.runtimeMessages.sendMessage('websiteRulesUpdated', (response: string) => {
         console.log(response);
       });
@@ -59,7 +47,6 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       });
     }
     if (constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS in changes) {
-      distractionAttempts = JSON.parse(changes[constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS].newValue);
       await setTheBadge();
       utils.runtimeMessages.sendMessage('distractionAttemptsUpdated', (response: string) => {
         console.log(response);
@@ -83,19 +70,24 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
 
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   console.log('Tab updated');
+  console.log('details.url',details.url);
   await redirectOrAllow(details.tabId, details.url);
 }, { url: [{ schemes: ['http', 'https'] }] });
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
   console.log('onHistoryStateUpdated');
+  console.log('details.url',details.url);
   await redirectOrAllow(details.tabId, details.url);
 }, { url: [{ schemes: ['http', 'https'] }] });
 
 const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   if (url && tabId) {
+    let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
+    console.log('appData',fgAppData);
     //console.log('url', url);
 
     let contextRules = await getContextRules(url);
+    console.log('contextRules',contextRules);
 
     if (contextRules.length > 0) {
       //console.log('Relevant tab');
@@ -113,12 +105,30 @@ const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   }
 };
 
+export const applyRulesOnOpenTabs = async (): Promise<void> => {
+  let fgWebsiteRules : IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
+  let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
+
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach((tab: chrome.tabs.Tab) => {
+      const itemsToBlock = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
+      const extensionId = chrome.runtime.id;
+      const extensionOptionsPath = `chrome-extension://${extensionId}/options.html#/`;
+      itemsToBlock.forEach((item) => {
+        if (tab.url && tab.url.includes(item.urlFilter) && tab.id && !tab.url.includes(extensionOptionsPath)) {
+          chrome.tabs.update(tab.id, { url: '/options.html#/focus-message' });
+        }
+      });
+    });
+  });
+};
+
 chrome.runtime.onStartup.addListener(async () => {
   console.log('Runtime started');
-  await readData();
   await setTheBadge();
 });
 const saveDistractionAttempt = async (items: IWebsiteRule[], appData: IAppData): Promise<void> => {
+  let distractionAttempts: IDistractionAttempt[] = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS);
   if (items.length === 0) {
     return;
   }
@@ -139,17 +149,14 @@ const saveDistractionAttempt = async (items: IWebsiteRule[], appData: IAppData):
   console.log('Distraction attempt saved', distractionAttempt);
 };
 
-const calculateActiveWebsiteRules = (): IWebsiteRule[] => {
+const calculateActiveWebsiteRules = (fgWebsiteRules: IWebsiteRule[], fgAppData: IAppData): IWebsiteRule[] => {
   return fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode)) || [];
 };
 
-const readData = async () => {
-  fgAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
-  fgWebsiteRules = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
-  distractionAttempts = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS);
-};
-
 const setTheBadge = async () => {
+  let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
+  let distractionAttempts : IDistractionAttempt[] = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS);
+
   let badgeText = '';
   let badgeBackgroundColor = fgAppData.fgTheme === 'fgLightTheme' ? '#574513' : '#9c7e31';
 
@@ -168,10 +175,12 @@ const setTheBadge = async () => {
 };
 
 const getContextRules = async (crrUrl: string): Promise<IWebsiteRule[]> => {
-  if (!fgWebsiteRules.length) {
-    await readData(); //initialize if somehow did not happened at browser-start
-  }
-  let activeRules = calculateActiveWebsiteRules();
+  let fgWebsiteRules : IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
+  let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
+
+  console.log('websiteRules',fgWebsiteRules);
+
+  let activeRules = calculateActiveWebsiteRules(fgWebsiteRules, fgAppData);
   return activeRules.filter((wr) => {
     if (!crrUrl) return false;
     switch (wr.urlFilterType) {
