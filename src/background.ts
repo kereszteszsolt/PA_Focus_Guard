@@ -32,65 +32,57 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
       await setTheBadge();
       await applyRulesOnOpenTabs();
       utils.runtimeMessages.sendMessage('appDataUpdated', (response: string) => {
-        console.log(response);
+        // console.log(response);
       });
     }
     if (constants.storage.FG_WEBSITE_RULES in changes) {
       await applyRulesOnOpenTabs();
       utils.runtimeMessages.sendMessage('websiteRulesUpdated', (response: string) => {
-        console.log(response);
+        // console.log(response);
       });
     }
     if (constants.storage.FG_WEBSITE_RULE_LISTS in changes) {
       utils.runtimeMessages.sendMessage('websiteRuleListsUpdated', (response: string) => {
-        console.log(response);
+        //  console.log(response);
       });
     }
     if (constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS in changes) {
       await setTheBadge();
       utils.runtimeMessages.sendMessage('distractionAttemptsUpdated', (response: string) => {
-        console.log(response);
+        //  console.log(response);
       });
     }
     if (constants.storage.FG_LOCALES_SETTINGS in changes) {
       utils.runtimeMessages.sendMessage('localeSettingsUpdated', (response: string) => {
-        console.log(response);
+        //  console.log(response);
       });
     }
     if (constants.storage.FG_LOCALES_MESSAGES in changes) {
       utils.runtimeMessages.sendMessage('localeMessagesUpdated', (response: string) => {
-        console.log(response);
+        // console.log(response);
       });
     }
     utils.runtimeMessages.sendMessage('storageUpdated', (response: string) => {
-      console.log(response);
+      //  console.log(response);
     });
   }
 });
 
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
-  console.log('Tab updated');
-  console.log('details.url',details.url);
   await redirectOrAllow(details.tabId, details.url);
 }, { url: [{ schemes: ['http', 'https'] }] });
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
-  console.log('onHistoryStateUpdated');
-  console.log('details.url',details.url);
   await redirectOrAllow(details.tabId, details.url);
 }, { url: [{ schemes: ['http', 'https'] }] });
 
 const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   if (url && tabId) {
     let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
-    console.log('appData',fgAppData);
-    //console.log('url', url);
 
     let contextRules = await getContextRules(url);
-    console.log('contextRules',contextRules);
 
     if (contextRules.length > 0) {
-      //console.log('Relevant tab');
 
       taskQueue.push({
         id: utils.unique.generateUniqueListId(taskQueue),
@@ -106,7 +98,7 @@ const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
 };
 
 export const applyRulesOnOpenTabs = async (): Promise<void> => {
-  let fgWebsiteRules : IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
+  let fgWebsiteRules: IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
   let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
 
   chrome.tabs.query({}, (tabs) => {
@@ -146,7 +138,6 @@ const saveDistractionAttempt = async (items: IWebsiteRule[], appData: IAppData):
   };
   distractionAttempts.push(distractionAttempt);
   await utils.data.saveList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS, distractionAttempts);
-  console.log('Distraction attempt saved', distractionAttempt);
 };
 
 const calculateActiveWebsiteRules = (fgWebsiteRules: IWebsiteRule[], fgAppData: IAppData): IWebsiteRule[] => {
@@ -155,7 +146,7 @@ const calculateActiveWebsiteRules = (fgWebsiteRules: IWebsiteRule[], fgAppData: 
 
 const setTheBadge = async () => {
   let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
-  let distractionAttempts : IDistractionAttempt[] = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS);
+  let distractionAttempts: IDistractionAttempt[] = await utils.data.fetchList(constants.storage.FG_STATISTICS_DISTRACTION_ATTEMPTS);
 
   let badgeText = '';
   let badgeBackgroundColor = fgAppData.fgTheme === 'fgLightTheme' ? '#574513' : '#9c7e31';
@@ -175,10 +166,8 @@ const setTheBadge = async () => {
 };
 
 const getContextRules = async (crrUrl: string): Promise<IWebsiteRule[]> => {
-  let fgWebsiteRules : IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
+  let fgWebsiteRules: IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
   let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
-
-  console.log('websiteRules',fgWebsiteRules);
 
   let activeRules = calculateActiveWebsiteRules(fgWebsiteRules, fgAppData);
   return activeRules.filter((wr) => {
@@ -196,4 +185,4 @@ const getContextRules = async (crrUrl: string): Promise<IWebsiteRule[]> => {
         return false;
     }
   });
-}
+};
