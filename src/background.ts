@@ -95,7 +95,7 @@ const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
   if (url && tabId) {
     //console.log('url', url);
 
-    let contextRules = getContextRules(url);
+    let contextRules = await getContextRules(url);
 
     if (contextRules.length > 0) {
       //console.log('Relevant tab');
@@ -167,7 +167,10 @@ const setTheBadge = async () => {
   await chrome.action.setBadgeTextColor({ color: '#f5f5f5' });
 };
 
-const getContextRules = (crrUrl: string): IWebsiteRule[] => {
+const getContextRules = async (crrUrl: string): Promise<IWebsiteRule[]> => {
+  if (!fgWebsiteRules.length) {
+    await readData(); //initialize if somehow did not happened at browser-start
+  }
   let activeRules = calculateActiveWebsiteRules();
   return activeRules.filter((wr) => {
     if (!crrUrl) return false;
