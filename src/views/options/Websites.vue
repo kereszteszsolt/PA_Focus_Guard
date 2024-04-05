@@ -81,7 +81,7 @@ const moveDown = computed(() => {
 
 type SortItem = { key: string, order?: boolean | 'asc' | 'desc' }
 const sortByFieldName = computed<readonly SortItem[]>(() => {
-  return pathId.value === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'order', order: 'asc' }];
+  return pathId.value === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'localOrder', order: 'asc' }];
 });
 
 const websiteRuleList = computed(() => {

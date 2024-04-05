@@ -21,6 +21,9 @@ export const update = async () => {
       if (oldVersion === '2.0.1') {
         console.log('No migration needed');
       }
+      if (oldVersion === '2.0.2') {
+        console.log('No migration needed');
+      }
     }
   );
 };
