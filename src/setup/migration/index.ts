@@ -116,3 +116,8 @@ export const migrate = async () => {
   //init default statistics
   await initialize.statistics.initDefaultStatistics();
 };
+export const upgradeVersion = async () => {
+  let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
+  fgAppData.version = chrome.runtime.getManifest().version;
+  await utils.data.saveEntry(constants.storage.FG_APP_DATA, fgAppData);
+}

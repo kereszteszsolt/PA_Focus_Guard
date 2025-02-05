@@ -30,12 +30,14 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
   if (namespace === 'local') {
     if (constants.storage.FG_APP_DATA in changes) {
       await setTheBadge();
+      await updateDynamicRules();
       await applyRulesOnOpenTabs();
       utils.runtimeMessages.sendMessage('appDataUpdated', (response: string) => {
         // console.log(response);
       });
     }
     if (constants.storage.FG_WEBSITE_RULES in changes) {
+      await updateDynamicRules();
       await applyRulesOnOpenTabs();
       utils.runtimeMessages.sendMessage('websiteRulesUpdated', (response: string) => {
         // console.log(response);
@@ -68,35 +70,6 @@ chrome.storage.onChanged.addListener(async function (changes, namespace) {
   }
 });
 
-chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
-  await redirectOrAllow(details.tabId, details.url);
-}, { url: [{ schemes: ['http', 'https'] }] });
-
-chrome.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
-  await redirectOrAllow(details.tabId, details.url);
-}, { url: [{ schemes: ['http', 'https'] }] });
-
-const redirectOrAllow = async (tabId: number, url: string): Promise<void> => {
-  if (url && tabId) {
-    let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
-
-    let contextRules = await getContextRules(url);
-
-    if (contextRules.length > 0) {
-
-      taskQueue.push({
-        id: utils.unique.generateUniqueListId(taskQueue),
-        tabId: tabId,
-        url: url,
-        tabUpdatedTime: Date.now()
-      });
-
-      await saveDistractionAttempt(contextRules, fgAppData);
-      await chrome.tabs.update(tabId, { url: '/options.html#/focus-message' });
-    }
-  }
-};
-
 export const applyRulesOnOpenTabs = async (): Promise<void> => {
   let fgWebsiteRules: IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
   let fgAppData: IAppData = await utils.data.fetchEntry((constants.storage.FG_APP_DATA));
@@ -114,6 +87,65 @@ export const applyRulesOnOpenTabs = async (): Promise<void> => {
     });
   });
 };
+
+export const updateDynamicRules = async (): Promise<void> => {
+  const fgWebsiteRules: IWebsiteRule[] = await utils.data.fetchList(constants.storage.FG_WEBSITE_RULES);
+  const fgAppData: IAppData = await utils.data.fetchEntry(constants.storage.FG_APP_DATA);
+
+  const tabs = await chrome.tabs.query({});
+  const itemsToBlock = fgWebsiteRules.filter((wr) => !wr.temporarilyInactive && (wr.permanentlyActive || fgAppData.focusMode));
+
+  const extensionId = chrome.runtime.id;
+
+  const oldRules = await chrome.declarativeNetRequest.getDynamicRules();
+  const oldRuleIds = oldRules.map(rule => rule.id);
+
+  const new_rules: any[] = [];
+
+  itemsToBlock.forEach((item, index) => {
+    new_rules.push(createFGRule(item.urlFilter, index + 1, extensionId, item.urlFilterType)); // Ensuring IDs start from 1
+  });
+
+  await chrome.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: oldRuleIds,
+    addRules: new_rules
+  });
+};
+
+
+const createFGRule = (filter: string, index: number, extensionId: string, matchType: string) => {
+  let urlFilter = '';
+  switch (matchType) {
+    case constants.wsrFilter.URL:
+      urlFilter = `|${filter}`;
+      break;
+    case constants.wsrFilter.DOMAIN:
+      urlFilter = `||${filter}/`;
+      break;
+    case constants.wsrFilter.END_DOMAIN:
+      urlFilter = filter;
+      break;
+    case constants.wsrFilter.KEYWORD:
+      urlFilter = filter;
+      break;
+    default:
+      urlFilter = filter;
+  }
+  return {
+    id: index,
+    priority: 1,
+    action: {
+      type: 'redirect',
+      redirect: {
+        url: `chrome-extension://${extensionId}/options.html#/focus-message`
+      }
+    },
+    condition: {
+      urlFilter: urlFilter,
+      resourceTypes: ['main_frame']
+    }
+  }
+}
 
 chrome.runtime.onStartup.addListener(async () => {
   console.log('Runtime started');

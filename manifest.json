@@ -1,12 +1,18 @@
 {
-  "name": "Focus Guard",
-  "version": "2.0.2",
+  "name": "Focus Guard - Dev mode",
+  "version": "2.0.3",
   "description": "Focus Guard reminds you to focus when you try to access distracting websites by redirecting you to the Focus page.",
   "permissions": [
     "storage",
     "tabs",
     "webNavigation",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
   ],
   "icons": {
     "128": "src/assets/icons/kzs-focus.png"
