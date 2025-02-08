@@ -1,5 +1,5 @@
 {
-  "name": "Focus Guard - Dev mode",
+  "name": "Focus Guard",
   "version": "2.0.3",
   "description": "Focus Guard reminds you to focus when you try to access distracting websites by redirecting you to the Focus page.",
   "permissions": [
