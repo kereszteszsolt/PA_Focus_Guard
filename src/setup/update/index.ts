@@ -1,4 +1,4 @@
-import { migrate } from '@/setup/migration';
+import { migrate, upgradeVersion } from '@/setup/migration';
 import * as oldConstants from '@/setup/migration/oldContants';
 import { install } from '@/setup/install';
 
@@ -8,7 +8,6 @@ export const update = async () => {
   chrome.storage.local.get(oldConstants.FG_APP_DATA, async (result) => {
       if (result[oldConstants.FG_APP_DATA]) {
         let oldData = JSON.parse(result[oldConstants.FG_APP_DATA]);
-        console.log('oldData', oldData);
         oldVersion = oldData.version || '1.0.4';
       }  else {
         await install();
@@ -18,11 +17,9 @@ export const update = async () => {
         await migrate();
         console.log('Migration done');
       }
-      if (oldVersion === '2.0.1') {
-        console.log('No migration needed');
-      }
-      if (oldVersion === '2.0.2') {
-        console.log('No migration needed');
+      if (['2.0.1', '2.0.2', '2.0.3'].includes(oldVersion)) {
+        console.log('Updated successfully!');
+        await upgradeVersion();
       }
     }
   );
