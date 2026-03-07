@@ -2,7 +2,7 @@
 import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import { crx } from '@crxjs/vite-plugin'
-import manifest from './manifest.json' assert { type: 'json' } // Node >=17
+import manifest from './manifest.json' with { type: 'json' } // Node >=17
 
 // Utilities
 import { defineConfig } from 'vite'

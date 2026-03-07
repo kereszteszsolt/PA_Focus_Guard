@@ -8,6 +8,7 @@
     "module": "esnext",
     "moduleResolution": "Bundler", //workaround for vite https://github.com/rollup/rollup/issues/5199
     "strict": true,
+    "skipLibCheck": true,
     "jsx": "preserve",
     "sourceMap": false,
     "resolveJsonModule": true,
