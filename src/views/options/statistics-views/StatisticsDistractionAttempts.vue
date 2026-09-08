@@ -185,8 +185,8 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['distractionAttemptsUpdated
 </script>
 
 <template>
-  <div class="flex-1-0 pa-4">
-    <v-data-table :headers="headers" :items="filteredData" :search="search"
+  <div class="data-table-page pa-4">
+    <v-data-table fixed-header :headers="headers" :items="filteredData" :search="search"
                   :total-items="filteredData.length"
                   v-model:page="page"
                   v-model:items-per-page="itemsPerPage"
@@ -199,7 +199,7 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['distractionAttemptsUpdated
                   class="bg-background">
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">
-<!--          <v-text-field v-model="search" label="Search by URL Filter" clearable></v-text-field>-->
+<v-toolbar-title>{{ t(msg.DISTRACTION_ATTEMPTS) }}</v-toolbar-title>
         </v-toolbar>
       </template>
       <template v-slot:item.dateTime="{ item }">

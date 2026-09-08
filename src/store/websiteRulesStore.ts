@@ -143,17 +143,18 @@ export const useWebsiteRulesStore = defineStore({
       await this.saveWebsiteRuleLists();
     },
     _moveItem(list: any[], id: string, direction: 'up' | 'down', field: string): any[] {
-      const item = list.find((item) => item.id === id);
-      if (!item) return list;
+      // Existing data may have gaps in its order values; use the actual sorted neighbor.
+      const sortedList = [...list].sort((a, b) => a[field] - b[field]);
+      const index = sortedList.findIndex((item) => item.id === id);
+      if (index === -1) return list;
 
+      const nextIndex = direction === 'up' ? index - 1 : index + 1;
+      if (nextIndex < 0 || nextIndex >= sortedList.length) return list;
+
+      const item = sortedList[index];
+      const nextItem = sortedList[nextIndex];
       const value = item[field];
-      const nextValue = direction === 'up' ? value - 1 : value + 1;
-      if (nextValue < 0 || nextValue >= list.length) return list;
-
-      const nextItem = list.find((item) => item[field] === nextValue);
-      if (!nextItem) return list;
-
-      item[field] = nextValue;
+      item[field] = nextItem[field];
       nextItem[field] = value;
 
       return list;

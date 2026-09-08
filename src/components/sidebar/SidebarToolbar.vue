@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <v-container class="d-flex justify-space-between align-center fg-h-104px">
+  <v-container class="d-flex justify-space-between align-center pa-2 h-100">
     <v-btn to="/websites/all" size="x-large" icon='mdi-home'
            color="accent" variant="elevated"
            elevation="12"></v-btn>
