@@ -16,7 +16,7 @@ export const update = async () => {
         await migrate();
         console.log('Migration done');
       }
-      if (['2.0.1', '2.0.2', '2.0.3', '2.0.4'].includes(oldVersion)) {
+      if (['2.0.1', '2.0.2', '2.0.3', '2.0.4', '2.0.5'].includes(oldVersion)) {
         console.log('Updated successfully!');
         await upgradeVersion();
       }
