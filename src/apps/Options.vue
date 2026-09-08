@@ -22,7 +22,7 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 </script>
 
 <template>
-  <v-layout>
+  <v-layout class="options-shell">
     <v-sheet :class="{'mathPatternLight': !isDark, 'mathPatternDark': isDark}">
       <app-bar/>
       <v-main>
@@ -61,6 +61,32 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 </template>
 
 <style scoped lang="scss">
+.options-shell {
+  :deep(.elevation-12) {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16) !important;
+  }
+
+  :deep(.v-btn.elevation-12) {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18) !important;
+  }
+
+  :deep(.fg-content-w h1),
+  :deep(.v-data-table .v-toolbar-title) {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  :deep(.v-data-table .v-toolbar) {
+    background: rgba(var(--v-theme-primary), 0.05);
+    border-bottom: 1px solid rgba(var(--v-theme-primary), 0.16);
+  }
+
+  :deep(.v-data-table thead) {
+    background: rgba(var(--v-theme-primary), 0.025);
+  }
+}
+
 .mathPatternLight {
   height: 100%;
   width: 100vw;

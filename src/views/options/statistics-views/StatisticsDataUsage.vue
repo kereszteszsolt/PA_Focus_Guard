@@ -29,11 +29,11 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['storageUpdated'], () => {
 </script>
 
 <template>
-  <div class="flex-1-0 pa-4" v-if="!useSize.isLoading">
+  <div class="data-usage flex-1-0" v-if="!useSize.isLoading">
     <h1>{{t(msg.USED_DISK_SPACE_FOR_DATA)}}</h1>
     <table class="styled-table">
       <thead>
-      <tr class="bg-accent">
+      <tr>
         <th>Variable Name</th>
         <th>Value (Bytes)</th>
         <th>Value (KB)</th>
@@ -90,38 +90,48 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['storageUpdated'], () => {
 </template>
 
 <style scoped lang="scss">
+.data-usage {
+  padding: 20px;
+}
+
 .styled-table {
   width: 100%;
-  margin: 1em 0;
-  border-collapse: collapse;
+  margin: 16px 0;
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
+  border-radius: 12px;
+  border-spacing: 0;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .styled-table th,
 .styled-table td {
-  padding: 0.75em;
-  border: 1px solid #ddd;
-}
-
-.styled-table th {
-  //background-color: #f5f5f5;
+  padding: 12px;
   text-align: left;
 }
 
+.styled-table th {
+  background: rgba(var(--v-theme-primary), 0.08);
+  font-weight: 600;
+}
+
+.styled-table td {
+  border-top: 1px solid rgba(var(--v-theme-primary), 0.12);
+}
+
+.styled-table th:not(:first-child),
+.styled-table td:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
 .styled-table tbody tr:nth-child(even) {
-  background-color: rgb(var(--v-theme-info)) !important;
+  background: rgba(var(--v-theme-primary), 0.025);
 }
 
-button {
-  margin-top: 1em;
-  padding: 0.5em 1em;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 0.25em;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
+.styled-table tbody tr:last-child {
+  background: rgba(var(--v-theme-primary), 0.06);
+  font-weight: 600;
 }
 </style>

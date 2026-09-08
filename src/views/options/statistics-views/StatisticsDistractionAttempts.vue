@@ -199,7 +199,7 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['distractionAttemptsUpdated
                   class="bg-background">
       <template v-slot:top>
         <v-toolbar flat class="border-top-radius-8">
-<!--          <v-text-field v-model="search" label="Search by URL Filter" clearable></v-text-field>-->
+<v-toolbar-title>{{ t(msg.DISTRACTION_ATTEMPTS) }}</v-toolbar-title>
         </v-toolbar>
       </template>
       <template v-slot:item.dateTime="{ item }">

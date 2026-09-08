@@ -33,9 +33,9 @@ const isValid = defineModel('valid', { type: Boolean });
 <template>
   <v-dialog v-model="dialog" :activator="props.activator" :max-width="props.maxWidth" persistent>
     <v-form v-model="isValid" @keydown.enter.prevent>
-      <v-card :color="props.color">
+      <v-card :color="props.color" class="fg-dialog-card">
         <v-card-item>
-          <v-card-title class="text-h5">
+          <v-card-title>
             <div v-if="props.title">{{ props.title }}</div>
             <slot name="title"></slot>
           </v-card-title>
@@ -63,5 +63,34 @@ const isValid = defineModel('valid', { type: Boolean });
 </template>
 
 <style scoped lang="scss">
+.v-dialog .v-card.fg-dialog-card {
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
+  border-radius: 12px;
 
+  :deep(.v-card-item) {
+    padding: 20px 20px 8px;
+  }
+
+  :deep(.v-card-title) {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  :deep(.v-card-text) {
+    padding: 16px 20px;
+    line-height: 1.6;
+  }
+
+  :deep(.v-card-actions) {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 20px 20px;
+  }
+
+  :deep(.v-card-actions .v-btn--variant-elevated) {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18) !important;
+  }
+}
 </style>
