@@ -15,7 +15,7 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
 </script>
 
 <template>
-  <footer-view-wrapper :title="tr(r_msg.DONATIONS)" class="footer-view">
+  <footer-view-wrapper :title="tr(r_msg.WAYS_TO_SUPPORT)" class="footer-view">
     <v-list lines="two" class="bg-background">
       <v-list-item v-for="donation in donationArray" :key="donation.id" class="list-item">
         <v-list-item-content>

@@ -97,6 +97,10 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
     padding-top: 8px;
     text-align: center;
 
+    .footer-attribution__website {
+      font-weight: 500;
+    }
+
     .footer-attribution__separator {
       display: none;
     }

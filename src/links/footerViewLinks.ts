@@ -22,7 +22,7 @@ export const footerViewLinks = [
   },
   {
     id: 4,
-    title: r_msg.DONATIONS,
+    title: r_msg.WAYS_TO_SUPPORT,
     url: '/footer-pages/donations',
     routeName: constants.routeName.DONATIONS
   },

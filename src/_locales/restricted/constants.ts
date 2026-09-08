@@ -37,3 +37,5 @@ export const DEVELOPER_WEBSITE_DESCRIPTION = 'developerWebsiteDescription';
 export const DEVELOPER_WEBSITE_CANCEL = 'developerWebsiteCancel';
 export const DEVELOPER_WEBSITE_CONTINUE = 'developerWebsiteContinue';
 export const DEVELOPER_WEBSITE_LANGUAGES = 'developerWebsiteLanguages';
+export const WAYS_TO_SUPPORT = 'waysToSupport';
+export const POPUP_INFO = 'popupInfo';

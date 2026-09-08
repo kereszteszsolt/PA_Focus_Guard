@@ -5,6 +5,8 @@ import { computed, watchEffect } from 'vue';
 import FooterAttribution from '@/components/common/FooterAttribution.vue';
 import { msg } from '@/constants';
 import * as constants from '@/constants';
+import { c as r_msg } from '@/_locales/restricted';
+import { createOptionsRouter as optionsRouter } from '@/router';
 
 const appDataStore = useAppDataStore();
 const statisticsStore = useStatisticsStore();
@@ -21,17 +23,17 @@ watchEffect(() => {
   }
 });
 
-const options = () => {
-  let extensionPath = chrome.runtime.getURL('');
-  let focusMessageFullPath = extensionPath + 'options.html#/focus-message';
-  let optionsBasePath = extensionPath + 'options.html';
+const openOptions = (routeName?: string) => {
+  const optionsBasePath = chrome.runtime.getURL('options.html');
+  const focusMessageFullPath = optionsBasePath + '#/focus-message';
+  const destination = routeName ? optionsBasePath + optionsRouter.resolve({ name: routeName }).href : optionsBasePath;
 
   chrome.tabs.query({}, (tabs) => {
-    let optionsTab = tabs.find(tab => tab.url && tab.url.startsWith(optionsBasePath) && !tab.url.startsWith(focusMessageFullPath));
-    if (optionsTab) {
-      optionsTab.id && chrome.tabs.update(optionsTab.id, { active: true });
+    const optionsTab = tabs.find(tab => tab.url && tab.url.startsWith(optionsBasePath) && !tab.url.startsWith(focusMessageFullPath));
+    if (optionsTab?.id !== undefined) {
+      chrome.tabs.update(optionsTab.id, { active: true, ...(routeName ? { url: destination } : {}) });
     } else {
-      chrome.tabs.create({ url: optionsBasePath });
+      chrome.tabs.create({ url: destination });
     }
   });
 };
@@ -85,6 +87,7 @@ const nrOfOpenOptionsTabs = computed(() => {
 });
 
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
+const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
 const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoading || i18n.isLoading);
 const switchFocusMode = (active: boolean) => {
   let focusSessionId: string = active ? statisticsStore.getNewUniqueFocusSessionId : constants.common.NOT_APPLICABLE;
@@ -127,11 +130,14 @@ const switchFocusMode = (active: boolean) => {
             </v-btn>
           </v-col>
         </v-row>
-        <v-row class="my-0">
-          <v-col cols="12" class="text-center pa-0">
-            <v-btn @click="options" color="secondary" class="text-none"><v-icon start>mdi-tune</v-icon>{{t(msg.OPTIONS)}}</v-btn>
-          </v-col>
-        </v-row>
+        <div class="popup-navigation">
+          <v-btn @click="openOptions()" color="secondary" class="text-none popup-navigation__button">
+            <v-icon start>mdi-tune</v-icon>{{ t(msg.OPTIONS) }}
+          </v-btn>
+          <v-btn @click="openOptions(constants.routeName.ABOUT)" color="secondary" class="text-none popup-navigation__button">
+            <v-icon start>mdi-information-outline</v-icon>{{ tr(r_msg.POPUP_INFO) }}
+          </v-btn>
+        </div>
         <v-row class="mb-4">
           <v-col cols="12" class="text-center">
             <div class="text-h7 font-weight-bold mb-1 fgc-info">{{ t(msg.DISTRACTION_ATTEMPTS) }}:</div>
@@ -146,6 +152,12 @@ const switchFocusMode = (active: boolean) => {
       </div>
 
       <footer-attribution class="popup-footer" compact />
+      <div class="popup-support">
+        <v-btn @click="openOptions(constants.routeName.DONATIONS)" variant="text" color="accent" size="small"
+               class="text-none popup-support__button">
+          <v-icon start size="16">mdi-coffee</v-icon>{{ tr(r_msg.WAYS_TO_SUPPORT) }}
+        </v-btn>
+      </div>
     </div>
   </v-card>
   <v-progress-linear v-else indeterminate color="primary"></v-progress-linear>
@@ -198,6 +210,30 @@ const switchFocusMode = (active: boolean) => {
   display: flex;
   flex: 1;
   flex-direction: column;
+}
+
+.popup-navigation {
+  display: flex;
+  gap: 8px;
+  margin: 0 16px 12px;
+
+  &__button {
+    flex: 1;
+    min-width: 0;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}
+
+.popup-support {
+  margin: 0 16px 8px;
+  text-align: center;
+
+  &__button {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: normal;
+  }
 }
 
 .popup-footer {
