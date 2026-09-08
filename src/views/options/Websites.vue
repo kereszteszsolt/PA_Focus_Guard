@@ -172,76 +172,73 @@ watch(itemsPerPage, updateItemsPerPage);
 </script>
 
 <template>
-  <div class="flex-1-0">
-    <div class="border-radius-8 fgScroll fw-card">
-      <div class="fgScroll fw-card">
-        <v-data-table
-          :headers="headers"
-          :items="websiteRules"
-          item-key="id"
-          :sort-by="sortByFieldName"
-          class="bg-background fgScroll"
-          v-model:page="page"
-          v-model:items-per-page="itemsPerPage"
-          :items-per-page-options="itemsPerPageOptions"
-          :items-per-page-text="t(msg.ITEMS_PER_PAGE)"
-          :show-current-page="true"
-          :page-text="`${page} / ${totalPages}`"
-          :no-data-text="t(msg.NO_WEBSITE_RULES_FOUND)"
-          :loading="isLoading"
+  <div class="data-table-page border-top-radius-8">
+    <v-data-table
+      fixed-header
+      :headers="headers"
+      :items="websiteRules"
+      item-key="id"
+      :sort-by="sortByFieldName"
+      class="bg-background"
+      v-model:page="page"
+      v-model:items-per-page="itemsPerPage"
+      :items-per-page-options="itemsPerPageOptions"
+      :items-per-page-text="t(msg.ITEMS_PER_PAGE)"
+      :show-current-page="true"
+      :page-text="`${page} / ${totalPages}`"
+      :no-data-text="t(msg.NO_WEBSITE_RULES_FOUND)"
+      :loading="isLoading"
+    >
+      <template v-slot:item.url="{ item }">
+        <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word',
+    textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
+          {{ item.urlFilter }}
+        </div>
+      </template>
+      <template v-slot:item.actions="{ item }">
+        <div class="d-flex justify-space-around">
+          <common-crud-menu
+            :list-id="item.id"
+            :edit-item="editItem"
+            :delete-item="deleteItem"
+            :move-up="moveUp"
+            :move-down="moveDown"
+            :t="t"
+          />
+        </div>
+      </template>
+      <template v-slot:item.permanentlyActive="{ item }">
+        <v-checkbox
+          v-model="item.permanentlyActive"
+          color="primary"
+          @change="setPermanentlyActive(item)"
+          hide-details
+          class="d-flex justify-center"
         >
-          <template v-slot:item.url="{ item }">
-            <div :style="{ minWidth: '350px', maxWidth: '480px', overflow: 'hidden', wordWrap: 'break-word',
-        textOverflow: 'ellipsis',  whiteSpace: 'nowrap', fontWeight: 500 }">
-              {{ item.urlFilter }}
-            </div>
-          </template>
-          <template v-slot:item.actions="{ item }">
-            <div class="d-flex justify-space-around">
-              <common-crud-menu
-                :list-id="item.id"
-                :edit-item="editItem"
-                :delete-item="deleteItem"
-                :move-up="moveUp"
-                :move-down="moveDown"
-                :t="t"
-              />
-            </div>
-          </template>
-          <template v-slot:item.permanentlyActive="{ item }">
-            <v-checkbox
-              v-model="item.permanentlyActive"
-              color="primary"
-              @change="setPermanentlyActive(item)"
-              hide-details
-              class="d-flex justify-center"
-            >
-            </v-checkbox>
-          </template>
-          <template v-slot:item.temporarilyInactive="{ item }">
-            <v-checkbox
-              v-model="item.temporarilyInactive"
-              color="primary"
-              @change="setTemporarilyInactive(item)"
-              hide-details
-              class="d-flex justify-center"
-            >
-            </v-checkbox>
-          </template>
-          <template v-slot:top>
-            <v-toolbar flat class="border-top-radius-8">
-              <v-toolbar-title>{{ websiteRuleListName }}</v-toolbar-title>
+        </v-checkbox>
+      </template>
+      <template v-slot:item.temporarilyInactive="{ item }">
+        <v-checkbox
+          v-model="item.temporarilyInactive"
+          color="primary"
+          @change="setTemporarilyInactive(item)"
+          hide-details
+          class="d-flex justify-center"
+        >
+        </v-checkbox>
+      </template>
+      <template v-slot:top>
+        <v-toolbar flat class="border-top-radius-8">
+          <v-toolbar-title>{{ websiteRuleListName }}</v-toolbar-title>
 
-              <v-spacer></v-spacer>
-              <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated" elevation="12">
-                {{ t(msg.ADD) }}
-              </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="accent" @click="newItem" v-if="!showAll" variant="elevated" elevation="12">
+            {{ t(msg.ADD) }}
+          </v-btn>
 
-            </v-toolbar>
-          </template>
-        </v-data-table>
-      </div>
-    </div>
+        </v-toolbar>
+      </template>
+    </v-data-table>
 
     <edit-website-rule-dialog
       :p-item="contextItem"

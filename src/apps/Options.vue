@@ -23,37 +23,23 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 
 <template>
   <v-layout class="options-shell">
-    <v-sheet :class="{'mathPatternLight': !isDark, 'mathPatternDark': isDark}">
-      <app-bar/>
-      <v-main>
+    <v-sheet class="options-background" :class="{'mathPatternLight': !isDark, 'mathPatternDark': isDark}">
+      <app-bar class="options-header"/>
+      <v-main class="options-main">
         <v-container class="container">
-          <table>
-            <tr>
-              <td>
-                <v-sheet elevation="12" height="77.5vh" color="background" class="border-top-radius-8 mr-4 fg-sidebar-w">
-                  <sidebar/>
-                </v-sheet>
-              </td>
-              <td>
-                <v-sheet elevation="12" height="77.5vh" color="background"
-                         class="d-flex flex-column border-top-radius-8 fg-content-w">
-                  <router-view/>
-                </v-sheet>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <v-sheet elevation="12" height="80px" color="background" class="border-bottom-radius-8 mr-4 fg-sidebar-w">
-                  <sidebar-toolbar/>
-                </v-sheet>
-              </td>
-              <td>
-                <v-sheet elevation="12" height="80px" color="background" class="border-bottom-radius-8 fg-content-w">
-                  <fg-footer/>
-                </v-sheet>
-              </td>
-            </tr>
-          </table>
+          <v-sheet elevation="12" color="background" class="options-pane border-top-radius-8 fg-sidebar-w fgScroll">
+            <sidebar/>
+          </v-sheet>
+          <v-sheet elevation="12" color="background"
+                   class="options-pane d-flex flex-column border-top-radius-8 fg-content-w fgScroll">
+            <router-view/>
+          </v-sheet>
+          <v-sheet elevation="12" color="background" class="border-bottom-radius-8 fg-sidebar-w">
+            <sidebar-toolbar/>
+          </v-sheet>
+          <v-sheet elevation="12" color="background" class="border-bottom-radius-8 fg-content-w">
+            <fg-footer/>
+          </v-sheet>
         </v-container>
       </v-main>
     </v-sheet>
@@ -62,6 +48,38 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
 
 <style scoped lang="scss">
 .options-shell {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+
+  :deep(.data-table-page) {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  :deep(.data-table-page > .v-data-table) {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  :deep(.data-table-page .v-table__wrapper) {
+    min-height: 0;
+    overscroll-behavior: contain;
+  }
+
+  :deep(.data-table-page .v-data-table-footer),
+  :deep(.data-table-page .v-toolbar) {
+    flex-shrink: 0;
+  }
+
+  :deep(.data-table-page .v-table--fixed-header > .v-table__wrapper > table > thead > tr > th) {
+    background: rgb(var(--v-theme-background));
+  }
+
   :deep(.elevation-12) {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16) !important;
   }
@@ -105,35 +123,46 @@ utils.runtimeMessages.createMessageListener('appDataUpdated', () => {
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-.r-container {
-  min-width: 1080px;
-  min-height: 850px;
+.options-background {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.options-header {
+  flex-shrink: 0;
+}
+
+.options-main {
+  flex: 1;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .container {
-  max-width: 100%;
-  min-height: 850px;
-  height: 92.5vh;
-  padding: 16px 16px 0 16px;
-  margin-top: 0;
-  margin-right: auto;
-  margin-left: auto;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 80px;
+  gap: 2px 16px;
+  width: 100%;
+  min-width: 1000px;
+  max-width: 1140px;
+  height: 100%;
+  padding: 16px;
+  margin: 0 auto;
 
-  // Define breakpoints for different screen sizes
-  //@media (min-width: 576px) {
-  //  max-width: 540px;
-  //}
-  //
-  //@media (min-width: 768px) {
-  //  max-width: 720px;
-  //}
-
-  //@media (min-width: 992px) {
-  //  max-width: 960px;
-  //}
-  //
-  @media (min-width: 1200px) {
-    max-width: 1140px;
+  > .v-sheet {
+    width: auto;
+    min-width: 0;
+    min-height: 0;
   }
+}
+
+.options-pane {
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 </style>

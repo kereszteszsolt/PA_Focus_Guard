@@ -181,8 +181,9 @@ watch(itemsPerPage, updateItemsPerPage);
 </script>
 
 <template>
-  <div class="flex-1-0 border-top-radius-8 fgScroll fw-card">
+  <div class="data-table-page border-top-radius-8">
     <v-data-table
+      fixed-header
       :headers="headers"
       :items="allLocales"
       v-model:page="page"
@@ -193,7 +194,7 @@ watch(itemsPerPage, updateItemsPerPage);
       :page-text="`${page} / ${totalPages}`"
       :no-data-text="t(msg.NO_LANGUAGES_FOUND)"
       :loading="isLoading"
-      class="bg-background fgXYScroll"
+      class="bg-background"
     >
       <template v-slot:item.localeId="{ item }">
         <div class="text-center">

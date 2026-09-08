@@ -185,8 +185,8 @@ utils.runtimeMessages.createBatchMessageListenerM2O(['distractionAttemptsUpdated
 </script>
 
 <template>
-  <div class="flex-1-0 pa-4">
-    <v-data-table :headers="headers" :items="filteredData" :search="search"
+  <div class="data-table-page pa-4">
+    <v-data-table fixed-header :headers="headers" :items="filteredData" :search="search"
                   :total-items="filteredData.length"
                   v-model:page="page"
                   v-model:items-per-page="itemsPerPage"
