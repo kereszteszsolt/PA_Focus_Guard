@@ -40,5 +40,16 @@
   "developerWebsiteContinue": "Folytatás",
   "developerWebsiteLanguages": "A kereszteszsolt.hu magyar (HU), angol (EN), román (RO) és német (DE) nyelven érhető el.",
   "waysToSupport": "Támogatási lehetőségek",
-  "popupInfo": "Infó"
+  "popupInfo": "Infó",
+  "supportBuyCoffee": "Hívj meg egy kávéra",
+  "supportFollow": "Kövess és iratkozz fel",
+  "supportReview": "Értékeld a bővítményt",
+  "supportExplore": "További termékek",
+  "supportNotice": "A támogatás önkéntes, és nem jár kötelezettséggel, elsőbbségi szolgáltatással, különleges hozzáféréssel vagy más ellenszolgáltatással. Köszönöm a figyelmedet, és azt is, ha bármilyen módon támogatod a munkámat.",
+  "contactWebsiteTitle": "A fejlesztő weboldala",
+  "contactWebsiteDescription": "Ismerd meg Keresztes Zsolt munkáját, projektjeit és termékeit.",
+  "contactLinksTitle": "Linkek és közösségi profilok",
+  "contactLinksDescription": "A fejlesztő aktuális közösségi profiljai és csatornái egy helyen.",
+  "contactWebstoreTitle": "Focus Guard a Chrome Web Store-ban",
+  "contactWebstoreDescription": "A bővítmény adatai, értékelései és a fejlesztő kapcsolattartási információi a Chrome Web Store-ban."
 }

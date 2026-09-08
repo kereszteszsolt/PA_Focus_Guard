@@ -39,3 +39,16 @@ export const DEVELOPER_WEBSITE_CONTINUE = 'developerWebsiteContinue';
 export const DEVELOPER_WEBSITE_LANGUAGES = 'developerWebsiteLanguages';
 export const WAYS_TO_SUPPORT = 'waysToSupport';
 export const POPUP_INFO = 'popupInfo';
+
+export const SUPPORT_BUY_COFFEE = 'supportBuyCoffee';
+export const SUPPORT_FOLLOW = 'supportFollow';
+export const SUPPORT_REVIEW = 'supportReview';
+export const SUPPORT_EXPLORE = 'supportExplore';
+export const SUPPORT_NOTICE = 'supportNotice';
+
+export const CONTACT_WEBSITE_TITLE = 'contactWebsiteTitle';
+export const CONTACT_WEBSITE_DESCRIPTION = 'contactWebsiteDescription';
+export const CONTACT_LINKS_TITLE = 'contactLinksTitle';
+export const CONTACT_LINKS_DESCRIPTION = 'contactLinksDescription';
+export const CONTACT_WEBSTORE_TITLE = 'contactWebstoreTitle';
+export const CONTACT_WEBSTORE_DESCRIPTION = 'contactWebstoreDescription';

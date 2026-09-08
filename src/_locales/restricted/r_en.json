@@ -40,5 +40,16 @@
   "developerWebsiteContinue": "Continue",
   "developerWebsiteLanguages": "kereszteszsolt.hu is available in Hungarian (HU), English (EN), Romanian (RO), and German (DE).",
   "waysToSupport": "Ways to Support",
-  "popupInfo": "Info"
+  "popupInfo": "Info",
+  "supportBuyCoffee": "Buy Me a Coffee",
+  "supportFollow": "Follow & Subscribe",
+  "supportReview": "Rate & Review",
+  "supportExplore": "Explore more products",
+  "supportNotice": "Support is voluntary and does not create any obligation, priority service, special access or other consideration. Thank you for your attention, and for supporting my work in any way.",
+  "contactWebsiteTitle": "Developer website",
+  "contactWebsiteDescription": "Discover Keresztes Zsolt’s work, projects and products.",
+  "contactLinksTitle": "Links & social profiles",
+  "contactLinksDescription": "Find the developer’s current social profiles and channels in one place.",
+  "contactWebstoreTitle": "Focus Guard on the Chrome Web Store",
+  "contactWebstoreDescription": "View extension details, reviews and the developer’s contact information on the Chrome Web Store."
 }

@@ -1,92 +1,145 @@
 <script setup lang="ts">
-import { FooterViewWrapper } from '@/views/options';
+import { computed } from 'vue';
 import { useI18nStore } from '@/store';
-import { computed, ref } from 'vue';
 import { c as r_msg } from '@/_locales/restricted';
-import { wp, wpc, IDonation } from '@/_locales/restricted/whole-pages';
 
 const i18n = useI18nStore();
 i18n.fetchLocaleSettingsAndMessages();
-
-const donationArray = computed(() => {
-  return wp.getTranslatedFile(i18n.getCurrentLocaleId, wpc.DONATION) as IDonation[];
-}).value;
 const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
+
+const supportActions = [
+  { label: r_msg.SUPPORT_BUY_COFFEE, icon: 'mdi-coffee', url: 'https://www.buymeacoffee.com/kereszteszsolt', primary: true },
+  { label: r_msg.SUPPORT_FOLLOW, icon: 'mdi-web', url: 'https://kereszteszsolt.hu/#links' },
+  { label: r_msg.SUPPORT_REVIEW, icon: 'mdi-star-outline', url: 'https://chromewebstore.google.com/detail/focus-guard/bdfnblnbjckkhknignkpmckeelfplill' },
+];
+const discoverActions = [
+  { label: 'kereszteszsolt.hu', icon: 'mdi-web', url: 'https://kereszteszsolt.hu/', translate: false },
+  { label: r_msg.SUPPORT_EXPLORE, icon: 'mdi-compass-outline', url: 'https://kereszteszsolt.hu/#products', translate: true },
+];
 </script>
 
 <template>
-  <footer-view-wrapper :title="tr(r_msg.WAYS_TO_SUPPORT)" class="footer-view">
-    <v-list lines="two" class="bg-background">
-      <v-list-item v-for="donation in donationArray" :key="donation.id" class="list-item">
-        <v-list-item-content>
-          <v-list-item-title class="font-weight-bold fgc-primary mb-2 title">{{ donation.title }}</v-list-item-title>
-          <p class="text">{{ donation.text }}</p>
-          <ul>
-            <li v-for="item in donation.list" :key="item">
-              <v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>
-              {{ item }}
-            </li>
-          </ul>
+  <v-sheet color="background" class="support-page footer-view fgScroll border-top-radius-8">
+    <section class="support-card support-overview" aria-labelledby="support-title">
+      <div class="support-heading">
+        <span class="support-heading__icon" aria-hidden="true"><v-icon>mdi-coffee-outline</v-icon></span>
+        <h1 id="support-title">{{ tr(r_msg.WAYS_TO_SUPPORT) }}</h1>
+      </div>
+      <div class="support-actions">
+        <div class="support-actions__row">
+          <v-btn v-for="action in supportActions" :key="action.url" :href="action.url" target="_blank" rel="noopener noreferrer"
+                 :variant="action.primary ? 'flat' : 'outlined'" :color="action.primary ? '#ff813f' : undefined"
+                 class="support-action text-none" :class="{ 'support-action--primary': action.primary }">
+            <v-icon start size="18">{{ action.icon }}</v-icon>{{ tr(action.label) }}
+          </v-btn>
+        </div>
+        <div class="support-actions__row">
+          <v-btn v-for="action in discoverActions" :key="action.url" :href="action.url" target="_blank" rel="noopener noreferrer"
+                 variant="outlined" class="support-action text-none">
+            <v-icon start size="18">{{ action.icon }}</v-icon>{{ action.translate ? tr(action.label) : action.label }}
+          </v-btn>
+        </div>
+      </div>
+    </section>
 
-          <div class="d-flex flex-row justify-space-between align-center">
-            <div v-if="donation.link" class="link-container">
-              <v-list-item-subtitle class="link-item">
-                <div class="d-flex flex-column justify-space-around">
-                  <p class="fgc-secondary fg-font-s-16">{{ donation.link.text }}</p>
-                  <div class="d-flex flex-row">
-                    <div class="fgc-primary font-weight-bold mr-1 fg-font-s-16">{{ donation?.name }}</div>
-                    <div class="fgc-accent font-weight-bold fg-font-s-16">{{ donation?.identifier }}</div>
-                  </div>
-                  <a :href="donation.link.url" target="_blank"
-                     class="fgc-info font-weight-bold fg-font-s-16">{{ donation.link.url }}</a>
-                </div>
-              </v-list-item-subtitle>
-            </div>
-            <div v-if="donation.image" class="image-container">
-              <a :href="donation.link && donation.link.url">
-                <v-img :src="donation.image" :alt="donation.title" width="300"></v-img>
-              </a>
-            </div>
-          </div>
+    <section class="support-card support-notice">
+      <v-icon class="support-notice__icon" size="24" aria-hidden="true">mdi-information-outline</v-icon>
+      <p>{{ tr(r_msg.SUPPORT_NOTICE) }}</p>
+    </section>
 
-          <p v-if="donation.signature" class="signature fgc-accent">{{ donation.signature }}</p>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </footer-view-wrapper>
+  </v-sheet>
 </template>
 
 <style scoped lang="scss">
-.list-item {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 20px;
-  font-size: 16px;
+.support-page {
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+  color: rgb(var(--v-theme-on-background));
 }
 
-.title {
-  font-size: 1.5em;
+.support-card {
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
+  border-radius: 12px;
+  background: rgba(var(--v-theme-primary), 0.025);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
-.text {
-  margin-bottom: 10px;
+.support-overview {
+  padding: 16px;
 }
 
-.image-container {
-  margin-top: 10px;
+.support-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(var(--v-theme-primary), 0.1);
+    color: rgb(var(--v-theme-primary));
+  }
 }
 
-.link-container {
-  margin-top: 10px;
+.support-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
 }
 
-.link-item {
-  margin-bottom: 10px;
+.support-action {
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: normal;
+
+  &:not(.support-action--primary) {
+    border-color: rgba(var(--v-theme-primary), 0.45);
+    background: rgba(var(--v-theme-primary), 0.04);
+    color: inherit;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgb(var(--v-theme-on-background));
+    outline-offset: 3px;
+  }
 }
 
-.signature {
-  font-weight: bold;
-  font-style: italic;
-  margin-top: 20px;
+.support-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+
+  &__icon {
+    flex-shrink: 0;
+    color: rgb(var(--v-theme-primary));
+  }
 }
+
 </style>
