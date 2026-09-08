@@ -115,8 +115,8 @@ export const initDefaultWebsites = async () => {
     listId: wsRuleList_02.id,
     permanentlyActive: false,
     temporarilyInactive: true,
-    localOrder: 17,
-    globalOrder: 17,
+    localOrder: 0,
+    globalOrder: 8,
     urlFilterType: constants.wsrFilter.URL
   };
   allWebsites.push(wsRule_17);
@@ -126,8 +126,8 @@ export const initDefaultWebsites = async () => {
     listId: wsRuleList_02.id,
     permanentlyActive: false,
     temporarilyInactive: true,
-    localOrder: 18,
-    globalOrder: 18,
+    localOrder: 1,
+    globalOrder: 9,
     urlFilterType: constants.wsrFilter.URL
   };
   allWebsites.push(wsRule_18);
@@ -137,8 +137,8 @@ export const initDefaultWebsites = async () => {
     listId: wsRuleList_02.id,
     permanentlyActive: false,
     temporarilyInactive: true,
-    localOrder: 19,
-    globalOrder: 19,
+    localOrder: 2,
+    globalOrder: 10,
     urlFilterType: constants.wsrFilter.URL
   };
   allWebsites.push(wsRule_19);
@@ -148,8 +148,8 @@ export const initDefaultWebsites = async () => {
     listId: wsRuleList_02.id,
     permanentlyActive: false,
     temporarilyInactive: true,
-    localOrder: 20,
-    globalOrder: 20,
+    localOrder: 3,
+    globalOrder: 11,
     urlFilterType: constants.wsrFilter.URL
   };
   allWebsites.push(wsRule_20);
@@ -159,8 +159,8 @@ export const initDefaultWebsites = async () => {
     listId: wsRuleList_02.id,
     permanentlyActive: false,
     temporarilyInactive: true,
-    localOrder: 21,
-    globalOrder: 21,
+    localOrder: 4,
+    globalOrder: 12,
     urlFilterType: constants.wsrFilter.URL
   };
   allWebsites.push(wsRule_21);
@@ -170,8 +170,8 @@ export const initDefaultWebsites = async () => {
     listId: wsRuleList_02.id,
     permanentlyActive: false,
     temporarilyInactive: true,
-    localOrder: 22,
-    globalOrder: 22,
+    localOrder: 5,
+    globalOrder: 13,
     urlFilterType: constants.wsrFilter.URL
   };
   allWebsites.push(wsRule_22);
@@ -181,8 +181,8 @@ export const initDefaultWebsites = async () => {
     listId: wsRuleList_02.id,
     permanentlyActive: false,
     temporarilyInactive: true,
-    localOrder: 23,
-    globalOrder: 23,
+    localOrder: 6,
+    globalOrder: 14,
     urlFilterType: constants.wsrFilter.URL
   };
   allWebsites.push(wsRule_23);

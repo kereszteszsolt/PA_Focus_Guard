@@ -72,16 +72,16 @@ const showAll = computed(() => {
 });
 
 const moveUp = computed(() => {
-  return pathId.value === 'all' ? websiteRulesStore.moveUpWebsiteRulesGlobalOrder : websiteRulesStore.moveUpWebsiteRule;
+  return showAll.value ? websiteRulesStore.moveUpWebsiteRulesGlobalOrder : websiteRulesStore.moveUpWebsiteRule;
 });
 
 const moveDown = computed(() => {
-  return pathId.value === 'all' ? websiteRulesStore.moveDownWebsiteRulesGlobalOrder : websiteRulesStore.moveDownWebsiteRule;
+  return showAll.value ? websiteRulesStore.moveDownWebsiteRulesGlobalOrder : websiteRulesStore.moveDownWebsiteRule;
 });
 
 type SortItem = { key: string, order?: boolean | 'asc' | 'desc' }
 const sortByFieldName = computed<readonly SortItem[]>(() => {
-  return pathId.value === 'all' ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'localOrder', order: 'asc' }];
+  return showAll.value ? [{ key: 'globalOrder', order: 'asc' }] : [{ key: 'localOrder', order: 'asc' }];
 });
 
 const websiteRuleList = computed(() => {
