@@ -6,7 +6,7 @@ export const update = async () => {
   let oldVersion = '1.0.4';
   chrome.storage.local.get(oldConstants.FG_APP_DATA, async (result) => {
       if (result[oldConstants.FG_APP_DATA]) {
-        let oldData = JSON.parse(result[oldConstants.FG_APP_DATA]);
+        const oldData = JSON.parse(result[oldConstants.FG_APP_DATA]);
         oldVersion = oldData.version || '1.0.4';
       }  else {
         await install();
