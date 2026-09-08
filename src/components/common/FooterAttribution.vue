@@ -98,7 +98,8 @@ const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).v
     text-align: center;
 
     .footer-attribution__website {
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .footer-attribution__separator {

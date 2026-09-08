@@ -26,10 +26,14 @@ export const about: IAbout[] = [
       {
         text: `GitHub - Focus Guard`,
         url: `https://github.com/kereszteszsolt/PA_Focus_Guard`
+      },
+      {
+        text: `Personal website - Keresztes Zsolt`,
+        url: `https://kereszteszsolt.hu/`
       }]
   },
   {
     id: `signature`,
-    signature: `Keresztes Zsolt, Cluj-Napoca 2024`
+    signature: `Keresztes Zsolt, Cluj-Napoca 2026`
   }
 ];

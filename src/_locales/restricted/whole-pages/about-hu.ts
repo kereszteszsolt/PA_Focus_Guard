@@ -17,7 +17,7 @@ export const about : IAbout[] = [
   },
   {
     id: `signature`,
-    signature: `Keresztes Zsolt, Kolozsvár 2024`
+    signature: `Keresztes Zsolt, Kolozsvár 2026`
   },
   {
     id: `links`,
@@ -30,10 +30,14 @@ export const about : IAbout[] = [
       {
         text: `GitHub - Focus Guard`,
         url: `https://github.com/kereszteszsolt/PA_Focus_Guard`
+      },
+      {
+        text: `Személyes weboldal - Keresztes Zsolt`,
+        url: `https://kereszteszsolt.hu/`
       }]
   },
   {
     id: `signature`,
-    signature: `Keresztes Zsolt, Cluj-Napoca 2024`
+    signature: `Keresztes Zsolt, Cluj-Napoca 2026`
   }
 ]
