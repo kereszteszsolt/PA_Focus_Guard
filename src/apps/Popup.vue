@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useAppDataStore, useI18nStore, useStatisticsStore } from '@/store';
 import { useTheme } from 'vuetify';
-import { computed, ref, watch, watchEffect } from 'vue';
+import { computed, watchEffect } from 'vue';
+import FooterAttribution from '@/components/common/FooterAttribution.vue';
 import { msg } from '@/constants';
 import * as constants from '@/constants';
-import * as links from '@/links';
-import { ISocialMediaLink } from '@/interfaces';
-import { c as r_msg } from '@/_locales/restricted';
 
 const appDataStore = useAppDataStore();
 const statisticsStore = useStatisticsStore();
@@ -16,9 +14,6 @@ appDataStore.fetchAppData();
 statisticsStore.fetchDistractionAttempts();
 const theme = useTheme();
 theme.global.name.value = appDataStore.getAppData.fgTheme;
-const socialMediaDetails = ref(false);
-const contextLink = ref({} as ISocialMediaLink);
-const currentYear = new Date().getFullYear();
 
 watchEffect(() => {
   if (!appDataStore.isLoading) {
@@ -89,72 +84,17 @@ const nrOfOpenOptionsTabs = computed(() => {
   });
 });
 
-const orderedLinks = computed(() => {
-  return links.socialMediaLinks.sort((a, b) => a.footerOrder - b.footerOrder).filter((link) => link.footerOrder > 0);
-});
-const bodyHeight = computed(() => {
-  if (socialMediaDetails.value) {
-    switch (contextLink.value.platformName) {
-      case 'buy-me-a-coffee':
-        return '425px';
-      case 'Facebook':
-        return '370px';
-      case 'LinkedIn':
-        return '370px';
-      case 'Twitter':
-        return '370px';
-      case 'YouTube-Hu':
-        return '340px';
-      case 'YouTube-En':
-        return '340px';
-      default:
-        return '350px';
-    }
-  } else {
-    return '350px';
-  }
-});
-const bodyWidth = computed(() => {
-  if (socialMediaDetails.value) {
-    switch (contextLink.value.platformName) {
-      case 'buy-me-a-coffee':
-        return '500px';
-      case 'YouTube-Hu':
-        return '420px';
-      case 'YouTube-En':
-        return '400px';
-      default:
-        return '300px';
-    }
-  } else {
-    return '300px';
-  }
-});
-
 const t = (key: string) => computed(() => i18n.getTranslation(key)).value;
-const tr = (key: string) => computed(() => i18n.getRestrictedTranslation(key)).value;
 const isLoading = computed(() => appDataStore.isLoading || statisticsStore.isLoading || i18n.isLoading);
 const switchFocusMode = (active: boolean) => {
   let focusSessionId: string = active ? statisticsStore.getNewUniqueFocusSessionId : constants.common.NOT_APPLICABLE;
   appDataStore.switchFocusMode(active, focusSessionId);
 };
 
-const openSocialMediaDetails = (context: ISocialMediaLink) => {
-  contextLink.value = context;
-  socialMediaDetails.value = true;
-  document.body.style.width = bodyWidth.value;
-  document.body.style.height = bodyHeight.value;
-};
-const closeSocialMediaDetails = () => {
-  contextLink.value = {} as ISocialMediaLink;
-  socialMediaDetails.value = false;
-  document.body.style.width = bodyWidth.value;
-  document.body.style.height = bodyHeight.value;
-};
 </script>
 
 <template>
-  <v-card color="background" class="card" v-if="!isLoading" :height="bodyHeight" :width="bodyWidth">
+  <v-card color="background" class="card" v-if="!isLoading">
     <v-card-item class="pa-0">
       <v-card-title color="primary">
         <v-sheet color="primary" class="justify-space-around">
@@ -163,7 +103,7 @@ const closeSocialMediaDetails = () => {
       </v-card-title>
     </v-card-item>
     <!--      main content-->
-    <div class="d-flex flex-column" v-if="!socialMediaDetails">
+    <div class="popup-content">
       <div class="flex-1-0">
         <v-row class="on-off-button-group">
           <v-col cols="6">
@@ -205,60 +145,8 @@ const closeSocialMediaDetails = () => {
         </v-row>
       </div>
 
-      <div class="d-flex flex-row flex-wrap justify-space-between mb-2">
-        <v-btn v-for="link in orderedLinks" variant="text" class="flex-1-0" @click="openSocialMediaDetails(link)"
-               id="#fgModal" color="info" density="compact" size="regular">
-          <v-icon>{{ link.mdiIcon }}</v-icon>
-        </v-btn>
-      </div>
-      <div class="d-flex flex-column justify-space-around text-center fgc-info">
-        <p>{{`Focus Guard © ${currentYear} - Keresztes Zsolt`}}</p>
-        <p>Free Software. Open source.</p>
-        <p>{{`Version: ${appDataStore.getAppData.version}`}}</p>
-      </div>
+      <footer-attribution class="popup-footer" compact />
     </div>
-
-    <!-- social media details -->
-    <div class="d-flex flex-column" v-if="socialMediaDetails">
-      <v-card-subtitle>
-        <div class="my-2 font-weight-bold fg-font-s-24">{{ contextLink.platformName }}</div>
-      </v-card-subtitle>
-      <div class="d-flex flex-column px-3">
-        <div class="mb-1 font-weight-bold">{{ tr(r_msg.THANK_Y4Y_INTEREST) }}</div>
-        <div> {{ tr(r_msg.NOT_PART_OF_EXTENSION) }}</div>
-        <div v-if="contextLink.platformName !== 'buy-me-a-coffee'">{{ tr(r_msg.CLICK_OPEN_NEW_TAB) }}</div>
-        <div v-if="contextLink.platformName === 'buy-me-a-coffee'">{{ tr(r_msg.CLICK_OPEN_NEW_TAB_PL) }}</div>
-        <div class="my-2 d-flex flex-column">
-          <div class="d-flex flex-row">
-            <div class="font-weight-bold fgc-primary mr-1">{{ contextLink.profileName }}</div>
-            <div class="font-weight-bold fgc-accent">{{ contextLink.profileIdentifier }}</div>
-          </div>
-          <a class="fgc-info" :href="contextLink.url" target="_blank">{{ contextLink.url }}</a>
-        </div>
-        <div class="mb-2">{{ tr(contextLink.shortDescription) }}</div>
-        <div class="mb-2">{{ tr(contextLink.callToAction) }}</div>
-        <ul class="mb-2 d-flex flex-column no-bullets" v-if="contextLink.list">
-          <li v-for="item in contextLink.list || []" :key="item">
-            <v-icon color="info" class="px-1">mdi-arrow-right-bold</v-icon>
-            {{ tr(item) }}
-          </li>
-        </ul>
-      </div>
-    </div>
-    <v-card-actions class="d-flex">
-      <v-btn @click="closeSocialMediaDetails" v-if="socialMediaDetails" variant="elevated" elevation="12"
-             color="primary" class="text-none flex-grow-1">
-        <v-icon start>mdi-arrow-left</v-icon>
-        {{ tr(msg.BACK) }}
-      </v-btn>
-      <v-btn v-if="contextLink.mdiIcon" variant="elevated" elevation="12" color="accent" class="text-none flex-grow-1"
-      :href="contextLink.url" target="_blank">
-        <v-icon color="info" start>{{ contextLink.mdiIcon }}</v-icon>
-        {{ contextLink.profileIdentifier }}
-      </v-btn>
-      <v-btn v-if="contextLink.image" variant="elevated" elevation="12" :href="contextLink.url" target="_blank"
-             :style="{ backgroundImage: `url(${contextLink.image})`}" class="custom-button text-none flex-grow-1"></v-btn>
-    </v-card-actions>
   </v-card>
   <v-progress-linear v-else indeterminate color="primary"></v-progress-linear>
 </template>
@@ -268,7 +156,10 @@ const closeSocialMediaDetails = () => {
   margin: 0;
   padding: 0;
   border-radius: 0;
-  height: 100vh;
+  width: 300px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
 }
 
 .button-off {
@@ -303,16 +194,14 @@ const closeSocialMediaDetails = () => {
   }
 }
 
-.popup-footer {
-  height: 300px;
+.popup-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
-.custom-button {
-  background-size: auto 100%; /* This will make the image fit the height of the button */
-  background-repeat: no-repeat;
-  background-position: center;
-  //border-radius: 8px;
-  background-color: #ff813f;
-  min-width: 128px;
+.popup-footer {
+  margin: 0 16px;
+  padding-bottom: 8px;
 }
 </style>

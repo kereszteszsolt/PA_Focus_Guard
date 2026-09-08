@@ -31,3 +31,9 @@ export const CTA_BUY_ME_A_COFFEE_L2 = 'ctaBuyMeACoffeeL2';
 export const CTA_BUY_ME_A_COFFEE_L3 = 'ctaBuyMeACoffeeL3';
 export const CTA_BUY_ME_A_COFFEE_L4 = 'ctaBuyMeACoffeeL4';
 export const SOC_MED_DESC_EMAIL = 'socMedDescEmail';
+
+export const DEVELOPER_WEBSITE_TITLE = 'developerWebsiteTitle';
+export const DEVELOPER_WEBSITE_DESCRIPTION = 'developerWebsiteDescription';
+export const DEVELOPER_WEBSITE_CANCEL = 'developerWebsiteCancel';
+export const DEVELOPER_WEBSITE_CONTINUE = 'developerWebsiteContinue';
+export const DEVELOPER_WEBSITE_LANGUAGES = 'developerWebsiteLanguages';
